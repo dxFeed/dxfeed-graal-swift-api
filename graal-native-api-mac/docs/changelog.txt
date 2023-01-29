@@ -1,0 +1,32 @@
+# Changelog
+## v0.1.2
+    * fix: CI/CD for IOS
+    * fix: build osx-arm64 remove check xcode tools arch
+## v0.1.1
+    * fix: build osx-arm64 & x86_64
+    * fix: size of C-pointer is not equals size of Java-pointer
+    * fix: build osx-arm64 (check xcode tools arch)
+## v0.1.0
+    * feat: IOS
+    * fix: build NuGet package
+## v0.0.8
+    * fix: build NuGet package
+## v0.0.7
+    * fix: build NuGet package
+## v0.0.6
+    * fix: build NuGet package
+    * docs: research size of pointer
+    * docs: description of how to release a version
+## v0.0.5
+    * fix: build linux and osx artifacts
+    * docs: add a code convention and clear the configuration of the changelog plugin
+## v0.0.4
+    * fix: remove graal-native-api-jar-with-dependencies.jar from deployment
+    * docs: add docs (build info and changelogs) and exclude source native-jar
+    * fix: remove the old build script and clear gitignore
+## v0.0.3
+    * fix: DXEndpoint.getInstance().close() - close the singleton and do not generate a configuration for the latest cases
+## v0.0.2
+    * fix: size of C-pointer is not equals size of Java-pointer
+## v0.0.1
+    * fix: CI/CD
