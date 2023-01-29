@@ -14,7 +14,7 @@
 		80A3BBF92986AC0500501E11 /* jdk-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A3BBF62986AC0500501E11 /* jdk-arm64-ios-r.a */; };
 		80A3BBFA2986ADD700501E11 /* libDxFeedGraalNativeApi.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A3BBF42986AC0500501E11 /* libDxFeedGraalNativeApi.o */; };
 		80A3BC012986AEA900501E11 /* TestGraalvm.h in Headers */ = {isa = PBXBuildFile; fileRef = 80A3BBFF2986AEA900501E11 /* TestGraalvm.h */; };
-		80A3BC022986AEA900501E11 /* TestGraalvm.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A3BC002986AEA900501E11 /* TestGraalvm.m */; };
+		80A3BC022986AEA900501E11 /* TestGraalvm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 80A3BC002986AEA900501E11 /* TestGraalvm.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,7 @@
 		80A3BBF52986AC0500501E11 /* graal-svm-arm64-ios-r.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "graal-svm-arm64-ios-r.a"; path = "graal-native-api-ios/graal-svm-arm64-ios-r.a"; sourceTree = "<group>"; };
 		80A3BBF62986AC0500501E11 /* jdk-arm64-ios-r.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "jdk-arm64-ios-r.a"; path = "graal-native-api-ios/jdk-arm64-ios-r.a"; sourceTree = "<group>"; };
 		80A3BBFF2986AEA900501E11 /* TestGraalvm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestGraalvm.h; sourceTree = "<group>"; };
-		80A3BC002986AEA900501E11 /* TestGraalvm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestGraalvm.m; sourceTree = "<group>"; };
+		80A3BC002986AEA900501E11 /* TestGraalvm.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestGraalvm.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +85,7 @@
 			children = (
 				80A3BBDE2986ABB600501E11 /* DXFeedFramework.h */,
 				80A3BBFF2986AEA900501E11 /* TestGraalvm.h */,
-				80A3BC002986AEA900501E11 /* TestGraalvm.m */,
+				80A3BC002986AEA900501E11 /* TestGraalvm.mm */,
 			);
 			path = DXFeedFramework;
 			sourceTree = "<group>";
@@ -218,7 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80A3BC022986AEA900501E11 /* TestGraalvm.m in Sources */,
+				80A3BC022986AEA900501E11 /* TestGraalvm.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
