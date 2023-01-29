@@ -15,4 +15,5 @@ FOUNDATION_EXPORT const unsigned char DXFeedFrameworkVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <DXFeedFramework/PublicHeader.h>
 
-
+#import <DXFeedFramework/DXFeedSystem.h>
+#import <DXFeedFramework/DXFeedInitializator.h>

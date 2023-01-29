@@ -37,7 +37,7 @@ const char *dxfg_system_get_property(graal_isolatethread_t *thread, const char *
 /**
  * @brief Frees pointer that was previously allocated in Java method (by UnmanagedMemory).
  * @param[in] thread The pointer to the runtime data structure for a thread.
- * @param[in] ptr The pointer to release. Pointer not valid after function call. Pointer can be NULL.
+ * @param[in] value The pointer to release. Pointer not valid after function call. Pointer can be NULL.
  * @return 0 - if the operation was successful; otherwise, an error code.
  */
 int32_t dxfg_system_release_property(graal_isolatethread_t *thread, const char *value);

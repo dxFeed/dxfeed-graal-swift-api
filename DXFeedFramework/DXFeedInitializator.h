@@ -1,5 +1,5 @@
 //
-//  TestGraalvm.h
+//  DXFeedInitializator.h
 //  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 1/29/23.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TestGraalvm : NSObject
+@interface DXFeedInitializator : NSObject
 
 @end
 

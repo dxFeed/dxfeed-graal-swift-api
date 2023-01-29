@@ -13,8 +13,11 @@
 		80A3BBF82986AC0500501E11 /* graal-svm-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A3BBF52986AC0500501E11 /* graal-svm-arm64-ios-r.a */; };
 		80A3BBF92986AC0500501E11 /* jdk-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A3BBF62986AC0500501E11 /* jdk-arm64-ios-r.a */; };
 		80A3BBFA2986ADD700501E11 /* libDxFeedGraalNativeApi.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A3BBF42986AC0500501E11 /* libDxFeedGraalNativeApi.o */; };
-		80A3BC012986AEA900501E11 /* TestGraalvm.h in Headers */ = {isa = PBXBuildFile; fileRef = 80A3BBFF2986AEA900501E11 /* TestGraalvm.h */; };
-		80A3BC022986AEA900501E11 /* TestGraalvm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 80A3BC002986AEA900501E11 /* TestGraalvm.mm */; };
+		80A3BC052986B2B600501E11 /* DXFeedSystem.mm in Sources */ = {isa = PBXBuildFile; fileRef = 80A3BC032986B2B600501E11 /* DXFeedSystem.mm */; };
+		80FF1CEF2986B93E00AF70FE /* DXFeedSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 80A3BC042986B2B600501E11 /* DXFeedSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80FF1CF22986BC6700AF70FE /* DXFeedInitializator.h in Headers */ = {isa = PBXBuildFile; fileRef = 80FF1CF02986BC6700AF70FE /* DXFeedInitializator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80FF1CF32986BC6700AF70FE /* DXFeedInitializator.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FF1CF12986BC6700AF70FE /* DXFeedInitializator.m */; };
+		80FF1CF52986BED500AF70FE /* DXFeedInitializator+Graal.h in Headers */ = {isa = PBXBuildFile; fileRef = 80FF1CF42986BED500AF70FE /* DXFeedInitializator+Graal.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +38,11 @@
 		80A3BBF42986AC0500501E11 /* libDxFeedGraalNativeApi.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = libDxFeedGraalNativeApi.o; path = "graal-native-api-ios/libDxFeedGraalNativeApi.o"; sourceTree = "<group>"; };
 		80A3BBF52986AC0500501E11 /* graal-svm-arm64-ios-r.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "graal-svm-arm64-ios-r.a"; path = "graal-native-api-ios/graal-svm-arm64-ios-r.a"; sourceTree = "<group>"; };
 		80A3BBF62986AC0500501E11 /* jdk-arm64-ios-r.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "jdk-arm64-ios-r.a"; path = "graal-native-api-ios/jdk-arm64-ios-r.a"; sourceTree = "<group>"; };
-		80A3BBFF2986AEA900501E11 /* TestGraalvm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestGraalvm.h; sourceTree = "<group>"; };
-		80A3BC002986AEA900501E11 /* TestGraalvm.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestGraalvm.mm; sourceTree = "<group>"; };
+		80A3BC032986B2B600501E11 /* DXFeedSystem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DXFeedSystem.mm; sourceTree = "<group>"; };
+		80A3BC042986B2B600501E11 /* DXFeedSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXFeedSystem.h; sourceTree = "<group>"; };
+		80FF1CF02986BC6700AF70FE /* DXFeedInitializator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFeedInitializator.h; sourceTree = "<group>"; };
+		80FF1CF12986BC6700AF70FE /* DXFeedInitializator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFeedInitializator.m; sourceTree = "<group>"; };
+		80FF1CF42986BED500AF70FE /* DXFeedInitializator+Graal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DXFeedInitializator+Graal.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,9 +89,12 @@
 		80A3BBDD2986ABB600501E11 /* DXFeedFramework */ = {
 			isa = PBXGroup;
 			children = (
+				80A3BC042986B2B600501E11 /* DXFeedSystem.h */,
+				80A3BC032986B2B600501E11 /* DXFeedSystem.mm */,
 				80A3BBDE2986ABB600501E11 /* DXFeedFramework.h */,
-				80A3BBFF2986AEA900501E11 /* TestGraalvm.h */,
-				80A3BC002986AEA900501E11 /* TestGraalvm.mm */,
+				80FF1CF02986BC6700AF70FE /* DXFeedInitializator.h */,
+				80FF1CF12986BC6700AF70FE /* DXFeedInitializator.m */,
+				80FF1CF42986BED500AF70FE /* DXFeedInitializator+Graal.h */,
 			);
 			path = DXFeedFramework;
 			sourceTree = "<group>";
@@ -116,7 +125,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				80A3BBEA2986ABB600501E11 /* DXFeedFramework.h in Headers */,
-				80A3BC012986AEA900501E11 /* TestGraalvm.h in Headers */,
+				80FF1CEF2986B93E00AF70FE /* DXFeedSystem.h in Headers */,
+				80FF1CF52986BED500AF70FE /* DXFeedInitializator+Graal.h in Headers */,
+				80FF1CF22986BC6700AF70FE /* DXFeedInitializator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,7 +229,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80A3BC022986AEA900501E11 /* TestGraalvm.mm in Sources */,
+				80A3BC052986B2B600501E11 /* DXFeedSystem.mm in Sources */,
+				80FF1CF32986BC6700AF70FE /* DXFeedInitializator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
