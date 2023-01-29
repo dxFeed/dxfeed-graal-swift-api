@@ -18,6 +18,9 @@
 
 @implementation DXFeedSystem
 
+- (void)dealloc {
+}
+
 - (instancetype)init:(DXFeedInitializator *)initializator {
     if (self = [super init]) {
         self.initializator = initializator;
@@ -30,7 +33,7 @@
     return res == 0;
 }
 
-- (NSString *)read:(NSString *)key {
+- (nullable NSString *)read:(NSString *)key {
     const char * obj = dxfg_system_get_property(self.initializator.thread, [key cStringUsingEncoding:NSUTF8StringEncoding]);
     if (obj == NULL) {
         return NULL;
@@ -39,21 +42,6 @@
         dxfg_system_release_property(self.initializator.thread, obj);
         return res;
     }
-}
-
-- (void)testWriteRead {
-    NSString *key = @"obj-c key";
-    NSString *value = @"obj-c value";
-    NSAssert([self write:key value:value], @"Graal couldn't save");
-    {
-        NSString *savedProperty = [self read:key];
-        NSAssert([savedProperty isEqual:value], @"Saved property doesn't equal original");
-    }
-    {
-        NSString *savedProperty = [self read:[key stringByAppendingString:@"test"]];
-        NSAssert(savedProperty == NULL, @"Wrong property is not null");
-    }
-    NSLog(@"All test passed ✅");
 }
 
 @end

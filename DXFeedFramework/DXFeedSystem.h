@@ -17,9 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)write:(NSString *)key value:(NSString *)value;
 
-- (NSString *)read:(NSString *)key;
+- (nullable NSString *)read:(NSString *)key;
 
-- (void)testWriteRead;
 
 @end
 
