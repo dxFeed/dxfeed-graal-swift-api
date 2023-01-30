@@ -13,13 +13,13 @@
 		80A3BBF82986AC0500501E11 /* graal-svm-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A3BBF52986AC0500501E11 /* graal-svm-arm64-ios-r.a */; platformFilter = ios; };
 		80A3BBF92986AC0500501E11 /* jdk-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A3BBF62986AC0500501E11 /* jdk-arm64-ios-r.a */; platformFilter = ios; };
 		80A3BBFA2986ADD700501E11 /* libDxFeedGraalNativeApi.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A3BBF42986AC0500501E11 /* libDxFeedGraalNativeApi.o */; platformFilter = ios; };
-		80A3BC052986B2B600501E11 /* DXFSystem.mm in Sources */ = {isa = PBXBuildFile; fileRef = 80A3BC032986B2B600501E11 /* DXFSystem.mm */; };
 		80FF1CEF2986B93E00AF70FE /* DXFSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 80A3BC042986B2B600501E11 /* DXFSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80FF1CF22986BC6700AF70FE /* DXFEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 80FF1CF02986BC6700AF70FE /* DXFEnvironment.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		80FF1CF32986BC6700AF70FE /* DXFEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FF1CF12986BC6700AF70FE /* DXFEnvironment.m */; };
 		80FF1CF52986BED500AF70FE /* DXFEnvironment+Graal.h in Headers */ = {isa = PBXBuildFile; fileRef = 80FF1CF42986BED500AF70FE /* DXFEnvironment+Graal.h */; };
 		80FF1CFE2986C55A00AF70FE /* libDxFeedGraalNativeApi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 80FF1CFD2986C55900AF70FE /* libDxFeedGraalNativeApi.dylib */; platformFilters = (macos, ); };
 		80FF1D022986C65300AF70FE /* libDxFeedGraalNativeApi.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 80FF1CFD2986C55900AF70FE /* libDxFeedGraalNativeApi.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		80FF1D0C2987E89D00AF70FE /* DXFSystem.mm in Sources */ = {isa = PBXBuildFile; fileRef = 80A3BC032986B2B600501E11 /* DXFSystem.mm */; };
+		80FF1D0D2987E8A300AF70FE /* DXFEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FF1CF12986BC6700AF70FE /* DXFEnvironment.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -249,8 +249,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80A3BC052986B2B600501E11 /* DXFSystem.mm in Sources */,
-				80FF1CF32986BC6700AF70FE /* DXFEnvironment.m in Sources */,
+				80FF1D0D2987E8A300AF70FE /* DXFEnvironment.m in Sources */,
+				80FF1D0C2987E89D00AF70FE /* DXFSystem.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

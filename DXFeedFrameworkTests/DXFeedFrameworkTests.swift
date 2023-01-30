@@ -18,13 +18,19 @@ class DXFeedFrameworkTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testWrite() throws {
+        let a = DXFSystem(DXFEnvironment())
+        XCTAssert(a.write("a", value: "b"), "Couldn't write value")
     }
+    
+    func testRead() throws {
+        let a = DXFSystem(DXFEnvironment())
+        let key = UUID().uuidString
+        let value = UUID().uuidString
+        XCTAssert(a.write(key, value: value), "Couldn't write value")
+        XCTAssert(value == a.read(key), "Couldn't read value")
+    }
+    
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
