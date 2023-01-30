@@ -1,20 +1,20 @@
 //
-//  DXFeedInitializator.m
+//  DXFEnvironment.m
 //  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 1/29/23.
 //
 
-#import "DXFeedInitializator.h"
+#import "DXFEnvironment.h"
 #import "graal_isolate.h"
 
-@interface DXFeedInitializator()
+@interface DXFEnvironment()
 
 @property graal_isolatethread_t *thread;
 
 @end
 
-@implementation DXFeedInitializator
+@implementation DXFEnvironment
 
 - (void)dealloc {
     if (self.thread) {

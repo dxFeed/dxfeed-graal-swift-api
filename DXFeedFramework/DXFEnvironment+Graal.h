@@ -1,5 +1,5 @@
 //
-//  DXFeedInitializator+Graal.h
+//  DXFEnvironment+Graal.h
 //  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 1/29/23.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DXFeedInitializator ()
+@interface DXFEnvironment ()
 
 @property graal_isolatethread_t *thread;
 

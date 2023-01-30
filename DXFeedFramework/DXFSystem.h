@@ -1,5 +1,5 @@
 //
-//  TestCppClass.h
+//  DXFSystem.h
 //  TestGraalvm
 //
 //  Created by Aleksey Kosylo on 1/28/23.
@@ -7,13 +7,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class DXFeedInitializator;
+@class DXFEnvironment;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DXFeedSystem : NSObject
+@interface DXFSystem : NSObject
 
-- (instancetype)init:(DXFeedInitializator *)initializator;
+- (instancetype)init:(DXFEnvironment *)initializator;
 
 - (BOOL)write:(NSString *)key value:(NSString *)value;
 

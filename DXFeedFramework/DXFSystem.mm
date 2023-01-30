@@ -1,27 +1,27 @@
 //
-//  TestCppClass.m
+//  DXFSystem.m
 //  TestGraalvm
 //
 //  Created by Aleksey Kosylo on 1/28/23.
 //
 
-#import "DXFeedSystem.h"
+#import "DXFSystem.h"
 #import "graal_isolate.h"
 #import "dxfg_system.h"
-#import "DXFeedInitializator+Graal.h"
+#import "DXFEnvironment+Graal.h"
 
-@interface DXFeedSystem()
+@interface DXFSystem()
 
-@property (nonatomic, retain) DXFeedInitializator *initializator;
+@property (nonatomic, retain) DXFEnvironment *initializator;
 
 @end
 
-@implementation DXFeedSystem
+@implementation DXFSystem
 
 - (void)dealloc {
 }
 
-- (instancetype)init:(DXFeedInitializator *)initializator {
+- (instancetype)init:(DXFEnvironment *)initializator {
     if (self = [super init]) {
         self.initializator = initializator;
     }
