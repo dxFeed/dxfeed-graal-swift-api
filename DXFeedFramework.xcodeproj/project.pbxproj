@@ -266,6 +266,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		80ADEA0929897DE400F9E116 /* Check graal libraries */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -284,6 +285,7 @@
 		};
 		80ADEA2129898AC800F9E116 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
