@@ -26,8 +26,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         graal_isolate_t *isolate = NULL;
-        graal_isolatethread_t *thread = NULL;
-    
+        graal_isolatethread_t *thread = NULL;    
         if (graal_create_isolate(NULL, &isolate, &thread) != 0) {
             fprintf(stderr, "initialization error\n");
             return NULL;

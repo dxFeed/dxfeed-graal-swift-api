@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)init:(DXFEnvironment *)initializator;
 
-- (BOOL)write:(NSString *)key value:(NSString *)value;
+- (BOOL)write:(NSString *)value forKey:(NSString *)key;
 
 - (nullable NSString *)read:(NSString *)key;
 

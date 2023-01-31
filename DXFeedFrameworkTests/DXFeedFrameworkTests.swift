@@ -20,14 +20,14 @@ class DXFeedFrameworkTests: XCTestCase {
 
     func testWrite() throws {
         let a = DXFSystem(DXFEnvironment())
-        XCTAssert(a.write("a", value: "b"), "Couldn't write value")
+        XCTAssert(a.write("a", forKey: "b"), "Couldn't write value")
     }
     
     func testRead() throws {
         let a = DXFSystem(DXFEnvironment())
         let key = UUID().uuidString
         let value = UUID().uuidString
-        XCTAssert(a.write(key, value: value), "Couldn't write value")
+        XCTAssert(a.write(value, forKey: key), "Couldn't write value")
         XCTAssert(value == a.read(key), "Couldn't read value")
     }
     

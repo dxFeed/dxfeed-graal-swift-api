@@ -28,7 +28,7 @@
     return self;
 }
 
-- (BOOL)write:(NSString *)key value:(NSString *)value {
+- (BOOL)write:(NSString *)value forKey:(NSString *)key {
     int res = dxfg_system_set_property(self.initializator.thread, [key cStringUsingEncoding:NSUTF8StringEncoding], [value cStringUsingEncoding:NSUTF8StringEncoding]);
     return res == 0;
 }
