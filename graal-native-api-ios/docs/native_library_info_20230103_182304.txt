@@ -1,5 +1,0 @@
-Static libraries:
-   ../../../../../../Library/Java/JavaVirtualMachines/graalvm-ce-java11-22.1.0-arm64/Contents/Home/lib/svm/clibraries/darwin-aarch64/liblibchelper.a
-   ../../../../../../Library/Java/JavaVirtualMachines/graalvm-ce-java11-22.1.0-arm64/Contents/Home/lib/svm/clibraries/darwin-aarch64/libdarwin.a
-   ../../../../../../Library/Java/JavaVirtualMachines/graalvm-ce-java11-22.1.0-arm64/Contents/Home/lib/svm/clibraries/darwin-aarch64/libjvm.a
-Other libraries: -framework CoreServices,stdc++,z,pthread,-framework Foundation,dl

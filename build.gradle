@@ -1,0 +1,47 @@
+apply plugin: 'java'
+
+repositories {
+    maven {
+        url 'https://dxfeed.jfrog.io/artifactory/maven'
+    }
+}
+
+def native_version = '0.1.2'
+
+dependencies {
+    implementation(group: 'com.dxfeed', name: 'graal-native-api', version: "${native_version}", classifier: 'aarch64-osx', ext: 'zip')
+    implementation(group: 'com.dxfeed', name: 'graal-native-api', version: "${native_version}", classifier: 'x86_64-osx', ext: 'zip')
+    implementation(group: 'com.dxfeed', name: 'graal-native-api', version: "${native_version}", classifier: 'aarch64-ios', ext: 'zip')
+}
+
+task fetchDependencies(type: Copy) {
+    from sourceSets.main.runtimeClasspath
+    into 'downloads'
+
+    doLast {
+        ext.frameworkName = { zipFileName ->
+            switch(zipFileName) {
+                case ~/.*aarch64-osx.*/:
+                    return 'graal_builds/osx_arm'
+                    break
+                case ~/.*x86_64-osx.*/:
+                    return 'graal_builds/osx_x86'
+                    break
+                case ~/.*aarch64-ios.*/:
+                    return 'graal_builds/ios'
+                    break
+                default:
+                    return 'graal_builds/$zipFileName'
+                    break
+            }
+        }
+        fileTree(dir: 'downloads', includes: ['*.zip']).each { zipFile ->
+            copy {
+                from zipTree(zipFile)
+                into frameworkName(zipFile.name)
+            }
+        }
+
+        new File('downloads').deleteDir()
+    }
+}
