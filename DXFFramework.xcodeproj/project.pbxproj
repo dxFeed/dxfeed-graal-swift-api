@@ -21,6 +21,13 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		805E8B82298AC4F900C2A6FA /* DXFControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 805E8B81298AC4F900C2A6FA /* DXFControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		805E8B85298AC6BA00C2A6FA /* DXFConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 805E8B83298AC6BA00C2A6FA /* DXFConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		805E8B86298AC6BA00C2A6FA /* DXFConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 805E8B84298AC6BA00C2A6FA /* DXFConnection.m */; };
+		805E8B89298AC9FA00C2A6FA /* Logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 805E8B87298AC9FA00C2A6FA /* Logger.h */; };
+		805E8B8A298AC9FA00C2A6FA /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 805E8B88298AC9FA00C2A6FA /* Logger.m */; };
+		805E8B8D298AD10200C2A6FA /* NSString+CString.h in Headers */ = {isa = PBXBuildFile; fileRef = 805E8B8B298AD10200C2A6FA /* NSString+CString.h */; };
+		805E8B8E298AD10200C2A6FA /* NSString+CString.m in Sources */ = {isa = PBXBuildFile; fileRef = 805E8B8C298AD10200C2A6FA /* NSString+CString.m */; };
 		80A3BBE42986ABB600501E11 /* DXFFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A3BBDB2986ABB600501E11 /* DXFFramework.framework */; };
 		80A3BBE92986ABB600501E11 /* DXFFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A3BBE82986ABB600501E11 /* DXFFrameworkTests.swift */; };
 		80A3BBEA2986ABB600501E11 /* DXFFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 80A3BBDE2986ABB600501E11 /* DXFFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -61,6 +68,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		805E8B81298AC4F900C2A6FA /* DXFControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFControl.h; sourceTree = "<group>"; };
+		805E8B83298AC6BA00C2A6FA /* DXFConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFConnection.h; sourceTree = "<group>"; };
+		805E8B84298AC6BA00C2A6FA /* DXFConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFConnection.m; sourceTree = "<group>"; };
+		805E8B87298AC9FA00C2A6FA /* Logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		805E8B88298AC9FA00C2A6FA /* Logger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
+		805E8B8B298AD10200C2A6FA /* NSString+CString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+CString.h"; sourceTree = "<group>"; };
+		805E8B8C298AD10200C2A6FA /* NSString+CString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+CString.m"; sourceTree = "<group>"; };
 		80A3BBDB2986ABB600501E11 /* DXFFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DXFFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A3BBDE2986ABB600501E11 /* DXFFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFFramework.h; sourceTree = "<group>"; };
 		80A3BBE32986ABB600501E11 /* DXFFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DXFFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,12 +135,17 @@
 		80A3BBDD2986ABB600501E11 /* DXFFramework */ = {
 			isa = PBXGroup;
 			children = (
+				80FF1CF42986BED500AF70FE /* DXFEnvironment+Graal.h */,
+				80E87C42298ADE460073BE36 /* Private */,
+				80E87C41298ADE260073BE36 /* Utils */,
+				80A3BBDE2986ABB600501E11 /* DXFFramework.h */,
 				80A3BC042986B2B600501E11 /* DXFSystem.h */,
 				80A3BC032986B2B600501E11 /* DXFSystem.mm */,
-				80A3BBDE2986ABB600501E11 /* DXFFramework.h */,
 				80FF1CF02986BC6700AF70FE /* DXFEnvironment.h */,
 				80FF1CF12986BC6700AF70FE /* DXFEnvironment.m */,
-				80FF1CF42986BED500AF70FE /* DXFEnvironment+Graal.h */,
+				805E8B81298AC4F900C2A6FA /* DXFControl.h */,
+				805E8B83298AC6BA00C2A6FA /* DXFConnection.h */,
+				805E8B84298AC6BA00C2A6FA /* DXFConnection.m */,
 			);
 			path = DXFFramework;
 			sourceTree = "<group>";
@@ -150,6 +169,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		80E87C41298ADE260073BE36 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				805E8B8B298AD10200C2A6FA /* NSString+CString.h */,
+				805E8B8C298AD10200C2A6FA /* NSString+CString.m */,
+				805E8B87298AC9FA00C2A6FA /* Logger.h */,
+				805E8B88298AC9FA00C2A6FA /* Logger.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		80E87C42298ADE460073BE36 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -158,9 +195,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				80A3BBEA2986ABB600501E11 /* DXFFramework.h in Headers */,
+				805E8B89298AC9FA00C2A6FA /* Logger.h in Headers */,
 				80FF1CEF2986B93E00AF70FE /* DXFSystem.h in Headers */,
 				80FF1CF52986BED500AF70FE /* DXFEnvironment+Graal.h in Headers */,
 				80FF1CF22986BC6700AF70FE /* DXFEnvironment.h in Headers */,
+				805E8B8D298AD10200C2A6FA /* NSString+CString.h in Headers */,
+				805E8B82298AC4F900C2A6FA /* DXFControl.h in Headers */,
+				805E8B85298AC6BA00C2A6FA /* DXFConnection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +350,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				80FF1D0D2987E8A300AF70FE /* DXFEnvironment.m in Sources */,
+				805E8B8E298AD10200C2A6FA /* NSString+CString.m in Sources */,
 				80FF1D0C2987E89D00AF70FE /* DXFSystem.mm in Sources */,
+				805E8B86298AC6BA00C2A6FA /* DXFConnection.m in Sources */,
+				805E8B8A298AC9FA00C2A6FA /* Logger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

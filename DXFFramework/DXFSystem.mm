@@ -12,7 +12,7 @@
 
 @interface DXFSystem()
 
-@property (nonatomic, retain) DXFEnvironment *initializator;
+@property (nonatomic, retain) DXFEnvironment *env;
 
 @end
 
@@ -21,25 +21,25 @@
 - (void)dealloc {
 }
 
-- (instancetype)init:(DXFEnvironment *)initializator {
+- (instancetype)init:(DXFEnvironment *)env {
     if (self = [super init]) {
-        self.initializator = initializator;
+        self.env = env;
     }
     return self;
 }
 
 - (BOOL)write:(NSString *)value forKey:(NSString *)key {
-    int res = dxfg_system_set_property(self.initializator.thread, [key cStringUsingEncoding:NSUTF8StringEncoding], [value cStringUsingEncoding:NSUTF8StringEncoding]);
+    int res = dxfg_system_set_property(self.env.thread, [key cStringUsingEncoding:NSUTF8StringEncoding], [value cStringUsingEncoding:NSUTF8StringEncoding]);
     return res == 0;
 }
 
 - (nullable NSString *)read:(NSString *)key {
-    const char * obj = dxfg_system_get_property(self.initializator.thread, [key cStringUsingEncoding:NSUTF8StringEncoding]);
+    const char * obj = dxfg_system_get_property(self.env.thread, [key cStringUsingEncoding:NSUTF8StringEncoding]);
     if (obj == NULL) {
         return NULL;
     } else {
         __auto_type res = [[NSString alloc] initWithCString:obj encoding:NSUTF8StringEncoding];
-        dxfg_system_release_property(self.initializator.thread, obj);
+        dxfg_system_release_property(self.env.thread, obj);
         return res;
     }
 }

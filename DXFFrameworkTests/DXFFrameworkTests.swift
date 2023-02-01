@@ -31,7 +31,13 @@ class DXFFrameworkTests: XCTestCase {
         XCTAssert(value == a.read(key), "Couldn't read value")
     }
     
-
+    func testConnection() throws {
+        let connection = DXFConnection(DXFEnvironment())
+        let address = "demo.dxfeed.com:7300"
+        let connected = connection.connect(address)
+        XCTAssert(connected, "Couldn't connect to demo \(address)")
+        
+    }
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {
