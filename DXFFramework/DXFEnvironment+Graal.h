@@ -1,11 +1,11 @@
 //
 //  DXFEnvironment+Graal.h
-//  DXFeedFramework
+//  DXFFramework
 //
 //  Created by Aleksey Kosylo on 1/29/23.
 //
 
-#import <DXFeedFramework/DXFeedFramework.h>
+#import "DXFEnvironment.h"
 #import "graal_isolate.h"
 
 NS_ASSUME_NONNULL_BEGIN

@@ -1,6 +1,6 @@
 //
 //  DXFEnvironment.h
-//  DXFeedFramework
+//  DXFFramework
 //
 //  Created by Aleksey Kosylo on 1/29/23.
 //

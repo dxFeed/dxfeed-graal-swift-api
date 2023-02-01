@@ -1,14 +1,14 @@
 //
-//  DXFeedFrameworkTests.swift
-//  DXFeedFrameworkTests
+//  DXFFrameworkTests.swift
+//  DXFFrameworkTests
 //
 //  Created by Aleksey Kosylo on 1/29/23.
 //
 
 import XCTest
-@testable import DXFeedFramework
+@testable import DXFFramework
 
-class DXFeedFrameworkTests: XCTestCase {
+class DXFFrameworkTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
