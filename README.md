@@ -12,6 +12,7 @@ install OpenJDK
 # Next step
 ## Download graal artifacts:
 `gradle fetchDependencies` 
+
 Gradle downloads artifacts and unzip it in `graal_builds` folder
 
 # Working this code
