@@ -31,6 +31,24 @@ class DXFFrameworkTests: XCTestCase {
         XCTAssert(value == a.read(key), "Couldn't read value")
     }
     
+    func testCyrilicRead() throws {
+        let a = DXFSystem(DXFEnvironment())
+        let key = UUID().uuidString
+        let value = "Привет это кирилица" + UUID().uuidString
+        XCTAssert(a.write(value, forKey: key), "Couldn't write value")
+        let fetchedValue = a.read(key);
+        XCTAssert(value == fetchedValue, "Couldn't read value")
+    }
+    
+    func testEmojiRead() throws {
+        let a = DXFSystem(DXFEnvironment())
+        let key = UUID().uuidString
+        let value = "😀Привет это кирилица👨‍👨‍👦" + UUID().uuidString
+        XCTAssert(a.write(value, forKey: key), "Couldn't write value")
+        let fetchedValue = a.read(key);
+        XCTAssert(value == fetchedValue, "Couldn't read value")
+    }
+    
     func testConnection() throws {
         let address = "demo.dxfeed.com:7300"
         let connection = DXFConnection(DXFEnvironment(), address: address)
@@ -40,16 +58,18 @@ class DXFFrameworkTests: XCTestCase {
         let publishExpectation = XCTNSPredicateExpectation(predicate: predicate, object: connection)
         wait(for: [publishExpectation], timeout: 10)
     }
+    
 
     func testConnectionToWrongAddress() throws {
         let address = "demo1.dxfeed.com:7300"
         let connection = DXFConnection(DXFEnvironment(), address: address)
         let connected = connection.connect()
         XCTAssert(connected, "Couldn't connect to demo \(address)")
-        let predicate = NSPredicate(format: "%K != \(Disconnected.rawValue)", #keyPath(DXFConnection.state))
+        let predicate = NSPredicate(format: "%K == \(Connecting.rawValue)", #keyPath(DXFConnection.state))
         let publishExpectation = XCTNSPredicateExpectation(predicate: predicate, object: connection)
         wait(for: [publishExpectation], timeout: 20)
     }
+    
     
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

@@ -19,7 +19,7 @@
 
 - (void)dealloc {
     if (self.thread) {
-        graal_tear_down_isolate(self.thread);
+        graal_detach_all_threads_and_tear_down_isolate(self.thread);
         self.thread = nil;
     }
 }
@@ -36,15 +36,6 @@
         self.isolate = isolate;
     }
     return self;
-}
-
-- (graal_isolatethread_t *)attach {
-    graal_isolatethread_t *thread = nil;
-    if (graal_attach_thread(self.isolate, &thread) != 0) {
-        fprintf(stderr, "initialization error\n");
-        return nil;
-    }
-    return thread;
 }
 
 @end

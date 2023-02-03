@@ -46,21 +46,22 @@
 }
 
 - (BOOL)connect {
-    if (self.env.thread) {
-        self.endpoint = dxfg_DXEndpoint_create(self.env.thread);
-        // Creates an endpoint object.
-        if (self.endpoint == nil) {
-            return false;
+    @synchronized (self) {
+        if (self.env.thread) {
+            self.endpoint = dxfg_DXEndpoint_create(self.env.thread);
+            // Creates an endpoint object.
+            if (self.endpoint == nil) {
+                return false;
+            }
+            [Logger print:@"start connection"];
+            self.executor = dxfg_Executors_newFixedThreadPool(self.env.thread, 2, "thread-processing-events");
+            dxfg_DXEndpoint_executor(self.env.thread, self.endpoint, self.executor);
+            dxfg_endpoint_state_change_listener_t* stateListener = dxfg_PropertyChangeListener_new(self.env.thread, endpoint_state_change_listener, (__bridge void *)self);
+            dxfg_DXEndpoint_addStateChangeListener(self.env.thread, self.endpoint, stateListener);
+            return dxfg_DXEndpoint_connect(self.env.thread, self.endpoint, self.address.dxfCString) == 0;
         }
-        [Logger print:@"start connection"];
-        self.executor = dxfg_Executors_newFixedThreadPool(self.env.thread, 2, "thread-processing-events");
-        dxfg_DXEndpoint_executor(self.env.thread, self.endpoint, self.executor);
-        dxfg_endpoint_state_change_listener_t* stateListener = dxfg_PropertyChangeListener_new(self.env.thread, endpoint_state_change_listener, (__bridge void *)self);
-        dxfg_DXEndpoint_addStateChangeListener(self.env.thread, self.endpoint, stateListener);
-        dxfg_DXEndpoint_connect(self.env.thread, self.endpoint, self.address.dxfCString);
-        [Logger print:@"finish connection"];
+        return false;
     }
-    return true;
 }
 
 - (void)connectionChanged:(dxfg_endpoint_state_t)newState {
