@@ -35,8 +35,8 @@
 
 - (nullable NSString *)read:(NSString *)key {
     const char * obj = dxfg_system_get_property(self.env.thread, [key cStringUsingEncoding:NSUTF8StringEncoding]);
-    if (obj == NULL) {
-        return NULL;
+    if (obj == nil) {
+        return nil;
     } else {
         __auto_type res = [[NSString alloc] initWithCString:obj encoding:NSUTF8StringEncoding];
         dxfg_system_release_property(self.env.thread, obj);

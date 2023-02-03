@@ -32,12 +32,25 @@ class DXFFrameworkTests: XCTestCase {
     }
     
     func testConnection() throws {
-        let connection = DXFConnection(DXFEnvironment())
         let address = "demo.dxfeed.com:7300"
-        let connected = connection.connect(address)
+        let connection = DXFConnection(DXFEnvironment(), address: address)
+        let connected = connection.connect()
         XCTAssert(connected, "Couldn't connect to demo \(address)")
-        
+        let predicate = NSPredicate(format: "%K == \(Connected.rawValue)", #keyPath(DXFConnection.state))
+        let publishExpectation = XCTNSPredicateExpectation(predicate: predicate, object: connection)
+        wait(for: [publishExpectation], timeout: 10)
     }
+
+    func testConnectionToWrongAddress() throws {
+        let address = "demo1.dxfeed.com:7300"
+        let connection = DXFConnection(DXFEnvironment(), address: address)
+        let connected = connection.connect()
+        XCTAssert(connected, "Couldn't connect to demo \(address)")
+        let predicate = NSPredicate(format: "%K != \(Disconnected.rawValue)", #keyPath(DXFConnection.state))
+        let publishExpectation = XCTNSPredicateExpectation(predicate: predicate, object: connection)
+        wait(for: [publishExpectation], timeout: 20)
+    }
+    
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {

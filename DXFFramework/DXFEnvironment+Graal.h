@@ -12,7 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DXFEnvironment ()
 
-@property graal_isolatethread_t *thread;
+@property (readonly) graal_isolatethread_t *thread;
+@property (readonly) graal_isolate_t *isolate;
+
+- (graal_isolatethread_t *)attach;
 
 @end
 

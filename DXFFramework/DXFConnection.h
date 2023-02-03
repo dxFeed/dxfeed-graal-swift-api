@@ -10,9 +10,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum : NSUInteger {
+    NotConnected = 0,
+    Connecting,
+    Connected,
+    Disconnected,
+} DXFConnectionState;
+
 @interface DXFConnection : NSObject <DXFControl>
 
-- (BOOL)connect:(nonnull NSString *)address;
+@property (nonatomic) DXFConnectionState state;
+
+- (nonnull instancetype)init:(nonnull DXFEnvironment *)env address:(NSString *)address;
+
+- (BOOL)connect;
 
 @end
 

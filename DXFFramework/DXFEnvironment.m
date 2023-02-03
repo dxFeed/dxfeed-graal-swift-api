@@ -11,6 +11,7 @@
 @interface DXFEnvironment()
 
 @property graal_isolatethread_t *thread;
+@property graal_isolate_t *isolate;
 
 @end
 
@@ -19,22 +20,31 @@
 - (void)dealloc {
     if (self.thread) {
         graal_tear_down_isolate(self.thread);
-        self.thread = NULL;
+        self.thread = nil;
     }
 }
 
 - (instancetype)init {
     if (self = [super init]) {
-        graal_isolate_t *isolate = NULL;
-        graal_isolatethread_t *thread = NULL;
+        graal_isolate_t *isolate = nil;
+        graal_isolatethread_t *thread = nil;
         if (graal_create_isolate(NULL, &isolate, &thread) != 0) {
             fprintf(stderr, "initialization error\n");
-            return NULL;
+            return nil;
         }
         self.thread = thread;
+        self.isolate = isolate;
     }
     return self;
 }
 
+- (graal_isolatethread_t *)attach {
+    graal_isolatethread_t *thread = nil;
+    if (graal_attach_thread(self.isolate, &thread) != 0) {
+        fprintf(stderr, "initialization error\n");
+        return nil;
+    }
+    return thread;
+}
 
 @end
