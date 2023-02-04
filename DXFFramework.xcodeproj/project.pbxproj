@@ -36,7 +36,7 @@
 		80ADEA172989850300F9E116 /* graal-svm-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80ADEA122989845000F9E116 /* graal-svm-arm64-ios-r.a */; platformFilter = ios; };
 		80ADEA182989850300F9E116 /* jdk-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80ADEA102989845000F9E116 /* jdk-arm64-ios-r.a */; platformFilter = ios; };
 		80ADEA192989850300F9E116 /* libDxFeedGraalNativeApi.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 80ADEA112989845000F9E116 /* libDxFeedGraalNativeApi.o */; platformFilter = ios; };
-		80E87C46298EA3EA0073BE36 /* DXFFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = 80E87C44298EA3EA0073BE36 /* DXFFeed.h */; };
+		80E87C46298EA3EA0073BE36 /* DXFFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = 80E87C44298EA3EA0073BE36 /* DXFFeed.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80E87C47298EA3EA0073BE36 /* DXFFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C45298EA3EA0073BE36 /* DXFFeed.m */; };
 		80E87C49298EA4160073BE36 /* DXFConnectionState.h in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C48298EA4160073BE36 /* DXFConnectionState.h */; };
 		80E87C4A298EA4B60073BE36 /* DXFConnectionState.h in Headers */ = {isa = PBXBuildFile; fileRef = 80E87C48298EA4160073BE36 /* DXFConnectionState.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -46,6 +46,7 @@
 		80E87C54298ED35A0073BE36 /* DXFConstants.h in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C53298ED35A0073BE36 /* DXFConstants.h */; };
 		80E87C56298ED3E40073BE36 /* DXFInternal.h in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C55298ED3E40073BE36 /* DXFInternal.h */; };
 		80E87C57298ED4290073BE36 /* DXFInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 80E87C55298ED3E40073BE36 /* DXFInternal.h */; };
+		80E87C5B298ED6A40073BE36 /* FeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C5A298ED6A40073BE36 /* FeedTests.swift */; };
 		80FF1CEF2986B93E00AF70FE /* DXFSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 80A3BC042986B2B600501E11 /* DXFSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80FF1CF22986BC6700AF70FE /* DXFEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 80FF1CF02986BC6700AF70FE /* DXFEnvironment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80FF1CF52986BED500AF70FE /* DXFEnvironment+Graal.h in Headers */ = {isa = PBXBuildFile; fileRef = 80FF1CF42986BED500AF70FE /* DXFEnvironment+Graal.h */; };
@@ -103,6 +104,7 @@
 		80E87C50298EC56F0073BE36 /* DXFException.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFException.m; sourceTree = "<group>"; };
 		80E87C53298ED35A0073BE36 /* DXFConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFConstants.h; sourceTree = "<group>"; };
 		80E87C55298ED3E40073BE36 /* DXFInternal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFInternal.h; sourceTree = "<group>"; };
+		80E87C5A298ED6A40073BE36 /* FeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTests.swift; sourceTree = "<group>"; };
 		80FF1CF02986BC6700AF70FE /* DXFEnvironment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFEnvironment.h; sourceTree = "<group>"; };
 		80FF1CF12986BC6700AF70FE /* DXFEnvironment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFEnvironment.m; sourceTree = "<group>"; };
 		80FF1CF42986BED500AF70FE /* DXFEnvironment+Graal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DXFEnvironment+Graal.h"; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				80A3BBE82986ABB600501E11 /* DXFFrameworkTests.swift */,
+				80E87C5A298ED6A40073BE36 /* FeedTests.swift */,
 			);
 			path = DXFFrameworkTests;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80A3BBE92986ABB600501E11 /* DXFFrameworkTests.swift in Sources */,
+				80E87C5B298ED6A40073BE36 /* FeedTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

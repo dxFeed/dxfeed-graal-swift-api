@@ -7,4 +7,5 @@
 
 #import <Foundation/Foundation.h>
 
-static const int DXF_SUCCESS = 0 ;
+static const int DXF_SUCCESS = 0;
+static const int DXF_FAIL = -1;
