@@ -8,8 +8,7 @@
 #import "DXFConnection.h"
 #import "DXFEnvironment+Graal.h"
 #import "DXFConnectionState.h"
-#import "Logger.h"
-#import "NSString+CString.h"
+#import "DXFInternal.h"
 #import "dxfg_api.h"
 
 @interface DXFConnection()
@@ -48,10 +47,6 @@
         self.address = address;
     }
     return self;
-}
-
-- (void)setEndpoint:(dxfg_endpoint_t *)endpoint {
-    
 }
 
 - (BOOL)connect {

@@ -7,7 +7,6 @@
 
 #import <Foundation/Foundation.h>
 #import "DXFConstants.h"
-#import "DXFConnection+Graal.h"
-#import "DXFEnvironment+Graal.h"
+#import "DXFException.h"
 #import "NSString+CString.h"
 #import "Logger.h"
