@@ -17,5 +17,5 @@ FOUNDATION_EXPORT const unsigned char DXFFrameworkVersionString[];
 
 #import <DXFFramework/DXFSystem.h>
 #import <DXFFramework/DXFEnvironment.h>
-#import <DXFFramework/DXFConnection.h>
 #import <DXFFramework/DXFConnectionState.h>
+#import <DXFFramework/DXFConnection.h>

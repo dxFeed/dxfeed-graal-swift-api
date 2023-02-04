@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable const char *)dxfCString;
 
++ (instancetype)newWithCstring:(const char *)nullTerminatedCString;
 
 @end
 

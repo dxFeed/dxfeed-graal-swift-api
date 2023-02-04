@@ -6,7 +6,7 @@
 //
 
 #import "DXFEnvironment.h"
-#import "graal_isolate.h"
+#import "dxfg_api.h"
 
 @interface DXFEnvironment()
 

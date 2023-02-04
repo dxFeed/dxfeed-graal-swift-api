@@ -13,4 +13,8 @@
     return [self cStringUsingEncoding:NSUTF8StringEncoding];
 }
 
++ (instancetype)newWithCstring:(const char *)nullTerminatedCString {
+    return [[NSString alloc] initWithCString:nullTerminatedCString encoding:NSUTF8StringEncoding];
+}
+
 @end

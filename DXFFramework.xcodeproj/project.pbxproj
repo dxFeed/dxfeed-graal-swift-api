@@ -40,6 +40,12 @@
 		80E87C47298EA3EA0073BE36 /* DXFFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C45298EA3EA0073BE36 /* DXFFeed.m */; };
 		80E87C49298EA4160073BE36 /* DXFConnectionState.h in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C48298EA4160073BE36 /* DXFConnectionState.h */; };
 		80E87C4A298EA4B60073BE36 /* DXFConnectionState.h in Headers */ = {isa = PBXBuildFile; fileRef = 80E87C48298EA4160073BE36 /* DXFConnectionState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80E87C4E298EB34B0073BE36 /* DXFConnection+Graal.h in Headers */ = {isa = PBXBuildFile; fileRef = 80E87C4D298EB34B0073BE36 /* DXFConnection+Graal.h */; };
+		80E87C51298EC56F0073BE36 /* DXFException.h in Headers */ = {isa = PBXBuildFile; fileRef = 80E87C4F298EC56F0073BE36 /* DXFException.h */; };
+		80E87C52298EC56F0073BE36 /* DXFException.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C50298EC56F0073BE36 /* DXFException.m */; };
+		80E87C54298ED35A0073BE36 /* DXFConstants.h in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C53298ED35A0073BE36 /* DXFConstants.h */; };
+		80E87C56298ED3E40073BE36 /* DXFInternal.h in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C55298ED3E40073BE36 /* DXFInternal.h */; };
+		80E87C57298ED4290073BE36 /* DXFInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 80E87C55298ED3E40073BE36 /* DXFInternal.h */; };
 		80FF1CEF2986B93E00AF70FE /* DXFSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 80A3BC042986B2B600501E11 /* DXFSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80FF1CF22986BC6700AF70FE /* DXFEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 80FF1CF02986BC6700AF70FE /* DXFEnvironment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80FF1CF52986BED500AF70FE /* DXFEnvironment+Graal.h in Headers */ = {isa = PBXBuildFile; fileRef = 80FF1CF42986BED500AF70FE /* DXFEnvironment+Graal.h */; };
@@ -92,6 +98,11 @@
 		80E87C44298EA3EA0073BE36 /* DXFFeed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFFeed.h; sourceTree = "<group>"; };
 		80E87C45298EA3EA0073BE36 /* DXFFeed.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFFeed.m; sourceTree = "<group>"; };
 		80E87C48298EA4160073BE36 /* DXFConnectionState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFConnectionState.h; sourceTree = "<group>"; };
+		80E87C4D298EB34B0073BE36 /* DXFConnection+Graal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DXFConnection+Graal.h"; sourceTree = "<group>"; };
+		80E87C4F298EC56F0073BE36 /* DXFException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFException.h; sourceTree = "<group>"; };
+		80E87C50298EC56F0073BE36 /* DXFException.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFException.m; sourceTree = "<group>"; };
+		80E87C53298ED35A0073BE36 /* DXFConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFConstants.h; sourceTree = "<group>"; };
+		80E87C55298ED3E40073BE36 /* DXFInternal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFInternal.h; sourceTree = "<group>"; };
 		80FF1CF02986BC6700AF70FE /* DXFEnvironment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFEnvironment.h; sourceTree = "<group>"; };
 		80FF1CF12986BC6700AF70FE /* DXFEnvironment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFEnvironment.m; sourceTree = "<group>"; };
 		80FF1CF42986BED500AF70FE /* DXFEnvironment+Graal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DXFEnvironment+Graal.h"; sourceTree = "<group>"; };
@@ -193,6 +204,11 @@
 			isa = PBXGroup;
 			children = (
 				80FF1CF42986BED500AF70FE /* DXFEnvironment+Graal.h */,
+				80E87C4D298EB34B0073BE36 /* DXFConnection+Graal.h */,
+				80E87C4F298EC56F0073BE36 /* DXFException.h */,
+				80E87C50298EC56F0073BE36 /* DXFException.m */,
+				80E87C53298ED35A0073BE36 /* DXFConstants.h */,
+				80E87C55298ED3E40073BE36 /* DXFInternal.h */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -208,6 +224,9 @@
 				80A3BBEA2986ABB600501E11 /* DXFFramework.h in Headers */,
 				805E8B89298AC9FA00C2A6FA /* Logger.h in Headers */,
 				80FF1CEF2986B93E00AF70FE /* DXFSystem.h in Headers */,
+				80E87C4E298EB34B0073BE36 /* DXFConnection+Graal.h in Headers */,
+				80E87C51298EC56F0073BE36 /* DXFException.h in Headers */,
+				80E87C57298ED4290073BE36 /* DXFInternal.h in Headers */,
 				80E87C46298EA3EA0073BE36 /* DXFFeed.h in Headers */,
 				80FF1CF52986BED500AF70FE /* DXFEnvironment+Graal.h in Headers */,
 				80FF1CF22986BC6700AF70FE /* DXFEnvironment.h in Headers */,
@@ -273,6 +292,7 @@
 					};
 					80A3BBE22986ABB600501E11 = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 					80ADEA1D29898AB400F9E116 = {
 						CreatedOnToolsVersion = 14.2;
@@ -363,11 +383,14 @@
 			files = (
 				80E87C49298EA4160073BE36 /* DXFConnectionState.h in Sources */,
 				80E87C47298EA3EA0073BE36 /* DXFFeed.m in Sources */,
+				80E87C52298EC56F0073BE36 /* DXFException.m in Sources */,
 				80FF1D0D2987E8A300AF70FE /* DXFEnvironment.m in Sources */,
 				805E8B8E298AD10200C2A6FA /* NSString+CString.m in Sources */,
 				80FF1D0C2987E89D00AF70FE /* DXFSystem.mm in Sources */,
 				805E8B86298AC6BA00C2A6FA /* DXFConnection.mm in Sources */,
+				80E87C56298ED3E40073BE36 /* DXFInternal.h in Sources */,
 				805E8B8A298AC9FA00C2A6FA /* Logger.m in Sources */,
+				80E87C54298ED35A0073BE36 /* DXFConstants.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,11 +623,17 @@
 		80A3BBF12986ABB600501E11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ak.DXFFrameworkTests;
@@ -612,6 +641,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -620,11 +650,17 @@
 		80A3BBF22986ABB600501E11 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ak.DXFFrameworkTests;

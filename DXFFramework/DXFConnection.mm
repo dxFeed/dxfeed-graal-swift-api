@@ -7,6 +7,7 @@
 
 #import "DXFConnection.h"
 #import "DXFEnvironment+Graal.h"
+#import "DXFConnectionState.h"
 #import "Logger.h"
 #import "NSString+CString.h"
 #import "dxfg_api.h"
@@ -18,6 +19,7 @@
 
 @property (nonatomic) dxfg_endpoint_t* endpoint;
 @property (nonatomic) dxfg_executor_t* executor;
+
 @end
 
 
@@ -46,6 +48,10 @@
         self.address = address;
     }
     return self;
+}
+
+- (void)setEndpoint:(dxfg_endpoint_t *)endpoint {
+    
 }
 
 - (BOOL)connect {
@@ -87,7 +93,7 @@
 
 #pragma mark -
 #pragma mark C-API
-void endpoint_state_change_listener(graal_isolatethread_t *thread, dxfg_endpoint_state_t old_state,
+static void endpoint_state_change_listener(graal_isolatethread_t *thread, dxfg_endpoint_state_t old_state,
                                     dxfg_endpoint_state_t new_state, void *user_data) {
     DXFConnection* connection = (__bridge DXFConnection *)(user_data);
     [connection connectionChanged:new_state];

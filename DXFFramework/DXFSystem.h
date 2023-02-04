@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DXFControl.h"
+#import <DXFFramework/DXFControl.h>
 
 @class DXFEnvironment;
 

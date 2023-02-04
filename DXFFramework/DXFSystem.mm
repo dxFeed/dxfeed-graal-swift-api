@@ -6,8 +6,7 @@
 //
 
 #import "DXFSystem.h"
-#import "graal_isolate.h"
-#import "dxfg_system.h"
+#import "dxfg_api.h"
 #import "DXFEnvironment+Graal.h"
 
 @interface DXFSystem()

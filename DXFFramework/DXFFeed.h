@@ -9,7 +9,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class DXFConnection, DXFEnvironment;
+
 @interface DXFFeed : NSObject
+
+- (instancetype)init:(DXFConnection *)connection env:(DXFEnvironment *)env;
+
+- (BOOL)load;
 
 @end
 

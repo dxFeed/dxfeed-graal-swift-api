@@ -6,8 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DXFControl.h"
-#import "DXFConnectionState.h"
+#import <DXFFramework/DXFControl.h>
+#import <DXFFramework/DXFConnectionState.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
