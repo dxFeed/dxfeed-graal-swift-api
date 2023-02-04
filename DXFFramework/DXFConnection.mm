@@ -28,6 +28,9 @@
         int32_t res = dxfg_DXEndpoint_closeAndAwaitTermination(self.env.thread, self.endpoint);
         [Logger print:@"Close connection %d", res];
     }
+    if (self.executor) {
+        dxfg_JavaObjectHandler_release(self.env.thread, &(self.executor->handler));
+    }
 }
 
 - (nonnull instancetype)init:(nonnull DXFEnvironment *)env {
