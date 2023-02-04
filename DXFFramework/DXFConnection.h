@@ -7,15 +7,10 @@
 
 #import <Foundation/Foundation.h>
 #import "DXFControl.h"
+#import "DXFConnectionState.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef enum : NSUInteger {
-    NotConnected = 0,
-    Connecting,
-    Connected,
-    Disconnected,
-} DXFConnectionState;
 
 @interface DXFConnection : NSObject <DXFControl>
 

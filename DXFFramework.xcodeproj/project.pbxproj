@@ -36,6 +36,10 @@
 		80ADEA172989850300F9E116 /* graal-svm-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80ADEA122989845000F9E116 /* graal-svm-arm64-ios-r.a */; platformFilter = ios; };
 		80ADEA182989850300F9E116 /* jdk-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80ADEA102989845000F9E116 /* jdk-arm64-ios-r.a */; platformFilter = ios; };
 		80ADEA192989850300F9E116 /* libDxFeedGraalNativeApi.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 80ADEA112989845000F9E116 /* libDxFeedGraalNativeApi.o */; platformFilter = ios; };
+		80E87C46298EA3EA0073BE36 /* DXFFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = 80E87C44298EA3EA0073BE36 /* DXFFeed.h */; };
+		80E87C47298EA3EA0073BE36 /* DXFFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C45298EA3EA0073BE36 /* DXFFeed.m */; };
+		80E87C49298EA4160073BE36 /* DXFConnectionState.h in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C48298EA4160073BE36 /* DXFConnectionState.h */; };
+		80E87C4A298EA4B60073BE36 /* DXFConnectionState.h in Headers */ = {isa = PBXBuildFile; fileRef = 80E87C48298EA4160073BE36 /* DXFConnectionState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80FF1CEF2986B93E00AF70FE /* DXFSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 80A3BC042986B2B600501E11 /* DXFSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80FF1CF22986BC6700AF70FE /* DXFEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 80FF1CF02986BC6700AF70FE /* DXFEnvironment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80FF1CF52986BED500AF70FE /* DXFEnvironment+Graal.h in Headers */ = {isa = PBXBuildFile; fileRef = 80FF1CF42986BED500AF70FE /* DXFEnvironment+Graal.h */; };
@@ -85,6 +89,9 @@
 		80ADEA112989845000F9E116 /* libDxFeedGraalNativeApi.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = libDxFeedGraalNativeApi.o; path = graal_builds/ios/libDxFeedGraalNativeApi.o; sourceTree = "<group>"; };
 		80ADEA122989845000F9E116 /* graal-svm-arm64-ios-r.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "graal-svm-arm64-ios-r.a"; path = "graal_builds/ios/graal-svm-arm64-ios-r.a"; sourceTree = "<group>"; };
 		80ADEA132989846200F9E116 /* libDxFeedGraalNativeApi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDxFeedGraalNativeApi.dylib; path = graal_builds/osx_universal/libDxFeedGraalNativeApi.dylib; sourceTree = "<group>"; };
+		80E87C44298EA3EA0073BE36 /* DXFFeed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFFeed.h; sourceTree = "<group>"; };
+		80E87C45298EA3EA0073BE36 /* DXFFeed.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFFeed.m; sourceTree = "<group>"; };
+		80E87C48298EA4160073BE36 /* DXFConnectionState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFConnectionState.h; sourceTree = "<group>"; };
 		80FF1CF02986BC6700AF70FE /* DXFEnvironment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFEnvironment.h; sourceTree = "<group>"; };
 		80FF1CF12986BC6700AF70FE /* DXFEnvironment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFEnvironment.m; sourceTree = "<group>"; };
 		80FF1CF42986BED500AF70FE /* DXFEnvironment+Graal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DXFEnvironment+Graal.h"; sourceTree = "<group>"; };
@@ -135,7 +142,6 @@
 		80A3BBDD2986ABB600501E11 /* DXFFramework */ = {
 			isa = PBXGroup;
 			children = (
-				80FF1CF42986BED500AF70FE /* DXFEnvironment+Graal.h */,
 				80E87C42298ADE460073BE36 /* Private */,
 				80E87C41298ADE260073BE36 /* Utils */,
 				80A3BBDE2986ABB600501E11 /* DXFFramework.h */,
@@ -146,6 +152,9 @@
 				805E8B81298AC4F900C2A6FA /* DXFControl.h */,
 				805E8B83298AC6BA00C2A6FA /* DXFConnection.h */,
 				805E8B84298AC6BA00C2A6FA /* DXFConnection.mm */,
+				80E87C44298EA3EA0073BE36 /* DXFFeed.h */,
+				80E87C45298EA3EA0073BE36 /* DXFFeed.m */,
+				80E87C48298EA4160073BE36 /* DXFConnectionState.h */,
 			);
 			path = DXFFramework;
 			sourceTree = "<group>";
@@ -183,6 +192,7 @@
 		80E87C42298ADE460073BE36 /* Private */ = {
 			isa = PBXGroup;
 			children = (
+				80FF1CF42986BED500AF70FE /* DXFEnvironment+Graal.h */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -194,9 +204,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80E87C4A298EA4B60073BE36 /* DXFConnectionState.h in Headers */,
 				80A3BBEA2986ABB600501E11 /* DXFFramework.h in Headers */,
 				805E8B89298AC9FA00C2A6FA /* Logger.h in Headers */,
 				80FF1CEF2986B93E00AF70FE /* DXFSystem.h in Headers */,
+				80E87C46298EA3EA0073BE36 /* DXFFeed.h in Headers */,
 				80FF1CF52986BED500AF70FE /* DXFEnvironment+Graal.h in Headers */,
 				80FF1CF22986BC6700AF70FE /* DXFEnvironment.h in Headers */,
 				805E8B8D298AD10200C2A6FA /* NSString+CString.h in Headers */,
@@ -349,6 +361,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80E87C49298EA4160073BE36 /* DXFConnectionState.h in Sources */,
+				80E87C47298EA3EA0073BE36 /* DXFFeed.m in Sources */,
 				80FF1D0D2987E8A300AF70FE /* DXFEnvironment.m in Sources */,
 				805E8B8E298AD10200C2A6FA /* NSString+CString.m in Sources */,
 				80FF1D0C2987E89D00AF70FE /* DXFSystem.mm in Sources */,
