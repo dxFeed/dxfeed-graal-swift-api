@@ -6,7 +6,7 @@ repositories {
     }
 }
 
-def native_version = '0.1.2'
+def native_version = '0.2.0'
 
 dependencies {
     implementation(group: 'com.dxfeed', name: 'graal-native-api', version: "${native_version}", classifier: 'aarch64-osx', ext: 'zip')
