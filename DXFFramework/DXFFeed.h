@@ -9,9 +9,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class DXFConnection, DXFEnvironment;
+@class DXFConnection, DXFEnvironment, DXFEventQuote;
 
 @interface DXFFeed : NSObject
+
+@property (nonatomic, retain, readonly) id values;
 
 - (instancetype)init:(DXFConnection *)connection env:(DXFEnvironment *)env;
 

@@ -29,13 +29,27 @@
 		805E8B8D298AD10200C2A6FA /* NSString+CString.h in Headers */ = {isa = PBXBuildFile; fileRef = 805E8B8B298AD10200C2A6FA /* NSString+CString.h */; };
 		805E8B8E298AD10200C2A6FA /* NSString+CString.m in Sources */ = {isa = PBXBuildFile; fileRef = 805E8B8C298AD10200C2A6FA /* NSString+CString.m */; };
 		80A3BBE42986ABB600501E11 /* DXFFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A3BBDB2986ABB600501E11 /* DXFFramework.framework */; };
-		80A3BBE92986ABB600501E11 /* DXFFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A3BBE82986ABB600501E11 /* DXFFrameworkTests.swift */; };
 		80A3BBEA2986ABB600501E11 /* DXFFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 80A3BBDE2986ABB600501E11 /* DXFFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80ADEA142989846200F9E116 /* libDxFeedGraalNativeApi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 80ADEA132989846200F9E116 /* libDxFeedGraalNativeApi.dylib */; platformFilters = (macos, ); };
 		80ADEA152989846200F9E116 /* libDxFeedGraalNativeApi.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 80ADEA132989846200F9E116 /* libDxFeedGraalNativeApi.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		80ADEA172989850300F9E116 /* graal-svm-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80ADEA122989845000F9E116 /* graal-svm-arm64-ios-r.a */; platformFilter = ios; };
 		80ADEA182989850300F9E116 /* jdk-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80ADEA102989845000F9E116 /* jdk-arm64-ios-r.a */; platformFilter = ios; };
 		80ADEA192989850300F9E116 /* libDxFeedGraalNativeApi.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 80ADEA112989845000F9E116 /* libDxFeedGraalNativeApi.o */; platformFilter = ios; };
+		80BB67DA298FE6BC0049521F /* DXFEventQuote.h in Headers */ = {isa = PBXBuildFile; fileRef = 80BB67D8298FE6BC0049521F /* DXFEventQuote.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80BB67DB298FE6BC0049521F /* DXFEventQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = 80BB67D9298FE6BC0049521F /* DXFEventQuote.m */; };
+		80BB67E4298FEBA10049521F /* DXFEventQuote+Graal.h in Headers */ = {isa = PBXBuildFile; fileRef = 80BB67E2298FEBA10049521F /* DXFEventQuote+Graal.h */; };
+		80BB67E5298FEBA10049521F /* DXFEventQuote+Graal.m in Sources */ = {isa = PBXBuildFile; fileRef = 80BB67E3298FEBA10049521F /* DXFEventQuote+Graal.m */; };
+		80BB67E7298FEC610049521F /* DXFEventQuote+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 80BB67E6298FEC610049521F /* DXFEventQuote+Private.h */; };
+		80BB67E829900B900049521F /* FeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C5A298ED6A40073BE36 /* FeedTests.swift */; };
+		80BB67EC299132F20049521F /* DXFEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 80BB67EA299132F20049521F /* DXFEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80BB67ED299132F20049521F /* DXFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 80BB67EB299132F20049521F /* DXFEvent.m */; };
+		80BB67F1299139360049521F /* DXFTimeSale.h in Headers */ = {isa = PBXBuildFile; fileRef = 80BB67EF299139360049521F /* DXFTimeSale.h */; };
+		80BB67F2299139360049521F /* DXFTimeSale.m in Sources */ = {isa = PBXBuildFile; fileRef = 80BB67F0299139360049521F /* DXFTimeSale.m */; };
+		80BB67F329913AFF0049521F /* DXFEventType.h in Headers */ = {isa = PBXBuildFile; fileRef = 80BB67EE2991337C0049521F /* DXFEventType.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80BB67F529913C820049521F /* DXFEvent+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 80BB67F429913C820049521F /* DXFEvent+Private.h */; };
+		80BB67F829913DC70049521F /* DXFEventFabric.h in Headers */ = {isa = PBXBuildFile; fileRef = 80BB67F629913DC70049521F /* DXFEventFabric.h */; };
+		80BB67F929913DC70049521F /* DXFEventFabric.m in Sources */ = {isa = PBXBuildFile; fileRef = 80BB67F729913DC70049521F /* DXFEventFabric.m */; };
+		80BB67FB299141F20049521F /* DXFTimeSale+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 80BB67FA299141F20049521F /* DXFTimeSale+Private.h */; };
 		80E87C46298EA3EA0073BE36 /* DXFFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = 80E87C44298EA3EA0073BE36 /* DXFFeed.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80E87C47298EA3EA0073BE36 /* DXFFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C45298EA3EA0073BE36 /* DXFFeed.m */; };
 		80E87C49298EA4160073BE36 /* DXFConnectionState.h in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C48298EA4160073BE36 /* DXFConnectionState.h */; };
@@ -46,7 +60,6 @@
 		80E87C54298ED35A0073BE36 /* DXFConstants.h in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C53298ED35A0073BE36 /* DXFConstants.h */; };
 		80E87C56298ED3E40073BE36 /* DXFInternal.h in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C55298ED3E40073BE36 /* DXFInternal.h */; };
 		80E87C57298ED4290073BE36 /* DXFInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 80E87C55298ED3E40073BE36 /* DXFInternal.h */; };
-		80E87C5B298ED6A40073BE36 /* FeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C5A298ED6A40073BE36 /* FeedTests.swift */; };
 		80FF1CEF2986B93E00AF70FE /* DXFSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 80A3BC042986B2B600501E11 /* DXFSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80FF1CF22986BC6700AF70FE /* DXFEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 80FF1CF02986BC6700AF70FE /* DXFEnvironment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80FF1CF52986BED500AF70FE /* DXFEnvironment+Graal.h in Headers */ = {isa = PBXBuildFile; fileRef = 80FF1CF42986BED500AF70FE /* DXFEnvironment+Graal.h */; };
@@ -96,6 +109,21 @@
 		80ADEA112989845000F9E116 /* libDxFeedGraalNativeApi.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = libDxFeedGraalNativeApi.o; path = graal_builds/ios/libDxFeedGraalNativeApi.o; sourceTree = "<group>"; };
 		80ADEA122989845000F9E116 /* graal-svm-arm64-ios-r.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "graal-svm-arm64-ios-r.a"; path = "graal_builds/ios/graal-svm-arm64-ios-r.a"; sourceTree = "<group>"; };
 		80ADEA132989846200F9E116 /* libDxFeedGraalNativeApi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDxFeedGraalNativeApi.dylib; path = graal_builds/osx_universal/libDxFeedGraalNativeApi.dylib; sourceTree = "<group>"; };
+		80BB67D8298FE6BC0049521F /* DXFEventQuote.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFEventQuote.h; sourceTree = "<group>"; };
+		80BB67D9298FE6BC0049521F /* DXFEventQuote.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFEventQuote.m; sourceTree = "<group>"; };
+		80BB67E2298FEBA10049521F /* DXFEventQuote+Graal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DXFEventQuote+Graal.h"; sourceTree = "<group>"; };
+		80BB67E3298FEBA10049521F /* DXFEventQuote+Graal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DXFEventQuote+Graal.m"; sourceTree = "<group>"; };
+		80BB67E6298FEC610049521F /* DXFEventQuote+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DXFEventQuote+Private.h"; sourceTree = "<group>"; };
+		80BB67E929911FD30049521F /* DXFFeedListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFFeedListener.h; sourceTree = "<group>"; };
+		80BB67EA299132F20049521F /* DXFEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFEvent.h; sourceTree = "<group>"; };
+		80BB67EB299132F20049521F /* DXFEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFEvent.m; sourceTree = "<group>"; };
+		80BB67EE2991337C0049521F /* DXFEventType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFEventType.h; sourceTree = "<group>"; };
+		80BB67EF299139360049521F /* DXFTimeSale.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFTimeSale.h; sourceTree = "<group>"; };
+		80BB67F0299139360049521F /* DXFTimeSale.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFTimeSale.m; sourceTree = "<group>"; };
+		80BB67F429913C820049521F /* DXFEvent+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DXFEvent+Private.h"; sourceTree = "<group>"; };
+		80BB67F629913DC70049521F /* DXFEventFabric.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFEventFabric.h; sourceTree = "<group>"; };
+		80BB67F729913DC70049521F /* DXFEventFabric.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFEventFabric.m; sourceTree = "<group>"; };
+		80BB67FA299141F20049521F /* DXFTimeSale+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DXFTimeSale+Private.h"; sourceTree = "<group>"; };
 		80E87C44298EA3EA0073BE36 /* DXFFeed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFFeed.h; sourceTree = "<group>"; };
 		80E87C45298EA3EA0073BE36 /* DXFFeed.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFFeed.m; sourceTree = "<group>"; };
 		80E87C48298EA4160073BE36 /* DXFConnectionState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFConnectionState.h; sourceTree = "<group>"; };
@@ -155,6 +183,7 @@
 		80A3BBDD2986ABB600501E11 /* DXFFramework */ = {
 			isa = PBXGroup;
 			children = (
+				80BB67D5298FE6730049521F /* Events */,
 				80E87C42298ADE460073BE36 /* Private */,
 				80E87C41298ADE260073BE36 /* Utils */,
 				80A3BBDE2986ABB600501E11 /* DXFFramework.h */,
@@ -192,6 +221,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		80BB67D5298FE6730049521F /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				80BB67D8298FE6BC0049521F /* DXFEventQuote.h */,
+				80BB67D9298FE6BC0049521F /* DXFEventQuote.m */,
+				80BB67EA299132F20049521F /* DXFEvent.h */,
+				80BB67EB299132F20049521F /* DXFEvent.m */,
+				80BB67EE2991337C0049521F /* DXFEventType.h */,
+				80BB67EF299139360049521F /* DXFTimeSale.h */,
+				80BB67F0299139360049521F /* DXFTimeSale.m */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
 		80E87C41298ADE260073BE36 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +255,14 @@
 				80E87C50298EC56F0073BE36 /* DXFException.m */,
 				80E87C53298ED35A0073BE36 /* DXFConstants.h */,
 				80E87C55298ED3E40073BE36 /* DXFInternal.h */,
+				80BB67E2298FEBA10049521F /* DXFEventQuote+Graal.h */,
+				80BB67E3298FEBA10049521F /* DXFEventQuote+Graal.m */,
+				80BB67E6298FEC610049521F /* DXFEventQuote+Private.h */,
+				80BB67E929911FD30049521F /* DXFFeedListener.h */,
+				80BB67F429913C820049521F /* DXFEvent+Private.h */,
+				80BB67F629913DC70049521F /* DXFEventFabric.h */,
+				80BB67F729913DC70049521F /* DXFEventFabric.m */,
+				80BB67FA299141F20049521F /* DXFTimeSale+Private.h */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -225,17 +276,26 @@
 			files = (
 				80E87C4A298EA4B60073BE36 /* DXFConnectionState.h in Headers */,
 				80A3BBEA2986ABB600501E11 /* DXFFramework.h in Headers */,
+				80BB67F529913C820049521F /* DXFEvent+Private.h in Headers */,
+				80BB67FB299141F20049521F /* DXFTimeSale+Private.h in Headers */,
 				805E8B89298AC9FA00C2A6FA /* Logger.h in Headers */,
+				80BB67F329913AFF0049521F /* DXFEventType.h in Headers */,
 				80FF1CEF2986B93E00AF70FE /* DXFSystem.h in Headers */,
 				80E87C4E298EB34B0073BE36 /* DXFConnection+Graal.h in Headers */,
+				80BB67F1299139360049521F /* DXFTimeSale.h in Headers */,
+				80BB67E7298FEC610049521F /* DXFEventQuote+Private.h in Headers */,
 				80E87C51298EC56F0073BE36 /* DXFException.h in Headers */,
 				80E87C57298ED4290073BE36 /* DXFInternal.h in Headers */,
+				80BB67E4298FEBA10049521F /* DXFEventQuote+Graal.h in Headers */,
 				80E87C46298EA3EA0073BE36 /* DXFFeed.h in Headers */,
 				80FF1CF52986BED500AF70FE /* DXFEnvironment+Graal.h in Headers */,
 				80FF1CF22986BC6700AF70FE /* DXFEnvironment.h in Headers */,
 				805E8B8D298AD10200C2A6FA /* NSString+CString.h in Headers */,
+				80BB67EC299132F20049521F /* DXFEvent.h in Headers */,
 				805E8B82298AC4F900C2A6FA /* DXFControl.h in Headers */,
 				805E8B85298AC6BA00C2A6FA /* DXFConnection.h in Headers */,
+				80BB67DA298FE6BC0049521F /* DXFEventQuote.h in Headers */,
+				80BB67F829913DC70049521F /* DXFEventFabric.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,12 +446,17 @@
 			files = (
 				80E87C49298EA4160073BE36 /* DXFConnectionState.h in Sources */,
 				80E87C47298EA3EA0073BE36 /* DXFFeed.m in Sources */,
+				80BB67ED299132F20049521F /* DXFEvent.m in Sources */,
 				80E87C52298EC56F0073BE36 /* DXFException.m in Sources */,
 				80FF1D0D2987E8A300AF70FE /* DXFEnvironment.m in Sources */,
+				80BB67E5298FEBA10049521F /* DXFEventQuote+Graal.m in Sources */,
 				805E8B8E298AD10200C2A6FA /* NSString+CString.m in Sources */,
 				80FF1D0C2987E89D00AF70FE /* DXFSystem.mm in Sources */,
+				80BB67F2299139360049521F /* DXFTimeSale.m in Sources */,
 				805E8B86298AC6BA00C2A6FA /* DXFConnection.mm in Sources */,
 				80E87C56298ED3E40073BE36 /* DXFInternal.h in Sources */,
+				80BB67DB298FE6BC0049521F /* DXFEventQuote.m in Sources */,
+				80BB67F929913DC70049521F /* DXFEventFabric.m in Sources */,
 				805E8B8A298AC9FA00C2A6FA /* Logger.m in Sources */,
 				80E87C54298ED35A0073BE36 /* DXFConstants.h in Sources */,
 			);
@@ -401,8 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80A3BBE92986ABB600501E11 /* DXFFrameworkTests.swift in Sources */,
-				80E87C5B298ED6A40073BE36 /* FeedTests.swift in Sources */,
+				80BB67E829900B900049521F /* FeedTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,7 +627,7 @@
 					"$(PROJECT_DIR)/graal_builds/osx_universal",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ak.DXFFramework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -609,7 +673,7 @@
 					"$(PROJECT_DIR)/graal_builds/osx_universal",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ak.DXFFramework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";

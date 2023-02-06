@@ -1,5 +1,5 @@
 //
-//  DXFConnectionState.m
+//  DXFConnectionState.h
 //  DXFFramework
 //
 //  Created by Aleksey Kosylo on 2/4/23.

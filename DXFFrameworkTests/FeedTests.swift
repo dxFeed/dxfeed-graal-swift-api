@@ -18,7 +18,7 @@ final class FeedTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testConnectionToWrongAddress() throws {
+    func testFetchFeed() throws {
         let address = "demo.dxfeed.com:7300"
         let env = DXFEnvironment()
         let connection = DXFConnection(env, address: address)
@@ -26,10 +26,14 @@ final class FeedTests: XCTestCase {
         XCTAssert(connected, "Couldn't connect to demo \(address)")
         let predicate = NSPredicate(format: "%K == \(Connected.rawValue)", #keyPath(DXFConnection.state))
         let publishExpectation = XCTNSPredicateExpectation(predicate: predicate, object: connection)
-        wait(for: [publishExpectation], timeout: 20)
+        wait(for: [publishExpectation], timeout: 10)
         let feed = DXFFeed(connection, env: env)
         let feedLoaded = feed.load()
         XCTAssert(feedLoaded, "Couldn't load feed from demo \(address)")
+        let predicateFeed = NSPredicate(format: "%K == nil", #keyPath(DXFFeed.values))
+        let publishFeedExpectation = XCTNSPredicateExpectation(predicate: predicateFeed, object: feed)
+        feed.getForSymbol("ETH/USD:GDAX")
+        wait(for: [publishFeedExpectation], timeout: 20)
     }
 
 }

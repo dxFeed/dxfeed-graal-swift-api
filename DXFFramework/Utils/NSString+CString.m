@@ -14,7 +14,11 @@
 }
 
 + (instancetype)newWithCstring:(const char *)nullTerminatedCString {
-    return [[NSString alloc] initWithCString:nullTerminatedCString encoding:NSUTF8StringEncoding];
+    if (nullTerminatedCString) {
+        return [[NSString alloc] initWithCString:nullTerminatedCString encoding:NSUTF8StringEncoding];
+    } else {
+        return nil;
+    }
 }
 
 @end
