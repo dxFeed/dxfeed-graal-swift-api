@@ -6,14 +6,17 @@
 //
 
 #import <DXFFramework/DXFFramework.h>
+#import "dxfg_events.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DXFEvent ()
 
 @property (nonatomic, assign) DXFEventType event_type;
-@property (nonatomic, retain) NSString *event_symbol;
+@property (nonatomic, strong) NSString *event_symbol;
 @property (nonatomic, assign) int64_t event_time;
+
+- (instancetype)initWithMarketEvent:(dxfg_market_event_t)item;
 
 @end
 

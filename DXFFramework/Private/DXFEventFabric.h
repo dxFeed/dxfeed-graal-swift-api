@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class DXFEvent;
 @interface DXFEventFabric : NSObject
 
+- (instancetype)init:(NSDictionary *)events;
 - (DXFEvent *)createEvent:(dxfg_event_type_t *)dxfEvent;
 
 @end

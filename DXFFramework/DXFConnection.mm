@@ -39,16 +39,9 @@
    
 }
 
-- (nonnull instancetype)init:(nonnull DXFEnvironment *)env {
+- (nonnull instancetype)init:(nonnull DXFEnvironment *)env address:(NSString *)address {
     if (self = [super init]) {
         self.env = env;
-    }
-    return self;
-}
-
-
-- (nonnull instancetype)init:(nonnull DXFEnvironment *)env address:(NSString *)address {
-    if (self = [self init:env]) {
         self.address = address;
     }
     return self;

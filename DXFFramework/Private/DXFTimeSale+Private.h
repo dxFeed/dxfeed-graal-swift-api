@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, retain) NSString *buyer;
 @property (nonatomic, retain) NSString *seller;
 
-- (instancetype)initWithItem:(dxfg_time_and_sale_t *)dxf_item;
+- (instancetype)initWithItem:(dxfg_event_type_t *)item;
 
 @end
 

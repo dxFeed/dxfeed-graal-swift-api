@@ -11,11 +11,12 @@
 #import "DXFException.h"
 #import "DXFInternal.h"
 #import "dxfg_api.h"
-#import "DXFEventQuote+Graal.h"
-#import "DXFFeedListener.h"
+#import "DXFEventQuote+Private.h"
+#import "DXFTimeSale+Private.h"
+#import "DXFEventListener.h"
 #import "DXFEventFabric.h"
 
-@interface DXFFeed() <DXFFeedListener>
+@interface DXFFeed() <DXFEventListener>
 
 @property (nonatomic, retain) DXFConnection *connection;
 @property (nonatomic, retain) DXFEnvironment *env;
@@ -42,7 +43,9 @@
     if (self = [super init]) {
         self.connection = connection;
         self.env = env;
-        self.fabric = [DXFEventFabric new];
+        self.fabric = [[DXFEventFabric alloc] init:@{@(DXFG_EVENT_TIME_AND_SALE): DXFTimeSale.class,
+                                                     @(DXFG_EVENT_QUOTE): DXFEventQuote.class
+                                                   }];
     }
     return self;
 }
@@ -61,63 +64,35 @@
     }
 }
 
-- (void)getFeedForSymbol:(NSString *)str  {    
-    graal_isolatethread_t *thread = self.env.thread;
-    dxfg_feed_t* feed = self.feed;
+- (void)getFeedForSymbol:(NSString *)str  {
+    NSInteger res = NSIntegerMax;
     
-    dxfg_indexed_event_model_t* indexed_event_model = dxfg_IndexedEventModel_new(thread, DXFG_EVENT_TIME_AND_SALE);
-    dxfg_IndexedEventModel_setSizeLimit(thread, indexed_event_model, 30);
-    dxfg_IndexedEventModel_attach(thread, indexed_event_model, feed);
-    dxfg_observable_list_model_t* observable_list_model = dxfg_IndexedEventModel_getEventsList(thread, indexed_event_model);
-    dxfg_string_symbol_t symbolAAPL;
-    symbolAAPL.supper.type = STRING;
-    symbolAAPL.symbol = [str dxfCString];
-    dxfg_IndexedEventModel_setSymbol(thread, indexed_event_model, &symbolAAPL.supper);
-    dxfg_observable_list_model_listener_t *observable_list_model_listener = dxfg_ObservableListModelListener_new(thread, &c_observable_list_listener_func, (__bridge void *)self);
-    dxfg_ObservableListModel_addListener(thread, observable_list_model, observable_list_model_listener);
-    dxfg_subscription_t* subscriptionQuote = dxfg_DXFeedSubscription_new(thread, DXFG_EVENT_QUOTE);
-    dxfg_DXFeed_attachSubscription(thread, feed, subscriptionQuote);
-    dxfg_DXFeedSubscription_addEventListener(
-        thread,
-        subscriptionQuote,
-        dxfg_DXFeedEventListener_new(thread, &c_print, (__bridge void *)self)
-    );
-    //release
-//    dxfg_ObservableListModel_removeListener(self.env.thread, observable_list_model, observable_list_model_listener);
-//    dxfg_JavaObjectHandler_release(self.env.thread, &observable_list_model_listener->handler);
-//    dxfg_JavaObjectHandler_release(self.env.thread, &indexed_event_model->handler);
-//    dxfg_JavaObjectHandler_release(self.env.thread, &observable_list_model->handler);
-//    dxfg_JavaObjectHandler_release(self.env.thread, &subscriptionQuote->handler);
-
+    dxfg_subscription_t *subscription = dxfg_DXFeed_createSubscription(self.env.thread, self.feed, DXFG_EVENT_QUOTE);
+    res = dxfg_DXFeedSubscription_addEventListener(self.env.thread,
+                                                   subscription,
+                                                   dxfg_DXFeedEventListener_new(self.env.thread, &c_observable_list_listener_func, (__bridge void *)(self)));
+    dxfg_symbol_t* symbol = dxfg_Symbol_new(self.env.thread, [str dxfCString], STRING);
+    res = dxfg_DXFeedSubscription_addSymbol(self.env.thread, subscription, symbol);
+    dxfg_Symbol_release(self.env.thread, symbol);
+    
     
 }
 
-#pragma mark - DXFFeedListener
 
-- (void)receivedEventQuote:(DXFEventQuote *)event {
- 
-    self.values = event;
+#pragma mark - DXFFeedListener
+-(void)receivedEvents:(dxfg_event_type_list *)events {
+    for (int i = 0; i < events->size; ++i) {
+        dxfg_event_type_t *pEvent = (dxfg_event_type_t *)(events->elements[i]);
+        DXFEvent *event = [self.fabric createEvent:pEvent];
+        NSLog(@"%@",event);
+    }
 }
 
 #pragma mark - C-API
-static void c_observable_list_listener_func(graal_isolatethread_t *thread, dxfg_event_type_list* orders, void *user_data) {
-    id<DXFFeedListener> feed = (__bridge id)user_data;
-    for (int i = 0; i < orders->size; ++i) {
-        dxfg_event_type_t *pEvent = (dxfg_event_type_t *)(orders->elements[0]);
-        if (pEvent->clazz == DXFG_EVENT_QUOTE) {
-            DXFEventQuote * quoute = [[DXFEventQuote alloc] initWithQuote:(dxfg_quote_t *)pEvent];
-        } else if (pEvent->clazz == DXFG_EVENT_TIME_AND_SALE) {
-            [[DXFEventFabric new] createEvent:(dxfg_time_and_sale_t *)pEvent];
-        }
-        [feed receivedEventQuote:nil];
-//        printEvent(reinterpret_cast<dxfg_event_type_t *>(orders->elements[0]));
-    }
-    dxfg_CList_EventType_release(thread, orders);
-}
-
-static void c_print(graal_isolatethread_t *thread, dxfg_event_type_list *events, void *user_data) {
-    for (int i = 0; i < events->size; ++i) {
-//        printEvent(events->elements[i]);
+static void c_observable_list_listener_func(graal_isolatethread_t *thread, dxfg_event_type_list *events, void *user_data) {
+    if (user_data) {
+        id<DXFEventListener> listener = (__bridge id)user_data;
+        [listener receivedEvents:events];
     }
 }
 

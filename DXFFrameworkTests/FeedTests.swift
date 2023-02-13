@@ -30,10 +30,10 @@ final class FeedTests: XCTestCase {
         let feed = DXFFeed(connection, env: env)
         let feedLoaded = feed.load()
         XCTAssert(feedLoaded, "Couldn't load feed from demo \(address)")
-        let predicateFeed = NSPredicate(format: "%K == nil", #keyPath(DXFFeed.values))
+        let predicateFeed = NSPredicate(format: "%K.count == 30", #keyPath(DXFFeed.values))
         let publishFeedExpectation = XCTNSPredicateExpectation(predicate: predicateFeed, object: feed)
         feed.getForSymbol("ETH/USD:GDAX")
-        wait(for: [publishFeedExpectation], timeout: 20)
+        wait(for: [publishFeedExpectation], timeout: 30)
     }
 
 }

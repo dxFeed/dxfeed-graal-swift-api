@@ -10,9 +10,9 @@
 
 @class DXFEventQuote;
 
-@protocol DXFFeedListener
+@protocol DXFEventListener
 
-- (void)receivedEventQuote:(DXFEventQuote *)event;
+- (void)receivedEvents:(dxfg_event_type_list *)events;
 
 @end
 #endif /* DXFFeedListener_h */

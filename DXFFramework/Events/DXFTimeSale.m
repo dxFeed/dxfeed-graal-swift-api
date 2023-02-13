@@ -12,13 +12,10 @@
 #import "NSString+CString.h"
 
 @implementation DXFTimeSale
-- (instancetype)initWithItem:(dxfg_time_and_sale_t *)dxf_item {
-    if (self = [super init]) {
-        
-//        self.event_type = dxf_item->market_event.event_type;
-        self.event_time = dxf_item->market_event.event_time;
-        self.event_symbol = [NSString newWithCstring:dxf_item->market_event.event_symbol];
-        
+
+- (instancetype)initWithItem:(dxfg_event_type_t *)item {
+    dxfg_time_and_sale_t *dxf_item = (dxfg_time_and_sale_t *)item;
+    if (self = [super initWithMarketEvent:dxf_item->market_event]) {
         self.event_flags = dxf_item->event_flags;
         self.index = dxf_item->index;
         self.time_nano_part = dxf_item->time_nano_part;
@@ -35,4 +32,7 @@
     return self;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"DXFG_TIME_AND_SALE_T: %@  event_flags=%d, index=%lld, time_nano_part=%d, exchange_code=%hd, price=%f, size=%f, bid_price=%f, ask_price=%f, exchange_sale_conditions=%@, flags=%d, buyer=%@, seller=%@", self.event_symbol,self.event_flags,self.index,self.time_nano_part,self.exchange_code,self.price,self.size,self.bid_price,self.ask_price,self.exchange_sale_conditions,self.flags,self.buyer,self.seller];
+}
 @end
