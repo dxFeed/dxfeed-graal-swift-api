@@ -9,10 +9,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class DXFEnvironment;
+@class DXFEnvironment, DXFFeed;
+@protocol DXFSubscriptionListener;
 @interface DXFSubscription : NSObject
 
-- (instancetype)init:(DXFEnvironment *)env;
+@property (nonatomic, strong) NSArray *values;
+
+- (instancetype)init:(DXFEnvironment *)env feed:(DXFFeed *)feed;
+
+- (void)addListener:(id<DXFSubscriptionListener>)listener;
+
+- (void)removeListener:(id<DXFSubscriptionListener>)listener;
+
+- (void)subscribe:(NSString *)str;
 
 @end
 

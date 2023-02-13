@@ -21,8 +21,11 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		805B92BF29997045001F9F4C /* DXFSubscription.h in Headers */ = {isa = PBXBuildFile; fileRef = 805B92BD29997045001F9F4C /* DXFSubscription.h */; };
+		805B92BF29997045001F9F4C /* DXFSubscription.h in Headers */ = {isa = PBXBuildFile; fileRef = 805B92BD29997045001F9F4C /* DXFSubscription.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		805B92C029997045001F9F4C /* DXFSubscription.m in Sources */ = {isa = PBXBuildFile; fileRef = 805B92BE29997045001F9F4C /* DXFSubscription.m */; };
+		805B92C2299A8846001F9F4C /* DXFFeed+Graal.h in Headers */ = {isa = PBXBuildFile; fileRef = 805B92C1299A8846001F9F4C /* DXFFeed+Graal.h */; };
+		805B92F5299AB61F001F9F4C /* DXFSubscriptionListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 805B92F4299AB61F001F9F4C /* DXFSubscriptionListener.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		805B92F9299ABDD7001F9F4C /* TestListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B92F8299ABDD7001F9F4C /* TestListener.swift */; };
 		805E8B82298AC4F900C2A6FA /* DXFControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 805E8B81298AC4F900C2A6FA /* DXFControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		805E8B85298AC6BA00C2A6FA /* DXFConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 805E8B83298AC6BA00C2A6FA /* DXFConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		805E8B86298AC6BA00C2A6FA /* DXFConnection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 805E8B84298AC6BA00C2A6FA /* DXFConnection.mm */; };
@@ -94,6 +97,9 @@
 /* Begin PBXFileReference section */
 		805B92BD29997045001F9F4C /* DXFSubscription.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFSubscription.h; sourceTree = "<group>"; };
 		805B92BE29997045001F9F4C /* DXFSubscription.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFSubscription.m; sourceTree = "<group>"; };
+		805B92C1299A8846001F9F4C /* DXFFeed+Graal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DXFFeed+Graal.h"; sourceTree = "<group>"; };
+		805B92F4299AB61F001F9F4C /* DXFSubscriptionListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFSubscriptionListener.h; sourceTree = "<group>"; };
+		805B92F8299ABDD7001F9F4C /* TestListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListener.swift; sourceTree = "<group>"; };
 		805E8B81298AC4F900C2A6FA /* DXFControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFControl.h; sourceTree = "<group>"; };
 		805E8B83298AC6BA00C2A6FA /* DXFConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFConnection.h; sourceTree = "<group>"; };
 		805E8B84298AC6BA00C2A6FA /* DXFConnection.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DXFConnection.mm; sourceTree = "<group>"; };
@@ -199,6 +205,7 @@
 				80E87C48298EA4160073BE36 /* DXFConnectionState.h */,
 				805B92BD29997045001F9F4C /* DXFSubscription.h */,
 				805B92BE29997045001F9F4C /* DXFSubscription.m */,
+				805B92F4299AB61F001F9F4C /* DXFSubscriptionListener.h */,
 			);
 			path = DXFFramework;
 			sourceTree = "<group>";
@@ -208,6 +215,7 @@
 			children = (
 				80A3BBE82986ABB600501E11 /* DXFFrameworkTests.swift */,
 				80E87C5A298ED6A40073BE36 /* FeedTests.swift */,
+				805B92F8299ABDD7001F9F4C /* TestListener.swift */,
 			);
 			path = DXFFrameworkTests;
 			sourceTree = "<group>";
@@ -253,6 +261,7 @@
 			children = (
 				80FF1CF42986BED500AF70FE /* DXFEnvironment+Graal.h */,
 				80E87C4D298EB34B0073BE36 /* DXFConnection+Graal.h */,
+				805B92C1299A8846001F9F4C /* DXFFeed+Graal.h */,
 				80E87C4F298EC56F0073BE36 /* DXFException.h */,
 				80E87C50298EC56F0073BE36 /* DXFException.m */,
 				80E87C53298ED35A0073BE36 /* DXFConstants.h */,
@@ -280,6 +289,7 @@
 				80BB67FB299141F20049521F /* DXFTimeSale+Private.h in Headers */,
 				805E8B89298AC9FA00C2A6FA /* Logger.h in Headers */,
 				80BB67F329913AFF0049521F /* DXFEventType.h in Headers */,
+				805B92F5299AB61F001F9F4C /* DXFSubscriptionListener.h in Headers */,
 				80FF1CEF2986B93E00AF70FE /* DXFSystem.h in Headers */,
 				80E87C4E298EB34B0073BE36 /* DXFConnection+Graal.h in Headers */,
 				80BB67F1299139360049521F /* DXFTimeSale.h in Headers */,
@@ -295,6 +305,7 @@
 				805E8B82298AC4F900C2A6FA /* DXFControl.h in Headers */,
 				805E8B85298AC6BA00C2A6FA /* DXFConnection.h in Headers */,
 				80BB67DA298FE6BC0049521F /* DXFEventQuote.h in Headers */,
+				805B92C2299A8846001F9F4C /* DXFFeed+Graal.h in Headers */,
 				80BB67F829913DC70049521F /* DXFEventFabric.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,6 +478,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80BB67E829900B900049521F /* FeedTests.swift in Sources */,
+				805B92F9299ABDD7001F9F4C /* TestListener.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

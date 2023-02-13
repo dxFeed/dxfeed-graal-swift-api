@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class DXFEnvironment;
 
-@protocol DXFControl <NSObject>
+@protocol DXFControl 
 
 - (instancetype)init:(DXFEnvironment *)env;
 

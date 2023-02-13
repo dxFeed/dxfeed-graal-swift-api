@@ -21,4 +21,7 @@ FOUNDATION_EXPORT const unsigned char DXFFrameworkVersionString[];
 #import <DXFFramework/DXFConnection.h>
 #import <DXFFramework/DXFFeed.h>
 #import <DXFFramework/DXFEventQuote.h>
+#import <DXFFramework/DXFTimeSale.h>
 #import <DXFFramework/DXFEvent.h>
+#import <DXFFramework/DXFSubscription.h>
+#import <DXFFramework/DXFSubscriptionListener.h>

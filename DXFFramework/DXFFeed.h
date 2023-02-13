@@ -13,13 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DXFFeed : NSObject
 
-@property (nonatomic, retain, readonly) id values;
-
 - (instancetype)init:(DXFConnection *)connection env:(DXFEnvironment *)env;
-
-- (BOOL)load;
-
-- (void)getFeedForSymbol:(NSString *)str;
 
 @end
 

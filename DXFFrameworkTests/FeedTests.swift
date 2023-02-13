@@ -28,12 +28,23 @@ final class FeedTests: XCTestCase {
         let publishExpectation = XCTNSPredicateExpectation(predicate: predicate, object: connection)
         wait(for: [publishExpectation], timeout: 10)
         let feed = DXFFeed(connection, env: env)
-        let feedLoaded = feed.load()
-        XCTAssert(feedLoaded, "Couldn't load feed from demo \(address)")
-        let predicateFeed = NSPredicate(format: "%K.count == 30", #keyPath(DXFFeed.values))
-        let publishFeedExpectation = XCTNSPredicateExpectation(predicate: predicateFeed, object: feed)
-        feed.getForSymbol("ETH/USD:GDAX")
-        wait(for: [publishFeedExpectation], timeout: 30)
+        let subscription = DXFSubscription(env, feed: feed)
+        let listener = TestListener()
+        
+        subscription.add(listener)
+        subscription.subscribe("ETH/USD:GDAX")
+//        subscription.subscribe("APPL")
+        let expectation = keyValueObservingExpectation(for: listener, keyPath: "count", expectedValue: 30)
+        wait(for: [expectation], timeout: 10)
+
+        
+
+//        let predicateFeed = NSPredicate(format: "%K.count > 30", #keyPath(TestListener.items))
+//
+//
+//        let publishFeedExpectation = XCTNSPredicateExpectation(predicate: predicateFeed, object: listener)
+//
+//        wait(for: [publishFeedExpectation], timeout: 30)
     }
 
 }

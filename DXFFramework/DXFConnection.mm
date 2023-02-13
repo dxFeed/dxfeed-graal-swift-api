@@ -33,9 +33,9 @@
         int32_t res = dxfg_DXEndpoint_closeAndAwaitTermination(self.env.thread, self.endpoint);
         [Logger print:@"Close connection %d", res];
     }
-    if (self.executor) {
-        dxfg_JavaObjectHandler_release(self.env.thread, &(self.executor->handler));
-    }
+//    if (self.executor) {
+//        dxfg_JavaObjectHandler_release(self.env.thread, &(self.executor->handler));
+//    }
    
 }
 
@@ -56,8 +56,8 @@
                 return false;
             }
             [Logger print:@"start connection"];
-            self.executor = dxfg_Executors_newFixedThreadPool(self.env.thread, 2, "thread-processing-events");
-            dxfg_DXEndpoint_executor(self.env.thread, self.endpoint, self.executor);
+//            self.executor = dxfg_Executors_newFixedThreadPool(self.env.thread, 2, "thread-processing-events");
+//            dxfg_DXEndpoint_executor(self.env.thread, self.endpoint, self.executor);
             dxfg_endpoint_state_change_listener_t* stateListener = dxfg_PropertyChangeListener_new(self.env.thread, endpoint_state_change_listener, (__bridge void *)self);
             self.listener = stateListener;
             dxfg_DXEndpoint_addStateChangeListener(self.env.thread, self.endpoint, stateListener);
@@ -92,6 +92,5 @@ static void endpoint_state_change_listener(graal_isolatethread_t *thread, dxfg_e
     DXFConnection* connection = (__bridge DXFConnection *)(user_data);
     [connection connectionChanged:new_state];
 }
-
 
 @end

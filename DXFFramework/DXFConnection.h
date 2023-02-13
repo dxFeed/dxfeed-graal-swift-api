@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface DXFConnection : NSObject <DXFControl>
+@interface DXFConnection : NSObject
 
 @property (nonatomic) DXFConnectionState state;
 
