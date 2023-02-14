@@ -67,14 +67,15 @@
 }
 
 #pragma mark - DXFFeedListener
+
 -(void)receivedEvents:(dxfg_event_type_list *)events {
     NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:events->size];
     for (int i = 0; i < events->size; ++i) {
         dxfg_event_type_t *pEvent = (dxfg_event_type_t *)(events->elements[i]);
         DXFEvent *event = [self.fabric createEvent:pEvent];
         [array addObject:event];
-        NSLog(@"%@",event);
     }
+    
     for(id<DXFSubscriptionListener> listener in self.listeners) {
         [listener receivedEvents:array];
     }

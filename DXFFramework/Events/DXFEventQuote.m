@@ -12,6 +12,9 @@
 
 @implementation DXFEventQuote
 
+- (void)dealloc {
+}
+
 - (instancetype)initWithItem:(dxfg_event_type_t *)item {
     dxfg_quote_t *dxf_item = (dxfg_quote_t *)item;
     if (self = [super initWithMarketEvent:dxf_item->market_event]) {
@@ -22,8 +25,7 @@
         self.bid_price = dxf_item->bid_price;
         self.bid_size = dxf_item->bid_size;
         self.ask_time = dxf_item->ask_time;
-        NSDate * date = [NSDate dateWithTimeIntervalSince1970:self.ask_time/1000];
-        NSLog(@"%@", date);
+//        NSDate * date = [NSDate dateWithTimeIntervalSince1970:self.ask_time/1000];
         self.ask_exchange_code = dxf_item->ask_exchange_code;
         self.ask_price = dxf_item->ask_price;
         self.ask_size = dxf_item->ask_size;
@@ -32,7 +34,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"DXFG_QUOTE_T: %@  time_millis_sequence=%d, time_nano_part=%d, bid_time=%lld, bid_exchange_code=%hd, bid_price=%f, bid_size=%f, ask_time=%lld, ask_exchange_code=%hd, ask_price=%f, ask_size=%f", self.event_symbol,self.time_millis_sequence,self.time_nano_part,self.bid_time,self.bid_exchange_code,self.bid_price,self.bid_size,self.ask_time,self.ask_exchange_code,self.ask_price,self.ask_size];
+    return [[NSString alloc] initWithFormat:@"DXFG_QUOTE_T: %@  time_millis_sequence=%d, time_nano_part=%d, bid_time=%lld, bid_exchange_code=%hd, bid_price=%f, bid_size=%f, ask_time=%lld, ask_exchange_code=%hd, ask_price=%f, ask_size=%f", self.event_symbol,self.time_millis_sequence,self.time_nano_part,self.bid_time,self.bid_exchange_code,self.bid_price,self.bid_size,self.ask_time,self.ask_exchange_code,self.ask_price,self.ask_size];
 }
 
 @end

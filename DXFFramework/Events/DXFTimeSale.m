@@ -33,6 +33,6 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"DXFG_TIME_AND_SALE_T: %@  event_flags=%d, index=%lld, time_nano_part=%d, exchange_code=%hd, price=%f, size=%f, bid_price=%f, ask_price=%f, exchange_sale_conditions=%@, flags=%d, buyer=%@, seller=%@", self.event_symbol,self.event_flags,self.index,self.time_nano_part,self.exchange_code,self.price,self.size,self.bid_price,self.ask_price,self.exchange_sale_conditions,self.flags,self.buyer,self.seller];
+    return [[NSString alloc] initWithFormat:@"DXFG_TIME_AND_SALE_T: %@  event_flags=%d, index=%lld, time_nano_part=%d, exchange_code=%hd, price=%f, size=%f, bid_price=%f, ask_price=%f, exchange_sale_conditions=%@, flags=%d, buyer=%@, seller=%@", self.event_symbol,self.event_flags,self.index,self.time_nano_part,self.exchange_code,self.price,self.size,self.bid_price,self.ask_price,self.exchange_sale_conditions,self.flags,self.buyer,self.seller];
 }
 @end
