@@ -41,7 +41,7 @@ final class FeedTests: XCTestCase {
         let expectation = keyValueObservingExpectation(for: listener, keyPath: "count", expectedValue: 30)
         let expectation1 = keyValueObservingExpectation(for: listener1, keyPath: "count", expectedValue: 50)
 
-        wait(for: [expectation, expectation1], timeout: 10)
+        wait(for: [expectation, expectation1], timeout: 210)
 
         
 

@@ -31,6 +31,7 @@
 - (void)dealloc {
     if (self.feed) {
         dxfg_JavaObjectHandler_release(self.env.thread, &self.feed->handler);
+        self.feed = nil;
     }
 }
 

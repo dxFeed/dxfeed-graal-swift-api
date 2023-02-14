@@ -33,9 +33,11 @@
     if (self.listener) {
         dxfg_DXFeedSubscription_removeEventListener(self.env.thread, self.subscription, self.listener);
         dxfg_JavaObjectHandler_release(self.env.thread, &self.listener->handler);
+        self.listener = nil;
     }
     if (self.subscription) {
         dxfg_JavaObjectHandler_release(self.env.thread, &self.subscription->handler);
+        self.subscription = nil;
     }
 }
 
@@ -75,7 +77,6 @@
         DXFEvent *event = [self.fabric createEvent:pEvent];
         [array addObject:event];
     }
-    
     for(id<DXFSubscriptionListener> listener in self.listeners) {
         [listener receivedEvents:array];
     }
