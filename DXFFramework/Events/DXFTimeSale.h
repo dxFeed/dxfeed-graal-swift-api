@@ -19,10 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) double size;
 @property (nonatomic, assign, readonly) double bid_price;
 @property (nonatomic, assign, readonly) double ask_price;
-@property (nonatomic, retain, readonly) NSString *exchange_sale_conditions;
+@property (nonatomic, strong, readonly) NSString *exchange_sale_conditions;
 @property (nonatomic, assign, readonly) int32_t flags;
-@property (nonatomic, retain, readonly) NSString *buyer;
-@property (nonatomic, retain, readonly) NSString *seller;
+@property (nonatomic, strong, readonly) NSString *buyer;
+@property (nonatomic, strong, readonly) NSString *seller;
 
 @end
 

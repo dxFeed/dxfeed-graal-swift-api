@@ -19,13 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) double size;
 @property (nonatomic, assign) double bid_price;
 @property (nonatomic, assign) double ask_price;
-@property (nonatomic, retain) NSString *exchange_sale_conditions;
+@property (nonatomic, strong) NSString *exchange_sale_conditions;
 @property (nonatomic, assign) int32_t flags;
-@property (nonatomic, retain) NSString *buyer;
-@property (nonatomic, retain) NSString *seller;
+@property (nonatomic, strong) NSString *buyer;
+@property (nonatomic, strong) NSString *seller;
 
 - (instancetype)initWithItem:(dxfg_event_type_t *)item;
-
 @end
 
 NS_ASSUME_NONNULL_END

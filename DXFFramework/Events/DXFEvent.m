@@ -15,7 +15,7 @@
     if (self = [super init]) {
         self.event_symbol = [NSString newWithCstring:item.event_symbol];
         self.event_type = [DXFEvent type:item.event_type.clazz];
-        self.event_time = item.event_time;
+        self.event_time = [NSDate dateWithTimeIntervalSince1970:item.event_time/1000];
         
     }
     return self;
