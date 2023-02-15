@@ -36,4 +36,8 @@
     }    
 }
 
+- (BOOL)isSupport:(dxfg_event_clazz_t)type {
+    return self.supportedEvents[@(type)] != nil;
+}
+
 @end

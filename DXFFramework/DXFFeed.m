@@ -33,6 +33,7 @@
         dxfg_JavaObjectHandler_release(self.env.thread, &self.feed->handler);
         self.feed = nil;
     }
+    NSLog(@"dealloc feed %@",self.feed);
 }
 
 - (instancetype)init:(DXFConnection *)connection env:(DXFEnvironment *)env {

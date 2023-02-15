@@ -18,7 +18,7 @@ final class FeedTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testFetchFeed() throws {
+    func testFetchFeed() throws {        
         let address = "demo.dxfeed.com:7300"
         let env = DXFEnvironment()
         let connection = DXFConnection(env, address: address)
@@ -28,19 +28,18 @@ final class FeedTests: XCTestCase {
         let publishExpectation = XCTNSPredicateExpectation(predicate: predicate, object: connection)
         wait(for: [publishExpectation], timeout: 10)
         let feed = DXFFeed(connection, env: env)
-        let subscription = DXFSubscription(env, feed: feed)
+        let subscription = DXFSubscription(env, feed: feed, type: .quote)
         var listener: TestListener? = TestListener()
         var listener1: TestListener? = TestListener()
         
         subscription.add(listener!)
         subscription.add(listener1!)
-        listener = nil
-        listener1 = nil
+    
         subscription.subscribe("ETH/USD:GDAX")
 //        subscription.subscribe("APPL")
         let expectation = keyValueObservingExpectation(for: listener, keyPath: "count", expectedValue: 30)
         let expectation1 = keyValueObservingExpectation(for: listener1, keyPath: "count", expectedValue: 50)
-
+        
         wait(for: [expectation, expectation1], timeout: 210)
 
         

@@ -28,11 +28,14 @@
     if (self.listener) {
         dxfg_DXEndpoint_removeStateChangeListener(self.env.thread, self.endpoint, self.listener);
         dxfg_JavaObjectHandler_release(self.env.thread, &(self.listener->handler));
+        self.listener = nil;
     }
     if (self.endpoint) {
         int32_t res = dxfg_DXEndpoint_closeAndAwaitTermination(self.env.thread, self.endpoint);
         [Logger print:@"Close connection %d", res];
+        self.endpoint = nil;
     }
+    NSLog(@"dealloc connection %@ %@",self.listener, self.endpoint);
 //    if (self.executor) {
 //        dxfg_JavaObjectHandler_release(self.env.thread, &(self.executor->handler));
 //    }

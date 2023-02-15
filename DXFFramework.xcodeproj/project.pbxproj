@@ -363,6 +363,7 @@
 				TargetAttributes = {
 					80A3BBDA2986ABB600501E11 = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 					80A3BBE22986ABB600501E11 = {
 						CreatedOnToolsVersion = 14.2;
@@ -613,6 +614,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -649,6 +651,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -659,6 +662,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

@@ -68,6 +68,7 @@ class DXFFrameworkTests: XCTestCase {
         let predicate = NSPredicate(format: "%K == \(Connecting.rawValue)", #keyPath(DXFConnection.state))
         let publishExpectation = XCTNSPredicateExpectation(predicate: predicate, object: connection)
         wait(for: [publishExpectation], timeout: 20)
+        
     }
     
     

@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <DXFFramework/DXFEventType.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSArray *values;
 
-- (instancetype)init:(DXFEnvironment *)env feed:(DXFFeed *)feed;
+- (instancetype)init:(DXFEnvironment *)env feed:(DXFFeed *)feed type:(DXFEventType)type;
 
 - (void)addListener:(id<DXFSubscriptionListener>)listener;
 

@@ -18,10 +18,12 @@
 @implementation DXFEnvironment
 
 - (void)dealloc {
+    
     if (self.thread) {
         graal_detach_all_threads_and_tear_down_isolate(self.thread);
         self.thread = nil;
     }
+    NSLog(@"dealloc env %@",self.thread);
 }
 
 - (instancetype)init {
