@@ -6,7 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DXFEvent.h"
+#import <DXFFramework/DXFEvent.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DXFTimeSale : DXFEvent

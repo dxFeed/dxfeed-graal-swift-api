@@ -28,17 +28,20 @@ final class FeedTests: XCTestCase {
         let publishExpectation = XCTNSPredicateExpectation(predicate: predicate, object: connection)
         wait(for: [publishExpectation], timeout: 10)
         let feed = DXFFeed(connection, env: env)
-        let subscription = DXFSubscription(env, feed: feed, type: .quote)
-        var listener: TestListener? = TestListener()
-        var listener1: TestListener? = TestListener()
+        let subscription = DXFSubscription(env, feed: feed, type: .timeSale)
+        let listener = TestListener()
+        let listener1 = TestListener()
         
-        subscription.add(listener!)
-        subscription.add(listener1!)
+        subscription.add(listener)
+        subscription.add(listener1)
     
         subscription.subscribe("ETH/USD:GDAX")
-//        subscription.subscribe("APPL")
-        let expectation = keyValueObservingExpectation(for: listener, keyPath: "count", expectedValue: 30)
-        let expectation1 = keyValueObservingExpectation(for: listener1, keyPath: "count", expectedValue: 50)
+        let expectation = keyValueObservingExpectation(for: listener, keyPath: "count") { (value, value1) in
+            return listener.count >= 30
+        }
+        let expectation1 = keyValueObservingExpectation(for: listener1, keyPath: "count") { (value, value1) in
+            return listener.count >= 50
+        }
         
         wait(for: [expectation, expectation1], timeout: 210)
 

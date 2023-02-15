@@ -6,15 +6,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <DXFFramework/DXFControl.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DXFException : NSObject <DXFControl>
+@class DXFEnvironment;
+@interface DXFException : NSObject
 
 @property (nonatomic, readonly) NSString *message;
 @property (nonatomic, readonly) NSString *className;
 @property (nonatomic, readonly) NSString *stackTrace;
+
+- (instancetype)init:(DXFEnvironment *)env;
 
 @end
 

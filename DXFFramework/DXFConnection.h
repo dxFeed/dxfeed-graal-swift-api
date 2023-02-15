@@ -6,12 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <DXFFramework/DXFControl.h>
 #import <DXFFramework/DXFConnectionState.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-
+@class DXFEnvironment;
 @interface DXFConnection : NSObject
 
 @property (nonatomic) DXFConnectionState state;

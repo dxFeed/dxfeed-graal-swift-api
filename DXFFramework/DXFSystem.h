@@ -6,13 +6,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <DXFFramework/DXFControl.h>
 
 @class DXFEnvironment;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DXFSystem : NSObject <DXFControl>
+@interface DXFSystem : NSObject
+
+- (instancetype)init:(DXFEnvironment *)env;
 
 - (BOOL)write:(NSString *)value forKey:(NSString *)key;
 
