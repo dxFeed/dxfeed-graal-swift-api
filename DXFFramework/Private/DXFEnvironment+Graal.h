@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DXFEnvironment ()
+@interface DXFEnvironment (Graal)
 
 @property (readonly, readonly) graal_isolatethread_t *thread;
 @property (readonly, readonly) graal_isolate_t *isolate;

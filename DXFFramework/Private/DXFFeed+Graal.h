@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DXFFeed ()
+@interface DXFFeed (Graal)
 
-@property (nonatomic) dxfg_feed_t* feed;
+@property (nonatomic, readonly) dxfg_feed_t* feed;
 
 @end
 

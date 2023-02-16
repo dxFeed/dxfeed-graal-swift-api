@@ -6,14 +6,7 @@
 //
 
 #import "DXFFeed.h"
-#import "DXFConnection+Graal.h"
-#import "DXFEnvironment+Graal.h"
-#import "DXFException.h"
 #import "DXFInternal.h"
-#import "dxfg_api.h"
-#import "DXFEventQuote+Private.h"
-#import "DXFTimeSale+Private.h"
-#import "DXFEventFabric.h"
 
 @interface DXFFeed()
 

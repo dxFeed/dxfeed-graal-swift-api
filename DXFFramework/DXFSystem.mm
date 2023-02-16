@@ -6,8 +6,7 @@
 //
 
 #import "DXFSystem.h"
-#import "dxfg_api.h"
-#import "DXFEnvironment+Graal.h"
+#import "DXFInternal.h"
 
 @interface DXFSystem()
 
@@ -29,7 +28,7 @@
 
 - (BOOL)write:(NSString *)value forKey:(NSString *)key {
     int res = dxfg_system_set_property(self.env.thread, [key cStringUsingEncoding:NSUTF8StringEncoding], [value cStringUsingEncoding:NSUTF8StringEncoding]);
-    return res == 0;
+    return res == DXF_SUCCESS;
 }
 
 - (nullable NSString *)read:(NSString *)key {

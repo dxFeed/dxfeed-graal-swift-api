@@ -6,17 +6,18 @@
 //
 
 #import "DXFSubscription.h"
-#import "dxfg_api.h"
-#import "DXFEnvironment+Graal.h"
-#import "DXFEventFabric.h"
+#import "DXFInternal.h"
+
 #import "DXFTimeSale.h"
 #import "DXFEventQuote.h"
-#import "DXFFeed+Graal.h"
-#import "DXFEventListener.h"
-#import "DXFException.h"
-#import "Logger.h"
-#import "NSString+CString.h"
+
 #import "DXFSubscriptionListener.h"
+
+@protocol DXFEventListener
+
+- (void)receivedEvents:(dxfg_event_type_list *)events;
+
+@end
 
 @interface DXFSubscription() <DXFEventListener>
 
@@ -45,8 +46,7 @@
 - (instancetype)init:(DXFEnvironment *)env feed:(DXFFeed *)feed type:(DXFEventType)type{
     if (self = [super init]) {
         self.fabric = [[DXFEventFabric alloc] init:@{@(DXFG_EVENT_TIME_AND_SALE): DXFTimeSale.class,
-                                                     @(DXFG_EVENT_QUOTE): DXFEventQuote.class
-                                    }];
+                                                     @(DXFG_EVENT_QUOTE): DXFEventQuote.class}];
         dxfg_event_clazz_t graalType = [DXFSubscription graalType:type];
         if (![self.fabric isSupport:graalType]) {
             return nil;
@@ -58,7 +58,7 @@
         NSInteger res = dxfg_DXFeedSubscription_addEventListener(self.env.thread,
                                                                  self.subscription,
                                                                  self.listener);
-        if (res != 0) {
+        if (res != DXF_SUCCESS) {
             DXFException *exc = [DXFException new];
             [Logger print:@"Create subscription %@", exc];
         }

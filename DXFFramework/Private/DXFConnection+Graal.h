@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DXFConnection ()
+@interface DXFConnection (Graal)
 
 @property (nonatomic, readonly) dxfg_endpoint_t* endpoint;
 

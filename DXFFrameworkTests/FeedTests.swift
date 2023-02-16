@@ -28,7 +28,7 @@ final class FeedTests: XCTestCase {
         let publishExpectation = XCTNSPredicateExpectation(predicate: predicate, object: connection)
         wait(for: [publishExpectation], timeout: 10)
         let feed = DXFFeed(connection, env: env)
-        let subscription = DXFSubscription(env, feed: feed, type: .timeSale)
+        let subscription = DXFSubscription(env, feed: feed, type: .quote)
         let listener = TestListener()
         let listener1 = TestListener()
         

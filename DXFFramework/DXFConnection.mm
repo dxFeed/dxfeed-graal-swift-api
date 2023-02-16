@@ -6,10 +6,7 @@
 //
 
 #import "DXFConnection.h"
-#import "DXFEnvironment+Graal.h"
-#import "DXFConnectionState.h"
 #import "DXFInternal.h"
-#import "dxfg_api.h"
 
 @interface DXFConnection()
 
@@ -36,10 +33,6 @@
         self.endpoint = nil;
     }
     NSLog(@"dealloc connection %@ %@",self.listener, self.endpoint);
-//    if (self.executor) {
-//        dxfg_JavaObjectHandler_release(self.env.thread, &(self.executor->handler));
-//    }
-   
 }
 
 - (nonnull instancetype)init:(nonnull DXFEnvironment *)env address:(NSString *)address {
@@ -59,12 +52,10 @@
                 return false;
             }
             [Logger print:@"start connection"];
-//            self.executor = dxfg_Executors_newFixedThreadPool(self.env.thread, 2, "thread-processing-events");
-//            dxfg_DXEndpoint_executor(self.env.thread, self.endpoint, self.executor);
             dxfg_endpoint_state_change_listener_t* stateListener = dxfg_PropertyChangeListener_new(self.env.thread, endpoint_state_change_listener, (__bridge void *)self);
             self.listener = stateListener;
             dxfg_DXEndpoint_addStateChangeListener(self.env.thread, self.endpoint, stateListener);
-            return dxfg_DXEndpoint_connect(self.env.thread, self.endpoint, self.address.dxfCString) == 0;
+            return dxfg_DXEndpoint_connect(self.env.thread, self.endpoint, self.address.dxfCString) == DXF_SUCCESS;
         }
         return false;
     }

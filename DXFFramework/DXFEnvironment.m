@@ -6,7 +6,7 @@
 //
 
 #import "DXFEnvironment.h"
-#import "dxfg_api.h"
+#import "DXFInternal.h"
 
 @interface DXFEnvironment()
 
@@ -30,7 +30,7 @@
     if (self = [super init]) {
         graal_isolate_t *isolate = nil;
         graal_isolatethread_t *thread = nil;
-        if (graal_create_isolate(NULL, &isolate, &thread) != 0) {
+        if (graal_create_isolate(NULL, &isolate, &thread) != DXF_SUCCESS) {
             fprintf(stderr, "initialization error\n");
             return nil;
         }

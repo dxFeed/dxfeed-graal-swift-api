@@ -118,7 +118,6 @@
 		80BB67D8298FE6BC0049521F /* DXFEventQuote.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFEventQuote.h; sourceTree = "<group>"; };
 		80BB67D9298FE6BC0049521F /* DXFEventQuote.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFEventQuote.m; sourceTree = "<group>"; };
 		80BB67E6298FEC610049521F /* DXFEventQuote+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DXFEventQuote+Private.h"; sourceTree = "<group>"; };
-		80BB67E929911FD30049521F /* DXFEventListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFEventListener.h; sourceTree = "<group>"; };
 		80BB67EA299132F20049521F /* DXFEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFEvent.h; sourceTree = "<group>"; };
 		80BB67EB299132F20049521F /* DXFEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFEvent.m; sourceTree = "<group>"; };
 		80BB67EE2991337C0049521F /* DXFEventType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFEventType.h; sourceTree = "<group>"; };
@@ -165,6 +164,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		803C60A6299E9D2F00102B65 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				80BB67F429913C820049521F /* DXFEvent+Private.h */,
+				80BB67FA299141F20049521F /* DXFTimeSale+Private.h */,
+				80BB67E6298FEC610049521F /* DXFEventQuote+Private.h */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
 		80A3BBD12986ABB600501E11 = {
 			isa = PBXGroup;
 			children = (
@@ -191,10 +200,11 @@
 				80E87C42298ADE460073BE36 /* Private */,
 				80E87C41298ADE260073BE36 /* Utils */,
 				80A3BBDE2986ABB600501E11 /* DXFFramework.h */,
-				80A3BC042986B2B600501E11 /* DXFSystem.h */,
-				80A3BC032986B2B600501E11 /* DXFSystem.mm */,
+				80E87C55298ED3E40073BE36 /* DXFInternal.h */,
 				80FF1CF02986BC6700AF70FE /* DXFEnvironment.h */,
 				80FF1CF12986BC6700AF70FE /* DXFEnvironment.m */,
+				80A3BC042986B2B600501E11 /* DXFSystem.h */,
+				80A3BC032986B2B600501E11 /* DXFSystem.mm */,
 				805E8B83298AC6BA00C2A6FA /* DXFConnection.h */,
 				805E8B84298AC6BA00C2A6FA /* DXFConnection.mm */,
 				80E87C44298EA3EA0073BE36 /* DXFFeed.h */,
@@ -231,6 +241,7 @@
 		80BB67D5298FE6730049521F /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				803C60A6299E9D2F00102B65 /* Private */,
 				80BB67D8298FE6BC0049521F /* DXFEventQuote.h */,
 				80BB67D9298FE6BC0049521F /* DXFEventQuote.m */,
 				80BB67EA299132F20049521F /* DXFEvent.h */,
@@ -258,17 +269,12 @@
 			children = (
 				80FF1CF42986BED500AF70FE /* DXFEnvironment+Graal.h */,
 				80E87C4D298EB34B0073BE36 /* DXFConnection+Graal.h */,
+				80E87C53298ED35A0073BE36 /* DXFConstants.h */,
 				805B92C1299A8846001F9F4C /* DXFFeed+Graal.h */,
 				80E87C4F298EC56F0073BE36 /* DXFException.h */,
 				80E87C50298EC56F0073BE36 /* DXFException.m */,
-				80E87C53298ED35A0073BE36 /* DXFConstants.h */,
-				80E87C55298ED3E40073BE36 /* DXFInternal.h */,
-				80BB67E6298FEC610049521F /* DXFEventQuote+Private.h */,
-				80BB67E929911FD30049521F /* DXFEventListener.h */,
-				80BB67F429913C820049521F /* DXFEvent+Private.h */,
 				80BB67F629913DC70049521F /* DXFEventFabric.h */,
 				80BB67F729913DC70049521F /* DXFEventFabric.m */,
-				80BB67FA299141F20049521F /* DXFTimeSale+Private.h */,
 			);
 			path = Private;
 			sourceTree = "<group>";
