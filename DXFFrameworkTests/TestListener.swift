@@ -10,6 +10,10 @@ import DXFFramework
 import Foundation
 
 class TestListener: NSObject, DXFSubscriptionListener {
+    func receivedEventsCount(_ count: Int) {
+    
+    }
+    
     @objc dynamic var count = 0
     var items = [DXFEvent]()
     func receivedEvents(_ events: [DXFEvent]!) {

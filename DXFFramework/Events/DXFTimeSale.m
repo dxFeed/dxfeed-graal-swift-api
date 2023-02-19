@@ -16,18 +16,18 @@
 - (instancetype)initWithItem:(dxfg_event_type_t *)item {
     dxfg_time_and_sale_t *dxf_item = (dxfg_time_and_sale_t *)item;
     if (self = [super initWithMarketEvent:dxf_item->market_event]) {
-        self.event_flags = dxf_item->event_flags;
-        self.index = dxf_item->index;
-        self.time_nano_part = dxf_item->time_nano_part;
-        self.exchange_code = dxf_item->exchange_code;
-        self.price = dxf_item->price;
-        self.size = dxf_item->size;
-        self.bid_price = dxf_item->bid_price;
-        self.ask_price = dxf_item->ask_price;
-        self.exchange_sale_conditions = [NSString newWithCstring:dxf_item->exchange_sale_conditions];
-        self.flags = dxf_item->flags;
-        self.buyer = [NSString newWithCstring:dxf_item->buyer];
-        self.seller = [NSString newWithCstring:dxf_item->seller];
+        _event_flags = dxf_item->event_flags;
+        _index = dxf_item->index;
+        _time_nano_part = dxf_item->time_nano_part;
+        _exchange_code = dxf_item->exchange_code;
+        _price = dxf_item->price;
+        _size = dxf_item->size;
+        _bid_price = dxf_item->bid_price;
+        _ask_price = dxf_item->ask_price;
+        _exchange_sale_conditions = [NSString newWithCstring:dxf_item->exchange_sale_conditions];
+        _flags = dxf_item->flags;
+        _buyer = [NSString newWithCstring:dxf_item->buyer];
+        _seller = [NSString newWithCstring:dxf_item->seller];
     }
     return self;
 }

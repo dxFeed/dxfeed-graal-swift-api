@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		803C60A829A1FE1000102B65 /* DXFTimeSale+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 803C60A729A1FE1000102B65 /* DXFTimeSale+Private.h */; };
 		805B92BF29997045001F9F4C /* DXFSubscription.h in Headers */ = {isa = PBXBuildFile; fileRef = 805B92BD29997045001F9F4C /* DXFSubscription.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		805B92C029997045001F9F4C /* DXFSubscription.m in Sources */ = {isa = PBXBuildFile; fileRef = 805B92BE29997045001F9F4C /* DXFSubscription.m */; };
 		805B92C2299A8846001F9F4C /* DXFFeed+Graal.h in Headers */ = {isa = PBXBuildFile; fileRef = 805B92C1299A8846001F9F4C /* DXFFeed+Graal.h */; };
@@ -51,7 +52,6 @@
 		80BB67F529913C820049521F /* DXFEvent+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 80BB67F429913C820049521F /* DXFEvent+Private.h */; };
 		80BB67F829913DC70049521F /* DXFEventFabric.h in Headers */ = {isa = PBXBuildFile; fileRef = 80BB67F629913DC70049521F /* DXFEventFabric.h */; };
 		80BB67F929913DC70049521F /* DXFEventFabric.m in Sources */ = {isa = PBXBuildFile; fileRef = 80BB67F729913DC70049521F /* DXFEventFabric.m */; };
-		80BB67FB299141F20049521F /* DXFTimeSale+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 80BB67FA299141F20049521F /* DXFTimeSale+Private.h */; };
 		80E87C46298EA3EA0073BE36 /* DXFFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = 80E87C44298EA3EA0073BE36 /* DXFFeed.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80E87C47298EA3EA0073BE36 /* DXFFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C45298EA3EA0073BE36 /* DXFFeed.m */; };
 		80E87C49298EA4160073BE36 /* DXFConnectionState.h in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C48298EA4160073BE36 /* DXFConnectionState.h */; };
@@ -94,6 +94,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		803C60A729A1FE1000102B65 /* DXFTimeSale+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DXFTimeSale+Private.h"; path = "../../../../../../.Trash/DXFTimeSale+Private.h"; sourceTree = "<group>"; };
 		805B92BD29997045001F9F4C /* DXFSubscription.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFSubscription.h; sourceTree = "<group>"; };
 		805B92BE29997045001F9F4C /* DXFSubscription.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFSubscription.m; sourceTree = "<group>"; };
 		805B92C1299A8846001F9F4C /* DXFFeed+Graal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DXFFeed+Graal.h"; sourceTree = "<group>"; };
@@ -126,7 +127,6 @@
 		80BB67F429913C820049521F /* DXFEvent+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DXFEvent+Private.h"; sourceTree = "<group>"; };
 		80BB67F629913DC70049521F /* DXFEventFabric.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFEventFabric.h; sourceTree = "<group>"; };
 		80BB67F729913DC70049521F /* DXFEventFabric.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFEventFabric.m; sourceTree = "<group>"; };
-		80BB67FA299141F20049521F /* DXFTimeSale+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DXFTimeSale+Private.h"; sourceTree = "<group>"; };
 		80E87C44298EA3EA0073BE36 /* DXFFeed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFFeed.h; sourceTree = "<group>"; };
 		80E87C45298EA3EA0073BE36 /* DXFFeed.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFFeed.m; sourceTree = "<group>"; };
 		80E87C48298EA4160073BE36 /* DXFConnectionState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFConnectionState.h; sourceTree = "<group>"; };
@@ -167,8 +167,8 @@
 		803C60A6299E9D2F00102B65 /* Private */ = {
 			isa = PBXGroup;
 			children = (
+				803C60A729A1FE1000102B65 /* DXFTimeSale+Private.h */,
 				80BB67F429913C820049521F /* DXFEvent+Private.h */,
-				80BB67FA299141F20049521F /* DXFTimeSale+Private.h */,
 				80BB67E6298FEC610049521F /* DXFEventQuote+Private.h */,
 			);
 			path = Private;
@@ -289,12 +289,12 @@
 				80E87C4A298EA4B60073BE36 /* DXFConnectionState.h in Headers */,
 				80A3BBEA2986ABB600501E11 /* DXFFramework.h in Headers */,
 				80BB67F529913C820049521F /* DXFEvent+Private.h in Headers */,
-				80BB67FB299141F20049521F /* DXFTimeSale+Private.h in Headers */,
 				805E8B89298AC9FA00C2A6FA /* Logger.h in Headers */,
 				80BB67F329913AFF0049521F /* DXFEventType.h in Headers */,
 				805B92F5299AB61F001F9F4C /* DXFSubscriptionListener.h in Headers */,
 				80FF1CEF2986B93E00AF70FE /* DXFSystem.h in Headers */,
 				80E87C4E298EB34B0073BE36 /* DXFConnection+Graal.h in Headers */,
+				803C60A829A1FE1000102B65 /* DXFTimeSale+Private.h in Headers */,
 				80BB67F1299139360049521F /* DXFTimeSale.h in Headers */,
 				80BB67E7298FEC610049521F /* DXFEventQuote+Private.h in Headers */,
 				805B92BF29997045001F9F4C /* DXFSubscription.h in Headers */,
@@ -773,6 +773,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NU75WFM6U6;
+				GCC_OPTIMIZATION_LEVEL = s;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

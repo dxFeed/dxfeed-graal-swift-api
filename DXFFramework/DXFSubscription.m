@@ -45,12 +45,8 @@
 
 - (instancetype)init:(DXFEnvironment *)env feed:(DXFFeed *)feed type:(DXFEventType)type{
     if (self = [super init]) {
-        self.fabric = [[DXFEventFabric alloc] init:@{@(DXFG_EVENT_TIME_AND_SALE): DXFTimeSale.class,
-                                                     @(DXFG_EVENT_QUOTE): DXFEventQuote.class}];
+        self.fabric = [DXFEventFabric new];
         dxfg_event_clazz_t graalType = [DXFSubscription graalType:type];
-        if (![self.fabric isSupport:graalType]) {
-            return nil;
-        }
         self.listeners = [NSPointerArray weakObjectsPointerArray];
         self.env = env;
         self.subscription = dxfg_DXFeed_createSubscription(self.env.thread, feed.feed, graalType);

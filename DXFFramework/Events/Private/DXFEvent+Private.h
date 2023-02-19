@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) DXFEventType event_type;
 @property (nonatomic, strong) NSString *event_symbol;
-@property (nonatomic, strong) NSDate *event_time;
+@property (nonatomic, assign) int64_t event_time;
 
 - (instancetype)initWithMarketEvent:(dxfg_market_event_t)item;
 

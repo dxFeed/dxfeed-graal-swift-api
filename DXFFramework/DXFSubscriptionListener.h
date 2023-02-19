@@ -12,6 +12,7 @@
 @protocol DXFSubscriptionListener
 
 - (void)receivedEvents:(NSArray<DXFEvent *> *)events;
+- (void)receivedEventsCount:(NSInteger)count;
 
 @end
 

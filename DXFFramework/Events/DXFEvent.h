@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign, readonly) DXFEventType event_type;
 @property (nonatomic, strong, readonly) NSString *event_symbol;
-@property (nonatomic, strong, readonly) NSDate *event_time;
+@property (nonatomic, assign, readonly) int64_t event_time;
 
 @end
 
