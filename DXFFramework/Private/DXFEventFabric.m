@@ -7,8 +7,8 @@
 
 #import "DXFEventFabric.h"
 #import "DXFEvent+Private.h"
-#import "DXFTimeSale+Private.h"
 #import "DXFEventQuote+Private.h"
+#import "DXFTimeSale+Private.h"
 
 @implementation DXFEventFabric
 

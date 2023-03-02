@@ -55,10 +55,9 @@
                                                                  self.subscription,
                                                                  self.listener);
         if (res != DXF_SUCCESS) {
-            DXFException *exc = [DXFException new];
+            DXFException *exc = [[DXFException alloc] init:self.env];
             [Logger print:@"Create subscription %@", exc];
-        }
-        
+        }        
     }
     return self;
 }

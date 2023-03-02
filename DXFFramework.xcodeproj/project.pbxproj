@@ -21,18 +21,23 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		803C60A829A1FE1000102B65 /* DXFTimeSale+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 803C60A729A1FE1000102B65 /* DXFTimeSale+Private.h */; };
+		803C60D129A2819E00102B65 /* DXFPublisher.h in Headers */ = {isa = PBXBuildFile; fileRef = 803C60CF29A2819E00102B65 /* DXFPublisher.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		803C60D229A2819E00102B65 /* DXFPublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = 803C60D029A2819E00102B65 /* DXFPublisher.m */; };
+		803C60D929A28AF200102B65 /* DXFPublisherConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 803C60D729A28AF200102B65 /* DXFPublisherConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		803C60DA29A28AF200102B65 /* DXFPublisherConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 803C60D829A28AF200102B65 /* DXFPublisherConnection.m */; };
+		803C60DC29A2938F00102B65 /* PublishTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803C60D529A2867F00102B65 /* PublishTest.swift */; };
+		803C618529A50C0500102B65 /* DXFTimeSale+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 803C618429A50C0500102B65 /* DXFTimeSale+Private.h */; };
 		805B92BF29997045001F9F4C /* DXFSubscription.h in Headers */ = {isa = PBXBuildFile; fileRef = 805B92BD29997045001F9F4C /* DXFSubscription.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		805B92C029997045001F9F4C /* DXFSubscription.m in Sources */ = {isa = PBXBuildFile; fileRef = 805B92BE29997045001F9F4C /* DXFSubscription.m */; };
 		805B92C2299A8846001F9F4C /* DXFFeed+Graal.h in Headers */ = {isa = PBXBuildFile; fileRef = 805B92C1299A8846001F9F4C /* DXFFeed+Graal.h */; };
 		805B92F5299AB61F001F9F4C /* DXFSubscriptionListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 805B92F4299AB61F001F9F4C /* DXFSubscriptionListener.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		805B92F9299ABDD7001F9F4C /* TestListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805B92F8299ABDD7001F9F4C /* TestListener.swift */; };
 		805E8B85298AC6BA00C2A6FA /* DXFConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 805E8B83298AC6BA00C2A6FA /* DXFConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		805E8B86298AC6BA00C2A6FA /* DXFConnection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 805E8B84298AC6BA00C2A6FA /* DXFConnection.mm */; };
 		805E8B89298AC9FA00C2A6FA /* Logger.h in Headers */ = {isa = PBXBuildFile; fileRef = 805E8B87298AC9FA00C2A6FA /* Logger.h */; };
 		805E8B8A298AC9FA00C2A6FA /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 805E8B88298AC9FA00C2A6FA /* Logger.m */; };
 		805E8B8D298AD10200C2A6FA /* NSString+CString.h in Headers */ = {isa = PBXBuildFile; fileRef = 805E8B8B298AD10200C2A6FA /* NSString+CString.h */; };
 		805E8B8E298AD10200C2A6FA /* NSString+CString.m in Sources */ = {isa = PBXBuildFile; fileRef = 805E8B8C298AD10200C2A6FA /* NSString+CString.m */; };
+		809E25DB29B114BD00AD5D27 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809E25DA29B114BD00AD5D27 /* main.swift */; };
 		80A3BBE42986ABB600501E11 /* DXFFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A3BBDB2986ABB600501E11 /* DXFFramework.framework */; };
 		80A3BBEA2986ABB600501E11 /* DXFFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 80A3BBDE2986ABB600501E11 /* DXFFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80ADEA142989846200F9E116 /* libDxFeedGraalNativeApi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 80ADEA132989846200F9E116 /* libDxFeedGraalNativeApi.dylib */; platformFilters = (macos, ); };
@@ -43,7 +48,6 @@
 		80BB67DA298FE6BC0049521F /* DXFEventQuote.h in Headers */ = {isa = PBXBuildFile; fileRef = 80BB67D8298FE6BC0049521F /* DXFEventQuote.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80BB67DB298FE6BC0049521F /* DXFEventQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = 80BB67D9298FE6BC0049521F /* DXFEventQuote.m */; };
 		80BB67E7298FEC610049521F /* DXFEventQuote+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 80BB67E6298FEC610049521F /* DXFEventQuote+Private.h */; };
-		80BB67E829900B900049521F /* FeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E87C5A298ED6A40073BE36 /* FeedTests.swift */; };
 		80BB67EC299132F20049521F /* DXFEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 80BB67EA299132F20049521F /* DXFEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80BB67ED299132F20049521F /* DXFEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 80BB67EB299132F20049521F /* DXFEvent.m */; };
 		80BB67F1299139360049521F /* DXFTimeSale.h in Headers */ = {isa = PBXBuildFile; fileRef = 80BB67EF299139360049521F /* DXFTimeSale.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -70,6 +74,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		809E25DF29B114F200AD5D27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80A3BBD22986ABB600501E11 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80A3BBDA2986ABB600501E11;
+			remoteInfo = DXFFramework;
+		};
 		80A3BBE52986ABB600501E11 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 80A3BBD22986ABB600501E11 /* Project object */;
@@ -80,6 +91,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		809E25D629B114BC00AD5D27 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		80ADEA162989846200F9E116 /* Embed Libraries */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -94,7 +114,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		803C60A729A1FE1000102B65 /* DXFTimeSale+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DXFTimeSale+Private.h"; path = "../../../../../../.Trash/DXFTimeSale+Private.h"; sourceTree = "<group>"; };
+		803C60CF29A2819E00102B65 /* DXFPublisher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFPublisher.h; sourceTree = "<group>"; };
+		803C60D029A2819E00102B65 /* DXFPublisher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFPublisher.m; sourceTree = "<group>"; };
+		803C60D529A2867F00102B65 /* PublishTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishTest.swift; sourceTree = "<group>"; };
+		803C60D729A28AF200102B65 /* DXFPublisherConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFPublisherConnection.h; sourceTree = "<group>"; };
+		803C60D829A28AF200102B65 /* DXFPublisherConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFPublisherConnection.m; sourceTree = "<group>"; };
+		803C618429A50C0500102B65 /* DXFTimeSale+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DXFTimeSale+Private.h"; sourceTree = "<group>"; };
 		805B92BD29997045001F9F4C /* DXFSubscription.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFSubscription.h; sourceTree = "<group>"; };
 		805B92BE29997045001F9F4C /* DXFSubscription.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DXFSubscription.m; sourceTree = "<group>"; };
 		805B92C1299A8846001F9F4C /* DXFFeed+Graal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DXFFeed+Graal.h"; sourceTree = "<group>"; };
@@ -106,6 +131,8 @@
 		805E8B88298AC9FA00C2A6FA /* Logger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		805E8B8B298AD10200C2A6FA /* NSString+CString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+CString.h"; sourceTree = "<group>"; };
 		805E8B8C298AD10200C2A6FA /* NSString+CString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+CString.m"; sourceTree = "<group>"; };
+		809E25D829B114BC00AD5D27 /* PerfTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PerfTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		809E25DA29B114BD00AD5D27 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		80A3BBDB2986ABB600501E11 /* DXFFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DXFFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A3BBDE2986ABB600501E11 /* DXFFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DXFFramework.h; sourceTree = "<group>"; };
 		80A3BBE32986ABB600501E11 /* DXFFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DXFFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +169,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		809E25D529B114BC00AD5D27 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		80A3BBD82986ABB600501E11 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -167,11 +201,19 @@
 		803C60A6299E9D2F00102B65 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				803C60A729A1FE1000102B65 /* DXFTimeSale+Private.h */,
+				803C618429A50C0500102B65 /* DXFTimeSale+Private.h */,
 				80BB67F429913C820049521F /* DXFEvent+Private.h */,
 				80BB67E6298FEC610049521F /* DXFEventQuote+Private.h */,
 			);
 			path = Private;
+			sourceTree = "<group>";
+		};
+		809E25D929B114BD00AD5D27 /* PerfTest */ = {
+			isa = PBXGroup;
+			children = (
+				809E25DA29B114BD00AD5D27 /* main.swift */,
+			);
+			path = PerfTest;
 			sourceTree = "<group>";
 		};
 		80A3BBD12986ABB600501E11 = {
@@ -179,6 +221,7 @@
 			children = (
 				80A3BBDD2986ABB600501E11 /* DXFFramework */,
 				80A3BBE72986ABB600501E11 /* DXFFrameworkTests */,
+				809E25D929B114BD00AD5D27 /* PerfTest */,
 				80A3BBDC2986ABB600501E11 /* Products */,
 				80A3BBF32986AC0500501E11 /* Frameworks */,
 			);
@@ -189,6 +232,7 @@
 			children = (
 				80A3BBDB2986ABB600501E11 /* DXFFramework.framework */,
 				80A3BBE32986ABB600501E11 /* DXFFrameworkTests.xctest */,
+				809E25D829B114BC00AD5D27 /* PerfTest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -213,6 +257,10 @@
 				805B92BD29997045001F9F4C /* DXFSubscription.h */,
 				805B92BE29997045001F9F4C /* DXFSubscription.m */,
 				805B92F4299AB61F001F9F4C /* DXFSubscriptionListener.h */,
+				803C60CF29A2819E00102B65 /* DXFPublisher.h */,
+				803C60D029A2819E00102B65 /* DXFPublisher.m */,
+				803C60D729A28AF200102B65 /* DXFPublisherConnection.h */,
+				803C60D829A28AF200102B65 /* DXFPublisherConnection.m */,
 			);
 			path = DXFFramework;
 			sourceTree = "<group>";
@@ -223,6 +271,7 @@
 				80A3BBE82986ABB600501E11 /* DXFFrameworkTests.swift */,
 				80E87C5A298ED6A40073BE36 /* FeedTests.swift */,
 				805B92F8299ABDD7001F9F4C /* TestListener.swift */,
+				803C60D529A2867F00102B65 /* PublishTest.swift */,
 			);
 			path = DXFFrameworkTests;
 			sourceTree = "<group>";
@@ -287,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80E87C4A298EA4B60073BE36 /* DXFConnectionState.h in Headers */,
+				803C618529A50C0500102B65 /* DXFTimeSale+Private.h in Headers */,
 				80A3BBEA2986ABB600501E11 /* DXFFramework.h in Headers */,
 				80BB67F529913C820049521F /* DXFEvent+Private.h in Headers */,
 				805E8B89298AC9FA00C2A6FA /* Logger.h in Headers */,
@@ -294,10 +344,11 @@
 				805B92F5299AB61F001F9F4C /* DXFSubscriptionListener.h in Headers */,
 				80FF1CEF2986B93E00AF70FE /* DXFSystem.h in Headers */,
 				80E87C4E298EB34B0073BE36 /* DXFConnection+Graal.h in Headers */,
-				803C60A829A1FE1000102B65 /* DXFTimeSale+Private.h in Headers */,
+				803C60D929A28AF200102B65 /* DXFPublisherConnection.h in Headers */,
 				80BB67F1299139360049521F /* DXFTimeSale.h in Headers */,
 				80BB67E7298FEC610049521F /* DXFEventQuote+Private.h in Headers */,
 				805B92BF29997045001F9F4C /* DXFSubscription.h in Headers */,
+				803C60D129A2819E00102B65 /* DXFPublisher.h in Headers */,
 				80E87C51298EC56F0073BE36 /* DXFException.h in Headers */,
 				80E87C57298ED4290073BE36 /* DXFInternal.h in Headers */,
 				80E87C46298EA3EA0073BE36 /* DXFFeed.h in Headers */,
@@ -315,6 +366,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		809E25D729B114BC00AD5D27 /* PerfTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 809E25DE29B114BD00AD5D27 /* Build configuration list for PBXNativeTarget "PerfTest" */;
+			buildPhases = (
+				809E25D429B114BC00AD5D27 /* Sources */,
+				809E25D529B114BC00AD5D27 /* Frameworks */,
+				809E25D629B114BC00AD5D27 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				809E25E029B114F200AD5D27 /* PBXTargetDependency */,
+			);
+			name = PerfTest;
+			productName = PerfTest;
+			productReference = 809E25D829B114BC00AD5D27 /* PerfTest */;
+			productType = "com.apple.product-type.tool";
+		};
 		80A3BBDA2986ABB600501E11 /* DXFFramework */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80A3BBED2986ABB600501E11 /* Build configuration list for PBXNativeTarget "DXFFramework" */;
@@ -363,6 +432,9 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					809E25D729B114BC00AD5D27 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					80A3BBDA2986ABB600501E11 = {
 						CreatedOnToolsVersion = 14.2;
 						LastSwiftMigration = 1420;
@@ -392,6 +464,7 @@
 				80A3BBDA2986ABB600501E11 /* DXFFramework */,
 				80A3BBE22986ABB600501E11 /* DXFFrameworkTests */,
 				80ADEA1D29898AB400F9E116 /* XCFramework */,
+				809E25D729B114BC00AD5D27 /* PerfTest */,
 			);
 		};
 /* End PBXProject section */
@@ -454,6 +527,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		809E25D429B114BC00AD5D27 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				809E25DB29B114BD00AD5D27 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		80A3BBD72986ABB600501E11 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -465,8 +546,10 @@
 				80FF1D0D2987E8A300AF70FE /* DXFEnvironment.m in Sources */,
 				805E8B8E298AD10200C2A6FA /* NSString+CString.m in Sources */,
 				80FF1D0C2987E89D00AF70FE /* DXFSystem.mm in Sources */,
+				803C60DA29A28AF200102B65 /* DXFPublisherConnection.m in Sources */,
 				80BB67F2299139360049521F /* DXFTimeSale.m in Sources */,
 				805E8B86298AC6BA00C2A6FA /* DXFConnection.mm in Sources */,
+				803C60D229A2819E00102B65 /* DXFPublisher.m in Sources */,
 				80E87C56298ED3E40073BE36 /* DXFInternal.h in Sources */,
 				80BB67DB298FE6BC0049521F /* DXFEventQuote.m in Sources */,
 				80BB67F929913DC70049521F /* DXFEventFabric.m in Sources */,
@@ -480,14 +563,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80BB67E829900B900049521F /* FeedTests.swift in Sources */,
-				805B92F9299ABDD7001F9F4C /* TestListener.swift in Sources */,
+				803C60DC29A2938F00102B65 /* PublishTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		809E25E029B114F200AD5D27 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80A3BBDA2986ABB600501E11 /* DXFFramework */;
+			targetProxy = 809E25DF29B114F200AD5D27 /* PBXContainerItemProxy */;
+		};
 		80A3BBE62986ABB600501E11 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 80A3BBDA2986ABB600501E11 /* DXFFramework */;
@@ -496,6 +583,32 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		809E25DC29B114BD00AD5D27 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NU75WFM6U6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		809E25DD29B114BD00AD5D27 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NU75WFM6U6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		80A3BBEB2986ABB600501E11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -781,6 +894,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		809E25DE29B114BD00AD5D27 /* Build configuration list for PBXNativeTarget "PerfTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				809E25DC29B114BD00AD5D27 /* Debug */,
+				809E25DD29B114BD00AD5D27 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		80A3BBD52986ABB600501E11 /* Build configuration list for PBXProject "DXFFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

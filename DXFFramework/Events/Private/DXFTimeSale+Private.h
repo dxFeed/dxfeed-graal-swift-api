@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DXFEventQuote ()
+@interface DXFTimeSale ()
 
 - (instancetype)initWithItem:(dxfg_event_type_t *)item;
 

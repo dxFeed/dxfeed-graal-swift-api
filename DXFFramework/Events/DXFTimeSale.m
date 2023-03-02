@@ -7,7 +7,6 @@
 
 #import "DXFTimeSale.h"
 #import "dxfg_events.h"
-#import "DXFTimeSale+Private.h"
 #import "DXFEvent+Private.h"
 #import "NSString+CString.h"
 

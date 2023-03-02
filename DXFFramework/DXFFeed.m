@@ -12,8 +12,7 @@
 
 @property (nonatomic, retain) DXFConnection *connection;
 @property (nonatomic, retain) DXFEnvironment *env;
-@property (nonatomic) dxfg_feed_t* feed;
-@property (nonatomic, retain) id values;
+@property (nonatomic) dxfg_feed_t *feed;
 @property (nonatomic, strong) DXFEventFabric *fabric;
 @end
 
