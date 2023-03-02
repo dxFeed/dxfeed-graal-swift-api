@@ -38,6 +38,8 @@
 		805E8B8D298AD10200C2A6FA /* NSString+CString.h in Headers */ = {isa = PBXBuildFile; fileRef = 805E8B8B298AD10200C2A6FA /* NSString+CString.h */; };
 		805E8B8E298AD10200C2A6FA /* NSString+CString.m in Sources */ = {isa = PBXBuildFile; fileRef = 805E8B8C298AD10200C2A6FA /* NSString+CString.m */; };
 		809E25DB29B114BD00AD5D27 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809E25DA29B114BD00AD5D27 /* main.swift */; };
+		809E25E129B1199700AD5D27 /* DXFFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A3BBDB2986ABB600501E11 /* DXFFramework.framework */; };
+		809E25E229B1199700AD5D27 /* DXFFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80A3BBDB2986ABB600501E11 /* DXFFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		80A3BBE42986ABB600501E11 /* DXFFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A3BBDB2986ABB600501E11 /* DXFFramework.framework */; };
 		80A3BBEA2986ABB600501E11 /* DXFFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 80A3BBDE2986ABB600501E11 /* DXFFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80ADEA142989846200F9E116 /* libDxFeedGraalNativeApi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 80ADEA132989846200F9E116 /* libDxFeedGraalNativeApi.dylib */; platformFilters = (macos, ); };
@@ -81,6 +83,13 @@
 			remoteGlobalIDString = 80A3BBDA2986ABB600501E11;
 			remoteInfo = DXFFramework;
 		};
+		809E25E329B1199700AD5D27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80A3BBD22986ABB600501E11 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80A3BBDA2986ABB600501E11;
+			remoteInfo = DXFFramework;
+		};
 		80A3BBE52986ABB600501E11 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 80A3BBD22986ABB600501E11 /* Project object */;
@@ -99,6 +108,17 @@
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
+		};
+		809E25E529B1199700AD5D27 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				809E25E229B1199700AD5D27 /* DXFFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		80ADEA162989846200F9E116 /* Embed Libraries */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -173,6 +193,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				809E25E129B1199700AD5D27 /* DXFFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,11 +394,13 @@
 				809E25D429B114BC00AD5D27 /* Sources */,
 				809E25D529B114BC00AD5D27 /* Frameworks */,
 				809E25D629B114BC00AD5D27 /* CopyFiles */,
+				809E25E529B1199700AD5D27 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				809E25E029B114F200AD5D27 /* PBXTargetDependency */,
+				809E25E429B1199700AD5D27 /* PBXTargetDependency */,
 			);
 			name = PerfTest;
 			productName = PerfTest;
@@ -575,6 +598,11 @@
 			target = 80A3BBDA2986ABB600501E11 /* DXFFramework */;
 			targetProxy = 809E25DF29B114F200AD5D27 /* PBXContainerItemProxy */;
 		};
+		809E25E429B1199700AD5D27 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80A3BBDA2986ABB600501E11 /* DXFFramework */;
+			targetProxy = 809E25E329B1199700AD5D27 /* PBXContainerItemProxy */;
+		};
 		80A3BBE62986ABB600501E11 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 80A3BBDA2986ABB600501E11 /* DXFFramework */;
@@ -589,6 +617,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				ENABLE_HARDENED_RUNTIME = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -602,6 +631,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				ENABLE_HARDENED_RUNTIME = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
