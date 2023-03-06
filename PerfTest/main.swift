@@ -8,14 +8,13 @@
 import Foundation
 import DXFFramework
 
-class Counter {
-    private (set) var value : Int64 = 0
-    func add (_ amount: Int64) {
-        OSAtomicAdd64(amount, &value)
-    }
-}
-
 class SubscriptionListener: DXFSubscriptionListener {
+    class Counter {
+        private (set) var value : Int64 = 0
+        func add (_ amount: Int64) {
+            OSAtomicAdd64(amount, &value)
+        }
+    }
     var counter = Counter()
     var counterListener = Counter()
     func receivedEvents(_ events: [DXFEvent]!) {
@@ -61,7 +60,7 @@ let params = Parameters(address: args[1], type: types, symbol: args[3].split(sep
 print(params)
 print("*****Press enter to stop****")
 
-
+//using nullable var for checking deallocations
 var env: DXFEnvironment? = DXFEnvironment()
 var connection:DXFConnection? = DXFConnection(env!, address: params.address)
 connection?.connect()
@@ -70,7 +69,7 @@ var subscription: DXFSubscription? = DXFSubscription(env!, feed: feed!, type: ty
 let listener = SubscriptionListener()
 subscription?.add(listener)
 subscription?.subscribe(params.symbol.first!)
-
+var timer: Timer? = nil
 
 var startTime = Date.now
 var lastValue: Int64 = 0
@@ -80,34 +79,37 @@ let numberFormatter = NumberFormatter()
 numberFormatter.numberStyle = .decimal
 
 DispatchQueue.global(qos: .background).async {
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
             let lastStart = startTime
             let currentValue = listener.counter.value
             let currentListenerValue = listener.counterListener.value
             startTime = Date.now
             let seconds = Date.now.timeIntervalSince(lastStart)
-            let speed = seconds == 0 ? nil : NSNumber(value: Double(currentValue - lastValue) / seconds)
-            let speedListener = seconds == 0 ? nil : NSNumber(value: Double(currentListenerValue - lastListenerValue) / seconds)
+            let speed = NSNumber(value: Double(currentValue - lastValue) / seconds)
+            let speedListener = NSNumber(value: Double(currentListenerValue - lastListenerValue) / seconds)
 
             lastValue = currentValue
             lastListenerValue = currentListenerValue
-            if let speed = speed, let speedListener = speedListener {
-                print("---------------------------------------------------")
-                print("Event speed                \(numberFormatter.string(from: speed)!) per/sec")
-                print("Listener speed             \(numberFormatter.string(from: speedListener)!) per/sec")
-                if (speedListener.intValue != 0) {
-                    print("Average Number of Events   \(numberFormatter.string(from: NSNumber(value: speed.intValue/speedListener.intValue))!)")
-                }
-                print("---------------------------------------------------")
+            
+            print("---------------------------------------------------")
+            print("Event speed                \(numberFormatter.string(from: speed)!) per/sec")
+            print("Listener speed             \(numberFormatter.string(from: speedListener)!) per/sec")
+            if (speedListener.intValue != 0) {
+                print("Average Number of Events   \(numberFormatter.string(from: NSNumber(value: speed.intValue/speedListener.intValue))!)")
             }
+            print("---------------------------------------------------")
+
         }
         RunLoop.current.run()
 }
 
 _ = readLine()
 print("*********dealloc*********")
+timer?.invalidate()
+timer = nil
 subscription = nil
 feed = nil
 connection = nil
 env = nil
+print("Check disconnection from \(params.address) above")
 _ = readLine()
