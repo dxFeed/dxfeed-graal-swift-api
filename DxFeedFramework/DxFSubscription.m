@@ -1,34 +1,34 @@
 //
-//  DXFSubscription.m
+//  DxFSubscription.m
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 12.02.2023.
 //
 
-#import "DXFSubscription.h"
-#import "DXFInternal.h"
+#import "DxFSubscription.h"
+#import "DxFInternal.h"
 
-#import "DXFTimeSale.h"
-#import "DXFEventQuote.h"
+#import "DxFTimeSale.h"
+#import "DxFEventQuote.h"
 
-#import "DXFSubscriptionListener.h"
+#import "DxFSubscriptionListener.h"
 
-@protocol DXFEventListener
+@protocol DxFEventListener
 
 - (void)receivedEvents:(dxfg_event_type_list *)events;
 
 @end
 
-@interface DXFSubscription() <DXFEventListener>
+@interface DxFSubscription() <DxFEventListener>
 
 @property (nonatomic) dxfg_subscription_t* subscription;
-@property (nonatomic, retain) DXFEnvironment *env;
-@property (nonatomic, strong) DXFEventFabric *fabric;
+@property (nonatomic, retain) DxFEnvironment *env;
+@property (nonatomic, strong) DxFEventFabric *fabric;
 @property (nonatomic) dxfg_feed_event_listener_t *listener;
 @property (nonatomic, strong) NSPointerArray *listeners;
 @end
 
-@implementation DXFSubscription
+@implementation DxFSubscription
 
 - (void)dealloc {
     if (self.listener) {
@@ -43,10 +43,10 @@
     NSLog(@"dealloc subscription %@ %@",self.listener, self.subscription);
 }
 
-- (instancetype)init:(DXFEnvironment *)env feed:(DXFFeed *)feed type:(DXFEventType)type{
+- (instancetype)init:(DxFEnvironment *)env feed:(DxFFeed *)feed type:(DxFEventType)type{
     if (self = [super init]) {
-        self.fabric = [DXFEventFabric new];
-        dxfg_event_clazz_t graalType = [DXFSubscription graalType:type];
+        self.fabric = [DxFEventFabric new];
+        dxfg_event_clazz_t graalType = [DxFSubscription graalType:type];
         self.listeners = [NSPointerArray weakObjectsPointerArray];
         self.env = env;
         self.subscription = dxfg_DXFeed_createSubscription(self.env.thread, feed.feed, graalType);
@@ -54,8 +54,8 @@
         NSInteger res = dxfg_DXFeedSubscription_addEventListener(self.env.thread,
                                                                  self.subscription,
                                                                  self.listener);
-        if (res != DXF_SUCCESS) {
-            DXFException *exc = [[DXFException alloc] init:self.env];
+        if (res != DxF_SUCCESS) {
+            DxFException *exc = [[DxFException alloc] init:self.env];
             [Logger print:@"Create subscription %@", exc];
         }        
     }
@@ -69,26 +69,26 @@
     dxfg_Symbol_release(self.env.thread, symbol);
 }
 
-+ (dxfg_event_clazz_t)graalType:(DXFEventType)type {
++ (dxfg_event_clazz_t)graalType:(DxFEventType)type {
     static NSDictionary<NSNumber *, NSNumber *> *types;
     if (!types) {
-        types = @{@(DXFEventTypeQuote): @(DXFG_EVENT_QUOTE),
-                  @(DXFEventTypeTimeSale): @(DXFG_EVENT_TIME_AND_SALE)
+        types = @{@(DxFEventTypeQuote): @(DXFG_EVENT_QUOTE),
+                  @(DxFEventTypeTimeSale): @(DXFG_EVENT_TIME_AND_SALE)
         };
     }
     return types[@(type)].intValue;
 }
 
-#pragma mark - DXFFeedListener
+#pragma mark - DxFFeedListener
 
 -(void)receivedEvents:(dxfg_event_type_list *)events {
     NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:events->size];
     for (int i = 0; i < events->size; ++i) {
         dxfg_event_type_t *pEvent = (dxfg_event_type_t *)(events->elements[i]);
-        DXFEvent *event = [self.fabric createEvent:pEvent];
+        DxFEvent *event = [self.fabric createEvent:pEvent];
         [array addObject:event];
     }
-    for(id<DXFSubscriptionListener> listener in self.listeners) {
+    for(id<DxFSubscriptionListener> listener in self.listeners) {
         [listener receivedEvents:array];
     }
 }
@@ -96,20 +96,20 @@
 #pragma mark - C-API
 static void c_observable_list_listener_func(graal_isolatethread_t *thread, dxfg_event_type_list *events, void *user_data) {
     if (user_data) {
-        id<DXFEventListener> listener = (__bridge id)user_data;
+        id<DxFEventListener> listener = (__bridge id)user_data;
         [listener receivedEvents:events];
     }
 }
 
 #pragma mark - Listeners
 
-- (void)addListener:(id<DXFSubscriptionListener>)listener {
+- (void)addListener:(id<DxFSubscriptionListener>)listener {
     @synchronized (self) {
         [self.listeners addPointer:(__bridge void * _Nullable)(listener)];
     }
 }
 
-- (void)removeListener:(id<DXFSubscriptionListener>)listener {
+- (void)removeListener:(id<DxFSubscriptionListener>)listener {
     @synchronized (self) {
         NSMutableArray<NSNumber *> *indexes = [NSMutableArray new];
         void *pointer = (__bridge void * _Nullable)(listener);

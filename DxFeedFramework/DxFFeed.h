@@ -1,5 +1,5 @@
 //
-//  DXFFeed.h
+//  DxFFeed.h
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 2/4/23.
@@ -9,10 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class DXFConnection, DXFEnvironment;
-@interface DXFFeed : NSObject
+@class DxFConnection, DxFEnvironment;
+@interface DxFFeed : NSObject
 
-- (instancetype)init:(DXFConnection *)connection env:(DXFEnvironment *)env;
+- (instancetype)init:(DxFConnection *)connection env:(DxFEnvironment *)env;
 
 @end
 

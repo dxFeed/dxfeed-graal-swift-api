@@ -1,26 +1,26 @@
 //
-//  DXFSubscription.h
+//  DxFSubscription.h
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 12.02.2023.
 //
 
 #import <Foundation/Foundation.h>
-#import <DxFeedFramework/DXFEventType.h>
+#import <DxFeedFramework/DxFEventType.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class DXFEnvironment, DXFFeed;
-@protocol DXFSubscriptionListener;
-@interface DXFSubscription : NSObject
+@class DxFEnvironment, DxFFeed;
+@protocol DxFSubscriptionListener;
+@interface DxFSubscription : NSObject
 
 @property (nonatomic, strong) NSArray *values;
 
-- (instancetype)init:(DXFEnvironment *)env feed:(DXFFeed *)feed type:(DXFEventType)type;
+- (instancetype)init:(DxFEnvironment *)env feed:(DxFFeed *)feed type:(DxFEventType)type;
 
-- (void)addListener:(id<DXFSubscriptionListener>)listener;
+- (void)addListener:(id<DxFSubscriptionListener>)listener;
 
-- (void)removeListener:(id<DXFSubscriptionListener>)listener;
+- (void)removeListener:(id<DxFSubscriptionListener>)listener;
 
 - (void)subscribe:(NSString *)str;
 

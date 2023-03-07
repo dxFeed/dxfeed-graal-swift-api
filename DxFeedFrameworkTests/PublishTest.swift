@@ -8,15 +8,15 @@
 import XCTest
 import DxFeedFramework
 
-class TestListenerWithPublish: NSObject, DXFSubscriptionListener {
-    var publisher: DXFPublisher? = nil
+class TestListenerWithPublish: NSObject, DxFSubscriptionListener {
+    var publisher: DxFPublisher? = nil
     func receivedEventsCount(_ count: Int) {
     
     }
     @objc dynamic var count = 0
 
-    var items = [DXFEvent]()
-    func receivedEvents(_ events: [DXFEvent]!) {
+    var items = [DxFEvent]()
+    func receivedEvents(_ events: [DxFEvent]!) {
         print(events ?? "Empty events")
         count += events.count
         items.append(contentsOf: events)
@@ -36,14 +36,14 @@ final class PublishTest: XCTestCase {
     }
     func testFetchFeed() throws {
 //        let address = "tape:WriteTapeFile.out.txt[format=text]"
-//        let env = DXFEnvironment()
-//        let connection = DXFPublisherConnection(env, port: address)
+//        let env = DxFEnvironment()
+//        let connection = DxFPublisherConnection(env, port: address)
 //        let connected = connection.connect()
 //        XCTAssert(connected, "Couldn't connect to demo \(address)")
-////        let predicate = NSPredicate(format: "%K == \(Connected.rawValue)", #keyPath(DXFConnection.state))
+////        let predicate = NSPredicate(format: "%K == \(Connected.rawValue)", #keyPath(DxFConnection.state))
 ////        let publishExpectation = XCTNSPredicateExpectation(predicate: predicate, object: connection)
 ////        wait(for: [publishExpectation], timeout: 10)
-////        let publisher = DXFPublisher(connection, env: env)
+////        let publisher = DxFPublisher(connection, env: env)
 //
 //        let listener = TestListener()
 //        let expectation = keyValueObservingExpectation(for: listener, keyPath: "count") { (value, value1) in
@@ -62,16 +62,16 @@ final class PublishTest: XCTestCase {
     }
     func test() throws {
         let address = "localhost:6666"
-        let env = DXFEnvironment()
-        let connection = DXFConnection(env, address: address)
+        let env = DxFEnvironment()
+        let connection = DxFConnection(env, address: address)
         let connected = connection.connect()
         XCTAssert(connected, "Couldn't connect to demo \(address)")
-        let predicate = NSPredicate(format: "%K == \(Connected.rawValue)", #keyPath(DXFConnection.state))
+        let predicate = NSPredicate(format: "%K == \(Connected.rawValue)", #keyPath(DxFConnection.state))
         let publishExpectation = XCTNSPredicateExpectation(predicate: predicate, object: connection)
         wait(for: [publishExpectation], timeout: 10)
-        let publisher = DXFPublisher(connection, env: env)
-        let feed = DXFFeed(connection, env: env)
-        let subscription = DXFSubscription(env, feed: feed, type: .timeSale)
+        let publisher = DxFPublisher(connection, env: env)
+        let feed = DxFFeed(connection, env: env)
+        let subscription = DxFSubscription(env, feed: feed, type: .timeSale)
         let listener = TestListenerWithPublish()
         listener.publisher = publisher
         subscription.add(listener)

@@ -9,14 +9,14 @@
 import DxFeedFramework
 import Foundation
 
-class TestListener: NSObject, DXFSubscriptionListener {
+class TestListener: NSObject, DxFSubscriptionListener {
     func receivedEventsCount(_ count: Int) {
     
     }
     
     @objc dynamic var count = 0
-    var items = [DXFEvent]()
-    func receivedEvents(_ events: [DXFEvent]!) {
+    var items = [DxFEvent]()
+    func receivedEvents(_ events: [DxFEvent]!) {
         print(events ?? "Empty events")        
         items.append(contentsOf: events)
         count = items.count

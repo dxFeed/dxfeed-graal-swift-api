@@ -8,7 +8,7 @@
 import Foundation
 import DxFeedFramework
 
-class SubscriptionListener: DXFSubscriptionListener {
+class SubscriptionListener: DxFSubscriptionListener {
     class Counter {
         private (set) var value : Int64 = 0
         func add (_ amount: Int64) {
@@ -17,7 +17,7 @@ class SubscriptionListener: DXFSubscriptionListener {
     }
     var counter = Counter()
     var counterListener = Counter()
-    func receivedEvents(_ events: [DXFEvent]!) {
+    func receivedEvents(_ events: [DxFEvent]!) {
         let count = events.count
         counterListener.add(1)
         counter.add(Int64(count))
@@ -26,7 +26,7 @@ class SubscriptionListener: DXFSubscriptionListener {
 
 struct Parameters {
     let address: String
-    let type: [DXFEventType]
+    let type: [DxFEventType]
     let symbol: [String]
 }
 
@@ -48,11 +48,11 @@ let args = CommandLine.arguments
 let types = args[2].split(separator: ",").map { str in
     switch str.lowercased() {
     case "quote":
-        return DXFEventType.quote
+        return DxFEventType.quote
     case "timesale":
-        return DXFEventType.timeSale
+        return DxFEventType.timeSale
     default:
-        return DXFEventType.undefined
+        return DxFEventType.undefined
     }
 }
 let params = Parameters(address: args[1], type: types, symbol: args[3].split(separator: ",").map({ String($0) }))
@@ -60,11 +60,11 @@ print(params)
 print("*****Press enter to stop****")
 
 //using nullable var for checking deallocations
-var env: DXFEnvironment? = DXFEnvironment()
-var connection:DXFConnection? = DXFConnection(env!, address: params.address)
+var env: DxFEnvironment? = DxFEnvironment()
+var connection:DxFConnection? = DxFConnection(env!, address: params.address)
 connection?.connect()
-var feed:DXFFeed? = DXFFeed(connection!, env: env!)
-var subscription: DXFSubscription? = DXFSubscription(env!, feed: feed!, type: types.first!)
+var feed:DxFFeed? = DxFFeed(connection!, env: env!)
+var subscription: DxFSubscription? = DxFSubscription(env!, feed: feed!, type: types.first!)
 let listener = SubscriptionListener()
 subscription?.add(listener)
 subscription?.subscribe(params.symbol.first!)

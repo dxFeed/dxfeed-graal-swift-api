@@ -1,16 +1,16 @@
 //
-//  DXFPublisherConnection.m
+//  DxFPublisherConnection.m
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 19.02.2023.
 //
 
-#import "DXFPublisherConnection.h"
-#import "DXFInternal.h"
+#import "DxFPublisherConnection.h"
+#import "DxFInternal.h"
 
-@interface DXFPublisherConnection()
+@interface DxFPublisherConnection()
 
-@property (nonatomic, retain) DXFEnvironment *env;
+@property (nonatomic, retain) DxFEnvironment *env;
 @property (nonatomic, retain) NSString *port;
 
 @property (nonatomic) dxfg_endpoint_t* endpoint;
@@ -20,7 +20,7 @@
 @end
 
 
-@implementation DXFPublisherConnection
+@implementation DxFPublisherConnection
 
 - (void)dealloc {
     if (self.listener) {
@@ -36,7 +36,7 @@
     NSLog(@"dealloc connection %@ %@",self.listener, self.endpoint);
 }
 
-- (nonnull instancetype)init:(nonnull DXFEnvironment *)env port:(NSString *)port {
+- (nonnull instancetype)init:(nonnull DxFEnvironment *)env port:(NSString *)port {
     if (self = [super init]) {
         self.env = env;
         self.port = port;
@@ -52,12 +52,12 @@
             res = dxfg_DXEndpoint_Builder_withRole(self.env.thread, builder, DXFG_ENDPOINT_ROLE_PUBLISHER);
             self.endpoint = dxfg_DXEndpoint_Builder_build(self.env.thread, builder);
             res = dxfg_DXEndpoint_connect(self.env.thread, self.endpoint, self.port.dxfCString);
-            if (res != DXF_SUCCESS) {
-                DXFException *exc = [[DXFException alloc] init:self.env];
+            if (res != DxF_SUCCESS) {
+                DxFException *exc = [[DxFException alloc] init:self.env];
                 [Logger print:@"Create subscription %@", exc];
             }
             dxfg_JavaObjectHandler_release(self.env.thread, &builder->handler);
-            return res == DXF_SUCCESS;
+            return res == DxF_SUCCESS;
         }
         return false;
     }

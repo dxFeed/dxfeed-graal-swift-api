@@ -20,15 +20,15 @@ final class FeedTests: XCTestCase {
 
     func testFetchFeed() throws {        
         let address = "demo.dxfeed.com:7300"
-        let env = DXFEnvironment()
-        let connection = DXFConnection(env, address: address)
+        let env = DxFEnvironment()
+        let connection = DxFConnection(env, address: address)
         let connected = connection.connect()
         XCTAssert(connected, "Couldn't connect to demo \(address)")
-        let predicate = NSPredicate(format: "%K == \(Connected.rawValue)", #keyPath(DXFConnection.state))
+        let predicate = NSPredicate(format: "%K == \(Connected.rawValue)", #keyPath(DxFConnection.state))
         let publishExpectation = XCTNSPredicateExpectation(predicate: predicate, object: connection)
         wait(for: [publishExpectation], timeout: 10)
-        let feed = DXFFeed(connection, env: env)
-        let subscription = DXFSubscription(env, feed: feed, type: .quote)
+        let feed = DxFFeed(connection, env: env)
+        let subscription = DxFSubscription(env, feed: feed, type: .quote)
         let listener = TestListener()
         let listener1 = TestListener()
         

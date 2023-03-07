@@ -1,16 +1,16 @@
 //
-//  DXFTimeSale.h
+//  DxFTimeSale.h
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 2/6/23.
 //
 
 #import <Foundation/Foundation.h>
-#import <DxFeedFramework/DXFEvent.h>
+#import <DxFeedFramework/DxFEvent.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DXFTimeSale : DXFEvent
+@interface DxFTimeSale : DxFEvent
 
 @property (nonatomic, assign, readonly) int32_t event_flags;
 @property (nonatomic, assign, readonly) int64_t index;

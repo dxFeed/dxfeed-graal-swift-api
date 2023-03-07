@@ -1,5 +1,5 @@
 //
-//  DXFInternal.h
+//  DxFInternal.h
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 2/4/23.
@@ -11,11 +11,11 @@
 #import "NSString+CString.h"
 #import "Logger.h"
 
-#import "DXFConstants.h"
-#import "DXFException.h"
+#import "DxFConstants.h"
+#import "DxFException.h"
 
-#import "DXFEventFabric.h"
+#import "DxFEventFabric.h"
 
-#import "DXFEnvironment+Graal.h"
-#import "DXFConnection+Graal.h"
-#import "DXFFeed+Graal.h"
+#import "DxFEnvironment+Graal.h"
+#import "DxFConnection+Graal.h"
+#import "DxFFeed+Graal.h"

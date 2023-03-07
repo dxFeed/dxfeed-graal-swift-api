@@ -1,5 +1,5 @@
 //
-//  DXFConnection+Graal.h
+//  DxFConnection+Graal.h
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 2/4/23.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DXFConnection (Graal)
+@interface DxFConnection (Graal)
 
 @property (nonatomic, readonly) dxfg_endpoint_t* endpoint;
 

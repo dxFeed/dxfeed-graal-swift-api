@@ -1,5 +1,5 @@
 //
-//  DXFSystem.h
+//  DxFSystem.h
 //  TestGraalvm
 //
 //  Created by Aleksey Kosylo on 1/28/23.
@@ -7,13 +7,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class DXFEnvironment;
+@class DxFEnvironment;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DXFSystem : NSObject
+@interface DxFSystem : NSObject
 
-- (instancetype)init:(DXFEnvironment *)env;
+- (instancetype)init:(DxFEnvironment *)env;
 
 - (BOOL)write:(NSString *)value forKey:(NSString *)key;
 

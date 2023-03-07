@@ -19,12 +19,12 @@ class DxFeedFrameworkTests: XCTestCase {
     }
 
     func testWrite() throws {
-        let a = DXFSystem(DXFEnvironment())
+        let a = DxFSystem(DxFEnvironment())
         XCTAssert(a.write("a", forKey: "b"), "Couldn't write value")
     }
     
     func testRead() throws {
-        let a = DXFSystem(DXFEnvironment())
+        let a = DxFSystem(DxFEnvironment())
         let key = UUID().uuidString
         let value = UUID().uuidString
         XCTAssert(a.write(value, forKey: key), "Couldn't write value")
@@ -32,7 +32,7 @@ class DxFeedFrameworkTests: XCTestCase {
     }
     
     func testCyrilicRead() throws {
-        let a = DXFSystem(DXFEnvironment())
+        let a = DxFSystem(DxFEnvironment())
         let key = UUID().uuidString
         let value = "Привет это кирилица" + UUID().uuidString
         XCTAssert(a.write(value, forKey: key), "Couldn't write value")
@@ -41,7 +41,7 @@ class DxFeedFrameworkTests: XCTestCase {
     }
     
     func testEmojiRead() throws {
-        let a = DXFSystem(DXFEnvironment())
+        let a = DxFSystem(DxFEnvironment())
         let key = UUID().uuidString
         let value = "😀Привет это кирилица👨‍👨‍👦" + UUID().uuidString
         XCTAssert(a.write(value, forKey: key), "Couldn't write value")
@@ -51,10 +51,10 @@ class DxFeedFrameworkTests: XCTestCase {
     
     func testConnection() throws {
         let address = "demo.dxfeed.com:7300"
-        let connection = DXFConnection(DXFEnvironment(), address: address)
+        let connection = DxFConnection(DxFEnvironment(), address: address)
         let connected = connection.connect()
         XCTAssert(connected, "Couldn't connect to demo \(address)")
-        let predicate = NSPredicate(format: "%K == \(Connected.rawValue)", #keyPath(DXFConnection.state))
+        let predicate = NSPredicate(format: "%K == \(Connected.rawValue)", #keyPath(DxFConnection.state))
         let publishExpectation = XCTNSPredicateExpectation(predicate: predicate, object: connection)
         wait(for: [publishExpectation], timeout: 10)
     }
@@ -62,10 +62,10 @@ class DxFeedFrameworkTests: XCTestCase {
 
     func testConnectionToWrongAddress() throws {
         let address = "demo1.dxfeed.com:7300"
-        let connection = DXFConnection(DXFEnvironment(), address: address)
+        let connection = DxFConnection(DxFEnvironment(), address: address)
         let connected = connection.connect()
         XCTAssert(connected, "Couldn't connect to demo \(address)")
-        let predicate = NSPredicate(format: "%K == \(Connecting.rawValue)", #keyPath(DXFConnection.state))
+        let predicate = NSPredicate(format: "%K == \(Connecting.rawValue)", #keyPath(DxFConnection.state))
         let publishExpectation = XCTNSPredicateExpectation(predicate: predicate, object: connection)
         wait(for: [publishExpectation], timeout: 20)
         

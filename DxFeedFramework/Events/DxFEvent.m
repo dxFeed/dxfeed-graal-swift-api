@@ -1,30 +1,30 @@
 //
-//  DXFEvent.m
+//  DxFEvent.m
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 2/6/23.
 //
 
 #import "DxFEvent.h"
-#import "DXFEvent+Private.h"
+#import "DxFEvent+Private.h"
 #import "NSString+CString.h"
 
-@implementation DXFEvent
+@implementation DxFEvent
 
 - (instancetype)initWithMarketEvent:(dxfg_market_event_t)item {
     if (self = [super init]) {
         _event_symbol = [NSString newWithCstring:item.event_symbol];
-        _event_type = [DXFEvent type:item.event_type.clazz];
+        _event_type = [DxFEvent type:item.event_type.clazz];
         _event_time = item.event_time;
         
     }
     return self;
 }
 
-+ (DXFEventType)type:(dxfg_event_clazz_t)clazz {
++ (DxFEventType)type:(dxfg_event_clazz_t)clazz {
     switch (clazz) {
         case DXFG_EVENT_QUOTE:
-            return DXFEventTypeQuote;
+            return DxFEventTypeQuote;
         case DXFG_EVENT_PROFILE:
             
             break;
@@ -59,7 +59,7 @@
             
             break;
         case DXFG_EVENT_TIME_AND_SALE:
-            return DXFEventTypeTimeSale;
+            return DxFEventTypeTimeSale;
             break;
         case DXFG_EVENT_ORDER_BASE:
             
@@ -77,7 +77,7 @@
             
             break;
     }
-    return DXFEventTypeUndefined;
+    return DxFEventTypeUndefined;
 }
 
 @end

@@ -1,16 +1,16 @@
 //
-//  DXFTimeSale.m
+//  DxFTimeSale.m
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 2/6/23.
 //
 
-#import "DXFTimeSale.h"
+#import "DxFTimeSale.h"
 #import "dxfg_events.h"
-#import "DXFEvent+Private.h"
+#import "DxFEvent+Private.h"
 #import "NSString+CString.h"
 
-@implementation DXFTimeSale
+@implementation DxFTimeSale
 
 - (instancetype)initWithItem:(dxfg_event_type_t *)item {
     dxfg_time_and_sale_t *dxf_item = (dxfg_time_and_sale_t *)item;
@@ -32,7 +32,7 @@
 }
 
 - (NSString *)description {
-    return [[NSString alloc] initWithFormat:@"DXFG_TIME_AND_SALE_T: %@  event_flags=%d, index=%lld, time_nano_part=%d, exchange_code=%hd, price=%f, size=%f, bid_price=%f, ask_price=%f, exchange_sale_conditions=%@, flags=%d, buyer=%@, seller=%@", self.event_symbol,self.event_flags,self.index,self.time_nano_part,self.exchange_code,self.price,self.size,self.bid_price,self.ask_price,self.exchange_sale_conditions,self.flags,self.buyer,self.seller];
+    return [[NSString alloc] initWithFormat:@"DxFG_TIME_AND_SALE_T: %@  event_flags=%d, index=%lld, time_nano_part=%d, exchange_code=%hd, price=%f, size=%f, bid_price=%f, ask_price=%f, exchange_sale_conditions=%@, flags=%d, buyer=%@, seller=%@", self.event_symbol,self.event_flags,self.index,self.time_nano_part,self.exchange_code,self.price,self.size,self.bid_price,self.ask_price,self.exchange_sale_conditions,self.flags,self.buyer,self.seller];
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  DXFFeed+Graal.h
+//  DxFFeed+Graal.h
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 13.02.2023.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DXFFeed (Graal)
+@interface DxFFeed (Graal)
 
 @property (nonatomic, readonly) dxfg_feed_t* feed;
 

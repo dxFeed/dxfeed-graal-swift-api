@@ -1,25 +1,25 @@
 //
-//  DXFSystem.m
+//  DxFSystem.m
 //  TestGraalvm
 //
 //  Created by Aleksey Kosylo on 1/28/23.
 //
 
-#import "DXFSystem.h"
-#import "DXFInternal.h"
+#import "DxFSystem.h"
+#import "DxFInternal.h"
 
-@interface DXFSystem()
+@interface DxFSystem()
 
-@property (nonatomic, retain) DXFEnvironment *env;
+@property (nonatomic, retain) DxFEnvironment *env;
 
 @end
 
-@implementation DXFSystem
+@implementation DxFSystem
 
 - (void)dealloc {
 }
 
-- (instancetype)init:(DXFEnvironment *)env {
+- (instancetype)init:(DxFEnvironment *)env {
     if (self = [super init]) {
         self.env = env;
     }
@@ -28,7 +28,7 @@
 
 - (BOOL)write:(NSString *)value forKey:(NSString *)key {
     int res = dxfg_system_set_property(self.env.thread, [key cStringUsingEncoding:NSUTF8StringEncoding], [value cStringUsingEncoding:NSUTF8StringEncoding]);
-    return res == DXF_SUCCESS;
+    return res == DxF_SUCCESS;
 }
 
 - (nullable NSString *)read:(NSString *)key {

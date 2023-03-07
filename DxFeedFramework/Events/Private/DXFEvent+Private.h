@@ -1,5 +1,5 @@
 //
-//  DXFEvent+Private.h
+//  DxFEvent+Private.h
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 2/6/23.
@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DXFEvent ()
+@interface DxFEvent ()
 
-@property (nonatomic, assign) DXFEventType event_type;
+@property (nonatomic, assign) DxFEventType event_type;
 @property (nonatomic, strong) NSString *event_symbol;
 @property (nonatomic, assign) int64_t event_time;
 

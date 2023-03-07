@@ -1,18 +1,18 @@
 //
-//  DXFSubscriptionListener.h
+//  DxFSubscriptionListener.h
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 13.02.2023.
 //
 
-#ifndef DXFSubscriptionListener_h
-#define DXFSubscriptionListener_h
+#ifndef DxFSubscriptionListener_h
+#define DxFSubscriptionListener_h
 
-@class DXFEVent;
-@protocol DXFSubscriptionListener
+@class DxFEVent;
+@protocol DxFSubscriptionListener
 
-- (void)receivedEvents:(NSArray<DXFEvent *> *)events;
+- (void)receivedEvents:(NSArray<DxFEvent *> *)events;
 
 @end
 
-#endif /* DXFSubscriptionListener_h */
+#endif /* DxFSubscriptionListener_h */

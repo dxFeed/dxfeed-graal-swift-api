@@ -1,5 +1,5 @@
 //
-//  DXFPublisherConnection.h
+//  DxFPublisherConnection.h
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 19.02.2023.
@@ -9,10 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class DXFEnvironment;
-@interface DXFPublisherConnection : NSObject
+@class DxFEnvironment;
+@interface DxFPublisherConnection : NSObject
 
-- (nonnull instancetype)init:(nonnull DXFEnvironment *)env port:(NSString *)port;
+- (nonnull instancetype)init:(nonnull DxFEnvironment *)env port:(NSString *)port;
 
 - (BOOL)connect;
 

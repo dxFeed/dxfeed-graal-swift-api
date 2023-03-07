@@ -1,5 +1,5 @@
 //
-//  DXFException.h
+//  DxFException.h
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 2/4/23.
@@ -9,14 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class DXFEnvironment;
-@interface DXFException : NSObject
+@class DxFEnvironment;
+@interface DxFException : NSObject
 
 @property (nonatomic, readonly) NSString *message;
 @property (nonatomic, readonly) NSString *className;
 @property (nonatomic, readonly) NSString *stackTrace;
 
-- (instancetype)init:(DXFEnvironment *)env;
+- (instancetype)init:(DxFEnvironment *)env;
 
 @end
 

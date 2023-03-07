@@ -1,5 +1,5 @@
 //
-//  DXFConnectionState.h
+//  DxFConnectionState.h
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 2/4/23.
@@ -12,4 +12,4 @@ typedef enum : NSUInteger {
     Connecting,
     Connected,
     Disconnected,
-} DXFConnectionState;
+} DxFConnectionState;

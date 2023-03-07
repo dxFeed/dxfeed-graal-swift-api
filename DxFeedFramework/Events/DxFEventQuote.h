@@ -1,16 +1,16 @@
 //
-//  DXFEventQuote.h
+//  DxFEventQuote.h
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 2/5/23.
 //
 
 #import <Foundation/Foundation.h>
-#import <DxFeedFramework/DXFEvent.h>
+#import <DxFeedFramework/DxFEvent.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DXFEventQuote : DXFEvent
+@interface DxFEventQuote : DxFEvent
 
 @property (nonatomic, assign, readonly) int32_t time_millis_sequence;
 @property (nonatomic, assign, readonly) int32_t time_nano_part;

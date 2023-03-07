@@ -1,23 +1,23 @@
 //
-//  DXFEventFabric.m
+//  DxFEventFabric.m
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 2/6/23.
 //
 
-#import "DXFEventFabric.h"
-#import "DXFEvent+Private.h"
-#import "DXFEventQuote+Private.h"
-#import "DXFTimeSale+Private.h"
+#import "DxFEventFabric.h"
+#import "DxFEvent+Private.h"
+#import "DxFEventQuote+Private.h"
+#import "DxFTimeSale+Private.h"
 
-@implementation DXFEventFabric
+@implementation DxFEventFabric
 
 
-- (DXFEvent *)createEvent:(dxfg_event_type_t *)dxfEvent {
+- (DxFEvent *)createEvent:(dxfg_event_type_t *)dxfEvent {
     NSInteger clazz = dxfEvent->clazz;
     switch (clazz) {
         case DXFG_EVENT_QUOTE:
-            return [[DXFEventQuote alloc] initWithItem:dxfEvent];
+            return [[DxFEventQuote alloc] initWithItem:dxfEvent];
         case DXFG_EVENT_PROFILE:
             
             break;
@@ -52,7 +52,7 @@
             
             break;
         case DXFG_EVENT_TIME_AND_SALE:
-            return [[DXFTimeSale alloc] initWithItem:dxfEvent];
+            return [[DxFTimeSale alloc] initWithItem:dxfEvent];
             break;
         case DXFG_EVENT_ORDER_BASE:
             

@@ -1,21 +1,21 @@
 //
-//  DXFConnection.h
+//  DxFConnection.h
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 2/1/23.
 //
 
 #import <Foundation/Foundation.h>
-#import <DxFeedFramework/DXFConnectionState.h>
+#import <DxFeedFramework/DxFConnectionState.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class DXFEnvironment;
-@interface DXFConnection : NSObject
+@class DxFEnvironment;
+@interface DxFConnection : NSObject
 
-@property (nonatomic) DXFConnectionState state;
+@property (nonatomic) DxFConnectionState state;
 
-- (nonnull instancetype)init:(nonnull DXFEnvironment *)env address:(NSString *)address;
+- (nonnull instancetype)init:(nonnull DxFEnvironment *)env address:(NSString *)address;
 
 - (BOOL)connect;
 

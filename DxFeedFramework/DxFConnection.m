@@ -1,16 +1,16 @@
 //
-//  DXFConnection.m
+//  DxFConnection.m
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 2/1/23.
 //
 
-#import "DXFConnection.h"
-#import "DXFInternal.h"
+#import "DxFConnection.h"
+#import "DxFInternal.h"
 
-@interface DXFConnection()
+@interface DxFConnection()
 
-@property (nonatomic, retain) DXFEnvironment *env;
+@property (nonatomic, retain) DxFEnvironment *env;
 @property (nonatomic, retain) NSString *address;
 
 @property (nonatomic) dxfg_endpoint_t* endpoint;
@@ -19,7 +19,7 @@
 @end
 
 
-@implementation DXFConnection
+@implementation DxFConnection
 
 - (void)dealloc {
     if (self.listener) {
@@ -35,7 +35,7 @@
     NSLog(@"dealloc connection %@ %@",self.listener, self.endpoint);
 }
 
-- (nonnull instancetype)init:(nonnull DXFEnvironment *)env address:(NSString *)address {
+- (nonnull instancetype)init:(nonnull DxFEnvironment *)env address:(NSString *)address {
     if (self = [super init]) {
         self.env = env;
         self.address = address;
@@ -55,7 +55,7 @@
             dxfg_endpoint_state_change_listener_t* stateListener = dxfg_PropertyChangeListener_new(self.env.thread, endpoint_state_change_listener, (__bridge void *)self);
             self.listener = stateListener;
             dxfg_DXEndpoint_addStateChangeListener(self.env.thread, self.endpoint, stateListener);
-            return dxfg_DXEndpoint_connect(self.env.thread, self.endpoint, self.address.dxfCString) == DXF_SUCCESS;
+            return dxfg_DXEndpoint_connect(self.env.thread, self.endpoint, self.address.dxfCString) == DxF_SUCCESS;
         }
         return false;
     }
@@ -83,7 +83,7 @@
 #pragma mark C-API
 static void endpoint_state_change_listener(graal_isolatethread_t *thread, dxfg_endpoint_state_t old_state,
                                     dxfg_endpoint_state_t new_state, void *user_data) {
-    DXFConnection* connection = (__bridge DXFConnection *)(user_data);
+    DxFConnection* connection = (__bridge DxFConnection *)(user_data);
     [connection connectionChanged:new_state];
 }
 

@@ -1,24 +1,24 @@
 //
-//  DXFFeed.m
+//  DxFFeed.m
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 2/4/23.
 //
 
-#import "DXFFeed.h"
-#import "DXFInternal.h"
+#import "DxFFeed.h"
+#import "DxFInternal.h"
 
-@interface DXFFeed()
+@interface DxFFeed()
 
-@property (nonatomic, retain) DXFConnection *connection;
-@property (nonatomic, retain) DXFEnvironment *env;
+@property (nonatomic, retain) DxFConnection *connection;
+@property (nonatomic, retain) DxFEnvironment *env;
 @property (nonatomic) dxfg_feed_t *feed;
-@property (nonatomic, strong) DXFEventFabric *fabric;
+@property (nonatomic, strong) DxFEventFabric *fabric;
 @end
 
 
 
-@implementation DXFFeed
+@implementation DxFFeed
 
 - (void)dealloc {
     if (self.feed) {
@@ -28,7 +28,7 @@
     NSLog(@"dealloc feed %@",self.feed);
 }
 
-- (instancetype)init:(DXFConnection *)connection env:(DXFEnvironment *)env {
+- (instancetype)init:(DxFConnection *)connection env:(DxFEnvironment *)env {
     if (self = [super init]) {
         self.connection = connection;
         self.env = env;

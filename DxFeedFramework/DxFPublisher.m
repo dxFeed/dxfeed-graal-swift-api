@@ -1,22 +1,22 @@
 //
-//  DXFPublisher.m
+//  DxFPublisher.m
 //  DxFeedFramework
 //
 //  Created by Aleksey Kosylo on 19.02.2023.
 //
 
-#import "DXFPublisher.h"
-#import "DXFInternal.h"
+#import "DxFPublisher.h"
+#import "DxFInternal.h"
 
-@interface DXFPublisher()
+@interface DxFPublisher()
 
-@property (nonatomic, retain) DXFConnection *connection;
-@property (nonatomic, retain) DXFEnvironment *env;
+@property (nonatomic, retain) DxFConnection *connection;
+@property (nonatomic, retain) DxFEnvironment *env;
 @property (nonatomic) dxfg_publisher_t *publisher;
 
 @end
 
-@implementation DXFPublisher
+@implementation DxFPublisher
 
 - (void)dealloc {
     if (self.publisher) {
@@ -26,7 +26,7 @@
     NSLog(@"dealloc publisher %@",self.publisher);
 }
 
-- (instancetype)init:(DXFConnection *)connection env:(DXFEnvironment *)env {
+- (instancetype)init:(DxFConnection *)connection env:(DxFEnvironment *)env {
     if (self = [super init]) {
         self.connection = connection;
         self.env = env;
@@ -46,8 +46,8 @@
     eventsList->elements[0] = (dxfg_event_type_t *)ts;
     
     NSInteger res = dxfg_DXPublisher_publishEvents(self.env.thread, self.publisher, eventsList);
-    if (res != DXF_SUCCESS) {
-        DXFException *exc = [[DXFException alloc] init:self.env];
+    if (res != DxF_SUCCESS) {
+        DxFException *exc = [[DxFException alloc] init:self.env];
         [Logger print:@"Publish events %@", exc];
     }
     
@@ -57,7 +57,7 @@
     }
     free(eventsList->elements);
     free(eventsList);
-    return res == DXF_SUCCESS;
+    return res == DxF_SUCCESS;
 }
 
 @end
