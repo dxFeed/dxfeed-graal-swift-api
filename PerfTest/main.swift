@@ -70,14 +70,14 @@ subscription?.add(listener)
 subscription?.subscribe(params.symbol.first!)
 
 var timer: Timer?
+var startTime = Date.now
+var lastValue: Int64 = 0
+var lastListenerValue: Int64 = 0
 
-DispatchQueue.global(qos: .background).async {
-    var startTime = Date.now
-    var lastValue: Int64 = 0
-    var lastListenerValue: Int64 = 0
+let numberFormatter = NumberFormatter()
+numberFormatter.numberStyle = .decimal
 
-    let numberFormatter = NumberFormatter()
-    numberFormatter.numberStyle = .decimal
+DispatchQueue.global(qos: .background).async {    
     timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
         let lastStart = startTime
         let currentValue = listener.counter.value
