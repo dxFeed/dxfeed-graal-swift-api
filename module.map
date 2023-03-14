@@ -1,0 +1,4 @@
+module graal_api [system] {
+    header "graal_builds/ios/dxfg_api.h"
+    export *
+}
