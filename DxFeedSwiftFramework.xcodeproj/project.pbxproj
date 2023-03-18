@@ -36,6 +36,10 @@
 		8088D76929C0FC5C00F240CB /* GraalIsolate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76829C0FC5C00F240CB /* GraalIsolate.swift */; };
 		8088D76B29C0FE1700F240CB /* GraalIsolateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76A29C0FE1700F240CB /* GraalIsolateTest.swift */; };
 		8088D76D29C101CF00F240CB /* GraalThreadsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76C29C101CF00F240CB /* GraalThreadsTest.swift */; };
+		8088D77129C3A25D00F240CB /* GSystemProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77029C3A25D00F240CB /* GSystemProperty.swift */; };
+		8088D77329C3A2F400F240CB /* GStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77229C3A2F400F240CB /* GStatusCode.swift */; };
+		8088D77529C3A61000F240CB /* GNativeExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77429C3A61000F240CB /* GNativeExecutor.swift */; };
+		8088D77929C498FA00F240CB /* DxFSystemPropertyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77829C498FA00F240CB /* DxFSystemPropertyTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +82,10 @@
 		8088D76829C0FC5C00F240CB /* GraalIsolate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraalIsolate.swift; sourceTree = "<group>"; };
 		8088D76A29C0FE1700F240CB /* GraalIsolateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraalIsolateTest.swift; sourceTree = "<group>"; };
 		8088D76C29C101CF00F240CB /* GraalThreadsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraalThreadsTest.swift; sourceTree = "<group>"; };
+		8088D77029C3A25D00F240CB /* GSystemProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSystemProperty.swift; sourceTree = "<group>"; };
+		8088D77229C3A2F400F240CB /* GStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GStatusCode.swift; sourceTree = "<group>"; };
+		8088D77429C3A61000F240CB /* GNativeExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GNativeExecutor.swift; sourceTree = "<group>"; };
+		8088D77829C498FA00F240CB /* DxFSystemPropertyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DxFSystemPropertyTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +148,7 @@
 				803BAC1A29BFA50700FFAB1C /* DxFeedSwiftFrameworkTests.swift */,
 				8088D76A29C0FE1700F240CB /* GraalIsolateTest.swift */,
 				8088D76C29C101CF00F240CB /* GraalThreadsTest.swift */,
+				8088D77829C498FA00F240CB /* DxFSystemPropertyTest.swift */,
 			);
 			path = DxFeedSwiftFrameworkTests;
 			sourceTree = "<group>";
@@ -177,6 +186,9 @@
 			isa = PBXGroup;
 			children = (
 				8088D76829C0FC5C00F240CB /* GraalIsolate.swift */,
+				8088D77029C3A25D00F240CB /* GSystemProperty.swift */,
+				8088D77229C3A2F400F240CB /* GStatusCode.swift */,
+				8088D77429C3A61000F240CB /* GNativeExecutor.swift */,
 			);
 			path = GraalApi;
 			sourceTree = "<group>";
@@ -337,10 +349,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8088D77129C3A25D00F240CB /* GSystemProperty.swift in Sources */,
 				8088D75529BFB7FB00F240CB /* String+Extension.swift in Sources */,
 				8088D76529C0FBCE00F240CB /* GraalThreadManager.swift in Sources */,
 				8088D76929C0FC5C00F240CB /* GraalIsolate.swift in Sources */,
+				8088D77329C3A2F400F240CB /* GStatusCode.swift in Sources */,
 				8088D76629C0FBCE00F240CB /* GraalThreadKeeper.swift in Sources */,
+				8088D77529C3A61000F240CB /* GNativeExecutor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +365,7 @@
 			files = (
 				8088D76D29C101CF00F240CB /* GraalThreadsTest.swift in Sources */,
 				8088D76B29C0FE1700F240CB /* GraalIsolateTest.swift in Sources */,
+				8088D77929C498FA00F240CB /* DxFSystemPropertyTest.swift in Sources */,
 				803BAC1B29BFA50700FFAB1C /* DxFeedSwiftFrameworkTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
