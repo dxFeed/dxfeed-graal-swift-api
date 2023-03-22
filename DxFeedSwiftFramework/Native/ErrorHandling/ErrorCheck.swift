@@ -14,39 +14,41 @@ class ErrorCheck {
         throw exception
     }
     
-    static func nativeCall(_ code: Int32) throws -> Bool {
+    @discardableResult
+    static func nativeCall(_ thread: IsolateThread, _ code: Int32) throws -> Int32 {
         if code < 0 {            
-            try? fetchException()
-            return false
+            throw fetchException(thread)
         } else {
-            return true
+            return code
         }
         
     }
     
-    static func nativeCall<T>(_ thread: IsolateThread, _ result: T?) -> T? {
-        if result == nil {
-            
+    static func nativeCall<T>(_ thread: IsolateThread, _ result: T?) throws -> T {
+        if let result = result {
+            return result
         } else {
-            
+            throw fetchException(thread)
         }
-        return result
     }
     
     static func graalCall(_ result: Int32) throws {
         let result = GraalErrorCode(rawValue: result)
         if result != .noError {
-            try? fetchException()
+            throw GraalException.isolateFail(message: result?.description ?? "Couldn't get exception value")
         }
     }
     
-    private static func fetchException() throws {
-        let exception = dxfg_get_and_clear_thread_exception_t(ThreadManager.shared.attachThread().thread.pointee);
+    private static func fetchException(_ thread: IsolateThread) -> GraalException {
+        let exception = dxfg_get_and_clear_thread_exception_t(thread.thread.pointee);
         if let pointee = exception?.pointee {
-            let gException =  GraalException.fail(message: String.createString(pointer: exception?.pointee.message), className: String.createString(pointer: pointee.className), stack: String.createString(pointer: pointee.stackTrace))
-            dxfg_Exception_release(ThreadManager.shared.attachThread().thread.pointee, exception);
-            throw gException
+            let gException =  GraalException.fail(message: String(utf8String: pointee.message) ?? "Empty graall exception", className: String(utf8String: pointee.className) ?? "", stack: String(utf8String: pointee.stackTrace) ?? "")
+            dxfg_Exception_release(thread.thread.pointee, exception);
+            return gException            
+        } else {
+            return GraalException.fail(message: "Something went wrong. Graal exception is empty", className: "", stack: "")
         }
+        
     }
     
 }

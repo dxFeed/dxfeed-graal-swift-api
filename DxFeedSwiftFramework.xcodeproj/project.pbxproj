@@ -29,7 +29,6 @@
 		803BAC2F29BFA6FA00FFAB1C /* libDxFeedGraalNativeApi.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2E29BFA6EE00FFAB1C /* libDxFeedGraalNativeApi.o */; platformFilter = ios; };
 		803BAC3029BFA6FA00FFAB1C /* jdk-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2C29BFA6EE00FFAB1C /* jdk-arm64-ios-r.a */; platformFilter = ios; };
 		803BAC3129BFA6FA00FFAB1C /* graal-svm-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2D29BFA6EE00FFAB1C /* graal-svm-arm64-ios-r.a */; platformFilter = ios; };
-		8088D75529BFB7FB00F240CB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803BAC3C29BFAF4400FFAB1C /* String+Extension.swift */; };
 		8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76329C0FBCE00F240CB /* ThreadManager.swift */; };
 		8088D76629C0FBCE00F240CB /* IsolateThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76429C0FBCE00F240CB /* IsolateThread.swift */; };
 		8088D76929C0FC5C00F240CB /* Isolate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76829C0FC5C00F240CB /* Isolate.swift */; };
@@ -40,6 +39,10 @@
 		8088D77529C3A61000F240CB /* ErrorCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77429C3A61000F240CB /* ErrorCheck.swift */; };
 		8088D77929C498FA00F240CB /* SystemPropertyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77829C498FA00F240CB /* SystemPropertyTest.swift */; };
 		8088D77D29C8DAF800F240CB /* GraalErrorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77C29C8DAF800F240CB /* GraalErrorCode.swift */; };
+		80FC415929C8EE8B00E6B611 /* DXFEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC415829C8EE8B00E6B611 /* DXFEndpoint.swift */; };
+		80FC415C29CA2B8800E6B611 /* NativeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC415B29CA2B8800E6B611 /* NativeBuilder.swift */; };
+		80FC415F29CA2C5100E6B611 /* NativeProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC415E29CA2C5100E6B611 /* NativeProperty.swift */; };
+		80FC416129CA376E00E6B611 /* EndpointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC416029CA376E00E6B611 /* EndpointTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +78,6 @@
 		803BAC2C29BFA6EE00FFAB1C /* jdk-arm64-ios-r.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "jdk-arm64-ios-r.a"; path = "graal_builds/ios/jdk-arm64-ios-r.a"; sourceTree = "<group>"; };
 		803BAC2D29BFA6EE00FFAB1C /* graal-svm-arm64-ios-r.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "graal-svm-arm64-ios-r.a"; path = "graal_builds/ios/graal-svm-arm64-ios-r.a"; sourceTree = "<group>"; };
 		803BAC2E29BFA6EE00FFAB1C /* libDxFeedGraalNativeApi.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = libDxFeedGraalNativeApi.o; path = graal_builds/ios/libDxFeedGraalNativeApi.o; sourceTree = "<group>"; };
-		803BAC3C29BFAF4400FFAB1C /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		8088D76329C0FBCE00F240CB /* ThreadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadManager.swift; sourceTree = "<group>"; };
 		8088D76429C0FBCE00F240CB /* IsolateThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsolateThread.swift; sourceTree = "<group>"; };
 		8088D76829C0FC5C00F240CB /* Isolate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Isolate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,10 @@
 		8088D77429C3A61000F240CB /* ErrorCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCheck.swift; sourceTree = "<group>"; };
 		8088D77829C498FA00F240CB /* SystemPropertyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemPropertyTest.swift; sourceTree = "<group>"; };
 		8088D77C29C8DAF800F240CB /* GraalErrorCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraalErrorCode.swift; sourceTree = "<group>"; };
+		80FC415829C8EE8B00E6B611 /* DXFEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFEndpoint.swift; sourceTree = "<group>"; };
+		80FC415B29CA2B8800E6B611 /* NativeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeBuilder.swift; sourceTree = "<group>"; };
+		80FC415E29CA2C5100E6B611 /* NativeProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeProperty.swift; sourceTree = "<group>"; };
+		80FC416029CA376E00E6B611 /* EndpointTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +156,7 @@
 				8088D76A29C0FE1700F240CB /* IsolateTest.swift */,
 				8088D76C29C101CF00F240CB /* ThreadsTest.swift */,
 				8088D77829C498FA00F240CB /* SystemPropertyTest.swift */,
+				80FC416029CA376E00E6B611 /* EndpointTest.swift */,
 			);
 			path = DxFeedSwiftFrameworkTests;
 			sourceTree = "<group>";
@@ -169,7 +176,6 @@
 		8088D75829C0F52100F240CB /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				803BAC3C29BFAF4400FFAB1C /* String+Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -177,6 +183,8 @@
 		8088D77A29C5D8AD00F240CB /* Native */ = {
 			isa = PBXGroup;
 			children = (
+				80FC415D29CA2C4300E6B611 /* Property */,
+				80FC415A29CA2B7100E6B611 /* Endpoint */,
 				8088D77E29C8DDAE00F240CB /* Graal */,
 				8088D77B29C8D96600F240CB /* ErrorHandling */,
 			);
@@ -206,6 +214,7 @@
 		80FC415529C8E2E400E6B611 /* Api */ = {
 			isa = PBXGroup;
 			children = (
+				80FC415829C8EE8B00E6B611 /* DXFEndpoint.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -215,6 +224,22 @@
 			children = (
 			);
 			path = Events;
+			sourceTree = "<group>";
+		};
+		80FC415A29CA2B7100E6B611 /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				80FC415B29CA2B8800E6B611 /* NativeBuilder.swift */,
+			);
+			path = Endpoint;
+			sourceTree = "<group>";
+		};
+		80FC415D29CA2C4300E6B611 /* Property */ = {
+			isa = PBXGroup;
+			children = (
+				80FC415E29CA2C5100E6B611 /* NativeProperty.swift */,
+			);
+			path = Property;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,8 +399,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8088D77129C3A25D00F240CB /* SystemProperty.swift in Sources */,
-				8088D75529BFB7FB00F240CB /* String+Extension.swift in Sources */,
+				80FC415929C8EE8B00E6B611 /* DXFEndpoint.swift in Sources */,
+				80FC415C29CA2B8800E6B611 /* NativeBuilder.swift in Sources */,
 				8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */,
+				80FC415F29CA2C5100E6B611 /* NativeProperty.swift in Sources */,
 				8088D77D29C8DAF800F240CB /* GraalErrorCode.swift in Sources */,
 				8088D76929C0FC5C00F240CB /* Isolate.swift in Sources */,
 				8088D77329C3A2F400F240CB /* GraalException.swift in Sources */,
@@ -390,6 +417,7 @@
 			files = (
 				8088D76D29C101CF00F240CB /* ThreadsTest.swift in Sources */,
 				8088D76B29C0FE1700F240CB /* IsolateTest.swift in Sources */,
+				80FC416129CA376E00E6B611 /* EndpointTest.swift in Sources */,
 				8088D77929C498FA00F240CB /* SystemPropertyTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

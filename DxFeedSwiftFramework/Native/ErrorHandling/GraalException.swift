@@ -10,4 +10,5 @@ import Foundation
 enum GraalException: Error {
     case undefined
     case fail(message: String, className: String, stack: String)
+    case isolateFail(message: String)
 }
