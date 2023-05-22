@@ -21,6 +21,11 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F582A1B864C006A0B19 /* NativeEndpoint.swift */; };
+		64656F5B2A1B9784006A0B19 /* DXFFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5A2A1B9784006A0B19 /* DXFFeed.swift */; };
+		64656F5E2A1B97F2006A0B19 /* NativeFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5D2A1B97F2006A0B19 /* NativeFeed.swift */; };
+		64656F602A1B9EC2006A0B19 /* EnumUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5F2A1B9EC2006A0B19 /* EnumUtil.swift */; };
+		64656F622A1B9FF7006A0B19 /* EnumException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F612A1B9FF7006A0B19 /* EnumException.swift */; };
 		803BAC1629BFA50700FFAB1C /* DxFeedSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; };
 		803BAC1C29BFA50700FFAB1C /* DxFeedSwiftFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		803BAC2729BFA67C00FFAB1C /* libDxFeedGraalNativeApi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2629BFA67C00FFAB1C /* libDxFeedGraalNativeApi.dylib */; platformFilters = (macos, ); };
@@ -70,6 +75,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		64656F582A1B864C006A0B19 /* NativeEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeEndpoint.swift; sourceTree = "<group>"; };
+		64656F5A2A1B9784006A0B19 /* DXFFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFFeed.swift; sourceTree = "<group>"; };
+		64656F5D2A1B97F2006A0B19 /* NativeFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeFeed.swift; sourceTree = "<group>"; };
+		64656F5F2A1B9EC2006A0B19 /* EnumUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumUtil.swift; sourceTree = "<group>"; };
+		64656F612A1B9FF7006A0B19 /* EnumException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumException.swift; sourceTree = "<group>"; };
 		803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DxFeedSwiftFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DxFeedSwiftFramework.h; sourceTree = "<group>"; };
 		803BAC1529BFA50700FFAB1C /* DxFeedSwiftFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DxFeedSwiftFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,8 +138,17 @@
 		64656F552A1B6A07006A0B19 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				64656F5F2A1B9EC2006A0B19 /* EnumUtil.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		64656F5C2A1B97E4006A0B19 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				64656F5D2A1B97F2006A0B19 /* NativeFeed.swift */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		803BAC0329BFA50700FFAB1C = {
@@ -190,8 +209,9 @@
 		8088D77A29C5D8AD00F240CB /* Native */ = {
 			isa = PBXGroup;
 			children = (
-				80FC415D29CA2C4300E6B611 /* Property */,
 				80FC415A29CA2B7100E6B611 /* Endpoint */,
+				64656F5C2A1B97E4006A0B19 /* Feed */,
+				80FC415D29CA2C4300E6B611 /* Property */,
 				8088D77E29C8DDAE00F240CB /* Graal */,
 				8088D77B29C8D96600F240CB /* ErrorHandling */,
 			);
@@ -204,6 +224,7 @@
 				8088D77429C3A61000F240CB /* ErrorCheck.swift */,
 				8088D77229C3A2F400F240CB /* GraalException.swift */,
 				8088D77C29C8DAF800F240CB /* GraalErrorCode.swift */,
+				64656F612A1B9FF7006A0B19 /* EnumException.swift */,
 			);
 			path = ErrorHandling;
 			sourceTree = "<group>";
@@ -222,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				80FC415829C8EE8B00E6B611 /* DXFEndpoint.swift */,
+				64656F5A2A1B9784006A0B19 /* DXFFeed.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -230,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				80FC415B29CA2B8800E6B611 /* NativeBuilder.swift */,
+				64656F582A1B864C006A0B19 /* NativeEndpoint.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -262,6 +285,7 @@
 			buildPhases = (
 				803BAC3229BFA9AD00FFAB1C /* Check graal libraries */,
 				803BAC0829BFA50700FFAB1C /* Headers */,
+				64656F632A1BB22E006A0B19 /* ShellScript */,
 				803BAC0929BFA50700FFAB1C /* Sources */,
 				803BAC0A29BFA50700FFAB1C /* Frameworks */,
 				803BAC0B29BFA50700FFAB1C /* Resources */,
@@ -354,6 +378,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		64656F632A1BB22E006A0B19 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download and install version 0.52.2 from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		803BAC3229BFA9AD00FFAB1C /* Check graal libraries */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -400,14 +441,19 @@
 			files = (
 				8088D77129C3A25D00F240CB /* SystemProperty.swift in Sources */,
 				80FC415929C8EE8B00E6B611 /* DXFEndpoint.swift in Sources */,
+				64656F5B2A1B9784006A0B19 /* DXFFeed.swift in Sources */,
+				64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */,
 				80FC415C29CA2B8800E6B611 /* NativeBuilder.swift in Sources */,
 				8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */,
 				80FC415F29CA2C5100E6B611 /* NativeProperty.swift in Sources */,
+				64656F622A1B9FF7006A0B19 /* EnumException.swift in Sources */,
 				8088D77D29C8DAF800F240CB /* GraalErrorCode.swift in Sources */,
 				8088D76929C0FC5C00F240CB /* Isolate.swift in Sources */,
 				8088D77329C3A2F400F240CB /* GraalException.swift in Sources */,
+				64656F602A1B9EC2006A0B19 /* EnumUtil.swift in Sources */,
 				8088D76629C0FBCE00F240CB /* IsolateThread.swift in Sources */,
 				8088D77529C3A61000F240CB /* ErrorCheck.swift in Sources */,
+				64656F5E2A1B97F2006A0B19 /* NativeFeed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

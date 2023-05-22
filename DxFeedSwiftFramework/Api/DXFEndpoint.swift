@@ -7,43 +7,19 @@
 
 import Foundation
 
+typealias Role = DXFEndpoint.Role
+
 class DXFEndpoint {
-    enum Role {
-        case feed
+    enum Role: UInt32 {
+        case feed = 0
         case onDemandFeed
         case streamFeed
         case publisher
         case streamPublisher
         case localHub
+
     }
-    class Builder {
-        var role: Role? = nil
-        var props = [String: String]()
-        private lazy var nativeBuilder: NativeBuilder? = {
-            try? NativeBuilder()
-        }()
-        
-        fileprivate init() {
-            
-        }
-        
-        func withRole(_ role: Role) throws -> Self {
-            self.role = role
-            try nativeBuilder?.withRole(role)
-            return self
-        }
-        
-        func withProperty(_ key: String, _ value: String) throws -> Self {
-            props[key] = value
-            try nativeBuilder?.withProperty(key, value)
-            return self
-        }
-        
-        func build() -> DXFEndpoint {
-            return DXFEndpoint()
-        }
-        
-    }
+
     enum Property: String {
         case name                          = "name"
         case properties                    = "dxfeed.properties"
@@ -60,9 +36,58 @@ class DXFEndpoint {
         case schemeNanoTime                = "dxscheme.nanoTime"
         case schemeEnabledPropertyPrefix   = "dxscheme.enabled"
     }
-    static func builder() -> Builder {
+    private let endpointNative: NativeEndpoint
+    private let role: Role
+    private let name: String
+    private let feed: DFXFeed
+
+    fileprivate init(native: NativeEndpoint, role: Role, name: String) {
+        self.endpointNative = native
+        self.role = role
+        self.name = name
+        self.feed = DFXFeed(native: native.feed())
+    }
+
+    public static func builder() -> Builder {
         Builder()
     }
 }
 
+class Builder {
+    var role = Role.feed
+    var props = [String: String]()
 
+    var instancesNumerator = Int64(0)
+
+    private lazy var nativeBuilder: NativeBuilder? = {
+        try? NativeBuilder()
+    }()
+
+    fileprivate init() {
+
+    }
+
+    func withRole(_ role: Role) throws -> Self {
+        self.role = role
+        try nativeBuilder?.withRole(role)
+        return self
+    }
+
+    func withProperty(_ key: String, _ value: String) throws -> Self {
+        props[key] = value
+        try nativeBuilder?.withProperty(key, value)
+        return self
+    }
+
+    func build() throws -> DXFEndpoint {
+        return DXFEndpoint(native: try nativeBuilder!.build(), role: role, name: getOrCreateEndpointName())
+    }
+
+    private func getOrCreateEndpointName() -> String {
+        if let name = props[DXFEndpoint.Property.name.rawValue] {
+            return name
+        }
+        let value = OSAtomicIncrement64(&instancesNumerator)
+        return "qdnet_\(value == 0 ? "" : "-\(value)")"
+    }
+}

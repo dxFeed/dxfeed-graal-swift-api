@@ -18,12 +18,11 @@ final class IsolateTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testCleanup() throws {        
+    func testCleanup() throws {
         let isolate = Isolate.shared
-        isolate.cleanup()        
+        isolate.cleanup()
         let sec = 2
         _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
     }
 
-   
 }
