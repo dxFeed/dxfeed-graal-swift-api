@@ -69,7 +69,7 @@ class Builder {
 
     func withRole(_ role: Role) throws -> Self {
         self.role = role
-        try nativeBuilder?.withRole(role)
+        _ = try nativeBuilder?.withRole(role)
         return self
     }
 
