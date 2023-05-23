@@ -9,7 +9,9 @@ import Foundation
 
 class DFXFeed {
     private let native: NativeFeed
-
+    deinit {
+#warning("TODO: implement it")
+    }
     internal init(native: NativeFeed) {
         #warning("TODO: implement it")
         self.native = native

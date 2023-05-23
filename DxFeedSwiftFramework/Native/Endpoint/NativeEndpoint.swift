@@ -10,11 +10,15 @@ import Foundation
 
 class NativeEndpoint {
     let endpoint: UnsafeMutablePointer<dxfg_endpoint_t>?
-    func feed() -> NativeFeed {
+    deinit {
 #warning("TODO: implement it")
-        return NativeFeed()
-    }    
+    }
     internal init(_ native: UnsafeMutablePointer<dxfg_endpoint_t>) {
         self.endpoint = native
     }
+    func feed() -> NativeFeed {
+#warning("TODO: implement it")
+        return NativeFeed()
+    }
+
 }

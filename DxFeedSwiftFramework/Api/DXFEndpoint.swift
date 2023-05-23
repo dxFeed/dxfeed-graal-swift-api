@@ -62,7 +62,9 @@ class Builder {
     private lazy var nativeBuilder: NativeBuilder? = {
         try? NativeBuilder()
     }()
-
+    deinit {
+#warning("TODO: implement it")
+    }
     fileprivate init() {
 
     }
