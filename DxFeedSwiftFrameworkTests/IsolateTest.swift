@@ -21,7 +21,7 @@ final class IsolateTest: XCTestCase {
     func testCleanup() throws {
         let isolate = Isolate.shared
         isolate.cleanup()
-        let sec = 2
+        let sec = 5
         _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
     }
 

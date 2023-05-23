@@ -12,18 +12,20 @@ class NativeBuilder {
     let builder: UnsafeMutablePointer<dxfg_endpoint_builder_t>?
     var role = Role.feed
     deinit {
-#warning("TODO: implement it")
+        if let builder = self.builder {
+            let thread = currentThread()
+            _ = try? ErrorCheck.nativeCall(thread,
+                                           dxfg_JavaObjectHandler_release(thread, &(builder.pointee.handler)))
+        }
     }
 
     init() throws {
         let thread = currentThread()
-
         self.builder = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_newBuilder(thread))
     }
 
     func isSupporProperty(_ key: String) throws -> Bool {
-        let thread =  currentThread()
-
+        let thread = currentThread()
         let res = try ErrorCheck.nativeCall(thread,
                                             dxfg_DXEndpoint_Builder_supportsProperty(thread,
                                                                                      self.builder,
@@ -32,8 +34,7 @@ class NativeBuilder {
     }
 
     func withRole(_ role: Role) throws -> Bool {
-        let thread =  currentThread()
-
+        let thread = currentThread()
         let res = try ErrorCheck.nativeCall(thread,
                                             dxfg_DXEndpoint_Builder_withRole(thread,
                                                                              builder,
@@ -44,7 +45,7 @@ class NativeBuilder {
     }
 
     func withProperty(_ key: String, _ value: String) throws {
-        let thread =  currentThread()
+        let thread = currentThread()
          _ = try ErrorCheck.nativeCall(thread,
                                        dxfg_DXEndpoint_Builder_withProperty(thread,
                                                                            self.builder,
@@ -53,7 +54,7 @@ class NativeBuilder {
     }
 
     func build() throws -> NativeEndpoint {
-        let thread =  currentThread()
+        let thread = currentThread()
         let value = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_Builder_build(thread, builder))
         return NativeEndpoint(value)
     }

@@ -10,6 +10,7 @@ import Foundation
 typealias Role = DXFEndpoint.Role
 
 class DXFEndpoint {
+
     enum Role: UInt32 {
         case feed = 0
         case onDemandFeed
@@ -39,17 +40,35 @@ class DXFEndpoint {
     private let endpointNative: NativeEndpoint
     private let role: Role
     private let name: String
-    private let feed: DFXFeed
+    private lazy var feed: DXFFeed? = {
+        try? DXFFeed(native: endpointNative.getNativeFeed())
+    }()
+    private lazy var publisher = {
+        DXFPublisher()
+    }()
+    static let storage = AtomicStorage<WeakBox<DXFEndpoint>>()
 
     fileprivate init(native: NativeEndpoint, role: Role, name: String) {
         self.endpointNative = native
         self.role = role
         self.name = name
-        self.feed = DFXFeed(native: native.feed())
-    }
+        let weakSelf = WeakBox(value: self)
+        DXFEndpoint.storage.append(weakSelf)
 
+//        let swiftCallback: @convention(c) (OpaquePointer?, dxfg_endpoint_state_t, dxfg_endpoint_state_t, UnsafeMutableRawPointer?) -> Void = {_, _, newState, context in
+//                    if let context = context {
+//                        let endpoint: DXFEndpoint = bridge(ptr: context)
+//                        s.print123()
+//                        print("state changed \(newState.rawValue) \(context)")
+//                    }
+//                }
+
+    }
     public static func builder() -> Builder {
         Builder()
+    }
+    public func getFeed() -> DXFFeed? {
+        return self.feed
     }
 }
 
@@ -62,9 +81,11 @@ class Builder {
     private lazy var nativeBuilder: NativeBuilder? = {
         try? NativeBuilder()
     }()
+
     deinit {
 #warning("TODO: implement it")
     }
+
     fileprivate init() {
 
     }
@@ -92,4 +113,11 @@ class Builder {
         let value = OSAtomicIncrement64(&instancesNumerator)
         return "qdnet_\(value == 0 ? "" : "-\(value)")"
     }
+
+}
+
+extension DXFEndpoint: EndpointListener {
+    func changeState(old: EndpointState, new: EndpointState) {
+        
+    }        
 }
