@@ -46,29 +46,28 @@ class DXFEndpoint {
     private lazy var publisher = {
         DXFPublisher()
     }()
-    static let storage = AtomicStorage<WeakBox<DXFEndpoint>>()
+    private var listeners = [EndpointListener]()
 
-    fileprivate init(native: NativeEndpoint, role: Role, name: String) {
+    fileprivate init(native: NativeEndpoint, role: Role, name: String) throws {
         self.endpointNative = native
         self.role = role
         self.name = name
-        let weakSelf = WeakBox(value: self)
-        DXFEndpoint.storage.append(weakSelf)
-
-//        let swiftCallback: @convention(c) (OpaquePointer?, dxfg_endpoint_state_t, dxfg_endpoint_state_t, UnsafeMutableRawPointer?) -> Void = {_, _, newState, context in
-//                    if let context = context {
-//                        let endpoint: DXFEndpoint = bridge(ptr: context)
-//                        s.print123()
-//                        print("state changed \(newState.rawValue) \(context)")
-//                    }
-//                }
-
+        try native.addListener(self)
     }
     public static func builder() -> Builder {
         Builder()
     }
     public func getFeed() -> DXFFeed? {
         return self.feed
+    }
+    public func connect(_ address: String) throws {
+        try self.endpointNative.connect(address)
+    }
+    public func disconnect() throws {
+        try self.endpointNative.disconnect()
+    }
+    public func appendListener(_ listener: EndpointListener) {
+        listeners.append(listener)
     }
 }
 
@@ -83,7 +82,6 @@ class Builder {
     }()
 
     deinit {
-#warning("TODO: implement it")
     }
 
     fileprivate init() {
@@ -103,7 +101,7 @@ class Builder {
     }
 
     func build() throws -> DXFEndpoint {
-        return DXFEndpoint(native: try nativeBuilder!.build(), role: role, name: getOrCreateEndpointName())
+        return try DXFEndpoint(native: try nativeBuilder!.build(), role: role, name: getOrCreateEndpointName())
     }
 
     private func getOrCreateEndpointName() -> String {
@@ -118,6 +116,7 @@ class Builder {
 
 extension DXFEndpoint: EndpointListener {
     func changeState(old: EndpointState, new: EndpointState) {
-        
-    }        
+        print("\(self) change state \(old) to \(new)")
+        listeners.forEach { $0.changeState(old: old, new: new) }
+    }
 }
