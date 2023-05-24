@@ -67,4 +67,15 @@ final class EndpointTest: XCTestCase {
         }).values)
         wait(for: expsNotConnected, timeout: 5)
     }
+
+    func testListenerDealloc() throws {
+#warning("TODO: check finalize block")
+        var endpoint: DXFEndpoint? = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        XCTAssertNotNil(endpoint, "Endpoint should be not nil")
+        try endpoint?.connect("demo.dxfeed.com:7300")
+        try endpoint?.disconnect()
+        endpoint = nil
+        let sec = 5
+        _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
+    }
 }
