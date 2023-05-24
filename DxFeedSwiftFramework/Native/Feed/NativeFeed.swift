@@ -11,6 +11,12 @@ import Foundation
 class NativeFeed {
     let feed: UnsafeMutablePointer<dxfg_feed_t>?
 #warning("TODO: implement it")
+    deinit {
+        if let feed = feed {
+            let thread = currentThread()
+            _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(feed.pointee.handler)))
+        }
+    }
     init(feed: UnsafeMutablePointer<dxfg_feed_t>) {
         self.feed = feed
     }
