@@ -21,6 +21,6 @@ extension EndpointState {
             return .notConnected
         default:
             throw EnumException.undefinedEnumValue
-        }        
+        }
     }
 }

@@ -24,6 +24,7 @@ final class EndpointTest: XCTestCase {
     }
     func testDealloc() throws {
         var endpoint: DXFEndpoint? = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        print(endpoint ?? "default endpoint value")
         endpoint = nil
         let sec = 5
         _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
