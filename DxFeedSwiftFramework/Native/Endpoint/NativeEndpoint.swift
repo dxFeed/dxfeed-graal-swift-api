@@ -16,6 +16,7 @@ class NativeEndpoint {
         if let context = context {
             let endpoint: AnyObject = bridge(ptr: context)
             if let listener =  endpoint as? EndpointListener {
+
 #warning("TODO: implement it")
             }
         }
@@ -31,6 +32,7 @@ class NativeEndpoint {
             }
         }
     }
+
     private lazy var feed: NativeFeed? = {
         let thread = currentThread()
         do {
@@ -68,11 +70,11 @@ class NativeEndpoint {
                                                                                   NativeEndpoint.listenerCallback,
                                                                                   voidPtr))
         try ErrorCheck.nativeCall(currentThread(),
-                              dxfg_DXEndpoint_addStateChangeListener(thread,
-                                                                     endpoint,
-                                                                     self.listener,
-                                                                     NativeEndpoint.finalizeCallback,
-                                                                     voidPtr))
+                                  dxfg_DXEndpoint_addStateChangeListener(thread,
+                                                                         endpoint,
+                                                                         self.listener,
+                                                                         NativeEndpoint.finalizeCallback,
+                                                                         voidPtr))
     }
     func connect(_ address: String) throws {
         let thread = currentThread()

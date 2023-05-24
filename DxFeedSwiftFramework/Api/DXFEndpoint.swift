@@ -111,7 +111,6 @@ class Builder {
         let value = OSAtomicIncrement64(&instancesNumerator)
         return "qdnet_\(value == 0 ? "" : "-\(value)")"
     }
-
 }
 
 extension DXFEndpoint: EndpointListener {
