@@ -25,8 +25,8 @@ class NativeEndpoint {
         if let context = context {
             let endpoint: AnyObject = bridge(ptr: context)
             if let listener =  endpoint as? WeakListener {
-                var old = (try? EndpointState.convert(oldState)) ?? .notConnected
-                var new = (try? EndpointState.convert(newState)) ?? .notConnected
+                var old = (try? EnumUtil.valueOf(value: EndpointState.convert(oldState))) ?? .notConnected
+                var new = (try? EnumUtil.valueOf(value: EndpointState.convert(newState))) ?? .notConnected
                 listener.changeState(old: old, new: new)
             }
         }
@@ -69,9 +69,9 @@ class NativeEndpoint {
         let voidPtr = bridge(obj: weakListener)
         let thread = currentThread()
         let listener = try ErrorCheck.nativeCall(thread,
-                                                  dxfg_PropertyChangeListener_new(thread,
-                                                                                  NativeEndpoint.listenerCallback,
-                                                                                  voidPtr))
+                                                 dxfg_PropertyChangeListener_new(thread,
+                                                                                 NativeEndpoint.listenerCallback,
+                                                                                 voidPtr))
         self.listener = listener
         try ErrorCheck.nativeCall(thread, dxfg_Object_finalize(thread,
                                                                &(listener.pointee.handler),
@@ -110,6 +110,22 @@ class NativeEndpoint {
     func set(userName: String) throws {
         let thread = currentThread()
         try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_user(thread, self.endpoint, userName.toCStringRef()))
+    }
+
+    func awaitProcessed() throws {
+        let thread = currentThread()
+        try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_awaitProcessed(thread, self.endpoint))
+    }
+
+    func awaitNotConnected() throws {
+        let thread = currentThread()
+        try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_awaitNotConnected(thread, self.endpoint))
+    }
+
+    public func getState() throws -> EndpointState {
+        let thread = currentThread()
+        let value = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_getState(thread, self.endpoint))
+        return try EnumUtil.valueOf(value: EndpointState.convert(value))
     }
 
     func callGC() throws {
