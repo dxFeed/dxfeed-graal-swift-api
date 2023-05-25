@@ -81,4 +81,16 @@ final class EndpointTest: XCTestCase {
         endpoint = nil
         _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
     }
+
+    func testSupportProperty() throws {
+        let builder = DXFEndpoint.builder()
+        func isSupportedProperty(_ prop: String, _ expected: Bool) {
+            XCTAssert(try builder.isSupported(property: prop) == expected, "Graal doesn't support property \(prop)")
+        }
+        DXFEndpoint.Property.allCases.forEach { prop in
+            isSupportedProperty(prop.rawValue, true)
+        }
+        isSupportedProperty("wrong property", false)
+    }
+
 }
