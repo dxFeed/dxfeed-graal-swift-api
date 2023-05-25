@@ -22,7 +22,9 @@ class AtomicStorage<T: AnyObject> {
     }
     func remove(_ value: T) {
         lockQueue.async(flags: .barrier) { [unowned self] in
+            print("Remove start: \(storage.count)")
             storage.removeAll { $0 === value }
+            print("Remove finish: \(storage.count)")
         }
     }
 }
