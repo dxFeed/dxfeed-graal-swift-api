@@ -66,8 +66,15 @@ class DXFEndpoint {
     public func disconnect() throws {
         try self.endpointNative.disconnect()
     }
+    public func close() throws {
+        try self.endpointNative.close()
+    }
     public func appendListener(_ listener: EndpointListener) {
         listeners.append(listener)
+    }
+//only for testing
+    func callGC() throws {
+        try endpointNative.callGC()
     }
 }
 
