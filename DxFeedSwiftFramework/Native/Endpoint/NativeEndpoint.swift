@@ -86,14 +86,32 @@ class NativeEndpoint {
         let thread = currentThread()
         try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_connect(thread, self.endpoint, address.toCStringRef()))
     }
+    func reconnect() throws {
+        let thread = currentThread()
+        try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_reconnect(thread, self.endpoint))
+    }
     func disconnect() throws {
         let thread = currentThread()
         try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_disconnect(thread, self.endpoint))
+    }
+    func disconnectAndClear() throws {
+        let thread = currentThread()
+        try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_disconnectAndClear(thread, self.endpoint))
     }
     func close() throws {
         let thread = currentThread()
         try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_close(thread, self.endpoint))
     }
+    func set(password: String) throws {
+        let thread = currentThread()
+        try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_password(thread, self.endpoint, password.toCStringRef()))
+    }
+
+    func set(userName: String) throws {
+        let thread = currentThread()
+        try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_user(thread, self.endpoint, userName.toCStringRef()))
+    }
+
     func callGC() throws {
         let thread = currentThread()
         try ErrorCheck.nativeCall(thread, dxfg_gc(thread))

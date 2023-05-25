@@ -9,7 +9,7 @@ import XCTest
 @testable import DxFeedSwiftFramework
 
 final class EndpointTest: XCTestCase {
-
+    let endpointAddress = "demo.dxfeed.com:7300"
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -26,8 +26,7 @@ final class EndpointTest: XCTestCase {
         var endpoint: DXFEndpoint? = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         print(endpoint ?? "default endpoint value")
         endpoint = nil
-        let sec = 5
-        _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
+        wait(seconds: 5)
     }
     func testFeed() throws {
         let endpoint: DXFEndpoint? = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
@@ -56,7 +55,7 @@ final class EndpointTest: XCTestCase {
                             EndpointState.notConnected: expectation(description: "NotConnected")]
         let listener = Listener(expectations: expectations)
         endpoint?.appendListener(listener)
-        try endpoint?.connect("demo.dxfeed.com:7300")
+        try endpoint?.connect(endpointAddress)
         let exps = Array(expectations.filter({ element in
             element.key != .notConnected
         }).values)
@@ -71,15 +70,14 @@ final class EndpointTest: XCTestCase {
     func testListenerDealloc() throws {
         var endpoint: DXFEndpoint? = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint should be not nil")
-        try endpoint?.connect("demo.dxfeed.com:7300")
+        try endpoint?.connect(endpointAddress)
         try endpoint?.disconnect()
-        let sec = 5
-        _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
+        wait(seconds: 5)
         try? endpoint?.callGC()
         try endpoint?.close()
         try? endpoint?.callGC()
         endpoint = nil
-        _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
+        wait(seconds: 5)
     }
 
     func testSupportProperty() throws {
@@ -93,4 +91,13 @@ final class EndpointTest: XCTestCase {
         isSupportedProperty("wrong property", false)
     }
 
+    func testReconnect() throws {
+        let endpoint = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        XCTAssertNotNil(endpoint, "Endpoint should be not nil")
+        try endpoint.connect(endpointAddress)
+        wait(seconds: 3)
+        _ = XCTWaiter.wait(for: [expectation(description: "\(5) seconds waiting")], timeout: TimeInterval(5))
+        try endpoint.reconnect()
+        wait(seconds: 3)
+    }
 }

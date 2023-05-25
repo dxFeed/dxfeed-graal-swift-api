@@ -38,7 +38,8 @@ class DXFEndpoint {
         case schemeEnabledPropertyPrefix   = "dxscheme.enabled."
     }
     private let endpointNative: NativeEndpoint
-    private let role: Role
+    // public let = private set + public get
+    public let role: Role
     private let name: String
     private lazy var feed: DXFFeed? = {
         try? DXFFeed(native: endpointNative.getNativeFeed())
@@ -63,15 +64,36 @@ class DXFEndpoint {
     public func connect(_ address: String) throws {
         try self.endpointNative.connect(address)
     }
+
+    public func reconnect() throws {
+        try self.endpointNative.reconnect()
+    }
+
     public func disconnect() throws {
         try self.endpointNative.disconnect()
     }
+
+    public func disconnectAndClear() throws {
+        try self.endpointNative.disconnectAndClear()
+    }
+
     public func close() throws {
         try self.endpointNative.close()
     }
     public func appendListener(_ listener: EndpointListener) {
         listeners.append(listener)
     }
+
+    public func set(password: String) throws -> Self {
+        try endpointNative.set(password: password)
+        return self
+    }
+
+    public func set(userName: String) throws -> Self {
+        try endpointNative.set(userName: userName)
+        return self
+    }
+
 // only for testing
     func callGC() throws {
         try endpointNative.callGC()
