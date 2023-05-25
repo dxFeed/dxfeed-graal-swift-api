@@ -6,12 +6,12 @@ repositories {
     }
 }
 
-def native_version = '0.4.0'
-
+def native_version = '1.0.0'
+def name = 'graal-native-sdk'
 dependencies {
-    implementation(group: 'com.dxfeed', name: 'graal-native-api', version: "${native_version}", classifier: 'aarch64-osx', ext: 'zip')
-    implementation(group: 'com.dxfeed', name: 'graal-native-api', version: "${native_version}", classifier: 'x86_64-osx', ext: 'zip')
-    implementation(group: 'com.dxfeed', name: 'graal-native-api', version: "${native_version}", classifier: 'aarch64-ios', ext: 'zip')
+    implementation(group: 'com.dxfeed', name: "${name}", version: "${native_version}", classifier: 'aarch64-osx', ext: 'zip')
+    implementation(group: 'com.dxfeed', name: "${name}", version: "${native_version}", classifier: 'x86_64-osx', ext: 'zip')
+    implementation(group: 'com.dxfeed', name: "${name}", version: "${native_version}", classifier: 'aarch64-ios', ext: 'zip')
 }
 
 task fetchDependencies(type: Copy) {
@@ -21,6 +21,7 @@ task fetchDependencies(type: Copy) {
     into 'downloads'
 
     doLast {
+        println "fetch dep:"
         ext.frameworkName = { zipFileName ->
             switch(zipFileName) {
                 case ~/.*aarch64-osx.*/:

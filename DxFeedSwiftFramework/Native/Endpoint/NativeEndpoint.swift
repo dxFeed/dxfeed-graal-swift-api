@@ -68,16 +68,19 @@ class NativeEndpoint {
         NativeEndpoint.storage.append(weakListener)
         let voidPtr = bridge(obj: weakListener)
         let thread = currentThread()
-        self.listener = try ErrorCheck.nativeCall(thread,
+        let listener = try ErrorCheck.nativeCall(thread,
                                                   dxfg_PropertyChangeListener_new(thread,
                                                                                   NativeEndpoint.listenerCallback,
                                                                                   voidPtr))
+        self.listener = listener
+        try ErrorCheck.nativeCall(thread, dxfg_Object_finalize(thread,
+                                                               &(listener.pointee.handler),
+                                                               NativeEndpoint.finalizeCallback,
+                                                               voidPtr))
         try ErrorCheck.nativeCall(currentThread(),
                                   dxfg_DXEndpoint_addStateChangeListener(thread,
                                                                          endpoint,
-                                                                         self.listener,
-                                                                         NativeEndpoint.finalizeCallback,
-                                                                         voidPtr))
+                                                                         self.listener))
     }
     func connect(_ address: String) throws {
         let thread = currentThread()
