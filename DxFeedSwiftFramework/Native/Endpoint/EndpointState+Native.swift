@@ -8,8 +8,8 @@
 import Foundation
 @_implementationOnly import graal_api
 
-extension EndpointState {
-    static func convert(_ state: dxfg_endpoint_state_t) -> EndpointState? {
+extension DXFEndpointState {
+    static func convert(_ state: dxfg_endpoint_state_t) -> DXFEndpointState? {
         switch state {
         case DXFG_ENDPOINT_STATE_CLOSED:
             return .closed

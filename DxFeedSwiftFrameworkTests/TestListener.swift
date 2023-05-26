@@ -10,12 +10,12 @@ import XCTest
 @testable import DxFeedSwiftFramework
 
 struct TestListener: DXFEndpointObserver, Hashable {
-    var state = EndpointState.notConnected
-    var expectations: [EndpointState: XCTestExpectation]
-    init(expectations: [EndpointState: XCTestExpectation]) {
+    var state = DXFEndpointState.notConnected
+    var expectations: [DXFEndpointState: XCTestExpectation]
+    init(expectations: [DXFEndpointState: XCTestExpectation]) {
         self.expectations = expectations
     }
-    func endpointDidChangeState(old: DxFeedSwiftFramework.EndpointState, new: DxFeedSwiftFramework.EndpointState) {
+    func endpointDidChangeState(old: DxFeedSwiftFramework.DXFEndpointState, new: DxFeedSwiftFramework.DXFEndpointState) {
         if let expectation = expectations[new] {
             expectation.fulfill()
         }
