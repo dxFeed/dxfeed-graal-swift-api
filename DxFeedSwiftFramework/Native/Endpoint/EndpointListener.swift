@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol EndpointListener: AnyObject {
+internal protocol EndpointListener: AnyObject {
     func changeState(old: EndpointState, new: EndpointState)
 }

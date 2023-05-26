@@ -42,6 +42,7 @@ class NativeEndpoint {
             return nil
         }
     }()
+
     deinit {
         if let listener = listener {
             let thread = currentThread()
