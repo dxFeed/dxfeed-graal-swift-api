@@ -16,12 +16,9 @@ class NativeEndpoint {
         if let context = context {
             let endpoint: AnyObject = bridge(ptr: context)
             if let listener =  endpoint as? WeakListener {
-                print(NativeEndpoint.listeners)
                 NativeEndpoint.listeners.removeAll(where: {
                     $0 === listener
                 })
-                print(NativeEndpoint.listeners)
-
             }
         }
     }
