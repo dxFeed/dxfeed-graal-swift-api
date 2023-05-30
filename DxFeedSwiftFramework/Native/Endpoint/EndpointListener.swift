@@ -8,5 +8,5 @@
 import Foundation
 
 internal protocol EndpointListener: AnyObject {
-    func changeState(old: DXFEndpointState, new: DXFEndpointState)
+    func changeState(old: DXEndpointState, new: DXEndpointState)
 }

@@ -11,10 +11,10 @@ import XCTest
 final class EndpointTest: XCTestCase {
     static let port = 7301
     let endpointAddress = "localhost:\(EndpointTest.port)"
-    static var publisherEndpoint: DXFEndpoint?
+    static var publisherEndpoint: DXEndpoint?
 
     override class func setUp() {
-        publisherEndpoint = try? DXFEndpoint.builder().withRole(.publisher).withProperty("test", "value").build()
+        publisherEndpoint = try? DXEndpoint.builder().withRole(.publisher).withProperty("test", "value").build()
         try? publisherEndpoint?.connect(":\(EndpointTest.port)")
     }
 
@@ -27,29 +27,29 @@ final class EndpointTest: XCTestCase {
     override func tearDownWithError() throws {}
 
     func testBuilder() throws {
-        let endpoint = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        let endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint shouldn't be nil")
     }
     func testDealloc() throws {
-        var endpoint: DXFEndpoint? = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        var endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         print(endpoint ?? "default endpoint value")
         endpoint = nil
         wait(seconds: 3)
     }
     func testFeed() throws {
-        let endpoint: DXFEndpoint? = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        let endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint should be not nil")
         let feed = endpoint?.getFeed()
         XCTAssertNotNil(feed, "Feed should be not nil")
     }
     func testConnect() throws {
 
-        let endpoint: DXFEndpoint? = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        let endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint should be not nil")
 
-        let expectations = [DXFEndpointState.connected: expectation(description: "Connected"),
-                            DXFEndpointState.connecting: expectation(description: "Connecting"),
-                            DXFEndpointState.notConnected: expectation(description: "NotConnected")]
+        let expectations = [DXEndpointState.connected: expectation(description: "Connected"),
+                            DXEndpointState.connecting: expectation(description: "Connecting"),
+                            DXEndpointState.notConnected: expectation(description: "NotConnected")]
         let listener = TestListener(expectations: expectations)
         endpoint?.add(listener)
         try endpoint?.connect(endpointAddress)
@@ -65,7 +65,7 @@ final class EndpointTest: XCTestCase {
     }
 
     func testListenerDealloc() throws {
-        var endpoint: DXFEndpoint? = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        var endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint should be not nil")
         try endpoint?.connect(endpointAddress)
         try endpoint?.disconnect()
@@ -78,18 +78,18 @@ final class EndpointTest: XCTestCase {
     }
 
     func testSupportProperty() throws {
-        let builder = DXFEndpoint.builder()
+        let builder = DXEndpoint.builder()
         func isSupportedProperty(_ prop: String, _ expected: Bool) {
             XCTAssert(try builder.isSupported(property: prop) == expected, "Graal doesn't support property \(prop)")
         }
-        DXFEndpoint.Property.allCases.forEach { prop in
+        DXEndpoint.Property.allCases.forEach { prop in
             isSupportedProperty(prop.rawValue, true)
         }
         isSupportedProperty("wrong property", false)
     }
 
     func testReconnect() throws {
-        let endpoint = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        let endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint should be not nil")
         try endpoint.connect(endpointAddress)
         wait(seconds: 1)
@@ -99,7 +99,7 @@ final class EndpointTest: XCTestCase {
     }
 
     func testDisconnectAndClear() throws {
-        let endpoint = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        let endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint should be not nil")
         try endpoint.connect(endpointAddress)
         wait(seconds: 1)
@@ -108,7 +108,7 @@ final class EndpointTest: XCTestCase {
     }
 
     fileprivate func testGetInstance(role: Role, count: Int) {
-        var endpoints = [DXFEndpoint]()
+        var endpoints = [DXEndpoint]()
         var expectations = [XCTestExpectation]()
         let appendQueue = DispatchQueue(label: "thread-safe-obj", attributes: .concurrent)
         let maxEndpoints = count
@@ -118,7 +118,7 @@ final class EndpointTest: XCTestCase {
             let exp = expectation(description: name)
             expectations.append(exp)
             testQueue.async {
-                if let endpoint = try? DXFEndpoint.getInstance(role) {
+                if let endpoint = try? DXEndpoint.getInstance(role) {
                     appendQueue.async(flags: .barrier) {
                         endpoints.append(endpoint)
                         exp.fulfill()
@@ -136,8 +136,8 @@ final class EndpointTest: XCTestCase {
     }
 
     func testGetInstance() throws {
-        let endpoint1 = try DXFEndpoint.getInstance(.feed)
-        let endpoint2 = try DXFEndpoint.getInstance(.feed)
+        let endpoint1 = try DXEndpoint.getInstance(.feed)
+        let endpoint2 = try DXEndpoint.getInstance(.feed)
         XCTAssert(endpoint1 === endpoint2, "Endpoints should be equal")
         testGetInstance(role: .feed, count: 150)
         testGetInstance(role: .publisher, count: 150)

@@ -9,14 +9,14 @@ import Foundation
 import XCTest
 @testable import DxFeedSwiftFramework
 
-struct TestListener: DXFEndpointObserver, Hashable {
-    var state = DXFEndpointState.notConnected
-    var expectations: [DXFEndpointState: XCTestExpectation]
-    init(expectations: [DXFEndpointState: XCTestExpectation]) {
+struct TestListener: DXEndpointObserver, Hashable {
+    var state = DXEndpointState.notConnected
+    var expectations: [DXEndpointState: XCTestExpectation]
+    init(expectations: [DXEndpointState: XCTestExpectation]) {
         self.expectations = expectations
     }
-    func endpointDidChangeState(old: DxFeedSwiftFramework.DXFEndpointState,
-                                new: DxFeedSwiftFramework.DXFEndpointState) {
+    func endpointDidChangeState(old: DxFeedSwiftFramework.DXEndpointState,
+                                new: DxFeedSwiftFramework.DXEndpointState) {
         if let expectation = expectations[new] {
             expectation.fulfill()
         }

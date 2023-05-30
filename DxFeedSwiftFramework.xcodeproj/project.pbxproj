@@ -31,18 +31,18 @@
 		641BCBB42A1F8ABA00FE23C2 /* XCTestCase+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBB32A1F8ABA00FE23C2 /* XCTestCase+Utils.swift */; };
 		641BCBB82A1FA72000FE23C2 /* EndpointPublisherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBB72A1FA72000FE23C2 /* EndpointPublisherTest.swift */; };
 		641BCBBA2A1FB42500FE23C2 /* TestListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBB92A1FB42500FE23C2 /* TestListener.swift */; };
-		641BCBBC2A20ED8100FE23C2 /* DXFEndpointObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBBB2A20ED8100FE23C2 /* DXFEndpointObserver.swift */; };
+		641BCBBC2A20ED8100FE23C2 /* DXEndpointObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBBB2A20ED8100FE23C2 /* DXEndpointObserver.swift */; };
 		641BCBC12A21077800FE23C2 /* EventCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBC02A21077800FE23C2 /* EventCode.swift */; };
 		64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F582A1B864C006A0B19 /* NativeEndpoint.swift */; };
-		64656F5B2A1B9784006A0B19 /* DXFFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5A2A1B9784006A0B19 /* DXFFeed.swift */; };
+		64656F5B2A1B9784006A0B19 /* DXFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5A2A1B9784006A0B19 /* DXFeed.swift */; };
 		64656F5E2A1B97F2006A0B19 /* NativeFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5D2A1B97F2006A0B19 /* NativeFeed.swift */; };
 		64656F602A1B9EC2006A0B19 /* EnumUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5F2A1B9EC2006A0B19 /* EnumUtil.swift */; };
 		64656F622A1B9FF7006A0B19 /* EnumException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F612A1B9FF7006A0B19 /* EnumException.swift */; };
 		64656F652A1CAFC5006A0B19 /* String+Pointee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F642A1CAFC5006A0B19 /* String+Pointee.swift */; };
-		64656F672A1CCFC2006A0B19 /* DXFPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F662A1CCFC2006A0B19 /* DXFPublisher.swift */; };
+		64656F672A1CCFC2006A0B19 /* DXPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F662A1CCFC2006A0B19 /* DXPublisher.swift */; };
 		64656F692A1CF083006A0B19 /* UninitializedNativeException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F682A1CF083006A0B19 /* UninitializedNativeException.swift */; };
 		64656F6B2A1CFAC2006A0B19 /* BridgeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6A2A1CFAC2006A0B19 /* BridgeUtil.swift */; };
-		64656F6D2A1CFB10006A0B19 /* DXFEndpointState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6C2A1CFB10006A0B19 /* DXFEndpointState.swift */; };
+		64656F6D2A1CFB10006A0B19 /* DXEndpointState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6C2A1CFB10006A0B19 /* DXEndpointState.swift */; };
 		64656F6F2A1CFC12006A0B19 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6E2A1CFC12006A0B19 /* WeakBox.swift */; };
 		64656F732A1D0A84006A0B19 /* EndpointListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F722A1D0A84006A0B19 /* EndpointListener.swift */; };
 		64656F752A1D0C91006A0B19 /* WeakListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F742A1D0C91006A0B19 /* WeakListener.swift */; };
@@ -62,7 +62,7 @@
 		8088D77529C3A61000F240CB /* ErrorCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77429C3A61000F240CB /* ErrorCheck.swift */; };
 		8088D77929C498FA00F240CB /* SystemPropertyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77829C498FA00F240CB /* SystemPropertyTest.swift */; };
 		8088D77D29C8DAF800F240CB /* GraalErrorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77C29C8DAF800F240CB /* GraalErrorCode.swift */; };
-		80FC415929C8EE8B00E6B611 /* DXFEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC415829C8EE8B00E6B611 /* DXFEndpoint.swift */; };
+		80FC415929C8EE8B00E6B611 /* DXEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC415829C8EE8B00E6B611 /* DXEndpoint.swift */; };
 		80FC415C29CA2B8800E6B611 /* NativeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC415B29CA2B8800E6B611 /* NativeBuilder.swift */; };
 		80FC415F29CA2C5100E6B611 /* NativeProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC415E29CA2C5100E6B611 /* NativeProperty.swift */; };
 		80FC416129CA376E00E6B611 /* EndpointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC416029CA376E00E6B611 /* EndpointTest.swift */; };
@@ -102,18 +102,18 @@
 		641BCBB32A1F8ABA00FE23C2 /* XCTestCase+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Utils.swift"; sourceTree = "<group>"; };
 		641BCBB72A1FA72000FE23C2 /* EndpointPublisherTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointPublisherTest.swift; sourceTree = "<group>"; };
 		641BCBB92A1FB42500FE23C2 /* TestListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListener.swift; sourceTree = "<group>"; };
-		641BCBBB2A20ED8100FE23C2 /* DXFEndpointObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFEndpointObserver.swift; sourceTree = "<group>"; };
+		641BCBBB2A20ED8100FE23C2 /* DXEndpointObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXEndpointObserver.swift; sourceTree = "<group>"; };
 		641BCBC02A21077800FE23C2 /* EventCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCode.swift; sourceTree = "<group>"; };
 		64656F582A1B864C006A0B19 /* NativeEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeEndpoint.swift; sourceTree = "<group>"; };
-		64656F5A2A1B9784006A0B19 /* DXFFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFFeed.swift; sourceTree = "<group>"; };
+		64656F5A2A1B9784006A0B19 /* DXFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFeed.swift; sourceTree = "<group>"; };
 		64656F5D2A1B97F2006A0B19 /* NativeFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeFeed.swift; sourceTree = "<group>"; };
 		64656F5F2A1B9EC2006A0B19 /* EnumUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumUtil.swift; sourceTree = "<group>"; };
 		64656F612A1B9FF7006A0B19 /* EnumException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumException.swift; sourceTree = "<group>"; };
 		64656F642A1CAFC5006A0B19 /* String+Pointee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Pointee.swift"; sourceTree = "<group>"; };
-		64656F662A1CCFC2006A0B19 /* DXFPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFPublisher.swift; sourceTree = "<group>"; };
+		64656F662A1CCFC2006A0B19 /* DXPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXPublisher.swift; sourceTree = "<group>"; };
 		64656F682A1CF083006A0B19 /* UninitializedNativeException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UninitializedNativeException.swift; sourceTree = "<group>"; };
 		64656F6A2A1CFAC2006A0B19 /* BridgeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeUtil.swift; sourceTree = "<group>"; };
-		64656F6C2A1CFB10006A0B19 /* DXFEndpointState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFEndpointState.swift; sourceTree = "<group>"; };
+		64656F6C2A1CFB10006A0B19 /* DXEndpointState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXEndpointState.swift; sourceTree = "<group>"; };
 		64656F6E2A1CFC12006A0B19 /* WeakBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakBox.swift; sourceTree = "<group>"; };
 		64656F722A1D0A84006A0B19 /* EndpointListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointListener.swift; sourceTree = "<group>"; };
 		64656F742A1D0C91006A0B19 /* WeakListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakListener.swift; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 		8088D77429C3A61000F240CB /* ErrorCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCheck.swift; sourceTree = "<group>"; };
 		8088D77829C498FA00F240CB /* SystemPropertyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemPropertyTest.swift; sourceTree = "<group>"; };
 		8088D77C29C8DAF800F240CB /* GraalErrorCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraalErrorCode.swift; sourceTree = "<group>"; };
-		80FC415829C8EE8B00E6B611 /* DXFEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFEndpoint.swift; sourceTree = "<group>"; };
+		80FC415829C8EE8B00E6B611 /* DXEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXEndpoint.swift; sourceTree = "<group>"; };
 		80FC415B29CA2B8800E6B611 /* NativeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeBuilder.swift; sourceTree = "<group>"; };
 		80FC415E29CA2C5100E6B611 /* NativeProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeProperty.swift; sourceTree = "<group>"; };
 		80FC416029CA376E00E6B611 /* EndpointTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointTest.swift; sourceTree = "<group>"; };
@@ -298,11 +298,11 @@
 		80FC415529C8E2E400E6B611 /* Api */ = {
 			isa = PBXGroup;
 			children = (
-				80FC415829C8EE8B00E6B611 /* DXFEndpoint.swift */,
-				64656F5A2A1B9784006A0B19 /* DXFFeed.swift */,
-				64656F662A1CCFC2006A0B19 /* DXFPublisher.swift */,
-				64656F6C2A1CFB10006A0B19 /* DXFEndpointState.swift */,
-				641BCBBB2A20ED8100FE23C2 /* DXFEndpointObserver.swift */,
+				80FC415829C8EE8B00E6B611 /* DXEndpoint.swift */,
+				64656F5A2A1B9784006A0B19 /* DXFeed.swift */,
+				64656F662A1CCFC2006A0B19 /* DXPublisher.swift */,
+				64656F6C2A1CFB10006A0B19 /* DXEndpointState.swift */,
+				641BCBBB2A20ED8100FE23C2 /* DXEndpointObserver.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -502,8 +502,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8088D77129C3A25D00F240CB /* SystemProperty.swift in Sources */,
-				80FC415929C8EE8B00E6B611 /* DXFEndpoint.swift in Sources */,
-				64656F5B2A1B9784006A0B19 /* DXFFeed.swift in Sources */,
+				80FC415929C8EE8B00E6B611 /* DXEndpoint.swift in Sources */,
+				64656F5B2A1B9784006A0B19 /* DXFeed.swift in Sources */,
 				64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */,
 				64104FC72A2613BC00D1FC41 /* ConcurrentArray.swift in Sources */,
 				64104FC32A210F2400D1FC41 /* EventCode+Native.swift in Sources */,
@@ -512,9 +512,9 @@
 				64656F692A1CF083006A0B19 /* UninitializedNativeException.swift in Sources */,
 				8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */,
 				64656F732A1D0A84006A0B19 /* EndpointListener.swift in Sources */,
-				64656F6D2A1CFB10006A0B19 /* DXFEndpointState.swift in Sources */,
-				64656F672A1CCFC2006A0B19 /* DXFPublisher.swift in Sources */,
-				641BCBBC2A20ED8100FE23C2 /* DXFEndpointObserver.swift in Sources */,
+				64656F6D2A1CFB10006A0B19 /* DXEndpointState.swift in Sources */,
+				64656F672A1CCFC2006A0B19 /* DXPublisher.swift in Sources */,
+				641BCBBC2A20ED8100FE23C2 /* DXEndpointObserver.swift in Sources */,
 				64656F772A1DFED9006A0B19 /* EndpointState+Native.swift in Sources */,
 				64656F752A1D0C91006A0B19 /* WeakListener.swift in Sources */,
 				80FC415F29CA2C5100E6B611 /* NativeProperty.swift in Sources */,

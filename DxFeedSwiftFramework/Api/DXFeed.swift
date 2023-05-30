@@ -1,5 +1,5 @@
 //
-//  DXFFeed.swift
+//  DXFeed.swift
 //  DxFeedSwiftFramework
 //
 //  Created by Aleksey Kosylo on 22.05.23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DXFFeed {
+class DXFeed {
     private let native: NativeFeed
     deinit {
 #warning("TODO: implement it")
