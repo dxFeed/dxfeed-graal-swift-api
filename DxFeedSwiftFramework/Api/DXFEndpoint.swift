@@ -48,10 +48,12 @@ class DXFEndpoint {
         DXFPublisher()
     }()
 
-    private var observersSet: Set<AnyHashable> = []
+    private var observersSet = ConcurrentSet<AnyHashable>()
     private var observers: [DXFEndpointObserver] {
-        return observersSet.compactMap { $0 as? DXFEndpointObserver }
+        return observersSet.reader { $0.compactMap { value in value as? DXFEndpointObserver } }
     }
+
+    private static var instances = [Role: DXFEndpoint]()
 
     fileprivate init(native: NativeEndpoint, role: Role, name: String) throws {
         self.endpointNative = native
@@ -60,13 +62,15 @@ class DXFEndpoint {
         try native.addListener(self)
     }
 
-    func add<O>(_ observer: O) where O: DXFEndpointObserver,
-                                     O: Hashable {
-        _ = observersSet.insert(observer)
+    func add<O>(_ observer: O)
+    where O: DXFEndpointObserver,
+          O: Hashable {
+        observersSet.insert(observer)
     }
 
-    func remove<O>(_ observer: O) where O: DXFEndpointObserver,
-                                        O: Hashable {
+    func remove<O>(_ observer: O)
+    where O: DXFEndpointObserver,
+          O: Hashable {
         observersSet.remove(observer)
     }
 
@@ -116,6 +120,24 @@ class DXFEndpoint {
 
     public func getState() throws -> DXFEndpointState {
         return try endpointNative.getState()
+    }
+
+    public static func create(_ role: Role) throws -> DXFEndpoint {
+        return try Builder().withRole(role).build()
+    }
+
+    public static func getInstance(_ role: Role) throws -> DXFEndpoint {
+        defer {
+            objc_sync_exit(self)
+        }
+        objc_sync_enter(self)
+        if let instance = instances[role] {
+            return instance
+        } else {
+            let instance = try create(role)
+            instances[role] = instance
+            return instance
+        }
     }
 
 // only for testing

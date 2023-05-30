@@ -106,4 +106,40 @@ final class EndpointTest: XCTestCase {
         try endpoint.disconnectAndClear()
         wait(seconds: 1)
     }
+
+    fileprivate func testGetInstance(role: Role, count: Int) {
+        var endpoints = [DXFEndpoint]()
+        var expectations = [XCTestExpectation]()
+        let appendQueue = DispatchQueue(label: "thread-safe-obj", attributes: .concurrent)
+        let maxEndpoints = count
+        for value in 1...maxEndpoints {
+            let name = "test_queue_\(value)"
+            let testQueue = DispatchQueue(label: name, attributes: .concurrent)
+            let exp = expectation(description: name)
+            expectations.append(exp)
+            testQueue.async {
+                if let endpoint = try? DXFEndpoint.getInstance(role) {
+                    appendQueue.async(flags: .barrier) {
+                        endpoints.append(endpoint)
+                        exp.fulfill()
+                    }
+                }
+            }
+        }
+        wait(for: expectations, timeout: 2)
+        XCTAssert(endpoints.count == maxEndpoints,
+                  "Number of endpoints \(endpoints.count) should be equal \(maxEndpoints)")
+        let filtered = endpoints.filter { endpoint in
+            endpoint !== endpoints.first
+        }
+        XCTAssert(filtered.count == 0, "All values aren't unique")
+    }
+
+    func testGetInstance() throws {
+        let endpoint1 = try DXFEndpoint.getInstance(.feed)
+        let endpoint2 = try DXFEndpoint.getInstance(.feed)
+        XCTAssert(endpoint1 === endpoint2, "Endpoints should be equal")
+        testGetInstance(role: .feed, count: 150)
+        testGetInstance(role: .publisher, count: 150)
+    }
 }

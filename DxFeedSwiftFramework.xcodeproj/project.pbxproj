@@ -23,6 +23,8 @@
 /* Begin PBXBuildFile section */
 		64104FC12A210DDD00D1FC41 /* FeedTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC02A210DDD00D1FC41 /* FeedTest.swift */; };
 		64104FC32A210F2400D1FC41 /* EventCode+Native.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC22A210F2400D1FC41 /* EventCode+Native.swift */; };
+		64104FC52A26059B00D1FC41 /* ConcurrentSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC42A26059B00D1FC41 /* ConcurrentSet.swift */; };
+		64104FC72A2613BC00D1FC41 /* ConcurrentArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC62A2613BC00D1FC41 /* ConcurrentArray.swift */; };
 		64125E342A1F688900FB32BA /* libDxFeedGraalNativeSdk.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 64125E332A1F688900FB32BA /* libDxFeedGraalNativeSdk.o */; platformFilter = ios; };
 		64125E362A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); };
 		64125E372A1F69FD00FB32BA /* libDxFeedGraalNativeSdk.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -42,7 +44,6 @@
 		64656F6B2A1CFAC2006A0B19 /* BridgeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6A2A1CFAC2006A0B19 /* BridgeUtil.swift */; };
 		64656F6D2A1CFB10006A0B19 /* DXFEndpointState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6C2A1CFB10006A0B19 /* DXFEndpointState.swift */; };
 		64656F6F2A1CFC12006A0B19 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6E2A1CFC12006A0B19 /* WeakBox.swift */; };
-		64656F712A1CFEF8006A0B19 /* AtomicStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F702A1CFEF8006A0B19 /* AtomicStorage.swift */; };
 		64656F732A1D0A84006A0B19 /* EndpointListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F722A1D0A84006A0B19 /* EndpointListener.swift */; };
 		64656F752A1D0C91006A0B19 /* WeakListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F742A1D0C91006A0B19 /* WeakListener.swift */; };
 		64656F772A1DFED9006A0B19 /* EndpointState+Native.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F762A1DFED9006A0B19 /* EndpointState+Native.swift */; };
@@ -94,6 +95,8 @@
 /* Begin PBXFileReference section */
 		64104FC02A210DDD00D1FC41 /* FeedTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTest.swift; sourceTree = "<group>"; };
 		64104FC22A210F2400D1FC41 /* EventCode+Native.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventCode+Native.swift"; sourceTree = "<group>"; };
+		64104FC42A26059B00D1FC41 /* ConcurrentSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentSet.swift; sourceTree = "<group>"; };
+		64104FC62A2613BC00D1FC41 /* ConcurrentArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentArray.swift; sourceTree = "<group>"; };
 		64125E332A1F688900FB32BA /* libDxFeedGraalNativeSdk.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = libDxFeedGraalNativeSdk.o; path = graal_builds/ios/libDxFeedGraalNativeSdk.o; sourceTree = "<group>"; };
 		64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDxFeedGraalNativeSdk.dylib; path = graal_builds/osx_universal/libDxFeedGraalNativeSdk.dylib; sourceTree = "<group>"; };
 		641BCBB32A1F8ABA00FE23C2 /* XCTestCase+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Utils.swift"; sourceTree = "<group>"; };
@@ -112,7 +115,6 @@
 		64656F6A2A1CFAC2006A0B19 /* BridgeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeUtil.swift; sourceTree = "<group>"; };
 		64656F6C2A1CFB10006A0B19 /* DXFEndpointState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFEndpointState.swift; sourceTree = "<group>"; };
 		64656F6E2A1CFC12006A0B19 /* WeakBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakBox.swift; sourceTree = "<group>"; };
-		64656F702A1CFEF8006A0B19 /* AtomicStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicStorage.swift; sourceTree = "<group>"; };
 		64656F722A1D0A84006A0B19 /* EndpointListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointListener.swift; sourceTree = "<group>"; };
 		64656F742A1D0C91006A0B19 /* WeakListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakListener.swift; sourceTree = "<group>"; };
 		64656F762A1DFED9006A0B19 /* EndpointState+Native.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EndpointState+Native.swift"; sourceTree = "<group>"; };
@@ -185,7 +187,8 @@
 				64656F642A1CAFC5006A0B19 /* String+Pointee.swift */,
 				64656F6A2A1CFAC2006A0B19 /* BridgeUtil.swift */,
 				64656F6E2A1CFC12006A0B19 /* WeakBox.swift */,
-				64656F702A1CFEF8006A0B19 /* AtomicStorage.swift */,
+				64104FC42A26059B00D1FC41 /* ConcurrentSet.swift */,
+				64104FC62A2613BC00D1FC41 /* ConcurrentArray.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				80FC415929C8EE8B00E6B611 /* DXFEndpoint.swift in Sources */,
 				64656F5B2A1B9784006A0B19 /* DXFFeed.swift in Sources */,
 				64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */,
+				64104FC72A2613BC00D1FC41 /* ConcurrentArray.swift in Sources */,
 				64104FC32A210F2400D1FC41 /* EventCode+Native.swift in Sources */,
 				80FC415C29CA2B8800E6B611 /* NativeBuilder.swift in Sources */,
 				64656F652A1CAFC5006A0B19 /* String+Pointee.swift in Sources */,
@@ -519,8 +523,8 @@
 				8088D77D29C8DAF800F240CB /* GraalErrorCode.swift in Sources */,
 				8088D76929C0FC5C00F240CB /* Isolate.swift in Sources */,
 				64656F6B2A1CFAC2006A0B19 /* BridgeUtil.swift in Sources */,
-				64656F712A1CFEF8006A0B19 /* AtomicStorage.swift in Sources */,
 				8088D77329C3A2F400F240CB /* GraalException.swift in Sources */,
+				64104FC52A26059B00D1FC41 /* ConcurrentSet.swift in Sources */,
 				64656F602A1B9EC2006A0B19 /* EnumUtil.swift in Sources */,
 				8088D76629C0FBCE00F240CB /* IsolateThread.swift in Sources */,
 				8088D77529C3A61000F240CB /* ErrorCheck.swift in Sources */,
