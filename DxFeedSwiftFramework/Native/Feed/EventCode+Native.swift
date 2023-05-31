@@ -53,4 +53,51 @@ extension EventCode {
             return nil
         }
     }
+    func nativeCode() -> dxfg_event_clazz_t {
+        switch self {
+        case .quote:
+            return DXFG_EVENT_QUOTE
+        case .profile:
+            return DXFG_EVENT_PROFILE
+        case .summary:
+            return DXFG_EVENT_SUMMARY
+        case .greeks:
+            return DXFG_EVENT_GREEKS
+        case .candle:
+            return DXFG_EVENT_CANDLE
+        case .dailyCandle:
+            return DXFG_EVENT_DAILY_CANDLE
+        case .underlying:
+            return DXFG_EVENT_UNDERLYING
+        case .theoPrice:
+            return DXFG_EVENT_THEO_PRICE
+        case .trade:
+            return DXFG_EVENT_TRADE
+        case .tradeETH:
+            return DXFG_EVENT_TRADE_ETH
+        case .configuration:
+            return DXFG_EVENT_CONFIGURATION
+        case .message:
+            return DXFG_EVENT_MESSAGE
+        case .timeAndSale:
+            return DXFG_EVENT_TIME_AND_SALE
+        case .orderBase:
+            return DXFG_EVENT_ORDER_BASE
+        case .order:
+            return DXFG_EVENT_ORDER
+        case .analyticOrder:
+            return DXFG_EVENT_ANALYTIC_ORDER
+        case .spreadOrder:
+            return DXFG_EVENT_SPREAD_ORDER
+        case .series:
+            return DXFG_EVENT_SERIES
+        case .optionSale:
+            return DXFG_EVENT_OPTION_SALE
+        }
+    }
+
+    static func differentCodesAfterConversation() -> [EventCode] {
+        let convertedSet = Set(EventCode.allCases.map { $0.nativeCode() }.compactMap { EventCode.convert($0)  })
+        return Array(Set(EventCode.allCases).symmetricDifference(convertedSet))
+    }
 }

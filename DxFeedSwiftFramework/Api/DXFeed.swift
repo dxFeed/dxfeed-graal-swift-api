@@ -9,12 +9,12 @@ import Foundation
 
 class DXFeed {
     private let native: NativeFeed
+    private var attachedSubscriptions = ConcurrentSet<DXFeedSubcription>()
+
     deinit {
-#warning("TODO: implement it")
     }
 
     internal init(native: NativeFeed?) throws {
-        #warning("TODO: implement it")
         if let native = native {
             self.native = native
         } else {
@@ -22,7 +22,11 @@ class DXFeed {
         }
     }
 
-    public func createSubscription() throws {
+    public func createSubscription(_ events: [EventCode]) throws -> DXFeedSubcription {
+        return try DXFeedSubcription(native: native.createSubscription(events), events: events)
+    }
 
+    public func createSubscription(_ event: EventCode) throws -> DXFeedSubcription {
+        return try DXFeedSubcription(native: native.createSubscription(event), events: [event])
     }
 }
