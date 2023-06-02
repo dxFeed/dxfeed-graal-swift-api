@@ -71,7 +71,15 @@ final class FeedTest: XCTestCase {
         let testListner = TestEventListener(name: "TestListener")
         subscription?.add(testListner)
         XCTAssertNotNil(subscription, "Subscription shouldn't be nil")
-        try subscription?.addSymbols(["AAPL", "ETH/USD:GDAX"])
+        try subscription?.addSymbols(["AAPL", "ETH/USD:GDAX", "IBM"])
         wait(seconds: 2)
+    }
+
+    func testApiLikeGithubSample() throws {
+        let endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        try endpoint.connect("demo.dxfeed.com:7300")
+        let subscription = try endpoint.getFeed()?.createSubscription(.quote)
+        let testListner = TestEventListener(name: "TestListener")
+        subscription?.add(testListner)
     }
 }
