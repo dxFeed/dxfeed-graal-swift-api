@@ -26,12 +26,10 @@
 		64104FC72A2613BC00D1FC41 /* ConcurrentArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC62A2613BC00D1FC41 /* ConcurrentArray.swift */; };
 		64104FC92A26298D00D1FC41 /* DXFeedSubcription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC82A26298D00D1FC41 /* DXFeedSubcription.swift */; };
 		64104FCC2A2629D800D1FC41 /* NativeSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FCB2A2629D800D1FC41 /* NativeSubscription.swift */; };
-		64104FCE2A2637EA00D1FC41 /* EventsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FCD2A2637EA00D1FC41 /* EventsTest.swift */; };
 		64104FD32A277B2D00D1FC41 /* ListNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FD22A277B2D00D1FC41 /* ListNative.swift */; };
 		64125E342A1F688900FB32BA /* libDxFeedGraalNativeSdk.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 64125E332A1F688900FB32BA /* libDxFeedGraalNativeSdk.o */; platformFilter = ios; };
 		64125E362A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); };
 		64125E372A1F69FD00FB32BA /* libDxFeedGraalNativeSdk.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		641BCBB42A1F8ABA00FE23C2 /* XCTestCase+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBB32A1F8ABA00FE23C2 /* XCTestCase+Utils.swift */; };
 		641BCBBC2A20ED8100FE23C2 /* DXEndpointObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBBB2A20ED8100FE23C2 /* DXEndpointObserver.swift */; };
 		641BCBC12A21077800FE23C2 /* EventCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBC02A21077800FE23C2 /* EventCode.swift */; };
 		64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F582A1B864C006A0B19 /* NativeEndpoint.swift */; };
@@ -41,7 +39,7 @@
 		64656F622A1B9FF7006A0B19 /* EnumException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F612A1B9FF7006A0B19 /* EnumException.swift */; };
 		64656F652A1CAFC5006A0B19 /* String+Pointee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F642A1CAFC5006A0B19 /* String+Pointee.swift */; };
 		64656F672A1CCFC2006A0B19 /* DXPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F662A1CCFC2006A0B19 /* DXPublisher.swift */; };
-		64656F692A1CF083006A0B19 /* UninitializedNativeException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F682A1CF083006A0B19 /* UninitializedNativeException.swift */; };
+		64656F692A1CF083006A0B19 /* NativeException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F682A1CF083006A0B19 /* NativeException.swift */; };
 		64656F6B2A1CFAC2006A0B19 /* BridgeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6A2A1CFAC2006A0B19 /* BridgeUtil.swift */; };
 		64656F6D2A1CFB10006A0B19 /* DXEndpointState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6C2A1CFB10006A0B19 /* DXEndpointState.swift */; };
 		64656F6F2A1CFC12006A0B19 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6E2A1CFC12006A0B19 /* WeakBox.swift */; };
@@ -49,13 +47,18 @@
 		64656F752A1D0C91006A0B19 /* WeakListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F742A1D0C91006A0B19 /* WeakListener.swift */; };
 		64656F772A1DFED9006A0B19 /* EndpointState+Native.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F762A1DFED9006A0B19 /* EndpointState+Native.swift */; };
 		64ACBCCF2A27851C00032C53 /* FeedTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC02A210DDD00D1FC41 /* FeedTest.swift */; };
-		64ACBCD02A2789E300032C53 /* EndpointPublisherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBB72A1FA72000FE23C2 /* EndpointPublisherTest.swift */; };
-		64ACBCD12A2789E500032C53 /* EndpointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC416029CA376E00E6B611 /* EndpointTest.swift */; };
-		64ACBCD22A2789E700032C53 /* SystemPropertyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77829C498FA00F240CB /* SystemPropertyTest.swift */; };
-		64ACBCD32A2789E900032C53 /* ThreadsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76C29C101CF00F240CB /* ThreadsTest.swift */; };
-		64ACBCD42A2789EB00032C53 /* IsolateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76A29C0FE1700F240CB /* IsolateTest.swift */; };
 		64ACBCD52A2789EF00032C53 /* TestListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBB92A1FB42500FE23C2 /* TestListener.swift */; };
 		64ACBCD72A27981900032C53 /* ListNative+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ACBCD62A27981900032C53 /* ListNative+Ext.swift */; };
+		64ACBCD92A279F7900032C53 /* DXEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ACBCD82A279F7900032C53 /* DXEventListener.swift */; };
+		64ACBCDD2A28978600032C53 /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ACBCDC2A28978600032C53 /* Symbol.swift */; };
+		64ACBCDF2A2897EA00032C53 /* String+Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ACBCDE2A2897EA00032C53 /* String+Symbol.swift */; };
+		64ACBCE12A28999B00032C53 /* WildcardSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ACBCE02A28999B00032C53 /* WildcardSymbol.swift */; };
+		64ACBCE32A289A0700032C53 /* TimeSeriesSubscriptionSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ACBCE22A289A0700032C53 /* TimeSeriesSubscriptionSymbol.swift */; };
+		64ACBCE62A28BA7D00032C53 /* SymbolMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ACBCE52A28BA7D00032C53 /* SymbolMapper.swift */; };
+		64ACBCE82A28CF9700032C53 /* IndexedEventSubscriptionSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ACBCE72A28CF9700032C53 /* IndexedEventSubscriptionSymbol.swift */; };
+		64ACBCEA2A28DDDA00032C53 /* TestEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ACBCE92A28DDDA00032C53 /* TestEventListener.swift */; };
+		64ACBCEC2A29FE2300032C53 /* XCTestCase+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBB32A1F8ABA00FE23C2 /* XCTestCase+Utils.swift */; };
+		64D0DBE82A29FF4B00710605 /* EventsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FCD2A2637EA00D1FC41 /* EventsTest.swift */; };
 		803BAC1629BFA50700FFAB1C /* DxFeedSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; };
 		803BAC1C29BFA50700FFAB1C /* DxFeedSwiftFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		803BAC2B29BFA69A00FFAB1C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2A29BFA69400FFAB1C /* libc++.tbd */; };
@@ -120,7 +123,7 @@
 		64656F612A1B9FF7006A0B19 /* EnumException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumException.swift; sourceTree = "<group>"; };
 		64656F642A1CAFC5006A0B19 /* String+Pointee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Pointee.swift"; sourceTree = "<group>"; };
 		64656F662A1CCFC2006A0B19 /* DXPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXPublisher.swift; sourceTree = "<group>"; };
-		64656F682A1CF083006A0B19 /* UninitializedNativeException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UninitializedNativeException.swift; sourceTree = "<group>"; };
+		64656F682A1CF083006A0B19 /* NativeException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeException.swift; sourceTree = "<group>"; };
 		64656F6A2A1CFAC2006A0B19 /* BridgeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeUtil.swift; sourceTree = "<group>"; };
 		64656F6C2A1CFB10006A0B19 /* DXEndpointState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXEndpointState.swift; sourceTree = "<group>"; };
 		64656F6E2A1CFC12006A0B19 /* WeakBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakBox.swift; sourceTree = "<group>"; };
@@ -128,6 +131,14 @@
 		64656F742A1D0C91006A0B19 /* WeakListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakListener.swift; sourceTree = "<group>"; };
 		64656F762A1DFED9006A0B19 /* EndpointState+Native.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EndpointState+Native.swift"; sourceTree = "<group>"; };
 		64ACBCD62A27981900032C53 /* ListNative+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListNative+Ext.swift"; sourceTree = "<group>"; };
+		64ACBCD82A279F7900032C53 /* DXEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXEventListener.swift; sourceTree = "<group>"; };
+		64ACBCDC2A28978600032C53 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
+		64ACBCDE2A2897EA00032C53 /* String+Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Symbol.swift"; sourceTree = "<group>"; };
+		64ACBCE02A28999B00032C53 /* WildcardSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WildcardSymbol.swift; sourceTree = "<group>"; };
+		64ACBCE22A289A0700032C53 /* TimeSeriesSubscriptionSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesSubscriptionSymbol.swift; sourceTree = "<group>"; };
+		64ACBCE52A28BA7D00032C53 /* SymbolMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolMapper.swift; sourceTree = "<group>"; };
+		64ACBCE72A28CF9700032C53 /* IndexedEventSubscriptionSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexedEventSubscriptionSymbol.swift; sourceTree = "<group>"; };
+		64ACBCE92A28DDDA00032C53 /* TestEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEventListener.swift; sourceTree = "<group>"; };
 		803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DxFeedSwiftFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DxFeedSwiftFramework.h; sourceTree = "<group>"; };
 		803BAC1529BFA50700FFAB1C /* DxFeedSwiftFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DxFeedSwiftFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -229,6 +240,35 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
+		64ACBCDB2A28974900032C53 /* Osub */ = {
+			isa = PBXGroup;
+			children = (
+				64ACBCDC2A28978600032C53 /* Symbol.swift */,
+				64ACBCDE2A2897EA00032C53 /* String+Symbol.swift */,
+				64ACBCE02A28999B00032C53 /* WildcardSymbol.swift */,
+				64ACBCE22A289A0700032C53 /* TimeSeriesSubscriptionSymbol.swift */,
+				64ACBCE72A28CF9700032C53 /* IndexedEventSubscriptionSymbol.swift */,
+			);
+			path = Osub;
+			sourceTree = "<group>";
+		};
+		64ACBCE42A28AEE200032C53 /* SymbolMappers */ = {
+			isa = PBXGroup;
+			children = (
+				64ACBCE52A28BA7D00032C53 /* SymbolMapper.swift */,
+			);
+			path = SymbolMappers;
+			sourceTree = "<group>";
+		};
+		64ACBCEB2A28DDE300032C53 /* Listeners */ = {
+			isa = PBXGroup;
+			children = (
+				64ACBCE92A28DDDA00032C53 /* TestEventListener.swift */,
+				641BCBB92A1FB42500FE23C2 /* TestListener.swift */,
+			);
+			path = Listeners;
+			sourceTree = "<group>";
+		};
 		803BAC0329BFA50700FFAB1C = {
 			isa = PBXGroup;
 			children = (
@@ -264,8 +304,8 @@
 		803BAC1929BFA50700FFAB1C /* DxFeedSwiftFrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
+				64ACBCEB2A28DDE300032C53 /* Listeners */,
 				641BCBB32A1F8ABA00FE23C2 /* XCTestCase+Utils.swift */,
-				641BCBB92A1FB42500FE23C2 /* TestListener.swift */,
 				8088D76A29C0FE1700F240CB /* IsolateTest.swift */,
 				8088D76C29C101CF00F240CB /* ThreadsTest.swift */,
 				8088D77829C498FA00F240CB /* SystemPropertyTest.swift */,
@@ -294,10 +334,11 @@
 			children = (
 				80FC415A29CA2B7100E6B611 /* Endpoint */,
 				64656F5C2A1B97E4006A0B19 /* Feed */,
-				64104FCA2A2629C400D1FC41 /* Subscription */,
 				80FC415D29CA2C4300E6B611 /* Property */,
 				8088D77E29C8DDAE00F240CB /* Graal */,
 				64104FD12A277B1A00D1FC41 /* Interop */,
+				64104FCA2A2629C400D1FC41 /* Subscription */,
+				64ACBCE42A28AEE200032C53 /* SymbolMappers */,
 				8088D77B29C8D96600F240CB /* ErrorHandling */,
 			);
 			path = Native;
@@ -310,7 +351,7 @@
 				8088D77229C3A2F400F240CB /* GraalException.swift */,
 				8088D77C29C8DAF800F240CB /* GraalErrorCode.swift */,
 				64656F612A1B9FF7006A0B19 /* EnumException.swift */,
-				64656F682A1CF083006A0B19 /* UninitializedNativeException.swift */,
+				64656F682A1CF083006A0B19 /* NativeException.swift */,
 			);
 			path = ErrorHandling;
 			sourceTree = "<group>";
@@ -328,12 +369,14 @@
 		80FC415529C8E2E400E6B611 /* Api */ = {
 			isa = PBXGroup;
 			children = (
+				64ACBCDB2A28974900032C53 /* Osub */,
 				80FC415829C8EE8B00E6B611 /* DXEndpoint.swift */,
 				64656F5A2A1B9784006A0B19 /* DXFeed.swift */,
 				64656F662A1CCFC2006A0B19 /* DXPublisher.swift */,
 				64656F6C2A1CFB10006A0B19 /* DXEndpointState.swift */,
 				641BCBBB2A20ED8100FE23C2 /* DXEndpointObserver.swift */,
 				64104FC82A26298D00D1FC41 /* DXFeedSubcription.swift */,
+				64ACBCD82A279F7900032C53 /* DXEventListener.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -533,22 +576,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64ACBCE32A289A0700032C53 /* TimeSeriesSubscriptionSymbol.swift in Sources */,
 				8088D77129C3A25D00F240CB /* SystemProperty.swift in Sources */,
 				80FC415929C8EE8B00E6B611 /* DXEndpoint.swift in Sources */,
+				64ACBCD92A279F7900032C53 /* DXEventListener.swift in Sources */,
 				64656F5B2A1B9784006A0B19 /* DXFeed.swift in Sources */,
 				64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */,
+				64ACBCE62A28BA7D00032C53 /* SymbolMapper.swift in Sources */,
 				64104FC72A2613BC00D1FC41 /* ConcurrentArray.swift in Sources */,
+				64ACBCDF2A2897EA00032C53 /* String+Symbol.swift in Sources */,
 				64104FC32A210F2400D1FC41 /* EventCode+Native.swift in Sources */,
 				80FC415C29CA2B8800E6B611 /* NativeBuilder.swift in Sources */,
 				64656F652A1CAFC5006A0B19 /* String+Pointee.swift in Sources */,
 				64ACBCD72A27981900032C53 /* ListNative+Ext.swift in Sources */,
-				64656F692A1CF083006A0B19 /* UninitializedNativeException.swift in Sources */,
+				64656F692A1CF083006A0B19 /* NativeException.swift in Sources */,
+				64ACBCDD2A28978600032C53 /* Symbol.swift in Sources */,
 				8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */,
 				64656F732A1D0A84006A0B19 /* EndpointListener.swift in Sources */,
 				64104FCC2A2629D800D1FC41 /* NativeSubscription.swift in Sources */,
 				64656F6D2A1CFB10006A0B19 /* DXEndpointState.swift in Sources */,
 				64104FC92A26298D00D1FC41 /* DXFeedSubcription.swift in Sources */,
 				64104FD32A277B2D00D1FC41 /* ListNative.swift in Sources */,
+				64ACBCE12A28999B00032C53 /* WildcardSymbol.swift in Sources */,
 				64656F672A1CCFC2006A0B19 /* DXPublisher.swift in Sources */,
 				641BCBBC2A20ED8100FE23C2 /* DXEndpointObserver.swift in Sources */,
 				64656F772A1DFED9006A0B19 /* EndpointState+Native.swift in Sources */,
@@ -556,6 +605,7 @@
 				80FC415F29CA2C5100E6B611 /* NativeProperty.swift in Sources */,
 				64656F622A1B9FF7006A0B19 /* EnumException.swift in Sources */,
 				641BCBC12A21077800FE23C2 /* EventCode.swift in Sources */,
+				64ACBCE82A28CF9700032C53 /* IndexedEventSubscriptionSymbol.swift in Sources */,
 				8088D77D29C8DAF800F240CB /* GraalErrorCode.swift in Sources */,
 				8088D76929C0FC5C00F240CB /* Isolate.swift in Sources */,
 				64656F6B2A1CFAC2006A0B19 /* BridgeUtil.swift in Sources */,
@@ -573,14 +623,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64ACBCD32A2789E900032C53 /* ThreadsTest.swift in Sources */,
+				64D0DBE82A29FF4B00710605 /* EventsTest.swift in Sources */,
+				64ACBCEC2A29FE2300032C53 /* XCTestCase+Utils.swift in Sources */,
 				64ACBCD52A2789EF00032C53 /* TestListener.swift in Sources */,
-				64104FCE2A2637EA00D1FC41 /* EventsTest.swift in Sources */,
-				64ACBCD02A2789E300032C53 /* EndpointPublisherTest.swift in Sources */,
-				64ACBCD12A2789E500032C53 /* EndpointTest.swift in Sources */,
-				64ACBCD22A2789E700032C53 /* SystemPropertyTest.swift in Sources */,
-				64ACBCD42A2789EB00032C53 /* IsolateTest.swift in Sources */,
-				641BCBB42A1F8ABA00FE23C2 /* XCTestCase+Utils.swift in Sources */,
+				64ACBCEA2A28DDDA00032C53 /* TestEventListener.swift in Sources */,
 				64ACBCCF2A27851C00032C53 /* FeedTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

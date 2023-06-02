@@ -25,3 +25,13 @@ extension ListNative where T == dxfg_event_type_t {
         return listPointer
     }
 }
+
+extension ListNative where T == dxfg_symbol_t {
+    func newList() -> UnsafeMutablePointer<dxfg_symbol_list> {
+        let listPointer = UnsafeMutablePointer<dxfg_symbol_list>.allocate(capacity: 1)
+        listPointer.pointee.size = self.size
+        listPointer.pointee.elements = self.elements
+        return listPointer
+    }
+}
+

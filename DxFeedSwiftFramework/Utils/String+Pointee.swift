@@ -19,4 +19,8 @@ extension String {
     func toCStringRef() -> UnsafeMutablePointer<CChar> {
         return UnsafeMutablePointer<CChar>(mutating: (self as NSString).utf8String!)
     }
+
+    func toCStringRef() -> UnsafePointer<CChar> {
+        return UnsafePointer<CChar>((self as NSString).utf8String!)
+    }
 }
