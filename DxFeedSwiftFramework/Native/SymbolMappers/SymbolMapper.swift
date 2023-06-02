@@ -36,28 +36,6 @@ class SymbolMapper {
         return nil
     }
 
-    static func newNativeWithoutCast(_ symbol: Symbol) -> Any? {
-        switch symbol {
-        case let stringSymbol as String:
-            var pointer = UnsafeMutablePointer<dxfg_string_symbol_t>.allocate(capacity: 1)
-            pointer.pointee.supper = dxfg_symbol_t(type: STRING)
-            pointer.pointee.symbol = stringSymbol.stringValue.toCStringRef()
-            return pointer
-        case _ as WildcardSymbol:
-            let pointer = UnsafeMutablePointer<dxfg_wildcard_symbol_t>.allocate(capacity: 1)
-            pointer.pointee.supper = dxfg_symbol_t(type: WILDCARD)
-            return pointer
-        case let tsSymbol as TimeSeriesSubscriptionSymbol:
-            print(tsSymbol)
-        default:
-            let pointer = UnsafeMutablePointer<dxfg_string_symbol_t>.allocate(capacity: 1)
-            pointer.pointee.supper = dxfg_symbol_t(type: STRING)
-            pointer.pointee.symbol = symbol.stringValue.toCStringRef()
-            return pointer
-        }
-        return nil
-    }
-
     static func clearNative(symbol: UnsafeMutablePointer<dxfg_symbol_t>) {
         let type = symbol.pointee.type
         switch type {
