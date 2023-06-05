@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DXFeedSubcription {
+public class DXFeedSubcription {
     private let native: NativeSubscription
     fileprivate let events: Set<EventCode>
     private let listeners = ConcurrentSet<AnyHashable>()
@@ -23,7 +23,7 @@ class DXFeedSubcription {
         self.events = Set(events)
     }
 
-    func add<O>(_ observer: O)
+    public func add<O>(_ observer: O)
     where O: DXEventListener,
           O: Hashable {
               listeners.reader { [weak self] in
@@ -34,7 +34,7 @@ class DXFeedSubcription {
               listeners.insert(observer)
           }
 
-    func remove<O>(_ observer: O)
+    public func remove<O>(_ observer: O)
     where O: DXEventListener,
           O: Hashable {
               listeners.remove(observer)
@@ -50,17 +50,17 @@ class DXFeedSubcription {
 }
 
 extension DXFeedSubcription: DXEventListener {
-    func receiveEvents(_ events: [AnyObject]) {
+    public func receiveEvents(_ events: [AnyObject]) {
 
     }
 }
 
 extension DXFeedSubcription: Hashable {
-    static func == (lhs: DXFeedSubcription, rhs: DXFeedSubcription) -> Bool {
+    public static func == (lhs: DXFeedSubcription, rhs: DXFeedSubcription) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
 
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(self.events)
     }
 }
