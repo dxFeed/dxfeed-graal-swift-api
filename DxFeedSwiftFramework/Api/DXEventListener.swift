@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol DXEventListener: AnyObject {
-    func receiveEvents(_ events: [AnyObject])
+    func receiveEvents(_ events: [MarketEvent])
 }

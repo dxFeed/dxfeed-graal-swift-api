@@ -32,6 +32,11 @@
 		64125E372A1F69FD00FB32BA /* libDxFeedGraalNativeSdk.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		641BCBBC2A20ED8100FE23C2 /* DXEndpointObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBBB2A20ED8100FE23C2 /* DXEndpointObserver.swift */; };
 		641BCBC12A21077800FE23C2 /* EventCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBC02A21077800FE23C2 /* EventCode.swift */; };
+		642BE4C42A2E1AFF0052340A /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4C32A2E1AFF0052340A /* Quote.swift */; };
+		642BE4C82A2E1BD40052340A /* QuoteMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4C72A2E1BD40052340A /* QuoteMapper.swift */; };
+		642BE4CA2A2E1C640052340A /* MarketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4C92A2E1C640052340A /* MarketEvent.swift */; };
+		642BE4CC2A2E1DB70052340A /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4CB2A2E1DB70052340A /* Mapper.swift */; };
+		642BE4CE2A2E29270052340A /* EventMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4CD2A2E29270052340A /* EventMapper.swift */; };
 		64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F582A1B864C006A0B19 /* NativeEndpoint.swift */; };
 		64656F5B2A1B9784006A0B19 /* DXFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5A2A1B9784006A0B19 /* DXFeed.swift */; };
 		64656F5E2A1B97F2006A0B19 /* NativeFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5D2A1B97F2006A0B19 /* NativeFeed.swift */; };
@@ -116,6 +121,11 @@
 		641BCBB92A1FB42500FE23C2 /* TestListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListener.swift; sourceTree = "<group>"; };
 		641BCBBB2A20ED8100FE23C2 /* DXEndpointObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXEndpointObserver.swift; sourceTree = "<group>"; };
 		641BCBC02A21077800FE23C2 /* EventCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCode.swift; sourceTree = "<group>"; };
+		642BE4C32A2E1AFF0052340A /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
+		642BE4C72A2E1BD40052340A /* QuoteMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteMapper.swift; sourceTree = "<group>"; };
+		642BE4C92A2E1C640052340A /* MarketEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketEvent.swift; sourceTree = "<group>"; };
+		642BE4CB2A2E1DB70052340A /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
+		642BE4CD2A2E29270052340A /* EventMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMapper.swift; sourceTree = "<group>"; };
 		64656F582A1B864C006A0B19 /* NativeEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeEndpoint.swift; sourceTree = "<group>"; };
 		64656F5A2A1B9784006A0B19 /* DXFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFeed.swift; sourceTree = "<group>"; };
 		64656F5D2A1B97F2006A0B19 /* NativeFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeFeed.swift; sourceTree = "<group>"; };
@@ -205,8 +215,28 @@
 		641BCBBF2A21051A00FE23C2 /* Market */ = {
 			isa = PBXGroup;
 			children = (
+				642BE4C32A2E1AFF0052340A /* Quote.swift */,
+				642BE4C92A2E1C640052340A /* MarketEvent.swift */,
 			);
 			path = Market;
+			sourceTree = "<group>";
+		};
+		642BE4C52A2E1B550052340A /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				642BE4C62A2E1BC50052340A /* Markets */,
+				642BE4CB2A2E1DB70052340A /* Mapper.swift */,
+				642BE4CD2A2E29270052340A /* EventMapper.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		642BE4C62A2E1BC50052340A /* Markets */ = {
+			isa = PBXGroup;
+			children = (
+				642BE4C72A2E1BD40052340A /* QuoteMapper.swift */,
+			);
+			path = Markets;
 			sourceTree = "<group>";
 		};
 		64656F542A1B69FE006A0B19 /* Events */ = {
@@ -333,13 +363,14 @@
 			isa = PBXGroup;
 			children = (
 				80FC415A29CA2B7100E6B611 /* Endpoint */,
+				8088D77B29C8D96600F240CB /* ErrorHandling */,
+				642BE4C52A2E1B550052340A /* Events */,
 				64656F5C2A1B97E4006A0B19 /* Feed */,
 				80FC415D29CA2C4300E6B611 /* Property */,
 				8088D77E29C8DDAE00F240CB /* Graal */,
 				64104FD12A277B1A00D1FC41 /* Interop */,
 				64104FCA2A2629C400D1FC41 /* Subscription */,
 				64ACBCE42A28AEE200032C53 /* SymbolMappers */,
-				8088D77B29C8D96600F240CB /* ErrorHandling */,
 			);
 			path = Native;
 			sourceTree = "<group>";
@@ -583,12 +614,14 @@
 				64656F5B2A1B9784006A0B19 /* DXFeed.swift in Sources */,
 				64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */,
 				64ACBCE62A28BA7D00032C53 /* SymbolMapper.swift in Sources */,
+				642BE4CC2A2E1DB70052340A /* Mapper.swift in Sources */,
 				64104FC72A2613BC00D1FC41 /* ConcurrentArray.swift in Sources */,
 				64ACBCDF2A2897EA00032C53 /* String+Symbol.swift in Sources */,
 				64104FC32A210F2400D1FC41 /* EventCode+Native.swift in Sources */,
 				80FC415C29CA2B8800E6B611 /* NativeBuilder.swift in Sources */,
 				64656F652A1CAFC5006A0B19 /* String+Pointee.swift in Sources */,
 				64ACBCD72A27981900032C53 /* ListNative+Ext.swift in Sources */,
+				642BE4CE2A2E29270052340A /* EventMapper.swift in Sources */,
 				64656F692A1CF083006A0B19 /* NativeException.swift in Sources */,
 				64ACBCDD2A28978600032C53 /* Symbol.swift in Sources */,
 				8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */,
@@ -597,6 +630,7 @@
 				64656F6D2A1CFB10006A0B19 /* DXEndpointState.swift in Sources */,
 				64104FC92A26298D00D1FC41 /* DXFeedSubcription.swift in Sources */,
 				64104FD32A277B2D00D1FC41 /* ListNative.swift in Sources */,
+				642BE4C82A2E1BD40052340A /* QuoteMapper.swift in Sources */,
 				64ACBCE12A28999B00032C53 /* WildcardSymbol.swift in Sources */,
 				64656F672A1CCFC2006A0B19 /* DXPublisher.swift in Sources */,
 				641BCBBC2A20ED8100FE23C2 /* DXEndpointObserver.swift in Sources */,
@@ -611,7 +645,9 @@
 				64656F6B2A1CFAC2006A0B19 /* BridgeUtil.swift in Sources */,
 				8088D77329C3A2F400F240CB /* GraalException.swift in Sources */,
 				64104FC52A26059B00D1FC41 /* ConcurrentSet.swift in Sources */,
+				642BE4C42A2E1AFF0052340A /* Quote.swift in Sources */,
 				64656F602A1B9EC2006A0B19 /* EnumUtil.swift in Sources */,
+				642BE4CA2A2E1C640052340A /* MarketEvent.swift in Sources */,
 				8088D76629C0FBCE00F240CB /* IsolateThread.swift in Sources */,
 				8088D77529C3A61000F240CB /* ErrorCheck.swift in Sources */,
 				64656F5E2A1B97F2006A0B19 /* NativeFeed.swift in Sources */,
