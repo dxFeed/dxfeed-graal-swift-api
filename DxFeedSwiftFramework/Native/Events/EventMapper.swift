@@ -9,7 +9,8 @@ import Foundation
 @_implementationOnly import graal_api
 
 class EventMapper: Mapper {
-    private let mappers: [EventCode: Mapper] = [.quote: QuoteMapper()]
+    private let mappers: [EventCode: Mapper] = [.quote: QuoteMapper(),
+                                                .timeAndSale: TimeAndSaleMapper()]
 
     func fromNative(native: UnsafeMutablePointer<dxfg_event_type_t>) throws -> MarketEvent? {
         let code = try EnumUtil.valueOf(value: EventCode.convert(native.pointee.clazz))

@@ -89,6 +89,9 @@ class NativeSubscription {
             nativeSymbols.forEach { SymbolMapper.clearNative(symbol: $0) }
         }
         let thread = currentThread()
-        _ = try ErrorCheck.nativeCall(thread, dxfg_DXFeedSubscription_addSymbols(thread, self.subscription, listPointer))
+        _ = try ErrorCheck.nativeCall(thread,
+                                      dxfg_DXFeedSubscription_addSymbols(thread,
+                                                                         self.subscription,
+                                                                         listPointer))
     }
 }
