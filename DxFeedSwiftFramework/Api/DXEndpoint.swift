@@ -62,13 +62,13 @@ public class DXEndpoint {
         try native.addListener(self)
     }
 
-    func add<O>(_ observer: O)
+    public func add<O>(_ observer: O)
     where O: DXEndpointObserver,
           O: Hashable {
         observersSet.insert(observer)
     }
 
-    func remove<O>(_ observer: O)
+    public func remove<O>(_ observer: O)
     where O: DXEndpointObserver,
           O: Hashable {
         observersSet.remove(observer)
