@@ -11,7 +11,7 @@ public class TimeAndSale: MarketEvent, CustomStringConvertible {
     public let type: EventCode = .timeAndSale
     public let eventSymbol: String
     public let eventTime: Int64
-    
+
     public let eventFlags: Int32
     public let index: Int64
     public let timeNanoPart: Int32
