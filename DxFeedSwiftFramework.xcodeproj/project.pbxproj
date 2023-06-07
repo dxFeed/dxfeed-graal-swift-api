@@ -67,6 +67,13 @@
 		64ACBCE82A28CF9700032C53 /* IndexedEventSubscriptionSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ACBCE72A28CF9700032C53 /* IndexedEventSubscriptionSymbol.swift */; };
 		64ACBCEA2A28DDDA00032C53 /* TestEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ACBCE92A28DDDA00032C53 /* TestEventListener.swift */; };
 		64ACBCEC2A29FE2300032C53 /* XCTestCase+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBB32A1F8ABA00FE23C2 /* XCTestCase+Utils.swift */; };
+		64BA925F2A306B9600BE26A0 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BA925E2A306B9600BE26A0 /* Profile.swift */; };
+		64BA92612A306BA900BE26A0 /* Profile+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BA92602A306BA900BE26A0 /* Profile+Ext.swift */; };
+		64BA92632A306BBD00BE26A0 /* ProfileMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BA92622A306BBD00BE26A0 /* ProfileMapper.swift */; };
+		64BA92652A306E0200BE26A0 /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BA92642A306E0200BE26A0 /* Trade.swift */; };
+		64BA92672A306E3100BE26A0 /* Trade+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BA92662A306E3100BE26A0 /* Trade+Ext.swift */; };
+		64BA92692A306E6000BE26A0 /* TradeBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BA92682A306E6000BE26A0 /* TradeBase.swift */; };
+		64BA926B2A3072CA00BE26A0 /* TradeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BA926A2A3072CA00BE26A0 /* TradeMapper.swift */; };
 		64D0DBE82A29FF4B00710605 /* EventsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FCD2A2637EA00D1FC41 /* EventsTest.swift */; };
 		803BAC1629BFA50700FFAB1C /* DxFeedSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; };
 		803BAC1C29BFA50700FFAB1C /* DxFeedSwiftFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -157,6 +164,13 @@
 		64ACBCE52A28BA7D00032C53 /* SymbolMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolMapper.swift; sourceTree = "<group>"; };
 		64ACBCE72A28CF9700032C53 /* IndexedEventSubscriptionSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexedEventSubscriptionSymbol.swift; sourceTree = "<group>"; };
 		64ACBCE92A28DDDA00032C53 /* TestEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEventListener.swift; sourceTree = "<group>"; };
+		64BA925E2A306B9600BE26A0 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		64BA92602A306BA900BE26A0 /* Profile+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Profile+Ext.swift"; sourceTree = "<group>"; };
+		64BA92622A306BBD00BE26A0 /* ProfileMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMapper.swift; sourceTree = "<group>"; };
+		64BA92642A306E0200BE26A0 /* Trade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trade.swift; sourceTree = "<group>"; };
+		64BA92662A306E3100BE26A0 /* Trade+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trade+Ext.swift"; sourceTree = "<group>"; };
+		64BA92682A306E6000BE26A0 /* TradeBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeBase.swift; sourceTree = "<group>"; };
+		64BA926A2A3072CA00BE26A0 /* TradeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeMapper.swift; sourceTree = "<group>"; };
 		803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DxFeedSwiftFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DxFeedSwiftFramework.h; sourceTree = "<group>"; };
 		803BAC1529BFA50700FFAB1C /* DxFeedSwiftFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DxFeedSwiftFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,6 +240,9 @@
 				642BE4C92A2E1C640052340A /* MarketEvent.swift */,
 				642BE4C32A2E1AFF0052340A /* Quote.swift */,
 				642BE4D12A2F5D230052340A /* TimeAndSale.swift */,
+				64BA925E2A306B9600BE26A0 /* Profile.swift */,
+				64BA92682A306E6000BE26A0 /* TradeBase.swift */,
+				64BA92642A306E0200BE26A0 /* Trade.swift */,
 			);
 			path = Market;
 			sourceTree = "<group>";
@@ -247,6 +264,10 @@
 				642BE4CF2A2F1D3C0052340A /* Quote+Ext.swift */,
 				642BE4D52A2F5E7C0052340A /* TimeAndSaleMapper.swift */,
 				642BE4D32A2F5D730052340A /* TimeAndSale+Ext.swift */,
+				64BA92602A306BA900BE26A0 /* Profile+Ext.swift */,
+				64BA92622A306BBD00BE26A0 /* ProfileMapper.swift */,
+				64BA92662A306E3100BE26A0 /* Trade+Ext.swift */,
+				64BA926A2A3072CA00BE26A0 /* TradeMapper.swift */,
 			);
 			path = Markets;
 			sourceTree = "<group>";
@@ -620,6 +641,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64ACBCE32A289A0700032C53 /* TimeSeriesSubscriptionSymbol.swift in Sources */,
+				64BA92652A306E0200BE26A0 /* Trade.swift in Sources */,
 				8088D77129C3A25D00F240CB /* SystemProperty.swift in Sources */,
 				80FC415929C8EE8B00E6B611 /* DXEndpoint.swift in Sources */,
 				642BE4D42A2F5D730052340A /* TimeAndSale+Ext.swift in Sources */,
@@ -650,21 +672,27 @@
 				641BCBBC2A20ED8100FE23C2 /* DXEndpointObserver.swift in Sources */,
 				64656F772A1DFED9006A0B19 /* EndpointState+Native.swift in Sources */,
 				64656F752A1D0C91006A0B19 /* WeakListener.swift in Sources */,
+				64BA92612A306BA900BE26A0 /* Profile+Ext.swift in Sources */,
+				64BA926B2A3072CA00BE26A0 /* TradeMapper.swift in Sources */,
 				80FC415F29CA2C5100E6B611 /* NativeProperty.swift in Sources */,
 				64656F622A1B9FF7006A0B19 /* EnumException.swift in Sources */,
 				641BCBC12A21077800FE23C2 /* EventCode.swift in Sources */,
 				64ACBCE82A28CF9700032C53 /* IndexedEventSubscriptionSymbol.swift in Sources */,
 				642BE4D22A2F5D230052340A /* TimeAndSale.swift in Sources */,
+				64BA92692A306E6000BE26A0 /* TradeBase.swift in Sources */,
 				8088D77D29C8DAF800F240CB /* GraalErrorCode.swift in Sources */,
 				8088D76929C0FC5C00F240CB /* Isolate.swift in Sources */,
 				64656F6B2A1CFAC2006A0B19 /* BridgeUtil.swift in Sources */,
 				8088D77329C3A2F400F240CB /* GraalException.swift in Sources */,
 				64104FC52A26059B00D1FC41 /* ConcurrentSet.swift in Sources */,
+				64BA925F2A306B9600BE26A0 /* Profile.swift in Sources */,
+				64BA92672A306E3100BE26A0 /* Trade+Ext.swift in Sources */,
 				642BE4C42A2E1AFF0052340A /* Quote.swift in Sources */,
 				64656F602A1B9EC2006A0B19 /* EnumUtil.swift in Sources */,
 				642BE4CA2A2E1C640052340A /* MarketEvent.swift in Sources */,
 				8088D76629C0FBCE00F240CB /* IsolateThread.swift in Sources */,
 				642BE4D02A2F1D3C0052340A /* Quote+Ext.swift in Sources */,
+				64BA92632A306BBD00BE26A0 /* ProfileMapper.swift in Sources */,
 				8088D77529C3A61000F240CB /* ErrorCheck.swift in Sources */,
 				64656F5E2A1B97F2006A0B19 /* NativeFeed.swift in Sources */,
 				64656F6F2A1CFC12006A0B19 /* WeakBox.swift in Sources */,
