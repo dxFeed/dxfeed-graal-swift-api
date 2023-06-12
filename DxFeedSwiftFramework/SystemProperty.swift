@@ -7,17 +7,17 @@
 
 import Foundation
 
-class SystemProperty {
+public class SystemProperty {
 
     static func test() throws {
         try NativeProperty.test()
     }
 
-    static func setProperty(_ key: String, _ value: String) throws {
+    public static func setProperty(_ key: String, _ value: String) throws {
         try NativeProperty.setProperty(key, value)
     }
 
-    static func getProperty(_ key: String) -> String? {
+    public static func getProperty(_ key: String) -> String? {
         return NativeProperty.getProperty(key)
     }
 }
