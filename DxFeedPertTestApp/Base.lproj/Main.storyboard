@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="19E-5J-XD2">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Perf Test View Controller-->
+        <scene sceneID="v40-if-2T7">
+            <objects>
+                <viewController storyboardIdentifier="PerfTestViewController" id="19E-5J-XD2" customClass="PerfTestViewController" customModule="DxFeedPertTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kdK-tr-0cF">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connection status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUH-TC-Udh">
+                                <rect key="frame" x="20" y="787" width="358" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---------" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ese-Ky-RN6">
+                                <rect key="frame" x="162.33333333333334" y="416" width="68.333333333333343" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="localhost:6666" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GOg-vM-Bka">
+                                <rect key="frame" x="15" y="79.666666666666671" width="233" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xR6-Dq-o9F">
+                                <rect key="frame" x="263" y="79" width="120" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="kYf-wS-GFK"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Connect"/>
+                                <connections>
+                                    <action selector="connectTapped:" destination="19E-5J-XD2" eventType="touchUpInside" id="c2c-bX-hNH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="d7k-dG-QXT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="HUH-TC-Udh" firstAttribute="leading" secondItem="d7k-dG-QXT" secondAttribute="leading" constant="20" id="2w8-US-Ifl"/>
+                            <constraint firstItem="xR6-Dq-o9F" firstAttribute="top" secondItem="d7k-dG-QXT" secondAttribute="top" constant="20" id="54W-ED-gXR"/>
+                            <constraint firstItem="xR6-Dq-o9F" firstAttribute="leading" secondItem="GOg-vM-Bka" secondAttribute="trailing" constant="15" id="8GX-ga-o1J"/>
+                            <constraint firstItem="Ese-Ky-RN6" firstAttribute="centerY" secondItem="kdK-tr-0cF" secondAttribute="centerY" id="DaF-SR-9fG"/>
+                            <constraint firstItem="d7k-dG-QXT" firstAttribute="bottom" secondItem="HUH-TC-Udh" secondAttribute="bottom" constant="10" id="Kng-K8-RoI"/>
+                            <constraint firstItem="d7k-dG-QXT" firstAttribute="trailing" secondItem="HUH-TC-Udh" secondAttribute="trailing" constant="15" id="Mrp-6M-j0U"/>
+                            <constraint firstItem="GOg-vM-Bka" firstAttribute="centerY" secondItem="xR6-Dq-o9F" secondAttribute="centerY" id="UsC-FE-mnA"/>
+                            <constraint firstItem="Ese-Ky-RN6" firstAttribute="centerX" secondItem="kdK-tr-0cF" secondAttribute="centerX" id="a9M-c0-xEB"/>
+                            <constraint firstItem="GOg-vM-Bka" firstAttribute="leading" secondItem="d7k-dG-QXT" secondAttribute="leading" constant="15" id="qRw-dd-tyc"/>
+                            <constraint firstItem="d7k-dG-QXT" firstAttribute="trailing" secondItem="xR6-Dq-o9F" secondAttribute="trailing" constant="10" id="u7s-z2-9ZG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addressTextField" destination="GOg-vM-Bka" id="xU5-Fn-Mj8"/>
+                        <outlet property="connectButton" destination="xR6-Dq-o9F" id="hnb-lw-fUd"/>
+                        <outlet property="connectionStatusLabel" destination="HUH-TC-Udh" id="Dxe-Zv-lVS"/>
+                        <outlet property="eventsCounterLabel" destination="Ese-Ky-RN6" id="eMA-60-7Lu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tit-Sc-J5t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="166" y="1428"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
