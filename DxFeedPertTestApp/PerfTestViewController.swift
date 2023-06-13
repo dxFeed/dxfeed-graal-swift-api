@@ -32,6 +32,7 @@ class PerfTestViewController: UIViewController {
     var startTime = Date.now
     var lastValue: Int64 = 0
     var lastListenerValue: Int64 = 0
+    var maxCpuUsage: Double = 0
 
     private var endpoint: DXEndpoint?
     private var subscription: DXFeedSubcription?
@@ -43,14 +44,31 @@ class PerfTestViewController: UIViewController {
     var isConnected = false
 
     @IBOutlet var connectionStatusLabel: UILabel!
-    @IBOutlet var eventsCounterLabel: UILabel!
     @IBOutlet var connectButton: UIButton!
     @IBOutlet var addressTextField: UITextField!
+
+
+    @IBOutlet var rateOfEventsLabel: UILabel!
+    @IBOutlet var rateOfEventsCounter: UILabel!
+
+    @IBOutlet var rateOfListenersLabel: UILabel!
+    @IBOutlet var rateOfListenersCounter: UILabel!
+
+    @IBOutlet var numberOfEventsLabel: UILabel!
+    @IBOutlet var numberOfEventsCounter: UILabel!
+
+    @IBOutlet var currentCpuLabel: UILabel!
+    @IBOutlet var currentCpuCounter: UILabel!
+
+    @IBOutlet var peakCpuUsageLabel: UILabel!
+    @IBOutlet var peakCpuUsageCounter: UILabel!
 
     let colors = Colors()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.updateUI()
+        
         self.connectionStatusLabel.text = DXEndpointState.notConnected.convetToString()        
         numberFormatter.numberStyle = .decimal
 
@@ -60,36 +78,117 @@ class PerfTestViewController: UIViewController {
 
         DispatchQueue.global(qos: .background).async {
                 Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
-                    let lastStart = self.startTime
-                    let currentValue = self.counter.value
-                    let currentListenerValue = self.counterListener.value
-
-                    self.startTime = Date.now
-                    let seconds = Date.now.timeIntervalSince(lastStart)
-                    let speed = seconds == 0 ? nil : NSNumber(value: Double(currentValue - self.lastValue) / seconds)
-
-                    let speedListener = NSNumber(value: Double(currentListenerValue - self.lastListenerValue) / seconds)
-
-                    self.lastValue = currentValue
-                    self.lastListenerValue = currentListenerValue
-
-                    if let speed = speed {
-                        print("---------------------------------------------------")
-                        print("Event speed      \(self.numberFormatter.string(from: speed)!) events/s")
-                        print("Listener Calls   \(self.numberFormatter.string(from: speedListener)!) calls/s")
-
-                        DispatchQueue.main.async {
-                            if speed.intValue > 1 {
-                                self.eventsCounterLabel.text =
-                                "Event speed: \(self.numberFormatter.string(from: speed)!) events/s"
-                            } else {
-                                self.eventsCounterLabel.text = ""
-                            }
-                        }
-                    }
+                    self.updateUI()
                 }
                 RunLoop.current.run()
         }
+    }
+
+    func updateUI() {
+        let lastStart = self.startTime
+        let currentValue = self.counter.value
+        let currentListenerValue = self.counterListener.value
+
+        self.startTime = Date.now
+        let seconds = Date.now.timeIntervalSince(lastStart)
+        let speed = seconds == 0 ? nil : NSNumber(value: Double(currentValue - self.lastValue) / seconds)
+
+        let speedListener = NSNumber(value: Double(currentListenerValue - self.lastListenerValue) / seconds)
+
+        self.lastValue = currentValue
+        self.lastListenerValue = currentListenerValue
+
+        if let speed = speed {
+            print("---------------------------------------------------")
+            print("Event speed      \(self.numberFormatter.string(from: speed)!) events/s")
+            print("Listener Calls   \(self.numberFormatter.string(from: speedListener)!) calls/s")
+            let cpuUsage = self.cpuUsage()
+            maxCpuUsage = max(maxCpuUsage, cpuUsage)
+
+            DispatchQueue.main.async {
+                self.rateOfEventsCounter.text = speed.intValue > 1 ?
+                "\(self.numberFormatter.string(from: speed)!) events/s" : " "
+                self.rateOfListenersCounter.text = speedListener.intValue > 1 ?
+                "\(self.numberFormatter.string(from: speedListener)!) calls/s" : " "
+
+                if speed.intValue > 0 && speedListener.intValue > 0 {
+                    let eventsIncall = speed.doubleValue / speedListener.doubleValue
+                    self.numberOfEventsCounter.text = Int(eventsIncall) > 1 ?
+                    "\(self.numberFormatter.string(from: NSNumber(value:eventsIncall))!) events" : " "
+                } else {
+                    self.numberOfEventsCounter.text = " "
+                }
+
+                self.currentCpuCounter.text = cpuUsage > 1.0 ? "\(self.numberFormatter.string(from: NSNumber(value:cpuUsage))!) %" : "0 %"
+                self.peakCpuUsageCounter.text = self.maxCpuUsage > 1.0 ? "\(self.numberFormatter.string(from: NSNumber(value:self.maxCpuUsage))!) %" : "0 %"
+
+            }
+        }
+    }
+
+    fileprivate func cpuUsage() -> Double {
+        var kr: kern_return_t
+        var taskInfoCount: mach_msg_type_number_t
+
+        taskInfoCount = mach_msg_type_number_t(TASK_INFO_MAX)
+        var tinfo = [integer_t](repeating: 0, count: Int(taskInfoCount))
+
+        kr = task_info(mach_task_self_, task_flavor_t(TASK_BASIC_INFO), &tinfo, &taskInfoCount)
+        if kr != KERN_SUCCESS {
+            return -1
+        }
+
+        var threadList: thread_act_array_t? = UnsafeMutablePointer(mutating: [thread_act_t]())
+        var threadCount: mach_msg_type_number_t = 0
+        defer {
+            if let threadList = threadList {
+                vm_deallocate(mach_task_self_, vm_address_t(UnsafePointer(threadList).pointee), vm_size_t(threadCount))
+            }
+        }
+
+        kr = task_threads(mach_task_self_, &threadList, &threadCount)
+
+        if kr != KERN_SUCCESS {
+            return -1
+        }
+
+        var totCpu: Double = 0
+
+        if let threadList = threadList {
+
+            for jIndex in 0 ..< Int(threadCount) {
+                var threadInfoCount = mach_msg_type_number_t(THREAD_INFO_MAX)
+                var thinfo = [integer_t](repeating: 0, count: Int(threadInfoCount))
+                kr = thread_info(threadList[jIndex], thread_flavor_t(THREAD_BASIC_INFO),
+                                 &thinfo, &threadInfoCount)
+                if kr != KERN_SUCCESS {
+                    return -1
+                }
+
+                let threadBasicInfo = convertThreadInfoToThreadBasicInfo(thinfo)
+
+                if threadBasicInfo.flags != TH_FLAGS_IDLE {
+                    totCpu += (Double(threadBasicInfo.cpu_usage) / Double(TH_USAGE_SCALE)) * 100.0
+                }
+            } // for each thread
+        }
+
+        return totCpu
+    }
+
+    fileprivate func convertThreadInfoToThreadBasicInfo(_ threadInfo: [integer_t]) -> thread_basic_info {
+        var result = thread_basic_info()
+
+        result.user_time = time_value_t(seconds: threadInfo[0], microseconds: threadInfo[1])
+        result.system_time = time_value_t(seconds: threadInfo[2], microseconds: threadInfo[3])
+        result.cpu_usage = threadInfo[4]
+        result.policy = threadInfo[5]
+        result.run_state = threadInfo[6]
+        result.flags = threadInfo[7]
+        result.suspend_count = threadInfo[8]
+        result.sleep_time = threadInfo[9]
+
+        return result
     }
 
     func updateConnectButton() {
