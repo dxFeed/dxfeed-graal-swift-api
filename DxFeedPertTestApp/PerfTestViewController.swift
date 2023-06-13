@@ -78,8 +78,12 @@ class PerfTestViewController: UIViewController {
                         print("Listener Calls   \(self.numberFormatter.string(from: speedListener)!) calls/s")
 
                         DispatchQueue.main.async {
-                            self.eventsCounterLabel.text =
-                            "Event speed: \(self.numberFormatter.string(from: speed)!) events/s"
+                            if speed.intValue > 1 {
+                                self.eventsCounterLabel.text =
+                                "Event speed: \(self.numberFormatter.string(from: speed)!) events/s"
+                            } else {
+                                self.eventsCounterLabel.text = ""
+                            }
                         }
                     }
                 }
