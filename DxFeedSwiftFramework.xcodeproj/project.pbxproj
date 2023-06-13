@@ -440,10 +440,10 @@
 				64B6272D2A375C0E00196D07 /* AppDelegate.swift */,
 				64B627332A375C0F00196D07 /* Endpoint+Ext.swift */,
 				64B6272F2A375C0F00196D07 /* PaddingLabel.swift */,
-				64B6272E2A375C0F00196D07 /* QuoteCell.swift */,
 				64B627292A375C0E00196D07 /* QuoteModel.swift */,
 				64B627322A375C0F00196D07 /* QuoteTableViewController.swift */,
 				64B6272C2A375C0E00196D07 /* QuoteViewController.swift */,
+				64B6272E2A375C0F00196D07 /* QuoteCell.swift */,
 				64B627342A375C0F00196D07 /* SceneDelegate.swift */,
 			);
 			path = DxFeedSampleApp;
