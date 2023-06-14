@@ -21,10 +21,6 @@ class PerfTestViewController: UIViewController {
     var diagnostic = Diagnostic()
 
     let numberFormatter = NumberFormatter()
-    var startTime = Date.now
-    var lastValue: Int64 = 0
-    var lastListenerValue: Int64 = 0
-    var maxCpuUsage: Double = 0
 
     private var endpoint: DXEndpoint?
     private var subscription: DXFeedSubcription?
