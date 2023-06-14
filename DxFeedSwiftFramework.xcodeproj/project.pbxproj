@@ -30,6 +30,10 @@
 		64125E342A1F688900FB32BA /* libDxFeedGraalNativeSdk.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 64125E332A1F688900FB32BA /* libDxFeedGraalNativeSdk.o */; platformFilter = ios; };
 		64125E362A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); };
 		64125E372A1F69FD00FB32BA /* libDxFeedGraalNativeSdk.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		6417DD192A39C22C008912D6 /* DxFeedSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; };
+		6417DD1A2A39C22C008912D6 /* DxFeedSwiftFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6417DD222A39CA73008912D6 /* Endpoint+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6417DD202A39CA58008912D6 /* Endpoint+Ext.swift */; };
+		6417DD232A39CAB2008912D6 /* Diagnostic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6417DD1E2A39C9A7008912D6 /* Diagnostic.swift */; };
 		641BCBBC2A20ED8100FE23C2 /* DXEndpointObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBBB2A20ED8100FE23C2 /* DXEndpointObserver.swift */; };
 		641BCBC12A21077800FE23C2 /* EventCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBC02A21077800FE23C2 /* EventCode.swift */; };
 		642BE4C42A2E1AFF0052340A /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4C32A2E1AFF0052340A /* Quote.swift */; };
@@ -41,6 +45,7 @@
 		642BE4D22A2F5D230052340A /* TimeAndSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4D12A2F5D230052340A /* TimeAndSale.swift */; };
 		642BE4D42A2F5D730052340A /* TimeAndSale+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4D32A2F5D730052340A /* TimeAndSale+Ext.swift */; };
 		642BE4D62A2F5E7C0052340A /* TimeAndSaleMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4D52A2F5E7C0052340A /* TimeAndSaleMapper.swift */; };
+		645FBB3F2A39D931004B1A49 /* TimeAndSale+Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FBB3E2A39D931004B1A49 /* TimeAndSale+Access.swift */; };
 		646228512A376B0A0029DC97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462284D2A376B0A0029DC97 /* Main.storyboard */; };
 		646228522A376B0A0029DC97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462284F2A376B0A0029DC97 /* LaunchScreen.storyboard */; };
 		64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F582A1B864C006A0B19 /* NativeEndpoint.swift */; };
@@ -98,7 +103,7 @@
 		64D8BB342A39A1230071BC88 /* Diagnostic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D8BB332A39A1230071BC88 /* Diagnostic.swift */; };
 		64D8BB3E2A39BB730071BC88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D8BB3D2A39BB730071BC88 /* AppDelegate.swift */; };
 		64D8BB402A39BB730071BC88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D8BB3F2A39BB730071BC88 /* SceneDelegate.swift */; };
-		64D8BB422A39BB730071BC88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D8BB412A39BB730071BC88 /* ViewController.swift */; };
+		64D8BB422A39BB730071BC88 /* LatencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D8BB412A39BB730071BC88 /* LatencyViewController.swift */; };
 		64D8BB452A39BB730071BC88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D8BB432A39BB730071BC88 /* Main.storyboard */; };
 		64D8BB472A39BB740071BC88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D8BB462A39BB740071BC88 /* Assets.xcassets */; };
 		64D8BB4A2A39BB740071BC88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D8BB482A39BB740071BC88 /* LaunchScreen.storyboard */; };
@@ -122,6 +127,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6417DD172A39C1BE008912D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 803BAC0429BFA50700FFAB1C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 803BAC0C29BFA50700FFAB1C;
+			remoteInfo = DxFeedSwiftFramework;
+		};
+		6417DD1B2A39C22C008912D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 803BAC0429BFA50700FFAB1C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 803BAC0C29BFA50700FFAB1C;
+			remoteInfo = DxFeedSwiftFramework;
+		};
 		64B627422A375CAA00196D07 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 803BAC0429BFA50700FFAB1C /* Project object */;
@@ -146,6 +165,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		6417DD1D2A39C22C008912D6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6417DD1A2A39C22C008912D6 /* DxFeedSwiftFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		64B627482A375CB700196D07 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -192,6 +222,8 @@
 		64104FD22A277B2D00D1FC41 /* ListNative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNative.swift; sourceTree = "<group>"; };
 		64125E332A1F688900FB32BA /* libDxFeedGraalNativeSdk.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = libDxFeedGraalNativeSdk.o; path = graal_builds/ios/libDxFeedGraalNativeSdk.o; sourceTree = "<group>"; };
 		64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDxFeedGraalNativeSdk.dylib; path = graal_builds/osx_universal/libDxFeedGraalNativeSdk.dylib; sourceTree = "<group>"; };
+		6417DD1E2A39C9A7008912D6 /* Diagnostic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnostic.swift; sourceTree = "<group>"; };
+		6417DD202A39CA58008912D6 /* Endpoint+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Endpoint+Ext.swift"; sourceTree = "<group>"; };
 		641BCBB32A1F8ABA00FE23C2 /* XCTestCase+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Utils.swift"; sourceTree = "<group>"; };
 		641BCBB72A1FA72000FE23C2 /* EndpointPublisherTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointPublisherTest.swift; sourceTree = "<group>"; };
 		641BCBB92A1FB42500FE23C2 /* TestListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListener.swift; sourceTree = "<group>"; };
@@ -206,6 +238,7 @@
 		642BE4D12A2F5D230052340A /* TimeAndSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndSale.swift; sourceTree = "<group>"; };
 		642BE4D32A2F5D730052340A /* TimeAndSale+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeAndSale+Ext.swift"; sourceTree = "<group>"; };
 		642BE4D52A2F5E7C0052340A /* TimeAndSaleMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndSaleMapper.swift; sourceTree = "<group>"; };
+		645FBB3E2A39D931004B1A49 /* TimeAndSale+Access.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeAndSale+Access.swift"; sourceTree = "<group>"; };
 		6462284E2A376B0A0029DC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		646228502A376B0A0029DC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64656F582A1B864C006A0B19 /* NativeEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeEndpoint.swift; sourceTree = "<group>"; };
@@ -264,7 +297,7 @@
 		64D8BB3B2A39BB730071BC88 /* LatencyTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatencyTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D8BB3D2A39BB730071BC88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64D8BB3F2A39BB730071BC88 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		64D8BB412A39BB730071BC88 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		64D8BB412A39BB730071BC88 /* LatencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatencyViewController.swift; sourceTree = "<group>"; };
 		64D8BB442A39BB730071BC88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		64D8BB462A39BB740071BC88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64D8BB492A39BB740071BC88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -312,6 +345,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6417DD192A39C22C008912D6 /* DxFeedSwiftFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +392,7 @@
 		641BCBBF2A21051A00FE23C2 /* Market */ = {
 			isa = PBXGroup;
 			children = (
+				645FBB3E2A39D931004B1A49 /* TimeAndSale+Access.swift */,
 				642BE4C92A2E1C640052340A /* MarketEvent.swift */,
 				642BE4C32A2E1AFF0052340A /* Quote.swift */,
 				642BE4D12A2F5D230052340A /* TimeAndSale.swift */,
@@ -504,8 +539,10 @@
 			isa = PBXGroup;
 			children = (
 				64D8BB3D2A39BB730071BC88 /* AppDelegate.swift */,
+				6417DD202A39CA58008912D6 /* Endpoint+Ext.swift */,
 				64D8BB3F2A39BB730071BC88 /* SceneDelegate.swift */,
-				64D8BB412A39BB730071BC88 /* ViewController.swift */,
+				64D8BB412A39BB730071BC88 /* LatencyViewController.swift */,
+				6417DD1E2A39C9A7008912D6 /* Diagnostic.swift */,
 				64D8BB432A39BB730071BC88 /* Main.storyboard */,
 				64D8BB462A39BB740071BC88 /* Assets.xcassets */,
 				64D8BB482A39BB740071BC88 /* LaunchScreen.storyboard */,
@@ -710,10 +747,13 @@
 				64D8BB372A39BB730071BC88 /* Sources */,
 				64D8BB382A39BB730071BC88 /* Frameworks */,
 				64D8BB392A39BB730071BC88 /* Resources */,
+				6417DD1D2A39C22C008912D6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6417DD182A39C1BE008912D6 /* PBXTargetDependency */,
+				6417DD1C2A39C22C008912D6 /* PBXTargetDependency */,
 			);
 			name = LatencyTest;
 			productName = LatencyTest;
@@ -951,8 +991,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64D8BB422A39BB730071BC88 /* ViewController.swift in Sources */,
+				64D8BB422A39BB730071BC88 /* LatencyViewController.swift in Sources */,
+				6417DD232A39CAB2008912D6 /* Diagnostic.swift in Sources */,
 				64D8BB3E2A39BB730071BC88 /* AppDelegate.swift in Sources */,
+				6417DD222A39CA73008912D6 /* Endpoint+Ext.swift in Sources */,
 				64D8BB402A39BB730071BC88 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -995,6 +1037,7 @@
 				64656F752A1D0C91006A0B19 /* WeakListener.swift in Sources */,
 				64BA92612A306BA900BE26A0 /* Profile+Ext.swift in Sources */,
 				64BA926B2A3072CA00BE26A0 /* TradeMapper.swift in Sources */,
+				645FBB3F2A39D931004B1A49 /* TimeAndSale+Access.swift in Sources */,
 				80FC415F29CA2C5100E6B611 /* NativeProperty.swift in Sources */,
 				64656F622A1B9FF7006A0B19 /* EnumException.swift in Sources */,
 				641BCBC12A21077800FE23C2 /* EventCode.swift in Sources */,
@@ -1035,6 +1078,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		6417DD182A39C1BE008912D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */;
+			targetProxy = 6417DD172A39C1BE008912D6 /* PBXContainerItemProxy */;
+		};
+		6417DD1C2A39C22C008912D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */;
+			targetProxy = 6417DD1B2A39C22C008912D6 /* PBXContainerItemProxy */;
+		};
 		64B627432A375CAA00196D07 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */;
@@ -1242,13 +1295,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = LatencyTest/Info.plist;
+				INFOPLIST_FILE = Samples/LatencyTestApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1272,13 +1325,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = LatencyTest/Info.plist;
+				INFOPLIST_FILE = Samples/LatencyTestApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
