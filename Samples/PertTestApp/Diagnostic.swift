@@ -39,7 +39,7 @@ class Diagnostic {
         let currentListenerValue = self.counterListener.value
 
         self.startTime = Date.now
-        let seconds = Date.now.timeIntervalSince(lastStart)
+        let seconds = self.startTime.timeIntervalSince(lastStart)
         let speed = seconds == 0 ? 0 : Double(currentValue - self.lastValue) / seconds
 
         let speedListener =  Double(currentListenerValue - self.lastListenerValue) / seconds
