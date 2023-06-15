@@ -11,5 +11,5 @@ public protocol MarketEvent {
     var type: EventCode { get }
     var eventSymbol: String { get }
     var eventTime: Int64 { get }
-    var time: Int64 { get } 
+    var time: Int64 { get }
 }

@@ -39,36 +39,88 @@
                                     <action selector="connectTapped:" destination="19E-5J-XD2" eventType="touchUpInside" id="c2c-bX-hNH"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Kdp-up-hMd">
-                                <rect key="frame" x="10" y="134" width="373" height="634"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JTY-FL-uBX">
+                                <rect key="frame" x="10" y="139" width="373" height="649"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MetricCellId" rowHeight="50" id="Da0-8x-i3L" customClass="MetricCell" customModule="LatencyTest" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="373" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Da0-8x-i3L" id="s9G-nN-U6F">
+                                            <rect key="frame" x="0.0" y="0.0" width="373" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hqq-A5-OCx">
+                                                    <rect key="frame" x="0.0" y="0.0" width="373" height="40"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Rate of events (avg)&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzx-5a-KuR">
+                                                            <rect key="frame" x="9.9999999999999858" y="10" width="249.66666666666663" height="20"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFr-na-HV8">
+                                                            <rect key="frame" x="269.66666666666669" y="10" width="93.333333333333314" height="20"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="nzx-5a-KuR" secondAttribute="bottom" constant="10" id="6Rc-P2-PDT"/>
+                                                        <constraint firstAttribute="trailing" secondItem="NFr-na-HV8" secondAttribute="trailing" constant="10" id="AMt-hf-EUf"/>
+                                                        <constraint firstItem="NFr-na-HV8" firstAttribute="width" secondItem="Hqq-A5-OCx" secondAttribute="width" multiplier="0.25" id="EZw-yN-ctf"/>
+                                                        <constraint firstItem="nzx-5a-KuR" firstAttribute="leading" secondItem="Hqq-A5-OCx" secondAttribute="leading" constant="10" id="Kp1-ig-Ih8"/>
+                                                        <constraint firstAttribute="bottom" secondItem="NFr-na-HV8" secondAttribute="bottom" constant="10" id="S0z-G3-Rrr"/>
+                                                        <constraint firstItem="nzx-5a-KuR" firstAttribute="top" secondItem="Hqq-A5-OCx" secondAttribute="top" constant="10" id="Ypc-r9-es9"/>
+                                                        <constraint firstItem="NFr-na-HV8" firstAttribute="top" secondItem="Hqq-A5-OCx" secondAttribute="top" constant="10" id="anF-VI-Akv"/>
+                                                        <constraint firstItem="NFr-na-HV8" firstAttribute="leading" secondItem="nzx-5a-KuR" secondAttribute="trailing" constant="10" id="ieY-hH-jv8"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="Hqq-A5-OCx" secondAttribute="bottom" constant="10" id="1b0-VL-UWg"/>
+                                                <constraint firstItem="Hqq-A5-OCx" firstAttribute="leading" secondItem="s9G-nN-U6F" secondAttribute="leading" id="Cot-Ca-X5y"/>
+                                                <constraint firstItem="Hqq-A5-OCx" firstAttribute="top" secondItem="s9G-nN-U6F" secondAttribute="top" id="HN9-Fy-Hu2"/>
+                                                <constraint firstAttribute="trailing" secondItem="Hqq-A5-OCx" secondAttribute="trailing" id="c6B-Ld-7dc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="backgroundContentView" destination="Hqq-A5-OCx" id="sTX-dU-aef"/>
+                                            <outlet property="counterLabel" destination="NFr-na-HV8" id="dXz-Tr-rxb"/>
+                                            <outlet property="titleLabel" destination="nzx-5a-KuR" id="Hjc-g0-fLQ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="19E-5J-XD2" id="WOH-UN-5BG"/>
+                                    <outlet property="delegate" destination="19E-5J-XD2" id="ANQ-Nh-Jby"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="d7k-dG-QXT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="HUH-TC-Udh" firstAttribute="leading" secondItem="d7k-dG-QXT" secondAttribute="leading" constant="20" id="2w8-US-Ifl"/>
                             <constraint firstItem="xR6-Dq-o9F" firstAttribute="top" secondItem="d7k-dG-QXT" secondAttribute="top" constant="20" id="54W-ED-gXR"/>
+                            <constraint firstItem="HUH-TC-Udh" firstAttribute="top" secondItem="JTY-FL-uBX" secondAttribute="bottom" constant="20" id="7sv-IH-OFN"/>
                             <constraint firstItem="xR6-Dq-o9F" firstAttribute="leading" secondItem="GOg-vM-Bka" secondAttribute="trailing" constant="15" id="8GX-ga-o1J"/>
                             <constraint firstItem="d7k-dG-QXT" firstAttribute="bottom" secondItem="HUH-TC-Udh" secondAttribute="bottom" constant="10" id="Kng-K8-RoI"/>
-                            <constraint firstItem="HUH-TC-Udh" firstAttribute="top" secondItem="Kdp-up-hMd" secondAttribute="bottom" constant="40" id="Kxn-L3-Az3"/>
                             <constraint firstItem="d7k-dG-QXT" firstAttribute="trailing" secondItem="HUH-TC-Udh" secondAttribute="trailing" constant="15" id="Mrp-6M-j0U"/>
-                            <constraint firstItem="d7k-dG-QXT" firstAttribute="trailing" secondItem="Kdp-up-hMd" secondAttribute="trailing" constant="10" id="PeS-pK-baC"/>
-                            <constraint firstItem="Kdp-up-hMd" firstAttribute="top" secondItem="xR6-Dq-o9F" secondAttribute="bottom" constant="20" id="R6O-rr-OHT"/>
                             <constraint firstItem="GOg-vM-Bka" firstAttribute="centerY" secondItem="xR6-Dq-o9F" secondAttribute="centerY" id="UsC-FE-mnA"/>
+                            <constraint firstItem="JTY-FL-uBX" firstAttribute="leading" secondItem="d7k-dG-QXT" secondAttribute="leading" constant="10" id="W7F-oP-wbO"/>
+                            <constraint firstItem="d7k-dG-QXT" firstAttribute="trailing" secondItem="JTY-FL-uBX" secondAttribute="trailing" constant="10" id="gkd-96-LFj"/>
                             <constraint firstItem="GOg-vM-Bka" firstAttribute="leading" secondItem="d7k-dG-QXT" secondAttribute="leading" constant="15" id="qRw-dd-tyc"/>
                             <constraint firstItem="d7k-dG-QXT" firstAttribute="trailing" secondItem="xR6-Dq-o9F" secondAttribute="trailing" constant="10" id="u7s-z2-9ZG"/>
-                            <constraint firstItem="Kdp-up-hMd" firstAttribute="leading" secondItem="d7k-dG-QXT" secondAttribute="leading" constant="10" id="wcE-gK-pP2"/>
+                            <constraint firstItem="JTY-FL-uBX" firstAttribute="top" secondItem="xR6-Dq-o9F" secondAttribute="bottom" constant="25" id="ys3-zX-SRt"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="addressTextField" destination="GOg-vM-Bka" id="xU5-Fn-Mj8"/>
                         <outlet property="connectButton" destination="xR6-Dq-o9F" id="hnb-lw-fUd"/>
                         <outlet property="connectionStatusLabel" destination="HUH-TC-Udh" id="Dxe-Zv-lVS"/>
-                        <outlet property="resultTextView" destination="Kdp-up-hMd" id="REg-fq-DKC"/>
+                        <outlet property="resultTableView" destination="JTY-FL-uBX" id="bGd-HW-Mq9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tit-Sc-J5t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -77,9 +129,6 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

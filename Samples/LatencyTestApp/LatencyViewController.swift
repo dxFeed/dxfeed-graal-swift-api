@@ -22,35 +22,38 @@ class LatencyViewController: UIViewController {
 
     var isConnected = false
 
+    var dataSource = [String: String]()
+    var soureTitles = ["Rate of events (avg)",
+                      "Rate of unique symbols",
+                      "Min",
+                      "Max",
+                      "99th percentile",
+                      "Mean",
+                      "StdDev",
+                      "Error",
+                      "Sample size (N)",
+                      "Measurement interval",
+                      "Running time"]
+
     @IBOutlet var connectionStatusLabel: UILabel!
     @IBOutlet var connectButton: UIButton!
     @IBOutlet var addressTextField: UITextField!
 
-    @IBOutlet var rateOfEventsLabel: UILabel!
-    @IBOutlet var rateOfEventsCounter: UILabel!
+    @IBOutlet var resultTableView: UITableView!
 
-    @IBOutlet var rateOfUniqueSymbolsLabel: UILabel!
-    @IBOutlet var rateOfUniqueSymbolsCounter: UILabel!
-
-    @IBOutlet var numberOfEventsLabel: UILabel!
-    @IBOutlet var numberOfEventsCounter: UILabel!
-
-    @IBOutlet var currentCpuLabel: UILabel!
-    @IBOutlet var currentCpuCounter: UILabel!
-
-    @IBOutlet var peakCpuUsageLabel: UILabel!
-    @IBOutlet var peakCpuUsageCounter: UILabel!
-
-    @IBOutlet var resultTextView: UITextView!
+    let colors = Colors()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = colors.background
+        resultTableView.backgroundColor = colors.background
+
+        resultTableView.separatorStyle = .none
+
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = 2
         self.connectionStatusLabel.text = DXEndpointState.notConnected.convetToString()
 
-        let font = UIFont.monospacedSystemFont(ofSize: 16.0, weight: .regular)
-        resultTextView.font = font
         addressTextField.text = "mddqa.in.devexperts.com:7400"
         DispatchQueue.global(qos: .background).async {
             Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
@@ -106,7 +109,21 @@ class LatencyViewController: UIViewController {
   Running time             : \(metrics.currentTime.stringFromTimeInterval())
 """
         print(result)
-        resultTextView.text = result
+        print("---------------------------------------------------------")
+        dataSource = [
+            "Rate of events (avg)": "\(numberFormatter.string(from: metrics.rateOfEvent)!) (events/s)",
+            "Rate of unique symbols": "\(numberFormatter.string(from: metrics.rateOfSymbols)!) (symbols/interval)",
+            "Min": "\(numberFormatter.string(from: metrics.min)!) (ms)",
+            "Max": "\(numberFormatter.string(from: metrics.max)!) (ms)",
+            "99th percentile": "\(numberFormatter.string(from: metrics.percentile)!) (ms)",
+            "Mean": "\(numberFormatter.string(from: metrics.mean)!) (ms)",
+            "StdDev": "\(numberFormatter.string(from: metrics.stdDev)!) (ms)",
+            "Error": "\(numberFormatter.string(from: metrics.error)!) (ms)",
+            "Sample size (N)": "\(numberFormatter.string(from: metrics.sampleSize)!) (events)",
+            "Measurement interval": "\(numberFormatter.string(from: metrics.measureInterval)!) (s)",
+            "Running time": "\(metrics.currentTime.stringFromTimeInterval())"
+        ]
+        self.resultTableView.reloadData()
     }
 }
 
@@ -135,13 +152,26 @@ extension LatencyViewController: DXEventListener {
     }
 }
 
-extension TimeInterval {
-    func stringFromTimeInterval() -> String {
-        let time = NSInteger(self)
-        let miliseconds = Int((self.truncatingRemainder(dividingBy: 1)) * 1000)
-        let seconds = time % 60
-        let minutes = (time / 60) % 60
-        let hours = (time / 3600)
-        return String(format: "%0.2d:%0.2d:%0.2d.%0.3d", hours, minutes, seconds, miliseconds)
+extension LatencyViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return soureTitles.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MetricCellId", for: indexPath)
+                as? MetricCell else {
+            return UITableViewCell()
+        }
+        let title = soureTitles[indexPath.row]
+        let value = dataSource[title]
+        cell.update(title: title, value: value ?? "")
+
+        return cell
+    }
+}
+
+extension LatencyViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
 }
