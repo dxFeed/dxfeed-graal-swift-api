@@ -53,10 +53,10 @@ class LatencyViewController: UIViewController {
         resultTextView.font = font
         addressTextField.text = "mddqa.in.devexperts.com:7400"
         DispatchQueue.global(qos: .background).async {
-                Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
-                    self.updateUI()
-                }
-                RunLoop.current.run()
+            Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
+                self.updateUI()
+            }
+            RunLoop.current.run()
         }
 
     }
@@ -94,13 +94,13 @@ class LatencyViewController: UIViewController {
     func updateText(_ metrics: Metrics) {
         let result = """
   Rate of events (avg)     : \(numberFormatter.string(from: metrics.rateOfEvent)!) (events/s)
-  Rate of unique symbols   : --- (symbols/interval)
+  Rate of unique symbols   : \(numberFormatter.string(from: metrics.rateOfSymbols)!) (symbols/interval)
   Min                      : \(numberFormatter.string(from: metrics.min)!) (ms)
   Max                      : \(numberFormatter.string(from: metrics.max)!) (ms)
   99th percentile          : \(numberFormatter.string(from: metrics.percentile)!) (ms)
   Mean                     : \(numberFormatter.string(from: metrics.mean)!) (ms)
   StdDev                   : \(numberFormatter.string(from: metrics.stdDev)!) (ms)
-  Error                    : --- (ms)
+  Error                    : \(numberFormatter.string(from: metrics.error)!) (ms)
   Sample size (N)          : \(numberFormatter.string(from: metrics.sampleSize)!) (events)
   Measurement interval     : \(numberFormatter.string(from: metrics.measureInterval)!) (s)
   Running time             : \(metrics.currentTime.stringFromTimeInterval())
@@ -127,11 +127,11 @@ extension LatencyViewController: DXEventListener {
 
         events.forEach { event in
             if event.type == .timeAndSale {
-
                 var deltas = [UInt64]()
-                if let tsEvent = event as? TimeAndSale {
+                if let tsEvent = event as? TimeAndSale {                    
                     let delta = currentTime - tsEvent.time
                     deltas.append(delta)
+                    diagnostic.addSymbol(tsEvent.eventSymbol)
                     diagnostic.addDeltas(deltas)
                 }
 
@@ -141,18 +141,13 @@ extension LatencyViewController: DXEventListener {
     }
 }
 
-extension TimeInterval{
-
-        func stringFromTimeInterval() -> String {
-
-            let time = NSInteger(self)
-
-            let ms = Int((self.truncatingRemainder(dividingBy: 1)) * 1000)
-            let seconds = time % 60
-            let minutes = (time / 60) % 60
-            let hours = (time / 3600)
-
-            return String(format: "%0.2d:%0.2d:%0.2d.%0.3d",hours,minutes,seconds,ms)
-
-        }
+extension TimeInterval {
+    func stringFromTimeInterval() -> String {
+        let time = NSInteger(self)
+        let miliseconds = Int((self.truncatingRemainder(dividingBy: 1)) * 1000)
+        let seconds = time % 60
+        let minutes = (time / 60) % 60
+        let hours = (time / 3600)
+        return String(format: "%0.2d:%0.2d:%0.2d.%0.3d", hours, minutes, seconds, miliseconds)
     }
+}

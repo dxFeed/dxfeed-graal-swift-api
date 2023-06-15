@@ -37,7 +37,7 @@ public class ConcurrentArray<T>: CustomStringConvertible {
     }
 
     public func removeAll() {
-        writer { try? $0.removeAll() }
+        writer { $0.removeAll() }
     }
 
     public func removeAll(where shouldBeRemoved: @escaping (T) throws -> Bool) rethrows {
