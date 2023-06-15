@@ -75,6 +75,26 @@ class PerfTestViewController: UIViewController {
         }
     }
 
+    fileprivate func updateText(_ metrics: Metrics) {
+        let rateOfEventsCounter = "\(numberFormatter.string(from: metrics.rateOfEvent)!) events/s"
+        let rateOfListenersCounter = "\(numberFormatter.string(from: metrics.rateOfListeners)!) calls/s"
+        var eventsIncall = 0.0
+        if metrics.rateOfEvent.intValue > 0 && metrics.rateOfListeners.intValue > 0 {
+            eventsIncall = metrics.rateOfEvent.doubleValue / metrics.rateOfListeners.doubleValue
+        }
+        let numberOfEventsCounter = "\(numberFormatter.string(from: NSNumber(value: eventsIncall))!) events"
+        let currentCpuCounter = "\(numberFormatter.string(from: metrics.cpuUsage)!) %"
+        let peakCpuUsageCounter = "\(numberFormatter.string(from: metrics.peakCpuUsage)!) %"
+        dataSource = [
+            "Rate of events (avg)": rateOfEventsCounter,
+            "Rate of listener calls": rateOfListenersCounter,
+            "Number of events in call (avg)": numberOfEventsCounter,
+            "Current CPU usage": currentCpuCounter,
+            "Peak CPU usage": peakCpuUsageCounter
+        ]
+        resultTableView.reloadData()
+    }
+
     func updateUI() {
         let metrics = diagnostic.getMetrics()
         diagnostic.updateCpuUsage()
@@ -83,34 +103,10 @@ class PerfTestViewController: UIViewController {
         print("Event speed      \(numberFormatter.string(from: metrics.rateOfEvent)!) events/s")
         print("Listener Calls   \(numberFormatter.string(from: metrics.rateOfListeners)!) calls/s")
         DispatchQueue.main.async {
-
-            let rateOfEventsCounter = "\(self.numberFormatter.string(from: metrics.rateOfEvent)!) events/s"
-            let rateOfListenersCounter = metrics.rateOfListeners.intValue > 1 ?
-            "\(self.numberFormatter.string(from: metrics.rateOfListeners)!) calls/s" : " "
-            var numberOfEventsCounter = ""
-            if metrics.rateOfEvent.intValue > 0 && metrics.rateOfListeners.intValue > 0 {
-                let eventsIncall = metrics.rateOfEvent.doubleValue / metrics.rateOfListeners.doubleValue
-                numberOfEventsCounter = eventsIncall > 1 ?
-                "\(self.numberFormatter.string(from: NSNumber(value: eventsIncall))!) events" : " "
-            }
-            var currentCpuCounter = " "
-            var peakCpuUsageCounter = " "
-            if metrics.rateOfEvent.intValue > 0 {
-                currentCpuCounter = metrics.cpuUsage.intValue > 1 ?
-                "\(self.numberFormatter.string(from: metrics.cpuUsage)!) %" : "0 %"
-                peakCpuUsageCounter = metrics.peakCpuUsage.intValue > 1 ?
-                "\(self.numberFormatter.string(from: metrics.peakCpuUsage)!) %" : "0 %"
-            }
-            self.dataSource = [
-                "Rate of events (avg)": rateOfEventsCounter,
-                "Rate of listener calls": rateOfListenersCounter,
-                "Number of events in call (avg)": numberOfEventsCounter,
-                "Current CPU usage": currentCpuCounter,
-                "Peak CPU usage": peakCpuUsageCounter
-                ]
-            self.resultTableView.reloadData()
+            self.updateText(metrics)
         }
     }
+
 
     func updateConnectButton() {
         self.connectButton.setTitle(self.isConnected ? "Disconnect" : "Connect", for: .normal)
