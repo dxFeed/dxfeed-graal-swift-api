@@ -53,7 +53,8 @@ class PerfTestViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        resultTableView.backgroundColor = colors.background
+        resultTableView.backgroundColor = UIColor(named: "Background")
+
 
         resultTableView.separatorStyle = .none
 
