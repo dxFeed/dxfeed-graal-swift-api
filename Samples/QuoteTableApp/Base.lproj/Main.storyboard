@@ -104,7 +104,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EH9-zJ-QLZ">
-                                <rect key="frame" x="10" y="59" width="373" height="728"/>
+                                <rect key="frame" x="10" y="59" width="373" height="718"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuoteCellId" rowHeight="100" id="Soc-px-Ac2" customClass="QuoteCell" customModule="DxFeedSampleApp" customModuleProvider="target">
@@ -210,7 +210,7 @@
                             <constraint firstItem="25G-gY-cKV" firstAttribute="bottom" secondItem="gdj-9e-TIL" secondAttribute="bottom" constant="10" id="8B1-6Y-YFi"/>
                             <constraint firstItem="EH9-zJ-QLZ" firstAttribute="top" secondItem="25G-gY-cKV" secondAttribute="top" id="B9Y-3w-tWF"/>
                             <constraint firstItem="gdj-9e-TIL" firstAttribute="leading" secondItem="25G-gY-cKV" secondAttribute="leading" constant="20" id="HVJ-dF-7MI"/>
-                            <constraint firstItem="gdj-9e-TIL" firstAttribute="top" secondItem="EH9-zJ-QLZ" secondAttribute="bottom" id="THC-Vm-yzK"/>
+                            <constraint firstItem="gdj-9e-TIL" firstAttribute="top" secondItem="EH9-zJ-QLZ" secondAttribute="bottom" constant="10" id="THC-Vm-yzK"/>
                             <constraint firstItem="25G-gY-cKV" firstAttribute="trailing" secondItem="EH9-zJ-QLZ" secondAttribute="trailing" constant="10" id="hMT-0Z-bdv"/>
                             <constraint firstItem="25G-gY-cKV" firstAttribute="trailing" secondItem="gdj-9e-TIL" secondAttribute="trailing" constant="15" id="xFH-HS-NCS"/>
                         </constraints>
