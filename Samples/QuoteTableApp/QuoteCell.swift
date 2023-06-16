@@ -19,14 +19,13 @@ class QuoteCell: UITableViewCell {
         super.init(coder: coder)
 
     }
-    let colors = Colors()
 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundContentView.layer.cornerRadius = 10
         self.backgroundContentView.clipsToBounds = true
-        self.contentView.backgroundColor = colors.background
-        self.backgroundContentView.backgroundColor = colors.cellBackground
+        self.contentView.backgroundColor = .background
+        self.backgroundContentView.backgroundColor = .cellBackground
         priceContentView.layer.cornerRadius = 10
         priceContentView.clipsToBounds = true
     }
@@ -41,10 +40,10 @@ class QuoteCell: UITableViewCell {
 
     private func updateLabelBackground(value: Bool?, label: UILabel) {
         guard let value = value else {
-            label.backgroundColor = colors.priceBackground
+            label.backgroundColor = .priceBackground
             return
         }
-        label.backgroundColor = value ? colors.green : colors.red
+        label.backgroundColor = value ? .green : .red
     }
 
     func update(model: QuoteModel?, symbol: String, description: String?) {

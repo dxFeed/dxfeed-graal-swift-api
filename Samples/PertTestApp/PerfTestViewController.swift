@@ -43,7 +43,6 @@ class PerfTestViewController: UIViewController {
 
     @IBOutlet var resultTableView: UITableView!
 
-    let colors = Colors()
     var dataSource = [String: String]()
     let soureTitles = ["Rate of events (avg)",
                        "Rate of listener calls",
@@ -53,9 +52,7 @@ class PerfTestViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        resultTableView.backgroundColor = UIColor(named: "Background")
-
-
+        resultTableView.backgroundColor = .background
         resultTableView.separatorStyle = .none
 
         self.updateUI()
@@ -64,7 +61,7 @@ class PerfTestViewController: UIViewController {
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = 0
 
-        self.view.backgroundColor = colors.background
+        self.view.backgroundColor = .background
 
         try? SystemProperty.setProperty("com.devexperts.connector.proto.heartbeatTimeout", "10s")
 

@@ -12,7 +12,6 @@ class MetricCell: UITableViewCell {
     @IBOutlet var counterLabel: UILabel!
     @IBOutlet var backgroundContentView: UIView!
 
-    let colors = Colors()
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -20,9 +19,8 @@ class MetricCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.contentView.backgroundColor = colors.background
-
-        self.backgroundContentView.backgroundColor = colors.cellBackground
+        self.contentView.backgroundColor = .background
+        self.backgroundContentView.backgroundColor = .cellBackground
         self.backgroundContentView.layer.cornerRadius = 10
         self.backgroundContentView.clipsToBounds = true
     }
