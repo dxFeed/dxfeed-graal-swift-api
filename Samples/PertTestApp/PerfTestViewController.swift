@@ -105,7 +105,6 @@ class PerfTestViewController: UIViewController {
         }
     }
 
-
     func updateConnectButton() {
         self.connectButton.setTitle(self.isConnected ? "Disconnect" : "Connect", for: .normal)
     }
