@@ -45,14 +45,14 @@ class Diagnostic {
     let coresCount = ProcessInfo.processInfo.processorCount
 
     func getMetrics() -> Metrics {
-        if absoluteStartTime == nil {
-            absoluteStartTime = Date.now
-        }
         let lastStart = self.startTime
         let currentValue = self.counter.value
         let currentListenerValue = self.counterListener.value
 
         self.startTime = Date.now
+        if absoluteStartTime == nil {
+            absoluteStartTime = self.startTime
+        }
         let seconds = self.startTime.timeIntervalSince(lastStart)
         let speed = seconds == 0 ? 0 : Double(currentValue - self.lastValue) / seconds
 

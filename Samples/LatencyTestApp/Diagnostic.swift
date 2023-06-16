@@ -44,9 +44,6 @@ class Diagnostic {
     }
 
     func getMetrics() -> Metrics {
-        if absoluteStartTime == nil {
-            absoluteStartTime = Date.now
-        }
         var currentDeltas = [Int64]()
         self.deltas.reader { values in
             currentDeltas = values
@@ -59,6 +56,9 @@ class Diagnostic {
         self.symbols.removeAll()
         let lastStart = self.startTime
         self.startTime = Date.now
+        if absoluteStartTime == nil {
+            absoluteStartTime = self.startTime
+        }
         let seconds = self.startTime.timeIntervalSince(lastStart)
         return Diagnostic.createMetrics(currentDeltas,
                                         currentSymbols,

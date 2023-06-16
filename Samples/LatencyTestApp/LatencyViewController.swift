@@ -21,6 +21,7 @@ class LatencyViewController: UIViewController {
     var blackHoleInt: Int64 = 0
 
     var isConnected = false
+    var timer = DXFTimer(timeInterval: 2)
 
     var dataSource = [String: String]()
     let soureTitles = ["Rate of events (avg)",
@@ -53,13 +54,10 @@ class LatencyViewController: UIViewController {
         self.connectionStatusLabel.text = DXEndpointState.notConnected.convetToString()
 
         addressTextField.text = "mddqa.in.devexperts.com:7400"
-        DispatchQueue.global(qos: .background).async {
-            Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
-                self.updateUI()
-            }
-            RunLoop.current.run()
+        timer.eventHandler = {
+            self.updateUI()
         }
-
+        timer.resume()
     }
 
     func updateConnectButton() {
