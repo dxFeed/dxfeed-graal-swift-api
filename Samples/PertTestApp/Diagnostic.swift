@@ -36,6 +36,8 @@ class Diagnostic {
     private var lastValue: Int64 = 0
     private var lastListenerValue: Int64 = 0
 
+    let coresCount = ProcessInfo.processInfo.processorCount
+
     func getMetrics() -> Metrics {
         if absoluteStartTime == nil {
             absoluteStartTime = Date.now
@@ -118,8 +120,8 @@ class Diagnostic {
                 }
             } // for each thread
         }
-
-        return totCpu
+        let result = totCpu / Double(coresCount)
+        return result
     }
 
     private func convertThreadInfoToThreadBasicInfo(_ threadInfo: [integer_t]) -> thread_basic_info {

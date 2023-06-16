@@ -12,6 +12,7 @@ class PerfTestViewController: UIViewController {
     let diagnostic = Diagnostic()
 
     let numberFormatter = NumberFormatter()
+    let cpuFormatter = NumberFormatter()
 
     private var endpoint: DXEndpoint?
     private var subscription: DXFeedSubcription?
@@ -62,6 +63,9 @@ class PerfTestViewController: UIViewController {
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = 0
 
+        cpuFormatter.numberStyle = .decimal
+        cpuFormatter.maximumFractionDigits = 2
+
         self.view.backgroundColor = .background
 
         try? SystemProperty.setProperty("com.devexperts.connector.proto.heartbeatTimeout", "10s")
@@ -82,8 +86,8 @@ class PerfTestViewController: UIViewController {
             eventsIncall = metrics.rateOfEvent.doubleValue / metrics.rateOfListeners.doubleValue
         }
         let numberOfEventsCounter = "\(numberFormatter.string(from: NSNumber(value: eventsIncall))!) events"
-        let currentCpuCounter = "\(numberFormatter.string(from: metrics.cpuUsage)!) %"
-        let peakCpuUsageCounter = "\(numberFormatter.string(from: metrics.peakCpuUsage)!) %"
+        let currentCpuCounter = "\(cpuFormatter.string(from: metrics.cpuUsage)!) %"
+        let peakCpuUsageCounter = "\(cpuFormatter.string(from: metrics.peakCpuUsage)!) %"
         dataSource = [
             "Rate of events (avg)": rateOfEventsCounter,
             "Rate of listener calls": rateOfListenersCounter,
