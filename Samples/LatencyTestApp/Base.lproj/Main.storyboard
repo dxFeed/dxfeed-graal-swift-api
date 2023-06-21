@@ -56,14 +56,14 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hqq-A5-OCx">
                                                     <rect key="frame" x="0.0" y="0.0" width="373" height="40"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Rate of events (avg)&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzx-5a-KuR">
-                                                            <rect key="frame" x="10" y="10" width="212.33333333333334" height="20"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Rate of events (avg)&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="nzx-5a-KuR">
+                                                            <rect key="frame" x="10" y="10" width="231" height="20"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFr-na-HV8">
-                                                            <rect key="frame" x="232.33333333333337" y="10" width="130.66666666666663" height="20"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="NFr-na-HV8">
+                                                            <rect key="frame" x="251" y="10" width="112" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -73,7 +73,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="nzx-5a-KuR" secondAttribute="bottom" constant="10" id="6Rc-P2-PDT"/>
                                                         <constraint firstAttribute="trailing" secondItem="NFr-na-HV8" secondAttribute="trailing" constant="10" id="AMt-hf-EUf"/>
-                                                        <constraint firstItem="NFr-na-HV8" firstAttribute="width" secondItem="Hqq-A5-OCx" secondAttribute="width" multiplier="0.35" id="EZw-yN-ctf"/>
+                                                        <constraint firstItem="NFr-na-HV8" firstAttribute="width" secondItem="Hqq-A5-OCx" secondAttribute="width" multiplier="0.3" id="EZw-yN-ctf"/>
                                                         <constraint firstItem="nzx-5a-KuR" firstAttribute="leading" secondItem="Hqq-A5-OCx" secondAttribute="leading" constant="10" id="Kp1-ig-Ih8"/>
                                                         <constraint firstAttribute="bottom" secondItem="NFr-na-HV8" secondAttribute="bottom" constant="10" id="S0z-G3-Rrr"/>
                                                         <constraint firstItem="nzx-5a-KuR" firstAttribute="top" secondItem="Hqq-A5-OCx" secondAttribute="top" constant="10" id="Ypc-r9-es9"/>

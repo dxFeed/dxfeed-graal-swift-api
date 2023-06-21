@@ -24,17 +24,17 @@ class LatencyViewController: UIViewController {
     var timer = DXFTimer(timeInterval: 2)
 
     var dataSource = [String: String]()
-    let soureTitles = ["Rate of events (avg)",
-                      "Rate of unique symbols",
-                      "Min",
-                      "Max",
-                      "99th percentile",
-                      "Mean",
-                      "StdDev",
-                      "Error",
-                      "Sample size (N)",
-                      "Measurement interval",
-                      "Running time"]
+    let soureTitles = ["Rate of events (avg), events/s",
+                       "Rate of unique symbols per interval",
+                       "Min, ms",
+                       "Max, ms",
+                       "99th percentile, ms",
+                       "Mean, ms",
+                       "StdDev, ms",
+                       "Error, ms",
+                       "Sample size (N), events",
+                       "Measurement interval, s",
+                       "Running time"]
 
     @IBOutlet var connectionStatusLabel: UILabel!
     @IBOutlet var connectButton: UIButton!
@@ -110,16 +110,16 @@ class LatencyViewController: UIViewController {
         print(result)
         print("---------------------------------------------------------")
         dataSource = [
-            "Rate of events (avg)": "\(numberFormatter.string(from: metrics.rateOfEvent)!) (events/s)",
-            "Rate of unique symbols": "\(numberFormatter.string(from: metrics.rateOfSymbols)!) (symbols/interval)",
-            "Min": "\(numberFormatter.string(from: metrics.min)!) (ms)",
-            "Max": "\(numberFormatter.string(from: metrics.max)!) (ms)",
-            "99th percentile": "\(numberFormatter.string(from: metrics.percentile)!) (ms)",
-            "Mean": "\(numberFormatter.string(from: metrics.mean)!) (ms)",
-            "StdDev": "\(numberFormatter.string(from: metrics.stdDev)!) (ms)",
-            "Error": "\(numberFormatter.string(from: metrics.error)!) (ms)",
-            "Sample size (N)": "\(numberFormatter.string(from: metrics.sampleSize)!) (events)",
-            "Measurement interval": "\(numberFormatter.string(from: metrics.measureInterval)!) (s)",
+            "Rate of events (avg), events/s": "\(numberFormatter.string(from: metrics.rateOfEvent)!)",
+            "Rate of unique symbols per interval": "\(numberFormatter.string(from: metrics.rateOfSymbols)!)",
+            "Min, ms": "\(numberFormatter.string(from: metrics.min)!)",
+            "Max, ms": "\(numberFormatter.string(from: metrics.max)!)",
+            "99th percentile, ms": "\(numberFormatter.string(from: metrics.percentile)!)",
+            "Mean, ms": "\(numberFormatter.string(from: metrics.mean)!)",
+            "StdDev, ms": "\(numberFormatter.string(from: metrics.stdDev)!)",
+            "Error, ms": "\(numberFormatter.string(from: metrics.error)!)",
+            "Sample size (N), events": "\(numberFormatter.string(from: metrics.sampleSize)!)",
+            "Measurement interval, s": "\(numberFormatter.string(from: metrics.measureInterval)!)",
             "Running time": "\(metrics.currentTime.stringFromTimeInterval())"
         ]
         self.resultTableView.reloadData()
