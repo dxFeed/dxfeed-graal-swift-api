@@ -46,6 +46,12 @@
 		642BE4D22A2F5D230052340A /* TimeAndSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4D12A2F5D230052340A /* TimeAndSale.swift */; };
 		642BE4D42A2F5D730052340A /* TimeAndSale+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4D32A2F5D730052340A /* TimeAndSale+Ext.swift */; };
 		642BE4D62A2F5E7C0052340A /* TimeAndSaleMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4D52A2F5E7C0052340A /* TimeAndSaleMapper.swift */; };
+		644BD75D2A44726F00A0BF99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BD75C2A44726F00A0BF99 /* AppDelegate.swift */; };
+		644BD7612A44726F00A0BF99 /* ARQuoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BD7602A44726F00A0BF99 /* ARQuoteTableViewController.swift */; };
+		644BD7662A44727000A0BF99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 644BD7652A44727000A0BF99 /* Assets.xcassets */; };
+		644BD7692A44727000A0BF99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644BD7672A44727000A0BF99 /* LaunchScreen.storyboard */; };
+		644BD76D2A44728B00A0BF99 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8D22A3B401700846831 /* Colors.swift */; };
+		644BD76E2A44728D00A0BF99 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646979712A3B5AF60003A9BA /* Colors.xcassets */; };
 		645FBB3F2A39D931004B1A49 /* TimeAndSale+Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FBB3E2A39D931004B1A49 /* TimeAndSale+Access.swift */; };
 		646228512A376B0A0029DC97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462284D2A376B0A0029DC97 /* Main.storyboard */; };
 		646228522A376B0A0029DC97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462284F2A376B0A0029DC97 /* LaunchScreen.storyboard */; };
@@ -257,6 +263,11 @@
 		642BE4D12A2F5D230052340A /* TimeAndSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndSale.swift; sourceTree = "<group>"; };
 		642BE4D32A2F5D730052340A /* TimeAndSale+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeAndSale+Ext.swift"; sourceTree = "<group>"; };
 		642BE4D52A2F5E7C0052340A /* TimeAndSaleMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndSaleMapper.swift; sourceTree = "<group>"; };
+		644BD75A2A44726F00A0BF99 /* ARQuoteTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARQuoteTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		644BD75C2A44726F00A0BF99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		644BD7602A44726F00A0BF99 /* ARQuoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARQuoteTableViewController.swift; sourceTree = "<group>"; };
+		644BD7652A44727000A0BF99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		644BD7682A44727000A0BF99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		645FBB3E2A39D931004B1A49 /* TimeAndSale+Access.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeAndSale+Access.swift"; sourceTree = "<group>"; };
 		6462284E2A376B0A0029DC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		646228502A376B0A0029DC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -353,6 +364,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		644BD7572A44726F00A0BF99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		64B627122A375BBA00196D07 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -454,6 +472,17 @@
 				64BA926A2A3072CA00BE26A0 /* TradeMapper.swift */,
 			);
 			path = Markets;
+			sourceTree = "<group>";
+		};
+		644BD75B2A44726F00A0BF99 /* ARQuoteTableApp */ = {
+			isa = PBXGroup;
+			children = (
+				644BD75C2A44726F00A0BF99 /* AppDelegate.swift */,
+				644BD7602A44726F00A0BF99 /* ARQuoteTableViewController.swift */,
+				644BD7652A44727000A0BF99 /* Assets.xcassets */,
+				644BD7672A44727000A0BF99 /* LaunchScreen.storyboard */,
+			);
+			path = ARQuoteTableApp;
 			sourceTree = "<group>";
 		};
 		64656F542A1B69FE006A0B19 /* Events */ = {
@@ -581,6 +610,7 @@
 			isa = PBXGroup;
 			children = (
 				6469F8D12A3B400100846831 /* Utils */,
+				644BD75B2A44726F00A0BF99 /* ARQuoteTableApp */,
 				64D8BB3C2A39BB730071BC88 /* LatencyTestApp */,
 				64B6275D2A3761A000196D07 /* PertTestApp */,
 				64B627162A375BBA00196D07 /* QuoteTableApp */,
@@ -622,6 +652,7 @@
 				64B627152A375BBA00196D07 /* DxFeedSampleApp.app */,
 				64B6275C2A3761A000196D07 /* DxFeedPertTestApp.app */,
 				64D8BB3B2A39BB730071BC88 /* LatencyTest.app */,
+				644BD75A2A44726F00A0BF99 /* ARQuoteTableApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -754,6 +785,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		644BD7592A44726F00A0BF99 /* ARQuoteTableApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 644BD76C2A44727000A0BF99 /* Build configuration list for PBXNativeTarget "ARQuoteTableApp" */;
+			buildPhases = (
+				644BD7562A44726F00A0BF99 /* Sources */,
+				644BD7572A44726F00A0BF99 /* Frameworks */,
+				644BD7582A44726F00A0BF99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ARQuoteTableApp;
+			productName = ARQuoteTableApp;
+			productReference = 644BD75A2A44726F00A0BF99 /* ARQuoteTableApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 		64B627142A375BBA00196D07 /* DxFeedSampleApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 64B627262A375BBB00196D07 /* Build configuration list for PBXNativeTarget "DxFeedSampleApp" */;
@@ -862,6 +910,9 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					644BD7592A44726F00A0BF99 = {
+						CreatedOnToolsVersion = 14.3;
+					};
 					64B627142A375BBA00196D07 = {
 						CreatedOnToolsVersion = 14.3;
 						LastSwiftMigration = 1430;
@@ -903,11 +954,22 @@
 				64B627142A375BBA00196D07 /* DxFeedSampleApp */,
 				64B6275B2A3761A000196D07 /* DxFeedPertTestApp */,
 				64D8BB3A2A39BB730071BC88 /* LatencyTest */,
+				644BD7592A44726F00A0BF99 /* ARQuoteTableApp */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		644BD7582A44726F00A0BF99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				644BD7692A44727000A0BF99 /* LaunchScreen.storyboard in Resources */,
+				644BD76E2A44728D00A0BF99 /* Colors.xcassets in Resources */,
+				644BD7662A44727000A0BF99 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		64B627132A375BBA00196D07 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1015,6 +1077,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		644BD7562A44726F00A0BF99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				644BD7612A44726F00A0BF99 /* ARQuoteTableViewController.swift in Sources */,
+				644BD76D2A44728B00A0BF99 /* Colors.swift in Sources */,
+				644BD75D2A44726F00A0BF99 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		64B627112A375BBA00196D07 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1178,6 +1250,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		644BD7672A44727000A0BF99 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				644BD7682A44727000A0BF99 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		6462284D2A376B0A0029DC97 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1229,6 +1309,71 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		644BD76A2A44727000A0BF99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NU75WFM6U6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.ARQuoteTableApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		644BD76B2A44727000A0BF99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NU75WFM6U6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.ARQuoteTableApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		64B627272A375BBB00196D07 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1686,6 +1831,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		644BD76C2A44727000A0BF99 /* Build configuration list for PBXNativeTarget "ARQuoteTableApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				644BD76A2A44727000A0BF99 /* Debug */,
+				644BD76B2A44727000A0BF99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		64B627262A375BBB00196D07 /* Build configuration list for PBXNativeTarget "DxFeedSampleApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
