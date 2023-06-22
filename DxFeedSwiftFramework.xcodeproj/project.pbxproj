@@ -50,8 +50,22 @@
 		644BD7612A44726F00A0BF99 /* ARQuoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BD7602A44726F00A0BF99 /* ARQuoteTableViewController.swift */; };
 		644BD7662A44727000A0BF99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 644BD7652A44727000A0BF99 /* Assets.xcassets */; };
 		644BD7692A44727000A0BF99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644BD7672A44727000A0BF99 /* LaunchScreen.storyboard */; };
-		644BD76D2A44728B00A0BF99 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8D22A3B401700846831 /* Colors.swift */; };
-		644BD76E2A44728D00A0BF99 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646979712A3B5AF60003A9BA /* Colors.xcassets */; };
+		644BD76F2A44746000A0BF99 /* QuoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6272C2A375C0E00196D07 /* QuoteViewController.swift */; };
+		644BD7702A44746000A0BF99 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6272F2A375C0F00196D07 /* PaddingLabel.swift */; };
+		644BD7712A44746000A0BF99 /* QuoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B627322A375C0F00196D07 /* QuoteTableViewController.swift */; };
+		644BD7722A44746000A0BF99 /* QuoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B627292A375C0E00196D07 /* QuoteModel.swift */; };
+		644BD7732A44746000A0BF99 /* QuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6272E2A375C0F00196D07 /* QuoteCell.swift */; };
+		644BD7742A44746000A0BF99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B627342A375C0F00196D07 /* SceneDelegate.swift */; };
+		644BD7792A44746C00A0BF99 /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
+		644BD77A2A44746C00A0BF99 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8D22A3B401700846831 /* Colors.swift */; };
+		644BD77B2A44746C00A0BF99 /* Endpoint+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6277C2A3762D000196D07 /* Endpoint+Ext.swift */; };
+		644BD77C2A44746C00A0BF99 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
+		644BD77D2A44746C00A0BF99 /* MetricCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CB2A3B2F1200846831 /* MetricCell.swift */; };
+		644BD77E2A44746C00A0BF99 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646979712A3B5AF60003A9BA /* Colors.xcassets */; };
+		644BD77F2A44747500A0BF99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B627722A3761EC00196D07 /* Main.storyboard */; };
+		644BD7822A4474B900A0BF99 /* DxFeedSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; };
+		644BD7832A4474B900A0BF99 /* DxFeedSwiftFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		644BD7892A4475EF00A0BF99 /* MainAR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644BD7872A4475EF00A0BF99 /* MainAR.storyboard */; };
 		645FBB3F2A39D931004B1A49 /* TimeAndSale+Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FBB3E2A39D931004B1A49 /* TimeAndSale+Access.swift */; };
 		646228512A376B0A0029DC97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462284D2A376B0A0029DC97 /* Main.storyboard */; };
 		646228522A376B0A0029DC97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462284F2A376B0A0029DC97 /* LaunchScreen.storyboard */; };
@@ -167,6 +181,13 @@
 			remoteGlobalIDString = 803BAC0C29BFA50700FFAB1C;
 			remoteInfo = DxFeedSwiftFramework;
 		};
+		644BD7842A4474B900A0BF99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 803BAC0429BFA50700FFAB1C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 803BAC0C29BFA50700FFAB1C;
+			remoteInfo = DxFeedSwiftFramework;
+		};
 		64B627422A375CAA00196D07 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 803BAC0429BFA50700FFAB1C /* Project object */;
@@ -198,6 +219,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				6417DD1A2A39C22C008912D6 /* DxFeedSwiftFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		644BD7862A4474B900A0BF99 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				644BD7832A4474B900A0BF99 /* DxFeedSwiftFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,6 +300,7 @@
 		644BD7602A44726F00A0BF99 /* ARQuoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARQuoteTableViewController.swift; sourceTree = "<group>"; };
 		644BD7652A44727000A0BF99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		644BD7682A44727000A0BF99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		644BD7882A4475EF00A0BF99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainAR.storyboard; sourceTree = "<group>"; };
 		645FBB3E2A39D931004B1A49 /* TimeAndSale+Access.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeAndSale+Access.swift"; sourceTree = "<group>"; };
 		6462284E2A376B0A0029DC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		646228502A376B0A0029DC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -368,6 +401,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				644BD7822A4474B900A0BF99 /* DxFeedSwiftFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +515,7 @@
 				644BD7602A44726F00A0BF99 /* ARQuoteTableViewController.swift */,
 				644BD7652A44727000A0BF99 /* Assets.xcassets */,
 				644BD7672A44727000A0BF99 /* LaunchScreen.storyboard */,
+				644BD7872A4475EF00A0BF99 /* MainAR.storyboard */,
 			);
 			path = ARQuoteTableApp;
 			sourceTree = "<group>";
@@ -792,10 +827,12 @@
 				644BD7562A44726F00A0BF99 /* Sources */,
 				644BD7572A44726F00A0BF99 /* Frameworks */,
 				644BD7582A44726F00A0BF99 /* Resources */,
+				644BD7862A4474B900A0BF99 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				644BD7852A4474B900A0BF99 /* PBXTargetDependency */,
 			);
 			name = ARQuoteTableApp;
 			productName = ARQuoteTableApp;
@@ -964,9 +1001,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				644BD77E2A44746C00A0BF99 /* Colors.xcassets in Resources */,
+				644BD7892A4475EF00A0BF99 /* MainAR.storyboard in Resources */,
 				644BD7692A44727000A0BF99 /* LaunchScreen.storyboard in Resources */,
-				644BD76E2A44728D00A0BF99 /* Colors.xcassets in Resources */,
 				644BD7662A44727000A0BF99 /* Assets.xcassets in Resources */,
+				644BD77F2A44747500A0BF99 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1081,9 +1120,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				644BD7732A44746000A0BF99 /* QuoteCell.swift in Sources */,
+				644BD77A2A44746C00A0BF99 /* Colors.swift in Sources */,
 				644BD7612A44726F00A0BF99 /* ARQuoteTableViewController.swift in Sources */,
-				644BD76D2A44728B00A0BF99 /* Colors.swift in Sources */,
+				644BD7742A44746000A0BF99 /* SceneDelegate.swift in Sources */,
+				644BD7792A44746C00A0BF99 /* DXFTimer.swift in Sources */,
+				644BD7702A44746000A0BF99 /* PaddingLabel.swift in Sources */,
+				644BD76F2A44746000A0BF99 /* QuoteViewController.swift in Sources */,
+				644BD7712A44746000A0BF99 /* QuoteTableViewController.swift in Sources */,
 				644BD75D2A44726F00A0BF99 /* AppDelegate.swift in Sources */,
+				644BD77C2A44746C00A0BF99 /* TimeInterval+Ext.swift in Sources */,
+				644BD77B2A44746C00A0BF99 /* Endpoint+Ext.swift in Sources */,
+				644BD77D2A44746C00A0BF99 /* MetricCell.swift in Sources */,
+				644BD7722A44746000A0BF99 /* QuoteModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1232,6 +1281,11 @@
 			target = 803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */;
 			targetProxy = 6417DD1B2A39C22C008912D6 /* PBXContainerItemProxy */;
 		};
+		644BD7852A4474B900A0BF99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */;
+			targetProxy = 644BD7842A4474B900A0BF99 /* PBXContainerItemProxy */;
+		};
 		64B627432A375CAA00196D07 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */;
@@ -1256,6 +1310,14 @@
 				644BD7682A44727000A0BF99 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		644BD7872A4475EF00A0BF99 /* MainAR.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				644BD7882A4475EF00A0BF99 /* Base */,
+			);
+			name = MainAR.storyboard;
 			sourceTree = "<group>";
 		};
 		6462284D2A376B0A0029DC97 /* Main.storyboard */ = {
@@ -1318,21 +1380,22 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = dxARFeedTest;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = MainAR;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.ARQuoteTableApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DxARFeedSampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1350,21 +1413,22 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = dxARFeedTest;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = MainAR;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.ARQuoteTableApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DxARFeedSampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;

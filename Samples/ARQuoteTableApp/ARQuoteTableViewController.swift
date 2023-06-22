@@ -71,20 +71,14 @@ class ARQuoteTableViewController: UIViewController {
 
         quotesViewController.loadViewIfNeeded()
         if let quotesViewController = quotesViewController as? QuoteTableViewController {
-            quotesViewController.subscribe()
+            quotesViewController.subscribe(false)
         }
-
-        // Create a session configuration
-
         configuration.planeDetection = .horizontal
-        // Run the view's session
         sceneView.session.run(configuration)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
-        // Pause the view's session
         sceneView.session.pause()
     }
 
@@ -98,9 +92,9 @@ class ARQuoteTableViewController: UIViewController {
             billboardConstraint.freeAxes = [.X, .Y, .Z]
             holderNode?.constraints = [billboardConstraint]
             let width = 0.15
+            let aspectRatio = quotesViewController.view.frame.size.width / quotesViewController.view.frame.size.height
             holderNode?.geometry = SCNPlane(width: width,
-                                            height: width /
-                                            (quotesViewController.view.frame.size.width / quotesViewController.view.frame.size.height))
+                                            height: width / aspectRatio)
 
             let material = SCNMaterial()
 

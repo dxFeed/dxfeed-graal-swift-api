@@ -18,6 +18,7 @@ class QuoteTableViewController: UIViewController {
 
     @IBOutlet var quoteTableView: UITableView!
     @IBOutlet var connectionStatusLabel: UILabel!
+    @IBOutlet var agregationSwitch: UISwitch!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +31,23 @@ class QuoteTableViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        subscribe(agregationSwitch.isOn)
+    }
 
+    
+    func subscribe(_ unlimited: Bool) {
+        if endpoint != nil {
+            try? endpoint?.disconnect()
+            subscription = nil
+            profileSubscription = nil
+        }
         try? SystemProperty.setProperty("com.devexperts.connector.proto.heartbeatTimeout", "10s")
 
-        endpoint = try? DXEndpoint.builder().withRole(.feed)
-            .withProperty(DXEndpoint.Property.aggregationPeriod.rawValue, "1")
-            .build()
+        let builder = try? DXEndpoint.builder().withRole(.feed)
+        if !unlimited {
+            _ = try? builder?.withProperty(DXEndpoint.Property.aggregationPeriod.rawValue, "1")
+        }
+        endpoint = try? builder?.build()
         endpoint?.add(self)
         try? endpoint?.connect("demo.dxfeed.com:7300")
 
@@ -48,6 +60,10 @@ class QuoteTableViewController: UIViewController {
         }
         try? subscription?.addSymbols(symbols)
         try? profileSubscription?.addSymbols(symbols)
+    }
+
+    @IBAction func changeAggregationPeriod(_ sender: UISwitch) {
+        subscribe(agregationSwitch.isOn)
     }
 }
 
