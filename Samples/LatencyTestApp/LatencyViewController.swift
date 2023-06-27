@@ -15,7 +15,6 @@ class LatencyViewController: UIViewController {
 
     private var endpoint: DXEndpoint?
     private var subscription: DXFeedSubcription?
-    private var profileSubscription: DXFeedSubcription?
 
     var symbols = ["ETH/USD:GDAX"]
     var blackHoleInt: Int64 = 0
@@ -78,10 +77,8 @@ class LatencyViewController: UIViewController {
 
             subscription = try? endpoint?.getFeed()?.createSubscription(.timeAndSale)
             subscription?.add(self)
-            profileSubscription?.add(self)
 
             try? subscription?.addSymbols(symbols)
-            try? profileSubscription?.addSymbols(symbols)
             diagnostic.cleanTime()
         }
     }

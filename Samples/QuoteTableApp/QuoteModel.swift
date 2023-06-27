@@ -23,7 +23,7 @@ class QuoteModel {
 
     var ask: String {
         guard let price = current?.askPrice else {
-            return "---"
+            return "0"
         }
         let number = NSNumber(value: price)
         return formatter.string(from: number) ?? ""
@@ -31,7 +31,7 @@ class QuoteModel {
 
     var bid: String {
         guard let price = current?.bidPrice else {
-            return "---"
+            return "0"
         }
         let number = NSNumber(value: price)
         return formatter.string(from: number) ?? ""
