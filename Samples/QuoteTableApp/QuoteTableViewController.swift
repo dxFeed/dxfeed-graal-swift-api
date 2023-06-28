@@ -34,7 +34,6 @@ class QuoteTableViewController: UIViewController {
         subscribe(agregationSwitch.isOn)
     }
 
-    
     func subscribe(_ unlimited: Bool) {
         if endpoint != nil {
             try? endpoint?.disconnect()
