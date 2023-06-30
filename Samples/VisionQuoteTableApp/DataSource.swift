@@ -25,7 +25,7 @@ class DataSource: ObservableObject {
         let model = quotesDict[value.eventSymbol]
         model?.updatePrice(ask: value.askPrice, bid: value.bidPrice)
         DispatchQueue.main.async {
-            if let model = model, let row = self.quotes.index(where: {$0 == model}) {
+            if let model = model, let row = self.quotes.firstIndex(where: {$0 == model}) {
                 self.quotes[row] = model
             }
         }
@@ -35,7 +35,7 @@ class DataSource: ObservableObject {
         let model = quotesDict[value.eventSymbol]
         model?.updateDescription(value.descriptionStr)
         DispatchQueue.main.async {
-            if let model = model, let row = self.quotes.index(where: {$0 == model}) {
+            if let model = model, let row = self.quotes.firstIndex(where: {$0 == model}) {
                 self.quotes[row] = model
             }
         }
