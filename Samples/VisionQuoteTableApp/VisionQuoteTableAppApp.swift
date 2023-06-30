@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct VisionQuoteTableAppApp: App {
     let endpoint = Endpoint()
-    
+
     var body: some Scene {
         WindowGroup {
             ContentView()

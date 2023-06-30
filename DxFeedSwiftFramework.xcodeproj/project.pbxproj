@@ -37,7 +37,7 @@
 		641BCBC12A21077800FE23C2 /* EventCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBC02A21077800FE23C2 /* EventCode.swift */; };
 		642528D02A3C534D00A04E41 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
 		642528D12A3C534D00A04E41 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
-		64262CCE2A4DA64700BA6BA3 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 64262CCD2A4DA64700BA6BA3 /* RealityKitContent */; };
+		64262CCE2A4DA64700BA6BA3 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; platformFilters = (xros, ); productRef = 64262CCD2A4DA64700BA6BA3 /* RealityKitContent */; };
 		64262CD02A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CCF2A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift */; };
 		64262CD22A4DA64700BA6BA3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CD12A4DA64700BA6BA3 /* ContentView.swift */; };
 		64262CD72A4DA64800BA6BA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64262CD62A4DA64800BA6BA3 /* Preview Assets.xcassets */; };
@@ -1523,6 +1523,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1533,10 +1534,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = xros;
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
 				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Debug;
@@ -1556,6 +1559,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1566,9 +1570,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = xros;
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
 				VALIDATE_PRODUCT = YES;
 				XROS_DEPLOYMENT_TARGET = 1.0;
 			};

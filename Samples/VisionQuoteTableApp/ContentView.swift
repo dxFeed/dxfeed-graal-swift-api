@@ -10,10 +10,19 @@ import RealityKit
 import RealityKitContent
 import DxFeedSwiftFramework
 
-
 struct ContentView: View {
     @ObservedObject var endpoint = Endpoint()
-    private let symbols = ["AAPL", "IBM", "MSFT", "EUR/CAD", "ETH/USD:GDAX", "GOOG", "BAC", "CSCO", "ABCE", "INTC", "PFE"]
+    private let symbols = ["AAPL",
+                           "IBM",
+                           "MSFT",
+                           "EUR/CAD",
+                           "ETH/USD:GDAX",
+                           "GOOG",
+                           "BAC",
+                           "CSCO",
+                           "ABCE",
+                           "INTC",
+                           "PFE"]
     @ObservedObject var datasource: DataSource
 
     init() {
@@ -22,8 +31,41 @@ struct ContentView: View {
     }
     var body: some View {
         VStack {
-            List(datasource.quotes) { quote in
-                Text(quote.title)
+            GeometryReader { metrics in
+                ScrollView {
+                    LazyVStack(spacing: 10) {
+                        ForEach(datasource.quotes) { item in
+                            HStack(spacing: 10) {
+                                Text(item.title)
+                                    .padding(.leading, 10)
+                                    .padding(.top, 5)
+                                    .padding(.bottom, 5)
+                                Spacer()
+
+                                HStack(spacing: 2) {
+                                    Text(item.bidPrice)
+                                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                        .background(Color(item.bidColor))
+
+                                    Text(item.askPrice)
+                                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                        .background(Color(item.askColor))
+                                }
+                                .cornerRadius(10)
+                                .frame(width: metrics.size.width * 0.4)
+
+                            }
+                            .padding(.trailing, 10)
+                            .background(
+                                RoundedRectangle(cornerRadius: 10).foregroundColor(.cellBackground)
+                            )
+
+                            .frame(height: 70)
+                        }
+                    }
+                }.padding(.top, 20)
+                .padding(.leading, 20)
+                .padding(.trailing, 20)
             }
             Spacer()
             Text(endpoint.state.convetToString()).onAppear {
@@ -33,6 +75,7 @@ struct ContentView: View {
                 .padding(.leading, 30).padding(.bottom, 20)
 
         }
+        .background(Color(UIColor.tableBackground))
     }
 }
 
