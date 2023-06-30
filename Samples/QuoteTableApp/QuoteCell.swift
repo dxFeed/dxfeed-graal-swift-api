@@ -24,7 +24,7 @@ class QuoteCell: UITableViewCell {
         super.awakeFromNib()
         self.backgroundContentView.layer.cornerRadius = 10
         self.backgroundContentView.clipsToBounds = true
-        self.contentView.backgroundColor = .background
+        self.contentView.backgroundColor = .tableBackground
         self.backgroundContentView.backgroundColor = .cellBackground
         priceContentView.layer.cornerRadius = 10
         priceContentView.clipsToBounds = true
