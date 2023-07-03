@@ -318,7 +318,7 @@
 		641BCBB92A1FB42500FE23C2 /* TestListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListener.swift; sourceTree = "<group>"; };
 		641BCBBB2A20ED8100FE23C2 /* DXEndpointObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXEndpointObserver.swift; sourceTree = "<group>"; };
 		641BCBC02A21077800FE23C2 /* EventCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCode.swift; sourceTree = "<group>"; };
-		64262CC92A4DA64600BA6BA3 /* VisionQuoteTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisionQuoteTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64262CC92A4DA64600BA6BA3 /* DXVisionQuoteTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXVisionQuoteTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64262CCC2A4DA64700BA6BA3 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		64262CCF2A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionQuoteTableAppApp.swift; sourceTree = "<group>"; };
 		64262CD12A4DA64700BA6BA3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -336,7 +336,7 @@
 		642BE4D12A2F5D230052340A /* TimeAndSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndSale.swift; sourceTree = "<group>"; };
 		642BE4D32A2F5D730052340A /* TimeAndSale+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeAndSale+Ext.swift"; sourceTree = "<group>"; };
 		642BE4D52A2F5E7C0052340A /* TimeAndSaleMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndSaleMapper.swift; sourceTree = "<group>"; };
-		644BD75A2A44726F00A0BF99 /* ARQuoteTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARQuoteTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		644BD75A2A44726F00A0BF99 /* DXARQuoteTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXARQuoteTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		644BD75C2A44726F00A0BF99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		644BD7602A44726F00A0BF99 /* ARQuoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARQuoteTableViewController.swift; sourceTree = "<group>"; };
 		644BD7652A44727000A0BF99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -379,7 +379,7 @@
 		64ACBCE52A28BA7D00032C53 /* SymbolMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolMapper.swift; sourceTree = "<group>"; };
 		64ACBCE72A28CF9700032C53 /* IndexedEventSubscriptionSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexedEventSubscriptionSymbol.swift; sourceTree = "<group>"; };
 		64ACBCE92A28DDDA00032C53 /* TestEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEventListener.swift; sourceTree = "<group>"; };
-		64B627152A375BBA00196D07 /* DxFeedSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DxFeedSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64B627152A375BBA00196D07 /* DXQuoteTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXQuoteTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B627292A375C0E00196D07 /* QuoteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteModel.swift; sourceTree = "<group>"; };
 		64B6272C2A375C0E00196D07 /* QuoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteViewController.swift; sourceTree = "<group>"; };
 		64B6272D2A375C0E00196D07 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -388,7 +388,7 @@
 		64B627302A375C0F00196D07 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64B627322A375C0F00196D07 /* QuoteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteTableViewController.swift; sourceTree = "<group>"; };
 		64B627342A375C0F00196D07 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		64B6275C2A3761A000196D07 /* DxFeedPertTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DxFeedPertTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64B6275C2A3761A000196D07 /* DXPertTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXPertTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B627672A3761A100196D07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64B6276C2A3761A100196D07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64B627712A3761EC00196D07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -408,7 +408,7 @@
 		64BA92682A306E6000BE26A0 /* TradeBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeBase.swift; sourceTree = "<group>"; };
 		64BA926A2A3072CA00BE26A0 /* TradeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeMapper.swift; sourceTree = "<group>"; };
 		64D8BB332A39A1230071BC88 /* Diagnostic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diagnostic.swift; sourceTree = "<group>"; };
-		64D8BB3B2A39BB730071BC88 /* LatencyTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatencyTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64D8BB3B2A39BB730071BC88 /* DXLatencyTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXLatencyTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D8BB3D2A39BB730071BC88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64D8BB3F2A39BB730071BC88 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		64D8BB412A39BB730071BC88 /* LatencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatencyViewController.swift; sourceTree = "<group>"; };
@@ -768,11 +768,11 @@
 			children = (
 				803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */,
 				803BAC1529BFA50700FFAB1C /* DxFeedSwiftFrameworkTests.xctest */,
-				64B627152A375BBA00196D07 /* DxFeedSampleApp.app */,
-				64B6275C2A3761A000196D07 /* DxFeedPertTestApp.app */,
-				64D8BB3B2A39BB730071BC88 /* LatencyTest.app */,
-				644BD75A2A44726F00A0BF99 /* ARQuoteTableApp.app */,
-				64262CC92A4DA64600BA6BA3 /* VisionQuoteTableApp.app */,
+				64B627152A375BBA00196D07 /* DXQuoteTableApp.app */,
+				64B6275C2A3761A000196D07 /* DXPertTestApp.app */,
+				64D8BB3B2A39BB730071BC88 /* DXLatencyTestApp.app */,
+				644BD75A2A44726F00A0BF99 /* DXARQuoteTableApp.app */,
+				64262CC92A4DA64600BA6BA3 /* DXVisionQuoteTableApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -905,9 +905,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		64262CC82A4DA64600BA6BA3 /* VisionQuoteTableApp */ = {
+		64262CC82A4DA64600BA6BA3 /* DXVisionQuoteTableApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 64262CDA2A4DA64800BA6BA3 /* Build configuration list for PBXNativeTarget "VisionQuoteTableApp" */;
+			buildConfigurationList = 64262CDA2A4DA64800BA6BA3 /* Build configuration list for PBXNativeTarget "DXVisionQuoteTableApp" */;
 			buildPhases = (
 				64262CC52A4DA64600BA6BA3 /* Sources */,
 				64262CC62A4DA64600BA6BA3 /* Frameworks */,
@@ -919,17 +919,17 @@
 			dependencies = (
 				64262CDE2A4DA66100BA6BA3 /* PBXTargetDependency */,
 			);
-			name = VisionQuoteTableApp;
+			name = DXVisionQuoteTableApp;
 			packageProductDependencies = (
 				64262CCD2A4DA64700BA6BA3 /* RealityKitContent */,
 			);
 			productName = VisionQuoteTableApp;
-			productReference = 64262CC92A4DA64600BA6BA3 /* VisionQuoteTableApp.app */;
+			productReference = 64262CC92A4DA64600BA6BA3 /* DXVisionQuoteTableApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		644BD7592A44726F00A0BF99 /* ARQuoteTableApp */ = {
+		644BD7592A44726F00A0BF99 /* DXARQuoteTableApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 644BD76C2A44727000A0BF99 /* Build configuration list for PBXNativeTarget "ARQuoteTableApp" */;
+			buildConfigurationList = 644BD76C2A44727000A0BF99 /* Build configuration list for PBXNativeTarget "DXARQuoteTableApp" */;
 			buildPhases = (
 				644BD7562A44726F00A0BF99 /* Sources */,
 				644BD7572A44726F00A0BF99 /* Frameworks */,
@@ -941,14 +941,14 @@
 			dependencies = (
 				644BD7852A4474B900A0BF99 /* PBXTargetDependency */,
 			);
-			name = ARQuoteTableApp;
+			name = DXARQuoteTableApp;
 			productName = ARQuoteTableApp;
-			productReference = 644BD75A2A44726F00A0BF99 /* ARQuoteTableApp.app */;
+			productReference = 644BD75A2A44726F00A0BF99 /* DXARQuoteTableApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		64B627142A375BBA00196D07 /* DxFeedSampleApp */ = {
+		64B627142A375BBA00196D07 /* DXQuoteTableApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 64B627262A375BBB00196D07 /* Build configuration list for PBXNativeTarget "DxFeedSampleApp" */;
+			buildConfigurationList = 64B627262A375BBB00196D07 /* Build configuration list for PBXNativeTarget "DXQuoteTableApp" */;
 			buildPhases = (
 				64B627112A375BBA00196D07 /* Sources */,
 				64B627122A375BBA00196D07 /* Frameworks */,
@@ -960,14 +960,14 @@
 			dependencies = (
 				64B627432A375CAA00196D07 /* PBXTargetDependency */,
 			);
-			name = DxFeedSampleApp;
+			name = DXQuoteTableApp;
 			productName = DxFeedSampleApp;
-			productReference = 64B627152A375BBA00196D07 /* DxFeedSampleApp.app */;
+			productReference = 64B627152A375BBA00196D07 /* DXQuoteTableApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		64B6275B2A3761A000196D07 /* DxFeedPertTestApp */ = {
+		64B6275B2A3761A000196D07 /* DXPertTestApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 64B6276D2A3761A100196D07 /* Build configuration list for PBXNativeTarget "DxFeedPertTestApp" */;
+			buildConfigurationList = 64B6276D2A3761A100196D07 /* Build configuration list for PBXNativeTarget "DXPertTestApp" */;
 			buildPhases = (
 				64B627582A3761A000196D07 /* Sources */,
 				64B627592A3761A000196D07 /* Frameworks */,
@@ -979,14 +979,14 @@
 			dependencies = (
 				64DB79322A376DE100229597 /* PBXTargetDependency */,
 			);
-			name = DxFeedPertTestApp;
+			name = DXPertTestApp;
 			productName = DxFeedPertTestApp;
-			productReference = 64B6275C2A3761A000196D07 /* DxFeedPertTestApp.app */;
+			productReference = 64B6275C2A3761A000196D07 /* DXPertTestApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		64D8BB3A2A39BB730071BC88 /* LatencyTest */ = {
+		64D8BB3A2A39BB730071BC88 /* DXLatencyTestApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 64D8BB4C2A39BB740071BC88 /* Build configuration list for PBXNativeTarget "LatencyTest" */;
+			buildConfigurationList = 64D8BB4C2A39BB740071BC88 /* Build configuration list for PBXNativeTarget "DXLatencyTestApp" */;
 			buildPhases = (
 				64D8BB372A39BB730071BC88 /* Sources */,
 				64D8BB382A39BB730071BC88 /* Frameworks */,
@@ -999,9 +999,9 @@
 				6417DD182A39C1BE008912D6 /* PBXTargetDependency */,
 				6417DD1C2A39C22C008912D6 /* PBXTargetDependency */,
 			);
-			name = LatencyTest;
+			name = DXLatencyTestApp;
 			productName = LatencyTest;
-			productReference = 64D8BB3B2A39BB730071BC88 /* LatencyTest.app */;
+			productReference = 64D8BB3B2A39BB730071BC88 /* DXLatencyTestApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */ = {
@@ -1098,11 +1098,11 @@
 				803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */,
 				803BAC1429BFA50700FFAB1C /* DxFeedSwiftFrameworkTests */,
 				803BAC3329BFAAE300FFAB1C /* XCFramework */,
-				64B627142A375BBA00196D07 /* DxFeedSampleApp */,
-				64B6275B2A3761A000196D07 /* DxFeedPertTestApp */,
-				64D8BB3A2A39BB730071BC88 /* LatencyTest */,
-				644BD7592A44726F00A0BF99 /* ARQuoteTableApp */,
-				64262CC82A4DA64600BA6BA3 /* VisionQuoteTableApp */,
+				64B627142A375BBA00196D07 /* DXQuoteTableApp */,
+				64B6275B2A3761A000196D07 /* DXPertTestApp */,
+				64D8BB3A2A39BB730071BC88 /* DXLatencyTestApp */,
+				644BD7592A44726F00A0BF99 /* DXARQuoteTableApp */,
+				64262CC82A4DA64600BA6BA3 /* DXVisionQuoteTableApp */,
 			);
 		};
 /* End PBXProject section */
@@ -1526,6 +1526,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = DXVisionQuoteTable;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1534,7 +1535,7 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.VisionQuoteTableApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXVisionQuoteTable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = xros;
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
@@ -1562,6 +1563,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = DXVisionQuoteTable;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1570,7 +1572,7 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.VisionQuoteTableApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXVisionQuoteTable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = xros;
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
@@ -1593,7 +1595,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = dxARFeedTest;
+				INFOPLIST_KEY_CFBundleDisplayName = DXARQuoteTable;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1608,7 +1610,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DxARFeedSampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXARQuoteTable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1626,7 +1628,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = dxARFeedTest;
+				INFOPLIST_KEY_CFBundleDisplayName = DXARQuoteTable;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1641,7 +1643,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DxARFeedSampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXARQuoteTable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1662,7 +1664,7 @@
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Samples/QuoteTableApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = dxFeedTest;
+				INFOPLIST_KEY_CFBundleDisplayName = DXQuoteTable;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1674,7 +1676,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DxFeedSampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXQuoteTable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1695,7 +1697,7 @@
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Samples/QuoteTableApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = dxFeedTest;
+				INFOPLIST_KEY_CFBundleDisplayName = DXQuoteTable;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1707,7 +1709,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DxFeedSampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXQuoteTable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1727,7 +1729,7 @@
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Samples/PertTestApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = dxFeedPerfTest;
+				INFOPLIST_KEY_CFBundleDisplayName = DXPerfTest;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1739,7 +1741,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DxFeedPertTestApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXPerfTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1758,7 +1760,7 @@
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Samples/PertTestApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = dxFeedPerfTest;
+				INFOPLIST_KEY_CFBundleDisplayName = DXPerfTest;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1770,7 +1772,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DxFeedPertTestApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXPerfTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1790,7 +1792,7 @@
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Samples/LatencyTestApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = dxLatencyTest;
+				INFOPLIST_KEY_CFBundleDisplayName = DXLatencyTest;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1802,7 +1804,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.LatencyTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXLatencyTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1821,7 +1823,7 @@
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Samples/LatencyTestApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = dxLatencyTest;
+				INFOPLIST_KEY_CFBundleDisplayName = DXLatencyTest;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1833,7 +1835,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.LatencyTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXLatencyTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2116,7 +2118,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		64262CDA2A4DA64800BA6BA3 /* Build configuration list for PBXNativeTarget "VisionQuoteTableApp" */ = {
+		64262CDA2A4DA64800BA6BA3 /* Build configuration list for PBXNativeTarget "DXVisionQuoteTableApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64262CD82A4DA64800BA6BA3 /* Debug */,
@@ -2125,7 +2127,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		644BD76C2A44727000A0BF99 /* Build configuration list for PBXNativeTarget "ARQuoteTableApp" */ = {
+		644BD76C2A44727000A0BF99 /* Build configuration list for PBXNativeTarget "DXARQuoteTableApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				644BD76A2A44727000A0BF99 /* Debug */,
@@ -2134,7 +2136,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		64B627262A375BBB00196D07 /* Build configuration list for PBXNativeTarget "DxFeedSampleApp" */ = {
+		64B627262A375BBB00196D07 /* Build configuration list for PBXNativeTarget "DXQuoteTableApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64B627272A375BBB00196D07 /* Debug */,
@@ -2143,7 +2145,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		64B6276D2A3761A100196D07 /* Build configuration list for PBXNativeTarget "DxFeedPertTestApp" */ = {
+		64B6276D2A3761A100196D07 /* Build configuration list for PBXNativeTarget "DXPertTestApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64B6276E2A3761A100196D07 /* Debug */,
@@ -2152,7 +2154,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		64D8BB4C2A39BB740071BC88 /* Build configuration list for PBXNativeTarget "LatencyTest" */ = {
+		64D8BB4C2A39BB740071BC88 /* Build configuration list for PBXNativeTarget "DXLatencyTestApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64D8BB4D2A39BB740071BC88 /* Debug */,

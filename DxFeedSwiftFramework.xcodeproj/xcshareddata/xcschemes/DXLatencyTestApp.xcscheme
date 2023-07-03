@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "64D8BB3A2A39BB730071BC88"
-               BuildableName = "LatencyTest.app"
-               BlueprintName = "LatencyTest"
+               BuildableName = "DXLatencyTestApp.app"
+               BlueprintName = "DXLatencyTestApp"
                ReferencedContainer = "container:DxFeedSwiftFramework.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,8 +44,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64D8BB3A2A39BB730071BC88"
-            BuildableName = "LatencyTest.app"
-            BlueprintName = "LatencyTest"
+            BuildableName = "DXLatencyTestApp.app"
+            BlueprintName = "DXLatencyTestApp"
             ReferencedContainer = "container:DxFeedSwiftFramework.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -61,8 +61,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64D8BB3A2A39BB730071BC88"
-            BuildableName = "LatencyTest.app"
-            BlueprintName = "LatencyTest"
+            BuildableName = "DXLatencyTestApp.app"
+            BlueprintName = "DXLatencyTestApp"
             ReferencedContainer = "container:DxFeedSwiftFramework.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
