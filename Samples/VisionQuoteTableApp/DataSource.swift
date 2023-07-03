@@ -10,15 +10,18 @@ import DxFeedSwiftFramework
 
 class DataSource: ObservableObject {
     @Published var quotes: [QuoteViewModel] = []
-    var quotesDict: [String: QuoteViewModel]
+    private let quotesDict: [String: QuoteViewModel]
+
     init(symbols: [String]) {
-        quotes = [QuoteViewModel]()
-        quotesDict = [String: QuoteViewModel]()
+        var quotesList = [QuoteViewModel]()
+        var quotesDict = [String: QuoteViewModel]()
         symbols.forEach {
             let model = QuoteViewModel(symbol: $0)
-            quotes.append(model)
+            quotesList.append(model)
             quotesDict[$0] = model
         }
+        self.quotes = quotesList
+        self.quotesDict = quotesDict
     }
 
     func update(_ value: Quote) {

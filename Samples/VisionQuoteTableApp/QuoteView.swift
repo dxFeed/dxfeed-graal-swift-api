@@ -17,12 +17,10 @@ struct QuoteView: View {
                     .padding(.leading, 10)
                     .frame(maxHeight: .infinity)
                 Spacer()
-                
                 HStack(spacing: 2) {
                     Text(item.bidPrice)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color(item.bidColor))
-                    
                     Text(item.askPrice)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color(item.askColor))
@@ -36,7 +34,6 @@ struct QuoteView: View {
             .background(
                 RoundedRectangle(cornerRadius: 10).foregroundColor(.cellBackground)
             )
-            
         }
     }
 }

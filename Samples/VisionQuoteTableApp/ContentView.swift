@@ -27,12 +27,13 @@ struct ContentView: View {
     private let cellHeight: CGFloat = 70
 
     init() {
-        self.datasource = DataSource(symbols: symbols)
-        self.endpoint.addDataSource(self.datasource)
+        datasource = DataSource(symbols: symbols)
+        endpoint.addDataSource(datasource)
+        endpoint.subscribe(address: "demo.dxfeed.com:7300", symbols: symbols)
     }
     var body: some View {
         VStack {
-            GeometryReader { metrics in
+            GeometryReader { _ in
                 ScrollView {
                     LazyVStack(spacing: 10) {
                         Spacer().frame(height: 20)
@@ -45,12 +46,8 @@ struct ContentView: View {
                 .padding(.trailing, 20)
             }
             Spacer()
-            Text(endpoint.state.convetToString()).onAppear {
-                endpoint.subscribe(address: "demo.dxfeed.com:7300", symbols: symbols)
-
-            }.frame(maxWidth: .infinity, alignment: .leading)
+            Text(endpoint.state.convetToString()).frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 30).padding(.bottom, 20)
-
         }
         .background(Color(UIColor.tableBackground))
     }
