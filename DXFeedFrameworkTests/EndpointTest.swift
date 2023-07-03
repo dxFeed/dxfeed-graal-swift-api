@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import DxFeedSwiftFramework
+@testable import DXFeedFramework
 
 final class EndpointTest: XCTestCase {
     static let port = 7301

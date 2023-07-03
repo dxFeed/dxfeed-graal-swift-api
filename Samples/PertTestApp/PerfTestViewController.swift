@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DxFeedSwiftFramework
+import DXFeedFramework
 
 class PerfTestViewController: UIViewController {
     let diagnostic = Diagnostic()
@@ -141,7 +141,7 @@ class PerfTestViewController: UIViewController {
 }
 
 extension PerfTestViewController: DXEndpointObserver {
-    func endpointDidChangeState(old: DxFeedSwiftFramework.DXEndpointState, new: DxFeedSwiftFramework.DXEndpointState) {
+    func endpointDidChangeState(old: DXEndpointState, new: DXEndpointState) {
         DispatchQueue.main.async {
             self.isConnected = new == .connected
             self.updateConnectButton()
@@ -152,7 +152,7 @@ extension PerfTestViewController: DXEndpointObserver {
 }
 
 extension PerfTestViewController: DXEventListener {
-    func receiveEvents(_ events: [DxFeedSwiftFramework.MarketEvent]) {
+    func receiveEvents(_ events: [MarketEvent]) {
         let count = events.count
         diagnostic.updateCounters(Int64(count))
 

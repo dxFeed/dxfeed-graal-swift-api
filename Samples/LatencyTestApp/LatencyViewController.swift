@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DxFeedSwiftFramework
+import DXFeedFramework
 
 class LatencyViewController: UIViewController {
     let diagnostic = Diagnostic()
@@ -124,7 +124,7 @@ class LatencyViewController: UIViewController {
 }
 
 extension LatencyViewController: DXEndpointObserver {
-    func endpointDidChangeState(old: DxFeedSwiftFramework.DXEndpointState, new: DxFeedSwiftFramework.DXEndpointState) {
+    func endpointDidChangeState(old: DXEndpointState, new: DXEndpointState) {
         DispatchQueue.main.async {
             self.isConnected = new == .connected
             self.updateConnectButton()

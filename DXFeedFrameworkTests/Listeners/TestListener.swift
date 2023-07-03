@@ -7,7 +7,7 @@
 
 import Foundation
 import XCTest
-@testable import DxFeedSwiftFramework
+@testable import DXFeedFramework
 
 struct TestListener: DXEndpointObserver, Hashable {
     var state = DXEndpointState.notConnected
@@ -15,8 +15,8 @@ struct TestListener: DXEndpointObserver, Hashable {
     init(expectations: [DXEndpointState: XCTestExpectation]) {
         self.expectations = expectations
     }
-    func endpointDidChangeState(old: DxFeedSwiftFramework.DXEndpointState,
-                                new: DxFeedSwiftFramework.DXEndpointState) {
+    func endpointDidChangeState(old: DXEndpointState,
+                                new: DXEndpointState) {
         if let expectation = expectations[new] {
             expectation.fulfill()
         }
