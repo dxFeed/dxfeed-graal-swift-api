@@ -15,10 +15,16 @@ dependencies {
 }
 
 task fetchDependencies(type: Copy) {
-    new File('downloads').mkdirs()
+    outputs.upToDateWhen { false }
 
+    doFirst {
+        new File('downloads').mkdirs()
+    }
+    
     println "Downloaded dep:"
-    sourceSets.main.runtimeClasspath.each { println it}
+    sourceSets.main.runtimeClasspath.each { 
+        println it
+    }
     from sourceSets.main.runtimeClasspath
     into 'downloads'
 
