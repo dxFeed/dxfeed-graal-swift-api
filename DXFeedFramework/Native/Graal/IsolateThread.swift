@@ -1,6 +1,6 @@
 //
 //  IsolateThread.swift
-//  DxFeedSwiftFramework
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 14.03.2023.
 //

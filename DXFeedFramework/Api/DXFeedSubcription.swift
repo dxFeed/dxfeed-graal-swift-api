@@ -1,6 +1,6 @@
 //
 //  DXFeedSubcription.swift
-//  DxFeedSwiftFramework
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 30.05.23.
 //

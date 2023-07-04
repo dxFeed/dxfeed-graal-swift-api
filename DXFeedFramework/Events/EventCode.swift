@@ -1,6 +1,6 @@
 //
 //  EventCode.swift
-//  DxFeedSwiftFramework
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 26.05.23.
 //

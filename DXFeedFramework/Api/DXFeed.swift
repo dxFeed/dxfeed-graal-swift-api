@@ -1,6 +1,6 @@
 //
 //  DXFeed.swift
-//  DxFeedSwiftFramework
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 22.05.23.
 //

@@ -1,6 +1,6 @@
 //
 //  Diagnostic.swift
-//  DxFeedSwiftFramework
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 14.06.23.
 //

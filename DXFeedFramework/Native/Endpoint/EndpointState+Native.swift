@@ -1,6 +1,6 @@
 //
 //  EndpointState+Native.swift
-//  DxFeedSwiftFramework
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 24.05.23.
 //

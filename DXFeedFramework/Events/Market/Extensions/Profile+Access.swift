@@ -1,6 +1,6 @@
 //
 //  Profile+Access.swift
-//  DxFeedSwiftFramework
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 15.06.23.
 //

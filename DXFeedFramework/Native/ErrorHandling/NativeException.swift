@@ -1,6 +1,6 @@
 //
 //  UninitializedNativeException.swift
-//  DxFeedSwiftFramework
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 23.05.23.
 //
