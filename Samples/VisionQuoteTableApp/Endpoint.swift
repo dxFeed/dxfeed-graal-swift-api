@@ -66,7 +66,7 @@ extension Endpoint: DXEventListener {
 }
 
 extension Endpoint: DXEndpointObserver {
-    func endpointDidChangeState(oldDXEndpointState, newDXEndpointState) {
+    func endpointDidChangeState(old: DXEndpointState, new: DXEndpointState) {
         DispatchQueue.main.async {
             self.state = new
         }
