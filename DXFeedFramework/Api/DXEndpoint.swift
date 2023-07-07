@@ -36,6 +36,9 @@ public class DXEndpoint {
         case storeEverything               = "dxendpoint.storeEverything"
         case schemeNanoTime                = "dxscheme.nanoTime"
         case schemeEnabledPropertyPrefix   = "dxscheme.enabled."
+    }
+    //Extra properties are wrappers aroung string. Build.isSupported returns false for that.
+    public enum ExtraPropery: String, CaseIterable {
         case heartBeatTimeout              = "com.devexperts.connector.proto.heartbeatTimeout"
     }
     private let endpointNative: NativeEndpoint

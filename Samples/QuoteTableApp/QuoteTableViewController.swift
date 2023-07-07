@@ -40,7 +40,7 @@ class QuoteTableViewController: UIViewController {
             subscription = nil
             profileSubscription = nil
         }
-        try? SystemProperty.setProperty(DXEndpoint.Property.heartBeatTimeout.rawValue, "10s")
+        try? SystemProperty.setProperty(DXEndpoint.ExtraPropery.heartBeatTimeout.rawValue, "10s")
 
         let builder = try? DXEndpoint.builder().withRole(.feed)
         if !unlimited {
