@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "A4145306-F50A-45F8-AEBE-8517F9446F91",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:DxFeedFramework.xcodeproj",
+        "identifier" : "803BAC1429BFA50700FFAB1C",
+        "name" : "DXFeedFrameworkTests"
+      }
+    }
+  ],
+  "version" : 1
+}

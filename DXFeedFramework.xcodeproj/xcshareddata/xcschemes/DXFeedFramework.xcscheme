@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1430"
-   version = "2.2">
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -17,17 +17,8 @@
                BlueprintIdentifier = "803BAC0C29BFA50700FFAB1C"
                BuildableName = "DXFeedFramework.framework"
                BlueprintName = "DXFeedFramework"
-               ReferencedContainer = "container:DXFeedFramework.xcodeproj">
+               ReferencedContainer = "container:DxFeedFramework.xcodeproj">
             </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <AutocreatedTestPlanReference>
-            </AutocreatedTestPlanReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
@@ -35,8 +26,13 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      shouldAutocreateTestPlan = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:DXFeedFrameworkTests/DXFeedFrameworkTests.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+      </TestPlans>
       <Testables>
          <TestableReference
             skipped = "NO"
@@ -46,7 +42,7 @@
                BlueprintIdentifier = "803BAC1429BFA50700FFAB1C"
                BuildableName = "DXFeedFrameworkTests.xctest"
                BlueprintName = "DXFeedFrameworkTests"
-               ReferencedContainer = "container:DXFeedFramework.xcodeproj">
+               ReferencedContainer = "container:DxFeedFramework.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -74,7 +70,7 @@
             BlueprintIdentifier = "803BAC0C29BFA50700FFAB1C"
             BuildableName = "DXFeedFramework.framework"
             BlueprintName = "DXFeedFramework"
-            ReferencedContainer = "container:DXFeedFramework.xcodeproj">
+            ReferencedContainer = "container:DxFeedFramework.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
