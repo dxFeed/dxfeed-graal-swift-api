@@ -20,4 +20,7 @@ extension MarketEvent {
     public var profile: Profile {
         return (self as? Profile)!
     }
+    public var candle: Candle {
+        return (self as? Candle)!
+    }
 }

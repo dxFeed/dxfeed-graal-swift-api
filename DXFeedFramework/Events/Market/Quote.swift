@@ -7,9 +7,7 @@
 
 import Foundation
 
-public class Quote: MarketEvent, CustomStringConvertible {public var quote: Quote! {
-    return self
-}
+public class Quote: MarketEvent, CustomStringConvertible {
     public let type: EventCode = .quote
     public let eventSymbol: String
     public let eventTime: Int64
