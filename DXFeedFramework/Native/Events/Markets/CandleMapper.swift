@@ -24,4 +24,3 @@ class CandleMapper: Mapper {
         return eventType
     }
 }
-
