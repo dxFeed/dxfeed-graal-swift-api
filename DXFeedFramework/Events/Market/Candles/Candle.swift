@@ -40,6 +40,7 @@ public class Candle: MarketEvent, CustomStringConvertible {
          askVolume: Double,
          impVolatility: Double,
          openInterest: Double) {
+
         self.eventSymbol = eventSymbol
         self.eventTime = eventTime
         self.eventFlags = eventFlags
@@ -60,7 +61,7 @@ public class Candle: MarketEvent, CustomStringConvertible {
         """
 DXFG_CANDLE_T \
 eventSymbol: \(eventSymbol) \
-eventTime: \(eventTime) \
+eventTime: \(Date(timeIntervalSince1970: TimeInterval(Double(time/1000)))) \
 eventSymbol: \(eventSymbol), \
 eventTime: \(eventTime), \
 eventFlags: \(eventFlags), \

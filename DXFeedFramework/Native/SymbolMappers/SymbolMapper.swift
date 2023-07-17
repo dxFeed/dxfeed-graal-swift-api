@@ -10,7 +10,7 @@ import Foundation
 
 class SymbolMapper {
 
-    static func newNative(_ symbol: Symbol) -> UnsafeMutablePointer<dxfg_symbol_t>? {
+    static func newNative(_ symbol: Any) -> UnsafeMutablePointer<dxfg_symbol_t>? {
         switch symbol {
         case let stringSymbol as String:
             let pointer = UnsafeMutablePointer<dxfg_string_symbol_t>.allocate(capacity: 1)
@@ -18,17 +18,24 @@ class SymbolMapper {
             pointer.pointee.symbol = stringSymbol.stringValue.toCStringRef()
             let casted = pointer.withMemoryRebound(to: dxfg_symbol_t.self, capacity: 1) { $0 }
             return casted
-        case _ as WildcardSymbol:
+        case let symbol as WildcardSymbol:
             let pointer = UnsafeMutablePointer<dxfg_wildcard_symbol_t>.allocate(capacity: 1)
-            pointer.pointee.supper = dxfg_symbol_t(type: WILDCARD)
+            pointer.pointee.supper = dxfg_symbol_t(type: WILDCARD)            
             let casted = pointer.withMemoryRebound(to: dxfg_symbol_t.self, capacity: 1) { $0 }
             return casted
-        case _ as TimeSeriesSubscriptionSymbol<CandleSymbol>:
-            break
+        case let symbol as TimeSeriesSubscriptionSymbol:
+            let pointer = UnsafeMutablePointer<dxfg_time_series_subscription_symbol_t>.allocate(capacity: 1)
+            pointer.pointee.supper = dxfg_symbol_t(type: TIME_SERIES_SUBSCRIPTION)
+            pointer.pointee.symbol = newNative(symbol.symbol)
+            pointer.pointee.from_time = symbol.fromTime
+            let casted = pointer.withMemoryRebound(to: dxfg_symbol_t.self, capacity: 1) { $0 }
+            return casted
         default:
             let pointer = UnsafeMutablePointer<dxfg_string_symbol_t>.allocate(capacity: 1)
             pointer.pointee.supper = dxfg_symbol_t(type: STRING)
-            pointer.pointee.symbol = symbol.stringValue.toCStringRef()
+            if symbol is Symbol {
+                pointer.pointee.symbol = (symbol as? Symbol)?.stringValue.toCStringRef()
+            }
             let casted = pointer.withMemoryRebound(to: dxfg_symbol_t.self, capacity: 1) { $0 }
             return casted
         }
@@ -47,7 +54,12 @@ class SymbolMapper {
         case CANDLE: break
         case WILDCARD: break
         case INDEXED_EVENT_SUBSCRIPTION: break
-        case TIME_SERIES_SUBSCRIPTION: break
+        case TIME_SERIES_SUBSCRIPTION:
+            symbol.withMemoryRebound(to: dxfg_time_series_subscription_symbol_t.self, capacity: 1) {
+                clearNative(symbol: $0.pointee.symbol)
+                $0.deinitialize(count: 1)
+                $0.deallocate()
+            }
         default:
             symbol.deinitialize(count: 1)
             symbol.deallocate()
