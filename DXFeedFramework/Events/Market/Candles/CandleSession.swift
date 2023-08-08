@@ -15,7 +15,7 @@ class CandleSession {
         return ""
     }
 
-    static func createAttribute(_ str: String?) -> AttributeType {
+    static func getAttribute(_ str: String?) -> AttributeType {
         return AttributeType()
     }
 }
