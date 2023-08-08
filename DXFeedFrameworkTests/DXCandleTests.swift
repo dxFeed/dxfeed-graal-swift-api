@@ -34,8 +34,6 @@ final class DXCandleTests: XCTestCase {
         let sec = 5
         _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
 
-
-
     }
 
     func testTest123() throws {
@@ -44,13 +42,11 @@ final class DXCandleTests: XCTestCase {
         print(range.first!) // 0
         print(range.last!) // 9
 
-
         print(string[0..<1])
         let secondIndex = string.index(after: string.startIndex)
         let thirdIndex = string.index(string.startIndex, offsetBy: 2)
         let lastIndex = string.index(before: string.endIndex)
 
-        
         let abc = string.index(of: "lo", options: String.CompareOptions.backwards)
         let allInd = string.indices(of: "lo")
         allInd.forEach { ind in
@@ -65,7 +61,7 @@ final class DXCandleTests: XCTestCase {
         let dict = ConcurrentDict<String, String>()
         dict["1"] = "cde"
         dict["2"] = "abc"
-        let val = dict.first { key, value in
+        let val = dict.first { _, value in
             value == "cde1"
         }
         print(dict["2"])

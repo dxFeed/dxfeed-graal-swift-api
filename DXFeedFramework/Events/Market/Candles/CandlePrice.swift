@@ -99,7 +99,7 @@ extension CandlePrice: ICandleSymbolProperty {
         MarketEventSymbols.removeAttributeStringByKey(symbol, CandlePrice.attributeKey) :
         try? MarketEventSymbols.changeAttributeStringByKey(symbol, CandlePrice.attributeKey, toString())
     }
-    
+
     func checkInAttribute(candleSymbol: CandleSymbol) throws {
         if candleSymbol.price != nil {
             throw ArgumentException.invalidOperationException("Already initialized")

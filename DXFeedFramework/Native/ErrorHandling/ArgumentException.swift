@@ -15,4 +15,3 @@ enum ArgumentException: Error {
     case argumentNil
     case invalidOperationException(_ message: String)
 }
-
