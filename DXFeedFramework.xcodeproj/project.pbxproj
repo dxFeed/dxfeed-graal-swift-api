@@ -139,6 +139,8 @@
 		649F48862A615BC90016FDD1 /* CandleSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F48852A615BC90016FDD1 /* CandleSymbol.swift */; };
 		649F48882A615BED0016FDD1 /* CandleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F48872A615BED0016FDD1 /* CandleType.swift */; };
 		64AAF0532A8113E800E8942B /* String+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AAF0522A8113E800E8942B /* String+Range.swift */; };
+		64AAF0552A82499A00E8942B /* ConcurrentDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AAF0542A82499A00E8942B /* ConcurrentDict.swift */; };
+		64AAF0572A82A3FC00E8942B /* ICandleSymbolProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AAF0562A82A3FC00E8942B /* ICandleSymbolProperty.swift */; };
 		64ACBCCF2A27851C00032C53 /* FeedTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC02A210DDD00D1FC41 /* FeedTest.swift */; };
 		64ACBCD52A2789EF00032C53 /* TestListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBB92A1FB42500FE23C2 /* TestListener.swift */; };
 		64ACBCD72A27981900032C53 /* ListNative+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ACBCD62A27981900032C53 /* ListNative+Ext.swift */; };
@@ -413,6 +415,8 @@
 		649F48852A615BC90016FDD1 /* CandleSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleSymbol.swift; sourceTree = "<group>"; };
 		649F48872A615BED0016FDD1 /* CandleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleType.swift; sourceTree = "<group>"; };
 		64AAF0522A8113E800E8942B /* String+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Range.swift"; sourceTree = "<group>"; };
+		64AAF0542A82499A00E8942B /* ConcurrentDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentDict.swift; sourceTree = "<group>"; };
+		64AAF0562A82A3FC00E8942B /* ICandleSymbolProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICandleSymbolProperty.swift; sourceTree = "<group>"; };
 		64ACBCD62A27981900032C53 /* ListNative+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListNative+Ext.swift"; sourceTree = "<group>"; };
 		64ACBCD82A279F7900032C53 /* DXEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXEventListener.swift; sourceTree = "<group>"; };
 		64ACBCDC2A28978600032C53 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
@@ -669,6 +673,7 @@
 				64104FC62A2613BC00D1FC41 /* ConcurrentArray.swift */,
 				6469F8C12A3B169A00846831 /* MathUtil.swift */,
 				64AAF0522A8113E800E8942B /* String+Range.swift */,
+				64AAF0542A82499A00E8942B /* ConcurrentDict.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -722,6 +727,7 @@
 				640C3FD52A6179E300555161 /* CandleAlignment.swift */,
 				640C3FD72A617D4900555161 /* CandlePriceLevel.swift */,
 				640C3FDB2A618B2000555161 /* MarketEventSymbols.swift */,
+				64AAF0562A82A3FC00E8942B /* ICandleSymbolProperty.swift */,
 			);
 			path = Candles;
 			sourceTree = "<group>";
@@ -1437,6 +1443,7 @@
 				64104FC92A26298D00D1FC41 /* DXFeedSubcription.swift in Sources */,
 				64104FD32A277B2D00D1FC41 /* ListNative.swift in Sources */,
 				642BE4C82A2E1BD40052340A /* QuoteMapper.swift in Sources */,
+				64AAF0552A82499A00E8942B /* ConcurrentDict.swift in Sources */,
 				64ACBCE12A28999B00032C53 /* WildcardSymbol.swift in Sources */,
 				64656F672A1CCFC2006A0B19 /* DXPublisher.swift in Sources */,
 				640C3FCE2A61788500555161 /* CandleExchange.swift in Sources */,
@@ -1476,6 +1483,7 @@
 				6469F8CA2A3B28F700846831 /* Profile+Access.swift in Sources */,
 				64BA92632A306BBD00BE26A0 /* ProfileMapper.swift in Sources */,
 				8088D77529C3A61000F240CB /* ErrorCheck.swift in Sources */,
+				64AAF0572A82A3FC00E8942B /* ICandleSymbolProperty.swift in Sources */,
 				64656F5E2A1B97F2006A0B19 /* NativeFeed.swift in Sources */,
 				64656F6F2A1CFC12006A0B19 /* WeakBox.swift in Sources */,
 			);

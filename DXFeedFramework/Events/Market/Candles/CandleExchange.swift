@@ -8,14 +8,43 @@
 import Foundation
 
 class CandleExchange {
-    public typealias AttributeType = CandleExchange
 
-    static func normalizeAttributeForSymbol(_ str: String?) -> String {
-#warning("TODO: implement it")
-        return ""
+    static let composite = CandleExchange(exchangeCode: "\0")
+
+    static let defaultExchange = composite
+
+    let exchangeCode: Character
+
+    private init(exchangeCode: Character) {
+        self.exchangeCode = exchangeCode
     }
 
-    static func getAttribute(_ str: String?) -> AttributeType {
-        return CandleExchange()
+    static func valueof(char: Character) -> CandleExchange {
+        if char == "\0" {
+            return composite
+        } else {
+            return CandleExchange(exchangeCode: char)
+        }
+    }
+
+    static func getAttribute(_ symbol: String?) -> CandleExchange {
+        return valueof(char: MarketEventSymbols.getExchangeCode(symbol))
+    }
+
+    func toString() -> String {
+        exchangeCode == "\0" ? "COMPOSITE" : "\(exchangeCode)"
+    }
+}
+
+extension CandleExchange: ICandleSymbolProperty {
+    func changeAttributeForSymbol(symbol: String?) -> String? {
+        return MarketEventSymbols.changeExchangeCode(symbol, exchangeCode)
+    }
+
+    func checkInAttribute(candleSymbol: CandleSymbol) throws {
+        if candleSymbol.exchange != nil {
+            throw ArgumentException.invalidOperationException("Already initialized")
+        }
+        candleSymbol.exchange = self
     }
 }
