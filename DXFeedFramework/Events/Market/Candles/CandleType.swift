@@ -51,6 +51,18 @@ public class CandleType {
         self.name = name
         self.value = value
         self.periodIntervalInMillis = periodIntervalInMillis
+
+        CandleType.typesByValue.writer { dict in
+            if dict[value] == nil {
+                dict[value] = self
+            }
+        }
+
+        CandleType.typesById.writer { dict in
+            if dict[typeId] == nil {
+                dict[typeId] = self
+            }
+        }
     }
 
     convenience init(typeId: CandleTypeId) {
