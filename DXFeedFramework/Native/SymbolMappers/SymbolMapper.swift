@@ -18,9 +18,15 @@ class SymbolMapper {
             pointer.pointee.symbol = stringSymbol.stringValue.toCStringRef()
             let casted = pointer.withMemoryRebound(to: dxfg_symbol_t.self, capacity: 1) { $0 }
             return casted
-        case let symbol as WildcardSymbol:
+        case _ as WildcardSymbol:
             let pointer = UnsafeMutablePointer<dxfg_wildcard_symbol_t>.allocate(capacity: 1)
             pointer.pointee.supper = dxfg_symbol_t(type: WILDCARD)
+            let casted = pointer.withMemoryRebound(to: dxfg_symbol_t.self, capacity: 1) { $0 }
+            return casted
+        case let candleSymbol as CandleSymbol:
+            let pointer = UnsafeMutablePointer<dxfg_candle_symbol_t>.allocate(capacity: 1)
+            pointer.pointee.supper =  dxfg_symbol_t(type: CANDLE)
+            pointer.pointee.symbol = candleSymbol.symbol?.toCStringRef()
             let casted = pointer.withMemoryRebound(to: dxfg_symbol_t.self, capacity: 1) { $0 }
             return casted
         case let symbol as TimeSeriesSubscriptionSymbol:

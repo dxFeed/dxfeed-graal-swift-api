@@ -82,8 +82,8 @@ final class CandlePrice: Equatable {
     }
 
     static func parse(_ symbol: String) throws -> CandlePrice {
-        let lenght = symbol.length
-        if lenght == 0 {
+        let length = symbol.length
+        if length == 0 {
             throw ArgumentException.missingCandlePrice
         }
         // Fast path to reverse toString result.
@@ -95,7 +95,7 @@ final class CandlePrice: Equatable {
         // Slow path for different case.
         let sValue = pricesByValue.first { _, price in
             let pString = price.toString()
-            return pString.length >= lenght && pString[0..<lenght] == symbol
+            return pString.length >= length && pString[0..<length] == symbol
         }?.value
         guard let sValue = sValue else {
             throw ArgumentException.unknowCandlePrice

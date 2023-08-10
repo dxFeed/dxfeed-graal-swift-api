@@ -8,7 +8,7 @@
 import Foundation
 
 class CandleSymbol {
-    public private(set) var symbol: String
+    public private(set) var symbol: String?
     public private(set) var baseSymbol: String?
     public internal(set) var exchange: CandleExchange?
     public internal(set) var price: CandlePrice?
@@ -20,6 +20,21 @@ class CandleSymbol {
     private init(_ symbol: String) {
         self.symbol = CandleSymbol.normalize(symbol)
         initInternal()
+    }
+
+    private init(_ symbol: String, _ properties: [ICandleSymbolProperty]) {
+        self.symbol = CandleSymbol.normalize(CandleSymbol.changeAttributes(symbol, properties))
+        properties.forEach { prop in
+            try? prop.checkInAttribute(candleSymbol: self)
+        }
+    }
+
+    private static func changeAttributes(_ symbol: String, _ properties: [ICandleSymbolProperty]) -> String {
+        var symbol = symbol
+        properties.forEach { prop in
+            symbol = prop.changeAttributeForSymbol(symbol: symbol) ?? symbol
+        }
+        return symbol
     }
 
     private func initInternal() {
@@ -47,8 +62,14 @@ class CandleSymbol {
     }
 
     func toString() -> String {
-        return symbol
+        return symbol ?? "null"
     }
 
+    static func valueOf(_ symbol: String) -> CandleSymbol {
+        return CandleSymbol(symbol: symbol)
+    }
 
+    static func valueOf(_ symbol: String, properties: [ICandleSymbolProperty]) -> CandleSymbol {
+        return CandleSymbol(symbol, properties)
+    }
 }
