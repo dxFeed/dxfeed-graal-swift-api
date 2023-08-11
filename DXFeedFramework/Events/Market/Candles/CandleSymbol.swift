@@ -69,7 +69,7 @@ class CandleSymbol {
         return try CandleSymbol(symbol: symbol)
     }
 
-    static func valueOf(_ symbol: String, properties: [ICandleSymbolProperty]) -> CandleSymbol {
+    static func valueOf(_ symbol: String, _ properties: [ICandleSymbolProperty]) -> CandleSymbol {
         return CandleSymbol(symbol, properties)
     }
 }

@@ -19,7 +19,7 @@ class CandleExchange {
         self.exchangeCode = exchangeCode
     }
 
-    static func valueof(char: Character) -> CandleExchange {
+    static func valueOf(_ char: Character) -> CandleExchange {
         if char == "\0" {
             return composite
         } else {
@@ -28,7 +28,7 @@ class CandleExchange {
     }
 
     static func getAttribute(_ symbol: String?) -> CandleExchange {
-        return valueof(char: MarketEventSymbols.getExchangeCode(symbol))
+        return valueOf(MarketEventSymbols.getExchangeCode(symbol))
     }
 
     func toString() -> String {

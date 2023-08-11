@@ -18,13 +18,13 @@ class MarketEventSymbols {
 
     static func changeExchangeCode(_ symbol: String?, _ exchangeCode: Character) -> String? {
         guard let symbol = symbol else {
-            return exchangeCode == "\0" ? nil : "\(Separtors.exchSeparator)\(exchangeCode)"
+            return exchangeCode == "\0" ? nil : "\(Separtors.exchSeparator.rawValue)\(exchangeCode)"
         }
 
         let index = getLengthWithoutAttributesInternal(symbol)
-        let result = exchangeCode == "0" ?
+        let result = exchangeCode == "\0" ?
         getBaseSymbolInternal(symbol, index) :
-        (getBaseSymbolInternal(symbol, index) + "\(Separtors.exchSeparator)\(exchangeCode)")
+        (getBaseSymbolInternal(symbol, index) + "\(Separtors.exchSeparator.rawValue)\(exchangeCode)")
 
         return index == symbol.length ?
         result :
@@ -182,14 +182,13 @@ class MarketEventSymbols {
         let index = getLengthWithoutAttributesInternal(symbol)
         if index == symbol.length {
             if let value = value {
-                return "\(symbol)\(Separtors.open)\(key)\(Separtors.value)\(value)\(Separtors.close)"
+                return "\(symbol)\(Separtors.open.rawValue)\(key)\(Separtors.value.rawValue)\(value)\(Separtors.close.rawValue)"
             } else {
                 return symbol
             }
         }
         if let value = value {
             return addAttributeInternal(symbol, index, key, value)
-
         } else {
             return removeAttributeInternal(symbol, index, key)
         }
@@ -201,7 +200,7 @@ class MarketEventSymbols {
                                              _ value: String) -> String {
         var symbol = symbol
         if length == symbol.length {
-            return "\(symbol)\(Separtors.open)\(key)\(Separtors.value)\(value)\(Separtors.close)"
+            return "\(symbol)\(Separtors.open.rawValue)\(key)\(Separtors.value.rawValue)\(value)\(Separtors.close.rawValue)"
         }
         var index = length + 1
         var added = false
@@ -211,18 +210,21 @@ class MarketEventSymbols {
                 let jindex = getNextKeyInternal(symbol, index)
                 if current == key {
                     if added {
+                        // Drop, since we've already added this key.
                         symbol = dropKeyAndValueInternal(symbol, length, index, jindex)
                     } else {
+                        // Replace value.
                         symbol =
                         symbol[0..<index] +
-                        "\(key)\(Separtors.value)\(value)" +
+                        "\(key)\(Separtors.value.rawValue)\(value)" +
                         symbol[jindex-1..<symbol.length]
                     }
                 } else {
-                    if current > key {
+                    if current > key && !added {
+                        // Insert value here.
                         symbol =
                         symbol[0..<index] +
-                        "\(key)\(Separtors.value)\(value)\(Separtors.separator)" +
+                        "\(key)\(Separtors.value.rawValue)\(value)\(Separtors.separator.rawValue)" +
                         symbol[index..<symbol.length]
                         added = true
                         index += key.length + value.length + 2
@@ -233,7 +235,7 @@ class MarketEventSymbols {
             }
         }
         return added ? symbol : (symbol[0..<index-1] +
-                                 "\(Separtors.separator)\(key)\(Separtors.value)\(value)" +
+                                 "\(Separtors.separator.rawValue)\(key)\(Separtors.value.rawValue)\(value)" +
                                  symbol[index-1..<symbol.length])
     }
 
