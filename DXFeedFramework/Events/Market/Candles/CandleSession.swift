@@ -6,40 +6,35 @@
 //
 
 import Foundation
+public struct DXCandleSession: Equatable {
+    public let name: String
+    public let string: String
+}
 
-class CandleSession {
-    enum CandleSessionId: String {
-        case any = "Any"
-        case regular = "Regular"
+extension DXCandleSession: ExpressibleByStringLiteral {
+    public init(stringLiteral: String) {
+        switch stringLiteral {
+        case "Any":
+            name = "Any"
+            string = "false"
+        case "Regular":
+            name = "Regular"
+            string = "true"
+        default:
+            name = "Any"
+            string = "false"
+        }
     }
+}
+
+
+enum CandleSession: DXCandleSession, CaseIterable {
+    case any = "Any"
+    case regular = "Regular"
+
     static let attributeKey = "tho"
-    static let any = CandleSession(value: "false", identifier: CandleSessionId.any)
-    static let regular = CandleSession(value: "true", identifier: CandleSessionId.regular)
-    static let defaultSession = any
 
-    private static let sessionsByValue = ConcurrentDict<String, CandleSession>()
-    private static let sessionsById = ConcurrentDict<CandleSessionId, CandleSession>()
-
-    let value: String
-    let name: String
-    let identifier: CandleSessionId
-
-    private init(value: String, identifier: CandleSessionId) {
-        self.value = value
-        self.name = identifier.rawValue
-        self.identifier = identifier
-        CandleSession.sessionsByValue.writer { dict in
-            if dict[value] == nil {
-                dict[value] = self
-            }
-        }
-
-        CandleSession.sessionsById.writer { dict in
-            if dict[identifier] == nil {
-                dict[identifier] = self
-            }
-        }
-    }
+    static let defaultSession = CandleSession.any
 
     static func normalizeAttributeForSymbol(_ symbol: String) -> String {
         let attribute = MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
@@ -73,10 +68,10 @@ class CandleSession {
         if length == 0 {
             throw ArgumentException.missingCandleSession
         }
-        let sValue = sessionsByValue.first { _, session in
+        let sValue = CandleSession.allCases.first { session in
             let sString = session.toString()
-            return sString.length >= length && sString[0..<length] == symbol
-        }?.value
+            return sString.length >= length && sString[0..<length].equalsIgnoreCase(symbol)
+        }
         guard let sValue = sValue else {
             throw ArgumentException.unknowCandleSession
         }
@@ -84,17 +79,13 @@ class CandleSession {
     }
 
     func toString() -> String {
-        return value
-    }
-
-    func toFullString() -> String {
-        return "\(CandleSession.attributeKey)=\(value)"
+        return self.rawValue.string
     }
 }
 
 extension CandleSession: ICandleSymbolProperty {
     func changeAttributeForSymbol(symbol: String?) -> String? {
-        if self === CandleSession.defaultSession {
+        if self == CandleSession.defaultSession {
             MarketEventSymbols.removeAttributeStringByKey(symbol, CandleSession.attributeKey)
         } else {
             try? MarketEventSymbols.changeAttributeStringByKey(symbol, CandleSession.attributeKey, toString())

@@ -10,7 +10,7 @@ import XCTest
 
 final class DXCandleTests: XCTestCase {
 
-//    func testFetchingCandlesByString() throws {
+    func testFetchingCandlesByString() throws {
 //        let code = EventCode.candle
 //        var endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
 //        try endpoint?.connect("demo.dxfeed.com:7300")
@@ -34,7 +34,7 @@ final class DXCandleTests: XCTestCase {
 //        endpoint = nil
 //        let sec = 5
 //        _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
-//    }
+    }
 
     func testFetchingCandlesBySymbol() throws {
         let code = EventCode.candle
@@ -55,7 +55,7 @@ final class DXCandleTests: XCTestCase {
             return anonymCl
         })
 
-        try subscription?.addSymbols(TimeSeriesSubscriptionSymbol(symbol: CandleSymbol.valueOf("AAPL{=2w}"), fromTime: 1660125159))
+        try subscription?.addSymbols(TimeSeriesSubscriptionSymbol(symbol: CandleSymbol.valueOf("AAPL&A{=3d}"), fromTime: 1660125159))
         wait(for: [receivedEventExp], timeout: 10)
         try? endpoint?.disconnect()
         endpoint = nil

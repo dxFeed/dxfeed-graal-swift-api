@@ -39,21 +39,21 @@ class CandleSymbol {
 
     private func initInternal() {
         self.baseSymbol = MarketEventSymbols.getBaseSymbol(self.symbol)
-//        self.exchange = CandleExchange.getAttribute(self.symbol)
-//        self.price = try? CandlePrice.getAttribute(self.symbol)
-//        self.session = CandleSession.getAttribute(self.symbol)
+        self.exchange = CandleExchange.getAttribute(self.symbol)
+        self.price = try? CandlePrice.getAttribute(self.symbol)
+        self.session = CandleSession.getAttribute(self.symbol)
         self.period = try? CandlePeriod.getAttribute(self.symbol)
-//        self.alignment = try? CandleAlignment.getAttribute(self.symbol)
-//        self.priceLevel = try? CandlePriceLevel.getAttribute(self.symbol)
+        self.alignment = try? CandleAlignment.getAttribute(self.symbol)
+        self.priceLevel = try? CandlePriceLevel.getAttribute(self.symbol)
     }
 
     private static func normalize(_ symbol: String) -> String {
         var symbol = symbol
-//        symbol = (try? CandlePrice.normalizeAttributeForSymbol(symbol)) ?? symbol
-//        symbol = CandleSession.normalizeAttributeForSymbol(symbol)
+        symbol = (try? CandlePrice.normalizeAttributeForSymbol(symbol)) ?? symbol
+        symbol = CandleSession.normalizeAttributeForSymbol(symbol)
         symbol = (try? CandlePeriod.normalizeAttributeForSymbol(symbol)) ?? symbol
-//        symbol = (try? CandleAlignment.normalizeAttributeForSymbol(symbol)) ?? symbol
-//        symbol = (try? CandlePriceLevel.normalizeAttributeForSymbol(symbol)) ?? symbol
+        symbol = (try? CandleAlignment.normalizeAttributeForSymbol(symbol)) ?? symbol
+        symbol = (try? CandlePriceLevel.normalizeAttributeForSymbol(symbol)) ?? symbol
         return symbol
     }
 

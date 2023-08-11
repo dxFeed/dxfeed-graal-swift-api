@@ -103,10 +103,11 @@ enum CandleType: DXCandleType, CaseIterable {
         if length == 0 {
             throw ArgumentException.missingCandleType
         }
-        // fast path to reverse toString result
+        // Fast path to reverse toString result
         if let fValue = byString[symbol] {
             return fValue
         }
+        // Slow path for different case.
         let sValue = CandleType.allCases.first(where: { type in
             let name = type.rawValue.name
             if name.length >= length && name[0..<length].equalsIgnoreCase(symbol) {
@@ -117,10 +118,10 @@ enum CandleType: DXCandleType, CaseIterable {
             }
             return false
         })
-        if let sValue = sValue {
-            return sValue
+        guard let sValue = sValue else {
+            throw ArgumentException.unknowCandleType
         }
-        throw ArgumentException.unknowCandleType
+        return sValue
     }
 
     func toString() -> String {

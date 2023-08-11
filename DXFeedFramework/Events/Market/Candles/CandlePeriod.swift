@@ -19,7 +19,7 @@ class CandlePeriod {
     let value: Double
     let type: CandleType
     let periodIntervalMillis: Long
-    lazy var stringDescription: String = {
+    lazy var stringRepresentation: String = {
         if value == CandlePeriod.defaultPeriodValue {
             return type.toString()
         }
@@ -93,7 +93,7 @@ class CandlePeriod {
     }
 
     func toString() -> String {
-        return stringDescription
+        return stringRepresentation
     }
 }
 

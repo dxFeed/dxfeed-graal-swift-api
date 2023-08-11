@@ -7,39 +7,41 @@
 
 import Foundation
 
-class CandleAlignment {
-    enum CandleAlignmentId: String {
-        case midnight = "Midnight"
-        case session = "Session"
-    }
-    static let attributeKey = "a"
-    private static let alignmentByValue = ConcurrentDict<String, CandleAlignment>()
-    private static let alignmentById = ConcurrentDict<CandleAlignmentId, CandleAlignment>()
+struct DXCandleAlignment: Equatable {
+    public let name: String
+    public let string: String
+}
 
-    static let midnight = CandleAlignment(identifier: .midnight, value: "m")
-    static let session = CandleAlignment(identifier: .session, value: "s")
+extension DXCandleAlignment: ExpressibleByStringLiteral {
+    public init(stringLiteral: String) {
+        switch stringLiteral {
+        case "Midnight":
+            name = stringLiteral
+            string = "m"
+        case "Session":
+            name = stringLiteral
+            string = "s"
+        default:
+            name = stringLiteral
+            string = "m"
+        }
+    }
+}
+
+enum CandleAlignment: DXCandleAlignment, CaseIterable {
+    case midnight = "Midnight"
+    case session = "Session"
+
+    static let attributeKey = "a"
+
     static let defaultAlignment =  midnight
 
-    let identifier: CandleAlignmentId
-    let name: String
-    let value: String
-
-    private init(identifier: CandleAlignmentId, value: String) {
-        self.identifier = identifier
-        self.name = identifier.rawValue
-        self.value = value
-
-        CandleAlignment.alignmentByValue.writer { dict in
-            if dict[value] == nil {
-                dict[value] = self
-            }
+    static let byString = {
+        let myDict = Self.allCases.reduce(into: [String: CandleAlignment]()) {
+            $0[$1.toString()] = $1
         }
-        CandleAlignment.alignmentById.writer { dict in
-            if dict[identifier] == nil {
-                dict[identifier] = self
-            }
-        }
-    }
+        return myDict
+    }()
 
     static func normalizeAttributeForSymbol(_ symbol: String) throws -> String {
         let attribute = MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
@@ -47,7 +49,7 @@ class CandleAlignment {
             return symbol
         }
         let other = try parse(attribute)
-        if other === defaultAlignment {
+        if other == defaultAlignment {
             _ = MarketEventSymbols.removeAttributeStringByKey(symbol, attributeKey)
         }
         if attribute != other.toString() {
@@ -62,19 +64,17 @@ class CandleAlignment {
 
     static func parse(_ symbol: String) throws -> CandleAlignment {
         // Fast path to reverse toString result.
-        let fvalue = alignmentByValue[symbol]
-        if let value = fvalue {
-            return value
+        if let fvalue = byString[symbol] {
+            return fvalue
         }
         // Slow path for different case.
-        let sValue = alignmentByValue.first { _, value in
+        let sValue = CandleAlignment.allCases.first( where: { value in
             return value.toString() == symbol
-        }?.value
+        })
         guard let sValue = sValue else {
             throw ArgumentException.unknowCandleAlignment
         }
         return sValue
-
     }
 
     static func getAttribute(_ symbol: String?) throws -> CandleAlignment {
@@ -86,17 +86,17 @@ class CandleAlignment {
     }
 
     func toString() -> String {
-        return value
+        return self.rawValue.string
     }
 
     func toFullString() -> String {
-        return "\(CandleAlignment.attributeKey)=\(value)"
+        return "\(CandleAlignment.attributeKey)=\(self.rawValue.string)"
     }
 }
 
 extension CandleAlignment: ICandleSymbolProperty {
     func changeAttributeForSymbol(symbol: String?) -> String? {
-        self === CandleAlignment.defaultAlignment ?
+        self == CandleAlignment.defaultAlignment ?
         MarketEventSymbols.removeAttributeStringByKey(symbol, CandleAlignment.attributeKey) :
         try? MarketEventSymbols.changeAttributeStringByKey(symbol, CandleAlignment.attributeKey, self.toString())
     }

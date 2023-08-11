@@ -7,56 +7,52 @@
 
 import Foundation
 
-final class CandlePrice: Equatable {
-    static func == (lhs: CandlePrice, rhs: CandlePrice) -> Bool {
-        return lhs.identifier == rhs.identifier && lhs.value == rhs.value
-    }
+public struct DXCandlePrice: Equatable {
+    public let name: String
+    public let string: String
+}
 
-    enum CandlePriceId: String {
-        case last = "Last"
-        case bid = "Bid"
-        case ask = "Ask"
-        case mark = "Mark"
-        case settlement = "Settlement"
+extension DXCandlePrice: ExpressibleByStringLiteral {
+    public init(stringLiteral: String) {
+        switch stringLiteral {
+        case "last":
+            string = stringLiteral
+            name = "Last"
+        case "bid":
+            string = stringLiteral
+            name = "Bid"
+        case "ask":
+            string = stringLiteral
+            name = "Ask"
+        case "mark":
+            string = stringLiteral
+            name = "Mark"
+        case "s":
+            string = stringLiteral
+            name = "Settlement"
+        default:
+            string = stringLiteral
+            name = "Last"
+        }
     }
+}
+
+enum CandlePrice: DXCandlePrice, CaseIterable {
+    case last = "last"
+    case bid = "bid"
+    case ask = "ask"
+    case mark = "mark"
+    case settlement = "s"
 
     static let attributeKey = "price"
-
-    private let identifier: CandlePriceId
-    private let value: String
-    private let name: String
-
-    static let last = try? CandlePrice(identifier: .last, value: "last")
-    static let bid = try? CandlePrice(identifier: .bid, value: "bid")
-    static let ask = try? CandlePrice(identifier: .ask, value: "ask")
-    static let mark = try? CandlePrice(identifier: .mark, value: "mark")
-    static let settlement = try?  CandlePrice(identifier: .settlement, value: "s")
-
     static let defaultPrice = last
 
-    private static let pricesByValue = ConcurrentDict<String, CandlePrice>()
-    private static let pricesById = ConcurrentDict<CandlePriceId, CandlePrice>()
-
-    private init(identifier: CandlePriceId, value: String) throws {
-        self.identifier = identifier
-        self.value = value
-        self.name = identifier.rawValue
-        CandlePrice.pricesByValue.writer { dict in
-            if dict[value] == nil {
-                dict[value] = self
-            }
+    static let byString = {
+        let myDict = Self.allCases.reduce(into: [String: CandlePrice]()) {
+            $0[$1.toString()] = $1
         }
-
-        CandlePrice.pricesById.writer { dict in
-            if dict[identifier] == nil {
-                dict[identifier] = self
-            }
-        }
-    }
-
-    static func getById(identifier: CandlePriceId) -> CandlePrice? {
-        return pricesById[identifier]
-    }
+        return myDict
+    }()
 
     static func normalizeAttributeForSymbol(_ symbol: String) throws -> String {
         let attribute = MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
@@ -67,7 +63,7 @@ final class CandlePrice: Equatable {
         if other == defaultPrice {
             _ = MarketEventSymbols.removeAttributeStringByKey(symbol, attributeKey)
         }
-        if attribute != other.value {
+        if attribute != other.toString() {
             return try MarketEventSymbols.changeAttributeStringByKey(symbol, attributeKey, other.toString()) ?? symbol
         }
         return symbol
@@ -76,10 +72,11 @@ final class CandlePrice: Equatable {
     static func getAttribute(_ symbol: String?) throws -> CandlePrice {
         let attribute = MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
         guard let value = attribute else {
-            return defaultPrice!
+            return defaultPrice
         }
         return try parse(value)
     }
+
 
     static func parse(_ symbol: String) throws -> CandlePrice {
         let length = symbol.length
@@ -87,16 +84,14 @@ final class CandlePrice: Equatable {
             throw ArgumentException.missingCandlePrice
         }
         // Fast path to reverse toString result.
-        let fvalue = pricesByValue[symbol]
-        if let value = fvalue {
-            return value
+        if let fvalue = byString[symbol] {
+            return fvalue
         }
-
         // Slow path for different case.
-        let sValue = pricesByValue.first { _, price in
+        let sValue = CandlePrice.allCases.first( where: { price in
             let pString = price.toString()
-            return pString.length >= length && pString[0..<length] == symbol
-        }?.value
+            return pString.length >= length && pString[0..<length].equalsIgnoreCase(symbol)
+        })
         guard let sValue = sValue else {
             throw ArgumentException.unknowCandlePrice
         }
@@ -104,7 +99,7 @@ final class CandlePrice: Equatable {
     }
 
     func toString() -> String {
-        return value
+        return self.rawValue.string
     }
 }
 
