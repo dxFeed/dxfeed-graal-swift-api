@@ -89,8 +89,7 @@ class CandlePeriod {
     private init(value: Double, type: CandleType) {
         self.value = value
         self.type = type
-        self.periodIntervalMillis = type.periodIntervalInMillis * Long(value)
-
+        self.periodIntervalMillis = type.rawValue.periodIntervalMillis * Long(value)
     }
 
     func toString() -> String {

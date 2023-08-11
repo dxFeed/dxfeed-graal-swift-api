@@ -23,7 +23,6 @@
 /* Begin PBXBuildFile section */
 		6401A5152A582134009BA686 /* IsolateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76A29C0FE1700F240CB /* IsolateTest.swift */; };
 		6401A5162A582141009BA686 /* SystemPropertyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77829C498FA00F240CB /* SystemPropertyTest.swift */; };
-		640C3FCA2A6165DA00555161 /* CandleTypeId+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640C3FC92A6165DA00555161 /* CandleTypeId+Ext.swift */; };
 		640C3FCC2A616B6200555161 /* ArgumentException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640C3FCB2A616B6200555161 /* ArgumentException.swift */; };
 		640C3FCE2A61788500555161 /* CandleExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640C3FCD2A61788500555161 /* CandleExchange.swift */; };
 		640C3FD02A6178B400555161 /* CandlePrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640C3FCF2A6178B400555161 /* CandlePrice.swift */; };
@@ -329,7 +328,6 @@
 
 /* Begin PBXFileReference section */
 		6401A5142A5820C9009BA686 /* DXFeedFrameworkTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = DXFeedFrameworkTests.xctestplan; sourceTree = "<group>"; };
-		640C3FC92A6165DA00555161 /* CandleTypeId+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CandleTypeId+Ext.swift"; sourceTree = "<group>"; };
 		640C3FCB2A616B6200555161 /* ArgumentException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentException.swift; sourceTree = "<group>"; };
 		640C3FCD2A61788500555161 /* CandleExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleExchange.swift; sourceTree = "<group>"; };
 		640C3FCF2A6178B400555161 /* CandlePrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandlePrice.swift; sourceTree = "<group>"; };
@@ -722,7 +720,6 @@
 				64278C6D2A602D2B0074B5AA /* Candle.swift */,
 				649F48852A615BC90016FDD1 /* CandleSymbol.swift */,
 				649F48872A615BED0016FDD1 /* CandleType.swift */,
-				640C3FC92A6165DA00555161 /* CandleTypeId+Ext.swift */,
 				640C3FCD2A61788500555161 /* CandleExchange.swift */,
 				640C3FCF2A6178B400555161 /* CandlePrice.swift */,
 				640C3FD12A6178D200555161 /* CandleSession.swift */,
@@ -1467,7 +1464,6 @@
 				8088D77D29C8DAF800F240CB /* GraalErrorCode.swift in Sources */,
 				8088D76929C0FC5C00F240CB /* Isolate.swift in Sources */,
 				64278C722A6030290074B5AA /* CandleMapper.swift in Sources */,
-				640C3FCA2A6165DA00555161 /* CandleTypeId+Ext.swift in Sources */,
 				649F48862A615BC90016FDD1 /* CandleSymbol.swift in Sources */,
 				64656F6B2A1CFAC2006A0B19 /* BridgeUtil.swift in Sources */,
 				8088D77329C3A2F400F240CB /* GraalException.swift in Sources */,

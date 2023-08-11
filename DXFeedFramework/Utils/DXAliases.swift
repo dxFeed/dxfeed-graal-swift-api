@@ -7,4 +7,4 @@
 
 import Foundation
 
-typealias Long = Int64
+public typealias Long = Int64
