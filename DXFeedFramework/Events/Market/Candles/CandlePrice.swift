@@ -55,7 +55,7 @@ enum CandlePrice: DXCandlePrice, CaseIterable {
     }()
 
     static func normalizeAttributeForSymbol(_ symbol: String?) -> String? {
-        let attribute = MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
+        let attribute = try? MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
         guard let value = attribute else {
             return symbol
         }
@@ -74,7 +74,7 @@ enum CandlePrice: DXCandlePrice, CaseIterable {
     }
 
     static func getAttribute(_ symbol: String?) throws -> CandlePrice {
-        let attribute = MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
+        let attribute = try MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
         guard let value = attribute else {
             return defaultPrice
         }

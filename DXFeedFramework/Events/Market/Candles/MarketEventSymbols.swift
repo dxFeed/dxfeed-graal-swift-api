@@ -46,7 +46,10 @@ class MarketEventSymbols {
         return hasExchangeCodeInternal(symbol, length) ? symbol[0..<(length - 2)] : symbol[0..<length]
     }
 
-    static func getAttributeStringByKey(_ symbol: String?, _ key: String) -> String? {
+    static func getAttributeStringByKey(_ symbol: String?, _ key: String?) throws -> String? {
+        guard let key = key else {
+            throw ArgumentException.argumentNil
+        }
         guard let symbol = symbol else {
             return nil
         }

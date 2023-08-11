@@ -36,7 +36,7 @@ enum CandleSession: DXCandleSession, CaseIterable {
     static let defaultSession = CandleSession.any
 
     static func normalizeAttributeForSymbol(_ symbol: String?) -> String? {
-        let attribute = MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
+        let attribute = try? MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
         guard let attribute = attribute else {
             return symbol
         }
@@ -58,7 +58,7 @@ enum CandleSession: DXCandleSession, CaseIterable {
     }
 
     static func getAttribute(_ symbol: String?) -> CandleSession {
-        guard let attribute = MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey) else {
+        guard let attribute = try? MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey) else {
             return defaultSession
         }
         let res = Bool(attribute) ?? false
