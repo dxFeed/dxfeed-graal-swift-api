@@ -148,6 +148,7 @@ final class FeedTest: XCTestCase {
         try endpoint.connect("demo.dxfeed.com:7300")
         let subscription = try endpoint.getFeed()?.createSubscription(code)
         let receivedEventExp = expectation(description: "Received events \(code)")
+        receivedEventExp.assertForOverFulfill = false
         subscription?.add(AnonymousClass { anonymCl in
             anonymCl.callback = { events in
                 if events.count > 0 {
