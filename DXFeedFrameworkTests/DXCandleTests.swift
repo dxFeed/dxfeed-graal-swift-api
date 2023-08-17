@@ -4,6 +4,7 @@
 //
 //  Created by Aleksey Kosylo on 13.07.23.
 //
+// swiftlint:disable function_parameter_count
 
 import XCTest
 @testable import DXFeedFramework
@@ -63,35 +64,41 @@ final class DXCandleTests: XCTestCase {
         _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
     }
 
-    func testParse() throws {
-        let candleSymbol = try CandleSymbol.valueOf("AAPL&A{=3d}")
-        XCTAssert(candleSymbol.baseSymbol == "AAPL", "Please check base symbol")
-        XCTAssert(candleSymbol.exchange?.exchangeCode == "A", "Please check exchange code")
-        let period = candleSymbol.period
-        XCTAssert(period?.type == .day && period?.value == 3, "Please check period")
+    func testParseShortSymbol() throws {
+        let symbol = try CandleSymbol.valueOf("AAPL&C{tho=true,=d}")
+        checkSymbol(symbol,
+                    baseSymbol: "AAPL",
+                    period: 1,
+                    pType: .day,
+                    price: .defaultPrice,
+                    session: CandleSession.regular,
+                    alignment: .defaultAlignment,
+                    priceLevel: CandlePriceLevel.defaultCandlePriceLevel?.value,
+                    exchangeCode: "C")
+        let symbol2 = try CandleSymbol.valueOf("AAPL{tho=true,=d}")
+        checkSymbol(symbol2,
+                    baseSymbol: "AAPL",
+                    period: 1,
+                    pType: .day,
+                    price: .defaultPrice,
+                    session: CandleSession.regular,
+                    alignment: .defaultAlignment,
+                    priceLevel: CandlePriceLevel.defaultCandlePriceLevel?.value,
+                    exchangeCode: CandleExchange.defaultExchange.exchangeCode)
     }
 
-    func testParse2() throws {
-        func check(_ candleSymbol: CandleSymbol) {
-            XCTAssert(candleSymbol.baseSymbol == "AAPL", "Please check base symbol")
-            let period = candleSymbol.period
-            XCTAssert(period?.type == .day && period?.value == 1, "Please check period")
-            let session = candleSymbol.session
-            XCTAssert(session == .regular, "Please check base symbol")
-        }
-        check(try CandleSymbol.valueOf("AAPL{tho=true,=d}"))
-        check(try CandleSymbol.valueOf("AAPL{=d,tho=true}"))
-    }
-
-    func testParse3() throws{
+    func testParseLongSymbol() throws {
         let candleSymbol = try CandleSymbol.valueOf("AAPL{=3y,price=bid,tho=true,a=s,pl=1000.5}")
         XCTAssert(candleSymbol.baseSymbol == "AAPL", "Please check base symbol")
-        let period = candleSymbol.period
-        XCTAssert(period?.type == .year && period?.value == 3, "Please check period")
-        XCTAssert(candleSymbol.price == .bid && period?.value == 3, "Please check price")
-        XCTAssert(candleSymbol.session == .regular, "Please check session")
-        XCTAssert(candleSymbol.alignment == .session, "Please check alignment")
-        XCTAssert(candleSymbol.priceLevel?.value == 1000.5, "Please check price level")
+        checkSymbol(candleSymbol,
+                    baseSymbol: "AAPL",
+                    period: 3,
+                    pType: .year,
+                    price: CandlePrice.bid,
+                    session: CandleSession.regular,
+                    alignment: .session,
+                    priceLevel: 1000.5,
+                    exchangeCode: CandleExchange.defaultExchange.exchangeCode)
     }
 
     func testCreationSymbol() throws {
@@ -101,9 +108,39 @@ final class DXCandleTests: XCTestCase {
         let price = try CandlePrice.parse("mark")
         let session = try CandleSession.parse("true")
         let alignment = try CandleAlignment.parse("s")
-        let symbol = CandleSymbol.valueOf("AAPL", [exchange, period, alignment, priceLevel, price, session])
-        print(symbol.symbol)
+        let candleSymbol = CandleSymbol.valueOf("AAPL", [exchange, period, alignment, priceLevel, price, session])
+        checkSymbol(candleSymbol,
+                    baseSymbol: "AAPL",
+                    period: 100.0,
+                    pType: .day,
+                    price: CandlePrice.mark,
+                    session: CandleSession.regular,
+                    alignment: .session,
+                    priceLevel: 999.35,
+                    exchangeCode: "A")
     }
+
+    private func checkSymbol(_ candleSymbol: CandleSymbol,
+                             baseSymbol: String,
+                             period: Double?,
+                             pType: CandleType?,
+                             price: CandlePrice?,
+                             session: CandleSession?,
+                             alignment: CandleAlignment?,
+                             priceLevel: Double?,
+                             exchangeCode: Character) {
+        XCTAssert(candleSymbol.baseSymbol == baseSymbol, "Base symbol is not correct")
+        XCTAssert(candleSymbol.period?.value == period, "Period value is not correct")
+        XCTAssert(candleSymbol.period?.type == pType, "Period type is not correct")
+        XCTAssert(candleSymbol.price == price, "Price is not correct")
+        XCTAssert(candleSymbol.session == session, "Session is not correct")
+        XCTAssert(candleSymbol.alignment == alignment, "Alignment is not correct")
+        if candleSymbol.priceLevel?.value.isNaN != true && priceLevel?.isNaN != true {
+            XCTAssert(candleSymbol.priceLevel?.value == priceLevel, "PriceLevel is not correct")
+        }
+        XCTAssert(candleSymbol.exchange?.exchangeCode == exchangeCode, "Exchange is not correct")
+    }
+
 
     func testCandleTypeEnum() throws {
         let fvalue = try? CandleType.parse("d")
@@ -111,3 +148,4 @@ final class DXCandleTests: XCTestCase {
         XCTAssert(fvalue == CandleType.day && svalue == CandleType.day, "Should be day enum")
     }
 }
+// swiftlint:enable function_parameter_count

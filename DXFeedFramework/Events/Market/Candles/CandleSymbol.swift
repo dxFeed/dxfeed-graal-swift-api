@@ -27,6 +27,7 @@ class CandleSymbol {
         properties.forEach { prop in
             try? prop.checkInAttribute(candleSymbol: self)
         }
+        try? initInternal()
     }
 
     private static func changeAttributes(_ symbol: String, _ properties: [ICandleSymbolProperty]) -> String {
@@ -39,12 +40,24 @@ class CandleSymbol {
 
     private func initInternal() throws {
         self.baseSymbol = MarketEventSymbols.getBaseSymbol(self.symbol)
-        self.exchange = CandleExchange.getAttribute(self.symbol)
-        self.price = try CandlePrice.getAttribute(self.symbol)
-        self.session = CandleSession.getAttribute(self.symbol)
-        self.period = try CandlePeriod.getAttribute(self.symbol)
-        self.alignment = try CandleAlignment.getAttribute(self.symbol)
-        self.priceLevel = try CandlePriceLevel.getAttribute(self.symbol)
+        if self.exchange == nil {
+            self.exchange = CandleExchange.getAttribute(self.symbol)
+        }
+        if self.price == nil {
+            self.price = try CandlePrice.getAttribute(self.symbol)
+        }
+        if self.session == nil {
+            self.session = CandleSession.getAttribute(self.symbol)
+        }
+        if self.period == nil {
+            self.period = try CandlePeriod.getAttribute(self.symbol)
+        }
+        if self.alignment == nil  {
+            self.alignment = try CandleAlignment.getAttribute(self.symbol)
+        }
+        if self.priceLevel == nil {
+            self.priceLevel = try CandlePriceLevel.getAttribute(self.symbol)
+        }
     }
 
     private static func normalize(_ symbol: String?) -> String? {
