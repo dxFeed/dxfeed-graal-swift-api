@@ -7,10 +7,10 @@
 
 import Foundation
 
-public class Quote: MarketEvent, CustomStringConvertible {
+public class Quote: MarketEvent, ILastingEvent, CustomStringConvertible {
     public let type: EventCode = .quote
-    public let eventSymbol: String
-    public let eventTime: Int64
+    public var eventSymbol: String
+    public var eventTime: Int64
 
     public let timeMillisSequence: Int32
     public let timeNanoPart: Int32

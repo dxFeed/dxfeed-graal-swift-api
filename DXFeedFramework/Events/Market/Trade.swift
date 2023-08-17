@@ -7,7 +7,6 @@
 
 import Foundation
 
-public class Trade: TradeBase, MarketEvent {
-    public let type: EventCode = .trade
+public class Trade: TradeBase {
 
 }

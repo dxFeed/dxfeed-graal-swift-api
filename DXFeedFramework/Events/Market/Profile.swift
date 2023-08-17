@@ -7,10 +7,10 @@
 
 import Foundation
 
-public class Profile: MarketEvent, CustomStringConvertible {
+public class Profile: MarketEvent, ILastingEvent, CustomStringConvertible {
     public let type: EventCode = .profile
-    public let eventSymbol: String
-    public let eventTime: Int64
+    public var eventSymbol: String
+    public var eventTime: Int64
 
     public let descriptionStr: String
     public let statusReason: String

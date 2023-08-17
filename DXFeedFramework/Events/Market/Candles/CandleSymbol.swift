@@ -86,3 +86,15 @@ class CandleSymbol {
         return CandleSymbol(symbol, properties)
     }
 }
+
+extension CandleSymbol: Equatable {
+    static func == (lhs: CandleSymbol, rhs: CandleSymbol) -> Bool {
+        return lhs === rhs || lhs.symbol == rhs.symbol
+    }
+}
+
+extension CandleSymbol: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(symbol)
+    }
+}

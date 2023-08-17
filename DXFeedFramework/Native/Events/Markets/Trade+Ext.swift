@@ -10,7 +10,8 @@ import Foundation
 
 extension Trade {
     convenience init(native: dxfg_trade_base_t) {
-        self.init(eventSymbol: String(pointee: native.market_event.event_symbol),
+        self.init(type: .trade,
+            eventSymbol: String(pointee: native.market_event.event_symbol),
             eventTime: native.market_event.event_time,
             timeSequence: native.time_sequence,
             timeNanoPart: native.time_nano_part,

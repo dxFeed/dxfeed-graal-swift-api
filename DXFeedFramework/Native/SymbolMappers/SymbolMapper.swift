@@ -36,6 +36,7 @@ class SymbolMapper {
             pointer.pointee.from_time = symbol.fromTime
             let casted = pointer.withMemoryRebound(to: dxfg_symbol_t.self, capacity: 1) { $0 }
             return casted
+
         default:
             let pointer = UnsafeMutablePointer<dxfg_string_symbol_t>.allocate(capacity: 1)
             pointer.pointee.supper = dxfg_symbol_t(type: STRING)

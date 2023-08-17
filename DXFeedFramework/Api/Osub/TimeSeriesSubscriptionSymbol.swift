@@ -7,10 +7,18 @@
 
 import Foundation
 
-class TimeSeriesSubscriptionSymbol: IndexedEventSubscriptionSymbol<Any> {
+class TimeSeriesSubscriptionSymbol: IndexedEventSubscriptionSymbol<AnyHashable> {
     let fromTime: Long
-    init(symbol: Any, fromTime: Long) {
+    init(symbol: AnyHashable, fromTime: Long) {
         self.fromTime = fromTime
-        super.init(symbol: symbol)
+        super.init(symbol: symbol, source: IndexedEventSource.defaultSource)
+    }
+
+    convenience init(symbol: AnyHashable, date: Date) {
+        self.init(symbol: symbol, fromTime: Long(date.timeIntervalSince1970))
+    }
+    
+    static func == (lhs: TimeSeriesSubscriptionSymbol, rhs: TimeSeriesSubscriptionSymbol) -> Bool {
+        return lhs === rhs || lhs.symbol == rhs.symbol
     }
 }

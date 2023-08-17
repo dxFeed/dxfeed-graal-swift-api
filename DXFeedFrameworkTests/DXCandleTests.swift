@@ -12,16 +12,27 @@ import XCTest
 final class DXCandleTests: XCTestCase {
 
     func testFetchingCandlesByString() throws {
-        try fetchCandles("AAPL{=2d}")
+        let symbol = TimeSeriesSubscriptionSymbol(symbol: "AAPL{=15d}", fromTime: 1660125159)
+        try fetchCandles(symbol)
+    }
+
+    func testFetchingSymbolWithDate() throws {
+        let string = "01/01/2023"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yy"
+        let symbol = TimeSeriesSubscriptionSymbol(symbol: "AAPL{=2d}", date: dateFormatter.date(from: string)!)
+        try fetchCandles(symbol)
     }
 
     func testFetchingCandlesBySymbol() throws {
-        let symbol = try CandleSymbol.valueOf("AAPL&A{=3d}")
+        let candleSymbol = try CandleSymbol.valueOf("AAPL&A{=3d}")
+        let symbol = TimeSeriesSubscriptionSymbol(symbol: candleSymbol, fromTime: 1660125159)
         try fetchCandles(symbol)
     }
 
     func testFetchingCandlesByLongSymbol() throws {
-        let symbol = try CandleSymbol.valueOf("AAPL{=3y,price=bid,tho=true,a=s,pl=1000.5}")
+        let candleSymbol = try CandleSymbol.valueOf("AAPL{=3y,price=bid,tho=true,a=s,pl=1000.5}")
+        let symbol = TimeSeriesSubscriptionSymbol(symbol: candleSymbol, fromTime: 1660125159)
         try fetchCandles(symbol)
     }
 
@@ -33,10 +44,11 @@ final class DXCandleTests: XCTestCase {
         let session = try CandleSession.parse("true")
         let alignment = try CandleAlignment.parse("s")
         let candleSymbol = CandleSymbol.valueOf("AAPL", [exchange, period, alignment, priceLevel, price, session])
-        try fetchCandles(candleSymbol)
+        let symbol = TimeSeriesSubscriptionSymbol(symbol: candleSymbol, fromTime: 1660125159)
+        try fetchCandles(symbol)
     }
 
-    func fetchCandles(_ symbol: Any) throws {
+    func fetchCandles(_ symbol: TimeSeriesSubscriptionSymbol) throws {
         let code = EventCode.candle
         var endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         try endpoint?.connect("demo.dxfeed.com:7300")
@@ -54,7 +66,7 @@ final class DXCandleTests: XCTestCase {
             }
             return anonymCl
         })
-        try subscription?.addSymbols(TimeSeriesSubscriptionSymbol(symbol: symbol, fromTime: 1660125159))
+        try subscription?.addSymbols(symbol)
         wait(for: [receivedEventExp], timeout: 10)
         try? endpoint?.disconnect()
         endpoint = nil
