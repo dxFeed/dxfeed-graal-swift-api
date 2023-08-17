@@ -52,7 +52,7 @@ class CandleSymbol {
         if self.period == nil {
             self.period = try CandlePeriod.getAttribute(self.symbol)
         }
-        if self.alignment == nil  {
+        if self.alignment == nil {
             self.alignment = try CandleAlignment.getAttribute(self.symbol)
         }
         if self.priceLevel == nil {

@@ -98,11 +98,13 @@ enum CandleAlignment: DXCandleAlignment, CaseIterable {
 
 extension CandleAlignment: ICandleSymbolProperty {
     func changeAttributeForSymbol(symbol: String?) -> String? {
-        if self == CandleAlignment.defaultAlignment  {
+        if self == CandleAlignment.defaultAlignment {
             return MarketEventSymbols.removeAttributeStringByKey(symbol, CandleAlignment.attributeKey)
         } else {
             do {
-                let res = try MarketEventSymbols.changeAttributeStringByKey(symbol, CandleAlignment.attributeKey, self.toString())
+                let res = try MarketEventSymbols.changeAttributeStringByKey(symbol,
+                                                                            CandleAlignment.attributeKey,
+                                                                            self.toString())
                 return res
             } catch let error {
                 print(error)
