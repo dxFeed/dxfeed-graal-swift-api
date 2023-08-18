@@ -96,7 +96,8 @@ class NativeSubscription {
     }
     func isClosed() -> Bool {
         let thread = currentThread()
-        guard let success = try? ErrorCheck.nativeCall(thread, dxfg_DXFeedSubscription_isClosed(thread, self.subscription)) else {
+        let success = try? ErrorCheck.nativeCall(thread, dxfg_DXFeedSubscription_isClosed(thread, self.subscription))
+        guard let success = success else {
             return true
         }
         return success != 0

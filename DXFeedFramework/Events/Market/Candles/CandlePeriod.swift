@@ -48,7 +48,7 @@ class CandlePeriod {
     }
 
     static func getAttribute(_ symbol: String?) throws -> CandlePeriod {
-        var attribute = try MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
+        let attribute = try MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
         guard let attribute = attribute else {
             return defaultPeriod
         }

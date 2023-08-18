@@ -68,3 +68,39 @@ flags: \(flags)
 """
     }
 }
+
+public enum Direction {
+    case undefined = 0
+    case down
+    case zeroDown
+    case zero
+    case zeroUp
+    case up    
+}
+
+extension TradeBase {
+    public var tickDirection: Direction {
+        get {
+            DirectionExt.ValueOf(BitUtil.GetBits(Flags, DirectionMask, DirectionShift))
+        }
+        set {
+            Flags = BitUtil.SetBits(Flags, DirectionMask, DirectionShift, (int)value)
+        }
+      }
+
+    func baseFieldsToString() -> String {
+        return eventSymbol + ", eventTime=" + TimeUtil.toLocalDateString(millis: eventTime) +
+               ", time=" + TimeUtil.toLocalDateString(time) +
+               ", timeNanoPart=" + timeNanoPart +
+               ", sequence=" + sequence +
+               ", exchange=" + StringUtil.encodeChar(char: exchangeCode) +
+               ", price=" + price +
+               ", change=" + change +
+               ", size=" + size +
+               ", day=" + DayUtil.getYearMonthDayByDayId()(dayId) +
+               ", dayVolume=" + dayVolume +
+               ", dayTurnover=" + dayTurnover +
+               ", direction=" + tickDirection +
+               ", ETH=" + IsExtendedTradingHours
+    }
+}

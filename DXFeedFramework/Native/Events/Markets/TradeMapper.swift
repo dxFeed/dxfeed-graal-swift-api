@@ -19,9 +19,22 @@ class TradeMapper: Mapper {
     }
 
     func toNative(event: MarketEvent) -> UnsafeMutablePointer<dxfg_event_type_t>? {
-        let pointer = UnsafeMutablePointer<dxfg_trade_t>.allocate(capacity: 1)
-#warning("TODO: implement it")
+        let pointer = UnsafeMutablePointer<dxfg_trade_base_t>.allocate(capacity: 1)
+        var pointee = pointer.pointee
+        let trade = event.trade
+        pointee.time_sequence = trade.timeSequence
+        pointee.time_nano_part = trade.timeNanoPart
+        pointee.exchange_code = trade.exchangeCode
+        pointee.price = trade.price
+        pointee.change = trade.change
+        pointee.size = trade.size
+        pointee.day_id = trade.dayId
+        pointee.day_volume = trade.dayVolume
+        pointee.day_turnover = trade.dayTurnover
+        pointee.flags = trade.flags
+
         let eventType = pointer.withMemoryRebound(to: dxfg_event_type_t.self, capacity: 1) { pointer in
+            pointer.pointee.clazz = DXFG_EVENT_TRADE
             return pointer
         }
         return eventType

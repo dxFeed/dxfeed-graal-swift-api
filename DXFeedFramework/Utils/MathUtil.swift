@@ -20,4 +20,14 @@ class MathUtil {
     static func floorMod(_ xValue: Long, _ yValue: Long) -> Long {
         return xValue - (floorDiv(xValue, yValue) * yValue)
     }
+
+    static func div(_ aValue: Int, _ bValue: Int) -> Int {
+         if aValue >= 0 {
+             return aValue / bValue
+         }
+         if bValue >= 0 {
+             return ((aValue + 1) / bValue) - 1
+         }
+         return ((aValue + 1) / bValue) + 1
+     }
 }
