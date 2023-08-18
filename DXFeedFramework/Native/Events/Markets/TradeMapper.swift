@@ -9,8 +9,10 @@ import Foundation
 @_implementationOnly import graal_api
 
 class TradeMapper: Mapper {
+    let type = dxfg_trade_t.self
+
     func fromNative(native: UnsafeMutablePointer<dxfg_event_type_t>) -> MarketEvent? {
-        let event = native.withMemoryRebound(to: dxfg_trade_t.self, capacity: 1) { native in
+        let event = native.withMemoryRebound(to: type, capacity: 1) { native in
             return Trade(native: native.pointee.trade_base)
         }
         return event

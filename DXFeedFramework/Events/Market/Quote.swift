@@ -8,20 +8,32 @@
 import Foundation
 
 public class Quote: MarketEvent, ILastingEvent, CustomStringConvertible {
+
+    public let maxSequence = Int32((1 << 22) - 1)
+
     public let type: EventCode = .quote
     public var eventSymbol: String
     public var eventTime: Int64
 
-    public let timeMillisSequence: Int32
-    public let timeNanoPart: Int32
-    public let bidTime: Int64
-    public let bidExchangeCode: Int16
-    public let bidPrice: Double
-    public let bidSize: Double
-    public let askTime: Int64
-    public let askExchangeCode: Int16
-    public let askPrice: Double
-    public let askSize: Double
+    internal var timeMillisSequence: Int32
+    public var timeNanoPart: Int32
+    public var bidTime: Int64 {
+        didSet {
+            recomputeTimeMillisPart()
+        }
+    }
+    public var bidExchangeCode: Int16
+    public var bidPrice = Double.nan
+    public var bidSize =  Double.nan
+    public var askTime: Int64 {
+        didSet {
+            recomputeTimeMillisPart()
+        }
+    }
+    public var askExchangeCode: Int16
+    public var askPrice: Double
+    public var askSize: Double
+
     init(eventSymbol: String,
          eventTime: Int64,
          timeMillisSequence: Int32,
@@ -63,5 +75,30 @@ askExchangeCode: \(askExchangeCode), \
 askPrice: \(askPrice), \
 askSize: \(askSize)
 """
+    }
+}
+
+extension Quote {
+    func recomputeTimeMillisPart() {
+        timeMillisSequence = Int32(TimeUtil.getMillisFromTime(timeMillis: max<Int64>(askTime, bidTime) << 22) | 0)
+    }
+
+    public func getSequence() -> Int32 {
+        return timeMillisSequence & maxSequence
+    }
+
+    public func setSequence(_ sequence: Int32) throws {
+        if sequence < 0 || sequence > maxSequence {
+            throw ArgumentException.illegalArgumentException
+        }
+        timeMillisSequence = (timeMillisSequence & ~maxSequence) | sequence
+    }
+
+    public var time: Int64 {
+        (MathUtil.floorDiv(max(bidTime, askTime), 1000) * 1000) + (Int64(timeMillisSequence) >> 22)
+    }
+
+    public var timeNanos: Int64 {
+        return TimeNanosUtil.getNanosFromMillisAndNanoPart(time, timeNanoPart)
     }
 }

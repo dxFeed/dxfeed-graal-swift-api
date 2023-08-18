@@ -41,8 +41,8 @@ final class FeedTest: XCTestCase {
         // "as Any" to avoid compile time warnings
         XCTAssertNotNil(("AAPL" as Any) as? Symbol, "String is not a symbol")
         print("asd".description)
-        XCTAssertNotNil((WildcardSymbol() as Any) as? Symbol, "String is not a symbol")
-        print(WildcardSymbol().stringValue)
+        XCTAssertNotNil((WildcardSymbol.all as Any) as? Symbol, "String is not a symbol")
+        print(WildcardSymbol.all.stringValue)
         let symbol = try CandleSymbol(symbol: "test")
         XCTAssertNotNil((TimeSeriesSubscriptionSymbol(symbol: symbol,
                                                       fromTime: 0) as Any) as? Symbol, "String is not a symbol")

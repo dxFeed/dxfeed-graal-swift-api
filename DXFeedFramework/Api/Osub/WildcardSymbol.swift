@@ -8,4 +8,16 @@
 import Foundation
 
 class WildcardSymbol: Symbol {
+    static let reservedPrefix = "*"
+    private let symbol: String
+
+    public static let all = WildcardSymbol(symbol: reservedPrefix)
+
+    private init(symbol: String) {
+        self.symbol = symbol
+    }
+
+    var stringValue: String {
+        return symbol
+    }
 }

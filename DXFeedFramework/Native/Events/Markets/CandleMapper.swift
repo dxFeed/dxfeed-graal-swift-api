@@ -8,8 +8,10 @@
 @_implementationOnly import graal_api
 
 class CandleMapper: Mapper {
+    var type = dxfg_candle_t.self
+
     func fromNative(native: UnsafeMutablePointer<dxfg_event_type_t>) -> MarketEvent? {
-        let event = native.withMemoryRebound(to: dxfg_candle_t.self, capacity: 1) { native in
+        let event = native.withMemoryRebound(to: type, capacity: 1) { native in
             return Candle(native: native.pointee)
         }
         return event

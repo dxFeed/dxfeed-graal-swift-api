@@ -11,8 +11,6 @@ public class DXFeedSubcription {
     private let native: NativeSubscription
     fileprivate let events: Set<EventCode>
     private let listeners = ConcurrentSet<AnyHashable>()
-    deinit {
-    }
 
     internal init(native: NativeSubscription?, events: [EventCode]) throws {
         if let native = native {
@@ -64,5 +62,19 @@ extension DXFeedSubcription: Hashable {
 
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.events)
+    }
+}
+
+extension DXFeedSubcription: IObservableSubscription {
+    public func isClosed() -> Bool {
+        return native.isClosed()
+    }
+
+    public var eventTypes: Set<EventCode> {
+        return events
+    }
+
+    public func isContains(_ eventType: EventCode) -> Bool {
+        return events.contains(eventType)
     }
 }

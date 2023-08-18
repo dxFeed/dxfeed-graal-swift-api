@@ -23,4 +23,5 @@ extension Quote {
                   askPrice: native.ask_price,
                   askSize: native.ask_size)
     }
+
 }
