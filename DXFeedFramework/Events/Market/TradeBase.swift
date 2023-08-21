@@ -8,48 +8,52 @@
 import Foundation
 
 public class TradeBase: MarketEvent, ILastingEvent {
-    public let type: EventCode
+    public let type: EventCode = .trade
 
     public var eventSymbol: String
-    public var eventTime: Int64
+    public var eventTime: Int64 = 0
 
-    public var timeSequence: Long
-    public var timeNanoPart: Int32
-    public var exchangeCode: Int16
+    public var timeSequence: Long = 0
+    public var timeNanoPart: Int32 = 0
+    public var exchangeCode: Int16 = 0
     public var price: Double = .nan
     public var change: Double = .nan
     public var size: Double = .nan
-    public var dayId: Int32
+    public var dayId: Int32 = 0
     public var dayVolume: Double = .nan
     public var dayTurnover: Double = .nan
-    internal var flags: Int32
-    init(type: EventCode,
-         eventSymbol: String,
-         eventTime: Int64,
-         timeSequence: Int64,
-         timeNanoPart: Int32,
-         exchangeCode: Int16,
-         price: Double,
-         change: Double,
-         size: Double,
-         dayId: Int32,
-         dayVolume: Double,
-         dayTurnover: Double,
-         flags: Int32) {
-        self.type = type
-        self.eventSymbol = eventSymbol
-        self.eventTime = eventTime
-        self.timeSequence = timeSequence
-        self.timeNanoPart = timeNanoPart
-        self.exchangeCode = exchangeCode
-        self.price = price
-        self.change = change
-        self.size = size
-        self.dayId = dayId
-        self.dayVolume = dayVolume
-        self.dayTurnover = dayTurnover
-        self.flags = flags
+    internal var flags: Int32 = 0
+
+    init(_ symbol: String) {
+        self.eventSymbol = symbol
     }
+//    init(type: EventCode,
+//         eventSymbol: String,
+//         eventTime: Int64,
+//         timeSequence: Int64,
+//         timeNanoPart: Int32,
+//         exchangeCode: Int16,
+//         price: Double,
+//         change: Double,
+//         size: Double,
+//         dayId: Int32,
+//         dayVolume: Double,
+//         dayTurnover: Double,
+//         flags: Int32) {
+//        self.type = type
+//        self.eventSymbol = eventSymbol
+//        self.eventTime = eventTime
+//        self.timeSequence = timeSequence
+//        self.timeNanoPart = timeNanoPart
+//        self.exchangeCode = exchangeCode
+//        self.price = price
+//        self.change = change
+//        self.size = size
+//        self.dayId = dayId
+//        self.dayVolume = dayVolume
+//        self.dayTurnover = dayTurnover
+//        self.flags = flags
+//    }
     public var description: String {
         """
 DXFG_TRADE_BASE_T \
@@ -113,7 +117,6 @@ extension TradeBase {
     private static let directionMask = Int32(7)
     private static let directionShift = Int32(1)
     private static let eth = Int32(1)
-    public static let maxSequence = Int((1 << 22) - 1)
 
     public var tickDirection: Direction {
         get {
@@ -139,14 +142,16 @@ extension TradeBase {
     }
 
     public func getSequence() -> Int {
-        return Int(timeSequence) & TradeBase.maxSequence
+        return Int(timeSequence) & Int(MarketEventConst.maxSequence)
     }
 
     public func setSequence(_ sequence: Int) throws {
-        if sequence < 0 && sequence > TradeBase.maxSequence {
-            throw ArgumentException.exception("Sequence(\(sequence) is < 0 or > MaxSequence(\(TradeBase.maxSequence)")
+        if sequence < 0 && sequence > MarketEventConst.maxSequence {
+            throw ArgumentException.exception(
+                "Sequence(\(sequence) is < 0 or > MaxSequence(\(MarketEventConst.maxSequence)"
+            )
         }
-        timeSequence = (timeSequence & Long(~TradeBase.maxSequence)) | Int64(sequence)
+        timeSequence = (timeSequence & Long(~MarketEventConst.maxSequence)) | Int64(sequence)
     }
 
     public var time: Long {
@@ -155,7 +160,7 @@ extension TradeBase {
         }
         set {
             timeSequence = Long(TimeUtil.getSecondsFromTime(newValue) << 32) |
-            (TimeUtil.getMillisFromTime(newValue) << 22) |
+            (Long(TimeUtil.getMillisFromTime(newValue)) << 22) |
             newValue
         }
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CandlePeriod {
+public class CandlePeriod {
     private static let attributeKey = "" // Empty string as attribute key is allowed!
     private static let defaultPeriodValue: Double = 1
 
@@ -100,7 +100,7 @@ class CandlePeriod {
 }
 
 extension CandlePeriod: Equatable {
-    static func == (lhs: CandlePeriod, rhs: CandlePeriod) -> Bool {
+    public static func == (lhs: CandlePeriod, rhs: CandlePeriod) -> Bool {
         return lhs === rhs || (lhs.value == rhs.value && lhs.type == rhs.type)
     }
 }

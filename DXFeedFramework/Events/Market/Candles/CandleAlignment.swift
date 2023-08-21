@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DXCandleAlignment: Equatable {
+public struct DXCandleAlignment: Equatable {
     public let name: String
     public let string: String
 }
@@ -28,7 +28,7 @@ extension DXCandleAlignment: ExpressibleByStringLiteral {
     }
 }
 
-enum CandleAlignment: DXCandleAlignment, CaseIterable {
+public enum CandleAlignment: DXCandleAlignment, CaseIterable {
     case midnight = "Midnight"
     case session = "Session"
 

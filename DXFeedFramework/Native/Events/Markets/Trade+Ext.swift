@@ -10,18 +10,18 @@ import Foundation
 
 extension Trade {
     convenience init(native: dxfg_trade_base_t) {
-        self.init(type: .trade,
-            eventSymbol: String(pointee: native.market_event.event_symbol),
-            eventTime: native.market_event.event_time,
-            timeSequence: native.time_sequence,
-            timeNanoPart: native.time_nano_part,
-            exchangeCode: native.exchange_code,
-            price: native.price,
-            change: native.change,
-            size: native.size,
-            dayId: native.day_id,
-            dayVolume: native.day_volume,
-            dayTurnover: native.day_turnover,
-            flags: native.flags)
+        self.init(String(pointee: native.market_event.event_symbol))
+
+        self.eventTime = native.market_event.event_time
+        self.timeSequence = native.time_sequence
+        self.timeNanoPart = native.time_nano_part
+        self.exchangeCode = native.exchange_code
+        self.price = native.price
+        self.change = native.change
+        self.size = native.size
+        self.dayId = native.day_id
+        self.dayVolume = native.day_volume
+        self.dayTurnover = native.day_turnover
+        self.flags = native.flags
     }
 }

@@ -10,3 +10,7 @@ import Foundation
 public protocol MarketEvent: IEventType {
     var type: EventCode { get }
 }
+
+struct MarketEventConst {
+    static let maxSequence = Int32((1 << 22) - 1)
+}

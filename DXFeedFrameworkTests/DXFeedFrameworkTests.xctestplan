@@ -15,7 +15,7 @@
     {
       "parallelizable" : true,
       "skippedTests" : [
-        "DXCandleTests",
+        "DXUtilsTest",
         "EndpointPublisherTest",
         "EndpointTest",
         "EventsTest",

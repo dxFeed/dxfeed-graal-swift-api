@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CandleExchange {
+public class CandleExchange {
 
     static let composite = CandleExchange(exchangeCode: "\0")
 

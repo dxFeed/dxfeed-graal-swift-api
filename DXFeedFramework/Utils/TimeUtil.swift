@@ -32,7 +32,4 @@ class TimeUtil {
         }
     }
 
-    public static func getMillisFromTime(_ timeMillis: Long) -> Long {
-        return MathUtil.floorMod(timeMillis, second)
-    }
 }

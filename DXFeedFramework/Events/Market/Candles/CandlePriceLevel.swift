@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CandlePriceLevel {
+public class CandlePriceLevel {
 
     static let attributeKey = "pl"
 
@@ -75,7 +75,7 @@ class CandlePriceLevel {
 }
 
 extension CandlePriceLevel: Equatable {
-    static func == (lhs: CandlePriceLevel, rhs: CandlePriceLevel) -> Bool {
+    public static func == (lhs: CandlePriceLevel, rhs: CandlePriceLevel) -> Bool {
         return lhs === rhs || (lhs.value ~== rhs.value)
     }
 }

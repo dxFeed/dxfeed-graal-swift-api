@@ -7,7 +7,7 @@
 
 import Foundation
 
-class IndexedEventSource {
+public class IndexedEventSource {
     let identifier: Int
     let name: String
 
@@ -24,7 +24,7 @@ class IndexedEventSource {
 }
 
 extension IndexedEventSource: Equatable {
-    static func == (lhs: IndexedEventSource, rhs: IndexedEventSource) -> Bool {
+    public static func == (lhs: IndexedEventSource, rhs: IndexedEventSource) -> Bool {
         return lhs === rhs || lhs.identifier == rhs.identifier
     }
 }

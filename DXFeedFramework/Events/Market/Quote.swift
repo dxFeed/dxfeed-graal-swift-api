@@ -8,57 +8,57 @@
 import Foundation
 
 public class Quote: MarketEvent, ILastingEvent, CustomStringConvertible {
-
-    public let maxSequence = Int32((1 << 22) - 1)
-
     public let type: EventCode = .quote
     public var eventSymbol: String
-    public var eventTime: Int64
+    public var eventTime: Int64 = 0
 
-    internal var timeMillisSequence: Int32
-    public var timeNanoPart: Int32
-    public var bidTime: Int64 {
+    internal var timeMillisSequence: Int32 = 0
+    public var timeNanoPart: Int32 = 0
+    public var bidTime: Int64 = 0 {
         didSet {
             recomputeTimeMillisPart()
         }
     }
-    public var bidExchangeCode: Int16
-    public var bidPrice = Double.nan
-    public var bidSize =  Double.nan
-    public var askTime: Int64 {
+    public var bidExchangeCode: Int16 = 0
+    public var bidPrice: Double = .nan
+    public var bidSize: Double = .nan
+    public var askTime: Int64 = 0 {
         didSet {
             recomputeTimeMillisPart()
         }
     }
-    public var askExchangeCode: Int16
-    public var askPrice: Double
-    public var askSize: Double
-
-    init(eventSymbol: String,
-         eventTime: Int64,
-         timeMillisSequence: Int32,
-         timeNanoPart: Int32,
-         bidTime: Int64,
-         bidExchangeCode: Int16,
-         bidPrice: Double,
-         bidSize: Double,
-         askTime: Int64,
-         askExchangeCode: Int16,
-         askPrice: Double,
-         askSize: Double) {
-        self.eventSymbol = eventSymbol
-        self.eventTime = eventTime
-        self.timeMillisSequence = timeMillisSequence
-        self.timeNanoPart = timeNanoPart
-        self.bidTime = bidTime
-        self.bidExchangeCode = bidExchangeCode
-        self.bidPrice = bidPrice
-        self.bidSize = bidSize
-        self.askTime = askTime
-        self.askExchangeCode = askExchangeCode
-        self.askPrice = askPrice
-        self.askSize = askSize
+    public var askExchangeCode: Int16 = 0
+    public var askPrice: Double = .nan
+    public var askSize: Double = .nan
+    init(_ symbol: String) {
+        self.eventSymbol = symbol
     }
+
+//    init(eventSymbol: String,
+//         eventTime: Int64,
+//         timeMillisSequence: Int32,
+//         timeNanoPart: Int32,
+//         bidTime: Int64,
+//         bidExchangeCode: Int16,
+//         bidPrice: Double,
+//         bidSize: Double,
+//         askTime: Int64,
+//         askExchangeCode: Int16,
+//         askPrice: Double,
+//         askSize: Double) {
+//        self.eventSymbol = eventSymbol
+//        self.eventTime = eventTime
+//        self.timeMillisSequence = timeMillisSequence
+//        self.timeNanoPart = timeNanoPart
+//        self.bidTime = bidTime
+//        self.bidExchangeCode = bidExchangeCode
+//        self.bidPrice = bidPrice
+//        self.bidSize = bidSize
+//        self.askTime = askTime
+//        self.askExchangeCode = askExchangeCode
+//        self.askPrice = askPrice
+//        self.askSize = askSize
+//    }
     public var description: String {
         """
 DXFG_QUOTE_T \
@@ -83,15 +83,17 @@ extension Quote {
         timeMillisSequence = Int32(TimeUtil.getMillisFromTime(max<Int64>(askTime, bidTime) << 22) | 0)
     }
 
-    public func getSequence() -> Int32 {
-        return timeMillisSequence & maxSequence
+    public func getSequence() -> Int {
+        return Int(timeMillisSequence & MarketEventConst.maxSequence)
     }
 
-    public func setSequence(_ sequence: Int32) throws {
-        if sequence < 0 || sequence > maxSequence {
-            throw ArgumentException.illegalArgumentException
+    public func setSequence(_ sequence: Int) throws {
+        if sequence < 0 || sequence > MarketEventConst.maxSequence {
+            throw ArgumentException.exception(
+                "Sequence(\(sequence) is < 0 or > MaxSequence(\(MarketEventConst.maxSequence)"
+            )
         }
-        timeMillisSequence = (timeMillisSequence & ~maxSequence) | sequence
+        timeMillisSequence = Int32(timeMillisSequence & ~MarketEventConst.maxSequence) | Int32(sequence)
     }
 
     public var time: Int64 {
