@@ -16,11 +16,23 @@ class TimeUtil {
         return formatter
     }()
 
-    public static func getMillisFromTime(timeMillis: Long) -> Int {
+    public static func getMillisFromTime(_ timeMillis: Long) -> Int {
         return Int(MathUtil.floorMod(timeMillis, second))
     }
 
     public static func toLocalDateString(millis: Int64) -> String {
         return dateFormatter.string(from: Date(timeIntervalSince1970: Double(millis / 1000)))
+    }
+
+    public static func getSecondsFromTime(_ timeMillis: Long) -> Int {
+        if timeMillis >= 0 {
+            return min(Int(timeMillis / second), Int.max)
+        } else {
+            return max(Int((timeMillis + 1) / second) - 1, Int.min)
+        }
+    }
+
+    public static func getMillisFromTime(_ timeMillis: Long) -> Long {
+        return MathUtil.floorMod(timeMillis, second)
     }
 }

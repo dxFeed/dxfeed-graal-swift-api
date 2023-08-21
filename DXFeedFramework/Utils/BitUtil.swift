@@ -1,5 +1,5 @@
 //
-//  Util.swift
+//  BitUtil.swift
 //  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 18.08.23.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-class Util {
-    static func getBits(flags: Int, mask: Int, shift: Int) -> Int {
+class BitUtil<T> where T: BinaryInteger {
+    static func getBits(flags: T, mask: T, shift: T) -> T {
         return (flags >> shift) & mask
     }
 
-    static func setBits(flags: Int, mask: Int, shift: Int, bits: Int) -> Int {
+    static func setBits(flags: T, mask: T, shift: T, bits: T) -> T {
         return (flags & ~(mask << shift)) | ((bits & mask) << shift)
     }
 }
