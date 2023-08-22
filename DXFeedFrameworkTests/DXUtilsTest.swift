@@ -18,4 +18,10 @@ final class DXUtilsTest: XCTestCase {
     func testUnicodeCharToString() throws {
         XCTAssert(StringUtil.encodeChar(char: 300) == "\\u012C", "Not correct ascii conversation")
     }
+
+    func testCharacter() {
+        let char = Character(UnicodeScalar(122)!)
+        XCTAssert(char == "z", "Wrong")
+    }
+
 }

@@ -7,13 +7,11 @@
 
 import Foundation
 
-public class TimeAndSale: MarketEvent, CustomStringConvertible {
+public class TimeAndSale: MarketEvent, ITimeSeriesEvent, CustomStringConvertible {
     public let type: EventCode = .timeAndSale
     public var eventSymbol: String
     public var eventTime: Int64 = 0
 
-    public var eventFlags: Int32 = 0
-    public var index: Long = 0
     public var timeNanoPart: Int32 = 0
     public var exchangeCode: Int16 = 0
     public var price: Double = .nan
@@ -40,7 +38,10 @@ public class TimeAndSale: MarketEvent, CustomStringConvertible {
     // TYPE values are taken from TimeAndSaleType enum.
     internal let typeMask = 3
     internal let typeShift = 0
+
     public var eventSource = IndexedEventSource.defaultSource
+    public var eventFlags: Int32 = 0
+    public var index: Long = 0
 
     init(_ symbol: String) {
         self.eventSymbol = symbol
