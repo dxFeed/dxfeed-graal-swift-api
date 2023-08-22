@@ -97,7 +97,7 @@ extension Candle {
 
     func baseFieldsToString() -> String {
         return """
-\(eventSymbol) ?? "null", \
+\(eventSymbol ?? "null"), \
 eventTime=" + \(TimeUtil.toLocalDateString(millis: eventTime)), \
 eventFlags=0x\(String(format: "%02X", eventFlags)), \
 time=\(TimeUtil.toLocalDateString(millis: time)), \

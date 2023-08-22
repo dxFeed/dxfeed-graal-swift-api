@@ -22,8 +22,8 @@ class ProfileMapper: Mapper {
         let pointer = UnsafeMutablePointer<dxfg_profile_t>.allocate(capacity: 1)
         var pointee = pointer.pointee
         let profile = event.profile
-        pointee.description = profile.descriptionStr.toCStringRef()
-        pointee.status_reason = profile.statusReason.toCStringRef()
+        pointee.description = profile.descriptionStr?.toCStringRef()
+        pointee.status_reason = profile.statusReason?.toCStringRef()
         pointee.halt_start_time = profile.haltStartTime
         pointee.halt_end_time = profile.haltEndTime
         pointee.high_limit_price = profile.highLimitPrice
