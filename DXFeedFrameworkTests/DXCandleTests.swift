@@ -156,5 +156,10 @@ final class DXCandleTests: XCTestCase {
         let svalue = try? CandleType.parse("Days")
         XCTAssert(fvalue == CandleType.day && svalue == CandleType.day, "Should be day enum")
     }
+
+    func testCharacters() {
+        let char = Character(UnicodeScalar(122)!)
+        print(char)
+    }
 }
 // swiftlint:enable function_parameter_count

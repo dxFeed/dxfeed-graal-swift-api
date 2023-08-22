@@ -28,6 +28,7 @@ public class Profile: MarketEvent, ILastingEvent, CustomStringConvertible {
     public let shares: Double
     public let freeFloat: Double
     public let flags: Int32
+    
     init(eventSymbol: String,
          eventTime: Int64,
          description: String,

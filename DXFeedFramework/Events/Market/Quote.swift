@@ -33,32 +33,6 @@ public class Quote: MarketEvent, ILastingEvent, CustomStringConvertible {
     init(_ symbol: String) {
         self.eventSymbol = symbol
     }
-
-//    init(eventSymbol: String,
-//         eventTime: Int64,
-//         timeMillisSequence: Int32,
-//         timeNanoPart: Int32,
-//         bidTime: Int64,
-//         bidExchangeCode: Int16,
-//         bidPrice: Double,
-//         bidSize: Double,
-//         askTime: Int64,
-//         askExchangeCode: Int16,
-//         askPrice: Double,
-//         askSize: Double) {
-//        self.eventSymbol = eventSymbol
-//        self.eventTime = eventTime
-//        self.timeMillisSequence = timeMillisSequence
-//        self.timeNanoPart = timeNanoPart
-//        self.bidTime = bidTime
-//        self.bidExchangeCode = bidExchangeCode
-//        self.bidPrice = bidPrice
-//        self.bidSize = bidSize
-//        self.askTime = askTime
-//        self.askExchangeCode = askExchangeCode
-//        self.askPrice = askPrice
-//        self.askSize = askSize
-//    }
     public var description: String {
         """
 DXFG_QUOTE_T \

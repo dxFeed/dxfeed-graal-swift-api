@@ -15,4 +15,13 @@ class StringUtil {
         let value = (String(format: "%02X", Int(char) + 65536).substring(fromIndex: 1))
         return char == 0 ? "\0" : "\\u" + value
     }
+
+    public static func checkChar(char: Character, mask: Int, name: String) throws {
+        guard let value = char.unicodeScalars.first?.value else {
+            throw ArgumentException.exception("Invalid \(name): \(char)")
+        }
+        if (Int(value) & ~mask) != 0 {
+            throw ArgumentException.exception("Invalid \(name): \(char)")
+        }
+    }
 }

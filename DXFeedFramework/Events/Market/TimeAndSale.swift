@@ -20,10 +20,10 @@ public class TimeAndSale: MarketEvent, CustomStringConvertible {
     public var size: Double = .nan
     public var bidPrice: Double = .nan
     public var askPrice: Double = .nan
-    public var exchangeSaleConditions: String = ""
+    public var exchangeSaleConditions: String?
     public var flags: Int32 = 0
-    public var buyer: String = ""
-    public var seller: String = ""
+    public var buyer: String?
+    public var seller: String?
 
     // TTE (TradeThroughExempt) values are ASCII chars in [0, 255].
     internal let tteMask = 0xff
@@ -88,7 +88,109 @@ extension TimeAndSale {
         }
         set {
             index = (Long(TimeUtil.getSecondsFromTime(newValue)) << 32) |
-            Long((TimeUtil.getMillisFromTime(newValue) << 22)) | Long(getSequence())
+            Long((TimeUtil.getMillisFromTime(newValue)) << 22) | Long(getSequence())
         }
+    }
+    public var timeNanos: Int64 {
+        get {
+            TimeNanosUtil.getNanosFromMillisAndNanoPart(time, timeNanoPart)
+        }
+        set {
+            time = TimeNanosUtil.getNanoPartFromNanos(newValue)
+            timeNanoPart = Int32(TimeNanosUtil.getNanoPartFromNanos(newValue))
+        }
+    }
+
+    public func getTradeThroughExempt() -> Character {
+        Character(BitUtil.getBits(flags: Int(flags), mask: tteMask, shift: tteShift))
+    }
+
+    public func setTradeThroughExempt(_ char: Character) throws {
+        try StringUtil.checkChar(char: char, mask: tteMask, name: "tradeThroughExempt")
+        if let value = char.unicodeScalars.first?.value {
+            flags = Int32(BitUtil.setBits(flags: Int(flags), mask: tteMask, shift: tteShift, bits: Int(value)))
+        }
+    }
+
+    public var aggressorSide: Side {
+        get {
+            Side.valueOf(Int(BitUtil.getBits(flags: Int(flags), mask: sideMask, shift: sideShift)))
+        }
+        set {
+            flags = Int32(BitUtil.setBits(flags: Int(flags), mask: sideMask, shift: sideShift, bits: newValue.rawValue))
+        }
+    }
+
+    public var isSpreadLeg: Bool {
+        get {
+            (flags & Int32(spreadLeg)) != 0
+        }
+        set {
+            flags = newValue ? (flags | Int32(spreadLeg)) : (flags & ~Int32(spreadLeg))
+        }
+    }
+
+    public var isExtendedTradingHours: Bool {
+        get {
+            (flags & Int32(eth)) != 0
+        }
+        set {
+            flags = newValue ? (flags | Int32(eth)) : (flags & ~Int32(eth))
+        }
+    }
+
+    public var isValidTick: Bool {
+        get {
+            (flags & Int32(validTick)) != 0
+        }
+        set {
+            flags = newValue ? (flags | Int32(validTick)) : flags & ~Int32(validTick)
+        }
+    }
+
+    public var timeAndSaleType: TimeAndSaleType {
+        get {
+            TimeAndSaleType.valueOf(BitUtil.getBits(flags: Int(flags), mask: typeMask, shift: typeShift))
+        }
+        set {
+            flags = Int32(BitUtil.setBits(flags: Int(flags), mask: typeMask, shift: typeShift, bits: newValue.rawValue))
+        }
+    }
+
+    public var isNew: Bool {
+        timeAndSaleType == .new
+    }
+
+    public var isCorrection: Bool {
+        timeAndSaleType == .correction
+    }
+
+    public var isCancel: Bool {
+        timeAndSaleType == .cancel
+    }
+
+    func toString() -> String {
+        return """
+TimeAndSale{"\(eventSymbol), \
+eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
+eventFlags=0x\(String(format: "%02X", eventFlags)), \
+time=\(TimeUtil.toLocalDateString(millis: time)), \
+timeNanoPart=\(timeNanoPart), \
+sequence=\(getSequence()), \
+exchange=\(StringUtil.encodeChar(char: exchangeCode)), \
+price=\(price), \
+size=\(size), \
+bid=\(bidPrice), \
+ask=\(askPrice), \
+ESC='\(exchangeSaleConditions ?? "null")', \
+TTE=\(StringUtil.encodeChar(char: Int16(getTradeThroughExempt().unicodeScalars.first?.value ?? 0))), \
+side=\(aggressorSide), \
+spread=\(isSpreadLeg), \
+ETH=\(isExtendedTradingHours), \
+validTick=\(isValidTick), \
+type=\(timeAndSaleType)\(buyer == nil ? "" : ", buyer='\(buyer)'")\
+        \(seller == nil ? "" : ", seller='\(buyer)'")\
+}
+"""
     }
 }
