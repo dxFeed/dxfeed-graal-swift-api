@@ -191,6 +191,7 @@
 		64C771F82A94B88C009868C2 /* TimeAndSaleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C771F72A94B88C009868C2 /* TimeAndSaleType.swift */; };
 		64C771FA2A94D692009868C2 /* ShortSaleRestriction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C771F92A94D692009868C2 /* ShortSaleRestriction.swift */; };
 		64C771FC2A94D7E9009868C2 /* TradingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C771FB2A94D7E9009868C2 /* TradingStatus.swift */; };
+		64C771FF2A9504ED009868C2 /* SnapshotProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C771FE2A9504ED009868C2 /* SnapshotProcessor.swift */; };
 		64D0DBE82A29FF4B00710605 /* EventsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FCD2A2637EA00D1FC41 /* EventsTest.swift */; };
 		64D8BB342A39A1230071BC88 /* Diagnostic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D8BB332A39A1230071BC88 /* Diagnostic.swift */; };
 		64D8BB3E2A39BB730071BC88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D8BB3D2A39BB730071BC88 /* AppDelegate.swift */; };
@@ -482,6 +483,7 @@
 		64C771F72A94B88C009868C2 /* TimeAndSaleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndSaleType.swift; sourceTree = "<group>"; };
 		64C771F92A94D692009868C2 /* ShortSaleRestriction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortSaleRestriction.swift; sourceTree = "<group>"; };
 		64C771FB2A94D7E9009868C2 /* TradingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingStatus.swift; sourceTree = "<group>"; };
+		64C771FE2A9504ED009868C2 /* SnapshotProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotProcessor.swift; sourceTree = "<group>"; };
 		64D8BB332A39A1230071BC88 /* Diagnostic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diagnostic.swift; sourceTree = "<group>"; };
 		64D8BB3B2A39BB730071BC88 /* DXLatencyTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXLatencyTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D8BB3D2A39BB730071BC88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -837,6 +839,14 @@
 			path = PertTestApp;
 			sourceTree = "<group>";
 		};
+		64C771FD2A9504D7009868C2 /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				64C771FE2A9504ED009868C2 /* SnapshotProcessor.swift */,
+			);
+			path = Extra;
+			sourceTree = "<group>";
+		};
 		64D8BB362A39B0DE0071BC88 /* Samples */ = {
 			isa = PBXGroup;
 			children = (
@@ -898,6 +908,7 @@
 				64656F542A1B69FE006A0B19 /* Events */,
 				8088D77A29C5D8AD00F240CB /* Native */,
 				64656F552A1B6A07006A0B19 /* Utils */,
+				64C771FD2A9504D7009868C2 /* Extra */,
 				8088D77029C3A25D00F240CB /* SystemProperty.swift */,
 				803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */,
 			);
@@ -1520,6 +1531,7 @@
 				649F48862A615BC90016FDD1 /* CandleSymbol.swift in Sources */,
 				64656F6B2A1CFAC2006A0B19 /* BridgeUtil.swift in Sources */,
 				8088D77329C3A2F400F240CB /* GraalException.swift in Sources */,
+				64C771FF2A9504ED009868C2 /* SnapshotProcessor.swift in Sources */,
 				64C771F82A94B88C009868C2 /* TimeAndSaleType.swift in Sources */,
 				6447A5DF2A8E56FC00739CCF /* IIndexedEvent.swift in Sources */,
 				64104FC52A26059B00D1FC41 /* ConcurrentSet.swift in Sources */,
