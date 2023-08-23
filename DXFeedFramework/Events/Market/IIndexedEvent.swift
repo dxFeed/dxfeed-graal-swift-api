@@ -40,3 +40,22 @@ public extension IIndexedEvent {
         return 0x40
     }
 }
+
+public extension IIndexedEvent {
+    func snapshotBegin() -> Bool {
+        return (eventFlags & Self.snapshotBegin) != 0
+    }
+
+    func endOrSnap() -> Bool {
+        return (self.eventFlags & (Self.snapshotEnd | Self.snapshotSnip)) != 0
+    }
+
+    func pending() -> Bool {
+        return (self.eventFlags & Self.txPending) != 0
+    }
+
+    func isRemove() -> Bool {
+        return (self.eventFlags & Self.removeEvent) != 0
+    }
+
+}
