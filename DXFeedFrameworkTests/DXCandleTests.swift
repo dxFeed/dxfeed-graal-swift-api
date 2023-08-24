@@ -231,6 +231,9 @@ private class TestSnapshotDelegate: SnapshotDelegate {
     var numberOfWeeks: Int?
     func receiveEvents(_ events: [MarketEvent], isSnapshot: Bool) {
         if isSnapshot {
+            events.forEach{
+                print(($0 as? Candle)?.time)
+            }
             if events.count < (numberOfWeeks ?? 0) - 1 || events.count > (numberOfWeeks ?? 0) + 1 {
                 XCTAssert(false, "Snapshot size is incorrect")
             }

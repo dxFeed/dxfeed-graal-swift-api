@@ -7,7 +7,7 @@
 
 import Foundation
 
-class IndexedEventSubscriptionSymbol<T: Equatable>: Symbol {
+public class IndexedEventSubscriptionSymbol<T: Equatable>: Symbol {
     let symbol: T
     let source: IndexedEventSource
     init(symbol: T, source: IndexedEventSource) {
@@ -21,7 +21,7 @@ class IndexedEventSubscriptionSymbol<T: Equatable>: Symbol {
 }
 
 extension IndexedEventSubscriptionSymbol: Equatable {
-    static func == (lhs: IndexedEventSubscriptionSymbol<T>, rhs: IndexedEventSubscriptionSymbol<T>) -> Bool {
+    public static func == (lhs: IndexedEventSubscriptionSymbol<T>, rhs: IndexedEventSubscriptionSymbol<T>) -> Bool {
         return lhs === rhs || (lhs.symbol == rhs.symbol && lhs.source == rhs.source)
     }
 }

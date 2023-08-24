@@ -21,6 +21,9 @@ public class SnapshotProcessor {
     private var processEvents = [IIndexedEvent]()
     private var result = [Long: IIndexedEvent]()
 
+    public init() {
+
+    }
     public func add(_ snapshotDelegate: SnapshotDelegate) {
         self.snapshotDelegate = snapshotDelegate
     }

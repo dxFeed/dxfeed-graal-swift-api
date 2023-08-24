@@ -7,14 +7,14 @@
 
 import Foundation
 
-class TimeSeriesSubscriptionSymbol: IndexedEventSubscriptionSymbol<AnyHashable> {
+public class TimeSeriesSubscriptionSymbol: IndexedEventSubscriptionSymbol<AnyHashable> {
     let fromTime: Long
-    init(symbol: AnyHashable, fromTime: Long) {
+    public init(symbol: AnyHashable, fromTime: Long) {
         self.fromTime = fromTime
         super.init(symbol: symbol, source: IndexedEventSource.defaultSource)
     }
 
-    convenience init(symbol: AnyHashable, date: Date) {
+    convenience public init(symbol: AnyHashable, date: Date) {
 
         self.init(symbol: symbol, fromTime: Long(date.timeIntervalSince1970) * 1000)
     }
