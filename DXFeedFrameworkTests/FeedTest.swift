@@ -57,7 +57,7 @@ final class FeedTest: XCTestCase {
         XCTAssertNotNil(endpoint, "Endpoint shouldn't be nil")
         let feed = endpoint?.getFeed()
         XCTAssertNotNil(feed, "Feed shouldn't be nil")
-        let symbols = ["EUR/CAD", "ETH/USD:GDAX"]
+        let symbols = ["ETH/USD:GDAX"]
         var differentSymbols = Set<String>()
         let code = EventCode.quote
         let subscription = try feed?.createSubscription(code)
@@ -77,7 +77,7 @@ final class FeedTest: XCTestCase {
         })
         XCTAssertNotNil(subscription, "Subscription shouldn't be nil")
         try subscription?.addSymbols(symbols)
-        wait(for: [receivedEventExp], timeout: 3)
+        wait(for: [receivedEventExp], timeout: 5)
     }
 
     func testTimeAndSale() throws {

@@ -108,9 +108,9 @@ extension CandlePeriod: Equatable {
 extension CandlePeriod: ICandleSymbolProperty {
     func changeAttributeForSymbol(symbol: String?) -> String? {
         if self === CandlePeriod.defaultPeriod {
-            MarketEventSymbols.removeAttributeStringByKey(symbol, CandlePeriod.attributeKey)
+            return MarketEventSymbols.removeAttributeStringByKey(symbol, CandlePeriod.attributeKey)
         } else {
-            try? MarketEventSymbols.changeAttributeStringByKey(symbol, CandlePeriod.attributeKey, toString())
+            return try? MarketEventSymbols.changeAttributeStringByKey(symbol, CandlePeriod.attributeKey, toString())
         }
     }
 
