@@ -51,32 +51,33 @@ final class FeedTest: XCTestCase {
         print(TimeSeriesSubscriptionSymbol(symbol: symbol1, fromTime: 0).stringValue)
     }
 
-//    func testFeedCreateSingleSubscriptionWithSymbol() throws {
-//        let endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
-//        try endpoint?.connect("demo.dxfeed.com:7300")
-//        XCTAssertNotNil(endpoint, "Endpoint shouldn't be nil")
-//        let feed = endpoint?.getFeed()
-//        XCTAssertNotNil(feed, "Feed shouldn't be nil")
-//        let subscription = try feed?.createSubscription(.quote)
-//        let testListner = TestEventListener(name: "TestListener")
-//        subscription?.add(testListner)
-//        XCTAssertNotNil(subscription, "Subscription shouldn't be nil")
-//        try subscription?.addSymbols("ETH/USD:GDAX")
-//        wait(seconds: 2)
-//    }
-
     func testFeedCreateMultipleSubscriptionWithSymbol() throws {
         let endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         try endpoint?.connect("demo.dxfeed.com:7300")
         XCTAssertNotNil(endpoint, "Endpoint shouldn't be nil")
         let feed = endpoint?.getFeed()
         XCTAssertNotNil(feed, "Feed shouldn't be nil")
-        let subscription = try feed?.createSubscription(.quote)
-        let testListner = TestEventListener(name: "TestListener")
-        subscription?.add(testListner)
+        let symbols = ["EUR/CAD", "ETH/USD:GDAX"]
+        var differentSymbols = Set<String>()
+        let code = EventCode.quote
+        let subscription = try feed?.createSubscription(code)
+        let receivedEventExp = expectation(description: "Received events \(code)")
+        receivedEventExp.assertForOverFulfill = false
+
+        subscription?.add(AnonymousClass { anonymCl in
+            anonymCl.callback = { events in
+                events.forEach { event in
+                    differentSymbols.insert(event.quote.eventSymbol)
+                }
+                if Array(differentSymbols) == symbols {
+                    receivedEventExp.fulfill()
+                }
+            }
+            return anonymCl
+        })
         XCTAssertNotNil(subscription, "Subscription shouldn't be nil")
-        try subscription?.addSymbols(["AAPL", "ETH/USD:GDAX", "IBM"])
-        wait(seconds: 2)
+        try subscription?.addSymbols(symbols)
+        wait(for: [receivedEventExp], timeout: 3)
     }
 
     func testTimeAndSale() throws {

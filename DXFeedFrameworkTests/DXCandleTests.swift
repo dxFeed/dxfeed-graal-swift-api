@@ -199,15 +199,20 @@ final class DXCandleTests: XCTestCase {
         let string = "01/01/2021"
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yy"
-        let symbol = TimeSeriesSubscriptionSymbol(symbol: "AAPL{=1d}", date: dateFormatter.date(from: string)!)
+        let startDate = dateFormatter.date(from: string)!
+        let componentsLeftTime = Calendar.current.dateComponents([.weekOfMonth], from: startDate, to: Date())
+        let symbol = TimeSeriesSubscriptionSymbol(symbol: "ETH/USD:GDAX{=1w}", date: startDate)
         let code = EventCode.candle
         var endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         try endpoint?.connect("demo.dxfeed.com:7300")
         let subscription = try endpoint?.getFeed()?.createSubscription(code)
         let snapshotExpect = expectation(description: "Snapshot \(code)")
+        snapshotExpect.assertForOverFulfill = false
         let updateExpect = expectation(description: "Incremental update \(code)")
+        updateExpect.assertForOverFulfill = false
         let snapshotProcessor = SnapshotProcessor()
         let testDelegate = TestSnapshotDelegate()
+        testDelegate.numberOfWeeks = componentsLeftTime.weekOfMonth
         testDelegate.wasSnapshotExpect = snapshotExpect
         testDelegate.wasUpdateExpect = updateExpect
         snapshotProcessor.add(testDelegate)
@@ -223,9 +228,13 @@ private class TestSnapshotDelegate: SnapshotDelegate {
     var wasSnapshotExpect: XCTestExpectation?
     var wasUpdateExpect: XCTestExpectation?
     var wasSnapshot = false
-    func receiveEvents(_ events: [DXFeedFramework.IIndexedEvent], isSnapshot: Bool) {
-
+    var numberOfWeeks: Int?
+    func receiveEvents(_ events: [MarketEvent], isSnapshot: Bool) {
+        
         if isSnapshot {
+            if events.count < (numberOfWeeks ?? 0) - 1 || events.count > (numberOfWeeks ?? 0) + 1 {
+                XCTAssert(false, "Snapshot size is incorrect")
+            }
             wasSnapshotExpect?.fulfill()
             wasSnapshot = true
         }
