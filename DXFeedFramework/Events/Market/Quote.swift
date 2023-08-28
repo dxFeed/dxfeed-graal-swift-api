@@ -54,7 +54,7 @@ askSize: \(askSize)
 
 extension Quote {
     func recomputeTimeMillisPart() {
-        timeMillisSequence = Int32(TimeUtil.getMillisFromTime(max<Int64>(askTime, bidTime) << 22) | 0)
+        timeMillisSequence = Int32(TimeUtil.getMillisFromTime(max(askTime, bidTime) << 22) | 0)
     }
 
     public func getSequence() -> Int {
