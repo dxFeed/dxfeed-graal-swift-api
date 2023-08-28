@@ -67,7 +67,7 @@ class QuoteViewController: UIViewController {
         symbolTextField.resignFirstResponder()
 
         subscription = try? endpoint?.getFeed()?.createSubscription(.timeAndSale)
-        subscription?.add(self)
+        try? subscription?.add(self)
         try? subscription?.addSymbols(symbol)
     }
 }

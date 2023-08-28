@@ -34,7 +34,7 @@ class DataSource: ObservableObject {
     func update(_ value: Profile) {
         DispatchQueue.main.async {
             let model = self.quotesDict[value.eventSymbol]
-            model?.updateDescription(value.descriptionStr)
+            model?.updateDescription(value.descriptionStr ?? "")
         }
     }
 }

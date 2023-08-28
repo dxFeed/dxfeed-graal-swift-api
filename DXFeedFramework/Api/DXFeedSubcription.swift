@@ -21,12 +21,12 @@ public class DXFeedSubcription {
         self.events = Set(events)
     }
 
-    public func add<O>(_ observer: O)
+    public func add<O>(_ observer: O) throws
     where O: DXEventListener,
           O: Hashable {
-              listeners.reader { [weak self] in
+              try listeners.reader { [weak self] in
                   if $0.isEmpty {
-                      try? self?.native.addListener(self)
+                      try self?.native.addListener(self)
                   }
               }
               listeners.insert(observer)

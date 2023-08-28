@@ -55,7 +55,7 @@ final class DXCandleTests: XCTestCase {
         let subscription = try endpoint?.getFeed()?.createSubscription(code)
         let receivedEventExp = expectation(description: "Received events \(code)")
         receivedEventExp.assertForOverFulfill = false
-        subscription?.add(AnonymousClass { anonymCl in
+        try subscription?.add(AnonymousClass { anonymCl in
             anonymCl.callback = { events in
                 if events.count > 0 {
                     events.forEach { event in
@@ -166,7 +166,7 @@ final class DXCandleTests: XCTestCase {
         let subscription = try endpoint?.getFeed()?.createSubscription(code)
         let beginEventsExp = expectation(description: "Begin events \(code)")
         let endEventsExp = expectation(description: "End events \(code)")
-        subscription?.add(AnonymousClass { anonymCl in
+        try subscription?.add(AnonymousClass { anonymCl in
             anonymCl.callback = { events in
                 if events.count > 0 {
                     events.forEach { event in
@@ -216,7 +216,7 @@ final class DXCandleTests: XCTestCase {
         testDelegate.wasSnapshotExpect = snapshotExpect
         testDelegate.wasUpdateExpect = updateExpect
         snapshotProcessor.add(testDelegate)
-        subscription?.add(snapshotProcessor)
+        try subscription?.add(snapshotProcessor)
         try subscription?.addSymbols(symbol)
         wait(for: [snapshotExpect, updateExpect], timeout: 10)
         try? endpoint?.disconnect()
