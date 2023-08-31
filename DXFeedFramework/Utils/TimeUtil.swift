@@ -10,6 +10,8 @@ import Foundation
 class TimeUtil {
     public static let second =  Long(1000)
     public static let minute =  60 * Long(1000)
+    public static let day = Long(24 * 60 * 60 * 1000)
+
     static let dateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy hh:mm"
