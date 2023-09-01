@@ -9,10 +9,19 @@ import Foundation
 @_implementationOnly import graal_api
 
 class NativeEndpoint {
+    class WeakListener: WeakBox<EndpointListener>, EndpointListener {
+        func changeState(old: DXEndpointState, new: DXEndpointState) {
+            guard let endpoint = self.value else {
+                return
+            }
+            endpoint.changeState(old: old, new: new)
+        }
+    }
+
     let endpoint: UnsafeMutablePointer<dxfg_endpoint_t>!
     var listener: UnsafeMutablePointer<dxfg_endpoint_state_change_listener_t>?
     static let listeners = ConcurrentArray<WeakListener>()
-    static let finalizeCallback: dxfg_finalize_function = { _, context in
+    private static let finalizeCallback: dxfg_finalize_function = { _, context in
         if let context = context {
             let endpoint: AnyObject = bridge(ptr: context)
             if let listener =  endpoint as? WeakListener {
@@ -23,7 +32,7 @@ class NativeEndpoint {
         }
     }
 
-    static let listenerCallback: dxfg_endpoint_state_change_listener_func = {_, oldState, newState, context in
+    private static let listenerCallback: dxfg_endpoint_state_change_listener_func = {_, oldState, newState, context in
         if let context = context {
             let endpoint: AnyObject = bridge(ptr: context)
             if let listener =  endpoint as? WeakListener {
@@ -45,7 +54,7 @@ class NativeEndpoint {
         }
     }()
 
-    deinit {
+    fileprivate func removeListener() {
         if let listener = listener {
             let thread = currentThread()
             _ = try? ErrorCheck.nativeCall(thread,
@@ -53,7 +62,12 @@ class NativeEndpoint {
                                                                                      self.endpoint,
                                                                                      self.listener))
             _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(listener.pointee.handler)))
+            self.listener = nil
         }
+    }
+    
+    deinit {
+        removeListener()
         if let endpoint = self.endpoint {
             let thread = currentThread()
             _ = try? ErrorCheck.nativeCall(thread,
@@ -67,6 +81,7 @@ class NativeEndpoint {
         return self.feed
     }
     func addListener(_ listener: EndpointListener) throws {
+        removeListener()
         let weakListener = WeakListener(value: listener)
         NativeEndpoint.listeners.append(newElement: weakListener)
         let voidPtr = bridge(obj: weakListener)

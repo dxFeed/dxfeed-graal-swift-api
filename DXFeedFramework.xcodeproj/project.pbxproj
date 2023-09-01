@@ -132,7 +132,6 @@
 		64656F6D2A1CFB10006A0B19 /* DXEndpointState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6C2A1CFB10006A0B19 /* DXEndpointState.swift */; };
 		64656F6F2A1CFC12006A0B19 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6E2A1CFC12006A0B19 /* WeakBox.swift */; };
 		64656F732A1D0A84006A0B19 /* EndpointListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F722A1D0A84006A0B19 /* EndpointListener.swift */; };
-		64656F752A1D0C91006A0B19 /* WeakListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F742A1D0C91006A0B19 /* WeakListener.swift */; };
 		64656F772A1DFED9006A0B19 /* EndpointState+Native.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F762A1DFED9006A0B19 /* EndpointState+Native.swift */; };
 		646979722A3B5AF60003A9BA /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646979712A3B5AF60003A9BA /* Colors.xcassets */; };
 		646979732A3B5AF60003A9BA /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646979712A3B5AF60003A9BA /* Colors.xcassets */; };
@@ -212,6 +211,11 @@
 		64D8BB472A39BB740071BC88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D8BB462A39BB740071BC88 /* Assets.xcassets */; };
 		64D8BB4A2A39BB740071BC88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D8BB482A39BB740071BC88 /* LaunchScreen.storyboard */; };
 		64DA26B62AA1EF47005B1757 /* ProfileIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26B52AA1EF47005B1757 /* ProfileIterator.swift */; };
+		64DA26B82AA20095005B1757 /* NativeInstrumentProfileConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26B72AA20095005B1757 /* NativeInstrumentProfileConnection.swift */; };
+		64DA26BA2AA20AAA005B1757 /* InstrumentProfileConnectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26B92AA20AAA005B1757 /* InstrumentProfileConnectionState.swift */; };
+		64DA26BC2AA20B66005B1757 /* InstrumentProfileConnectionState+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26BB2AA20B66005B1757 /* InstrumentProfileConnectionState+ext.swift */; };
+		64DA26BE2AA20EDB005B1757 /* InstrumentProfileConnectionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26BD2AA20EDB005B1757 /* InstrumentProfileConnectionObserver.swift */; };
+		64DA26C02AA224EB005B1757 /* NativeInstrumentProfileConnectionListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26BF2AA224EB005B1757 /* NativeInstrumentProfileConnectionListener.swift */; };
 		64DB79342A376E1B00229597 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		64DB79352A376E1B00229597 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		64ECD67F2A9CF4CB00B36935 /* DXIPFTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD67E2A9CF4CB00B36935 /* DXIPFTest.swift */; };
@@ -449,7 +453,6 @@
 		64656F6C2A1CFB10006A0B19 /* DXEndpointState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXEndpointState.swift; sourceTree = "<group>"; };
 		64656F6E2A1CFC12006A0B19 /* WeakBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakBox.swift; sourceTree = "<group>"; };
 		64656F722A1D0A84006A0B19 /* EndpointListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointListener.swift; sourceTree = "<group>"; };
-		64656F742A1D0C91006A0B19 /* WeakListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakListener.swift; sourceTree = "<group>"; };
 		64656F762A1DFED9006A0B19 /* EndpointState+Native.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EndpointState+Native.swift"; sourceTree = "<group>"; };
 		646979712A3B5AF60003A9BA /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		6469F8C12A3B169A00846831 /* MathUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathUtil.swift; sourceTree = "<group>"; };
@@ -521,6 +524,11 @@
 		64D8BB492A39BB740071BC88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64D8BB4B2A39BB740071BC88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64DA26B52AA1EF47005B1757 /* ProfileIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileIterator.swift; sourceTree = "<group>"; };
+		64DA26B72AA20095005B1757 /* NativeInstrumentProfileConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInstrumentProfileConnection.swift; sourceTree = "<group>"; };
+		64DA26B92AA20AAA005B1757 /* InstrumentProfileConnectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileConnectionState.swift; sourceTree = "<group>"; };
+		64DA26BB2AA20B66005B1757 /* InstrumentProfileConnectionState+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InstrumentProfileConnectionState+ext.swift"; sourceTree = "<group>"; };
+		64DA26BD2AA20EDB005B1757 /* InstrumentProfileConnectionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileConnectionObserver.swift; sourceTree = "<group>"; };
+		64DA26BF2AA224EB005B1757 /* NativeInstrumentProfileConnectionListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInstrumentProfileConnectionListener.swift; sourceTree = "<group>"; };
 		64ECD67E2A9CF4CB00B36935 /* DXIPFTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXIPFTest.swift; sourceTree = "<group>"; };
 		64ECD6812A9DDC2800B36935 /* InstrumentProfileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileReader.swift; sourceTree = "<group>"; };
 		64ECD6842A9DDF6200B36935 /* InstrumentProfileCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileCollector.swift; sourceTree = "<group>"; };
@@ -739,8 +747,11 @@
 			isa = PBXGroup;
 			children = (
 				646407562AA0C44D006FF769 /* NativeInstrumentProfileCollector.swift */,
+				64DA26B72AA20095005B1757 /* NativeInstrumentProfileConnection.swift */,
 				6464075A2AA0CEF2006FF769 /* NativeExecutor.swift */,
 				646407582AA0CA8D006FF769 /* NativeProfileIterator.swift */,
+				64DA26BB2AA20B66005B1757 /* InstrumentProfileConnectionState+ext.swift */,
+				64DA26BF2AA224EB005B1757 /* NativeInstrumentProfileConnectionListener.swift */,
 			);
 			path = Live;
 			sourceTree = "<group>";
@@ -948,6 +959,8 @@
 				64ECD6862A9DDFBE00B36935 /* InstrumentProfileConnection.swift */,
 				6464075C2AA1C69E006FF769 /* InstrumentProfileUpdateListener.swift */,
 				64DA26B52AA1EF47005B1757 /* ProfileIterator.swift */,
+				64DA26B92AA20AAA005B1757 /* InstrumentProfileConnectionState.swift */,
+				64DA26BD2AA20EDB005B1757 /* InstrumentProfileConnectionObserver.swift */,
 			);
 			path = Live;
 			sourceTree = "<group>";
@@ -1087,7 +1100,6 @@
 				80FC415B29CA2B8800E6B611 /* NativeBuilder.swift */,
 				64656F582A1B864C006A0B19 /* NativeEndpoint.swift */,
 				64656F722A1D0A84006A0B19 /* EndpointListener.swift */,
-				64656F742A1D0C91006A0B19 /* WeakListener.swift */,
 				64656F762A1DFED9006A0B19 /* EndpointState+Native.swift */,
 			);
 			path = Endpoint;
@@ -1558,6 +1570,7 @@
 				640C3FD82A617D4900555161 /* CandlePriceLevel.swift in Sources */,
 				64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */,
 				6447A5DD2A8E56CF00739CCF /* ITimeSeriesEvent.swift in Sources */,
+				64DA26BA2AA20AAA005B1757 /* InstrumentProfileConnectionState.swift in Sources */,
 				64278C6E2A602D2B0074B5AA /* Candle.swift in Sources */,
 				64ACBCE62A28BA7D00032C53 /* SymbolMapper.swift in Sources */,
 				64ECD6822A9DDC2800B36935 /* InstrumentProfileReader.swift in Sources */,
@@ -1568,6 +1581,7 @@
 				64ECD6872A9DDFBE00B36935 /* InstrumentProfileConnection.swift in Sources */,
 				64278C702A602FA00074B5AA /* Candle+Ext.swift in Sources */,
 				6464075B2AA0CEF2006FF769 /* NativeExecutor.swift in Sources */,
+				64DA26B82AA20095005B1757 /* NativeInstrumentProfileConnection.swift in Sources */,
 				64104FC32A210F2400D1FC41 /* EventCode+Native.swift in Sources */,
 				80FC415C29CA2B8800E6B611 /* NativeBuilder.swift in Sources */,
 				6464075D2AA1C69E006FF769 /* InstrumentProfileUpdateListener.swift in Sources */,
@@ -1583,6 +1597,7 @@
 				6469F8C82A3B25C900846831 /* MarketEvent+Access.swift in Sources */,
 				640C3FD22A6178D200555161 /* CandleSession.swift in Sources */,
 				8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */,
+				64DA26BE2AA20EDB005B1757 /* InstrumentProfileConnectionObserver.swift in Sources */,
 				64656F732A1D0A84006A0B19 /* EndpointListener.swift in Sources */,
 				64104FCC2A2629D800D1FC41 /* NativeSubscription.swift in Sources */,
 				64C772012A975102009868C2 /* Reference+Util.swift in Sources */,
@@ -1602,7 +1617,7 @@
 				640C3FCE2A61788500555161 /* CandleExchange.swift in Sources */,
 				641BCBBC2A20ED8100FE23C2 /* DXEndpointObserver.swift in Sources */,
 				64656F772A1DFED9006A0B19 /* EndpointState+Native.swift in Sources */,
-				64656F752A1D0C91006A0B19 /* WeakListener.swift in Sources */,
+				64DA26BC2AA20B66005B1757 /* InstrumentProfileConnectionState+ext.swift in Sources */,
 				64BA92612A306BA900BE26A0 /* Profile+Ext.swift in Sources */,
 				64BA926B2A3072CA00BE26A0 /* TradeMapper.swift in Sources */,
 				6447A5E12A8E5A5400739CCF /* IndexedEventSource.swift in Sources */,
@@ -1616,6 +1631,7 @@
 				642BE4D22A2F5D230052340A /* TimeAndSale.swift in Sources */,
 				64BA92692A306E6000BE26A0 /* TradeBase.swift in Sources */,
 				640C3FD02A6178B400555161 /* CandlePrice.swift in Sources */,
+				64DA26C02AA224EB005B1757 /* NativeInstrumentProfileConnectionListener.swift in Sources */,
 				8088D77D29C8DAF800F240CB /* GraalErrorCode.swift in Sources */,
 				64DA26B62AA1EF47005B1757 /* ProfileIterator.swift in Sources */,
 				8088D76929C0FC5C00F240CB /* Isolate.swift in Sources */,
