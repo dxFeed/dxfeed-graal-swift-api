@@ -15,7 +15,7 @@ class InstrumentProfileMapper {
         return event
     }
 
-    func toNative(instrumentProfile: InstrumentProfile) -> UnsafeMutablePointer<dxfg_instrument_profile_t>? {
+    func toNative(instrumentProfile: InstrumentProfile) -> UnsafeMutablePointer<dxfg_instrument_profile_t> {
         let pointer = UnsafeMutablePointer<dxfg_instrument_profile_t>.allocate(capacity: 1)
         instrumentProfile.copy(to: pointer)
         return pointer

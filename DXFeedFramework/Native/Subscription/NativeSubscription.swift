@@ -54,6 +54,16 @@ class NativeSubscription {
     }
 
     func addListener(_ listener: DXEventListener?) throws {
+        if let nativeListener = nativeListener {
+            let thread = currentThread()
+            _ = try? ErrorCheck.nativeCall(thread,
+                                           dxfg_DXFeedSubscription_removeEventListener(thread,
+                                                                                       self.subscription,
+                                                                                       nativeListener))
+            _ = try? ErrorCheck.nativeCall(thread,
+                                           dxfg_JavaObjectHandler_release(thread,
+                                                                          &(nativeListener.pointee.handler)))
+        }
         self.listener = listener
         let voidPtr = bridge(obj: self)
         let thread = currentThread()

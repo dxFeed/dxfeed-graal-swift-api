@@ -22,8 +22,6 @@ class NativeExecutor {
         self.executor = executor
     }
 
-    //    dxfg_executor_t*  dxfg_Executors_newFixedThreadPool(graal_isolatethread_t *thread, int nThreads, const char* nameThreads);
-
     static func createOnConcurrentLinkedQueue() throws -> NativeExecutor {
         let thread = currentThread()
         let executor = try ErrorCheck.nativeCall(thread,
@@ -39,7 +37,6 @@ class NativeExecutor {
                                                                                        nameOfthread.toCStringRef()))
         return NativeExecutor(executor: executor)
     }
-
 
     static func createOnFixedThreadPool(numberOfThreads: Int32, nameOfthread: String) throws -> NativeExecutor {
         let thread = currentThread()
