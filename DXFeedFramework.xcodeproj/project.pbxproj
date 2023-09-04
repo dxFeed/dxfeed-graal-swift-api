@@ -215,7 +215,7 @@
 		64DA26BA2AA20AAA005B1757 /* InstrumentProfileConnectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26B92AA20AAA005B1757 /* InstrumentProfileConnectionState.swift */; };
 		64DA26BC2AA20B66005B1757 /* InstrumentProfileConnectionState+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26BB2AA20B66005B1757 /* InstrumentProfileConnectionState+ext.swift */; };
 		64DA26BE2AA20EDB005B1757 /* InstrumentProfileConnectionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26BD2AA20EDB005B1757 /* InstrumentProfileConnectionObserver.swift */; };
-		64DA26C02AA224EB005B1757 /* NativeInstrumentProfileConnectionListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26BF2AA224EB005B1757 /* NativeInstrumentProfileConnectionListener.swift */; };
+		64DA26C02AA224EB005B1757 /* NativeIPFConnectionListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26BF2AA224EB005B1757 /* NativeIPFConnectionListener.swift */; };
 		64DB79342A376E1B00229597 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		64DB79352A376E1B00229597 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		64ECD67F2A9CF4CB00B36935 /* DXIPFTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD67E2A9CF4CB00B36935 /* DXIPFTest.swift */; };
@@ -528,7 +528,7 @@
 		64DA26B92AA20AAA005B1757 /* InstrumentProfileConnectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileConnectionState.swift; sourceTree = "<group>"; };
 		64DA26BB2AA20B66005B1757 /* InstrumentProfileConnectionState+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InstrumentProfileConnectionState+ext.swift"; sourceTree = "<group>"; };
 		64DA26BD2AA20EDB005B1757 /* InstrumentProfileConnectionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileConnectionObserver.swift; sourceTree = "<group>"; };
-		64DA26BF2AA224EB005B1757 /* NativeInstrumentProfileConnectionListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInstrumentProfileConnectionListener.swift; sourceTree = "<group>"; };
+		64DA26BF2AA224EB005B1757 /* NativeIPFConnectionListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeIPFConnectionListener.swift; sourceTree = "<group>"; };
 		64ECD67E2A9CF4CB00B36935 /* DXIPFTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXIPFTest.swift; sourceTree = "<group>"; };
 		64ECD6812A9DDC2800B36935 /* InstrumentProfileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileReader.swift; sourceTree = "<group>"; };
 		64ECD6842A9DDF6200B36935 /* InstrumentProfileCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileCollector.swift; sourceTree = "<group>"; };
@@ -751,7 +751,7 @@
 				6464075A2AA0CEF2006FF769 /* NativeExecutor.swift */,
 				646407582AA0CA8D006FF769 /* NativeProfileIterator.swift */,
 				64DA26BB2AA20B66005B1757 /* InstrumentProfileConnectionState+ext.swift */,
-				64DA26BF2AA224EB005B1757 /* NativeInstrumentProfileConnectionListener.swift */,
+				64DA26BF2AA224EB005B1757 /* NativeIPFConnectionListener.swift */,
 			);
 			path = Live;
 			sourceTree = "<group>";
@@ -1631,7 +1631,7 @@
 				642BE4D22A2F5D230052340A /* TimeAndSale.swift in Sources */,
 				64BA92692A306E6000BE26A0 /* TradeBase.swift in Sources */,
 				640C3FD02A6178B400555161 /* CandlePrice.swift in Sources */,
-				64DA26C02AA224EB005B1757 /* NativeInstrumentProfileConnectionListener.swift in Sources */,
+				64DA26C02AA224EB005B1757 /* NativeIPFConnectionListener.swift in Sources */,
 				8088D77D29C8DAF800F240CB /* GraalErrorCode.swift in Sources */,
 				64DA26B62AA1EF47005B1757 /* ProfileIterator.swift in Sources */,
 				8088D76929C0FC5C00F240CB /* Isolate.swift in Sources */,

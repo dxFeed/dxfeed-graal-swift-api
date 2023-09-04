@@ -65,7 +65,7 @@ class NativeEndpoint {
             self.listener = nil
         }
     }
-    
+
     deinit {
         removeListener()
         if let endpoint = self.endpoint {

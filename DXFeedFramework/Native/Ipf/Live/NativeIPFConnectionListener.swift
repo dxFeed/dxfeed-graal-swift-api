@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol NativeInstrumentProfileConnectionListener: AnyObject {
+protocol NativeIPFConnectionListener: AnyObject {
     func connectionDidChangeState(old: InstrumentProfileConnectionState, new: InstrumentProfileConnectionState)
 }
