@@ -9,8 +9,7 @@ import Foundation
 
 public class InstrumentProfileCollector {
     private let listeners = ConcurrentSet<AnyHashable>()
-
-    internal let native: NativeInstrumentProfileCollector
+    let native: NativeInstrumentProfileCollector
 
     public init() throws {
         self.native = try NativeInstrumentProfileCollector()
@@ -37,29 +36,29 @@ public class InstrumentProfileCollector {
         return native.getLastUpdateTime()
     }
 
-    func updateInstrumentProfile(profile: InstrumentProfile) throws {
+    public func updateInstrumentProfile(profile: InstrumentProfile) throws {
         try native.updateInstrumentProfile(profile: profile)
     }
 
-    func view() throws -> ProfileIterator {
+    public func view() throws -> ProfileIterator {
         let iterator = try native.view()
         return ProfileIterator(iterator)
     }
 
-    func createOnConcurrentLinkedQueue() throws -> Bool {
+    public func createOnConcurrentLinkedQueue() throws -> Bool {
         let nativeExecutor = try NativeExecutor.createOnConcurrentLinkedQueue()
         return try native.setExecutor(nativeExecutor)
     }
 
-    func createOnScheduledThreadPool(numberOfThreads: Int32,
-                                     nameOfthread: String) throws -> Bool {
+    public func createOnScheduledThreadPool(numberOfThreads: Int32,
+                                            nameOfthread: String) throws -> Bool {
         let nativeExecutor = try NativeExecutor.createOnScheduledThreadPool(numberOfThreads: numberOfThreads,
                                                                             nameOfthread: nameOfthread)
         return try native.setExecutor(nativeExecutor)
     }
 
-    func createOnFixedThreadPool(numberOfThreads: Int32,
-                                 nameOfthread: String) throws -> Bool {
+    public func createOnFixedThreadPool(numberOfThreads: Int32,
+                                        nameOfthread: String) throws -> Bool {
         let nativeExecutor = try NativeExecutor.createOnFixedThreadPool(numberOfThreads: numberOfThreads,
                                                                         nameOfthread: nameOfthread)
         return try native.setExecutor(nativeExecutor)

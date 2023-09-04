@@ -1,5 +1,5 @@
 //
-//  DXUtilsTest.swift
+//  UtilsTest.swift
 //  DXFeedFrameworkTests
 //
 //  Created by Aleksey Kosylo on 18.08.23.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import DXFeedFramework
 
-final class DXUtilsTest: XCTestCase {
+final class UtilsTest: XCTestCase {
 
     func testAsciiCharToString() throws {
         XCTAssert(StringUtil.encodeChar(char: 32) == " ", "Not correct ascii conversation")

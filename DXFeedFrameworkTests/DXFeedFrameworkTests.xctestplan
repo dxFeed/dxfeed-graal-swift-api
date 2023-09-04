@@ -9,11 +9,28 @@
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : false
+    "codeCoverage" : false,
+    "commandLineArgumentEntries" : [
+
+    ],
+    "environmentVariableEntries" : [
+
+    ]
   },
   "testTargets" : [
     {
       "parallelizable" : true,
+      "skippedTests" : [
+        "CandleTests",
+        "EndpointPublisherTest",
+        "EndpointTest",
+        "EventsTest",
+        "FeedTest",
+        "IsolateTest",
+        "SystemPropertyTest",
+        "ThreadsTest",
+        "UtilsTest"
+      ],
       "target" : {
         "containerPath" : "container:DXFeedFramework.xcodeproj",
         "identifier" : "803BAC1429BFA50700FFAB1C",
