@@ -119,7 +119,7 @@
 		646407572AA0C44D006FF769 /* NativeInstrumentProfileCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646407562AA0C44D006FF769 /* NativeInstrumentProfileCollector.swift */; };
 		646407592AA0CA8D006FF769 /* NativeProfileIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646407582AA0CA8D006FF769 /* NativeProfileIterator.swift */; };
 		6464075B2AA0CEF2006FF769 /* NativeExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6464075A2AA0CEF2006FF769 /* NativeExecutor.swift */; };
-		6464075D2AA1C69E006FF769 /* InstrumentProfileUpdateListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6464075C2AA1C69E006FF769 /* InstrumentProfileUpdateListener.swift */; };
+		6464075D2AA1C69E006FF769 /* DXInstrumentProfileUpdateListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6464075C2AA1C69E006FF769 /* DXInstrumentProfileUpdateListener.swift */; };
 		64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F582A1B864C006A0B19 /* NativeEndpoint.swift */; };
 		64656F5B2A1B9784006A0B19 /* DXFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5A2A1B9784006A0B19 /* DXFeed.swift */; };
 		64656F5E2A1B97F2006A0B19 /* NativeFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5D2A1B97F2006A0B19 /* NativeFeed.swift */; };
@@ -210,18 +210,18 @@
 		64D8BB452A39BB730071BC88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D8BB432A39BB730071BC88 /* Main.storyboard */; };
 		64D8BB472A39BB740071BC88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D8BB462A39BB740071BC88 /* Assets.xcassets */; };
 		64D8BB4A2A39BB740071BC88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D8BB482A39BB740071BC88 /* LaunchScreen.storyboard */; };
-		64DA26B62AA1EF47005B1757 /* ProfileIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26B52AA1EF47005B1757 /* ProfileIterator.swift */; };
+		64DA26B62AA1EF47005B1757 /* DXProfileIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26B52AA1EF47005B1757 /* DXProfileIterator.swift */; };
 		64DA26B82AA20095005B1757 /* NativeInstrumentProfileConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26B72AA20095005B1757 /* NativeInstrumentProfileConnection.swift */; };
-		64DA26BA2AA20AAA005B1757 /* InstrumentProfileConnectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26B92AA20AAA005B1757 /* InstrumentProfileConnectionState.swift */; };
+		64DA26BA2AA20AAA005B1757 /* DXInstrumentProfileConnectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26B92AA20AAA005B1757 /* DXInstrumentProfileConnectionState.swift */; };
 		64DA26BC2AA20B66005B1757 /* InstrumentProfileConnectionState+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26BB2AA20B66005B1757 /* InstrumentProfileConnectionState+ext.swift */; };
-		64DA26BE2AA20EDB005B1757 /* InstrumentProfileConnectionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26BD2AA20EDB005B1757 /* InstrumentProfileConnectionObserver.swift */; };
+		64DA26BE2AA20EDB005B1757 /* DXInstrumentProfileConnectionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26BD2AA20EDB005B1757 /* DXInstrumentProfileConnectionObserver.swift */; };
 		64DA26C02AA224EB005B1757 /* NativeIPFConnectionListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26BF2AA224EB005B1757 /* NativeIPFConnectionListener.swift */; };
 		64DB79342A376E1B00229597 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		64DB79352A376E1B00229597 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		64ECD67F2A9CF4CB00B36935 /* IPFTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD67E2A9CF4CB00B36935 /* IPFTest.swift */; };
-		64ECD6822A9DDC2800B36935 /* InstrumentProfileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD6812A9DDC2800B36935 /* InstrumentProfileReader.swift */; };
-		64ECD6852A9DDF6200B36935 /* InstrumentProfileCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD6842A9DDF6200B36935 /* InstrumentProfileCollector.swift */; };
-		64ECD6872A9DDFBE00B36935 /* InstrumentProfileConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD6862A9DDFBE00B36935 /* InstrumentProfileConnection.swift */; };
+		64ECD67F2A9CF4CB00B36935 /* IPFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD67E2A9CF4CB00B36935 /* IPFTests.swift */; };
+		64ECD6822A9DDC2800B36935 /* DXInstrumentProfileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD6812A9DDC2800B36935 /* DXInstrumentProfileReader.swift */; };
+		64ECD6852A9DDF6200B36935 /* DXInstrumentProfileCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD6842A9DDF6200B36935 /* DXInstrumentProfileCollector.swift */; };
+		64ECD6872A9DDFBE00B36935 /* DXInstrumentProfileConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD6862A9DDFBE00B36935 /* DXInstrumentProfileConnection.swift */; };
 		64FCAF902A572D4600971F4E /* libDxFeedGraalNativeSdk.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		803BAC1629BFA50700FFAB1C /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		803BAC1C29BFA50700FFAB1C /* DxFeedSwiftFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -440,7 +440,7 @@
 		646407562AA0C44D006FF769 /* NativeInstrumentProfileCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInstrumentProfileCollector.swift; sourceTree = "<group>"; };
 		646407582AA0CA8D006FF769 /* NativeProfileIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeProfileIterator.swift; sourceTree = "<group>"; };
 		6464075A2AA0CEF2006FF769 /* NativeExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeExecutor.swift; sourceTree = "<group>"; };
-		6464075C2AA1C69E006FF769 /* InstrumentProfileUpdateListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileUpdateListener.swift; sourceTree = "<group>"; };
+		6464075C2AA1C69E006FF769 /* DXInstrumentProfileUpdateListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileUpdateListener.swift; sourceTree = "<group>"; };
 		64656F582A1B864C006A0B19 /* NativeEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeEndpoint.swift; sourceTree = "<group>"; };
 		64656F5A2A1B9784006A0B19 /* DXFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFeed.swift; sourceTree = "<group>"; };
 		64656F5D2A1B97F2006A0B19 /* NativeFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeFeed.swift; sourceTree = "<group>"; };
@@ -523,16 +523,16 @@
 		64D8BB462A39BB740071BC88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64D8BB492A39BB740071BC88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64D8BB4B2A39BB740071BC88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		64DA26B52AA1EF47005B1757 /* ProfileIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileIterator.swift; sourceTree = "<group>"; };
+		64DA26B52AA1EF47005B1757 /* DXProfileIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXProfileIterator.swift; sourceTree = "<group>"; };
 		64DA26B72AA20095005B1757 /* NativeInstrumentProfileConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInstrumentProfileConnection.swift; sourceTree = "<group>"; };
-		64DA26B92AA20AAA005B1757 /* InstrumentProfileConnectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileConnectionState.swift; sourceTree = "<group>"; };
+		64DA26B92AA20AAA005B1757 /* DXInstrumentProfileConnectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileConnectionState.swift; sourceTree = "<group>"; };
 		64DA26BB2AA20B66005B1757 /* InstrumentProfileConnectionState+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InstrumentProfileConnectionState+ext.swift"; sourceTree = "<group>"; };
-		64DA26BD2AA20EDB005B1757 /* InstrumentProfileConnectionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileConnectionObserver.swift; sourceTree = "<group>"; };
+		64DA26BD2AA20EDB005B1757 /* DXInstrumentProfileConnectionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileConnectionObserver.swift; sourceTree = "<group>"; };
 		64DA26BF2AA224EB005B1757 /* NativeIPFConnectionListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeIPFConnectionListener.swift; sourceTree = "<group>"; };
-		64ECD67E2A9CF4CB00B36935 /* IPFTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPFTest.swift; sourceTree = "<group>"; };
-		64ECD6812A9DDC2800B36935 /* InstrumentProfileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileReader.swift; sourceTree = "<group>"; };
-		64ECD6842A9DDF6200B36935 /* InstrumentProfileCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileCollector.swift; sourceTree = "<group>"; };
-		64ECD6862A9DDFBE00B36935 /* InstrumentProfileConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileConnection.swift; sourceTree = "<group>"; };
+		64ECD67E2A9CF4CB00B36935 /* IPFTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPFTests.swift; sourceTree = "<group>"; };
+		64ECD6812A9DDC2800B36935 /* DXInstrumentProfileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileReader.swift; sourceTree = "<group>"; };
+		64ECD6842A9DDF6200B36935 /* DXInstrumentProfileCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileCollector.swift; sourceTree = "<group>"; };
+		64ECD6862A9DDFBE00B36935 /* DXInstrumentProfileConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileConnection.swift; sourceTree = "<group>"; };
 		803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DXFeedFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DxFeedSwiftFramework.h; sourceTree = "<group>"; };
 		803BAC1529BFA50700FFAB1C /* DXFeedFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DXFeedFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -945,7 +945,7 @@
 			isa = PBXGroup;
 			children = (
 				64ECD6832A9DDF4F00B36935 /* Live */,
-				64ECD6812A9DDC2800B36935 /* InstrumentProfileReader.swift */,
+				64ECD6812A9DDC2800B36935 /* DXInstrumentProfileReader.swift */,
 				64437A8E2A9DEE6F005929B2 /* InstrumentProfile.swift */,
 				6464074C2A9E352E006FF769 /* InstrumentProfileField.swift */,
 			);
@@ -955,12 +955,12 @@
 		64ECD6832A9DDF4F00B36935 /* Live */ = {
 			isa = PBXGroup;
 			children = (
-				64ECD6842A9DDF6200B36935 /* InstrumentProfileCollector.swift */,
-				64ECD6862A9DDFBE00B36935 /* InstrumentProfileConnection.swift */,
-				6464075C2AA1C69E006FF769 /* InstrumentProfileUpdateListener.swift */,
-				64DA26B52AA1EF47005B1757 /* ProfileIterator.swift */,
-				64DA26B92AA20AAA005B1757 /* InstrumentProfileConnectionState.swift */,
-				64DA26BD2AA20EDB005B1757 /* InstrumentProfileConnectionObserver.swift */,
+				64ECD6842A9DDF6200B36935 /* DXInstrumentProfileCollector.swift */,
+				64ECD6862A9DDFBE00B36935 /* DXInstrumentProfileConnection.swift */,
+				6464075C2AA1C69E006FF769 /* DXInstrumentProfileUpdateListener.swift */,
+				64DA26B52AA1EF47005B1757 /* DXProfileIterator.swift */,
+				64DA26B92AA20AAA005B1757 /* DXInstrumentProfileConnectionState.swift */,
+				64DA26BD2AA20EDB005B1757 /* DXInstrumentProfileConnectionObserver.swift */,
 			);
 			path = Live;
 			sourceTree = "<group>";
@@ -1021,7 +1021,7 @@
 				64104FCD2A2637EA00D1FC41 /* EventsTest.swift */,
 				64278C6B2A602CA20074B5AA /* CandleTests.swift */,
 				6447A5EC2A8FCC2200739CCF /* UtilsTest.swift */,
-				64ECD67E2A9CF4CB00B36935 /* IPFTest.swift */,
+				64ECD67E2A9CF4CB00B36935 /* IPFTests.swift */,
 			);
 			path = DXFeedFrameworkTests;
 			sourceTree = "<group>";
@@ -1563,28 +1563,28 @@
 				640C3FDC2A618B2000555161 /* MarketEventSymbols.swift in Sources */,
 				642BE4D42A2F5D730052340A /* TimeAndSale+Ext.swift in Sources */,
 				64ACBCD92A279F7900032C53 /* DXEventListener.swift in Sources */,
-				64ECD6852A9DDF6200B36935 /* InstrumentProfileCollector.swift in Sources */,
+				64ECD6852A9DDF6200B36935 /* DXInstrumentProfileCollector.swift in Sources */,
 				64656F5B2A1B9784006A0B19 /* DXFeed.swift in Sources */,
 				6447A5EF2A8FD1CD00739CCF /* DayUtil.swift in Sources */,
 				6447A5E92A8F9E0B00739CCF /* TimeNanosUtil.swift in Sources */,
 				640C3FD82A617D4900555161 /* CandlePriceLevel.swift in Sources */,
 				64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */,
 				6447A5DD2A8E56CF00739CCF /* ITimeSeriesEvent.swift in Sources */,
-				64DA26BA2AA20AAA005B1757 /* InstrumentProfileConnectionState.swift in Sources */,
+				64DA26BA2AA20AAA005B1757 /* DXInstrumentProfileConnectionState.swift in Sources */,
 				64278C6E2A602D2B0074B5AA /* Candle.swift in Sources */,
 				64ACBCE62A28BA7D00032C53 /* SymbolMapper.swift in Sources */,
-				64ECD6822A9DDC2800B36935 /* InstrumentProfileReader.swift in Sources */,
+				64ECD6822A9DDC2800B36935 /* DXInstrumentProfileReader.swift in Sources */,
 				642BE4CC2A2E1DB70052340A /* Mapper.swift in Sources */,
 				64104FC72A2613BC00D1FC41 /* ConcurrentArray.swift in Sources */,
 				646407572AA0C44D006FF769 /* NativeInstrumentProfileCollector.swift in Sources */,
 				64ACBCDF2A2897EA00032C53 /* String+Symbol.swift in Sources */,
-				64ECD6872A9DDFBE00B36935 /* InstrumentProfileConnection.swift in Sources */,
+				64ECD6872A9DDFBE00B36935 /* DXInstrumentProfileConnection.swift in Sources */,
 				64278C702A602FA00074B5AA /* Candle+Ext.swift in Sources */,
 				6464075B2AA0CEF2006FF769 /* NativeExecutor.swift in Sources */,
 				64DA26B82AA20095005B1757 /* NativeInstrumentProfileConnection.swift in Sources */,
 				64104FC32A210F2400D1FC41 /* EventCode+Native.swift in Sources */,
 				80FC415C29CA2B8800E6B611 /* NativeBuilder.swift in Sources */,
-				6464075D2AA1C69E006FF769 /* InstrumentProfileUpdateListener.swift in Sources */,
+				6464075D2AA1C69E006FF769 /* DXInstrumentProfileUpdateListener.swift in Sources */,
 				6447A5EB2A8FC70800739CCF /* StringUtil.swift in Sources */,
 				642BE4D62A2F5E7C0052340A /* TimeAndSaleMapper.swift in Sources */,
 				64656F652A1CAFC5006A0B19 /* String+Pointee.swift in Sources */,
@@ -1597,7 +1597,7 @@
 				6469F8C82A3B25C900846831 /* MarketEvent+Access.swift in Sources */,
 				640C3FD22A6178D200555161 /* CandleSession.swift in Sources */,
 				8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */,
-				64DA26BE2AA20EDB005B1757 /* InstrumentProfileConnectionObserver.swift in Sources */,
+				64DA26BE2AA20EDB005B1757 /* DXInstrumentProfileConnectionObserver.swift in Sources */,
 				64656F732A1D0A84006A0B19 /* EndpointListener.swift in Sources */,
 				64104FCC2A2629D800D1FC41 /* NativeSubscription.swift in Sources */,
 				64C772012A975102009868C2 /* Reference+Util.swift in Sources */,
@@ -1633,7 +1633,7 @@
 				640C3FD02A6178B400555161 /* CandlePrice.swift in Sources */,
 				64DA26C02AA224EB005B1757 /* NativeIPFConnectionListener.swift in Sources */,
 				8088D77D29C8DAF800F240CB /* GraalErrorCode.swift in Sources */,
-				64DA26B62AA1EF47005B1757 /* ProfileIterator.swift in Sources */,
+				64DA26B62AA1EF47005B1757 /* DXProfileIterator.swift in Sources */,
 				8088D76929C0FC5C00F240CB /* Isolate.swift in Sources */,
 				64278C722A6030290074B5AA /* CandleMapper.swift in Sources */,
 				649F48862A615BC90016FDD1 /* CandleSymbol.swift in Sources */,
@@ -1676,7 +1676,7 @@
 				64D0DBE82A29FF4B00710605 /* EventsTest.swift in Sources */,
 				6426C8952A531ABB00236784 /* EndpointPublisherTest.swift in Sources */,
 				64ACBCEC2A29FE2300032C53 /* XCTestCase+Utils.swift in Sources */,
-				64ECD67F2A9CF4CB00B36935 /* IPFTest.swift in Sources */,
+				64ECD67F2A9CF4CB00B36935 /* IPFTests.swift in Sources */,
 				64ACBCD52A2789EF00032C53 /* TestListener.swift in Sources */,
 				64ACBCEA2A28DDDA00032C53 /* TestEventListener.swift in Sources */,
 				6401A5152A582134009BA686 /* IsolateTest.swift in Sources */,

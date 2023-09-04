@@ -82,6 +82,7 @@ public enum InstrumentProfileField: String, CaseIterable {
         return map[name]
     }
 
+    // swiftlint:disable function_body_length
     public func getField(instrumentProfile: InstrumentProfile) -> String {
         switch self {
         case .type:
@@ -215,6 +216,7 @@ public enum InstrumentProfileField: String, CaseIterable {
             instrumentProfile.tradingHours = value
         }
     }
+    // swiftlint:enable function_body_length
 
     public func isNumericField() -> Bool {
         return InstrumentProfileField.numericFields.contains(self)
@@ -247,7 +249,9 @@ public enum InstrumentProfileField: String, CaseIterable {
             throw ArgumentException.illegalArgumentException
         }
     }
+}
 
+extension InstrumentProfileField {
     public static func parseDate(_ value: String) -> Long {
         if value.isEmpty {
             return 0

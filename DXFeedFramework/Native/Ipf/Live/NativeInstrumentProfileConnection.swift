@@ -21,8 +21,8 @@ class NativeInstrumentProfileConnection {
         if let context = context {
             let endpoint: AnyObject = bridge(ptr: context)
             if let listener =  endpoint as? NativeInstrumentProfileConnection {
-                var old = (try? EnumUtil.valueOf(value: InstrumentProfileConnectionState.convert(oldState)))
-                var new = (try? EnumUtil.valueOf(value: InstrumentProfileConnectionState.convert(newState)))
+                var old = (try? EnumUtil.valueOf(value: DXInstrumentProfileConnectionState.convert(oldState)))
+                var new = (try? EnumUtil.valueOf(value: DXInstrumentProfileConnectionState.convert(newState)))
                 listener.listener?.connectionDidChangeState(old: old ?? .notConnected,
                                                             new: new ?? .notConnected)
             }
@@ -86,10 +86,10 @@ class NativeInstrumentProfileConnection {
                                         value))
     }
 
-    private func getState() throws -> InstrumentProfileConnectionState {
-        let thread = currentThread()
+    private func getState() throws -> DXInstrumentProfileConnectionState {
 #warning("TODO: Check undefined symbol for dxfg_InstrumentProfileConnection_getState")
 
+        //        let thread = currentThread()
         //        let result = try ErrorCheck.nativeCall(thread,
         //                                                dxfg_InstrumentProfileConnection_getState(
         //                                                    thread,
@@ -97,7 +97,7 @@ class NativeInstrumentProfileConnection {
         //        if let state = InstrumentProfileConnectionState.convert(result) {
         //            return state
         //        }
-        return InstrumentProfileConnectionState.notConnected
+        return DXInstrumentProfileConnectionState.notConnected
     }
 
     func getLastModified() -> Long {

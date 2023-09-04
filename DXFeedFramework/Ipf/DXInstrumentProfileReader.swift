@@ -1,5 +1,5 @@
 //
-//  InstrumentProfileReader.swift
+//  DXInstrumentProfileReader.swift
 //  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 29.08.23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class InstrumentProfileReader {
+public class DXInstrumentProfileReader {
     private lazy var native: NativeInstrumentProfileReader? = {
         try? NativeInstrumentProfileReader()
     }()

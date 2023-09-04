@@ -15,11 +15,20 @@ public class TimeSeriesSubscriptionSymbol: IndexedEventSubscriptionSymbol<AnyHas
     }
 
     convenience public init(symbol: AnyHashable, date: Date) {
-
         self.init(symbol: symbol, fromTime: Long(date.timeIntervalSince1970) * 1000)
     }
 
     static func == (lhs: TimeSeriesSubscriptionSymbol, rhs: TimeSeriesSubscriptionSymbol) -> Bool {
         return lhs === rhs || lhs.symbol == rhs.symbol
+    }
+
+    public var stringValue: String {
+        return "\(symbol){fromTime=\(TimeUtil.toLocalDateString(millis: fromTime))}"
+    }
+}
+
+extension TimeSeriesSubscriptionSymbol: CustomStringConvertible {
+    public var description: String {
+        return stringValue
     }
 }

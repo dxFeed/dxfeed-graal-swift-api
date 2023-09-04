@@ -9,47 +9,43 @@ import XCTest
 @testable import DXFeedFramework
 @_implementationOnly import graal_api
 
-class AnonymousProfileListener: InstrumentProfileUpdateListener, Hashable {
+final class IPFTests: XCTestCase {
+    class AnonymousProfileListener: DXInstrumentProfileUpdateListener, Hashable {
+        static func == (lhs: AnonymousProfileListener, rhs: AnonymousProfileListener) -> Bool {
+            lhs === rhs
+        }
+        func hash(into hasher: inout Hasher) {
+            hasher.combine("\(self):\(stringReference(self))")
+        }
+        var callback: ([InstrumentProfile]) -> Void = { _ in }
 
-    static func == (lhs: AnonymousProfileListener, rhs: AnonymousProfileListener) -> Bool {
-        lhs === rhs
+        func instrumentProfilesUpdated(_ instruments: [InstrumentProfile]) {
+            self.callback(instruments)
+        }
+
+        init(overrides: (AnonymousProfileListener) -> AnonymousProfileListener) {
+            _ = overrides(self)
+        }
     }
 
-    func hash(into hasher: inout Hasher) {
-        hasher.combine("\(self):\(stringReference(self))")
+    class AnonymousConnectionListener: DXInstrumentProfileConnectionObserver, Hashable {
+        static func == (lhs: AnonymousConnectionListener, rhs: AnonymousConnectionListener) -> Bool {
+            lhs === rhs
+        }
+        func hash(into hasher: inout Hasher) {
+            hasher.combine("\(self):\(stringReference(self))")
+        }
+        var callback: (DXFeedFramework.DXInstrumentProfileConnectionState,
+                       DXFeedFramework.DXInstrumentProfileConnectionState) -> Void = { _, _  in }
+
+        func connectionDidChangeState(old: DXFeedFramework.DXInstrumentProfileConnectionState,
+                                      new: DXFeedFramework.DXInstrumentProfileConnectionState) {
+            self.callback(old, new)
+        }
+        init(overrides: (AnonymousConnectionListener) -> AnonymousConnectionListener) {
+            _ = overrides(self)
+        }
     }
-    var callback: ([InstrumentProfile]) -> Void = { _ in }
-
-    func instrumentProfilesUpdated(_ instruments: [InstrumentProfile]) {
-        self.callback(instruments)
-    }
-
-    init(overrides: (AnonymousProfileListener) -> AnonymousProfileListener) {
-        _ = overrides(self)
-    }
-}
-
-class AnonymousConnectionListener: InstrumentProfileConnectionObserver, Hashable {
-
-    static func == (lhs: AnonymousConnectionListener, rhs: AnonymousConnectionListener) -> Bool {
-        lhs === rhs
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine("\(self):\(stringReference(self))")
-    }
-    var callback: (DXFeedFramework.InstrumentProfileConnectionState, DXFeedFramework.InstrumentProfileConnectionState) -> Void = { _, _  in }
-
-    func connectionDidChangeState(old: DXFeedFramework.InstrumentProfileConnectionState, new: DXFeedFramework.InstrumentProfileConnectionState) {
-        self.callback(old, new)
-    }
-
-    init(overrides: (AnonymousConnectionListener) -> AnonymousConnectionListener) {
-        _ = overrides(self)
-    }
-}
-
-final class IPFTest: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -101,7 +97,7 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
             XCTAssert(false, "Wrong data")
             return
         }
-        let reader = InstrumentProfileReader()
+        let reader = DXInstrumentProfileReader()
         let instruments = try reader.read(data: data, address: "demo.com")
         XCTAssert(instruments?.count == 2, "Wrong parsing data from file")
     }
@@ -121,7 +117,7 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
             XCTAssert(false, "Wrong data")
             return
         }
-        let reader = InstrumentProfileReader()
+        let reader = DXInstrumentProfileReader()
         let instruments = try reader.readCompressed(data: data)
         XCTAssert(instruments?.count == 2, "Wrong parsing data from file")
     }
@@ -141,14 +137,14 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
             XCTAssert(false, "Wrong data")
             return
         }
-        let reader = InstrumentProfileReader()
+        let reader = DXInstrumentProfileReader()
         let instruments = try reader.read(data: data)
         XCTAssert(instruments?.count == 2, "Wrong parsing data from file")
     }
-    // swiftlint:disable line_length
+    // swiftlint:enable line_length
 
     func testCollector() throws {
-        let collector = try InstrumentProfileCollector()
+        let collector = try DXInstrumentProfileCollector()
         let newProfile = InstrumentProfile()
         try collector.updateInstrumentProfile(profile: newProfile)
         let iterator = try collector.view()
@@ -162,7 +158,7 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
     }
 
     func testCollectorWithExecutor() throws {
-        let collector = try InstrumentProfileCollector()
+        let collector = try DXInstrumentProfileCollector()
         let newProfile = InstrumentProfile()
         try collector.updateInstrumentProfile(profile: newProfile)
         let iterator = try collector.view()
@@ -176,7 +172,7 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
     }
 
     func testProfileListener() throws {
-        let collector = try InstrumentProfileCollector()
+        let collector = try DXInstrumentProfileCollector()
         let expectation = expectation(description: "Received profile")
         let newProfile = InstrumentProfile()
         newProfile.symbol = "TEST_123"
@@ -199,8 +195,8 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
     }
 
     func testConnectionState() {
-        func checkFunction(_ graalState: dxfg_ipf_connection_state_t, apiState: InstrumentProfileConnectionState) {
-            XCTAssert(InstrumentProfileConnectionState.convert(graalState) == apiState, "\(apiState) state: wrong")
+        func checkFunction(_ graalState: dxfg_ipf_connection_state_t, apiState: DXInstrumentProfileConnectionState) {
+            XCTAssert(DXInstrumentProfileConnectionState.convert(graalState) == apiState, "\(apiState) state: wrong")
         }
         checkFunction(DXFG_IPF_CONNECTION_STATE_CLOSED, apiState: .closed)
         checkFunction(DXFG_IPF_CONNECTION_STATE_COMPLETED, apiState: .completed)
@@ -215,7 +211,7 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
         }
         let expectationCollector = expectation(description: "Collector")
         expectationCollector.assertForOverFulfill = false
-        let collector = try InstrumentProfileCollector()
+        let collector = try DXInstrumentProfileCollector()
         try collector.add(AnonymousProfileListener { anonymCl in
             anonymCl.callback = { profiles in
                 if profiles.count > 0 {
@@ -226,7 +222,7 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
         })
         let expectationConnection = expectation(description: "Connection")
         expectationConnection.expectedFulfillmentCount = 3 // connecting, connected, completed
-        let connection = try InstrumentProfileConnection(address, collector)
+        let connection = try DXInstrumentProfileConnection(address, collector)
         connection.add(AnonymousConnectionListener { anonymCl in
             anonymCl.callback = { _, new in
                 switch new {
@@ -250,19 +246,19 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
     }
 
     func testCreateOnScheduledThreadPool() throws {
-        let collector = try InstrumentProfileCollector()
+        let collector = try DXInstrumentProfileCollector()
         let result = try collector.createOnScheduledThreadPool(numberOfThreads: 15, nameOfthread: "test_ios_thread")
         XCTAssert(result, "createOnScheduledThreadPool failed")
     }
 
     func testCreateOnConcurrentLinkedQueue() throws {
-        let collector = try InstrumentProfileCollector()
+        let collector = try DXInstrumentProfileCollector()
         let result = try collector.createOnConcurrentLinkedQueue()
         XCTAssert(result, "createOnConcurrentLinkedQueue failed")
     }
 
     func testCreateOnFixedThreadPool() throws {
-        let collector = try InstrumentProfileCollector()
+        let collector = try DXInstrumentProfileCollector()
         let result = try collector.createOnFixedThreadPool(numberOfThreads: 15, nameOfthread: "test_ios_thread")
         XCTAssert(result, "createOnFixedThreadPool failed")
     }
