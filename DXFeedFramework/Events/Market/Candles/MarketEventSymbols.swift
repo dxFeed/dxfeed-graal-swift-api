@@ -116,7 +116,7 @@ public class MarketEventSymbols {
     }
 
     public static func removeAttributeStringByKey(_ symbol: String?,
-                                           _ key: String) -> String? {
+                                                  _ key: String) -> String? {
         guard let symbol = symbol else {
             return nil
         }
@@ -167,8 +167,8 @@ public class MarketEventSymbols {
     }
 
     public static func changeAttributeStringByKey(_ symbol: String?,
-                                           _ key: String?,
-                                           _ value: String?) throws -> String? {
+                                                  _ key: String?,
+                                                  _ value: String?) throws -> String? {
         guard let key = key else {
             throw ArgumentException.argumentNil
         }
