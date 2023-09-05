@@ -33,40 +33,40 @@ public class InstrumentProfile {
             ipfType = IPFType.valueOf(str: type)
         }
     }
-    var symbol = ""
-    var descriptionStr = ""
-    var localSymbol = ""
-    var localDescription = ""
-    var country = ""
-    var opol = ""
-    var exchangeData = ""
-    var exchanges = ""
-    var currency = ""
-    var baseCurrency = ""
-    var cfi = ""
-    var isin = ""
-    var sedol = ""
-    var cusip = ""
-    var icb: Int32 = 0
-    var sic: Int32 = 0
-    var multiplier: Double = 0
-    var product = ""
-    var underlying = ""
-    var spc: Double = 0
-    var additionalUnderlyings = ""
-    var mmy = ""
-    var expiration: Int32 = 0
-    var lastTrade: Int32 = 0
-    var strike: Double = 0
-    var optionType = ""
-    var expirationStyle = ""
-    var settlementStyle = ""
-    var priceIncrements = ""
-    var tradingHours = ""
+    public var symbol = ""
+    public var descriptionStr = ""
+    public var localSymbol = ""
+    public var localDescription = ""
+    public var country = ""
+    public var opol = ""
+    public var exchangeData = ""
+    public var exchanges = ""
+    public var currency = ""
+    public var baseCurrency = ""
+    public var cfi = ""
+    public var isin = ""
+    public var sedol = ""
+    public var cusip = ""
+    public var icb: Int32 = 0
+    public var sic: Int32 = 0
+    public var multiplier: Double = 0
+    public var product = ""
+    public var underlying = ""
+    public var spc: Double = 0
+    public var additionalUnderlyings = ""
+    public var mmy = ""
+    public var expiration: Int32 = 0
+    public var lastTrade: Int32 = 0
+    public var strike: Double = 0
+    public var optionType = ""
+    public var expirationStyle = ""
+    public var settlementStyle = ""
+    public var priceIncrements = ""
+    public var tradingHours = ""
 
     var customFields = [String: String]()
 
-    var ipfType: IPFType?
+    public var ipfType: IPFType?
 
     init() {
         // to activaate didSet methods

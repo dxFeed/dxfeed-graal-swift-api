@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MarketEventSymbols {
+public class MarketEventSymbols {
     enum Separtors: String {
         case exchSeparator = "&"
         case open = "{"
@@ -16,7 +16,7 @@ class MarketEventSymbols {
         case value = "="
     }
 
-    static func changeExchangeCode(_ symbol: String?, _ exchangeCode: Character) -> String? {
+    public static func changeExchangeCode(_ symbol: String?, _ exchangeCode: Character) -> String? {
         guard let symbol = symbol else {
             return exchangeCode == "\0" ? nil : "\(Separtors.exchSeparator.rawValue)\(exchangeCode)"
         }
@@ -31,7 +31,7 @@ class MarketEventSymbols {
         result + symbol[index]
     }
 
-    static func getBaseSymbol(_ symbol: String?) -> String? {
+    public static func getBaseSymbol(_ symbol: String?) -> String? {
         guard let symbol = symbol else {
             return nil
         }
@@ -46,7 +46,7 @@ class MarketEventSymbols {
         return hasExchangeCodeInternal(symbol, length) ? symbol[0..<(length - 2)] : symbol[0..<length]
     }
 
-    static func getAttributeStringByKey(_ symbol: String?, _ key: String?) throws -> String? {
+    public static func getAttributeStringByKey(_ symbol: String?, _ key: String?) throws -> String? {
         guard let key = key else {
             throw ArgumentException.argumentNil
         }
@@ -115,7 +115,7 @@ class MarketEventSymbols {
         return symbol[startPos..<endPos]
     }
 
-    static func removeAttributeStringByKey(_ symbol: String?,
+    public static func removeAttributeStringByKey(_ symbol: String?,
                                            _ key: String) -> String? {
         guard let symbol = symbol else {
             return nil
@@ -166,7 +166,7 @@ class MarketEventSymbols {
         return result
     }
 
-    static func changeAttributeStringByKey(_ symbol: String?,
+    public static func changeAttributeStringByKey(_ symbol: String?,
                                            _ key: String?,
                                            _ value: String?) throws -> String? {
         guard let key = key else {
@@ -253,7 +253,7 @@ class MarketEventSymbols {
                                  symbol[index-1..<symbol.length])
     }
 
-    static func getExchangeCode(_ symbol: String?) -> Character {
+    public static func getExchangeCode(_ symbol: String?) -> Character {
         let emptyChar: Character = "\0"
         if hasExchangeCode(symbol), let symbol = symbol {
             let str = symbol[getLengthWithoutAttributesInternal(symbol) - 1]
