@@ -3,9 +3,9 @@
 
 import PackageDescription
 
-let version = "0.0.5_build"
+let version = "0.0.6"
 let moduleName = "DXFeedFramework"
-let checksum = "d0ca97892afa6abd04c5b5138ceec721bc8ef59aacbb8a8ae12c27a5643de60d"
+let checksum = "27d29031a467dd41c196e96d739103ceee1de84c4f2335922b7be4ac4fd111cb"
 
 let package = Package(
     name: moduleName,
