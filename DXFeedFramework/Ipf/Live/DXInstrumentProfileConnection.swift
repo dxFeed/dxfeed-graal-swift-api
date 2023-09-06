@@ -46,13 +46,13 @@ public class DXInstrumentProfileConnection {
         try native.close()
     }
 
-    public func add<O>(_ observer: O)
+    public func add<O>(observer: O)
     where O: DXInstrumentProfileConnectionObserver,
           O: Hashable {
         observersSet.insert(observer)
     }
 
-    public func remove<O>(_ observer: O)
+    public func remove<O>(observer: O)
     where O: DXInstrumentProfileConnectionObserver,
           O: Hashable {
         observersSet.remove(observer)

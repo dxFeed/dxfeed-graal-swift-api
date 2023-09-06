@@ -177,7 +177,7 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
         let newProfile = InstrumentProfile()
         newProfile.symbol = "TEST_123"
 
-        try collector.add(AnonymousProfileListener { anonymCl in
+        try collector.add(observer: AnonymousProfileListener { anonymCl in
             anonymCl.callback = { profiles in
                 if profiles.count == 1 {
                     let profile = profiles.first
@@ -212,7 +212,7 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
         let expectationCollector = expectation(description: "Collector")
         expectationCollector.assertForOverFulfill = false
         let collector = try DXInstrumentProfileCollector()
-        try collector.add(AnonymousProfileListener { anonymCl in
+        try collector.add(observer: AnonymousProfileListener { anonymCl in
             anonymCl.callback = { profiles in
                 if profiles.count > 0 {
                     expectationCollector.fulfill()
@@ -223,7 +223,7 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
         let expectationConnection = expectation(description: "Connection")
         expectationConnection.expectedFulfillmentCount = 3 // connecting, connected, completed
         let connection = try DXInstrumentProfileConnection(address, collector)
-        connection.add(AnonymousConnectionListener { anonymCl in
+        connection.add(observer: AnonymousConnectionListener { anonymCl in
             anonymCl.callback = { _, new in
                 switch new {
                 case .notConnected:

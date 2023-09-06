@@ -65,7 +65,7 @@ final class FeedTest: XCTestCase {
         let receivedEventExp = expectation(description: "Received events \(code)")
         receivedEventExp.assertForOverFulfill = false
 
-        try subscription?.add(AnonymousClass { anonymCl in
+        try subscription?.add(observer: AnonymousClass { anonymCl in
             anonymCl.callback = { events in
                 events.forEach { event in
                     differentSymbols.insert(event.quote.eventSymbol)
@@ -151,7 +151,7 @@ final class FeedTest: XCTestCase {
         let subscription = try endpoint.getFeed()?.createSubscription(code)
         let receivedEventExp = expectation(description: "Received events \(code)")
         receivedEventExp.assertForOverFulfill = false
-        try subscription?.add(AnonymousClass { anonymCl in
+        try subscription?.add(observer: AnonymousClass { anonymCl in
             anonymCl.callback = { events in
                 if events.count > 0 {
                     let event = events.first

@@ -21,7 +21,7 @@ public class DXFeedSubcription {
         self.events = Set(events)
     }
 
-    public func add<O>(_ observer: O) throws
+    public func add<O>(observer: O) throws
     where O: DXEventListener,
           O: Hashable {
               try listeners.reader { [weak self] in
@@ -32,7 +32,7 @@ public class DXFeedSubcription {
               listeners.insert(observer)
           }
 
-    public func remove<O>(_ observer: O)
+    public func remove<O>(observer: O)
     where O: DXEventListener,
           O: Hashable {
               listeners.remove(observer)

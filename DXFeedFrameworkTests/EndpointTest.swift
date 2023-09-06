@@ -51,7 +51,7 @@ final class EndpointTest: XCTestCase {
                             DXEndpointState.connecting: expectation(description: "Connecting"),
                             DXEndpointState.notConnected: expectation(description: "NotConnected")]
         let listener = TestListener(expectations: expectations)
-        endpoint?.add(listener)
+        endpoint?.add(observer: listener)
         try endpoint?.connect(endpointAddress)
         let exps = Array(expectations.filter({ element in
             element.key != .notConnected
@@ -84,7 +84,7 @@ final class EndpointTest: XCTestCase {
     func testSupportProperty() throws {
         let builder = DXEndpoint.builder()
         func isSupportedProperty(_ prop: String, _ expected: Bool) {
-            XCTAssert(try builder.isSupported(property: prop) == expected, "Graal doesn't support property \(prop)")
+            XCTAssert(try builder.isSupported(prop) == expected, "Graal doesn't support property \(prop)")
         }
         DXEndpoint.Property.allCases.forEach { prop in
             isSupportedProperty(prop.rawValue, true)
