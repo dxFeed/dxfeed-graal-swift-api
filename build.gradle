@@ -2,7 +2,7 @@ apply plugin: 'java'
 
 repositories {
     maven {
-        url 'https://dxfeed.jfrog.io/artifactory/maven'
+        url 'https://dxfeed.jfrog.io/artifactory/maven-open'
     }
 }
 
@@ -12,6 +12,7 @@ dependencies {
     implementation(group: 'com.dxfeed', name: "${name}", version: "${native_version}", classifier: 'aarch64-osx', ext: 'zip')
     implementation(group: 'com.dxfeed', name: "${name}", version: "${native_version}", classifier: 'x86_64-osx', ext: 'zip')
     implementation(group: 'com.dxfeed', name: "${name}", version: "${native_version}", classifier: 'aarch64-ios', ext: 'zip')
+    // implementation(group: 'com.dxfeed', name: "${name}", version: "${native_version}", classifier: 'aarch64-ios-sim', ext: 'zip')
 }
 
 task fetchDependencies(type: Copy) {
@@ -40,6 +41,9 @@ task fetchDependencies(type: Copy) {
                     break
                 case ~/.*aarch64-ios.*/:
                     return 'graal_builds/ios'
+                    break
+                case ~/.*aarch64-ios-sim.*/:
+                    return 'graal_builds/ios_simulator'
                     break
                 default:
                     return 'graal_builds/$zipFileName'
