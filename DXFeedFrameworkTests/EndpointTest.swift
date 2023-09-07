@@ -15,7 +15,7 @@ final class EndpointTest: XCTestCase {
 
     override class func setUp() {
         publisherEndpoint = try? DXEndpoint.builder().withRole(.publisher).withProperty("test", "value").build()
-        try? publisherEndpoint?.connect(":\(EndpointTest.port)")
+        _ = try? publisherEndpoint?.connect(":\(EndpointTest.port)")
     }
 
     override class func tearDown() {
@@ -67,17 +67,26 @@ final class EndpointTest: XCTestCase {
     func testListenerDealloc() throws {
         var endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint should be not nil")
-        try endpoint?.connect(endpointAddress)
+        _ = try endpoint?.connect(endpointAddress)
+        var state = try? endpoint?.getState()
+        try endpoint?.close()
         try endpoint?.disconnect()
         wait(seconds: 2)
         try? endpoint?.callGC()
+        state = try? endpoint?.getState()
         try endpoint?.close()
+        state = try? endpoint?.getState()
         try? endpoint?.callGC()
+        try endpoint?.close()
+        state = try? endpoint?.getState()
+        try? endpoint?.callGC()
+        state = try? endpoint?.getState()
         endpoint = nil
         endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint should be not nil")
-        try endpoint?.connect(endpointAddress)
+        _ = try endpoint?.connect(endpointAddress)
         try endpoint?.disconnect()
+        print("\(state ?? .notConnected)")
         wait(seconds: 3)
     }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class WildcardSymbol: Symbol {
+public class WildcardSymbol: Symbol {
     static let reservedPrefix = "*"
     private let symbol: String
 
@@ -17,7 +17,7 @@ class WildcardSymbol: Symbol {
         self.symbol = symbol
     }
 
-    var stringValue: String {
+    public var stringValue: String {
         return symbol
     }
 }
