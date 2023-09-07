@@ -47,13 +47,13 @@ class QuoteTableViewController: UIViewController {
             _ = try? builder?.withProperty(DXEndpoint.Property.aggregationPeriod.rawValue, "1")
         }
         endpoint = try? builder?.build()
-        endpoint?.add(self)
+        endpoint?.add(observer: self)
         try? endpoint?.connect("demo.dxfeed.com:7300")
 
         subscription = try? endpoint?.getFeed()?.createSubscription(.quote)
         profileSubscription = try? endpoint?.getFeed()?.createSubscription(.profile)
-        try? subscription?.add(self)
-        try? profileSubscription?.add(self)
+        try? subscription?.add(observer: self)
+        try? profileSubscription?.add(observer: self)
         symbols.forEach {
             dataSource[$0] = QuoteModel()
         }

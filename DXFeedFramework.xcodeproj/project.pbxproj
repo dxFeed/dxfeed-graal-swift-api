@@ -2266,8 +2266,8 @@
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
 					"-lc++",
-					"$(SRCROOT)/graal_builds/ios_simulator/graal-svm-arm64-ios-r.a",
-					"$(SRCROOT)/graal_builds/ios_simulator/jdk-arm64-ios-r.a",
+					"$(SRCROOT)/graal_builds/ios_simulator/graal-svm-ios-simulator-r.a",
+					"$(SRCROOT)/graal_builds/ios_simulator/jdk-ios-simulator-r.a",
 					"$(SRCROOT)/graal_builds/ios_simulator/libDxFeedGraalNativeSdk.o",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXFeedFramework;
@@ -2327,8 +2327,8 @@
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
 					"-lc++",
-					"$(SRCROOT)/graal_builds/ios_simulator/graal-svm-arm64-ios-r.a",
-					"$(SRCROOT)/graal_builds/ios_simulator/jdk-arm64-ios-r.a",
+					"$(SRCROOT)/graal_builds/ios_simulator/graal-svm-ios-simulator-r.a",
+					"$(SRCROOT)/graal_builds/ios_simulator/jdk-ios-simulator-r.a",
 					"$(SRCROOT)/graal_builds/ios_simulator/libDxFeedGraalNativeSdk.o",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXFeedFramework;
