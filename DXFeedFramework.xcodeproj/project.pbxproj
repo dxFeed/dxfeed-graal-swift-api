@@ -75,6 +75,16 @@
 		642BE4D22A2F5D230052340A /* TimeAndSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4D12A2F5D230052340A /* TimeAndSale.swift */; };
 		642BE4D42A2F5D730052340A /* TimeAndSale+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4D32A2F5D730052340A /* TimeAndSale+Ext.swift */; };
 		642BE4D62A2F5E7C0052340A /* TimeAndSaleMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4D52A2F5E7C0052340A /* TimeAndSaleMapper.swift */; };
+		642DC9282AAA21C000974F5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642DC9272AAA21C000974F5C /* AppDelegate.swift */; };
+		642DC92A2AAA21C000974F5C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642DC9292AAA21C000974F5C /* SceneDelegate.swift */; };
+		642DC92C2AAA21C000974F5C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642DC92B2AAA21C000974F5C /* ViewController.swift */; };
+		642DC92F2AAA21C000974F5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 642DC92D2AAA21C000974F5C /* Main.storyboard */; };
+		642DC9312AAA21C300974F5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 642DC9302AAA21C300974F5C /* Assets.xcassets */; };
+		642DC9342AAA21C300974F5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 642DC9322AAA21C300974F5C /* LaunchScreen.storyboard */; };
+		642DC93B2AAA22D900974F5C /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
+		642DC93C2AAA22D900974F5C /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		642DC9432AAA299800974F5C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646979712A3B5AF60003A9BA /* Colors.xcassets */; };
+		642DC9442AAA29EA00974F5C /* IpfCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642DC9402AAA290300974F5C /* IpfCell.swift */; };
 		64437A8F2A9DEE6F005929B2 /* InstrumentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64437A8E2A9DEE6F005929B2 /* InstrumentProfile.swift */; };
 		64437A922A9DF1DE005929B2 /* NativeInstrumentProfileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64437A912A9DF1DE005929B2 /* NativeInstrumentProfileReader.swift */; };
 		6447A5DB2A8E559000739CCF /* ILastingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6447A5DA2A8E559000739CCF /* ILastingEvent.swift */; };
@@ -217,6 +227,7 @@
 		64DA26C02AA224EB005B1757 /* NativeIPFConnectionListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26BF2AA224EB005B1757 /* NativeIPFConnectionListener.swift */; };
 		64DB79342A376E1B00229597 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		64DB79352A376E1B00229597 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		64E342502AAB083700457994 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8D22A3B401700846831 /* Colors.swift */; };
 		64ECD67F2A9CF4CB00B36935 /* IPFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD67E2A9CF4CB00B36935 /* IPFTests.swift */; };
 		64ECD6822A9DDC2800B36935 /* DXInstrumentProfileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD6812A9DDC2800B36935 /* DXInstrumentProfileReader.swift */; };
 		64ECD6852A9DDF6200B36935 /* DXInstrumentProfileCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD6842A9DDF6200B36935 /* DXInstrumentProfileCollector.swift */; };
@@ -257,6 +268,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 803BAC0C29BFA50700FFAB1C;
 			remoteInfo = DxFeedSwiftFramework;
+		};
+		642DC9392AAA222700974F5C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 803BAC0429BFA50700FFAB1C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 803BAC0C29BFA50700FFAB1C;
+			remoteInfo = DXFeedFramework;
+		};
+		642DC93D2AAA22D900974F5C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 803BAC0429BFA50700FFAB1C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 803BAC0C29BFA50700FFAB1C;
+			remoteInfo = DXFeedFramework;
 		};
 		644BD7842A4474B900A0BF99 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -307,6 +332,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				64262CDC2A4DA66100BA6BA3 /* DXFeedFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		642DC93F2AAA22D900974F5C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				642DC93C2AAA22D900974F5C /* DXFeedFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,6 +441,15 @@
 		642BE4D12A2F5D230052340A /* TimeAndSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndSale.swift; sourceTree = "<group>"; };
 		642BE4D32A2F5D730052340A /* TimeAndSale+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeAndSale+Ext.swift"; sourceTree = "<group>"; };
 		642BE4D52A2F5E7C0052340A /* TimeAndSaleMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndSaleMapper.swift; sourceTree = "<group>"; };
+		642DC9252AAA21C000974F5C /* IpfTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IpfTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		642DC9272AAA21C000974F5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		642DC9292AAA21C000974F5C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		642DC92B2AAA21C000974F5C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		642DC92E2AAA21C000974F5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		642DC9302AAA21C300974F5C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		642DC9332AAA21C300974F5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		642DC9352AAA21C300974F5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		642DC9402AAA290300974F5C /* IpfCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IpfCell.swift; sourceTree = "<group>"; };
 		64437A8E2A9DEE6F005929B2 /* InstrumentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfile.swift; sourceTree = "<group>"; };
 		64437A912A9DF1DE005929B2 /* NativeInstrumentProfileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInstrumentProfileReader.swift; sourceTree = "<group>"; };
 		6447A5DA2A8E559000739CCF /* ILastingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILastingEvent.swift; sourceTree = "<group>"; };
@@ -553,6 +598,14 @@
 			files = (
 				64262CCE2A4DA64700BA6BA3 /* RealityKitContent in Frameworks */,
 				64262CDB2A4DA66100BA6BA3 /* DXFeedFramework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		642DC9222AAA21C000974F5C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				642DC93B2AAA22D900974F5C /* DXFeedFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,6 +758,21 @@
 				64278C712A6030290074B5AA /* CandleMapper.swift */,
 			);
 			path = Markets;
+			sourceTree = "<group>";
+		};
+		642DC9262AAA21C000974F5C /* IpfTableApp */ = {
+			isa = PBXGroup;
+			children = (
+				642DC9272AAA21C000974F5C /* AppDelegate.swift */,
+				642DC9292AAA21C000974F5C /* SceneDelegate.swift */,
+				642DC92B2AAA21C000974F5C /* ViewController.swift */,
+				642DC9402AAA290300974F5C /* IpfCell.swift */,
+				642DC92D2AAA21C000974F5C /* Main.storyboard */,
+				642DC9302AAA21C300974F5C /* Assets.xcassets */,
+				642DC9322AAA21C300974F5C /* LaunchScreen.storyboard */,
+				642DC9352AAA21C300974F5C /* Info.plist */,
+			);
+			path = IpfTableApp;
 			sourceTree = "<group>";
 		};
 		64437A902A9DF1C4005929B2 /* Ipf */ = {
@@ -909,6 +977,7 @@
 				64D8BB3C2A39BB730071BC88 /* LatencyTestApp */,
 				64B6275D2A3761A000196D07 /* PertTestApp */,
 				64B627162A375BBA00196D07 /* QuoteTableApp */,
+				642DC9262AAA21C000974F5C /* IpfTableApp */,
 			);
 			path = Samples;
 			sourceTree = "<group>";
@@ -974,6 +1043,7 @@
 				64D8BB3B2A39BB730071BC88 /* DXLatencyTestApp.app */,
 				644BD75A2A44726F00A0BF99 /* DXARQuoteTableApp.app */,
 				64262CC92A4DA64600BA6BA3 /* DXVisionQuoteTableApp.app */,
+				642DC9252AAA21C000974F5C /* IpfTableApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1131,6 +1201,26 @@
 			productReference = 64262CC92A4DA64600BA6BA3 /* DXVisionQuoteTableApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		642DC9242AAA21C000974F5C /* IpfTableApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 642DC9382AAA21C300974F5C /* Build configuration list for PBXNativeTarget "IpfTableApp" */;
+			buildPhases = (
+				642DC9212AAA21C000974F5C /* Sources */,
+				642DC9222AAA21C000974F5C /* Frameworks */,
+				642DC9232AAA21C000974F5C /* Resources */,
+				642DC93F2AAA22D900974F5C /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				642DC93A2AAA222700974F5C /* PBXTargetDependency */,
+				642DC93E2AAA22D900974F5C /* PBXTargetDependency */,
+			);
+			name = IpfTableApp;
+			productName = IpfTableApp;
+			productReference = 642DC9252AAA21C000974F5C /* IpfTableApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 		644BD7592A44726F00A0BF99 /* DXARQuoteTableApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 644BD76C2A44727000A0BF99 /* Build configuration list for PBXNativeTarget "DXARQuoteTableApp" */;
@@ -1261,6 +1351,9 @@
 					64262CC82A4DA64600BA6BA3 = {
 						CreatedOnToolsVersion = 15.0;
 					};
+					642DC9242AAA21C000974F5C = {
+						CreatedOnToolsVersion = 15.0;
+					};
 					644BD7592A44726F00A0BF99 = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -1307,6 +1400,7 @@
 				64D8BB3A2A39BB730071BC88 /* DXLatencyTestApp */,
 				644BD7592A44726F00A0BF99 /* DXARQuoteTableApp */,
 				64262CC82A4DA64600BA6BA3 /* DXVisionQuoteTableApp */,
+				642DC9242AAA21C000974F5C /* IpfTableApp */,
 			);
 		};
 /* End PBXProject section */
@@ -1319,6 +1413,17 @@
 				64262CEB2A4DC77600BA6BA3 /* Colors.xcassets in Resources */,
 				64262CE92A4DC70C00BA6BA3 /* Assets.xcassets in Resources */,
 				64262CD72A4DA64800BA6BA3 /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		642DC9232AAA21C000974F5C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				642DC9342AAA21C300974F5C /* LaunchScreen.storyboard in Resources */,
+				642DC9432AAA299800974F5C /* Colors.xcassets in Resources */,
+				642DC9312AAA21C300974F5C /* Assets.xcassets in Resources */,
+				642DC92F2AAA21C000974F5C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1454,6 +1559,18 @@
 				64262CE22A4DB68B00BA6BA3 /* Endpoint+Ext.swift in Sources */,
 				64262CE42A4DC16F00BA6BA3 /* QuoteViewModel.swift in Sources */,
 				64262CD02A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		642DC9212AAA21C000974F5C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				642DC92C2AAA21C000974F5C /* ViewController.swift in Sources */,
+				64E342502AAB083700457994 /* Colors.swift in Sources */,
+				642DC9442AAA29EA00974F5C /* IpfCell.swift in Sources */,
+				642DC9282AAA21C000974F5C /* AppDelegate.swift in Sources */,
+				642DC92A2AAA21C000974F5C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1687,6 +1804,16 @@
 			target = 803BAC0C29BFA50700FFAB1C /* DXFeedFramework */;
 			targetProxy = 64262CDD2A4DA66100BA6BA3 /* PBXContainerItemProxy */;
 		};
+		642DC93A2AAA222700974F5C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 803BAC0C29BFA50700FFAB1C /* DXFeedFramework */;
+			targetProxy = 642DC9392AAA222700974F5C /* PBXContainerItemProxy */;
+		};
+		642DC93E2AAA22D900974F5C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 803BAC0C29BFA50700FFAB1C /* DXFeedFramework */;
+			targetProxy = 642DC93D2AAA22D900974F5C /* PBXContainerItemProxy */;
+		};
 		644BD7852A4474B900A0BF99 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 803BAC0C29BFA50700FFAB1C /* DXFeedFramework */;
@@ -1710,6 +1837,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		642DC92D2AAA21C000974F5C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				642DC92E2AAA21C000974F5C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		642DC9322AAA21C300974F5C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				642DC9332AAA21C300974F5C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		644BD7672A44727000A0BF99 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1848,6 +1991,78 @@
 				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Release;
+		};
+		642DC9362AAA21C300974F5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NU75WFM6U6;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Samples/IpfTableApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DXIPFTable;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.IpfTableApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		642DC9372AAA21C300974F5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NU75WFM6U6;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Samples/IpfTableApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DXIPFTable;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.IpfTableApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -2415,6 +2630,15 @@
 			buildConfigurations = (
 				64262CD82A4DA64800BA6BA3 /* Debug */,
 				64262CD92A4DA64800BA6BA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		642DC9382AAA21C300974F5C /* Build configuration list for PBXNativeTarget "IpfTableApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				642DC9362AAA21C300974F5C /* Debug */,
+				642DC9372AAA21C300974F5C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

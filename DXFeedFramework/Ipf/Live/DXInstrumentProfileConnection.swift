@@ -46,6 +46,10 @@ public class DXInstrumentProfileConnection {
         try native.close()
     }
 
+    public func waitUntilCompleted(_ timeInMs: Long) {
+        native.waitUntilCompleted(timeInMs)
+    }
+
     public func add<O>(observer: O)
     where O: DXInstrumentProfileConnectionObserver,
           O: Hashable {
