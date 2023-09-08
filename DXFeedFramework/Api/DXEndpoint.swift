@@ -165,7 +165,7 @@ public class DXEndpoint {
     }
 
     /// Defines extra property for ``DXEndpoint``. This properties can't check using
-    /// ``Builder/isSupported(property:)``(always return false)
+    /// ``Builder/isSupported(_:)``(always return false)
     public enum ExtraPropery: String, CaseIterable {
         /// Defines time out for outcoming connection. Example of value: "10s"
         case heartBeatTimeout              = "com.devexperts.connector.proto.heartbeatTimeout"
@@ -213,7 +213,7 @@ public class DXEndpoint {
               observersSet.insert(observer)
           }
     /// Removes listener that is notified about changes in ``getState()`` property.
-    /// It removes the listener that was previously installed with ``add(_:)`` method.
+    /// It removes the listener that was previously installed with ``add(observer:)`` method.
     public func remove<O>(_ observer: O)
     where O: DXEndpointObserver,
           O: Hashable {
@@ -253,7 +253,7 @@ public class DXEndpoint {
     /// happens asynchronously after the invocation of this method. However, this method waits until notification
     /// about state transition from ``DXEndpointState/notConnected`` to ``DXEndpointState/connecting``
     /// gets processed by all ``DXEndpointObserver`` that were installed via
-    /// ``add(_:)`` method.
+    /// ``add(observer:)`` method.
     /// - Parameters:
     ///   - address: The data source address.
     /// - Returns: ``DXEndpoint``
