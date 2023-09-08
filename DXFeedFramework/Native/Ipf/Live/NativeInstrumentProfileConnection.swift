@@ -87,16 +87,14 @@ class NativeInstrumentProfileConnection {
     }
 
     private func getState() throws -> DXInstrumentProfileConnectionState {
-#warning("TODO: Check undefined symbol for dxfg_InstrumentProfileConnection_getState")
-
-        //        let thread = currentThread()
-        //        let result = try ErrorCheck.nativeCall(thread,
-        //                                                dxfg_InstrumentProfileConnection_getState(
-        //                                                    thread,
-        //                                                    connection))
-        //        if let state = InstrumentProfileConnectionState.convert(result) {
-        //            return state
-        //        }
+        let thread = currentThread()
+        let result = try ErrorCheck.nativeCall(thread,
+                                               dxfg_InstrumentProfileConnection_getState(
+                                                thread,
+                                                connection))
+        if let state = DXInstrumentProfileConnectionState.convert(result) {
+            return state
+        }
         return DXInstrumentProfileConnectionState.notConnected
     }
 
