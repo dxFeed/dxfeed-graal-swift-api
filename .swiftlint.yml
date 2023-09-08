@@ -1,2 +1,6 @@
 cyclomatic_complexity:
   ignores_case_statements: true
+file_length:
+    warning: 800
+    error: 1500
+
