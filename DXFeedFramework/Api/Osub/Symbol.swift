@@ -7,7 +7,12 @@
 
 import Foundation
 
+/// Protocol for implement your custom symbol
+///
+/// Dervied from  this procol can be used with ``DXFeedSubcription`` to specify subscription
+
 public protocol Symbol {
+    /// Custom symbol has to return string representation.
     var stringValue: String { get }
 }
 

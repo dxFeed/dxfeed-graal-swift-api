@@ -7,6 +7,12 @@
 
 import Foundation
 
+/// Notifies a change in the state of this endpoint.
 public protocol DXEndpointObserver {
+    /// Fired when state changed
+    /// 
+    /// - Parameters:
+    ///     - old: The old state of endpoint
+    ///     - new: The new state of endpoint
     func endpointDidChangeState(old: DXEndpointState, new: DXEndpointState)
 }
