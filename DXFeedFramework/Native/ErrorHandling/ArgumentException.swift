@@ -23,4 +23,5 @@ enum ArgumentException: Error {
     case unknowCandlePriceLevel
     case illegalArgumentException
     case exception(_ message: String)
+    case unknowValue(_ value: String, _ supportedValues: String? = nil)
 }

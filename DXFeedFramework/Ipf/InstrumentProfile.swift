@@ -7,30 +7,18 @@
 
 import Foundation
 
-public enum IPFType: Equatable {
-    case stock
-    case future
-    case option
-    case undefined(value: String)
-
-    static func valueOf(str: String) -> IPFType {
-        switch str {
-        case "STOCK":
-            return .stock
-        case "FUTURE":
-            return .future
-        case "OPTION":
-            return .option
-        default:
-            return .undefined(value: str)
-        }
-    }
-}
-
 public class InstrumentProfile {
     var type = "" {
         didSet {
-            ipfType = IPFType.valueOf(str: type)
+            do {
+                if type != "" {
+                    ipfType = try InstrumentProfileType.find(type)
+                }
+            } catch ArgumentException.unknowValue(let value, let supportedValues) {
+                print("InstrumentProfile: not found \(value) in \(supportedValues ?? "")")
+            } catch {
+                print("InstrumentProfile: set type \(error)")
+            }
         }
     }
     public var symbol = ""
@@ -66,7 +54,7 @@ public class InstrumentProfile {
 
     var customFields = [String: String]()
 
-    public var ipfType: IPFType?
+    public var ipfType: InstrumentProfileType?
 
     init() {
         // to activaate didSet methods
