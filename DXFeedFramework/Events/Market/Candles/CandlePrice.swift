@@ -107,13 +107,13 @@ public enum CandlePrice: DXCandlePrice, CaseIterable {
 }
 
 extension CandlePrice: ICandleSymbolProperty {
-    func changeAttributeForSymbol(symbol: String?) -> String? {
+    public func changeAttributeForSymbol(symbol: String?) -> String? {
         self == CandlePrice.defaultPrice ?
         MarketEventSymbols.removeAttributeStringByKey(symbol, CandlePrice.attributeKey) :
         try? MarketEventSymbols.changeAttributeStringByKey(symbol, CandlePrice.attributeKey, toString())
     }
 
-    func checkInAttribute(candleSymbol: CandleSymbol) throws {
+    public func checkInAttribute(candleSymbol: CandleSymbol) throws {
         if candleSymbol.price != nil {
             throw ArgumentException.invalidOperationException("Already initialized")
         }

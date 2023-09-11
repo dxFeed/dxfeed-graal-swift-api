@@ -3,4 +3,5 @@ cyclomatic_complexity:
 file_length:
     warning: 800
     error: 1500
-
+line_length:
+  ignores_comments: true

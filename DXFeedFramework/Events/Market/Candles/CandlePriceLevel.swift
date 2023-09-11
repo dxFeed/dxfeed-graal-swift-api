@@ -81,13 +81,13 @@ extension CandlePriceLevel: Equatable {
 }
 
 extension CandlePriceLevel: ICandleSymbolProperty {
-    func changeAttributeForSymbol(symbol: String?) -> String? {
+    public func changeAttributeForSymbol(symbol: String?) -> String? {
         self == CandlePriceLevel.defaultCandlePriceLevel ?
         MarketEventSymbols.removeAttributeStringByKey(symbol, CandlePriceLevel.attributeKey) :
         try? MarketEventSymbols.changeAttributeStringByKey(symbol, CandlePriceLevel.attributeKey, toString())
     }
 
-    func checkInAttribute(candleSymbol: CandleSymbol) throws {
+    public func checkInAttribute(candleSymbol: CandleSymbol) throws {
         if candleSymbol.priceLevel != nil {
             throw ArgumentException.invalidOperationException("Already initialized")
         }

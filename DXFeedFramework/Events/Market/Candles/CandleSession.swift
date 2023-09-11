@@ -86,7 +86,7 @@ public enum CandleSession: DXCandleSession, CaseIterable {
 }
 
 extension CandleSession: ICandleSymbolProperty {
-    func changeAttributeForSymbol(symbol: String?) -> String? {
+    public func changeAttributeForSymbol(symbol: String?) -> String? {
         if self == CandleSession.defaultSession {
             return MarketEventSymbols.removeAttributeStringByKey(symbol, CandleSession.attributeKey)
         } else {
@@ -94,7 +94,7 @@ extension CandleSession: ICandleSymbolProperty {
         }
     }
 
-    func checkInAttribute(candleSymbol: CandleSymbol) throws {
+    public func checkInAttribute(candleSymbol: CandleSymbol) throws {
         if candleSymbol.session != nil {
             throw ArgumentException.invalidOperationException("Already initialized")
         }

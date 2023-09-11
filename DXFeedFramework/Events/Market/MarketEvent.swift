@@ -12,5 +12,6 @@ public protocol MarketEvent: IEventType {
 }
 
 struct MarketEventConst {
+    /// Maximum allowed sequence value.
     static let maxSequence = Int32((1 << 22) - 1)
 }
