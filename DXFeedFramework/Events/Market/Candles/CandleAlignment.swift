@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// This `DXCandleAlignment` structure is created to circumvent the limitation that enums in Swift cannot contain stored properties.
+/// This ``DXCandleAlignment`` structure is created to circumvent the limitation that enums in Swift cannot contain stored properties.
 /// The "Enums must not contain stored properties" error occurs when attempting to add a stored property to an enum. Instead, we use this structure to store data that we would like to include in the enum.
 public struct DXCandleAlignment: Equatable {
     /// Gets full name this ``CandleAlignment`` instance.
@@ -104,7 +104,7 @@ public enum CandleAlignment: DXCandleAlignment, CaseIterable {
         return sValue
     }
     /// Gets candle alignment of the given candle symbol string.
-    /// 
+    ///
     /// The result is ``defaultAlignment`` if the symbol does not have candle alignment attribute.
     ///
     /// -  Parameters:
@@ -136,7 +136,8 @@ public enum CandleAlignment: DXCandleAlignment, CaseIterable {
 
 /// Property of the ``CandleSymbol``
 extension CandleAlignment: ICandleSymbolProperty {
-    /// Returns candle event symbol string with this candle alignment set.
+    /// Change candle event symbol string with this attribute set
+    /// and returns new candle event symbol string.
     public func changeAttributeForSymbol(symbol: String?) -> String? {
         if self == CandleAlignment.defaultAlignment {
             return MarketEventSymbols.removeAttributeStringByKey(symbol, CandleAlignment.attributeKey)

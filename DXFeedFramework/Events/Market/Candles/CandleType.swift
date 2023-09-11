@@ -7,12 +7,26 @@
 
 import Foundation
 
+/// This ``DXCandleType`` structure is created to circumvent the limitation that enums in Swift cannot contain stored properties.
+/// The "Enums must not contain stored properties" error occurs when attempting to add a stored property to an enum. Instead, we use this structure to store data that we would like to include in the enum.
 public struct DXCandleType: Equatable {
+    /// Gets full name this ``CandleType`` instance.
     public let name: String
+    /// Get string value of type
     public let value: String
+    /// Gets candle type period in milliseconds (aggregation period) as closely as possible.
+    /// Certain types like ``CandleType/second`` and
+    /// ``CandleType/day`` span a specific number of milliseconds.
+    /// ``CandleType/month``, ``CandleType/optExp`` and ``CandleType/year``
+    /// are approximate. Candle type period of
+    /// ``CandleType/tick``, ``CandleType/volume``, ``CandleType/price``,
+    /// ``CandleType/priceMomentum`` and ``CandleType/priceRenko``
+    /// is not defined and this method returns 0
     public let periodIntervalMillis: Long
 }
-
+/// Type of the candle aggregation period constitutes ``CandlePeriod`` type together
+/// its actual ``CandlePeriod.Value``.
+/// For more details see <a href="https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/candle/CandleType.html">Javadoc</a>.
 extension DXCandleType: ExpressibleByStringLiteral {
     public init(stringLiteral: String) {
         value = stringLiteral
@@ -63,7 +77,7 @@ extension DXCandleType: ExpressibleByStringLiteral {
     }
 }
 
-enum CandleType: DXCandleType, CaseIterable {
+public enum CandleType: DXCandleType, CaseIterable {
     case tick =             "t"
     case second =           "s"
     case minute =           "m"
@@ -78,6 +92,8 @@ enum CandleType: DXCandleType, CaseIterable {
     case priceMomentum =    "pm"
     case priceRenko =       "pr"
 
+    /// A dictionary containing the matching string representation
+    /// of the candle alignment attribute ``DXCandleType/value`` and the ``CandleType`` instance.
     static let byString = {
         let myDict = Self.allCases.reduce(into: [String: CandleType]()) {
             $0[$1.toString()] = $1
@@ -85,7 +101,16 @@ enum CandleType: DXCandleType, CaseIterable {
         return myDict
     }()
 
-    static func parse(_ symbol: String) throws -> CandleType {
+    /// Parses string representation of candle type into object.
+    /// Any string that is a prefix of candle type ``DXCandleType/name`` can be parsed
+    /// (including the one that was returned by ``DXCandleType/value``
+    /// and case is ignored for parsing.
+    ///
+    /// -  Parameters:
+    ///    - symbol: The string representation of candle type
+    /// - Returns: The candle type.
+    /// - Throws: ``ArgumentException/missingCandleType``
+    public static func parse(_ symbol: String) throws -> CandleType {
         let length = symbol.length
         if length == 0 {
             throw ArgumentException.missingCandleType
@@ -110,8 +135,14 @@ enum CandleType: DXCandleType, CaseIterable {
         }
         return sValue
     }
-
-    func toString() -> String {
+    /// Returns string representation of this candle type.
+    ///
+    /// The string representation of candle type is the shortest unique prefix of the
+    /// lower case string that corresponds to its ``DXCandleType/name`` For example,
+    /// ``tick`` is represented as "t", while ``month`` is represented as
+    /// "mo" to distinguish it from ``minute`` that is represented as "m".
+    /// - Returns: The string representation.
+    public func toString() -> String {
         return self.rawValue.value
     }
 }

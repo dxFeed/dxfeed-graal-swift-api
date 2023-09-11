@@ -18,6 +18,7 @@ public protocol ICandleSymbolProperty {
     func changeAttributeForSymbol(symbol: String?) -> String?
     /// Internal method that initializes attribute in the candle symbol.
     ///
+    /// If used outside of internal initialization logic.
     /// -  Parameters:
     ///    - candleSymbol: The candle symbol
     /// - Throws: ``ArgumentException/invalidOperationException(_:)``
