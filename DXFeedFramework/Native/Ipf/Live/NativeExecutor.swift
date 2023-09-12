@@ -8,6 +8,8 @@
 import Foundation
 @_implementationOnly import graal_api
 
+/// Native wrapper over the Java Executor class.
+/// The location of the imported functions is in the header files "dxfg_ipf.h".
 class NativeExecutor {
     let executor: UnsafeMutablePointer<dxfg_executor_t>
 

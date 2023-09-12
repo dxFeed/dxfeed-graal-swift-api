@@ -8,6 +8,8 @@
 import Foundation
 @_implementationOnly import graal_api
 
+/// Native wrapper over the Java Iterator class.
+/// The location of the imported functions is in the header files "dxfg_ipf.h".
 class NativeProfileIterator {
     private let iterator: UnsafeMutablePointer<dxfg_iterable_ip_t>
     let mapper = InstrumentProfileMapper()

@@ -8,6 +8,7 @@
 import Foundation
 @_implementationOnly import graal_api
 
+/// Protocol  for mapping unmanaged native events dxfg_event_type_t
 protocol Mapper {
     associatedtype TypeAlias
     var type: TypeAlias.Type { get }

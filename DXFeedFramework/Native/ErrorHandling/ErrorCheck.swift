@@ -8,6 +8,8 @@
 import Foundation
 @_implementationOnly import graal_api
 
+/// Utility class for check native calls.
+/// The location of the imported functions is in the header files "dxfg_catch_exception.h".
 class ErrorCheck {
     static func test() throws {
         let exception = GraalException.undefined

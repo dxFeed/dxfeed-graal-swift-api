@@ -7,6 +7,10 @@
 
 import Foundation
 
+/// List of graal error codes.
+/// 
+/// The error description was obtained from github.
+/// [Graal GitHub] (https://github.com/oracle/graal/blob/f195395329fba573afc6f81c5e70a18ac334dd10/substratevm/src/com.oracle.svm.core/src/com/oracle/svm/core/c/function/CEntryPointErrors.java#L43)
 enum GraalErrorCode: Int32, CustomStringConvertible {
     case noError = 0
     case unspecified = 1

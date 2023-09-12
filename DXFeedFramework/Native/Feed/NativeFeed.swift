@@ -8,6 +8,8 @@
 import Foundation
 @_implementationOnly import graal_api
 
+/// Native wrapper over the Java com.dxfeed.api.DXFeed class.
+/// The location of the imported functions is in the header files "dxfg_feed.h".
 class NativeFeed {
     let feed: UnsafeMutablePointer<dxfg_feed_t>?
     deinit {

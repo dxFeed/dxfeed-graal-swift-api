@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NativeException: Error {
+public enum NativeException: Error {
     case nilValue
     case argumentException(type: String)
 }

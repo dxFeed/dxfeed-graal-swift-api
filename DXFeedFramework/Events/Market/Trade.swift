@@ -15,7 +15,7 @@ import Foundation
 
 public class Trade: TradeBase {
     /// Returns string representation of this trade event.
-    override func toString() -> String {
+    public override func toString() -> String {
         return "Trade{\(baseFieldsToString())}"
     }
 }

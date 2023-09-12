@@ -30,7 +30,7 @@ public class DXFeed {
     /// - Parameters:
     ///     - events: The list of event codes.
     /// - Returns: ``DXFeedSubcription``
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java., ``NativeException/nilValue``
     public func createSubscription(_ events: [EventCode]) throws -> DXFeedSubcription {
         return try DXFeedSubcription(native: native.createSubscription(events), events: events)
     }

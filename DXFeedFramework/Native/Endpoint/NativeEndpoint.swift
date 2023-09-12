@@ -8,6 +8,7 @@
 import Foundation
 @_implementationOnly import graal_api
 
+/// Native wrapper over the Java com.dxfeed.api.DXEndpoint class.
 class NativeEndpoint {
     class WeakListener: WeakBox<EndpointListener>, EndpointListener {
         func changeState(old: DXEndpointState, new: DXEndpointState) {

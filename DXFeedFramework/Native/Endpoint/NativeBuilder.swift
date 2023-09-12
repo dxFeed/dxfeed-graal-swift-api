@@ -8,6 +8,7 @@
 import Foundation
 @_implementationOnly import graal_api
 
+/// Native wrapper over the Java com.dxfeed.api.DXEndpoint.Builder class.
 class NativeBuilder {
     let builder: UnsafeMutablePointer<dxfg_endpoint_builder_t>?
     var role = Role.feed
