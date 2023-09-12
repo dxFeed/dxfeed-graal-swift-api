@@ -6,8 +6,17 @@
 //
 
 import Foundation
+/// This ``DXCandleSession`` structure is created to circumvent the limitation that enums in Swift cannot contain stored properties.
+/// The "Enums must not contain stored properties" error occurs when attempting to add a stored property to an enum. Instead, we use this structure to store data that we would like to include in the enum.
 public struct DXCandleSession: Equatable {
+    /// Gets full name this ``CandleSession`` instance.
+    ///
+    /// For example,
+    /// ``CandleSession/any`` returns "Any",
+    ///
+    /// ``CandleSession/regular`` returns "Regulat"
     public let name: String
+    /// Get string value of type
     public let string: String
 }
 
@@ -26,16 +35,29 @@ extension DXCandleSession: ExpressibleByStringLiteral {
         }
     }
 }
-
+/// Session attribute of ``CandleSymbol`` defines trading that is used to build the candles.
+///
+/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/candle/CandleSession.html)
 public enum CandleSession: DXCandleSession, CaseIterable {
     case any = "Any"
     case regular = "Regular"
 
-    static let attributeKey = "tho"
+    /// The attribute key that is used to store the value of ``CandleSession`` in
+    /// a symbol string using methods of ``MarketEventSymbols`` class.
+    ///
+    /// The value of this constant is "session".
+    /// The value that this key shall be set to is equal to
+    /// the corresponding ``toString()``
+    public static let attributeKey = "tho"
 
-    static let defaultSession = CandleSession.any
+    public static let defaultSession = CandleSession.any
 
-    static func normalizeAttributeForSymbol(_ symbol: String?) -> String? {
+    /// Normalizes candle symbol string with representation of the candle session attribute.
+    ///
+    /// - Parameters:
+    ///   - symbol: The candle symbol string.
+    /// - Returns: Returns candle symbol string with the normalized representation of the candle session attribute.
+    public static func normalizeAttributeForSymbol(_ symbol: String?) -> String? {
         let attribute = try? MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
         guard let attribute = attribute else {
             return symbol
@@ -56,8 +78,14 @@ public enum CandleSession: DXCandleSession, CaseIterable {
         }
         return symbol
     }
-
-    static func getAttribute(_ symbol: String?) -> CandleSession {
+    /// Gets candle session of the given candle symbol string.
+    ///
+    /// The result is ``defaultSession`` if the symbol does not have candle session attribute.
+    ///
+    /// -  Parameters:
+    ///    - symbol: The candle symbol string.
+    /// - Returns: The candle session of the given candle symbol string.
+    public static func getAttribute(_ symbol: String?) -> CandleSession {
         guard let attribute = try? MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey) else {
             return defaultSession
         }
@@ -65,7 +93,15 @@ public enum CandleSession: DXCandleSession, CaseIterable {
         return res ? regular : defaultSession
     }
 
-    static func parse(_ symbol: String) throws -> CandleSession {
+    /// Parses string representation of candle session  into object.
+    /// Any string that was returned by ``toString()`` can be parsed
+    /// and case is ignored for parsing.
+    ///
+    /// -  Parameters:
+    ///    - symbol: The string representation of candle session
+    /// - Returns: The candle session.
+    /// - Throws: ``ArgumentException/missingCandleSession``, ``ArgumentException/unknowCandleSession``
+    public static func parse(_ symbol: String) throws -> CandleSession {
         let length = symbol.length
         if length == 0 {
             throw ArgumentException.missingCandleSession
@@ -79,13 +115,17 @@ public enum CandleSession: DXCandleSession, CaseIterable {
         }
         return sValue
     }
-
-    func toString() -> String {
+    /// Returns string representation of this candle session.
+    ///
+    /// - Returns: The string representation.
+    public func toString() -> String {
         return self.rawValue.string
     }
 }
 
 extension CandleSession: ICandleSymbolProperty {
+    /// Change candle event symbol string with this attribute set
+    /// and returns new candle event symbol string.
     public func changeAttributeForSymbol(symbol: String?) -> String? {
         if self == CandleSession.defaultSession {
             return MarketEventSymbols.removeAttributeStringByKey(symbol, CandleSession.attributeKey)
@@ -94,6 +134,7 @@ extension CandleSession: ICandleSymbolProperty {
         }
     }
 
+    /// Internal method that initializes attribute in the candle symbol.
     public func checkInAttribute(candleSymbol: CandleSymbol) throws {
         if candleSymbol.session != nil {
             throw ArgumentException.invalidOperationException("Already initialized")

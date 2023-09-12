@@ -16,7 +16,7 @@ public class DXFeed {
 
     deinit {
     }
-    
+
     internal init(native: NativeFeed?) throws {
         if let native = native {
             self.native = native

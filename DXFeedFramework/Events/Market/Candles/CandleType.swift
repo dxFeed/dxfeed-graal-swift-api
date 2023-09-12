@@ -26,7 +26,7 @@ public struct DXCandleType: Equatable {
 }
 /// Type of the candle aggregation period constitutes ``CandlePeriod`` type together
 /// its actual ``CandlePeriod.Value``.
-/// For more details see <a href="https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/candle/CandleType.html">Javadoc</a>.
+/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/candle/CandleType.html)
 extension DXCandleType: ExpressibleByStringLiteral {
     public init(stringLiteral: String) {
         value = stringLiteral

@@ -13,7 +13,7 @@ import Foundation
 public class CandleExchange {
     /// Composite exchange where data is taken from all exchanges.
     public static let composite = CandleExchange(exchangeCode: "\0")
-    /// Default exchange is ``Composite``.
+    /// Default exchange is ``composite``.
     public static let defaultExchange = composite
     /// Gets exchange code.
     public let exchangeCode: Character
@@ -34,7 +34,7 @@ public class CandleExchange {
     }
     /// Gets exchange attribute object of the given candle symbol string.
     ///
-    /// The result is ``Default`` if the symbol does not have exchange attribute.
+    /// The result is ``defaultExchange`` if the symbol does not have exchange attribute.
     /// -  Parameters:
     ///    - symbol: The candle symbol string.
     /// - Returns: exchange attribute object of the given candle symbol string.
