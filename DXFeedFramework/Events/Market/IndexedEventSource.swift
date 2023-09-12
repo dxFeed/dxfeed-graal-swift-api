@@ -6,7 +6,7 @@
 //
 
 import Foundation
-/// Source identifier for <see cref="IIndexedEvent"/>.
+/// Source identifier for ``IIndexedEvent``.
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/IndexedEventSource.html)
 public class IndexedEventSource {
@@ -18,7 +18,7 @@ public class IndexedEventSource {
     /// The default source with zero identifier for all events that do not support multiple sources.
     static let defaultSource =  IndexedEventSource(identifier: 0, name: "DEFAULT")
 
-    /// Initializes a new instance of the <see cref="IndexedEventSource"/> class.
+    /// Initializes a new instance of the ``IndexedEventSource`` class.
     ///
     /// - Parameters:
     ///     - identifier: The identifier

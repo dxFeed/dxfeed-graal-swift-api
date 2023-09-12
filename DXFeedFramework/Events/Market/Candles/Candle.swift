@@ -23,6 +23,7 @@ public class Candle: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringC
             candleSymbol = try? CandleSymbol.valueOf(newValue)
         }
     }
+    public var eventTime: Int64 = 0
 
     /*
      * EventFlags property has several significant bits that are packed into an integer in the following way:
@@ -32,7 +33,6 @@ public class Candle: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringC
      * +---------+----+----+----+----+----+----+----+
      */
 
-    public var eventTime: Int64 = 0
     /// Gets or sets candle symbol object.
     public var candleSymbol: CandleSymbol?
     /// Gets or sets total number of original trade (or quote) events in this candle.

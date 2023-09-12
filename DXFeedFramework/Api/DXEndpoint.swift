@@ -311,9 +311,9 @@ public class DXEndpoint {
     /// termination of all outstanding data processing tasks. It is designed to be used
     /// with ``Role-swift.enum/streamFeed`` role after ``awaitNotConnected()`` method returns
     /// to make sure that file was completely processed.
-    /// <br/>
-    /// <b>This method is blocking.</b>
-    /// <br/>
+    ///
+    /// This method is blocking.
+    ///
     /// This method ensures that ``DXEndpoint`` can be safely garbage-collected
     /// when all outside references to it are lost.
     public func closeAndAWaitTermination() throws {

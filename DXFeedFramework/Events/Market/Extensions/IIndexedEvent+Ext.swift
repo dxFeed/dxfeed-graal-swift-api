@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Used extensions only to overcome swift limitation (cannot use initialized values in protocol)
 public extension IIndexedEvent {
     static var txPending: Int32 {
         return 0x01
