@@ -10,18 +10,18 @@ import Foundation
 
 class NativeSchedule {
     let schedule: UnsafeMutablePointer<dxfg_schedule_t>?
-    
+
     init(schedule: UnsafeMutablePointer<dxfg_schedule_t>?) {
         self.schedule = schedule
     }
-    
+
     convenience init(scheduleDefinition: String) throws {
         let thread = currentThread()
         let schedule = try ErrorCheck.nativeCall(thread,
                                                  dxfg_Schedule_getInstance2(thread, scheduleDefinition.toCStringRef()))
         self.init(schedule: schedule)
     }
-    
+
     convenience init(instrumentProfile: InstrumentProfile) throws {
         let mapper = InstrumentProfileMapper()
         let native = mapper.toNative(instrumentProfile: instrumentProfile)
@@ -32,7 +32,7 @@ class NativeSchedule {
         mapper.releaseNative(native: native)
         self.init(schedule: schedule)
     }
-    
+
     convenience init(instrumentProfile: InstrumentProfile, venue: String) throws {
         let mapper = InstrumentProfileMapper()
         let native = mapper.toNative(instrumentProfile: instrumentProfile)
@@ -44,7 +44,7 @@ class NativeSchedule {
         mapper.releaseNative(native: native)
         self.init(schedule: schedule)
     }
-    
+
     deinit {
         if let schgedule = schedule {
             let thread = currentThread()
@@ -53,32 +53,32 @@ class NativeSchedule {
                                                                           &(schgedule.pointee.handler)))
         }
     }
-    
+
     public func getName() throws -> String {
         let thread = currentThread()
         let name = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getName(thread, schedule))
         return String(pointee: name)
     }
-    
+
     public func getTimeZone() throws -> String {
         let thread = currentThread()
         let timeZone = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getTimeZone(thread, schedule))
         return String(pointee: timeZone)
     }
-    
+
     public func getDayByTime(time: Long) throws -> ScheduleDay {
         let thread = currentThread()
         let day = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getDayByTime(thread, schedule, time))
         let scheduleDay = try createDay(thread, day)
         return scheduleDay
     }
-    
+
     public func getDayById(dayId: Int32) throws -> ScheduleDay {
         let thread = currentThread()
         let day = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getDayById(thread, schedule, dayId))
         return try createDay(thread, day)
     }
-    
+
     private func createDay(_ thread: OpaquePointer?,
                            _ day: UnsafeMutablePointer<dxfg_day_t>) throws -> ScheduleDay {
         let scheduleDay = ScheduleDay()
