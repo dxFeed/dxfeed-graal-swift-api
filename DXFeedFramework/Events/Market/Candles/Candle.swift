@@ -95,11 +95,18 @@ openInterest: \(openInterest)
 }
 
 extension Candle {
-
+    /// Gets  sequence number of this event to distinguish events that have the same ``time``
+    /// This sequence number does not have to be unique and
+    /// does not need to be sequential. Sequence can range from 0 to ``MarketEventConst/maxSequence``>.
     public func getSequence() -> Int {
         return Int(index) & Int(MarketEventConst.maxSequence)
     }
 
+    /// Sets  sequence number of this event to distinguish events that have the same ``time``
+    /// This sequence number does not have to be unique and
+    /// does not need to be sequential. Sequence can range from 0 to ``MarketEventConst/maxSequence``>.
+    ///
+    /// - Throws: ``ArgumentException/exception(_:)``
     public func setSequence(_ sequence: Int) throws {
         if sequence < 0 || sequence > MarketEventConst.maxSequence {
             throw ArgumentException.exception(

@@ -7,10 +7,12 @@
 
 import Foundation
 
+/// Delegate for receiving snapshot and updates in snapshot
 public protocol SnapshotDelegate: AnyObject {
     func receiveEvents(_ events: [MarketEvent], isSnapshot: Bool)
 }
 
+/// The SnapshotProcessor class is designed to handle candles and provide either a snapshot of the data or updates within an existing snapshot, depending on the specified flags.
 public class SnapshotProcessor {
 
     private var snapshotPart = false
@@ -21,13 +23,13 @@ public class SnapshotProcessor {
     private var processEvents = [IIndexedEvent]()
     private var result = [Long: IIndexedEvent]()
 
-    public init() {
+    public init() { }
 
-    }
+    /// Add delegate for received events
     public func add(_ snapshotDelegate: SnapshotDelegate) {
         self.snapshotDelegate = snapshotDelegate
     }
-
+    /// Remove delegate for received events
     public func removeDelegate() {
         self.snapshotDelegate =  nil
     }

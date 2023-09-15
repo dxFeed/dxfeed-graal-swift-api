@@ -8,7 +8,7 @@
 import Foundation
 
 class StringUtil {
-    public static func encodeChar(char: Int16) -> String {
+    static func encodeChar(char: Int16) -> String {
         if char >= 32 && char <= 126 {
             return String(UnicodeScalar(UInt8(char)))
         }
@@ -16,7 +16,7 @@ class StringUtil {
         return char == 0 ? "\0" : "\\u" + value
     }
 
-    public static func checkChar(char: Character, mask: Int, name: String) throws {
+    static func checkChar(char: Character, mask: Int, name: String) throws {
         guard let value = char.unicodeScalars.first?.value else {
             throw ArgumentException.exception("Invalid \(name): \(char)")
         }

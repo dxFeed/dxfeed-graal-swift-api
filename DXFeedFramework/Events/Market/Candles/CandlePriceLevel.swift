@@ -74,6 +74,7 @@ public class CandlePriceLevel {
     /// - Parameters:
     ///   - value: The candle price level value.
     /// - Returns: The candle price level with the given value and type.
+    /// - Throws: ``ArgumentException/incorrectCandlePrice``
     public static func valueOf(value: Double) throws -> CandlePriceLevel {
         value.isNaN ? defaultCandlePriceLevel! : try CandlePriceLevel(value: value)
     }
