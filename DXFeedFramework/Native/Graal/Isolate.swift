@@ -66,17 +66,17 @@ class Isolate {
                 }
             }
         } catch GraalException.fail(let message, let className, let stack) {
-            print("!!!Isolate init failed: \(message) in \(className) with \(stack)")
-            fatalError()
+            let errorMessage = "!!!Isolate init failed: \(message) in \(className) with \(stack)"
+            fatalError(errorMessage)
         } catch GraalException.isolateFail(let message) {
-            print("!!!Isolate init failed: \(message)")
-            fatalError()
+            let errorMessage = "!!!Isolate init failed: \(message)"
+            fatalError(errorMessage)
         } catch GraalException.undefined {
-            print("!!!Isolate init failed: undefined")
-            fatalError()
+            let errorMessage = "!!!Isolate init failed: undefined"
+            fatalError(errorMessage)
         } catch {
-            print("!!!Isolate init failed: Unexpected error \(error)")
-            fatalError()
+            let errorMessage = "!!!Isolate init failed: Unexpected error \(error)"
+            fatalError(errorMessage)
         }
     }
 }
