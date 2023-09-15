@@ -78,18 +78,51 @@ extension DXCandleType: ExpressibleByStringLiteral {
 }
 
 public enum CandleType: DXCandleType, CaseIterable {
+    /// Certain number of ticks.
     case tick =             "t"
+    /// Certain number of seconds.
     case second =           "s"
+    /// Certain number of minutes.
     case minute =           "m"
+    /// Certain number of hours.
     case hour =             "h"
+    /// Certain number of days.
     case day =              "d"
+    /// Certain number of weeks.
     case week =             "w"
+    /// Certain number of months.
     case month =            "mo"
+    /// Certain number of option expirations.
     case optExp =           "o"
+    /// Certain number of years.
     case year =             "y"
+    /// Certain volume of trades.
     case volume =           "v"
+    /// Certain price change, calculated according to the following rules:
+    ///
+    ///     high(n) - low(n) = price range
+    ///     close(n) = high(n) or close(n) = low(n)
+    ///     open(n+1) = close(n)
+    ///
+    /// where n is the number of the bar.
     case price =            "p"
+    /// Certain price change, calculated according to the following rules:
+    ///
+    ///     high(n) - low(n) = price range
+    ///     close(n) = high(n) or close(n) = low(n)
+    ///     open(n+1) = close(n) + tick size, if close(n) = high(n)
+    ///     open(n+1) = close(n) - tick size, if close(n) = low(n)
+    ///
+    /// where n is the number of the bar.
     case priceMomentum =    "pm"
+    /// Certain price change, calculated according to the following rules:
+    ///
+    ///     high(n+1) - high(n) = price range or low(n) - low(n+1) = price range
+    ///     close(n) = high(n) or close(n) = low(n)
+    ///     open(n+1) = high(n), if high(n+1) - high(n) = price range
+    ///     open(n+1) = low(n), if low(n) - low(n+1) = price range
+    ///
+    /// where n is the number of the bar.
     case priceRenko =       "pr"
 
     /// A dictionary containing the matching string representation

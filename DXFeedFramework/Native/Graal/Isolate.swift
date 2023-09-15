@@ -57,12 +57,26 @@ class Isolate {
     /// This could lead to a fatalError, so it's crucial to carefully manage these processes and consider potential issues when working with the SDK."
     init() {
         print("DXFeedFramework.Isolate:init \(Thread.isMainThread) \(Thread.current) \(Thread.current.threadName)")
-        if Thread.isMainThread {
-            try? ErrorCheck.graalCall(graal_create_isolate(self.params, self.isolate, self.thread))
-        } else {
-            DispatchQueue.main.sync {
-                try? ErrorCheck.graalCall(graal_create_isolate(self.params, self.isolate, self.thread))
+        do {
+            if Thread.isMainThread {
+                try ErrorCheck.graalCall(graal_create_isolate(self.params, self.isolate, self.thread))
+            } else {
+                try DispatchQueue.main.sync {
+                    try ErrorCheck.graalCall(graal_create_isolate(self.params, self.isolate, self.thread))
+                }
             }
+        } catch GraalException.fail(let message, let className, let stack) {
+            print("!!!Isolate init failed: \(message) in \(className) with \(stack)")
+            fatalError()
+        } catch GraalException.isolateFail(let message) {
+            print("!!!Isolate init failed: \(message)")
+            fatalError()
+        } catch GraalException.undefined {
+            print("!!!Isolate init failed: undefined")
+            fatalError()
+        } catch {
+            print("!!!Isolate init failed: Unexpected error \(error)")
+            fatalError()
         }
     }
 }

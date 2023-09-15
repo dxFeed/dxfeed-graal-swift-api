@@ -88,7 +88,7 @@ class NativeInstrumentProfileConnection {
                                         value))
     }
 
-    private func getState() throws -> DXInstrumentProfileConnectionState {
+    func getState() throws -> DXInstrumentProfileConnectionState {
         let thread = currentThread()
         let result = try ErrorCheck.nativeCall(thread,
                                                dxfg_InstrumentProfileConnection_getState(

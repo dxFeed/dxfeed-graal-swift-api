@@ -7,7 +7,6 @@
 
 import Foundation
 /// The listener delegate for receiving events.
-///
 public protocol DXEventListener: AnyObject {
     /// Invoked when events of type are received.
     /// 

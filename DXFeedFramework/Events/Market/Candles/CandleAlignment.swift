@@ -39,7 +39,9 @@ extension DXCandleAlignment: ExpressibleByStringLiteral {
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/candle/CandleAlignment.html)
 public enum CandleAlignment: DXCandleAlignment, CaseIterable {
+    /// Align candles on midnight.
     case midnight = "Midnight"
+    /// Align candles on trading sessions.
     case session = "Session"
 
     public static let attributeKey = "a"
