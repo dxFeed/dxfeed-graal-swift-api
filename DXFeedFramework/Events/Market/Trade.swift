@@ -9,6 +9,7 @@ import Foundation
 
 /// Trade event is a snapshot of the price and size of the last trade during regular trading hours
 /// and an overall day volume and day turnover.
+/// 
 /// It represents the most recent information that is available about the regular last trade on the market
 /// at any given moment of time.
 ///

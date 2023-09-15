@@ -41,6 +41,7 @@
 		6417DD192A39C22C008912D6 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		6417DD1A2A39C22C008912D6 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6417DD232A39CAB2008912D6 /* Diagnostic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6417DD1E2A39C9A7008912D6 /* Diagnostic.swift */; };
+		641A599A2AB4794E003899FB /* TradeETH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641A59992AB4794E003899FB /* TradeETH.swift */; };
 		641AC1A92A61AE4000EF6D6C /* DXAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641AC1A82A61AE4000EF6D6C /* DXAliases.swift */; };
 		641BCBBC2A20ED8100FE23C2 /* DXEndpointObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBBB2A20ED8100FE23C2 /* DXEndpointObserver.swift */; };
 		641BCBC12A21077800FE23C2 /* EventCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBC02A21077800FE23C2 /* EventCode.swift */; };
@@ -421,6 +422,7 @@
 		64104FD22A277B2D00D1FC41 /* ListNative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNative.swift; sourceTree = "<group>"; };
 		64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDxFeedGraalNativeSdk.dylib; path = graal_builds/osx_universal/libDxFeedGraalNativeSdk.dylib; sourceTree = "<group>"; };
 		6417DD1E2A39C9A7008912D6 /* Diagnostic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnostic.swift; sourceTree = "<group>"; };
+		641A59992AB4794E003899FB /* TradeETH.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeETH.swift; sourceTree = "<group>"; };
 		641AC1A82A61AE4000EF6D6C /* DXAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXAliases.swift; sourceTree = "<group>"; };
 		641BCBB32A1F8ABA00FE23C2 /* XCTestCase+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Utils.swift"; sourceTree = "<group>"; };
 		641BCBB72A1FA72000FE23C2 /* EndpointPublisherTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointPublisherTest.swift; sourceTree = "<group>"; };
@@ -703,6 +705,7 @@
 				6447A5DE2A8E56FC00739CCF /* IIndexedEvent.swift */,
 				6447A5DC2A8E56CF00739CCF /* ITimeSeriesEvent.swift */,
 				64BA92642A306E0200BE26A0 /* Trade.swift */,
+				641A59992AB4794E003899FB /* TradeETH.swift */,
 				642BE4C92A2E1C640052340A /* MarketEvent.swift */,
 				642BE4C32A2E1AFF0052340A /* Quote.swift */,
 				642BE4D12A2F5D230052340A /* TimeAndSale.swift */,
@@ -1777,6 +1780,7 @@
 				642BE4D22A2F5D230052340A /* TimeAndSale.swift in Sources */,
 				64BA92692A306E6000BE26A0 /* TradeBase.swift in Sources */,
 				640C3FD02A6178B400555161 /* CandlePrice.swift in Sources */,
+				641A599A2AB4794E003899FB /* TradeETH.swift in Sources */,
 				64DA26C02AA224EB005B1757 /* NativeIPFConnectionListener.swift in Sources */,
 				8088D77D29C8DAF800F240CB /* GraalErrorCode.swift in Sources */,
 				64DA26B62AA1EF47005B1757 /* DXProfileIterator.swift in Sources */,
