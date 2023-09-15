@@ -93,7 +93,7 @@ public class DXInstrumentProfileCollector {
         let nativeExecutor = try NativeExecutor.createOnConcurrentLinkedQueue()
         return try native.setExecutor(nativeExecutor)
     }
-    
+
     /// Create executor for processing instrument profile update notifications.
     ///
     /// Based on java ScheduledExecutorService.newScheduledThreadPool

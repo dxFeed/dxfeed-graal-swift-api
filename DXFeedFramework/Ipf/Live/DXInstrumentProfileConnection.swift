@@ -56,7 +56,7 @@ public class DXInstrumentProfileConnection {
     public func getAddress() -> String {
         return native.getAddress()
     }
-    
+
     /// Returns update period in milliseconds.
     ///
     /// It is period of an update check when the instrument profiles source does not support live updates
