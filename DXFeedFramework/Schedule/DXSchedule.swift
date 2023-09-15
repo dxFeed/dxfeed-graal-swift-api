@@ -57,12 +57,21 @@ public class DXSchedule {
     public func getName() throws -> String {
         return try native.getName()
     }
-    /// Returns time zone in which this schedule is defined.
+
+    /// Returns time zone name in which this schedule is defined.
     ///
     /// - Throws: GraalException. Rethrows exception from Java.recore
     public func getTimeZone() throws -> String {
         return try native.getTimeZone()
     }
+
+    /// Returns time zone id in which this schedule is defined.
+    ///
+    /// - Throws: GraalException. Rethrows exception from Java.recore
+    public func getTimeZoneId() throws -> String {
+        return try native.getTimeZoneId()
+    }
+
     /// Returns day that contains specified time.
     ///
     /// This method will throw {@link IllegalArgumentException} if specified time

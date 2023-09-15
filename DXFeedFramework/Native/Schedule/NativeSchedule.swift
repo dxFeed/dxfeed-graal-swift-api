@@ -67,6 +67,12 @@ class NativeSchedule {
         return String(pointee: timeZone)
     }
 
+    public func getTimeZoneId() throws -> String {
+        let thread = currentThread()
+        let timeZone = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getTimeZone_getID(thread, schedule))
+        return String(pointee: timeZone)
+    }
+
     public func getDayByTime(time: Long) throws -> ScheduleDay {
         let thread = currentThread()
         let day = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getDayByTime(thread, schedule, time))

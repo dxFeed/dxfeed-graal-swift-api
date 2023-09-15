@@ -53,6 +53,7 @@ final class ScheduleTest: XCTestCase {
     }
 
     func testFetchDays() throws {
+        // the iOS dxCharts uses same parameters.
         let start = Long(1682072564670)
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd HH:mm"
@@ -76,7 +77,8 @@ final class ScheduleTest: XCTestCase {
         XCTAssert(sessionBreaks.count == 246)
         XCTAssert(extendedHours.count == 300)
         XCTAssert(try schedule.getName() == "US ETH")
-//        XCTAssert(try schedule.getTimeZone() == "America/New_York")
+        XCTAssert(try schedule.getTimeZone() == "Eastern Standard Time")
+        XCTAssert(try schedule.getTimeZoneId() == "America/New_York")
     }
 
     func testWrongScheduleInit() throws {
