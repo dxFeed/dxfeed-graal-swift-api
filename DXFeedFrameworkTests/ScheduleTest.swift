@@ -1,5 +1,5 @@
 //
-//  DXScheduleTest.swift
+//  ScheduleTest.swift
 //  DXFeedFrameworkTests
 //
 //  Created by Aleksey Kosylo on 13.09.23.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import DXFeedFramework
 
-final class DXScheduleTest: XCTestCase {
+final class ScheduleTest: XCTestCase {
 
     override func setUpWithError() throws {
 
@@ -19,25 +19,25 @@ final class DXScheduleTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-//    func testCorrectScheduleInit() throws {
-//        do {
-//            _ = try DXSchedule(scheduleDefinition: "NewYorkETH()")
-//        } catch {
-//            XCTAssert(false, "Error \(error)")
-//        }
-//    }
-//
-//    func testGetScheduleDay() throws {
-//        do {
-//            let schedule = try DXSchedule(scheduleDefinition: "NewYorkETH()")
-//            let name = try schedule.getName()
-//            XCTAssert(name == "US ETH")
-//            let timeZone = try schedule.getTimeZone()
-//            XCTAssert(timeZone == "Eastern Standard Time")
-//        } catch {
-//            XCTAssert(false, "Error \(error)")
-//        }
-//    }
+    func testCorrectScheduleInit() throws {
+        do {
+            _ = try DXSchedule(scheduleDefinition: "NewYorkETH()")
+        } catch {
+            XCTAssert(false, "Error \(error)")
+        }
+    }
+
+    func testGetScheduleDay() throws {
+        do {
+            let schedule = try DXSchedule(scheduleDefinition: "NewYorkETH()")
+            let name = try schedule.getName()
+            XCTAssert(name == "US ETH")
+            let timeZone = try schedule.getTimeZone()
+            XCTAssert(timeZone == "Eastern Standard Time")
+        } catch {
+            XCTAssert(false, "Error \(error)")
+        }
+    }
 
     func testGetCorrectScheduleDay() throws {
         do {
@@ -79,13 +79,13 @@ final class DXScheduleTest: XCTestCase {
 //        XCTAssert(try schedule.getTimeZone() == "America/New_York")
     }
 
-//    func testWrongScheduleInit() throws {
-//        do {
-//            _ = try DXSchedule(scheduleDefinition: "qwerty1234567")
-//            XCTAssert(false, "Schould be ")
-//        } catch {
-//            print("Error \(error)")
-//        }
-//    }
+    func testWrongScheduleInit() throws {
+        do {
+            _ = try DXSchedule(scheduleDefinition: "qwerty1234567")
+            XCTAssert(false)
+        } catch {
+            print("Error \(error)")
+        }
+    }
 
 }
