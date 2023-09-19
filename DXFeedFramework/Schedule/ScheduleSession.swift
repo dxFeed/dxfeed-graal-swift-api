@@ -52,17 +52,23 @@ public class ScheduleSession {
     public let endTime: Long
     /// Returns type of this session.
     public let type: ScheduleSessionType
-
+    /// Returns true if trading activity is allowed for this type of session.
+    ///
+    /// Some sessions may have zero duration - e.g. indices that post value once a day.
+    /// Such sessions can be of any appropriate type, trading or non-trading.
+    public let isTrading: Bool
     init(native: NativeSession,
          nativeSchedule: NativeSchedule,
          startTime: Long,
          endTime: Long,
-         type: ScheduleSessionType) {
+         type: ScheduleSessionType,
+         isTrading: Bool) {
         self.native = native
         self.nativeSchedule = nativeSchedule
         self.startTime = startTime
         self.endTime = endTime
         self.type = type
+        self.isTrading = isTrading
     }
 }
 
