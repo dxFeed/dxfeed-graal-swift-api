@@ -75,7 +75,7 @@ class ViewController: UIViewController {
             guard let session = session else {
                 return ""
             }
-            return "\(profile.symbol): \(session.type) \(session.startTime)-\(session.endTime)"
+            return "\(profile.symbol): \(session.type) \(TimeUtil.toLocalDateStringWithoutMillis(millis: session.startTime))-\(TimeUtil.toLocalDateStringWithoutMillis(millis: session.endTime))"
         }
         return """
 Current session for \(profile.symbol):
@@ -90,4 +90,3 @@ Current session for \(profile.symbol):
         return Long((date?.timeIntervalSince1970 ?? 0)) * 1000
     }
 }
-
