@@ -194,6 +194,13 @@
 		64B436422AB88DE70003919E /* NativeSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B436412AB88DE70003919E /* NativeSession.swift */; };
 		64B436442AB88EA40003919E /* NativeDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B436432AB88EA40003919E /* NativeDay.swift */; };
 		64B436462AB985AE0003919E /* NativeBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B436452AB985AE0003919E /* NativeBox.swift */; };
+		64B4364E2AB9D3410003919E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B4364D2AB9D3410003919E /* AppDelegate.swift */; };
+		64B436502AB9D3410003919E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B4364F2AB9D3410003919E /* SceneDelegate.swift */; };
+		64B436522AB9D3410003919E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B436512AB9D3410003919E /* ViewController.swift */; };
+		64B436552AB9D3410003919E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B436532AB9D3410003919E /* Main.storyboard */; };
+		64B436572AB9D3470003919E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64B436562AB9D3470003919E /* Assets.xcassets */; };
+		64B4365A2AB9D3470003919E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B436582AB9D3470003919E /* LaunchScreen.storyboard */; };
+		64B436612AB9DA530003919E /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		64B627352A375C0F00196D07 /* QuoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B627292A375C0E00196D07 /* QuoteModel.swift */; };
 		64B627382A375C0F00196D07 /* QuoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6272C2A375C0E00196D07 /* QuoteViewController.swift */; };
 		64B627392A375C0F00196D07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6272D2A375C0E00196D07 /* AppDelegate.swift */; };
@@ -305,6 +312,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 803BAC0C29BFA50700FFAB1C;
 			remoteInfo = DxFeedSwiftFramework;
+		};
+		64B4365F2AB9DA470003919E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 803BAC0429BFA50700FFAB1C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 803BAC0C29BFA50700FFAB1C;
+			remoteInfo = DXFeedFramework;
 		};
 		64B627422A375CAA00196D07 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -548,6 +562,14 @@
 		64B436412AB88DE70003919E /* NativeSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSession.swift; sourceTree = "<group>"; };
 		64B436432AB88EA40003919E /* NativeDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeDay.swift; sourceTree = "<group>"; };
 		64B436452AB985AE0003919E /* NativeBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeBox.swift; sourceTree = "<group>"; };
+		64B4364B2AB9D3410003919E /* ScheduleSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScheduleSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64B4364D2AB9D3410003919E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		64B4364F2AB9D3410003919E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		64B436512AB9D3410003919E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		64B436542AB9D3410003919E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		64B436562AB9D3470003919E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		64B436592AB9D3470003919E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		64B4365B2AB9D3470003919E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64B627152A375BBA00196D07 /* DXQuoteTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXQuoteTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B627292A375C0E00196D07 /* QuoteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteModel.swift; sourceTree = "<group>"; };
 		64B6272C2A375C0E00196D07 /* QuoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteViewController.swift; sourceTree = "<group>"; };
@@ -646,6 +668,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				644BD7822A4474B900A0BF99 /* DXFeedFramework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64B436482AB9D3410003919E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64B436612AB9DA530003919E /* DXFeedFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -986,6 +1016,20 @@
 			path = Listeners;
 			sourceTree = "<group>";
 		};
+		64B4364C2AB9D3410003919E /* ScheduleSampleApp */ = {
+			isa = PBXGroup;
+			children = (
+				64B4364D2AB9D3410003919E /* AppDelegate.swift */,
+				64B4364F2AB9D3410003919E /* SceneDelegate.swift */,
+				64B436512AB9D3410003919E /* ViewController.swift */,
+				64B436532AB9D3410003919E /* Main.storyboard */,
+				64B436562AB9D3470003919E /* Assets.xcassets */,
+				64B436582AB9D3470003919E /* LaunchScreen.storyboard */,
+				64B4365B2AB9D3470003919E /* Info.plist */,
+			);
+			path = ScheduleSampleApp;
+			sourceTree = "<group>";
+		};
 		64B627162A375BBA00196D07 /* QuoteTableApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -1039,6 +1083,7 @@
 				64B6275D2A3761A000196D07 /* PertTestApp */,
 				64B627162A375BBA00196D07 /* QuoteTableApp */,
 				642DC9262AAA21C000974F5C /* IpfTableApp */,
+				64B4364C2AB9D3410003919E /* ScheduleSampleApp */,
 			);
 			path = Samples;
 			sourceTree = "<group>";
@@ -1106,6 +1151,7 @@
 				644BD75A2A44726F00A0BF99 /* DXARQuoteTableApp.app */,
 				64262CC92A4DA64600BA6BA3 /* DXVisionQuoteTableApp.app */,
 				642DC9252AAA21C000974F5C /* DXIpfTableApp.app */,
+				64B4364B2AB9D3410003919E /* ScheduleSampleApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1304,6 +1350,24 @@
 			productReference = 644BD75A2A44726F00A0BF99 /* DXARQuoteTableApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		64B4364A2AB9D3410003919E /* ScheduleSampleApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64B4365E2AB9D3470003919E /* Build configuration list for PBXNativeTarget "ScheduleSampleApp" */;
+			buildPhases = (
+				64B436472AB9D3410003919E /* Sources */,
+				64B436482AB9D3410003919E /* Frameworks */,
+				64B436492AB9D3410003919E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				64B436602AB9DA470003919E /* PBXTargetDependency */,
+			);
+			name = ScheduleSampleApp;
+			productName = ScheduleSampleApp;
+			productReference = 64B4364B2AB9D3410003919E /* ScheduleSampleApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 		64B627142A375BBA00196D07 /* DXQuoteTableApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 64B627262A375BBB00196D07 /* Build configuration list for PBXNativeTarget "DXQuoteTableApp" */;
@@ -1409,7 +1473,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				CLASSPREFIX = DX;
-				LastSwiftUpdateCheck = 1500;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					64262CC82A4DA64600BA6BA3 = {
@@ -1419,6 +1483,9 @@
 						CreatedOnToolsVersion = 15.0;
 					};
 					644BD7592A44726F00A0BF99 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					64B4364A2AB9D3410003919E = {
 						CreatedOnToolsVersion = 14.3;
 					};
 					64B627142A375BBA00196D07 = {
@@ -1465,6 +1532,7 @@
 				644BD7592A44726F00A0BF99 /* DXARQuoteTableApp */,
 				64262CC82A4DA64600BA6BA3 /* DXVisionQuoteTableApp */,
 				642DC9242AAA21C000974F5C /* DXIpfTableApp */,
+				64B4364A2AB9D3410003919E /* ScheduleSampleApp */,
 			);
 		};
 /* End PBXProject section */
@@ -1500,6 +1568,16 @@
 				644BD7692A44727000A0BF99 /* LaunchScreen.storyboard in Resources */,
 				644BD7662A44727000A0BF99 /* Assets.xcassets in Resources */,
 				644BD77F2A44747500A0BF99 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64B436492AB9D3410003919E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64B4365A2AB9D3470003919E /* LaunchScreen.storyboard in Resources */,
+				64B436572AB9D3470003919E /* Assets.xcassets in Resources */,
+				64B436552AB9D3410003919E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1655,6 +1733,16 @@
 				644BD77B2A44746C00A0BF99 /* Endpoint+Ext.swift in Sources */,
 				644BD77D2A44746C00A0BF99 /* MetricCell.swift in Sources */,
 				644BD7722A44746000A0BF99 /* QuoteModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64B436472AB9D3410003919E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64B436522AB9D3410003919E /* ViewController.swift in Sources */,
+				64B4364E2AB9D3410003919E /* AppDelegate.swift in Sources */,
+				64B436502AB9D3410003919E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1899,6 +1987,11 @@
 			target = 803BAC0C29BFA50700FFAB1C /* DXFeedFramework */;
 			targetProxy = 644BD7842A4474B900A0BF99 /* PBXContainerItemProxy */;
 		};
+		64B436602AB9DA470003919E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 803BAC0C29BFA50700FFAB1C /* DXFeedFramework */;
+			targetProxy = 64B4365F2AB9DA470003919E /* PBXContainerItemProxy */;
+		};
 		64B627432A375CAA00196D07 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 803BAC0C29BFA50700FFAB1C /* DXFeedFramework */;
@@ -1961,6 +2054,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				646228502A376B0A0029DC97 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		64B436532AB9D3410003919E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64B436542AB9D3410003919E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		64B436582AB9D3470003919E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64B436592AB9D3470003919E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -2204,6 +2313,67 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXARQuoteTable;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		64B4365C2AB9D3470003919E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NU75WFM6U6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Samples/ScheduleSampleApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.ScheduleSampleApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		64B4365D2AB9D3470003919E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NU75WFM6U6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Samples/ScheduleSampleApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.ScheduleSampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2728,6 +2898,15 @@
 			buildConfigurations = (
 				644BD76A2A44727000A0BF99 /* Debug */,
 				644BD76B2A44727000A0BF99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64B4365E2AB9D3470003919E /* Build configuration list for PBXNativeTarget "ScheduleSampleApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64B4365C2AB9D3470003919E /* Debug */,
+				64B4365D2AB9D3470003919E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
