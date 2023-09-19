@@ -28,6 +28,8 @@ import Foundation
 /// Such sessions can be of any appropriate type, trading or non-trading.
 /// Day may have zero duration as well - e.g. when all time within it is transferred to other days.
 public class ScheduleDay {
+    /// Returns native ref
+    internal var native: NativeDay?
     /// Returns schedule to which this day belongs.
     internal var nativeSchedule: NativeSchedule?
     /// Number of this day since January 1, 1970 (that day has identifier of 0 and previous days have negative identifiers).
@@ -72,5 +74,11 @@ extension ScheduleDay {
 
     public func getNext(filter: DayFilter) throws -> ScheduleDay? {
         return try nativeSchedule?.getNextDay(after: self, filter: filter)
+    }
+}
+
+extension ScheduleDay: Equatable {
+    public static func == (lhs: ScheduleDay, rhs: ScheduleDay) -> Bool {
+        return lhs === rhs || lhs.dayId == rhs.dayId
     }
 }

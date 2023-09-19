@@ -76,24 +76,19 @@ class NativeSchedule {
     public func getDayByTime(time: Long) throws -> ScheduleDay {
         let thread = currentThread()
         let day = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getDayByTime(thread, schedule, time))
-        defer {
-            _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(day.pointee.handler)))
-        }
         return try createDay(thread, day)
     }
 
     public func getDayById(dayId: Int32) throws -> ScheduleDay {
         let thread = currentThread()
         let day = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getDayById(thread, schedule, dayId))
-        defer {
-            _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(day.pointee.handler)))
-        }
         return try createDay(thread, day)
     }
 
     private func createDay(_ thread: OpaquePointer?,
                            _ day: UnsafeMutablePointer<dxfg_day_t>) throws -> ScheduleDay {
         let scheduleDay = ScheduleDay()
+        scheduleDay.native = NativeDay(native: day)
         scheduleDay.nativeSchedule = self
         scheduleDay.dayId = try ErrorCheck.nativeCall(thread, dxfg_Day_getDayId(thread, day))
         scheduleDay.yearMonthDay = try ErrorCheck.nativeCall(thread, dxfg_Day_getYearMonthDay(thread, day))
@@ -133,60 +128,88 @@ class NativeSchedule {
         return session
     }
 
-    internal func getNextDay(after day: ScheduleDay, filter: DayFilter ) throws -> ScheduleDay? {
-        let qdValue = filter.toQDValue()
-        let thread = currentThread()
-        let filter = try ErrorCheck.nativeCall(thread, dxfg_DayFilter_getInstance(thread, qdValue))
-        let currentDay = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getDayById(thread, schedule, day.dayId))
-        let nextDay = try ErrorCheck.nativeCall(thread, dxfg_Day_getNextDay(thread, currentDay, filter))
-        let day = try? createDay(thread, nextDay)
-        try ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(nextDay.pointee.handler)))
-        return day
+    internal func getNextDay(after day: ScheduleDay, filter: DayFilter) throws -> ScheduleDay? {
+        try getDay(for: day, filter: filter) { thread, nativeDay, filter in
+            try ErrorCheck.nativeCall(thread, dxfg_Day_getNextDay(thread, nativeDay, filter))
+        }
     }
 
     internal func getPrevtDay(before day: ScheduleDay, filter: DayFilter ) throws -> ScheduleDay? {
+        try getDay(for: day, filter: filter) { thread, nativeDay, filter in
+            try ErrorCheck.nativeCall(thread, dxfg_Day_getPrevDay(thread, nativeDay, filter))
+        }
+    }
+
+    typealias GetDayExecutor =
+    (OpaquePointer?,
+     UnsafeMutablePointer<dxfg_day_t>?,
+     UnsafeMutablePointer<dxfg_day_filter_t>) throws -> UnsafeMutablePointer<dxfg_day_t>
+
+    private func getDay(for day: ScheduleDay,
+                        filter: DayFilter,
+                        executor: GetDayExecutor) throws -> ScheduleDay? {
         let qdValue = filter.toQDValue()
         let thread = currentThread()
         let filter = try ErrorCheck.nativeCall(thread, dxfg_DayFilter_getInstance(thread, qdValue))
         defer {
             _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(filter.pointee.handler)))
         }
-        let currentDay = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getDayById(thread, schedule, day.dayId))
-        defer {
-            _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(currentDay.pointee.handler)))
-        }
-        let prevDay = try ErrorCheck.nativeCall(thread, dxfg_Day_getPrevDay(thread, currentDay, filter))
-        defer {
-            _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(prevDay.pointee.handler)))
-        }
-        let day = try? createDay(thread, prevDay)
+        let nextDay = try executor(thread, day.native?.native, filter)
+        let day = try? createDay(thread, nextDay)
         return day
     }
 
-    internal func getNextSession(after session: ScheduleSession, filter: SessionFilter ) throws -> ScheduleSession? {
+    internal func getNextSession(after session: ScheduleSession,
+                                 filter: SessionFilter) throws -> ScheduleSession? {
+        try getSession(for: session, filter: filter, executor: { thread, session, filter in
+            try ErrorCheck.nativeCall(thread, dxfg_Session_getNextSession(thread, session, filter))
+        })
+    }
+
+    internal func getPrevtSession(before session: ScheduleSession, filter: SessionFilter ) throws -> ScheduleSession? {
+        try getSession(for: session, filter: filter, executor: { thread, session, filter in
+            try ErrorCheck.nativeCall(thread, dxfg_Session_getPrevSession(thread, session, filter))
+        })
+    }
+
+    typealias GetSessionyExecutor =
+    (OpaquePointer?,
+     UnsafeMutablePointer<dxfg_session_t>?,
+     UnsafeMutablePointer<dxfg_session_filter_t>) throws -> UnsafeMutablePointer<dxfg_session_t>
+
+    private func getSession(for session: ScheduleSession,
+                            filter: SessionFilter,
+                            executor: GetSessionyExecutor) throws -> ScheduleSession? {
         let qdValue = filter.toQDValue()
         let thread = currentThread()
         let filter = try ErrorCheck.nativeCall(thread, dxfg_SessionFilter_getInstance(thread, qdValue))
         defer {
             _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(filter.pointee.handler)))
         }
-        let currentSession = session.native.native
-        let nextSession = try ErrorCheck.nativeCall(thread,
-                                                    dxfg_Session_getNextSession(thread, currentSession, filter))
+        let nextSession = try executor(thread, session.native.native, filter)
         let session = try createSession(thread, session: nextSession)
         return session
     }
 
-    internal func getPrevtSession(before session: ScheduleSession, filter: SessionFilter ) throws -> ScheduleSession? {
+    public func getSessionByTime(time: Long) throws -> ScheduleSession {
+        let thread = currentThread()
+        let nextSession = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getSessionByTime(thread, schedule, time))
+        let session = try createSession(thread, session: nextSession)
+        return session
+    }
+
+    public func getNearestSessionByTime(time: Long, filter: SessionFilter) throws -> ScheduleSession {
         let qdValue = filter.toQDValue()
         let thread = currentThread()
         let filter = try ErrorCheck.nativeCall(thread, dxfg_SessionFilter_getInstance(thread, qdValue))
         defer {
             _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(filter.pointee.handler)))
         }
-        let currentSession = session.native.native
         let nextSession = try ErrorCheck.nativeCall(thread,
-                                                    dxfg_Session_getPrevSession(thread, currentSession, filter))
+                                                    dxfg_Schedule_getNearestSessionByTime(thread,
+                                                                                          schedule,
+                                                                                          time,
+                                                                                          filter))
         let session = try createSession(thread, session: nextSession)
         return session
     }
