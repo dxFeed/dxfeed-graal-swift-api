@@ -17,7 +17,6 @@ class PerfTestViewController: UIViewController {
     private var endpoint: DXEndpoint?
     private var subscription: DXFeedSubcription?
 
-    var symbols = ["ETH/USD:GDAX"]
     var blackHoleInt: Int64 = 0
 
     var isConnected = false
@@ -26,21 +25,7 @@ class PerfTestViewController: UIViewController {
     @IBOutlet var connectionStatusLabel: UILabel!
     @IBOutlet var connectButton: UIButton!
     @IBOutlet var addressTextField: UITextField!
-
-    @IBOutlet var rateOfEventsLabel: UILabel!
-    @IBOutlet var rateOfEventsCounter: UILabel!
-
-    @IBOutlet var rateOfListenersLabel: UILabel!
-    @IBOutlet var rateOfListenersCounter: UILabel!
-
-    @IBOutlet var numberOfEventsLabel: UILabel!
-    @IBOutlet var numberOfEventsCounter: UILabel!
-
-    @IBOutlet var currentCpuLabel: UILabel!
-    @IBOutlet var currentCpuCounter: UILabel!
-
-    @IBOutlet var peakCpuUsageLabel: UILabel!
-    @IBOutlet var peakCpuUsageCounter: UILabel!
+    @IBOutlet var symbolsTextField: UITextField!
 
     @IBOutlet var resultTableView: UITableView!
 
@@ -129,7 +114,7 @@ class PerfTestViewController: UIViewController {
 
             subscription = try? endpoint?.getFeed()?.createSubscription(.timeAndSale)
             try? subscription?.add(observer: self)
-            try? subscription?.addSymbols(symbols)
+            try? subscription?.addSymbols(symbolsTextField.text ?? "")
             diagnostic.cleanTime()
         }
     }
