@@ -50,6 +50,12 @@
             ReferencedContainer = "container:DXFeedFramework.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "127.0.0.1:6666 TimeAndSale YQKNT"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
