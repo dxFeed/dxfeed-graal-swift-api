@@ -16,7 +16,6 @@ class PerfTestViewController: UIViewController {
 
     private var endpoint: DXEndpoint?
     private var subscription: DXFeedSubcription?
-    private var profileSubscription: DXFeedSubcription?
 
     var symbols = ["ETH/USD:GDAX"]
     var blackHoleInt: Int64 = 0
@@ -129,12 +128,8 @@ class PerfTestViewController: UIViewController {
             try? endpoint?.connect(address)
 
             subscription = try? endpoint?.getFeed()?.createSubscription(.timeAndSale)
-            profileSubscription = try? endpoint?.getFeed()?.createSubscription(.profile)
             try? subscription?.add(observer: self)
-            try? profileSubscription?.add(observer: self)
-
             try? subscription?.addSymbols(symbols)
-            try? profileSubscription?.addSymbols(symbols)
             diagnostic.cleanTime()
         }
     }
