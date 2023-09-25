@@ -25,4 +25,3 @@ Cmd \(cmd) contains not enough \(cmd.count - 1) arguments. Expected \(numberOfPo
         return Array(cmd[1...numberOfPossibleArguments])
     }
 }
-

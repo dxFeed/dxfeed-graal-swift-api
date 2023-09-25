@@ -7,6 +7,7 @@
 
 import Foundation
 import DXFeedFramework
+
 var arguments: [String]
 do {
     arguments = try ArgumentParser().parse(ProcessInfo.processInfo.arguments, numberOfPossibleArguments: 3)
@@ -35,6 +36,7 @@ let address = arguments[0]
 let types = arguments[1]
 let symbols = arguments[2]
 
+
 let listener = EventListener(name: "count_listener")
 let endpoint = try? DXEndpoint.builder().withRole(.feed).build()
 _ = try? endpoint?.connect(address)
@@ -48,41 +50,13 @@ types.split(separator: ",").forEach { str in
         subscriptions.append(subscription)
     }
 }
-
-var startTime = Date.now
-var lastValue: Int64 = 0
-var lastListenerValue: Int64 = 0
-
-let numberFormatter = NumberFormatter()
-numberFormatter.numberStyle = .decimal
-
-DispatchQueue.global(qos: .background).async {
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
-            let lastStart = startTime
-            let currentValue = listener.counter.value
-            let currentListenerValue = listener.counterListener.value
-            startTime = Date.now
-            let seconds = Date.now.timeIntervalSince(lastStart)
-            let speed = seconds == 0 ? nil : NSNumber(value: Double(currentValue - lastValue) / seconds)
-            let speedListener = seconds == 0 ? nil :
-            NSNumber(value: Double(currentListenerValue - lastListenerValue) / seconds)
-
-            lastValue = currentValue
-            lastListenerValue = currentListenerValue
-            if let speed = speed, let speedListener = speedListener {
-                let everageNumberOfEvents = speedListener.intValue == 0 ? "" :
-                numberFormatter.string(from: NSNumber(value: round(speed.floatValue/speedListener.floatValue)))!
-                let result =
-"""
-    Event speed                : \(numberFormatter.string(from: speed)!) per/sec
-    Listener speed             : \(numberFormatter.string(from: speedListener)!) per/sec
-    Average Number of Events   : \(everageNumberOfEvents)
----------------------------------------------------
-"""
-                print(result)
-            }
-        }
-        RunLoop.current.run()
+var timer = DXFTimer(timeInterval: 2)
+let printer = ResultPrinter()
+timer.eventHandler = {
+    let metrics = listener.diagnostic.getMetrics()
+    listener.diagnostic.updateCpuUsage()
+    printer.update(metrics)
 }
+timer.resume()
 // Calculate till input new line
 _ = readLine()

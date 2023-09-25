@@ -8,22 +8,15 @@
 import Foundation
 import DXFeedFramework
 
-class Counter {
-    private (set) var value: Int64 = 0
-    func add (_ amount: Int64) {
-        OSAtomicAdd64(amount, &value)
-    }
-}
-
 class EventListener: DXEventListener, Hashable {
+    let diagnostic = Diagnostic()
+
     let name: String
-    var counter = Counter()
-    var counterListener = Counter()
     func receiveEvents(_ events: [DXFeedFramework.MarketEvent]) {
         let count = events.count
-        counterListener.add(1)
-        counter.add(Int64(count))
+        diagnostic.updateCounters(Int64(count))
     }
+
     init(name: String) {
         self.name = name
     }
