@@ -128,6 +128,8 @@
 		644FE5CF2AC1F25900580E3A /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
 		644FE5D12AC1F34000580E3A /* ResultPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FE5D02AC1F34000580E3A /* ResultPrinter.swift */; };
 		645A34952A937C7200709F29 /* BinaryInteger+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645A34942A937C7200709F29 /* BinaryInteger+Ext.swift */; };
+		645BE84E2AC3170F0028243D /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
+		645BE84F2AC3170F0028243D /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		646228512A376B0A0029DC97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462284D2A376B0A0029DC97 /* Main.storyboard */; };
 		646228522A376B0A0029DC97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462284F2A376B0A0029DC97 /* LaunchScreen.storyboard */; };
 		646407492A9DF984006FF769 /* InstrumentProfileMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646407482A9DF984006FF769 /* InstrumentProfileMapper.swift */; };
@@ -168,7 +170,6 @@
 		646D19E22A3C994000C82315 /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
 		646D19E32A3C994100C82315 /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
 		647426A82ABC7F5E0012F793 /* EventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426A62ABC7F080012F793 /* EventListener.swift */; };
-		647426A92ABC80DB0012F793 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		647426AD2ABC85F20012F793 /* ArgumentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426AC2ABC85F20012F793 /* ArgumentParser.swift */; };
 		647426AF2ABC93900012F793 /* EventCode+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426AE2ABC93900012F793 /* EventCode+String.swift */; };
 		6479BC2B2A4F35A300A3D404 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6479BC2A2A4F35A300A3D404 /* QuoteView.swift */; };
@@ -411,6 +412,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				644BD7832A4474B900A0BF99 /* DXFeedFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		645BE8502AC3170F0028243D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				645BE84F2AC3170F0028243D /* DXFeedFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -684,7 +696,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				647426A92ABC80DB0012F793 /* DXFeedFramework.framework in Frameworks */,
+				645BE84E2AC3170F0028243D /* DXFeedFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1353,6 +1365,7 @@
 				64148B602ABB5C320063110E /* Sources */,
 				64148B612ABB5C320063110E /* Frameworks */,
 				64148B622ABB5C320063110E /* CopyFiles */,
+				645BE8502AC3170F0028243D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2217,6 +2230,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				ENABLE_HARDENED_RUNTIME = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -2231,6 +2245,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				ENABLE_HARDENED_RUNTIME = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
