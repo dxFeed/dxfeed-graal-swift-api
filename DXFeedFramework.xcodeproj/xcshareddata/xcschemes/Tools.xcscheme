@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "64148B632ABB5C320063110E"
-               BuildableName = "PerfTestCL"
-               BlueprintName = "PerfTestCL"
+               BuildableName = "Tools"
+               BlueprintName = "Tools"
                ReferencedContainer = "container:DXFeedFramework.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,14 +45,14 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64148B632ABB5C320063110E"
-            BuildableName = "PerfTestCL"
-            BlueprintName = "PerfTestCL"
+            BuildableName = "Tools"
+            BlueprintName = "Tools"
             ReferencedContainer = "container:DXFeedFramework.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "127.0.0.1:6666 TimeAndSale YQKNT"
+            argument = "PerfTest 127.0.0.1:6666 TimeAndSale YQKNT"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -68,8 +68,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64148B632ABB5C320063110E"
-            BuildableName = "PerfTestCL"
-            BlueprintName = "PerfTestCL"
+            BuildableName = "Tools"
+            BlueprintName = "Tools"
             ReferencedContainer = "container:DXFeedFramework.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

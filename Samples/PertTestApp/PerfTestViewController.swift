@@ -116,7 +116,7 @@ class PerfTestViewController: UIViewController {
             }
             endpoint = try? DXEndpoint.builder().withRole(.feed).build()
             endpoint?.add(observer: self)
-            try? endpoint?.connect(address)
+            _ = try? endpoint?.connect(address)
 
             subscription = try? endpoint?.getFeed()?.createSubscription(.timeAndSale)
             try? subscription?.add(observer: self)

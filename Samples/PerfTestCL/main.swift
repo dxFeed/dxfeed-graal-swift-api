@@ -6,57 +6,62 @@
 //
 
 import Foundation
-import DXFeedFramework
 
-var arguments: [String]
-do {
-    arguments = try ArgumentParser().parse(ProcessInfo.processInfo.arguments, numberOfPossibleArguments: 3)
-} catch {
+let commands: [ToolsCommand] = [PerfTestCommand(), ConnectCommand(), HelpCommand()]
+
+func getCommand(_ cmd: String) -> ToolsCommand? {
+    return commands.first { command in
+        command.cmd == cmd
+    }
+}
+
+func getCommandsDecription() -> String {
+    let maxSize = (commands.max { cmd1, cmd2 in
+        cmd1.cmd.count < cmd2.cmd.count
+    }?.cmd.count ?? 0) + 4
+    let descriptions = commands.map { cmd in
+        let spaces = maxSize - cmd.cmd.count
+        return "  \(cmd.cmd + String(repeating: " ", count: spaces)): \(cmd.shortDescription)"
+    }.joined(separator: "\n")
+
+    return descriptions
+}
+
+func printGlobalHelp() {
     print(
 """
-
-Connects to the specified address(es) and calculates performance counters (events per second, cpu usage, etc).
+A collection of useful utilities that use the dxFeed API.
 
 Usage:
-  path_to_app <address> <types> <symbols>
+  Tools <tool> [...]
 
 Where:
 
-  address (pos. 0)       Required. The address(es) to connect to retrieve data (see "Help address").
-                         For Token-Based Authorization, use the following format: "<address>:<port>[login=entitle:<token>]".
-  types (pos. 1)         Required. Comma-separated list of dxfeed event types (e.g. Quote, TimeAndSale).
-  symbols (pos. 2)       Required. Comma-separated list of symbol names to get events for (e.g. "IBM, AAPL, MSFT").
+\(getCommandsDecription())
+
 """
     )
+}
+
+var arguments: [String]
+do {
+    arguments = try ArgumentParser().parse(ProcessInfo.processInfo.arguments, numberOfPossibleArguments: 1)
+} catch {
+    printGlobalHelp()
     print(error)
 
     exit(1)
 }
-let address = arguments[0]
-let types = arguments[1]
-let symbols = arguments[2]
 
+let command = "PerfTest"
 
-let listener = EventListener(name: "count_listener")
-let endpoint = try? DXEndpoint.builder().withRole(.feed).build()
-_ = try? endpoint?.connect(address)
-
-var subscriptions = [DXFeedSubcription]()
-types.split(separator: ",").forEach { str in
-    let subscription = try? endpoint?.getFeed()?.createSubscription(EventCode(string: String(str)))
-    try? subscription?.add(observer: listener)
-    try? subscription?.addSymbols(symbols)
-    if let subscription = subscription {
-        subscriptions.append(subscription)
+switch command {
+case "Help":
+    printGlobalHelp()
+default:
+    if let toolsCmd = getCommand(command) {
+        toolsCmd.execute()
+    } else {
+        printGlobalHelp()
     }
 }
-var timer = DXFTimer(timeInterval: 2)
-let printer = ResultPrinter()
-timer.eventHandler = {
-    let metrics = listener.diagnostic.getMetrics()
-    listener.diagnostic.updateCpuUsage()
-    printer.update(metrics)
-}
-timer.resume()
-// Calculate till input new line
-_ = readLine()
