@@ -26,11 +26,12 @@ class PerfTestCommand: ToolsCommand {
     symbols (pos. 2)  Required. Comma-separated list of symbol names to get events for (e.g. "IBM, AAPL, MSFT").
     """
 
+    var subscription = Subscription()
     func execute() {
         var arguments: [String]!
 
         do {
-            arguments = try ArgumentParser().parse(ProcessInfo.processInfo.arguments, numberOfPossibleArguments: 4)
+            arguments = try ArgumentParser().parse(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 4)
         } catch {
             print(fullDescription)
         }
@@ -40,18 +41,12 @@ class PerfTestCommand: ToolsCommand {
         let symbols = arguments[3].components(separatedBy: ",")
 
         let listener = PerfTestEventListener()
-        let endpoint = try? DXEndpoint.builder().withRole(.feed).build()
-        _ = try? endpoint?.connect(address)
+        subscription.createSubscription(address: address,
+                                        symbols: symbols,
+                                        types: types,
+                                        listener: listener,
+                                        time: nil)
 
-        var subscriptions = [DXFeedSubcription]()
-        types.split(separator: ",").forEach { str in
-            let subscription = try? endpoint?.getFeed()?.createSubscription(EventCode(string: String(str)))
-            try? subscription?.add(observer: listener)
-            try? subscription?.addSymbols(symbols)
-            if let subscription = subscription {
-                subscriptions.append(subscription)
-            }
-        }
         let timer = DXFTimer(timeInterval: 2)
         let printer = ResultPrinter()
         timer.eventHandler = {

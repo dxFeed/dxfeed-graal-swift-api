@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "PerfTest 127.0.0.1:6666 TimeAndSale YQKNT"
+            argument = "PerfTest  demo.dxfeed.com:7300 Quote AAPL,IBM 20070101-123456"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
