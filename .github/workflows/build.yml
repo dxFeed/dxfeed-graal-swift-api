@@ -53,14 +53,18 @@ jobs:
       - name: Build Tools 
         run: xcodebuild -project DxFeedFramework.xcodeproj -scheme Tools -archivePath build/tools archive
 
-      # - name: Check Signature 
-      #   run: codesign -d -v build/tools.xcarchive/Products/usr/local/bin/Tools
+      - name: Check Signature 
+        run: codesign -d -v build/tools.xcarchive/Products/usr/local/bin/Tools
+
+      - name: Zip Tools
+        run: cd build/tools.xcarchive; zip ../../tools.zip Products -r; cd -
+
 
       # - name: Build Documentations
       #   run: xcodebuild docbuild -scheme DXFeedFramework -derivedDataPath documentations/
       
       # - name: Zip Documentations
-      #   run: zip documentation.zip documentations/Build/Products/Debug/DXFeedFramework.doccarchive -r
+      #   run: cd documentations/Build/Products/Debug; zip ../../../../documentation.zip DXFeedFramework.doccarchive -r; cd -
 
       - name: Checkl file 
         run: ls -al release_sp.sh        
