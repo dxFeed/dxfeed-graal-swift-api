@@ -12,28 +12,28 @@ class TimeFormat {
     /// Example:
     /// 20090615-134530.
     static let defaultFormat = "yyyyMMdd-HHmmss"
-    
+
     /// Format string for only date representation.
     /// Example:
     /// 20090615.
     static let onlyDateFormat = "yyyyMMdd"
-    
+
     /// Format string with milliseconds.
     static let withMillisFormat = ".SSSS"
-    
+
     /// Format string with TimeZone.
     static let withTimeZoneFormat = "zzz"
-    
+
     /// Full ISO format string.
     /// Example:
     /// 2009-06-15T13:45:30.0000000Z.
     static let fullIsoFormat = "o"
-    
+
     /// Sortable date/time format string.
     /// Example:
     /// 2009-06-15T13:45:30.
     static let sortableFormat = "yyyy-MM-dd'T'HH:mm:ss"
-    
+
     /// Universal format string.
     /// Example:
     /// 2009-06-15 13:45:30Z.

@@ -46,7 +46,6 @@ public class TimeUtil {
         }
     }
 
-
     /// Converts the specified string representation of a date and time
     ///
     /// If no time zone is specified in the parsed string, the string is assumed to denote a local time,
