@@ -8,7 +8,7 @@
 import Foundation
 
 /// Notifies a change in the state of this connection.
-public protocol DXInstrumentProfileConnectionObserver {
+public protocol DXInstrumentProfileConnectionObserver: AnyObject {
     /// Fired when state changed
     ///
     /// - Parameters:

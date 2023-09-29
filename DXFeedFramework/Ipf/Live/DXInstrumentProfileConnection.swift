@@ -25,9 +25,9 @@ public class DXInstrumentProfileConnection {
     private let native: NativeInstrumentProfileConnection
     private let collector: DXInstrumentProfileCollector
 
-    private var observersSet = ConcurrentSet<AnyHashable>()
+    private var observersSet = ConcurrentWeakSet<AnyObject>()
     private var observers: [DXInstrumentProfileConnectionObserver] {
-        return observersSet.reader { $0.compactMap { value in value as? DXInstrumentProfileConnectionObserver } }
+        return observersSet.reader { $0.allObjects.compactMap { value in value as? DXInstrumentProfileConnectionObserver } }
     }
 
     /// Creates instrument profile connection with a specified address and collector.

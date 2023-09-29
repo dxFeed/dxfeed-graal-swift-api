@@ -188,9 +188,11 @@ public class DXEndpoint {
     }()
     /// A list of state change listeners callback. observersSet - not typed variable(as storage).
     /// observers - typed list wrapper.
-    private var observersSet = ConcurrentSet<AnyHashable>()
+    private var observersSet = ConcurrentWeakSet<AnyObject>()
     private var observers: [DXEndpointObserver] {
-        return observersSet.reader { $0.compactMap { value in value as? DXEndpointObserver } }
+        return  observersSet.reader {
+            $0.allObjects.compactMap { value in value as? DXEndpointObserver }
+        }
     }
 
     private static var instances = [Role: DXEndpoint]()

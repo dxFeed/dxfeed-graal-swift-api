@@ -176,8 +176,7 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
         let expectation = expectation(description: "Received profile")
         let newProfile = InstrumentProfile()
         newProfile.symbol = "TEST_123"
-
-        try collector.add(observer: AnonymousProfileListener { anonymCl in
+        let listener = AnonymousProfileListener { anonymCl in
             anonymCl.callback = { profiles in
                 if profiles.count == 1 {
                     let profile = profiles.first
@@ -187,7 +186,8 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
                 }
             }
             return anonymCl
-        })
+        }
+        try collector.add(observer: listener)
 
         try collector.updateInstrumentProfile(profile: newProfile)
         wait(for: [expectation], timeout: 1.0)

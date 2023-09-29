@@ -57,7 +57,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Connect mddqa.in.devexperts.com:7400 Candle AAPL{=d} 20230201Z"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Connect mddqa.in.devexperts.com:7400 Quote AAPL"
@@ -65,7 +65,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "LatencyTest mddqa.in.devexperts.com:7400 TimeAndSale ETH/USD:GDAX"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>

@@ -17,7 +17,7 @@ public class DXFeedSubcription {
     fileprivate let events: Set<EventCode>
     /// A set listeners of events
     /// observers - typed list wrapper.
-    private let listeners = ConcurrentSet<AnyHashable>()
+    private let listeners = ConcurrentWeakSet<AnyObject>()
 
     /// - Throws: ``GraalException`` Rethrows exception from Java, ``ArgumentException/argumentNil``
     internal init(native: NativeSubscription?, events: [EventCode]) throws {
@@ -40,7 +40,7 @@ public class DXFeedSubcription {
     where O: DXEventListener,
           O: Hashable {
               try listeners.reader { [weak self] in
-                  if $0.isEmpty {
+                  if $0.count == 0 {
                       try self?.native.addListener(self)
                   }
               }
@@ -96,7 +96,7 @@ public class DXFeedSubcription {
 extension DXFeedSubcription: DXEventListener {
     public func receiveEvents(_ events: [MarketEvent]) {
         listeners.reader { items in
-            items.compactMap { $0 as? DXEventListener }.forEach { $0.receiveEvents(events) }
+            items.allObjects.compactMap { $0 as? DXEventListener }.forEach { $0.receiveEvents(events) }
         }
     }
 }
