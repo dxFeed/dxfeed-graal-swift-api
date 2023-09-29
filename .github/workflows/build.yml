@@ -35,8 +35,7 @@ jobs:
       #   run: xcodebuild test -project DxFeedFramework.xcodeproj -scheme DXFeedFramework
   
   release:
-    # if: (startsWith(github.event.ref, 'refs/tags/') && endsWith(github.event.ref, 'build'))
-    if: (endsWith(github.event.ref, 'perft_test_cli'))
+    if: (startsWith(github.event.ref, 'refs/tags/') && endsWith(github.event.ref, 'build'))    
     name: Release
     runs-on: macos-latest
 
@@ -47,8 +46,8 @@ jobs:
       - name: Fetch dep
         run: gradle fetchDependencies
 
-      # - name: Build Archive 
-      #   run: xcodebuild build -project DxFeedFramework.xcodeproj -scheme XCFramework
+      - name: Build Archive 
+        run: xcodebuild build -project DxFeedFramework.xcodeproj -scheme XCFramework
 
       - name: Build Tools 
         run: xcodebuild -project DxFeedFramework.xcodeproj -scheme Tools -archivePath build/tools archive
@@ -68,9 +67,9 @@ jobs:
       - name: Checkl file 
         run: ls -al release_sp.sh        
 
-      # - name: Calculate package checksum         
-      #   run: ./release_sp.sh ${{ github.ref_name }} DXFeedFramework
-      #   shell: sh
+      - name: Calculate package checksum         
+        run: ./release_sp.sh ${{ github.ref_name }} DXFeedFramework
+        shell: sh
      
       # - name: Commit files
       #   run: |          
@@ -91,22 +90,14 @@ jobs:
       #     git tag ${TAG_NAME}
       #     git push origin ${TAG_NAME}
         
-      # - name: Upload Archive and Documentations
-      #   uses: softprops/action-gh-release@v1
-      #   with:
-      #     generate_release_notes: true
-      #     files: |
-      #       build/DXFeedFramework.zip
-      #       documentation.zip
-      #       tools.zip
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-
-        
       - name: Upload Archive and Documentations
         uses: softprops/action-gh-release@v1
         with:
           generate_release_notes: true
           files: |
+            build/DXFeedFramework.zip
             documentation.zip
             tools.zip
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      
