@@ -14,7 +14,6 @@ class LatencyEventListener: EventListener {
 
     override func handleEvents(_ events: [MarketEvent]) {
         let currentTime = Int64(Date().timeIntervalSince1970 * 1_000)
-        var deltas = [Int64]()
         events.forEach { tsEvent in
             switch tsEvent.type {
             case .quote:
@@ -24,9 +23,11 @@ class LatencyEventListener: EventListener {
                 diagnostic.addDeltas(delta)
             case .timeAndSale:
                 let timeAndSale = tsEvent.timeAndSale
-                let delta = currentTime - timeAndSale.time
-                diagnostic.addSymbol(tsEvent.eventSymbol)
-                diagnostic.addDeltas(delta)
+                if timeAndSale.isNew && timeAndSale.isValidTick {                
+                    let delta = currentTime - timeAndSale.time
+                    diagnostic.addSymbol(tsEvent.eventSymbol)
+                    diagnostic.addDeltas(delta)
+                }
             case .trade:
                 let trade = tsEvent.trade
                 let delta = currentTime - trade.time
