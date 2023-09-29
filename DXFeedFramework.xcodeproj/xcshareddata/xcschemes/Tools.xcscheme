@@ -61,6 +61,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Connect mddqa.in.devexperts.com:7400 Quote AAPL"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "LatencyTest mddqa.in.devexperts.com:7400 TimeAndSale AAPL"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

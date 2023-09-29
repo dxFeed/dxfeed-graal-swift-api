@@ -40,7 +40,26 @@ class ResultPrinter {
         }?.count ?? 20) + 3
     }()
 
-    func update(_ metrics: Metrics) {
+    func update(_ metrics: LatencyMetrics) {
+        let result = """
+  Rate of events (avg)     : \(numberFormatter.string(from: metrics.rateOfEvent)!) (events/s)
+  Rate of unique symbols   : \(numberFormatter.string(from: metrics.rateOfSymbols)!) (symbols/interval)
+  Min                      : \(numberFormatter.string(from: metrics.min)!) (ms)
+  Max                      : \(numberFormatter.string(from: metrics.max)!) (ms)
+  99th percentile          : \(numberFormatter.string(from: metrics.percentile)!) (ms)
+  Mean                     : \(numberFormatter.string(from: metrics.mean)!) (ms)
+  StdDev                   : \(numberFormatter.string(from: metrics.stdDev)!) (ms)
+  Error                    : \(numberFormatter.string(from: metrics.error)!) (ms)
+  Sample size (N)          : \(numberFormatter.string(from: metrics.sampleSize)!) (events)
+  Measurement interval     : \(numberFormatter.string(from: metrics.measureInterval)!) (s)
+  Running time             : \(metrics.currentTime.stringFromTimeInterval())
+"""
+        print(result)
+        print("---------------------------------------------------------")
+
+    }
+
+    func update(_ metrics: PerformanceMetrics) {
         let rateOfEventsCounter = "\(numberFormatter.string(from: metrics.rateOfEvent)!) events/s"
         let rateOfListenersCounter = "\(numberFormatter.string(from: metrics.rateOfListeners)!) calls/s"
         var eventsIncall = 0.0

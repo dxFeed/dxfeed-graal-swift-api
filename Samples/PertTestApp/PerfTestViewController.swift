@@ -9,7 +9,7 @@ import UIKit
 import DXFeedFramework
 
 class PerfTestViewController: UIViewController {
-    let diagnostic = Diagnostic()
+    let diagnostic = PerfDiagnostic()
 
     let numberFormatter = {
         let formatter = NumberFormatter()
@@ -68,7 +68,7 @@ class PerfTestViewController: UIViewController {
         timer.resume()
     }
 
-    fileprivate func updateText(_ metrics: Metrics) {
+    fileprivate func updateText(_ metrics: PerformanceMetrics) {
         let rateOfEventsCounter = "\(numberFormatter.string(from: metrics.rateOfEvent)!) events/s"
         let rateOfListenersCounter = "\(numberFormatter.string(from: metrics.rateOfListeners)!) calls/s"
         var eventsIncall = 0.0

@@ -14,7 +14,7 @@ private class Counter {
     }
 }
 
-struct Metrics {
+struct PerformanceMetrics {
     let rateOfEvent: NSNumber
     let rateOfListeners: NSNumber
     let numberOfEvents: NSNumber
@@ -25,7 +25,7 @@ struct Metrics {
     let currentTime: TimeInterval
 }
 
-class Diagnostic {
+class PerfDiagnostic {
     private var absoluteStartTime: Date?
 
     private var cpuUsage: Double = 0
@@ -44,7 +44,7 @@ class Diagnostic {
 
     let coresCount = ProcessInfo.processInfo.processorCount
 
-    func getMetrics() -> Metrics {
+    func getMetrics() -> PerformanceMetrics {
         let lastStart = self.startTime
         let currentValue = self.counter.value
         let currentListenerValue = self.counterListener.value
@@ -62,7 +62,7 @@ class Diagnostic {
         self.lastValue = currentValue
         self.lastListenerValue = currentListenerValue
 
-        return Metrics(rateOfEvent: NSNumber(value: speed),
+        return PerformanceMetrics(rateOfEvent: NSNumber(value: speed),
                        rateOfListeners: NSNumber(value: speedListener),
                        numberOfEvents: NSNumber(value: eventsIncall),
                        cpuUsage: NSNumber(value: cpuUsage),
