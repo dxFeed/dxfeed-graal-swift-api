@@ -102,11 +102,19 @@ public class TimeUtil {
         }
         let formatter = DateFormatter()
         for format in TimeFormat.availableFormats {
+
+            if format == TimeFormat.sortableFormat {
+                print("format ")
+            }
             formatter.dateFormat = format
             if let date = formatter.date(from: trimmed) {
                 return date
             }
         }
+        if let date = ISO8601DateFormatter().date(from: trimmed) {
+            return date
+        }
+
         if let msValue = Long(string) {
             return Date(millisecondsSince1970: msValue)
         }

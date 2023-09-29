@@ -53,7 +53,7 @@ do {
     exit(1)
 }
 
-let command = "Connect"
+let command = arguments[0]
 
 switch command {
 case "Help":
