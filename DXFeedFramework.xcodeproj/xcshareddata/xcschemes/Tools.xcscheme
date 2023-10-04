@@ -64,7 +64,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "LatencyTest mddqa.in.devexperts.com:7400 TimeAndSale AAPL"
+            argument = "LatencyTest mddqa.in.devexperts.com:7400 TimeAndSale ETH/USD:GDAX"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

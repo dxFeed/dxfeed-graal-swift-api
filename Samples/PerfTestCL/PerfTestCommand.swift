@@ -48,10 +48,10 @@ class PerfTestCommand: ToolsCommand {
                                         time: nil)
 
         let timer = DXFTimer(timeInterval: 2)
-        let printer = ResultPrinter()
+        let printer = PerformanceMetricsPrinter()
         timer.eventHandler = {
-            let metrics = listener.diagnostic.getMetrics()
-            listener.diagnostic.updateCpuUsage()
+            let metrics = listener.metrics()
+            listener.updateCpuUsage()
             printer.update(metrics)
         }
         timer.resume()

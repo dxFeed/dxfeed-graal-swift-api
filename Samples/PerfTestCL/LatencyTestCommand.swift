@@ -51,9 +51,9 @@ class LatencyTestCommand: ToolsCommand {
                                         time: nil)
 
         let timer = DXFTimer(timeInterval: 2)
-        let printer = ResultPrinter()
+        let printer = LatencyMetricsPrinter()
         timer.eventHandler = {
-            let metrics = listener.diagnostic.getMetrics()
+            let metrics = listener.metrics()
             printer.update(metrics)
         }
         timer.resume()

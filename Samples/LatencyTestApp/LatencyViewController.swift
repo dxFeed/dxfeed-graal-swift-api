@@ -9,8 +9,8 @@ import UIKit
 import DXFeedFramework
 
 class LatencyViewController: UIViewController {
-    let diagnostic = LatencyDiagnostic()
-
+    let listener = LatencyEventListener()
+    let printer = LatencyMetricsPrinter()
     let numberFormatter = NumberFormatter()
 
     private var endpoint: DXEndpoint?
@@ -73,39 +73,25 @@ class LatencyViewController: UIViewController {
             }
             endpoint = try? DXEndpoint.builder().withRole(.feed).build()
             endpoint?.add(observer: self)
-            try? endpoint?.connect(address)
+            _ = try? endpoint?.connect(address)
 
             subscription = try? endpoint?.getFeed()?.createSubscription(.timeAndSale)
-            try? subscription?.add(observer: self)
+            try? subscription?.add(observer: listener)
 
             try? subscription?.addSymbols(symbols)
-            diagnostic.cleanTime()
+            listener.cleanTime()
         }
     }
 
     func updateUI() {
-        let metrics = diagnostic.getMetrics()
+        let metrics = listener.metrics()
         DispatchQueue.main.async {
             self.updateText(metrics)
         }
     }
 
     func updateText(_ metrics: LatencyMetrics) {
-        let result = """
-  Rate of events (avg)     : \(numberFormatter.string(from: metrics.rateOfEvent)!) (events/s)
-  Rate of unique symbols   : \(numberFormatter.string(from: metrics.rateOfSymbols)!) (symbols/interval)
-  Min                      : \(numberFormatter.string(from: metrics.min)!) (ms)
-  Max                      : \(numberFormatter.string(from: metrics.max)!) (ms)
-  99th percentile          : \(numberFormatter.string(from: metrics.percentile)!) (ms)
-  Mean                     : \(numberFormatter.string(from: metrics.mean)!) (ms)
-  StdDev                   : \(numberFormatter.string(from: metrics.stdDev)!) (ms)
-  Error                    : \(numberFormatter.string(from: metrics.error)!) (ms)
-  Sample size (N)          : \(numberFormatter.string(from: metrics.sampleSize)!) (events)
-  Measurement interval     : \(numberFormatter.string(from: metrics.measureInterval)!) (s)
-  Running time             : \(metrics.currentTime.stringFromTimeInterval())
-"""
-        print(result)
-        print("---------------------------------------------------------")
+        self.printer.update(metrics)
         dataSource = [
             "Rate of events (avg), events/s": "\(numberFormatter.string(from: metrics.rateOfEvent)!)",
             "Rate of unique symbols per interval": "\(numberFormatter.string(from: metrics.rateOfSymbols)!)",
@@ -130,34 +116,6 @@ extension LatencyViewController: DXEndpointObserver {
             self.updateConnectButton()
 
             self.connectionStatusLabel.text = new.convetToString()
-        }
-    }
-}
-
-extension LatencyViewController: DXEventListener {
-    func receiveEvents(_ events: [MarketEvent]) {
-        let currentTime = Int64(Date().timeIntervalSince1970 * 1_000)
-        events.forEach { tsEvent in
-            switch tsEvent.type {
-            case .quote:
-                let quote = tsEvent.quote
-                let delta = currentTime - quote.time
-                diagnostic.addSymbol(tsEvent.eventSymbol)
-                diagnostic.addDeltas(delta)
-            case .timeAndSale:
-                let timeAndSale = tsEvent.timeAndSale
-                if timeAndSale.isNew && timeAndSale.isValidTick {
-                    let delta = currentTime - timeAndSale.time
-                    diagnostic.addSymbol(tsEvent.eventSymbol)
-                    diagnostic.addDeltas(delta)
-                }
-            case .trade:
-                let trade = tsEvent.trade
-                let delta = currentTime - trade.time
-                diagnostic.addSymbol(tsEvent.eventSymbol)
-                diagnostic.addDeltas(delta)
-            default: break
-            }
         }
     }
 }
@@ -187,7 +145,7 @@ extension LatencyViewController: UITableViewDelegate {
 }
 
 extension LatencyViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField!) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         return true
     }
