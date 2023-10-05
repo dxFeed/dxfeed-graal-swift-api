@@ -27,7 +27,7 @@ extension TestListener: Hashable {
     static func == (lhs: TestListener, rhs: TestListener) -> Bool {
         return lhs.expectations == rhs.expectations
     }
-    
+
     func hash(into hasher: inout Hasher) {
         hasher.combine(expectations)
     }
