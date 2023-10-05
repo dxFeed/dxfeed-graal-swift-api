@@ -187,13 +187,7 @@ public class DXEndpoint {
         DXPublisher()
     }()
     /// A list of state change listeners callback. observersSet - not typed variable(as storage).
-    /// observers - typed list wrapper.
-    private var observersSet = ConcurrentWeakSet<AnyObject>()
-    private var observers: [DXEndpointObserver] {
-        return  observersSet.reader {
-            $0.allObjects.compactMap { value in value as? DXEndpointObserver }
-        }
-    }
+    private var observersSet = ConcurrentWeakHashTable<DXEndpointObserver>()
 
     private static var instances = [Role: DXEndpoint]()
 
@@ -512,6 +506,11 @@ public class Builder {
 
 extension DXEndpoint: EndpointListener {
     func changeState(old: DXEndpointState, new: DXEndpointState) {
-        observers.forEach { $0.endpointDidChangeState(old: old, new: new) }
+        observersSet.reader {
+            let enumerator = $0.objectEnumerator()
+            while let observer = enumerator.nextObject() as? DXEndpointObserver {
+                observer.endpointDidChangeState(old: old, new: new)
+            }
+        }
     }
 }

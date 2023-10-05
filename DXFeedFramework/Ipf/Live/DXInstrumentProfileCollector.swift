@@ -20,7 +20,7 @@ import Foundation
 /// Removal of instrument profile is represented by an ``InstrumentProfile`` instance with a
 /// ``InstrumentProfile/type`` equal to ``InstrumentProfileType/removed``
 public class DXInstrumentProfileCollector {
-    private let listeners = ConcurrentWeakSet<AnyObject>()
+    private let listeners = ConcurrentWeakHashTable<AnyObject>()
     let native: NativeInstrumentProfileCollector
 
     /// Creates instrument profile connection.
@@ -128,9 +128,10 @@ public class DXInstrumentProfileCollector {
 extension DXInstrumentProfileCollector: DXInstrumentProfileUpdateListener {
     public func instrumentProfilesUpdated(_ instruments: [InstrumentProfile]) {
         listeners.reader { items in
-            items.allObjects.compactMap {
-                $0 as? DXInstrumentProfileUpdateListener
-            }.forEach { $0.instrumentProfilesUpdated(instruments) }
+            let enumerator = items.objectEnumerator()
+            while let observer = enumerator.nextObject() as? DXInstrumentProfileUpdateListener {
+                observer.instrumentProfilesUpdated(instruments)
+            }
         }
     }
 }

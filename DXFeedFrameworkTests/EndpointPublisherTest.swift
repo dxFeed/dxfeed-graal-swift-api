@@ -15,7 +15,7 @@ final class EndpointPublisherTest: XCTestCase {
                             DXEndpointState.connecting: expectation(description: "Connecting")]
         let listener = TestListener(expectations: expectations)
         endpoint?.add(observer: listener)
-        try endpoint?.connect(":4700")
+        try endpoint?.connect(":4777")
         let exps = Array(expectations.filter({ element in
             element.key != .notConnected
         }).values)
