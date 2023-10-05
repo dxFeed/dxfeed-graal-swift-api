@@ -45,3 +45,9 @@ public enum InstrumentProfileType: String, CaseIterable {
         return value
     }
 }
+
+public extension InstrumentProfile {
+    func getIpfType() -> InstrumentProfileType? {
+        return InstrumentProfileType.find(self.type)
+    }
+}

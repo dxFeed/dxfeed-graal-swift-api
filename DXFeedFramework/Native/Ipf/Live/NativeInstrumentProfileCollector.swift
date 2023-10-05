@@ -32,7 +32,7 @@ class NativeInstrumentProfileCollector {
                         let profile = try iterator.next()
                         profiles.append(profile)
                     } catch {
-                        print("NativeInstrumentProfileCollector: excpetion \(error)")
+                        print("NativeInstrumentProfileCollector: exception \(error)")
                     }
                 }
                 listener.listener?.instrumentProfilesUpdated(profiles)
@@ -86,10 +86,10 @@ class NativeInstrumentProfileCollector {
         }
         let thread = currentThread()
         _ = try ErrorCheck.nativeCall(thread,
-                                           dxfg_InstrumentProfileCollector_updateInstrumentProfile(
-                                            thread,
-                                            collector,
-                                            native))
+                                      dxfg_InstrumentProfileCollector_updateInstrumentProfile(
+                                        thread,
+                                        collector,
+                                        native))
     }
 
     func view() throws -> NativeProfileIterator {
