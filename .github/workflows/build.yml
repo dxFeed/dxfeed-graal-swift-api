@@ -9,19 +9,19 @@ permissions:
     contents: write
 
 jobs:
-   test:
+  test:
      name: Test
      runs-on: macos-latest
 
      steps:
-       - name: Checkout
-         uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-       - name: Fetch dep
-         run: gradle fetchDependencies
+      - name: Fetch dep
+        run: gradle fetchDependencies
 
-       - name: Test
-         run: xcodebuild test -project DxFeedFramework.xcodeproj -scheme DXFeedFramework -testPlan DXExceptPublisherTests
+      - name: Test
+        run: xcodebuild test -project DxFeedFramework.xcodeproj -scheme DXFeedFramework -testPlan DXExceptPublisherTests
 
   release:
     if: (startsWith(github.event.ref, 'refs/tags/') && endsWith(github.event.ref, 'build'))    
