@@ -29,8 +29,11 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:DXFeedFrameworkTests/DXFeedFrameworkTests.xctestplan"
+            reference = "container:DXFeedFrameworkTests/DXFeedAllTests.xctestplan"
             default = "YES">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:DXFeedFrameworkTests/DXExceptPublisherTests.xctestplan">
          </TestPlanReference>
       </TestPlans>
       <Testables>

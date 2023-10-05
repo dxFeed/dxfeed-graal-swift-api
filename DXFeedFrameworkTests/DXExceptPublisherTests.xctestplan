@@ -1,0 +1,96 @@
+{
+  "configurations" : [
+    {
+      "id" : "723AC063-7C0E-4081-83F0-8A62AE179EFD",
+      "name" : "Configuration 1",
+      "options" : {
+        "testRepetitionMode" : "retryOnFailure"
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "selectedTests" : [
+        "CandleTests\/testCandleTypeEnum()",
+        "CandleTests\/testCreationSymbol()",
+        "CandleTests\/testEventFlags()",
+        "CandleTests\/testFetchingCandlesByAttrbuteSymbol()",
+        "CandleTests\/testFetchingCandlesByLongSymbol()",
+        "CandleTests\/testFetchingCandlesByString()",
+        "CandleTests\/testFetchingCandlesBySymbol()",
+        "CandleTests\/testFetchingSymbolWithDate()",
+        "CandleTests\/testParseLongSymbol()",
+        "CandleTests\/testParseShortSymbol()",
+        "CandleTests\/testSnapshot()",
+        "DateTimeParserTest\/testDate1()",
+        "DateTimeParserTest\/testDate2()",
+        "DateTimeParserTest\/testZero()",
+        "EndpointTest\/testBuilder()",
+        "EndpointTest\/testDealloc()",
+        "EndpointTest\/testFeed()",
+        "EndpointTest\/testGetInstance()",
+        "EndpointTest\/testSupportProperty()",
+        "EventsTest\/testConversion()",
+        "FeedTest\/testCandle()",
+        "FeedTest\/testCreateSymbol()",
+        "FeedTest\/testFeedCreateMultipleSubscription()",
+        "FeedTest\/testFeedCreateMultipleSubscriptionWithSymbol()",
+        "FeedTest\/testFeedCreateSingleSubscription()",
+        "FeedTest\/testFeedCreation()",
+        "FeedTest\/testProfile()",
+        "FeedTest\/testQuote()",
+        "FeedTest\/testTimeAndSale()",
+        "FeedTest\/testTrade()",
+        "IPFTests\/testCollector()",
+        "IPFTests\/testCollectorWithExecutor()",
+        "IPFTests\/testConnection()",
+        "IPFTests\/testConnectionState()",
+        "IPFTests\/testCreateOnConcurrentLinkedQueue()",
+        "IPFTests\/testCreateOnFixedThreadPool()",
+        "IPFTests\/testCreateOnScheduledThreadPool()",
+        "IPFTests\/testDictEquals()",
+        "IPFTests\/testDoubleConvert()",
+        "IPFTests\/testDoubleToString()",
+        "IPFTests\/testProfileListener()",
+        "IPFTests\/testReadBytes()",
+        "IPFTests\/testReadBytesWithAddress()",
+        "IPFTests\/testReadCompressedBytes()",
+        "IsolateTest\/testCleanup()",
+        "ScheduleTest\/testConvertDayFilter()",
+        "ScheduleTest\/testConvertSessionFilter()",
+        "ScheduleTest\/testCorrectScheduleInit()",
+        "ScheduleTest\/testDeinitSchedule()",
+        "ScheduleTest\/testDeinitScheduleWithNextPrev()",
+        "ScheduleTest\/testFetchDays()",
+        "ScheduleTest\/testFetchNextPrevSession()",
+        "ScheduleTest\/testGetCorrectScheduleDay()",
+        "ScheduleTest\/testGetNextDay()",
+        "ScheduleTest\/testGetPrevDay()",
+        "ScheduleTest\/testGetScheduleDay()",
+        "ScheduleTest\/testGetScheduleDayByTime()",
+        "ScheduleTest\/testNearestSessionByTime()",
+        "ScheduleTest\/testWrongScheduleInit()",
+        "SystemPropertyTest\/testCyrilicRead()",
+        "SystemPropertyTest\/testEmojiRead()",
+        "SystemPropertyTest\/testRead()",
+        "SystemPropertyTest\/testWrite()",
+        "ThreadsTest\/testEquality()",
+        "ThreadsTest\/testInDifferentQueues()",
+        "ThreadsTest\/testInDifferentThreads()",
+        "UtilsTest\/testAsciiCharToString()",
+        "UtilsTest\/testCharacter()",
+        "UtilsTest\/testUnicodeCharToString()"
+      ],
+      "target" : {
+        "containerPath" : "container:DXFeedFramework.xcodeproj",
+        "identifier" : "803BAC1429BFA50700FFAB1C",
+        "name" : "DXFeedFrameworkTests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -30,6 +30,7 @@
 		64098F532ACD7D0D0020D741 /* LatencyMetricsPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FE5D02AC1F34000580E3A /* LatencyMetricsPrinter.swift */; };
 		64098F552ACD7E940020D741 /* PerformanceMetricsPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64098F542ACD7E940020D741 /* PerformanceMetricsPrinter.swift */; };
 		64098F562ACD7E940020D741 /* PerformanceMetricsPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64098F542ACD7E940020D741 /* PerformanceMetricsPrinter.swift */; };
+		64098F672ACEB6F70020D741 /* DXConnectionStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64098F662ACEB6F70020D741 /* DXConnectionStateTests.swift */; };
 		640C3FCC2A616B6200555161 /* ArgumentException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640C3FCB2A616B6200555161 /* ArgumentException.swift */; };
 		640C3FCE2A61788500555161 /* CandleExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640C3FCD2A61788500555161 /* CandleExchange.swift */; };
 		640C3FD02A6178B400555161 /* CandlePrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640C3FCF2A6178B400555161 /* CandlePrice.swift */; };
@@ -79,7 +80,6 @@
 		64262CED2A4DC8BC00BA6BA3 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CEC2A4DC8BC00BA6BA3 /* DataSource.swift */; };
 		6426C8912A531AAE00236784 /* EndpointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC416029CA376E00E6B611 /* EndpointTest.swift */; };
 		6426C8932A531AB500236784 /* ThreadsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76C29C101CF00F240CB /* ThreadsTest.swift */; };
-		6426C8952A531ABB00236784 /* EndpointPublisherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBB72A1FA72000FE23C2 /* EndpointPublisherTest.swift */; };
 		64278C6C2A602CA20074B5AA /* CandleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64278C6B2A602CA20074B5AA /* CandleTests.swift */; };
 		64278C6E2A602D2B0074B5AA /* Candle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64278C6D2A602D2B0074B5AA /* Candle.swift */; };
 		64278C702A602FA00074B5AA /* Candle+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64278C6F2A602FA00074B5AA /* Candle+Ext.swift */; };
@@ -483,10 +483,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6401A5142A5820C9009BA686 /* DXFeedFrameworkTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = DXFeedFrameworkTests.xctestplan; sourceTree = "<group>"; };
+		6401A5142A5820C9009BA686 /* DXFeedAllTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = DXFeedAllTests.xctestplan; sourceTree = "<group>"; };
 		64098F492ACD6AF20020D741 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		64098F4C2ACD73820020D741 /* PerfTestEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfTestEventListener.swift; sourceTree = "<group>"; };
 		64098F542ACD7E940020D741 /* PerformanceMetricsPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceMetricsPrinter.swift; sourceTree = "<group>"; };
+		64098F652ACEB3DF0020D741 /* DXExceptPublisherTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = DXExceptPublisherTests.xctestplan; sourceTree = "<group>"; };
+		64098F662ACEB6F70020D741 /* DXConnectionStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXConnectionStateTests.swift; sourceTree = "<group>"; };
 		640C3FCB2A616B6200555161 /* ArgumentException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentException.swift; sourceTree = "<group>"; };
 		640C3FCD2A61788500555161 /* CandleExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleExchange.swift; sourceTree = "<group>"; };
 		640C3FCF2A6178B400555161 /* CandlePrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandlePrice.swift; sourceTree = "<group>"; };
@@ -511,7 +513,6 @@
 		641A59992AB4794E003899FB /* TradeETH.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeETH.swift; sourceTree = "<group>"; };
 		641AC1A82A61AE4000EF6D6C /* DXAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXAliases.swift; sourceTree = "<group>"; };
 		641BCBB32A1F8ABA00FE23C2 /* XCTestCase+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Utils.swift"; sourceTree = "<group>"; };
-		641BCBB72A1FA72000FE23C2 /* EndpointPublisherTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointPublisherTest.swift; sourceTree = "<group>"; };
 		641BCBB92A1FB42500FE23C2 /* TestListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListener.swift; sourceTree = "<group>"; };
 		641BCBBB2A20ED8100FE23C2 /* DXEndpointObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXEndpointObserver.swift; sourceTree = "<group>"; };
 		641BCBC02A21077800FE23C2 /* EventCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCode.swift; sourceTree = "<group>"; };
@@ -1297,14 +1298,14 @@
 		803BAC1929BFA50700FFAB1C /* DXFeedFrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
-				6401A5142A5820C9009BA686 /* DXFeedFrameworkTests.xctestplan */,
+				64098F652ACEB3DF0020D741 /* DXExceptPublisherTests.xctestplan */,
+				6401A5142A5820C9009BA686 /* DXFeedAllTests.xctestplan */,
 				64ACBCEB2A28DDE300032C53 /* Listeners */,
 				641BCBB32A1F8ABA00FE23C2 /* XCTestCase+Utils.swift */,
 				8088D76A29C0FE1700F240CB /* IsolateTest.swift */,
 				8088D76C29C101CF00F240CB /* ThreadsTest.swift */,
 				8088D77829C498FA00F240CB /* SystemPropertyTest.swift */,
 				80FC416029CA376E00E6B611 /* EndpointTest.swift */,
-				641BCBB72A1FA72000FE23C2 /* EndpointPublisherTest.swift */,
 				64104FC02A210DDD00D1FC41 /* FeedTest.swift */,
 				64104FCD2A2637EA00D1FC41 /* EventsTest.swift */,
 				64278C6B2A602CA20074B5AA /* CandleTests.swift */,
@@ -1312,6 +1313,7 @@
 				64ECD67E2A9CF4CB00B36935 /* IPFTests.swift */,
 				6498E6B62AB1DACE0093A065 /* ScheduleTest.swift */,
 				648BD56E2AC582AB004A3A95 /* DateTimeParserTest.swift */,
+				64098F662ACEB6F70020D741 /* DXConnectionStateTests.swift */,
 			);
 			path = DXFeedFrameworkTests;
 			sourceTree = "<group>";
@@ -2122,10 +2124,10 @@
 				6426C8912A531AAE00236784 /* EndpointTest.swift in Sources */,
 				6401A5162A582141009BA686 /* SystemPropertyTest.swift in Sources */,
 				64D0DBE82A29FF4B00710605 /* EventsTest.swift in Sources */,
-				6426C8952A531ABB00236784 /* EndpointPublisherTest.swift in Sources */,
 				64ACBCEC2A29FE2300032C53 /* XCTestCase+Utils.swift in Sources */,
 				64ECD67F2A9CF4CB00B36935 /* IPFTests.swift in Sources */,
 				64ACBCD52A2789EF00032C53 /* TestListener.swift in Sources */,
+				64098F672ACEB6F70020D741 /* DXConnectionStateTests.swift in Sources */,
 				648BD56F2AC582AB004A3A95 /* DateTimeParserTest.swift in Sources */,
 				64ACBCEA2A28DDDA00032C53 /* TestEventListener.swift in Sources */,
 				6401A5152A582134009BA686 /* IsolateTest.swift in Sources */,
