@@ -8,7 +8,7 @@
 import Foundation
 
 class DayUtil {
-    static func getYearMonthDayByDayId(_ dayId: Int) -> Int {
+    private static func getYearMonthDayByDayId(_ dayId: Int) -> Int {
         let jValue = dayId + 2472632 // this shifts the epoch back to astronomical year -4800
         let gValue = MathUtil.div(jValue, 146097)
         let dgValue = jValue - gValue * 146097
@@ -29,5 +29,9 @@ class DayUtil {
         let ddValue = dValue + 1
         let yyyymmddValue = abs(yyyyValue) * 10000 + mmValue * 100 + ddValue
         return Int(yyyyValue >= 0 ? yyyymmddValue : -yyyymmddValue)
+    }
+
+    static func getYearMonthDayByDayId<T>(_ dayId: T) -> T where T: BinaryInteger {
+        return T(exactly: getYearMonthDayByDayId(Int(dayId))) ?? 0
     }
 }

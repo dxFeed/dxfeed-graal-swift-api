@@ -134,7 +134,7 @@ public class NativeInstrumentProfileCollector {
         let weakListener = WeakListener(value: self)
         NativeInstrumentProfileCollector.listeners.append(newElement: weakListener)
         let voidPtr = bridge(obj: weakListener)
-        
+
         let callback = NativeInstrumentProfileCollector.listenerCallback
         let nativeListener = try ErrorCheck.nativeCall(thread,
                                                  dxfg_InstrumentProfileUpdateListener_new(thread,

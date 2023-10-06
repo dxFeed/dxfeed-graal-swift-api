@@ -12,7 +12,7 @@ import Foundation
 class NativeEndpoint {
     private class WeakListener: WeakBox<EndpointListener> { }
     private static let listeners = ConcurrentArray<WeakListener>()
-    
+
     let endpoint: UnsafeMutablePointer<dxfg_endpoint_t>!
     var listener: UnsafeMutablePointer<dxfg_endpoint_state_change_listener_t>?
 
