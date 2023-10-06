@@ -11,24 +11,42 @@ import Foundation
 /// Native wrapper over the Java com.dxfeed.api.DxFeedSubscription class.
 /// The location of the imported functions is in the header files "dxfg_subscription.h".
 class NativeSubscription {
+    private class WeakSubscription: WeakBox<NativeSubscription> { }
+    private static let listeners = ConcurrentArray<WeakSubscription>()
+    
     let subscription: UnsafeMutablePointer<dxfg_subscription_t>?
     var nativeListener: UnsafeMutablePointer<dxfg_feed_event_listener_t>?
     private let mapper = EventMapper()
     weak var listener: DXEventListener?
+
+    private static let finalizeCallback: dxfg_finalize_function = { _, context in
+        if let context = context {
+            let endpoint: AnyObject = bridge(ptr: context)
+            if let listener =  endpoint as? WeakSubscription {
+                NativeSubscription.listeners.removeAll(where: {
+                    return $0 === listener
+                })
+            }
+        }
+    }
+
     static let listenerCallback: dxfg_feed_event_listener_function = {_, nativeEvents, context in
         if let context = context {
             var events = [MarketEvent]()
             let listener: AnyObject = bridge(ptr: context)
-            if let listener =  listener as? NativeSubscription {
+            if let listener =  listener as? WeakSubscription {
+                guard let subscription = listener.value else {
+                    return
+                }
                 let count = Int(nativeEvents?.pointee.size ?? 0)
                 for index in 0..<count {
                     if let element = nativeEvents?.pointee.elements[index] {
-                        if let event = try? listener.mapper.fromNative(native: element) {
+                        if let event = try? subscription.mapper.fromNative(native: element) {
                             events.append(event)
                         }
                     }
                 }
-                listener.listener?.receiveEvents(events)
+                subscription.listener?.receiveEvents(events)
             }
         }
     }
@@ -38,7 +56,7 @@ class NativeSubscription {
             let thread = currentThread()
             _ = try? ErrorCheck.nativeCall(thread,
                                            dxfg_DXFeedSubscription_removeEventListener(thread,
-                                                                                       self.subscription,
+                                                                                       subscription,
                                                                                        nativeListener))
             _ = try? ErrorCheck.nativeCall(thread,
                                            dxfg_JavaObjectHandler_release(thread,
@@ -67,12 +85,20 @@ class NativeSubscription {
                                                                           &(nativeListener.pointee.handler)))
         }
         self.listener = listener
-        let voidPtr = bridge(obj: self)
+
+        let weakSubscription = WeakSubscription(value: self)
+        NativeSubscription.listeners.append(newElement: weakSubscription)
+        let voidPtr = bridge(obj: weakSubscription)
         let thread = currentThread()
         let listener = try ErrorCheck.nativeCall(thread,
                                                  dxfg_DXFeedEventListener_new(thread,
                                                                               NativeSubscription.listenerCallback,
                                                                               voidPtr))
+
+        try ErrorCheck.nativeCall(thread, dxfg_Object_finalize(thread,
+                                                               &(listener.pointee.handler),
+                                                               NativeSubscription.finalizeCallback,
+                                                               voidPtr))
         self.nativeListener = listener
         _ = try ErrorCheck.nativeCall(thread,
                                       dxfg_DXFeedSubscription_addEventListener(thread,

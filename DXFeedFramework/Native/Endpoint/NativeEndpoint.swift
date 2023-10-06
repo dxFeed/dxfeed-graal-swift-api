@@ -10,18 +10,12 @@ import Foundation
 
 /// Native wrapper over the Java com.dxfeed.api.DXEndpoint class.
 class NativeEndpoint {
-    class WeakListener: WeakBox<EndpointListener>, EndpointListener {
-        func changeState(old: DXEndpointState, new: DXEndpointState) {
-            guard let endpoint = self.value else {
-                return
-            }
-            endpoint.changeState(old: old, new: new)
-        }
-    }
-
+    private class WeakListener: WeakBox<EndpointListener> { }
+    private static let listeners = ConcurrentArray<WeakListener>()
+    
     let endpoint: UnsafeMutablePointer<dxfg_endpoint_t>!
     var listener: UnsafeMutablePointer<dxfg_endpoint_state_change_listener_t>?
-    static let listeners = ConcurrentArray<WeakListener>()
+
     private static let finalizeCallback: dxfg_finalize_function = { _, context in
         if let context = context {
             let endpoint: AnyObject = bridge(ptr: context)
@@ -39,7 +33,7 @@ class NativeEndpoint {
             if let listener =  endpoint as? WeakListener {
                 var old = (try? EnumUtil.valueOf(value: DXEndpointState.convert(oldState))) ?? .notConnected
                 var new = (try? EnumUtil.valueOf(value: DXEndpointState.convert(newState))) ?? .notConnected
-                listener.changeState(old: old, new: new)
+                listener.value?.changeState(old: old, new: new)
             }
         }
     }
@@ -149,10 +143,5 @@ class NativeEndpoint {
         let thread = currentThread()
         let value = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_getState(thread, self.endpoint))
         return try EnumUtil.valueOf(value: DXEndpointState.convert(value))
-    }
-
-    func callGC() throws {
-        let thread = currentThread()
-        try ErrorCheck.nativeCall(thread, dxfg_gc(thread))
     }
 }

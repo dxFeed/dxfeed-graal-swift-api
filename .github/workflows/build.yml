@@ -21,7 +21,7 @@ jobs:
         run: gradle fetchDependencies
 
       - name: Test
-        run: xcodebuild test -project DxFeedFramework.xcodeproj -scheme DXFeedFramework -testPlan DXExceptPublisherTests
+        run: xcodebuild test -project DxFeedFramework.xcodeproj -scheme DXFeedFramework -testPlan DXExceptPublisherTests -destination 'platform=macOS'
 
   release:
     if: (startsWith(github.event.ref, 'refs/tags/') && endsWith(github.event.ref, 'build'))    

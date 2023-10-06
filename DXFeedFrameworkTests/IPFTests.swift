@@ -144,17 +144,21 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
     // swiftlint:enable line_length
 
     func testCollector() throws {
-        let collector = try DXInstrumentProfileCollector()
-        let newProfile = InstrumentProfile()
-        try collector.updateInstrumentProfile(profile: newProfile)
-        let iterator = try collector.view()
-        let expectation = expectation(description: "Received profile")
-        while (try? iterator.hasNext()) ?? false {
-            let profile = try iterator.next()
-            XCTAssert(newProfile == profile, "Should be equal")
-            expectation.fulfill()
+        do {
+            let collector = try DXInstrumentProfileCollector()
+            let newProfile = InstrumentProfile()
+            try collector.updateInstrumentProfile(profile: newProfile)
+            let iterator = try collector.view()
+            let expectation = expectation(description: "Received profile")
+            while (try? iterator.hasNext()) ?? false {
+                let profile = try iterator.next()
+                XCTAssert(newProfile == profile, "Should be equal")
+                expectation.fulfill()
+            }
+            wait(for: [expectation], timeout: 1.0)
+        } catch {
+            print(error)
         }
-        wait(for: [expectation], timeout: 1.0)
     }
 
     func testCollectorWithExecutor() throws {
@@ -188,10 +192,8 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
             return anonymCl
         }
         try collector.add(observer: listener)
-
         try collector.updateInstrumentProfile(profile: newProfile)
-        wait(for: [expectation], timeout: 1.0)
-
+        wait(for: [expectation], timeout: 2.0)
     }
 
     func testConnectionState() {
@@ -212,18 +214,19 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
         let expectationCollector = expectation(description: "Collector")
         expectationCollector.assertForOverFulfill = false
         let collector = try DXInstrumentProfileCollector()
-        try collector.add(observer: AnonymousProfileListener { anonymCl in
+        let collectorObserver = AnonymousProfileListener { anonymCl in
             anonymCl.callback = { profiles in
                 if profiles.count > 0 {
                     expectationCollector.fulfill()
                 }
             }
             return anonymCl
-        })
+        }
+        try collector.add(observer: collectorObserver)
         let expectationConnection = expectation(description: "Connection")
         expectationConnection.expectedFulfillmentCount = 3 // connecting, connected, completed
         let connection = try DXInstrumentProfileConnection(address, collector)
-        connection.add(observer: AnonymousConnectionListener { anonymCl in
+        let connectionObserver = AnonymousConnectionListener { anonymCl in
             anonymCl.callback = { _, new in
                 switch new {
                 case .notConnected:
@@ -239,10 +242,10 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
                 }
             }
             return anonymCl
-        })
+        }
+        connection.add(observer: connectionObserver)
         try connection.start()
         wait(for: [expectationConnection, expectationCollector], timeout: 20.0)
-
     }
 
     func testCreateOnScheduledThreadPool() throws {

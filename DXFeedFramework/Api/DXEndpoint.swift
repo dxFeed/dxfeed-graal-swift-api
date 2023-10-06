@@ -390,11 +390,6 @@ public class DXEndpoint {
             return instance
         }
     }
-
-    // only for testing
-    func callGC() throws {
-        try endpointNative.callGC()
-    }
 }
 
 /// Builder class for ``DXEndpoint`` that supports additional configuration properties.

@@ -11,6 +11,9 @@ import Foundation
 /// Native wrapper over the Java com.dxfeed.ipf.live.InstrumentProfileConnection class.
 /// The location of the imported functions is in the header files "dxfg_ipf.h".
 class NativeInstrumentProfileConnection {
+    private class WeakListener: WeakBox<NativeInstrumentProfileConnection> { }
+    private static let listeners = ConcurrentArray<WeakListener>()
+    
     private let connection: UnsafeMutablePointer<dxfg_ipf_connection_t>
     private let address: String
 
@@ -19,14 +22,25 @@ class NativeInstrumentProfileConnection {
     var nativeListener: UnsafeMutablePointer<dxfg_ipf_connection_state_change_listener_t>?
     private weak var listener: NativeIPFConnectionListener?
 
-    static let listenerCallback: dxfg_ipf_connection_state_change_listener_func = {_, oldState, newState, context in
+    private static let finalizeCallback: dxfg_finalize_function = { _, context in
         if let context = context {
             let endpoint: AnyObject = bridge(ptr: context)
-            if let listener =  endpoint as? NativeInstrumentProfileConnection {
+            if let listener =  endpoint as? WeakListener {
+                NativeInstrumentProfileConnection.listeners.removeAll(where: {
+                    return $0 === listener
+                })
+            }
+        }
+    }
+
+    private static let listenerCallback: dxfg_ipf_connection_state_change_listener_func = {_, oldState, newState, context in
+        if let context = context {
+            let endpoint: AnyObject = bridge(ptr: context)
+            if let listener =  endpoint as? WeakListener {
                 var old = (try? EnumUtil.valueOf(value: DXInstrumentProfileConnectionState.convert(oldState)))
                 var new = (try? EnumUtil.valueOf(value: DXInstrumentProfileConnectionState.convert(newState)))
-                listener.listener?.connectionDidChangeState(old: old ?? .notConnected,
-                                                            new: new ?? .notConnected)
+                listener.value?.listener?.connectionDidChangeState(old: old ?? .notConnected,
+                                                                   new: new ?? .notConnected)
             }
         }
     }
@@ -39,6 +53,7 @@ class NativeInstrumentProfileConnection {
                                                                                                       connection,
                                                                                                       listener))
             _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(listener.pointee.handler)))
+            self.nativeListener = nil
             self.listener = nil
         }
     }
@@ -128,13 +143,21 @@ class NativeInstrumentProfileConnection {
     func addListener(_ listener: NativeIPFConnectionListener) throws {
         removeListener()
         self.listener = listener
-        let voidPtr = bridge(obj: self)
+        let weakListener = WeakListener(value: self)
+        NativeInstrumentProfileConnection.listeners.append(newElement: weakListener)
+        let voidPtr = bridge(obj: weakListener)
         let thread = currentThread()
         let listener = try ErrorCheck.nativeCall(thread,
                                                  dxfg_IpfPropertyChangeListener_new(
                                                     thread,
                                                     NativeInstrumentProfileConnection.listenerCallback,
                                                     voidPtr))
+
+        try ErrorCheck.nativeCall(thread, dxfg_Object_finalize(thread,
+                                                               &(listener.pointee.handler),
+                                                               NativeInstrumentProfileConnection.finalizeCallback,
+                                                               voidPtr))
+
         self.nativeListener = listener
 
         try ErrorCheck.nativeCall(currentThread(),
