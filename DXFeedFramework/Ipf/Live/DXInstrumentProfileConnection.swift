@@ -135,7 +135,7 @@ extension DXInstrumentProfileConnection: NativeIPFConnectionListener {
     func connectionDidChangeState(old: DXInstrumentProfileConnectionState, new: DXInstrumentProfileConnectionState) {
         observersSet.reader { items in
             let enumerator = items.objectEnumerator()
-            while let observer = enumerator.nextObject() as? DXInstrumentProfileConnection {
+            while let observer = enumerator.nextObject() as? DXInstrumentProfileConnectionObserver {
                 observer.connectionDidChangeState(old: old, new: new)
             }
         }
