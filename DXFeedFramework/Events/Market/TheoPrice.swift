@@ -1,5 +1,5 @@
 //
-//  Underlying.swift
+//  TheoPrice.swift
 //  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 06.10.23.
@@ -7,15 +7,19 @@
 
 import Foundation
 
-/// Underlying event is a snapshot of computed values that are available for an option underlying
-/// symbol based on the option prices on the market.
+/// Theo price is a snapshot of the theoretical option price computation that is
+/// periodically performed by http://www.devexperts.com/en/products/price.html
 ///
-/// It represents the most recent information that is available about the corresponding values on
-/// the market at any given moment of time.
+/// model-free computation.
+/// It represents the most recent information that is available about the corresponding
+/// values at any given moment of time.
+/// The values include first and second order derivative of the price curve by price, so that
+/// the real-time theoretical option price can be estimated on real-time changes of the underlying
+/// price in the vicinity.
 ///
-/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/option/Underlying.html)
-public class Underlying: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringConvertible {
-    public var type: EventCode = .underlying
+/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/option/TheoPrice.html)
+public class TheoPrice: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringConvertible {
+    public var type: EventCode = .theoPrice
 
     public var eventSymbol: String
 
@@ -35,18 +39,20 @@ public class Underlying: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStr
      * +---------+----+----+----+----+----+----+----+
      */
 
-    /// Gets or sets 30-day implied volatility for this underlying based on VIX methodology.
-    public var volatility: Double = .nan
-    /// Gets or sets front month implied volatility for this underlying based on VIX methodology.
-    public var frontVolatility: Double = .nan
-    /// Gets or sets back month implied volatility for this underlying based on VIX methodology.
-    public var backVolatility: Double = .nan
-    /// Gets or sets call options traded volume for a day.
-    public var callVolume: Double = .nan
-    /// Gets or sets put options traded volume for a day.
-    public var putVolume: Double = .nan
-    /// Gets or sets ratio of put options traded volume to call options traded volume for a day.
-    public var putCallRatio: Double = .nan
+    /// Gets or sets theoretical option price.
+    public var price: Double = .nan
+    /// Gets or sets underlying price at the time of theo price computation.
+    public var underlyingPrice: Double = .nan
+    /// Gets or sets delta of the theoretical price.
+    /// Delta is the first derivative of an option price by an underlying price.
+    public var delta: Double = .nan
+    /// Gets or sets gamma of the theoretical price.
+    /// Gamma is the second derivative of an option price by an underlying price.
+    public var gamma: Double = .nan
+    /// Gets or sets implied simple dividend return of the corresponding option series.
+    public var dividend: Double = .nan
+    /// Gets or sets implied simple interest return of the corresponding option series.
+    public var interest: Double = .nan
 
     public init(_ eventSymbol: String) {
         self.eventSymbol = eventSymbol
@@ -54,22 +60,22 @@ public class Underlying: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStr
 
     public var description: String {
 """
-DXFG_UNDERLYING_T \
+DXFG_THEO_PRICE_T \
 eventSymbol: \(eventSymbol) \
 eventTime: \(eventTime) \
 eventFlags: \(eventFlags), \
 index: \(index), \
-volatility: \(volatility), \
-frontVolatility: \(frontVolatility), \
-backVolatility: \(backVolatility), \
-callVolume: \(callVolume), \
-putVolume: \(putVolume), \
-putCallRatio: \(putCallRatio)
+price: \(price), \
+underlyingPrice: \(underlyingPrice), \
+delta: \(delta), \
+gamma: \(gamma), \
+dividend: \(dividend), \
+interest: \(interest)
 """
         }
 }
 
-extension Underlying {
+extension TheoPrice {
     /// Gets or sets timestamp of the event in milliseconds.
     /// Time is measured in milliseconds between the current time and midnight, January 1, 1970 UTC.
     public var time: Long {
@@ -81,13 +87,6 @@ extension Underlying {
             (Long(TimeUtil.getMillisFromTime(newValue)) << 22) |
             Int64(getSequence())
         }
-    }
-    /// Gets options traded volume for a day.
-    public var optionVolume: Double {
-        if putVolume.isNaN {
-            return callVolume
-        }
-        return callVolume.isNaN ? putVolume : putVolume + callVolume
     }
     /// Gets sequence number of this quote to distinguish events that have the same ``time``.
     /// This sequence number does not have to be unique and
@@ -107,20 +106,21 @@ extension Underlying {
         }
         index = Long(index & ~Long(MarketEventConst.maxSequence)) | Long(sequence)
     }
-    /// Returns string representation of this underlying fields.
-    public func toString() -> String {
+    /// Returns string representation of this order fields.
+    func toString() -> String {
         return """
-Underlying{"\(eventSymbol) +
+TheoPrice{\(eventSymbol) \
 eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
 eventFlags=0x\(String(format: "%02X", eventFlags)), \
 time=\(TimeUtil.toLocalDateString(millis: time)), \
-sequence=\(self.getSequence()), +
-volatility=\(volatility), \
-frontVolatility=\(frontVolatility), +
-backVolatility=\(backVolatility), \
-callVolume=\(callVolume), \
-putVolume=\(putVolume), \
-putCallRatio=\(putCallRatio)}
+sequence=\(self.getSequence()), \
+price=\(price) \
+underlyingPrice=\(underlyingPrice), \
+delta=\(delta), \
+gamma=\(gamma), \
+dividend=\(dividend), \
+interest=\(interest), \
+}
 """
     }
 }

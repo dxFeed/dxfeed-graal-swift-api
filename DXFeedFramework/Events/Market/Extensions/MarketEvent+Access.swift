@@ -46,4 +46,8 @@ extension MarketEvent {
     public var underlying: Underlying {
         return (self as? Underlying)!
     }
+    /// Use only for event.type is ``EventCode/theoPrice``
+    public var theoPrice: TheoPrice {
+        return (self as? TheoPrice)!
+    }
 }

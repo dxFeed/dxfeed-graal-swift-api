@@ -239,7 +239,7 @@ extension TimeAndSale {
     /// Returns string representation of this time and sale event.
     public func toString() -> String {
         return """
-TimeAndSale{"\(eventSymbol), \
+TimeAndSale{\(eventSymbol), \
 eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
 eventFlags=0x\(String(format: "%02X", eventFlags)), \
 time=\(TimeUtil.toLocalDateString(millis: time)), \
