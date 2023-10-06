@@ -1,30 +1,21 @@
 //
-//  Greeks.swift
+//  Underlying.swift
 //  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 06.10.23.
 //
 
 import Foundation
-/// Greeks event is a snapshot of the option price, Black-Scholes volatility and greeks.
+
+/// Underlying event is a snapshot of computed values that are available for an option underlying
+/// symbol based on the option prices on the market.
 ///
 /// It represents the most recent information that is available about the corresponding values on
 /// the market at any given moment of time.
 ///
-/// Some greeks sources provide a consistent view of the set of known greeks.
-/// The corresponding information is carried in ``eventFlags`` property.
-/// The logic behind this property is detailed in ``IIndexedEvent`` class documentation
-///
-/// Multiple event sources for the same symbol are not supported for greeks, thus
-/// ``source`` property is always ``IndexedEventSource/defaultSource``.
-///
-/// Publishing Greeks
-/// Publishing of greeks events follows the general rules explained in ``ITimeSeriesEvent`` class
-/// documentation.
-///
-/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/option/Greeks.html)
-public class Greeks: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringConvertible {
-    public var type: EventCode = .greeks
+/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/option/Underlying.html)
+public class Underlying: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringConvertible {
+    public var type: EventCode = .underlying
 
     public var eventSymbol: String
 
@@ -36,48 +27,49 @@ public class Greeks: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringC
 
     public var index: Long = 0
 
+    /*
+     * EventFlags property has several significant bits that are packed into an integer in the following way:
+     *    31..7    6    5    4    3    2    1    0
+     * +---------+----+----+----+----+----+----+----+
+     * |         | SM |    | SS | SE | SB | RE | TX |
+     * +---------+----+----+----+----+----+----+----+
+     */
+
+    /// Gets or sets 30-day implied volatility for this underlying based on VIX methodology.
+    public var volatility: Double = .nan
+    /// Gets or sets front month implied volatility for this underlying based on VIX methodology.
+    public var frontVolatility: Double = .nan
+    /// Gets or sets back month implied volatility for this underlying based on VIX methodology.
+    public var backVolatility: Double = .nan
+    /// Gets or sets call options traded volume for a day.
+    public var callVolume: Double = .nan
+    /// Gets or sets put options traded volume for a day.
+    public var putVolume: Double = .nan
+    /// Gets or sets ratio of put options traded volume to call options traded volume for a day.
+    public var putCallRatio: Double = .nan
+
     public init(_ eventSymbol: String) {
         self.eventSymbol = eventSymbol
     }
-    /// Gets or sets option market price.
-    public var price: Double = .nan
-    /// Gets or sets Black-Scholes implied volatility of the option.
-    public var volatility: Double = .nan
-    /// Gets or sets option delta.
-    /// Delta is the first derivative of an option price by an underlying price.
-    public var delta: Double = .nan
-    /// Gets or sets option gamma.
-    /// Gamma is the second derivative of an option price by an underlying price.
-    public var gamma: Double = .nan
-    /// Gets or sets option theta.
-    /// Theta is the first derivative of an option price by a number of days to expiration.
-    public var theta: Double = .nan
-    /// Gets or sets option rho.
-    /// Rho is the first derivative of an option price by percentage interest rate.
-    public var rho: Double = .nan
-    /// Gets or sets vega.
-    /// Vega is the first derivative of an option price by percentage volatility.
-    public var vega: Double = .nan
-    
+
     public var description: String {
-        """
-DXFG_GREEKS_T \
+"""
+DXFG_UNDERLYING_T \
 eventSymbol: \(eventSymbol) \
 eventTime: \(eventTime) \
 eventFlags: \(eventFlags), \
 index: \(index), \
-price: \(price), \
 volatility: \(volatility), \
-delta: \(delta), \
-gamma: \(gamma), \
-theta: \(theta), \
-rho: \(rho), \
-vega: \(vega)
+frontVolatility: \(frontVolatility), \
+backVolatility: \(backVolatility), \
+callVolume: \(callVolume), \
+putVolume: \(putVolume), \
+putCallRatio: \(putCallRatio)
 """
-    }
+        }
 }
 
-extension Greeks {
+extension Underlying {
     /// Gets or sets timestamp of the event in milliseconds.
     /// Time is measured in milliseconds between the current time and midnight, January 1, 1970 UTC.
     public var time: Long {
@@ -89,7 +81,14 @@ extension Greeks {
             (Long(TimeUtil.getMillisFromTime(newValue)) << 22) |
             Int64(getSequence())
         }
-    } 
+    }
+    /// Gets options traded volume for a day.
+    public var optionVolume: Double {
+        if putVolume.isNaN {
+            return callVolume
+        }
+        return callVolume.isNaN ? putVolume : putVolume + callVolume
+    }
     /// Gets sequence number of this quote to distinguish events that have the same ``time``.
     /// This sequence number does not have to be unique and
     /// does not need to be sequential. Sequence can range from 0 to ``MarketEventConst/maxSequence``.
@@ -108,21 +107,20 @@ extension Greeks {
         }
         index = Long(index & ~Long(MarketEventConst.maxSequence)) | Long(sequence)
     }
-    /// Returns string representation of this greeks fields.
+    /// Returns string representation of this underlying fields.
     public func toString() -> String {
         return """
-Greeks{"\(eventSymbol) +
+Underlying{"\(eventSymbol) +
 "eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
 "eventFlags=0x\(String(format: "%02X", eventFlags)), \
 "time=\(TimeUtil.toLocalDateString(millis: time)), \
 "sequence=\(self.getSequence()), +
-"price=\(price), \
 "volatility=\(volatility), \
-"delta=\(delta), +
-"gamma=\(gamma), \
-"theta=\(theta), \
-"rho=\(rho), \
-"vega=\(vega)}
+"frontVolatility=\(frontVolatility), +
+"backVolatility=\(backVolatility), \
+"callVolume=\(callVolume), \
+"putVolume=\(putVolume), \
+"putCallRatio=\(putCallRatio)}
 """
     }
 }
