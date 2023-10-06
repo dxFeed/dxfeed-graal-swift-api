@@ -11,6 +11,11 @@ import Foundation
 ///
 /// It represents the most recent information that is available about the trading session in
 /// the market at any given moment of time.
+///
+/// This event is implemented on top of QDS records 
+///  for regional exchange trading session summaries.
+///
+/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/Summary.html)
 public class Summary: MarketEvent, ILastingEvent, CustomStringConvertible {
     public let type: EventCode = .summary
     public var eventSymbol: String
