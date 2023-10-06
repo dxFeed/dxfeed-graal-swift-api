@@ -56,7 +56,7 @@ public class Summary: MarketEvent, ILastingEvent, CustomStringConvertible {
     var flags: Int32 = 0
 
     /// Initializes a new instance of the ``Summary`` class.
-    public init(eventSymbol: String) {
+    public init(_ eventSymbol: String) {
         self.eventSymbol = eventSymbol
     }
 

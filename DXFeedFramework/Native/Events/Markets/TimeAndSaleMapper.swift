@@ -21,6 +21,9 @@ class TimeAndSaleMapper: Mapper {
     func toNative(event: MarketEvent) -> UnsafeMutablePointer<dxfg_event_type_t>? {
         let pointer = UnsafeMutablePointer<dxfg_time_and_sale_t>.allocate(capacity: 1)
         var pointee = pointer.pointee
+        pointee.market_event.event_symbol = event.eventSymbol.toCStringRef()
+        pointee.market_event.event_time = event.eventTime
+
         let timeAndSale = event.timeAndSale
         pointee.event_flags = timeAndSale.eventFlags
         pointee.index = timeAndSale.index

@@ -18,10 +18,11 @@ class EventMapper: Mapper {
     }
 
     private let mappers: [EventCode: any Mapper] = [.quote: QuoteMapper(),
-                                                .timeAndSale: TimeAndSaleMapper(),
-                                                .profile: ProfileMapper(),
-                                                .trade: TradeMapper(),
-                                                .candle: CandleMapper()]
+                                                    .timeAndSale: TimeAndSaleMapper(),
+                                                    .profile: ProfileMapper(),
+                                                    .trade: TradeMapper(),
+                                                    .candle: CandleMapper(),
+                                                    .summary: SummaryMapper()]
 
     func fromNative(native: UnsafeMutablePointer<dxfg_event_type_t>) throws -> MarketEvent? {
         let code = try EnumUtil.valueOf(value: EventCode.convert(native.pointee.clazz))
@@ -34,7 +35,8 @@ class EventMapper: Mapper {
     func toNative(event: MarketEvent) throws -> UnsafeMutablePointer<dxfg_event_type_t>? {
         let code = event.type
         if let mapper = mappers[code] {
-            return try mapper.toNative(event: event)
+            let native = try mapper.toNative(event: event)
+            return native
         }
         return nil
     }
