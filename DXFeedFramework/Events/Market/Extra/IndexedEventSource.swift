@@ -16,7 +16,7 @@ public class IndexedEventSource {
     public let name: String
 
     /// The default source with zero identifier for all events that do not support multiple sources.
-    static let defaultSource =  IndexedEventSource(identifier: 0, name: "DEFAULT")
+    public static let defaultSource =  IndexedEventSource(identifier: 0, name: "DEFAULT")
 
     /// Initializes a new instance of the ``IndexedEventSource`` class.
     ///

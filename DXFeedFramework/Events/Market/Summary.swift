@@ -118,19 +118,19 @@ extension Summary {
     public func toString() -> String {
         return
 """
-Summary{\(eventSymbol) \
+Summary{\(eventSymbol), \
 eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
-day=\(DayUtil.getYearMonthDayByDayId(dayId)) \
-dayOpen=\(dayOpenPrice) \
-dayHigh=\(dayHighPrice) \
-dayLow=\(dayLowPrice) \
-dayClose=\(dayClosePrice) \
-dayCloseType=\(dayClosePriceType) \
-prevDay=\(DayUtil.getYearMonthDayByDayId(prevDayId)) \
-prevDayClose=\(prevDayClosePrice) \
-prevDayCloseType=\(prevDayClosePriceType) \
-prevDayVolume=\(prevDayVolume) \
-openInterest=\(openInterest) \
+day=\(DayUtil.getYearMonthDayByDayId(dayId)), \
+dayOpen=\(dayOpenPrice), \
+dayHigh=\(dayHighPrice), \
+dayLow=\(dayLowPrice), \
+dayClose=\(dayClosePrice), \
+dayCloseType=\(dayClosePriceType), \
+prevDay=\(DayUtil.getYearMonthDayByDayId(prevDayId)), \
+prevDayClose=\(prevDayClosePrice), \
+prevDayCloseType=\(prevDayClosePriceType), \
+prevDayVolume=\(prevDayVolume), \
+openInterest=\(openInterest), \
 }
 """
     }
