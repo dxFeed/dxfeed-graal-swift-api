@@ -15,6 +15,7 @@ public enum EventCode: CaseIterable {
     case quote
     /// See ``Profile``
     case profile
+    /// See ``Summary``
     case summary
     /// See ``Greeks``
     case greeks
@@ -30,10 +31,13 @@ public enum EventCode: CaseIterable {
     case trade
     /// See ``TradeETH``
     case tradeETH
+    /// **Not implemented**
     case configuration
+    /// **Not implemented**
     case message
     /// See ``TimeAndSale``
     case timeAndSale
+    /// **Doesn't need to be implemented. Abstract class**
     case orderBase
     case order
     case analyticOrder
