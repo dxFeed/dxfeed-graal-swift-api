@@ -234,4 +234,31 @@ final class ScheduleTest: XCTestCase {
         }
     }
 
+    func testSetDefaults() throws {
+        let goodHoliday = 20170111
+        let badHoliday = 20170118
+        let worstHoliday = 20170125
+        let def = "date=30000101-000000+0000\n\nhd.GOOD=\\\n" + "\(goodHoliday)" + ",\\\n\n"
+        // test that changing defaults works by adding new holidays list
+        try DXSchedule.setDefaults(def.data(using: .utf8)!)
+        let goodSchedule = try DXSchedule(scheduleDefinition: "(tz=GMT;0=;hd=GOOD)")
+        try checkHoliday(goodSchedule, goodHoliday)
+        // test that changing defaults works again by adding yet another holidays list
+        try DXSchedule.setDefaults((def + "hd.BAD=\\\n" + "\(badHoliday)" + ",\\").data(using: .utf8)!)
+        let badSchedule = try DXSchedule(scheduleDefinition: "(tz=GMT;0=;hd=BAD)")
+        try checkHoliday(goodSchedule, goodHoliday)
+        try checkHoliday(badSchedule, badHoliday)
+        // test that replacing holidays list with new value works and affects old schedule instance
+        try DXSchedule.setDefaults((def + "hd.BAD=\\\n" + "\(worstHoliday)" + ",\\").data(using: .utf8)!)
+        try checkHoliday(goodSchedule, goodHoliday)
+        XCTAssertFalse(try badSchedule.getDayByYearMonthDay(yearMonthDay: Int32(badHoliday)).holiday == 1)
+        try checkHoliday(badSchedule, worstHoliday)
+    }
+
+    private func checkHoliday(_ schedule: DXSchedule, _ holiday: Int) throws {
+        for index in holiday-1...holiday+1 {
+            let day = try schedule.getDayByYearMonthDay(yearMonthDay: Int32(index))
+            XCTAssert((index == holiday) == (day.holiday == 1))
+        }
+    }
 }
