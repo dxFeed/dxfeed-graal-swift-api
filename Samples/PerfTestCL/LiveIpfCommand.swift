@@ -24,15 +24,16 @@ class LiveIpfCommand: ToolsCommand {
 
     var fullDescription: String =
     """
-    Connects to the specified address(es) and calculates latency.
+    An sample that demonstrates a subscription using InstrumentProfile.
 
     Usage:
       usage: DXFeedLiveIpfSample [<ipf-url>]
 
     Where:
 
-      where: <ipf-url>  is URL for the instruments profiles.
-            Example of url: " + \(LiveIpfCommand.defaultIpfUrl)
+    <ipf-url>  is URL for the instruments profiles.
+    Example of url: " + \(LiveIpfCommand.defaultIpfUrl)
+    
     """
     var collector: DXInstrumentProfileCollector?
     var connection: DXInstrumentProfileConnection?
