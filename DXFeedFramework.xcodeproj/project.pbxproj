@@ -189,6 +189,7 @@
 		647426AD2ABC85F20012F793 /* ArgumentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426AC2ABC85F20012F793 /* ArgumentParser.swift */; };
 		647426AF2ABC93900012F793 /* EventCode+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426AE2ABC93900012F793 /* EventCode+String.swift */; };
 		6479BC2B2A4F35A300A3D404 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6479BC2A2A4F35A300A3D404 /* QuoteView.swift */; };
+		6486B97F2AD4167800D8D5FA /* LiveIpfCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B97E2AD4167800D8D5FA /* LiveIpfCommand.swift */; };
 		648BD5692AC450D6004A3A95 /* ConnectCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD5682AC450D6004A3A95 /* ConnectCommand.swift */; };
 		648BD56B2AC4576F004A3A95 /* HelpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56A2AC4576F004A3A95 /* HelpCommand.swift */; };
 		648BD56D2AC56A04004A3A95 /* SubscriptionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */; };
@@ -608,6 +609,7 @@
 		647426AC2ABC85F20012F793 /* ArgumentParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentParser.swift; sourceTree = "<group>"; };
 		647426AE2ABC93900012F793 /* EventCode+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventCode+String.swift"; sourceTree = "<group>"; };
 		6479BC2A2A4F35A300A3D404 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
+		6486B97E2AD4167800D8D5FA /* LiveIpfCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveIpfCommand.swift; sourceTree = "<group>"; };
 		648BD5682AC450D6004A3A95 /* ConnectCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCommand.swift; sourceTree = "<group>"; };
 		648BD56A2AC4576F004A3A95 /* HelpCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCommand.swift; sourceTree = "<group>"; };
 		648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionUtils.swift; sourceTree = "<group>"; };
@@ -851,6 +853,7 @@
 				641BDD572AC71CCE00236B78 /* LatencyTestCommand.swift */,
 				645BE8512AC31E7C0028243D /* PerfTestCommand.swift */,
 				648BD5682AC450D6004A3A95 /* ConnectCommand.swift */,
+				6486B97E2AD4167800D8D5FA /* LiveIpfCommand.swift */,
 				648BD56A2AC4576F004A3A95 /* HelpCommand.swift */,
 				648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */,
 			);
@@ -1847,6 +1850,7 @@
 				647426AF2ABC93900012F793 /* EventCode+String.swift in Sources */,
 				645BE8542AC3229D0028243D /* ToolsCommand.swift in Sources */,
 				644FE5D12AC1F34000580E3A /* LatencyMetricsPrinter.swift in Sources */,
+				6486B97F2AD4167800D8D5FA /* LiveIpfCommand.swift in Sources */,
 				645BE8522AC31E7C0028243D /* PerfTestCommand.swift in Sources */,
 				641BDD5D2ACD67A000236B78 /* LatencyListener.swift in Sources */,
 				641BDD622ACD697B00236B78 /* AbstractEventListener.swift in Sources */,
