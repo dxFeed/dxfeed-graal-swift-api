@@ -53,10 +53,10 @@ class ViewController: UIViewController {
             // Update period can be used to re-read IPF files, not needed for services supporting IPF "live-update"
             try connection?.setUpdatePeriod(60000)
             connection?.add(observer: self)
-            try collector?.add(observer: self)
             try connection?.start()
             // We can wait until we get first full snapshot of instrument profiles
-//            connection?.waitUntilCompleted(3000)
+            connection?.waitUntilCompleted(5000)
+            try collector?.add(observer: self)
         } catch {
             print("Error during creation IPF data source: \(error)")
         }
@@ -83,7 +83,7 @@ extension ViewController: DXInstrumentProfileConnectionObserver {
 extension ViewController: DXInstrumentProfileUpdateListener {
     func instrumentProfilesUpdated(_ instruments: [DXFeedFramework.InstrumentProfile]) {
         instruments.forEach { ipf in
-            if ipf.ipfType == .removed {
+            if ipf.getIpfType() == .removed {
                 self.buffer.removeValue(forKey: ipf.symbol)
             } else {
                 self.buffer[ipf.symbol] = ipf
