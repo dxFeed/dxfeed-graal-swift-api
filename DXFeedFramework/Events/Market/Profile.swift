@@ -135,7 +135,7 @@ extension Profile {
     }
 
     /// Returns string representation of this profile event.
-    func toString() -> String {
+    public func toString() -> String {
         return "Profile{\(baseFieldsToString())}"
     }
 

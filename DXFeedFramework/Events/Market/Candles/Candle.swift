@@ -128,7 +128,7 @@ extension Candle {
     }
 
     /// Returns string representation of this candle event.
-    func toString() -> String {
+    public func toString() -> String {
         return "Candle{\(baseFieldsToString())}"
     }
 

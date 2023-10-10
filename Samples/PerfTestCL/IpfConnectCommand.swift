@@ -73,7 +73,7 @@ extension IpfConnectCommand: Hashable {
 extension IpfConnectCommand: DXEventListener {
     func receiveEvents(_ events: [DXFeedFramework.MarketEvent]) {
         events.forEach { mEvent in
-            print("\(mEvent.eventSymbol): \(mEvent.quote.toString())")
+            print("\(mEvent.eventSymbol): \(mEvent.toString())")
         }
     }
 }
