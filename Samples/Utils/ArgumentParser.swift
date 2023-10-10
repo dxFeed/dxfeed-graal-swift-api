@@ -22,7 +22,7 @@ class ArgumentParser {
 Cmd \(cmd) contains not enough \(cmd.count - 1) arguments. Expected \(requiredNumberOfArguments)
 """)
         }
-
+        // 0 Arg is path to executed app
         return Array(cmd[1..<cmd.count])
     }
 }

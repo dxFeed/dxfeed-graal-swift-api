@@ -15,12 +15,12 @@ public class TimeUtil {
 
     static let dateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy HH:mm"
+        formatter.dateFormat = "yyyyMMdd-HHmmss"
         return formatter
     }()
     static let dateFormatterWithMillis = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy HH:mm.SSS"
+        formatter.dateFormat = "yyyyMMdd-HHmmss.SSS"
         return formatter
     }()
 
@@ -29,11 +29,17 @@ public class TimeUtil {
     }
 
     public static func toLocalDateString(millis: Int64) -> String {
+        if millis == 0 {
+            return "0"
+        }
         let timeInterval = Double(millis) / 1000
         return (dateFormatterWithMillis.string(from: Date(timeIntervalSince1970: timeInterval)))
     }
 
     public static func toLocalDateStringWithoutMillis(millis: Int64) -> String {
+        if millis == 0 {
+            return "0"
+        }
         let timeInterval = Double(millis) / 1000
         return (dateFormatter.string(from: Date(timeIntervalSince1970: timeInterval)))
     }

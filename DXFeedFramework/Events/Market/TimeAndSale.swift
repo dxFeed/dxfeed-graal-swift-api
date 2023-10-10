@@ -257,7 +257,7 @@ spread=\(isSpreadLeg), \
 ETH=\(isExtendedTradingHours), \
 validTick=\(isValidTick), \
 type=\(timeAndSaleType)\(buyer == nil ? "" : ", buyer='\(buyer ?? "null")'")\
-        \(seller == nil ? "" : ", seller='\(seller ?? "null")'")\
+\(seller == nil ? "" : ", seller='\(seller ?? "null")'")\
 }
 """
     }
