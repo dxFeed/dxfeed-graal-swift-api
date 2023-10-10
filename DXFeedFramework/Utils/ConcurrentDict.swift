@@ -58,6 +58,17 @@ class ConcurrentDict<Key: Hashable, Value>: CustomStringConvertible {
         writer { $0.removeAll() }
     }
 
+    public func tryInsert(key: Key, value: Value) -> Bool {
+        var result = true
+        writer {
+            if $0[key] != nil {
+                result = false
+            }
+            $0[key] = value
+        }
+        return result
+    }
+
     public func reader<U>(_ block: ([Key: Value]) throws -> U) rethrows -> U {
         try accessQueue.sync { try block(set) }
     }

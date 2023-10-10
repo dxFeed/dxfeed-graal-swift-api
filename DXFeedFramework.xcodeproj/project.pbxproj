@@ -212,6 +212,7 @@
 		648BD56F2AC582AB004A3A95 /* DateTimeParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56E2AC582AB004A3A95 /* DateTimeParserTest.swift */; };
 		648BD5712AC583AC004A3A95 /* TimeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD5702AC583AC004A3A95 /* TimeFormat.swift */; };
 		648E98AA2AAF625800BFD219 /* IIndexedEvent+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */; };
+		649282ED2AD593F3008F0F04 /* OrderSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282EC2AD593F3008F0F04 /* OrderSourceTest.swift */; };
 		64963B6A2A8E545C001E40F7 /* IEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64963B692A8E545C001E40F7 /* IEventType.swift */; };
 		6498E6B22AB1D41A0093A065 /* DXSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498E6B12AB1D41A0093A065 /* DXSchedule.swift */; };
 		6498E6B52AB1D4480093A065 /* NativeSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498E6B42AB1D4480093A065 /* NativeSchedule.swift */; };
@@ -648,6 +649,7 @@
 		648BD56E2AC582AB004A3A95 /* DateTimeParserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeParserTest.swift; sourceTree = "<group>"; };
 		648BD5702AC583AC004A3A95 /* TimeFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormat.swift; sourceTree = "<group>"; };
 		648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IIndexedEvent+Ext.swift"; sourceTree = "<group>"; };
+		649282EC2AD593F3008F0F04 /* OrderSourceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSourceTest.swift; sourceTree = "<group>"; };
 		64963B692A8E545C001E40F7 /* IEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEventType.swift; sourceTree = "<group>"; };
 		6498E6B12AB1D41A0093A065 /* DXSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXSchedule.swift; sourceTree = "<group>"; };
 		6498E6B42AB1D4480093A065 /* NativeSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSchedule.swift; sourceTree = "<group>"; };
@@ -1373,6 +1375,7 @@
 				648BD56E2AC582AB004A3A95 /* DateTimeParserTest.swift */,
 				64098F662ACEB6F70020D741 /* DXConnectionStateTests.swift */,
 				6486B95C2AD0287E00D8D5FA /* DateTests.swift */,
+				649282EC2AD593F3008F0F04 /* OrderSourceTest.swift */,
 			);
 			path = DXFeedFrameworkTests;
 			sourceTree = "<group>";
@@ -2211,6 +2214,7 @@
 				6447A5ED2A8FCC2200739CCF /* UtilsTest.swift in Sources */,
 				64278C6C2A602CA20074B5AA /* CandleTests.swift in Sources */,
 				6498E6B72AB1DACE0093A065 /* ScheduleTest.swift in Sources */,
+				649282ED2AD593F3008F0F04 /* OrderSourceTest.swift in Sources */,
 				6426C8932A531AB500236784 /* ThreadsTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,9 +8,19 @@
 import Foundation
 
 class OrderBase: MarketEvent, IIndexedEvent, CustomStringConvertible {
+    var eventSource: IndexedEventSource = .defaultSource
+    
     var type: EventCode = .orderBase
 
-    var eventSource: IndexedEventSource
+//    var eventSource: IndexedEventSource {
+//        get {
+//
+//          
+//        }
+//        set {
+//
+//        }
+//    }
 
     var eventFlags: Int32 = 0
 
@@ -135,7 +145,38 @@ tradeSize: \(tradeSize)
 
 
 extension OrderBase {
+    /// Gets a value indicating whether this order has some size
     func hsaSize() -> Bool {
         return size != 0 && !size.isNaN
     }
+    /// Gets exchange code of this order.
+    public func getExchangeCode() -> Character {
+        return Character(BitUtil.getBits(flags: Int(flags), mask: OrderBase.exchangeMask, shift: OrderBase.exchangeShift))
+    }
+    /// Sets exchange code of this order.
+    ///
+    ///  - Throws: ``ArgumentException/exception(_:)``
+    public func setExchangeCode(_ code: Character) throws {
+        try StringUtil.checkChar(char: code, mask: OrderBase.exchangeMask, name: "exchangeCode")
+        if let value = code.unicodeScalars.first?.value {
+            flags = Int32(BitUtil.setBits(flags: Int(flags),
+                                          mask: OrderBase.exchangeMask,
+                                          shift: OrderBase.exchangeShift,
+                                          bits: Int(value)))
+        }
+    }
+
+    /// Gets or sets side of this order.
+    public var orderSide: Side {
+        get {
+            Side.valueOf(Int(BitUtil.getBits(flags: Int(flags), mask: OrderBase.sideMask, shift: OrderBase.sideShift)))
+        }
+        set {
+            flags = Int32(BitUtil.setBits(flags: Int(flags),
+                                          mask: OrderBase.sideMask,
+                                          shift: OrderBase.sideShift,
+                                          bits: newValue.rawValue))
+        }
+    }
+
 }
