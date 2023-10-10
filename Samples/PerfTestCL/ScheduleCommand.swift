@@ -47,7 +47,6 @@ class ScheduleCommand: ToolsCommand {
                 throw ArgumentParserException.error(message: "File \(defaultFile) doesn't exist")
             }
             try DXSchedule.setDefaults(Data(contentsOf: URL(filePath: defaultFile)))
-            
             let reader = DXInstrumentProfileReader()
             let profiles = try reader.readFromFile(address: profileFile)?.reduce(into: [String: InstrumentProfile]()) {
                 $0[$1.symbol] = $1
@@ -56,12 +55,25 @@ class ScheduleCommand: ToolsCommand {
                 fatalError("IPF Profiles is nil for \(profileFile)")
             }
             print("Loaded \(profiles.count) instrument profiles")
+            checkAllSchedules(Array(profiles.values))
+            guard let profile = profiles[symbol] else {
+                fatalError("Could not find profile for \(symbol)")
+            }
+            print("Found profile for \(symbol): \(profile.descriptionStr)")
+            let format = DateFormatter()
+            var timeArgument: Double = 0
             if arguments.count == 5 {
                 let time = arguments[4]
+                format.dateFormat = "yyyy-MM-dd-HH:mm:ss"
+                timeArgument = format.date(from: time)?.timeIntervalSince1970 ?? 0
+            } else {
+                timeArgument = Date.now.timeIntervalSince1970
             }
-
-
-            checkAllSchedules(Array(profiles.values))
+            let time = Long(timeArgument * 1000)
+            format.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
+            print("Using timestamp \(format.string(from: Date(timeIntervalSince1970: timeArgument)))")
+            print(try ScheduleUtils.findNext5Days(profile, time: time, separator: " "))
+            print(try ScheduleUtils.getSessions(profile, time: time))
         } catch {
             print("ScheduleSample error: \(error)")
         }
@@ -71,8 +83,8 @@ class ScheduleCommand: ToolsCommand {
         var successes = 0
         profiles.forEach { profile in
             do {
-                let schedule = try DXSchedule(instrumentProfile: profile)
-                let venues = try DXSchedule.getTradingVenues(profile: profile)
+                _ = try DXSchedule(instrumentProfile: profile)
+                _ = try DXSchedule.getTradingVenues(profile: profile)
                 successes += 1
             } catch {
                 print("Error getting schedule for \(profile.symbol)(\(profile.tradingHours)): \(error)")

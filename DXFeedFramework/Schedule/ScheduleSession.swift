@@ -52,22 +52,37 @@ public class ScheduleSession {
     public let endTime: Long
     /// Returns type of this session.
     public let type: ScheduleSessionType
+    /// Returns year, month and day numbers decimally packed in the following way:
+    /// YearMonthDay = year * 10000 + month * 100 + day
+    ///
+    /// For example, September 28, 1977 has value 19770928.
+    public let yearMonthDay: Int32
     /// Returns true if trading activity is allowed for this type of session.
     ///
     /// Some sessions may have zero duration - e.g. indices that post value once a day.
     /// Such sessions can be of any appropriate type, trading or non-trading.
     public let isTrading: Bool
+
+    /// DateFormat for toString method
+    private static let dateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter
+    }()
+
     init(native: NativeSession,
          nativeSchedule: NativeSchedule,
          startTime: Long,
          endTime: Long,
          type: ScheduleSessionType,
+         yearMonthDay: Int32,
          isTrading: Bool) {
         self.native = native
         self.nativeSchedule = nativeSchedule
         self.startTime = startTime
         self.endTime = endTime
         self.type = type
+        self.yearMonthDay = yearMonthDay
         self.isTrading = isTrading
     }
 }
@@ -79,6 +94,15 @@ extension ScheduleSession {
 
     public func getNext(filter: SessionFilter) throws -> ScheduleSession? {
         return try nativeSchedule.getNextSession(after: self, filter: filter)
+    }
+
+    public func toString() -> String {
+        let format = ScheduleSession.dateFormatter
+        return """
+Session(\(yearMonthDay), \(type), \(isTrading), \
+\(format.string(from: Date(timeIntervalSince1970: Double(startTime/1000)))), \
+\(format.string(from: Date(timeIntervalSince1970: Double(endTime/1000))))
+"""
     }
 }
 

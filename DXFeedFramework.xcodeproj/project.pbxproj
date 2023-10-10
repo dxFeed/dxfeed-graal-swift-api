@@ -196,6 +196,8 @@
 		648BD56F2AC582AB004A3A95 /* DateTimeParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56E2AC582AB004A3A95 /* DateTimeParserTest.swift */; };
 		648BD5712AC583AC004A3A95 /* TimeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD5702AC583AC004A3A95 /* TimeFormat.swift */; };
 		648E98AA2AAF625800BFD219 /* IIndexedEvent+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */; };
+		649282E72AD54919008F0F04 /* ScheduleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282E62AD54919008F0F04 /* ScheduleUtils.swift */; };
+		649282E82AD54919008F0F04 /* ScheduleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282E62AD54919008F0F04 /* ScheduleUtils.swift */; };
 		64963B6A2A8E545C001E40F7 /* IEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64963B692A8E545C001E40F7 /* IEventType.swift */; };
 		6498E6B22AB1D41A0093A065 /* DXSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498E6B12AB1D41A0093A065 /* DXSchedule.swift */; };
 		6498E6B52AB1D4480093A065 /* NativeSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498E6B42AB1D4480093A065 /* NativeSchedule.swift */; };
@@ -617,6 +619,7 @@
 		648BD56E2AC582AB004A3A95 /* DateTimeParserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeParserTest.swift; sourceTree = "<group>"; };
 		648BD5702AC583AC004A3A95 /* TimeFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormat.swift; sourceTree = "<group>"; };
 		648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IIndexedEvent+Ext.swift"; sourceTree = "<group>"; };
+		649282E62AD54919008F0F04 /* ScheduleUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleUtils.swift; sourceTree = "<group>"; };
 		64963B692A8E545C001E40F7 /* IEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEventType.swift; sourceTree = "<group>"; };
 		6498E6B12AB1D41A0093A065 /* DXSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXSchedule.swift; sourceTree = "<group>"; };
 		6498E6B42AB1D4480093A065 /* NativeSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSchedule.swift; sourceTree = "<group>"; };
@@ -1067,6 +1070,7 @@
 				646979712A3B5AF60003A9BA /* Colors.xcassets */,
 				647426AC2ABC85F20012F793 /* ArgumentParser.swift */,
 				647426AE2ABC93900012F793 /* EventCode+String.swift */,
+				649282E62AD54919008F0F04 /* ScheduleUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1850,6 +1854,7 @@
 			files = (
 				648BD56D2AC56A04004A3A95 /* SubscriptionUtils.swift in Sources */,
 				648BD56B2AC4576F004A3A95 /* HelpCommand.swift in Sources */,
+				649282E82AD54919008F0F04 /* ScheduleUtils.swift in Sources */,
 				647426AF2ABC93900012F793 /* EventCode+String.swift in Sources */,
 				645BE8542AC3229D0028243D /* ToolsCommand.swift in Sources */,
 				644FE5D12AC1F34000580E3A /* LatencyMetricsPrinter.swift in Sources */,
@@ -1926,6 +1931,7 @@
 				64B436522AB9D3410003919E /* ViewController.swift in Sources */,
 				64148B702ABC2F7C0063110E /* Colors.swift in Sources */,
 				64B4364E2AB9D3410003919E /* AppDelegate.swift in Sources */,
+				649282E72AD54919008F0F04 /* ScheduleUtils.swift in Sources */,
 				64B436502AB9D3410003919E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

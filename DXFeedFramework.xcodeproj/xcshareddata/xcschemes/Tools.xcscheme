@@ -56,7 +56,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "ScheduleSample  /Users/akosylo/Downloads/schedule.zip  /Users/akosylo/Downloads/sample.ipf.zip  IBM  2011-05-26-14:15:00"
+            argument = "ScheduleSample  /Users/akosylo/test_ipf/schedule.zip  /Users/akosylo/test_ipf/sample.ipf.zip  AAPL  2012-05-26-14:15:00"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
