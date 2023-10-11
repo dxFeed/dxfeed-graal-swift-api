@@ -65,7 +65,7 @@ public class Greeks: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringC
     public init(_ eventSymbol: String) {
         self.eventSymbol = eventSymbol
     }
-    
+
     public var description: String {
         """
 DXFG_GREEKS_T \
@@ -96,7 +96,7 @@ extension Greeks {
             (Long(TimeUtil.getMillisFromTime(newValue)) << 22) |
             Int64(getSequence())
         }
-    } 
+    }
     /// Gets sequence number of this quote to distinguish events that have the same ``time``.
     /// This sequence number does not have to be unique and
     /// does not need to be sequential. Sequence can range from 0 to ``MarketEventConst/maxSequence``.
