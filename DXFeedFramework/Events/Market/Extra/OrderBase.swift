@@ -7,34 +7,48 @@
 
 import Foundation
 
-class OrderBase: MarketEvent, IIndexedEvent, CustomStringConvertible {
-    var eventSource: IndexedEventSource = .defaultSource
+public class OrderBase: MarketEvent, IIndexedEvent, CustomStringConvertible {
 
-    var type: EventCode = .orderBase
+    public var type: EventCode = .orderBase
 
-//    var eventSource: IndexedEventSource {
-//        get {
-//
-//          
-//        }
-//        set {
-//
-//        }
-//    }
+    public var eventSource: IndexedEventSource {
+        get {
+            var sourceId = index >> 48
+            if !OrderSource.isSpecialSourceId(sourceId: Int(sourceId)) {
+                sourceId = index >> 32
+            }
+            if let value = try? OrderSource.valueOf(identifier: Int(sourceId)) {
+                return value
+            }
+            fatalError("Incorrect value for eventsource \(self)")
+        }
+        set {
+            let shift = OrderSource.isSpecialSourceId(sourceId: newValue.identifier) ? 48 : 32
+            let mask = OrderSource.isSpecialSourceId(sourceId: Int(index >> 48)) ? ~(Long(-1) << 48) : ~(Long(-1) << 32)
+            index = (Long(newValue.identifier << shift)) | (index & mask)
+        }
+    }
 
-    var eventFlags: Int32 = 0
+    public var eventFlags: Int32 = 0
 
-    var index: Long = 0
+    public var index: Long = 0 {
+        didSet {
+            if index < 0 {
+                index = 0
+                print("Negative index for \(self)")
+            }
+        }
+    }
 
-    var eventSymbol: String
+    public var eventSymbol: String
 
-    var eventTime: Int64 = 0
+    public var eventTime: Int64 = 0
     /*
      * Flags property has several significant bits that are packed into an integer in the following way:
      *   31..15   14..11    10..4    3    2    1    0
-     * +--------+--------+--------+----+----+----+----+
+     *), \--------+--------+--------+----+----+----+----+
      * |        | Action |Exchange|  Side   |  Scope  |
-     * +--------+--------+--------+----+----+----+----+
+     *), \--------+--------+--------+----+----+----+----+
      */
 
     // ACTION values are taken from OrderAction enum.
@@ -57,13 +71,13 @@ class OrderBase: MarketEvent, IIndexedEvent, CustomStringConvertible {
      * Index field has 2 formats depending on whether source is "special" (see OrderSource.IsSpecialSourceId()).
      * Note: both formats are IMPLEMENTATION DETAILS, they are subject to change without notice.
      *   63..48   47..32   31..16   15..0
-     * +--------+--------+--------+--------+
+     *), \--------+--------+--------+--------+
      * | Source |Exchange|      Index      |  <- "special" order sources (non-printable id with exchange)
-     * +--------+--------+--------+--------+
+     *), \--------+--------+--------+--------+
      *   63..48   47..32   31..16   15..0
-     * +--------+--------+--------+--------+
+     *), \--------+--------+--------+--------+
      * |     Source      |      Index      |  <- generic order sources (alphanumeric id without exchange)
-     * +--------+--------+--------+--------+
+     *), \--------+--------+--------+--------+
      * Note: when modifying formats track usages of getIndex/setIndex, getSource/setSource and isSpecialSourceId
      * methods in order to find and modify all code dependent on current formats.
      */
@@ -71,9 +85,9 @@ class OrderBase: MarketEvent, IIndexedEvent, CustomStringConvertible {
     /*
      * EventFlags property has several significant bits that are packed into an integer in the following way:
      *    31..7    6    5    4    3    2    1    0
-     * +---------+----+----+----+----+----+----+----+
+     *), \---------+----+----+----+----+----+----+----+
      * |         | SM |    | SS | SE | SB | RE | TX |
-     * +---------+----+----+----+----+----+----+----+
+     *), \---------+----+----+----+----+----+----+----+
      */
 
     /// Gets or sets time and sequence of this order packaged into single long value
@@ -152,6 +166,11 @@ extension OrderBase {
     public func getExchangeCode() -> Character {
         return Character(BitUtil.getBits(flags: Int(flags), mask: OrderBase.exchangeMask, shift: OrderBase.exchangeShift))
     }
+
+    /// Gets exchange code of this order.
+    public func getExchangeCode() -> Int {
+        return BitUtil.getBits(flags: Int(flags), mask: OrderBase.exchangeMask, shift: OrderBase.exchangeShift)
+    }
     /// Sets exchange code of this order.
     ///
     ///  - Throws: ``ArgumentException/exception(_:)``
@@ -178,4 +197,113 @@ extension OrderBase {
         }
     }
 
+    /// Gets or sets time of this order.
+    /// Time is measured in milliseconds between the current time and midnight, January 1, 1970 UTC.
+    public var time: Long {
+        get {
+            ((timeSequence >> 32) * 1000) + ((timeSequence >> 22) & 0x3ff)
+        }
+        set {
+            timeSequence = Long(TimeUtil.getSecondsFromTime(newValue) << 32) |
+            (Long(TimeUtil.getMillisFromTime(newValue)) << 22) |
+            Long(getSequence())
+        }
+    }
+
+    /// Gets sequence number of this order to distinguish events that have the same ``time``.
+    /// This sequence number does not have to be unique and
+    /// does not need to be sequential. Sequence can range from 0 to ``MarketEventConst/maxSequence``.
+    public func getSequence() -> Int {
+        return Int(index) & Int(MarketEventConst.maxSequence)
+    }
+    /// Sets sequence number of this order to distinguish quotes that have the same ``time``.
+    /// This sequence number does not have to be unique and
+    /// does not need to be sequential. Sequence can range from 0 to ``MarketEventConst/maxSequence``.
+    /// - Throws: ``ArgumentException/exception(_:)``
+    public func setSequence(_ sequence: Int) throws {
+        if sequence < 0 || sequence > MarketEventConst.maxSequence {
+            throw ArgumentException.exception(
+                "Sequence(\(sequence) is < 0 or > MaxSequence(\(MarketEventConst.maxSequence)"
+            )
+        }
+        index = Long(index & ~Long(MarketEventConst.maxSequence)) | Long(sequence)
+    }
+
+    /// Gets or sets timestamp of the original event in nanoseconds
+    /// Time is measured in nanoseconds between the current time and midnight, January 1, 1970 UTC.
+    public var timeNanos: Long {
+        get {
+            TimeNanosUtil.getNanosFromMillisAndNanoPart(time, timeNanoPart)
+        }
+        set {
+            time = TimeNanosUtil.getNanoPartFromNanos(newValue)
+            timeNanoPart = Int32(TimeNanosUtil.getNanoPartFromNanos(newValue))
+        }
+    }
+
+    /// Gets or sets action of this order.
+    /// Returns order action if available, otherwise ``OrderAction/undefined``
+    public var action: OrderAction {
+        get {
+            return OrderActionExt.valueOf(value: BitUtil.getBits(flags: Int(flags),
+                                                                 mask: OrderBase.actionMask,
+                                                                 shift: OrderBase.actionShift))
+        }
+        set {
+            flags = Int32(BitUtil.setBits(flags: Int(flags),
+                                          mask: OrderBase.actionMask,
+                                          shift: OrderBase.actionShift,
+                                          bits: newValue.rawValue))
+        }
+    }
+
+    /// Gets or sets scope of this order.
+    public var scope: Scope {
+        get {
+            return ScopeExt.valueOf(value: BitUtil.getBits(flags: Int(flags),
+                                                           mask: OrderBase.scopeMask,
+                                                           shift: OrderBase.scopeShift))
+        }
+
+        set {
+            flags = Int32(BitUtil.setBits(flags: Int(flags),
+                                          mask: OrderBase.scopeMask,
+                                          shift: OrderBase.scopeShift,
+                                          bits: newValue.rawValue))
+        }
+    }
+
+    /// Returns string representation of this candle event.
+    func toString() -> String {
+        return "OrderBase{\(baseFieldsToString())}"
+    }
+
+    /// Returns string representation of this candle fields.
+    func baseFieldsToString() -> String {
+        return
+"""
+\(eventSymbol), \
+eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
+source=\(eventSource), \
+eventFlags=0x\(String(format: "%02X", eventFlags)), \
+index=0x\(String(format: "%02X", index)), \
+time=\(TimeUtil.toLocalDateString(millis: time)), \
+sequence=\(getSequence()), \
+timeNanoPart=\(timeNanoPart), \
+action=\(action), \
+actionTime=\(TimeUtil.toLocalDateString(millis: actionTime)), \
+orderId=\(orderId), \
+auxOrderId=\(auxOrderId), \
+price=\(price), \
+size=\(size), \
+executedSize=\(executedSize), \
+count=\(count), \
+exchange=\(StringUtil.encodeChar(char: Int16(getExchangeCode()))), \
+side=\(orderSide), \
+scope=\(scope), \
+tradeId=\(tradeId), \
+tradePrice=\(tradePrice), \
+tradeSize=\(tradeSize)
+"""
+    }
 }
