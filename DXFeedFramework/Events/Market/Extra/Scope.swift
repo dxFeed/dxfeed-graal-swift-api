@@ -23,10 +23,16 @@ public enum Scope: Int, CaseIterable {
     case order
 }
 
+
+/// Class extension for ``ScopeExt`` enum.
 public class ScopeExt {
     private static let values: [Scope] =
     EnumUtil.createEnumBitMaskArrayByValue(defaultValue: .composite, allCases: Scope.allCases)
 
+    /// Returns an enum constant of the``ScopeExt`` by integer code bit pattern.
+    /// - Parameters:
+    ///   - value: Property value
+    /// - Returns: The enum constant of the specified enum type with the specified value
     public static func valueOf(value: Int) -> Scope {
         return values[value]
     }
