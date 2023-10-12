@@ -44,7 +44,7 @@ public class OrderSource: IndexedEventSource {
     ///
     /// It is a synthetic source.
     /// The subscription on composite ``Quote`` event is observed when this source is subscribed to.
-    public static let compsoiteBid = try? OrderSource(1, "DEFAULT", pubOrder | pubAnalyticOrder | pubSpreadOrder | fullOrderBook)
+    public static let compsoiteBid = try? OrderSource(1, "COMPOSITE_BID", pubOrder | pubAnalyticOrder | pubSpreadOrder | fullOrderBook)
     /// Ask side of a composite ``Quote``.
     /// It is a synthetic source.
     /// The subscription on composite ``Quote`` event is observed when this source is subscribed to.
@@ -160,6 +160,46 @@ public class OrderSource: IndexedEventSource {
     /// Members Exchange. Record for price level book.
     public static let memx = try? OrderSource("memx", pubOrder)
 
+    /// Don't use it. Just for initialization all static variable.
+    /// static let - is always lazy initialized
+    fileprivate static let allValues = [OrderSource.defaultOrderSource,
+                             OrderSource.compsoiteBid,
+                             OrderSource.compsoiteAsk,
+                             OrderSource.regionalBid,
+                             OrderSource.regionalAsk,
+                             OrderSource.agregateBid,
+                             OrderSource.agregateAsk,
+                             OrderSource.NTV,
+                             OrderSource.ntv,
+                             OrderSource.NFX,
+                             OrderSource.ESPD,
+                             OrderSource.XNFI,
+                             OrderSource.ICE,
+                             OrderSource.ISE,
+                             OrderSource.DEA,
+                             OrderSource.DEX,
+                             OrderSource.BYX,
+                             OrderSource.BZX,
+                             OrderSource.BATE,
+                             OrderSource.CHIX,
+                             OrderSource.CEUX,
+                             OrderSource.BXTR,
+                             OrderSource.IST,
+                             OrderSource.BI20,
+                             OrderSource.ABE,
+                             OrderSource.FAIR,
+                             OrderSource.GLBX,
+                             OrderSource.glbx,
+                             OrderSource.ERIS,
+                             OrderSource.XEUR,
+                             OrderSource.xeur,
+                             OrderSource.CFE,
+                             OrderSource.C2OX,
+                             OrderSource.SMFE,
+                             OrderSource.smfe,
+                             OrderSource.iex,
+                             OrderSource.MEMX,
+                             OrderSource.memx]
 
     override init(_ identifier: Int, _ name: String) {
         self.pubFlags = 0
@@ -305,4 +345,12 @@ public class OrderSource: IndexedEventSource {
         throw ArgumentException.exception("Invalid order event type: \(eventType)")
     }
 
+}
+
+extension OrderSource {
+    /// Don't use it. Just for initialization all static variable. 
+    /// static let - is always lazy initialized
+    internal static func initAllValues() {
+        _ = OrderSource.allValues
+    }
 }

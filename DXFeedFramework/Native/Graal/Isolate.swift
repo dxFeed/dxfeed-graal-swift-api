@@ -83,6 +83,8 @@ class Isolate {
             let errorMessage = "!!!Isolate init failed: Unexpected error \(error)"
             fatalError(errorMessage)
         }
+
+        OrderSource.initAllValues()
     }
 
     // only for testing
