@@ -80,4 +80,14 @@ final class OrderSourceTest: XCTestCase {
             XCTAssert(false, "undefined error \(error)")
         }
     }
+
+    func testVAlueOf() throws {
+        do {
+            let source1 = OrderSource.compsoiteBid
+
+            let source = try OrderSource.valueOf(identifier: 1)
+        } catch {
+            print(error)
+        }
+    }
 }

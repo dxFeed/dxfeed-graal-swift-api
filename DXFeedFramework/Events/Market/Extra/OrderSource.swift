@@ -160,6 +160,7 @@ public class OrderSource: IndexedEventSource {
     /// Members Exchange. Record for price level book.
     public static let memx = try? OrderSource("memx", pubOrder)
 
+
     override init(_ identifier: Int, _ name: String) {
         self.pubFlags = 0
         self.isBuiltin = false
