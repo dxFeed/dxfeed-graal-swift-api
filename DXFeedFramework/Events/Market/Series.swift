@@ -40,23 +40,23 @@ public class Series: MarketEvent, IIndexedEvent {
     /// This method is intended for efficient series time priority comparison.
     /// **Do not use this method directly**
     /// Change ``time`` and/or  ``sequence``
-    public private(set) var timeSequence: Long = 0
+    public var timeSequence: Long = 0
     /// Gets or sets day id of expiration.
-    public let expiration: Int32 = 0
+    public var expiration: Int32 = 0
     /// Gets or sets implied volatility index for this series based on VIX methodology.
-    public let volatility: Double = .nan
+    public var volatility: Double = .nan
     /// Gets or sets call options traded volume for a day.
-    public let callVolume: Double = .nan
+    public var callVolume: Double = .nan
     /// Gets or sets put options traded volume for a day.
-    public let putVolume: Double = .nan
+    public var putVolume: Double = .nan
     /// Gets or sets ratio of put options traded volume to call options traded volume for a day.
-    public let putCallRatio: Double = .nan
+    public var putCallRatio: Double = .nan
     /// Gets or sets implied forward price for this option series.
-    public let forwardPrice: Double = .nan
+    public var forwardPrice: Double = .nan
     /// Gets or sets implied simple dividend return of the corresponding option series.
-    public let dividend: Double = .nan
+    public var dividend: Double = .nan
     /// Gets or sets implied simple interest return of the corresponding option series.
-    public let interest: Double = .nan
+    public var interest: Double = .nan
 
     public init(_ eventSymbol: String) {
         self.eventSymbol = eventSymbol
@@ -103,6 +103,7 @@ extension Series {
         return callVolume.isNaN ? putVolume : putVolume + putVolume;
     }
 
+    /// Returns string representation of this candle event.
     public func toString() -> String {
         return
 """

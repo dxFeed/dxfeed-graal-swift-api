@@ -62,5 +62,8 @@ extension MarketEvent {
     public var analyticOrder: AnalyticOrder {
         return (self as? AnalyticOrder)!
     }
-
+    /// Use only for event.type is ``EventCode/series``
+    public var series: Series {
+        return (self as? Series)!
+    }
 }
