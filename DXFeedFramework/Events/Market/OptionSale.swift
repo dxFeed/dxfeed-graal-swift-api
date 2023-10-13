@@ -41,7 +41,8 @@ public class OptionSale: MarketEvent, IIndexedEvent {
     /// Gets or sets time and sequence of this series packaged into single long value.
     ///
     /// This method is intended for efficient series time priority comparison.
-    /// **Do not use this method directly**
+    /// **Do not use this property directly**
+    /// 
     /// Change ``time`` and/or  ``setSequence(_:)``
     public internal(set) var timeSequence: Long = 0
     /// Gets or sets microseconds and nanoseconds time part of event.
@@ -63,7 +64,7 @@ public class OptionSale: MarketEvent, IIndexedEvent {
     /// Gets or sets implementation-specific flags.
     ///
     /// **Do not use this method directly.**
-    public var flags: Int32 = 0
+    var flags: Int32 = 0
     /// Gets or sets underlying price at the time of this option sale event.
     public var underlyingPrice: Double = .nan
     /// Gets or sets Black-Scholes implied volatility of the option at the time of this option sale event.

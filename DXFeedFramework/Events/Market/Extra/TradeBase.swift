@@ -26,7 +26,9 @@ public class TradeBase: MarketEvent, ILastingEvent {
      */
 
     /// Gets or sets time and sequence of last trade packaged into single long value.
-    /// Do not set this property directly.
+    ///
+    /// **Do not set this property directly.**
+    /// 
     /// Sets ``time`` and/or ``setSequence(_:)``.
     public internal(set) var timeSequence: Long = 0
     /// Gets or sets microseconds and nanoseconds time part of the last trade.
@@ -49,7 +51,7 @@ public class TradeBase: MarketEvent, ILastingEvent {
     public var dayTurnover: Double = .nan
     /// Gets or sets implementation-specific flags.
     /// Do not use this method directly.
-    internal var flags: Int32 = 0
+    var flags: Int32 = 0
 
     public init(_ symbol: String) {
         self.eventSymbol = symbol
