@@ -39,7 +39,7 @@ public class NativeInstrumentProfileCollector {
             var profiles = [InstrumentProfile]()
             let listener: AnyObject = bridge(ptr: context)
             if let listener =  listener as? WeakListener {
-                let iterator = NativeProfileIterator(nativeProfiles)
+                let iterator = NativeProfileIterator(nativeProfiles, isDeallocated: false)
 
                 while (try? iterator.hasNext()) ?? false {
                     do {
@@ -109,7 +109,7 @@ public class NativeInstrumentProfileCollector {
     func view() throws -> NativeProfileIterator {
         let thread = currentThread()
         let native = try ErrorCheck.nativeCall(thread, dxfg_InstrumentProfileCollector_view(thread, collector))
-        return NativeProfileIterator(native)
+        return NativeProfileIterator(native, isDeallocated: true)
     }
 
     func setExecutor(_ executor: NativeExecutor) throws -> Bool {
@@ -134,7 +134,7 @@ public class NativeInstrumentProfileCollector {
         let weakListener = WeakListener(value: self)
         NativeInstrumentProfileCollector.listeners.append(newElement: weakListener)
         let voidPtr = bridge(obj: weakListener)
-        
+
         let callback = NativeInstrumentProfileCollector.listenerCallback
         let nativeListener = try ErrorCheck.nativeCall(thread,
                                                  dxfg_InstrumentProfileUpdateListener_new(thread,

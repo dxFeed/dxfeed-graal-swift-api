@@ -57,10 +57,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "DXFeedIpfConnect Quote https://demo:demo@tools.dxfeed.com/ipf"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "ScheduleSample  /Users/akosylo/test_ipf/schedule.zip  /Users/akosylo/test_ipf/sample.ipf.zip  AAPL  2012-05-26-14:15:00"
+            argument = "ScheduleSample  schedule.zip  sample.ipf.zip  AAPL  2012-05-26-14:15:00"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
@@ -72,8 +72,8 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Connect mddqa.in.devexperts.com:7400 Quote AAPL"
-            isEnabled = "NO">
+            argument = "Connect mddqa.in.devexperts.com:7400 OptionSale AAPL"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "LatencyTest mddqa.in.devexperts.com:7400 TimeAndSale ETH/USD:GDAX"

@@ -32,6 +32,8 @@
         "CandleTests\/testParseLongSymbol()",
         "CandleTests\/testParseShortSymbol()",
         "CandleTests\/testSnapshot()",
+        "DateTests\/testExample()",
+        "DateTests\/testPerformanceExample()",
         "DateTimeParserTest\/testDate1()",
         "DateTimeParserTest\/testDate2()",
         "DateTimeParserTest\/testZero()",

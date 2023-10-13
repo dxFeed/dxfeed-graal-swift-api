@@ -101,7 +101,19 @@ final class FeedTest: XCTestCase {
         try waitingEvent(code: .candle)
     }
 
-    fileprivate static func checkType(_ code: EventCode, _ event: MarketEvent?) -> Bool {
+    func testSeries() throws {
+        try waitingEvent(code: .series)
+    }
+
+    func testOrder() throws {
+        try waitingEvent(code: .order)
+    }
+
+//    func testOptionSale() throws {
+//        try waitingEvent(code: .optionSale)
+//    }
+
+    static func checkType(_ code: EventCode, _ event: MarketEvent?) -> Bool {
         switch code {
         case .timeAndSale:
             return event is TimeAndSale
@@ -132,15 +144,15 @@ final class FeedTest: XCTestCase {
         case .orderBase:
             break
         case .order:
-            break
+            return event is Order
         case .analyticOrder:
-            break
+            return event is AnalyticOrder
         case .spreadOrder:
-            break
+            return event is SpreadOrder
         case .series:
-            break
+            return event is Series
         case .optionSale:
-            break
+            return event is OptionSale
         }
         return false
     }
@@ -163,7 +175,7 @@ final class FeedTest: XCTestCase {
             return anonymCl
         }
         try subscription?.add(observer: listener)
-        try subscription?.addSymbols(["ETH/USD:GDAX"])
+        try subscription?.addSymbols(["ETH/USD:GDAX", "IBM"])
         wait(for: [receivedEventExp], timeout: 10)
     }
 }

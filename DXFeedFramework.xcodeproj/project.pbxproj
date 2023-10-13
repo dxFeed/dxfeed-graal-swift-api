@@ -190,6 +190,23 @@
 		647426AF2ABC93900012F793 /* EventCode+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426AE2ABC93900012F793 /* EventCode+String.swift */; };
 		6479BC2B2A4F35A300A3D404 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6479BC2A2A4F35A300A3D404 /* QuoteView.swift */; };
 		6486B97F2AD4167800D8D5FA /* LiveIpfCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B97E2AD4167800D8D5FA /* LiveIpfCommand.swift */; };
+		6486B9582AD00BDC00D8D5FA /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9572AD00BDC00D8D5FA /* Summary.swift */; };
+		6486B95B2AD015B400D8D5FA /* PriceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B95A2AD015B400D8D5FA /* PriceType.swift */; };
+		6486B95D2AD0287E00D8D5FA /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B95C2AD0287E00D8D5FA /* DateTests.swift */; };
+		6486B95F2AD02C0C00D8D5FA /* Summary+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B95E2AD02C0C00D8D5FA /* Summary+Ext.swift */; };
+		6486B9612AD02D3900D8D5FA /* SummaryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9602AD02D3900D8D5FA /* SummaryMapper.swift */; };
+		6486B9632AD0333B00D8D5FA /* Greeks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9622AD0333B00D8D5FA /* Greeks.swift */; };
+		6486B9652AD038FC00D8D5FA /* Greeks+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9642AD038FC00D8D5FA /* Greeks+Ext.swift */; };
+		6486B9672AD0390800D8D5FA /* GreeksMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9662AD0390800D8D5FA /* GreeksMapper.swift */; };
+		6486B96B2AD03DC900D8D5FA /* Underlying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B96A2AD03DC900D8D5FA /* Underlying.swift */; };
+		6486B96F2AD0445400D8D5FA /* Underlying+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B96E2AD0445400D8D5FA /* Underlying+Ext.swift */; };
+		6486B9712AD0445E00D8D5FA /* UnderlyingMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9702AD0445E00D8D5FA /* UnderlyingMapper.swift */; };
+		6486B9732AD045C800D8D5FA /* TheoPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9722AD045C800D8D5FA /* TheoPrice.swift */; };
+		6486B9752AD0493F00D8D5FA /* TheoPrice+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9742AD0493F00D8D5FA /* TheoPrice+Ext.swift */; };
+		6486B9772AD04C5800D8D5FA /* TheoPriceMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9762AD04C5800D8D5FA /* TheoPriceMapper.swift */; };
+		6486B9792AD04F4000D8D5FA /* OrderBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9782AD04F4000D8D5FA /* OrderBase.swift */; };
+		6486B97B2AD0517A00D8D5FA /* OrderAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B97A2AD0517A00D8D5FA /* OrderAction.swift */; };
+		6486B97D2AD057F200D8D5FA /* OrderSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B97C2AD057F200D8D5FA /* OrderSource.swift */; };
 		648BD5692AC450D6004A3A95 /* ConnectCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD5682AC450D6004A3A95 /* ConnectCommand.swift */; };
 		648BD56B2AC4576F004A3A95 /* HelpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56A2AC4576F004A3A95 /* HelpCommand.swift */; };
 		648BD56D2AC56A04004A3A95 /* SubscriptionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */; };
@@ -199,7 +216,10 @@
 		649282E72AD54919008F0F04 /* ScheduleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282E62AD54919008F0F04 /* ScheduleUtils.swift */; };
 		649282E82AD54919008F0F04 /* ScheduleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282E62AD54919008F0F04 /* ScheduleUtils.swift */; };
 		649282EB2AD55323008F0F04 /* IpfConnectCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282E92AD55323008F0F04 /* IpfConnectCommand.swift */; };
+		649282ED2AD593F3008F0F04 /* OrderSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282EC2AD593F3008F0F04 /* OrderSourceTest.swift */; };
 		64963B6A2A8E545C001E40F7 /* IEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64963B692A8E545C001E40F7 /* IEventType.swift */; };
+		649706842AD82B070068FF88 /* Series.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649706832AD82B070068FF88 /* Series.swift */; };
+		649706862AD832860068FF88 /* Series+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649706852AD832860068FF88 /* Series+Ext.swift */; };
 		6498E6B22AB1D41A0093A065 /* DXSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498E6B12AB1D41A0093A065 /* DXSchedule.swift */; };
 		6498E6B52AB1D4480093A065 /* NativeSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498E6B42AB1D4480093A065 /* NativeSchedule.swift */; };
 		6498E6B72AB1DACE0093A065 /* ScheduleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498E6B62AB1DACE0093A065 /* ScheduleTest.swift */; };
@@ -212,6 +232,9 @@
 		64AAF0552A82499A00E8942B /* ConcurrentDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AAF0542A82499A00E8942B /* ConcurrentDict.swift */; };
 		64AAF0572A82A3FC00E8942B /* ICandleSymbolProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AAF0562A82A3FC00E8942B /* ICandleSymbolProperty.swift */; };
 		64AAF0592A83EA0000E8942B /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AAF0582A83EA0000E8942B /* Double+Ext.swift */; };
+		64ABC0FF2AD91E6500904D78 /* OptionSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABC0FE2AD91E6500904D78 /* OptionSale.swift */; };
+		64ABC1012AD9284900904D78 /* OptionSale+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABC1002AD9284900904D78 /* OptionSale+Ext.swift */; };
+		64ABC1032AD9294D00904D78 /* OptionSaleMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ABC1022AD9294C00904D78 /* OptionSaleMapper.swift */; };
 		64ACBCCF2A27851C00032C53 /* FeedTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC02A210DDD00D1FC41 /* FeedTest.swift */; };
 		64ACBCD52A2789EF00032C53 /* TestListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBB92A1FB42500FE23C2 /* TestListener.swift */; };
 		64ACBCD72A27981900032C53 /* ListNative+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ACBCD62A27981900032C53 /* ListNative+Ext.swift */; };
@@ -262,6 +285,17 @@
 		64BA92672A306E3100BE26A0 /* Trade+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BA92662A306E3100BE26A0 /* Trade+Ext.swift */; };
 		64BA92692A306E6000BE26A0 /* TradeBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BA92682A306E6000BE26A0 /* TradeBase.swift */; };
 		64BA926B2A3072CA00BE26A0 /* TradeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BA926A2A3072CA00BE26A0 /* TradeMapper.swift */; };
+		64BDDB1E2AD6CC6A00694210 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB1D2AD6CC6A00694210 /* Order.swift */; };
+		64BDDB202AD6CC8300694210 /* AnalyticOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB1F2AD6CC8300694210 /* AnalyticOrder.swift */; };
+		64BDDB222AD6CC9A00694210 /* SpreadOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB212AD6CC9A00694210 /* SpreadOrder.swift */; };
+		64BDDB242AD6F10200694210 /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB232AD6F10200694210 /* Scope.swift */; };
+		64BDDB262AD6F6B500694210 /* IcebergType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB252AD6F6B500694210 /* IcebergType.swift */; };
+		64BDDB282AD7D8D300694210 /* Order+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB272AD7D8D300694210 /* Order+Ext.swift */; };
+		64BDDB2A2AD7D9C700694210 /* SpreadOrder+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB292AD7D9C700694210 /* SpreadOrder+Ext.swift */; };
+		64BDDB2C2AD7DB9B00694210 /* AnalyticOrder+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB2B2AD7DB9B00694210 /* AnalyticOrder+Ext.swift */; };
+		64BDDB2E2AD7DC5E00694210 /* OrderMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB2D2AD7DC5E00694210 /* OrderMapper.swift */; };
+		64BDDB312AD7E5A600694210 /* AnalyticOrderMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB2F2AD7E5A500694210 /* AnalyticOrderMapper.swift */; };
+		64BDDB322AD7E5A600694210 /* SpreadOrderMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB302AD7E5A600694210 /* SpreadOrderMapper.swift */; };
 		64C771F22A94A224009868C2 /* Character+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C771F12A94A224009868C2 /* Character+Ext.swift */; };
 		64C771F42A94A86E009868C2 /* Side.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C771F32A94A86E009868C2 /* Side.swift */; };
 		64C771F62A94ADDA009868C2 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C771F52A94ADDA009868C2 /* Direction.swift */; };
@@ -287,6 +321,7 @@
 		64DB79352A376E1B00229597 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		64E342502AAB083700457994 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8D22A3B401700846831 /* Colors.swift */; };
 		64E342522AAB29CF00457994 /* InstrumentProfileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E342512AAB29CF00457994 /* InstrumentProfileType.swift */; };
+		64E3637B2AD83459002E2B0D /* SeriesMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E3637A2AD83459002E2B0D /* SeriesMapper.swift */; };
 		64ECD67F2A9CF4CB00B36935 /* IPFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD67E2A9CF4CB00B36935 /* IPFTests.swift */; };
 		64ECD6822A9DDC2800B36935 /* DXInstrumentProfileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD6812A9DDC2800B36935 /* DXInstrumentProfileReader.swift */; };
 		64ECD6852A9DDF6200B36935 /* DXInstrumentProfileCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD6842A9DDF6200B36935 /* DXInstrumentProfileCollector.swift */; };
@@ -614,6 +649,23 @@
 		647426AE2ABC93900012F793 /* EventCode+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventCode+String.swift"; sourceTree = "<group>"; };
 		6479BC2A2A4F35A300A3D404 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		6486B97E2AD4167800D8D5FA /* LiveIpfCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveIpfCommand.swift; sourceTree = "<group>"; };
+		6486B9572AD00BDC00D8D5FA /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
+		6486B95A2AD015B400D8D5FA /* PriceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceType.swift; sourceTree = "<group>"; };
+		6486B95C2AD0287E00D8D5FA /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
+		6486B95E2AD02C0C00D8D5FA /* Summary+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Summary+Ext.swift"; sourceTree = "<group>"; };
+		6486B9602AD02D3900D8D5FA /* SummaryMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryMapper.swift; sourceTree = "<group>"; };
+		6486B9622AD0333B00D8D5FA /* Greeks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Greeks.swift; sourceTree = "<group>"; };
+		6486B9642AD038FC00D8D5FA /* Greeks+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Greeks+Ext.swift"; sourceTree = "<group>"; };
+		6486B9662AD0390800D8D5FA /* GreeksMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreeksMapper.swift; sourceTree = "<group>"; };
+		6486B96A2AD03DC900D8D5FA /* Underlying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Underlying.swift; sourceTree = "<group>"; };
+		6486B96E2AD0445400D8D5FA /* Underlying+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Underlying+Ext.swift"; sourceTree = "<group>"; };
+		6486B9702AD0445E00D8D5FA /* UnderlyingMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlyingMapper.swift; sourceTree = "<group>"; };
+		6486B9722AD045C800D8D5FA /* TheoPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheoPrice.swift; sourceTree = "<group>"; };
+		6486B9742AD0493F00D8D5FA /* TheoPrice+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TheoPrice+Ext.swift"; sourceTree = "<group>"; };
+		6486B9762AD04C5800D8D5FA /* TheoPriceMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheoPriceMapper.swift; sourceTree = "<group>"; };
+		6486B9782AD04F4000D8D5FA /* OrderBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBase.swift; sourceTree = "<group>"; };
+		6486B97A2AD0517A00D8D5FA /* OrderAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderAction.swift; sourceTree = "<group>"; };
+		6486B97C2AD057F200D8D5FA /* OrderSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSource.swift; sourceTree = "<group>"; };
 		648BD5682AC450D6004A3A95 /* ConnectCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCommand.swift; sourceTree = "<group>"; };
 		648BD56A2AC4576F004A3A95 /* HelpCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCommand.swift; sourceTree = "<group>"; };
 		648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionUtils.swift; sourceTree = "<group>"; };
@@ -622,7 +674,10 @@
 		648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IIndexedEvent+Ext.swift"; sourceTree = "<group>"; };
 		649282E62AD54919008F0F04 /* ScheduleUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleUtils.swift; sourceTree = "<group>"; };
 		649282E92AD55323008F0F04 /* IpfConnectCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IpfConnectCommand.swift; sourceTree = "<group>"; };
+		649282EC2AD593F3008F0F04 /* OrderSourceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSourceTest.swift; sourceTree = "<group>"; };
 		64963B692A8E545C001E40F7 /* IEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEventType.swift; sourceTree = "<group>"; };
+		649706832AD82B070068FF88 /* Series.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
+		649706852AD832860068FF88 /* Series+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Series+Ext.swift"; sourceTree = "<group>"; };
 		6498E6B12AB1D41A0093A065 /* DXSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXSchedule.swift; sourceTree = "<group>"; };
 		6498E6B42AB1D4480093A065 /* NativeSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSchedule.swift; sourceTree = "<group>"; };
 		6498E6B62AB1DACE0093A065 /* ScheduleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTest.swift; sourceTree = "<group>"; };
@@ -635,6 +690,9 @@
 		64AAF0542A82499A00E8942B /* ConcurrentDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentDict.swift; sourceTree = "<group>"; };
 		64AAF0562A82A3FC00E8942B /* ICandleSymbolProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICandleSymbolProperty.swift; sourceTree = "<group>"; };
 		64AAF0582A83EA0000E8942B /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
+		64ABC0FE2AD91E6500904D78 /* OptionSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSale.swift; sourceTree = "<group>"; };
+		64ABC1002AD9284900904D78 /* OptionSale+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionSale+Ext.swift"; sourceTree = "<group>"; };
+		64ABC1022AD9294C00904D78 /* OptionSaleMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSaleMapper.swift; sourceTree = "<group>"; };
 		64ACBCD62A27981900032C53 /* ListNative+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListNative+Ext.swift"; sourceTree = "<group>"; };
 		64ACBCD82A279F7900032C53 /* DXEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXEventListener.swift; sourceTree = "<group>"; };
 		64ACBCDC2A28978600032C53 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
@@ -687,6 +745,17 @@
 		64BA92662A306E3100BE26A0 /* Trade+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trade+Ext.swift"; sourceTree = "<group>"; };
 		64BA92682A306E6000BE26A0 /* TradeBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeBase.swift; sourceTree = "<group>"; };
 		64BA926A2A3072CA00BE26A0 /* TradeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeMapper.swift; sourceTree = "<group>"; };
+		64BDDB1D2AD6CC6A00694210 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		64BDDB1F2AD6CC8300694210 /* AnalyticOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticOrder.swift; sourceTree = "<group>"; };
+		64BDDB212AD6CC9A00694210 /* SpreadOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreadOrder.swift; sourceTree = "<group>"; };
+		64BDDB232AD6F10200694210 /* Scope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scope.swift; sourceTree = "<group>"; };
+		64BDDB252AD6F6B500694210 /* IcebergType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IcebergType.swift; sourceTree = "<group>"; };
+		64BDDB272AD7D8D300694210 /* Order+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+Ext.swift"; sourceTree = "<group>"; };
+		64BDDB292AD7D9C700694210 /* SpreadOrder+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpreadOrder+Ext.swift"; sourceTree = "<group>"; };
+		64BDDB2B2AD7DB9B00694210 /* AnalyticOrder+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnalyticOrder+Ext.swift"; sourceTree = "<group>"; };
+		64BDDB2D2AD7DC5E00694210 /* OrderMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderMapper.swift; sourceTree = "<group>"; };
+		64BDDB2F2AD7E5A500694210 /* AnalyticOrderMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticOrderMapper.swift; sourceTree = "<group>"; };
+		64BDDB302AD7E5A600694210 /* SpreadOrderMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreadOrderMapper.swift; sourceTree = "<group>"; };
 		64C771F12A94A224009868C2 /* Character+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Ext.swift"; sourceTree = "<group>"; };
 		64C771F32A94A86E009868C2 /* Side.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Side.swift; sourceTree = "<group>"; };
 		64C771F52A94ADDA009868C2 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
@@ -710,6 +779,7 @@
 		64DA26BD2AA20EDB005B1757 /* DXInstrumentProfileConnectionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileConnectionObserver.swift; sourceTree = "<group>"; };
 		64DA26BF2AA224EB005B1757 /* NativeIPFConnectionListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeIPFConnectionListener.swift; sourceTree = "<group>"; };
 		64E342512AAB29CF00457994 /* InstrumentProfileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileType.swift; sourceTree = "<group>"; };
+		64E3637A2AD83459002E2B0D /* SeriesMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesMapper.swift; sourceTree = "<group>"; };
 		64ECD67E2A9CF4CB00B36935 /* IPFTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPFTests.swift; sourceTree = "<group>"; };
 		64ECD6812A9DDC2800B36935 /* DXInstrumentProfileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileReader.swift; sourceTree = "<group>"; };
 		64ECD6842A9DDF6200B36935 /* DXInstrumentProfileCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileCollector.swift; sourceTree = "<group>"; };
@@ -872,25 +942,23 @@
 		641BCBBF2A21051A00FE23C2 /* Market */ = {
 			isa = PBXGroup;
 			children = (
+				6486B9592AD00E0B00D8D5FA /* Extra */,
 				649F48842A615BA90016FDD1 /* Candles */,
 				6469F8BE2A3B163E00846831 /* Extensions */,
-				64963B692A8E545C001E40F7 /* IEventType.swift */,
-				6447A5DA2A8E559000739CCF /* ILastingEvent.swift */,
-				6447A5DE2A8E56FC00739CCF /* IIndexedEvent.swift */,
-				6447A5DC2A8E56CF00739CCF /* ITimeSeriesEvent.swift */,
 				64BA92642A306E0200BE26A0 /* Trade.swift */,
 				641A59992AB4794E003899FB /* TradeETH.swift */,
-				642BE4C92A2E1C640052340A /* MarketEvent.swift */,
 				642BE4C32A2E1AFF0052340A /* Quote.swift */,
 				642BE4D12A2F5D230052340A /* TimeAndSale.swift */,
 				64BA925E2A306B9600BE26A0 /* Profile.swift */,
-				64BA92682A306E6000BE26A0 /* TradeBase.swift */,
-				6447A5E02A8E5A5400739CCF /* IndexedEventSource.swift */,
-				64C771F32A94A86E009868C2 /* Side.swift */,
-				64C771F52A94ADDA009868C2 /* Direction.swift */,
-				64C771F72A94B88C009868C2 /* TimeAndSaleType.swift */,
-				64C771F92A94D692009868C2 /* ShortSaleRestriction.swift */,
-				64C771FB2A94D7E9009868C2 /* TradingStatus.swift */,
+				6486B9572AD00BDC00D8D5FA /* Summary.swift */,
+				6486B9622AD0333B00D8D5FA /* Greeks.swift */,
+				6486B96A2AD03DC900D8D5FA /* Underlying.swift */,
+				6486B9722AD045C800D8D5FA /* TheoPrice.swift */,
+				64BDDB1D2AD6CC6A00694210 /* Order.swift */,
+				64BDDB1F2AD6CC8300694210 /* AnalyticOrder.swift */,
+				64BDDB212AD6CC9A00694210 /* SpreadOrder.swift */,
+				649706832AD82B070068FF88 /* Series.swift */,
+				64ABC0FE2AD91E6500904D78 /* OptionSale.swift */,
 			);
 			path = Market;
 			sourceTree = "<group>";
@@ -949,6 +1017,24 @@
 				64BA926A2A3072CA00BE26A0 /* TradeMapper.swift */,
 				64278C6F2A602FA00074B5AA /* Candle+Ext.swift */,
 				64278C712A6030290074B5AA /* CandleMapper.swift */,
+				6486B95E2AD02C0C00D8D5FA /* Summary+Ext.swift */,
+				6486B9602AD02D3900D8D5FA /* SummaryMapper.swift */,
+				6486B9642AD038FC00D8D5FA /* Greeks+Ext.swift */,
+				6486B9662AD0390800D8D5FA /* GreeksMapper.swift */,
+				6486B96E2AD0445400D8D5FA /* Underlying+Ext.swift */,
+				6486B9702AD0445E00D8D5FA /* UnderlyingMapper.swift */,
+				6486B9742AD0493F00D8D5FA /* TheoPrice+Ext.swift */,
+				6486B9762AD04C5800D8D5FA /* TheoPriceMapper.swift */,
+				64BDDB272AD7D8D300694210 /* Order+Ext.swift */,
+				64BDDB2D2AD7DC5E00694210 /* OrderMapper.swift */,
+				64BDDB292AD7D9C700694210 /* SpreadOrder+Ext.swift */,
+				64BDDB302AD7E5A600694210 /* SpreadOrderMapper.swift */,
+				64BDDB2B2AD7DB9B00694210 /* AnalyticOrder+Ext.swift */,
+				64BDDB2F2AD7E5A500694210 /* AnalyticOrderMapper.swift */,
+				649706852AD832860068FF88 /* Series+Ext.swift */,
+				64E3637A2AD83459002E2B0D /* SeriesMapper.swift */,
+				64ABC1002AD9284900904D78 /* OptionSale+Ext.swift */,
+				64ABC1022AD9294C00904D78 /* OptionSaleMapper.swift */,
 			);
 			path = Markets;
 			sourceTree = "<group>";
@@ -1076,6 +1162,31 @@
 				649282E62AD54919008F0F04 /* ScheduleUtils.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		6486B9592AD00E0B00D8D5FA /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				64963B692A8E545C001E40F7 /* IEventType.swift */,
+				6447A5DA2A8E559000739CCF /* ILastingEvent.swift */,
+				6447A5DE2A8E56FC00739CCF /* IIndexedEvent.swift */,
+				6447A5DC2A8E56CF00739CCF /* ITimeSeriesEvent.swift */,
+				642BE4C92A2E1C640052340A /* MarketEvent.swift */,
+				64BA92682A306E6000BE26A0 /* TradeBase.swift */,
+				6447A5E02A8E5A5400739CCF /* IndexedEventSource.swift */,
+				64C771F32A94A86E009868C2 /* Side.swift */,
+				64C771F52A94ADDA009868C2 /* Direction.swift */,
+				64C771F72A94B88C009868C2 /* TimeAndSaleType.swift */,
+				64C771F92A94D692009868C2 /* ShortSaleRestriction.swift */,
+				64C771FB2A94D7E9009868C2 /* TradingStatus.swift */,
+				6486B95A2AD015B400D8D5FA /* PriceType.swift */,
+				6486B9782AD04F4000D8D5FA /* OrderBase.swift */,
+				6486B97A2AD0517A00D8D5FA /* OrderAction.swift */,
+				6486B97C2AD057F200D8D5FA /* OrderSource.swift */,
+				64BDDB232AD6F10200694210 /* Scope.swift */,
+				64BDDB252AD6F6B500694210 /* IcebergType.swift */,
+			);
+			path = Extra;
 			sourceTree = "<group>";
 		};
 		6498E6B02AB1D40C0093A065 /* Schedule */ = {
@@ -1327,6 +1438,8 @@
 				6498E6B62AB1DACE0093A065 /* ScheduleTest.swift */,
 				648BD56E2AC582AB004A3A95 /* DateTimeParserTest.swift */,
 				64098F662ACEB6F70020D741 /* DXConnectionStateTests.swift */,
+				6486B95C2AD0287E00D8D5FA /* DateTests.swift */,
+				649282EC2AD593F3008F0F04 /* OrderSourceTest.swift */,
 			);
 			path = DXFeedFrameworkTests;
 			sourceTree = "<group>";
@@ -2001,9 +2114,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64BDDB322AD7E5A600694210 /* SpreadOrderMapper.swift in Sources */,
 				64ACBCE32A289A0700032C53 /* TimeSeriesSubscriptionSymbol.swift in Sources */,
 				645A34952A937C7200709F29 /* BinaryInteger+Ext.swift in Sources */,
 				64BA92652A306E0200BE26A0 /* Trade.swift in Sources */,
+				6486B9752AD0493F00D8D5FA /* TheoPrice+Ext.swift in Sources */,
 				6464074B2A9DFAF7006FF769 /* InstrumentProfile+Ext.swift in Sources */,
 				64C771F22A94A224009868C2 /* Character+Ext.swift in Sources */,
 				8088D77129C3A25D00F240CB /* SystemProperty.swift in Sources */,
@@ -2013,11 +2128,14 @@
 				6469F8C22A3B169A00846831 /* MathUtil.swift in Sources */,
 				80FC415929C8EE8B00E6B611 /* DXEndpoint.swift in Sources */,
 				64C771F62A94ADDA009868C2 /* Direction.swift in Sources */,
+				64BDDB312AD7E5A600694210 /* AnalyticOrderMapper.swift in Sources */,
 				640C3FDC2A618B2000555161 /* MarketEventSymbols.swift in Sources */,
 				642BE4D42A2F5D730052340A /* TimeAndSale+Ext.swift in Sources */,
 				64ACBCD92A279F7900032C53 /* DXEventListener.swift in Sources */,
 				64ECD6852A9DDF6200B36935 /* DXInstrumentProfileCollector.swift in Sources */,
+				6486B96F2AD0445400D8D5FA /* Underlying+Ext.swift in Sources */,
 				64656F5B2A1B9784006A0B19 /* DXFeed.swift in Sources */,
+				6486B96B2AD03DC900D8D5FA /* Underlying.swift in Sources */,
 				6447A5EF2A8FD1CD00739CCF /* DayUtil.swift in Sources */,
 				64B436462AB985AE0003919E /* NativeBox.swift in Sources */,
 				6447A5E92A8F9E0B00739CCF /* TimeNanosUtil.swift in Sources */,
@@ -2029,16 +2147,22 @@
 				64278C6E2A602D2B0074B5AA /* Candle.swift in Sources */,
 				64ACBCE62A28BA7D00032C53 /* SymbolMapper.swift in Sources */,
 				64ECD6822A9DDC2800B36935 /* DXInstrumentProfileReader.swift in Sources */,
+				6486B9712AD0445E00D8D5FA /* UnderlyingMapper.swift in Sources */,
+				64E3637B2AD83459002E2B0D /* SeriesMapper.swift in Sources */,
 				642BE4CC2A2E1DB70052340A /* Mapper.swift in Sources */,
 				64104FC72A2613BC00D1FC41 /* ConcurrentArray.swift in Sources */,
 				6498E6B22AB1D41A0093A065 /* DXSchedule.swift in Sources */,
+				64BDDB2C2AD7DB9B00694210 /* AnalyticOrder+Ext.swift in Sources */,
 				646407572AA0C44D006FF769 /* NativeInstrumentProfileCollector.swift in Sources */,
+				6486B9732AD045C800D8D5FA /* TheoPrice.swift in Sources */,
 				64ACBCDF2A2897EA00032C53 /* String+Symbol.swift in Sources */,
 				64B4363A2AB86D1A0003919E /* DayFilter.swift in Sources */,
 				64ECD6872A9DDFBE00B36935 /* DXInstrumentProfileConnection.swift in Sources */,
+				6486B9772AD04C5800D8D5FA /* TheoPriceMapper.swift in Sources */,
 				64278C702A602FA00074B5AA /* Candle+Ext.swift in Sources */,
 				64B4363C2AB86F3C0003919E /* DayFilter+Ext.swift in Sources */,
 				6464075B2AA0CEF2006FF769 /* NativeExecutor.swift in Sources */,
+				6486B97B2AD0517A00D8D5FA /* OrderAction.swift in Sources */,
 				64DA26B82AA20095005B1757 /* NativeInstrumentProfileConnection.swift in Sources */,
 				64104FC32A210F2400D1FC41 /* EventCode+Native.swift in Sources */,
 				80FC415C29CA2B8800E6B611 /* NativeBuilder.swift in Sources */,
@@ -2051,25 +2175,35 @@
 				6447A5DB2A8E559000739CCF /* ILastingEvent.swift in Sources */,
 				64ACBCDD2A28978600032C53 /* Symbol.swift in Sources */,
 				64B4363E2AB883350003919E /* SessionFilter.swift in Sources */,
+				6486B9612AD02D3900D8D5FA /* SummaryMapper.swift in Sources */,
 				64B436402AB8857F0003919E /* SessionFilter+Ext.swift in Sources */,
 				646407592AA0CA8D006FF769 /* NativeProfileIterator.swift in Sources */,
 				6469F8C82A3B25C900846831 /* MarketEvent+Access.swift in Sources */,
 				640C3FD22A6178D200555161 /* CandleSession.swift in Sources */,
 				6498E6BD2AB1E0510093A065 /* ScheduleSession.swift in Sources */,
+				64BDDB262AD6F6B500694210 /* IcebergType.swift in Sources */,
 				8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */,
 				64DA26BE2AA20EDB005B1757 /* DXInstrumentProfileConnectionObserver.swift in Sources */,
 				64656F732A1D0A84006A0B19 /* EndpointListener.swift in Sources */,
+				64BDDB282AD7D8D300694210 /* Order+Ext.swift in Sources */,
+				6486B9582AD00BDC00D8D5FA /* Summary.swift in Sources */,
 				64104FCC2A2629D800D1FC41 /* NativeSubscription.swift in Sources */,
 				64C772012A975102009868C2 /* Reference+Util.swift in Sources */,
 				64656F6D2A1CFB10006A0B19 /* DXEndpointState.swift in Sources */,
 				6464074D2A9E352E006FF769 /* InstrumentProfileField.swift in Sources */,
+				64ABC0FF2AD91E6500904D78 /* OptionSale.swift in Sources */,
+				64ABC1012AD9284900904D78 /* OptionSale+Ext.swift in Sources */,
+				6486B9632AD0333B00D8D5FA /* Greeks.swift in Sources */,
 				64E342522AAB29CF00457994 /* InstrumentProfileType.swift in Sources */,
 				648E98AA2AAF625800BFD219 /* IIndexedEvent+Ext.swift in Sources */,
 				6447A5E32A8F611700739CCF /* IObservableSubscription.swift in Sources */,
 				64104FC92A26298D00D1FC41 /* DXFeedSubcription.swift in Sources */,
+				64ABC1032AD9294D00904D78 /* OptionSaleMapper.swift in Sources */,
 				64104FD32A277B2D00D1FC41 /* ListNative.swift in Sources */,
+				649706862AD832860068FF88 /* Series+Ext.swift in Sources */,
 				642BE4C82A2E1BD40052340A /* QuoteMapper.swift in Sources */,
 				64AAF0552A82499A00E8942B /* ConcurrentDict.swift in Sources */,
+				6486B95F2AD02C0C00D8D5FA /* Summary+Ext.swift in Sources */,
 				64ACBCE12A28999B00032C53 /* WildcardSymbol.swift in Sources */,
 				64C771F42A94A86E009868C2 /* Side.swift in Sources */,
 				64656F672A1CCFC2006A0B19 /* DXPublisher.swift in Sources */,
@@ -2077,8 +2211,10 @@
 				6447A5F12A8FDD1B00739CCF /* BitUtil.swift in Sources */,
 				64963B6A2A8E545C001E40F7 /* IEventType.swift in Sources */,
 				6428EF282AB0856400F54F59 /* DXInstrumentProfileConnectionState+Ext.swift in Sources */,
+				64BDDB222AD6CC9A00694210 /* SpreadOrder.swift in Sources */,
 				640C3FCE2A61788500555161 /* CandleExchange.swift in Sources */,
 				641BCBBC2A20ED8100FE23C2 /* DXEndpointObserver.swift in Sources */,
+				6486B9792AD04F4000D8D5FA /* OrderBase.swift in Sources */,
 				64656F772A1DFED9006A0B19 /* EndpointState+Native.swift in Sources */,
 				6498E6B52AB1D4480093A065 /* NativeSchedule.swift in Sources */,
 				64DA26BC2AA20B66005B1757 /* InstrumentProfileConnectionState+ext.swift in Sources */,
@@ -2090,9 +2226,12 @@
 				641BCBC12A21077800FE23C2 /* EventCode.swift in Sources */,
 				64ACBCE82A28CF9700032C53 /* IndexedEventSubscriptionSymbol.swift in Sources */,
 				649F48882A615BED0016FDD1 /* CandleType.swift in Sources */,
+				64BDDB2E2AD7DC5E00694210 /* OrderMapper.swift in Sources */,
+				649706842AD82B070068FF88 /* Series.swift in Sources */,
 				6447A5E52A8F736E00739CCF /* TimeUtil.swift in Sources */,
 				64C771FC2A94D7E9009868C2 /* TradingStatus.swift in Sources */,
 				642BE4D22A2F5D230052340A /* TimeAndSale.swift in Sources */,
+				6486B9652AD038FC00D8D5FA /* Greeks+Ext.swift in Sources */,
 				64BA92692A306E6000BE26A0 /* TradeBase.swift in Sources */,
 				640C3FD02A6178B400555161 /* CandlePrice.swift in Sources */,
 				641A599A2AB4794E003899FB /* TradeETH.swift in Sources */,
@@ -2108,6 +2247,7 @@
 				64C771FF2A9504ED009868C2 /* SnapshotProcessor.swift in Sources */,
 				64C771F82A94B88C009868C2 /* TimeAndSaleType.swift in Sources */,
 				641BDD5B2AC72BD400236B78 /* ConcurrentWeakHashTable.swift in Sources */,
+				64BDDB242AD6F10200694210 /* Scope.swift in Sources */,
 				6447A5DF2A8E56FC00739CCF /* IIndexedEvent.swift in Sources */,
 				64104FC52A26059B00D1FC41 /* ConcurrentSet.swift in Sources */,
 				64BA925F2A306B9600BE26A0 /* Profile.swift in Sources */,
@@ -2119,18 +2259,24 @@
 				642BE4C42A2E1AFF0052340A /* Quote.swift in Sources */,
 				64656F602A1B9EC2006A0B19 /* EnumUtil.swift in Sources */,
 				642BE4CA2A2E1C640052340A /* MarketEvent.swift in Sources */,
+				6486B95B2AD015B400D8D5FA /* PriceType.swift in Sources */,
 				8088D76629C0FBCE00F240CB /* IsolateThread.swift in Sources */,
+				64BDDB202AD6CC8300694210 /* AnalyticOrder.swift in Sources */,
 				64AAF0532A8113E800E8942B /* String+Range.swift in Sources */,
 				642BE4D02A2F1D3C0052340A /* Quote+Ext.swift in Sources */,
 				641AC1A92A61AE4000EF6D6C /* DXAliases.swift in Sources */,
 				64BA92632A306BBD00BE26A0 /* ProfileMapper.swift in Sources */,
 				64AAF0592A83EA0000E8942B /* Double+Ext.swift in Sources */,
+				64BDDB2A2AD7D9C700694210 /* SpreadOrder+Ext.swift in Sources */,
 				8088D77529C3A61000F240CB /* ErrorCheck.swift in Sources */,
+				6486B9672AD0390800D8D5FA /* GreeksMapper.swift in Sources */,
 				64AAF0572A82A3FC00E8942B /* ICandleSymbolProperty.swift in Sources */,
 				64437A922A9DF1DE005929B2 /* NativeInstrumentProfileReader.swift in Sources */,
+				64BDDB1E2AD6CC6A00694210 /* Order.swift in Sources */,
 				64437A8F2A9DEE6F005929B2 /* InstrumentProfile.swift in Sources */,
 				64C771FA2A94D692009868C2 /* ShortSaleRestriction.swift in Sources */,
 				64656F5E2A1B97F2006A0B19 /* NativeFeed.swift in Sources */,
+				6486B97D2AD057F200D8D5FA /* OrderSource.swift in Sources */,
 				64656F6F2A1CFC12006A0B19 /* WeakBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2150,9 +2296,11 @@
 				64ACBCEA2A28DDDA00032C53 /* TestEventListener.swift in Sources */,
 				6401A5152A582134009BA686 /* IsolateTest.swift in Sources */,
 				64ACBCCF2A27851C00032C53 /* FeedTest.swift in Sources */,
+				6486B95D2AD0287E00D8D5FA /* DateTests.swift in Sources */,
 				6447A5ED2A8FCC2200739CCF /* UtilsTest.swift in Sources */,
 				64278C6C2A602CA20074B5AA /* CandleTests.swift in Sources */,
 				6498E6B72AB1DACE0093A065 /* ScheduleTest.swift in Sources */,
+				649282ED2AD593F3008F0F04 /* OrderSourceTest.swift in Sources */,
 				6426C8932A531AB500236784 /* ThreadsTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

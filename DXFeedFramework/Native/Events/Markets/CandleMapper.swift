@@ -20,8 +20,10 @@ class CandleMapper: Mapper {
     func toNative(event: MarketEvent) -> UnsafeMutablePointer<dxfg_event_type_t>? {
         let pointer = UnsafeMutablePointer<dxfg_candle_t>.allocate(capacity: 1)
         var pointee = pointer.pointee
-        let candle = event.candle
+        pointee.event_symbol = event.eventSymbol.toCStringRef()
+        pointee.event_time = event.eventTime
 
+        let candle = event.candle
         pointee.event_flags = candle.eventFlags
         pointee.index = candle.index
         pointee.count = candle.count

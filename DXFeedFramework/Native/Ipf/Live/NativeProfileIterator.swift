@@ -12,12 +12,18 @@ import Foundation
 /// The location of the imported functions is in the header files "dxfg_ipf.h".
 class NativeProfileIterator {
     private let iterator: UnsafeMutablePointer<dxfg_iterable_ip_t>
+    private let isDeallocatd: Bool
     let mapper = InstrumentProfileMapper()
 
     deinit {
+        if isDeallocatd {
+            let thread = currentThread()
+            _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(iterator.pointee.handler)))
+        }
     }
 
-    init(_ iterator: UnsafeMutablePointer<dxfg_iterable_ip_t>) {
+    init(_ iterator: UnsafeMutablePointer<dxfg_iterable_ip_t>, isDeallocated: Bool) {
+        self.isDeallocatd = isDeallocated
         self.iterator = iterator
     }
 

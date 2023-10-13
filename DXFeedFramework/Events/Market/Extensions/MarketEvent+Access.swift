@@ -34,4 +34,40 @@ extension MarketEvent {
     public var candle: Candle {
         return (self as? Candle)!
     }
+    /// Use only for event.type is ``EventCode/summary``
+    public var summary: Summary {
+        return (self as? Summary)!
+    }
+    /// Use only for event.type is ``EventCode/greeks``
+    public var greeks: Greeks {
+        return (self as? Greeks)!
+    }
+    /// Use only for event.type is ``EventCode/underlying``
+    public var underlying: Underlying {
+        return (self as? Underlying)!
+    }
+    /// Use only for event.type is ``EventCode/theoPrice``
+    public var theoPrice: TheoPrice {
+        return (self as? TheoPrice)!
+    }
+    /// Use only for event.type is ``EventCode/order``
+    public var order: Order {
+        return (self as? Order)!
+    }
+    /// Use only for event.type is ``EventCode/spreadOrder``
+    public var spreadOrder: SpreadOrder {
+        return (self as? SpreadOrder)!
+    }
+    /// Use only for event.type is ``EventCode/analyticOrder``
+    public var analyticOrder: AnalyticOrder {
+        return (self as? AnalyticOrder)!
+    }
+    /// Use only for event.type is ``EventCode/series``
+    public var series: Series {
+        return (self as? Series)!
+    }
+    /// Use only for event.type is ``EventCode/optionSale``
+    public var optionSale: OptionSale {
+        return (self as? OptionSale)!
+    }
 }

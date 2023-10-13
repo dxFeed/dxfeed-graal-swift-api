@@ -21,6 +21,9 @@ class QuoteMapper: Mapper {
     func toNative(event: MarketEvent) -> UnsafeMutablePointer<dxfg_event_type_t>? {
         let pointer = UnsafeMutablePointer<dxfg_quote_t>.allocate(capacity: 1)
         var pointee = pointer.pointee
+        pointee.market_event.event_symbol = event.eventSymbol.toCStringRef()
+        pointee.market_event.event_time = event.eventTime
+
         let quote = event.quote
         pointee.time_millis_sequence = quote.timeMillisSequence
         pointee.time_nano_part = quote.timeNanoPart

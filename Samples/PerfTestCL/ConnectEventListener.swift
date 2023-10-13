@@ -11,7 +11,7 @@ import DXFeedFramework
 class ConnectEventListener: AbstractEventListener {
     override func handleEvents(_ events: [MarketEvent]) {
         events.forEach { event in
-            print(event)
+            print(event.toString())
         }
     }
 }
