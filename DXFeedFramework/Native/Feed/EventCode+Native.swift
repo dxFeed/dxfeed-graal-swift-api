@@ -95,9 +95,4 @@ extension EventCode {
             return DXFG_EVENT_OPTION_SALE
         }
     }
-
-    static func differentCodesAfterConversation() -> [EventCode] {
-        let convertedSet = Set(EventCode.allCases.map { $0.nativeCode() }.compactMap { EventCode.convert($0)  })
-        return Array(Set(EventCode.allCases).symmetricDifference(convertedSet))
-    }
 }

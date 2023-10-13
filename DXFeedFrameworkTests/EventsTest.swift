@@ -10,7 +10,8 @@ import XCTest
 
 final class EventsTest: XCTestCase {
     func testConversion() throws {
-        let difValues = EventCode.differentCodesAfterConversation()
+        let convertedSet = Set(EventCode.allCases.map { $0.nativeCode() }.compactMap { EventCode.convert($0)  })
+        let difValues = Array(Set(EventCode.allCases).symmetricDifference(convertedSet))
         XCTAssert(difValues.count == 0, "Not equal enums. Please, take a look on \(difValues)")
     }
 }
