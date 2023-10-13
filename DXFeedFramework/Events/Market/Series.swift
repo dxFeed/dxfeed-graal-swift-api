@@ -40,7 +40,7 @@ public class Series: MarketEvent, IIndexedEvent {
     /// This method is intended for efficient series time priority comparison.
     /// **Do not use this method directly**
     /// Change ``time`` and/or  ``setSequence(_:)``
-    public var timeSequence: Long = 0
+    public internal(set) var timeSequence: Long = 0
     /// Gets or sets day id of expiration.
     public var expiration: Int32 = 0
     /// Gets or sets implied volatility index for this series based on VIX methodology.

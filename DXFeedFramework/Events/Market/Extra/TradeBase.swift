@@ -28,7 +28,7 @@ public class TradeBase: MarketEvent, ILastingEvent {
     /// Gets or sets time and sequence of last trade packaged into single long value.
     /// Do not set this property directly.
     /// Sets ``time`` and/or ``setSequence(_:)``.
-    public var timeSequence: Long = 0
+    public internal(set) var timeSequence: Long = 0
     /// Gets or sets microseconds and nanoseconds time part of the last trade.
     public var timeNanoPart: Int32 = 0
     /// Gets or sets exchange code of the last trade.

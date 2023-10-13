@@ -43,7 +43,7 @@ public class OptionSale: MarketEvent, IIndexedEvent {
     /// This method is intended for efficient series time priority comparison.
     /// **Do not use this method directly**
     /// Change ``time`` and/or  ``setSequence(_:)``
-    public var timeSequence: Int64 = 0
+    public internal(set) var timeSequence: Long = 0
     /// Gets or sets microseconds and nanoseconds time part of event.
     public var timeNanoPart: Int32 = 0
     /// Gets or sets exchange code of this option sale event.

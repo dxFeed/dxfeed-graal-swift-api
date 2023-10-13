@@ -93,7 +93,7 @@ public class OrderBase: MarketEvent, IIndexedEvent, CustomStringConvertible {
     /// Gets or sets time and sequence of this order packaged into single long value
     /// This method is intended for efficient order time priority comparison.
     /// Do not set their property directly.
-    public var timeSequence: Int64 = 0
+    public internal(set) var timeSequence: Long = 0
     /// Gets or sets microseconds and nanoseconds time part of this order.
     public var timeNanoPart: Int32 = 0
     /// Gets or sets time of the last ``action``
