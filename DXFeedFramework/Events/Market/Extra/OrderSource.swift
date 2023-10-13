@@ -38,13 +38,15 @@ public class OrderSource: IndexedEventSource {
     private let sourcesByIdCache = NSCache<AnyObject, OrderSource>()
 
     /// The default source with zero identifier for all events that do not support multiple sources.
-    public static let defaultOrderSource = try? OrderSource(0, "DEFAULT", pubOrder | pubAnalyticOrder | pubSpreadOrder | fullOrderBook)
+    public static let defaultOrderSource =
+    try? OrderSource(0, "DEFAULT", pubOrder | pubAnalyticOrder | pubSpreadOrder | fullOrderBook)
 
     /// Bid side of a composite ``Quote``
     ///
     /// It is a synthetic source.
     /// The subscription on composite ``Quote`` event is observed when this source is subscribed to.
-    public static let compsoiteBid = try? OrderSource(1, "COMPOSITE_BID", pubOrder | pubAnalyticOrder | pubSpreadOrder | fullOrderBook)
+    public static let compsoiteBid =
+    try? OrderSource(1, "COMPOSITE_BID", pubOrder | pubAnalyticOrder | pubSpreadOrder | fullOrderBook)
     /// Ask side of a composite ``Quote``.
     /// It is a synthetic source.
     /// The subscription on composite ``Quote`` event is observed when this source is subscribed to.

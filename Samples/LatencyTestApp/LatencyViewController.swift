@@ -52,7 +52,7 @@ class LatencyViewController: UIViewController {
         numberFormatter.maximumFractionDigits = 2
         self.connectionStatusLabel.text = DXEndpointState.notConnected.convetToString()
 
-        addressTextField.text = "mddqa.in.devexperts.com:7400"
+        addressTextField.text = ""
         timer.eventHandler = {
             self.updateUI()
         }

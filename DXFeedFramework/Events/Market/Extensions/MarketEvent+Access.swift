@@ -66,4 +66,8 @@ extension MarketEvent {
     public var series: Series {
         return (self as? Series)!
     }
+    /// Use only for event.type is ``EventCode/optionSale``
+    public var optionSale: OptionSale {
+        return (self as? OptionSale)!
+    }
 }

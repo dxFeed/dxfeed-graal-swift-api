@@ -167,12 +167,16 @@ extension OrderBase {
     }
     /// Gets exchange code of this order.
     public func getExchangeCode() -> Character {
-        return Character(BitUtil.getBits(flags: Int(flags), mask: OrderBase.exchangeMask, shift: OrderBase.exchangeShift))
+        return Character(BitUtil.getBits(flags: Int(flags),
+                                         mask: OrderBase.exchangeMask,
+                                         shift: OrderBase.exchangeShift))
     }
 
     /// Gets exchange code of this order.
     public func getExchangeCode() -> Int {
-        return BitUtil.getBits(flags: Int(flags), mask: OrderBase.exchangeMask, shift: OrderBase.exchangeShift)
+        return BitUtil.getBits(flags: Int(flags),
+                               mask: OrderBase.exchangeMask,
+                               shift: OrderBase.exchangeShift)
     }
     /// Sets exchange code of this order.
     ///

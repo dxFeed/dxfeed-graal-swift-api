@@ -74,10 +74,10 @@ final class OrderSourceTest: XCTestCase {
 
     func testVAlueOf() throws {
         do {
-            let source1 = OrderSource.compsoiteBid
-            let source = try OrderSource.valueOf(identifier: 1)
+            _ = OrderSource.compsoiteBid
+            _ = try OrderSource.valueOf(identifier: 1)
         } catch {
-            print(error)
+            XCTAssert(false, "\(error)")            
         }
     }
 }

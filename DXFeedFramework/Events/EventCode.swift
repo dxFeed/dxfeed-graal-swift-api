@@ -45,6 +45,8 @@ public enum EventCode: CaseIterable {
     case analyticOrder
     /// See ``SpreadOrder``
     case spreadOrder
+    /// See ``Series``
     case series
+    /// See ``OptionSale``
     case optionSale
 }
