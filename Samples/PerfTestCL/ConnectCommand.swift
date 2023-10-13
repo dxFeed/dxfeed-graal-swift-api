@@ -45,7 +45,6 @@ Where:
 
     func execute() {
         var arguments: [String]!
-
         do {
             arguments = try ArgumentParser().parse(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 4)
         } catch {

@@ -110,8 +110,8 @@ extension Series {
 """
 Series{\(eventSymbol), \
 eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
-eventFlags=0x\(String(format: "%02X", eventFlags)), \
-index=0x\(String(format: "%02X", index)), \
+eventFlags=\(eventFlags.toHexString()), \
+index=\(index.toHexString()), \
 time=\(TimeUtil.toLocalDateString(millis: time)), \
 sequence=\(self.getSequence()), \
 expiration=\(DayUtil.getYearMonthDayByDayId(Int(expiration))), \

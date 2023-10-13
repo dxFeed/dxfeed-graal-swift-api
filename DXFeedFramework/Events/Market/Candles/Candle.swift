@@ -137,7 +137,8 @@ extension Candle {
         return """
 \(eventSymbol), \
 eventTime=" + \(TimeUtil.toLocalDateString(millis: eventTime)), \
-eventFlags=0x\(String(format: "%02X", eventFlags)), \
+eventFlags=\(eventFlags.toHexString()), \
+index=\(index.toHexString()), \
 time=\(TimeUtil.toLocalDateString(millis: time)), \
 sequence=\(getSequence()), \
 count=\(count), \
