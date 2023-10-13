@@ -13,10 +13,36 @@ extension EventCode {
         switch string.lowercased() {
         case "quote":
             self = .quote
-        case "timeandsale":
-            self = .timeAndSale
+        case "profile":
+            self = .profile
+        case "summary":
+            self = .summary
+        case "greeks":
+            self = .greeks
         case "candle":
             self = .candle
+        case "dailycandle":
+            self = .dailyCandle
+        case "underlying":
+            self = .underlying
+        case "theoprice":
+            self = .theoPrice
+        case "trade":
+            self = .trade
+        case "tradeeth":
+            self = .tradeETH
+        case "timeandsale":
+            self = .timeAndSale
+        case "order":
+            self = .order
+        case "analyticorder":
+            self = .analyticOrder
+        case "spreadorder":
+            self = .spreadOrder
+        case "series":
+            self = .series
+        case "optionsale":
+            self = .optionSale
         default:
             fatalError("Please, handle this case: \(string)")
         }

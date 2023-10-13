@@ -53,15 +53,15 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "PerfTest  localhost:6666 TimeAndSale YQKNT"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Connect mddqa.in.devexperts.com:7400 candle AAPL{=d} 20230201Z"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Connect mddqa.in.devexperts.com:7400 OrDer AAPL"
             isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "Connect mddqa.in.devexperts.com:7400 Candle AAPL{=d} 20230201Z"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "Connect mddqa.in.devexperts.com:7400 Quote AAPL"
-            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "LatencyTest mddqa.in.devexperts.com:7400 TimeAndSale ETH/USD:GDAX"
