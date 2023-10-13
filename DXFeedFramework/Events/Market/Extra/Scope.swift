@@ -23,7 +23,6 @@ public enum Scope: Int, CaseIterable {
     case order
 }
 
-
 /// Class extension for ``ScopeExt`` enum.
 public class ScopeExt {
     private static let values: [Scope] =

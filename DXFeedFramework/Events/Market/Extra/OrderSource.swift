@@ -298,10 +298,9 @@ public class OrderSource: IndexedEventSource {
     ///   - eventype : Possible values ``Order``, ``AnalyticOrder``, ``SpreadOrder``
     /// - Returns: true- events can be directly published with this source
     /// - Throws: ``ArgumentException/exception(_:)``
-    public func isPublishable(eventType: AnyClass.Type) throws  -> Bool {
+    public func isPublishable(eventType: AnyClass.Type) throws -> Bool {
         return pubFlags & (try OrderSource.getEventTypeMask(eventType)) != 0
     }
-
 
     /// Returns order source for the specified source identifier.
     /// - Throws: ``ArgumentException/exception(_:)``

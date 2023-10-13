@@ -48,8 +48,8 @@ final class OrderSourceTest: XCTestCase {
 
     func testCreateOrderSourceWithDuplicateName() throws {
         do {
-            _ = try OrderSource( 44, "COMPOSITE_ASK",  0)
-            _ = try OrderSource( 33, "COMPOSITE_ASK",  0)
+            _ = try OrderSource( 44, "COMPOSITE_ASK", 0)
+            _ = try OrderSource( 33, "COMPOSITE_ASK", 0)
         } catch ArgumentException.exception(let message) {
             XCTAssert(message.contains("name"), "Wrong message \(message)")
             return
@@ -61,8 +61,8 @@ final class OrderSourceTest: XCTestCase {
 
     func testCreateOrderSourceWithDuplicateId() throws {
         do {
-            _ = try OrderSource(3, "COMPOSITE_ASK1",  0)
-            _ = try OrderSource(3, "COMPOSITE_ASK3",  0)
+            _ = try OrderSource(3, "COMPOSITE_ASK1", 0)
+            _ = try OrderSource(3, "COMPOSITE_ASK3", 0)
         } catch ArgumentException.exception(let message) {
             XCTAssert(message.contains("id"), "Wrong message \(message)")
             return
@@ -75,7 +75,6 @@ final class OrderSourceTest: XCTestCase {
     func testVAlueOf() throws {
         do {
             let source1 = OrderSource.compsoiteBid
-
             let source = try OrderSource.valueOf(identifier: 1)
         } catch {
             print(error)

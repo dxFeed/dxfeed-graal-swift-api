@@ -22,7 +22,6 @@ public class IcebergTypeExt {
     private static let values: [IcebergType] =
     EnumUtil.createEnumBitMaskArrayByValue(defaultValue: .undefined, allCases: IcebergType.allCases)
 
-
     /// Returns an enum constant of the``IcebergType`` by integer code bit pattern.
     /// - Parameters:
     ///   - value: Property value
