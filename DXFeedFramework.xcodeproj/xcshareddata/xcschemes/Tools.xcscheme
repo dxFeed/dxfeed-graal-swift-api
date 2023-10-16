@@ -72,7 +72,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Connect mddqa.in.devexperts.com:7400 OptionSale AAPL"
+            argument = "Connect demo.dxfeed.com:7300 Quote &quot;ipf[https://demo:demo@tools.dxfeed.com/ipf?TYPE=STOCK&amp;compression=zip],APPL&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

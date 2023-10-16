@@ -97,3 +97,11 @@ extension Collection {
 extension String.Index {
     func distance<S: StringProtocol>(in string: S) -> Int { string.distance(to: self) }
 }
+
+extension String {
+    public func slice(from: String, to: String) -> String? {
+        guard let rangeFrom = range(of: from)?.upperBound else { return nil }
+        guard let rangeTo = self[rangeFrom...].range(of: to)?.lowerBound else { return nil }
+        return String(self[rangeFrom..<rangeTo])
+    }
+}
