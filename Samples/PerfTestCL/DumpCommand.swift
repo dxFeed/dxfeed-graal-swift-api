@@ -43,26 +43,11 @@ class DumpCommand: ToolsCommand {
         let argumentsObj = Arguments(arguments: arguments, symbolPosition: 3)
         let symbols = argumentsObj.parseSymbols()
 
-        var tapeFile: String?
-        if let tapeIndex = arguments.firstIndex(of: "-t") {
-            tapeFile = arguments[tapeIndex + 1]
-        }
+        var tapeFile = argumentsObj.tape
 
-        if let isQuiteIndex = arguments.firstIndex(of: "-q") {
-            isQuite = true
-        }
-        var properties = [String: String]()
-        if let propIndex = arguments.firstIndex(of: "-p") {
-            arguments[propIndex + 1].split(separator: ",").forEach { substring in
-                let prop = substring.split(separator: "=")
-                if prop.count == 2 {
-                    properties[String(prop.first!)] = String(prop.last!)
-                } else {
-                    print("Wrong property \(prop)")
-                }
-            }
-        }
-
+        isQuite = argumentsObj.isQuite
+        
+        var properties = argumentsObj.properties
         do {
             let inputEndpoint = try DXEndpoint
                 .builder()

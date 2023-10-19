@@ -18,7 +18,34 @@ class Arguments {
         self.symbolPosition = symbolPosition
     }
 
-    
+    lazy var properties: [String: String] = {
+        var properties = [String: String]()
+        if let propIndex = arguments.firstIndex(of: "-p") {
+            arguments[propIndex + 1].split(separator: ",").forEach { substring in
+                let prop = substring.split(separator: "=")
+                if prop.count == 2 {
+                    properties[String(prop.first!)] = String(prop.last!)
+                } else {
+                    print("Wrong property \(prop)")
+                }
+            }
+        }
+        return properties
+    }()
+
+    lazy var isQuite: Bool = {
+        if let isQuiteIndex = arguments.firstIndex(of: "-q") {
+            return true
+        }
+        return false
+    }()
+
+    lazy var tape: String? = {
+        if let tapeIndex = arguments.firstIndex(of: "-t") {
+            return arguments[tapeIndex + 1]
+        }
+        return nil
+    }()
 
     func parseSymbols() -> [String] {
         let symbols = arguments[symbolPosition]
