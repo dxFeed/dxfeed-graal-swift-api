@@ -33,7 +33,7 @@ class LiveIpfCommand: ToolsCommand {
 
     <ipf-url>  is URL for the instruments profiles.
     Example of url: " + \(LiveIpfCommand.defaultIpfUrl)
-    
+
     """
     var collector: DXInstrumentProfileCollector?
     var connection: DXInstrumentProfileConnection?

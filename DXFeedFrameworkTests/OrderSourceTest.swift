@@ -77,7 +77,7 @@ final class OrderSourceTest: XCTestCase {
             _ = OrderSource.compsoiteBid
             _ = try OrderSource.valueOf(identifier: 1)
         } catch {
-            XCTAssert(false, "\(error)")            
+            XCTAssert(false, "\(error)")
         }
     }
 }

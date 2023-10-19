@@ -4,11 +4,15 @@
       "id" : "A4145306-F50A-45F8-AEBE-8517F9446F91",
       "name" : "Test Scheme Action",
       "options" : {
-
+        "threadSanitizerEnabled" : false,
+        "undefinedBehaviorSanitizerEnabled" : false
       }
     }
   ],
   "defaultOptions" : {
+    "addressSanitizer" : {
+      "enabled" : true
+    },
     "codeCoverage" : false,
     "commandLineArgumentEntries" : [
 
@@ -16,7 +20,8 @@
     "environmentVariableEntries" : [
 
     ],
-    "testRepetitionMode" : "retryOnFailure"
+    "testRepetitionMode" : "retryOnFailure",
+    "threadSanitizerEnabled" : true
   },
   "testTargets" : [
     {

@@ -183,8 +183,8 @@ public class DXEndpoint {
         try? DXFeed(native: endpointNative.getNativeFeed())
     }()
     /// Lazy initialization of the ``DXPublisher`` instance.
-    private lazy var publisher = {
-        DXPublisher()
+    private lazy var publisher: DXPublisher? = {
+        try? DXPublisher(native: endpointNative.getNativePublisher())
     }()
     /// A list of state change listeners callback. observersSet - not typed variable(as storage).
     private var observersSet = ConcurrentWeakHashTable<DXEndpointObserver>()
