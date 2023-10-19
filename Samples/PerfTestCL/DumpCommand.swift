@@ -40,7 +40,8 @@ class DumpCommand: ToolsCommand {
         }
         let address = arguments[1]
         let types = arguments[2]
-        let symbols = arguments[3].components(separatedBy: ",")
+        let argumentsObj = Arguments(arguments: arguments, symbolPosition: 3)
+        let symbols = argumentsObj.parseSymbols()
 
         var tapeFile: String?
         if let tapeIndex = arguments.firstIndex(of: "-t") {
