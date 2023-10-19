@@ -148,6 +148,7 @@
 		645BE84F2AC3170F0028243D /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		645BE8522AC31E7C0028243D /* PerfTestCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645BE8512AC31E7C0028243D /* PerfTestCommand.swift */; };
 		645BE8542AC3229D0028243D /* ToolsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645BE8532AC3229D0028243D /* ToolsCommand.swift */; };
+		645CD0042AE145E600F99FCF /* DumpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645CD0032AE145E600F99FCF /* DumpCommand.swift */; };
 		646228512A376B0A0029DC97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462284D2A376B0A0029DC97 /* Main.storyboard */; };
 		646228522A376B0A0029DC97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462284F2A376B0A0029DC97 /* LaunchScreen.storyboard */; };
 		646407492A9DF984006FF769 /* InstrumentProfileMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646407482A9DF984006FF769 /* InstrumentProfileMapper.swift */; };
@@ -619,6 +620,7 @@
 		645A34942A937C7200709F29 /* BinaryInteger+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+Ext.swift"; sourceTree = "<group>"; };
 		645BE8512AC31E7C0028243D /* PerfTestCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfTestCommand.swift; sourceTree = "<group>"; };
 		645BE8532AC3229D0028243D /* ToolsCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCommand.swift; sourceTree = "<group>"; };
+		645CD0032AE145E600F99FCF /* DumpCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DumpCommand.swift; sourceTree = "<group>"; };
 		6462284E2A376B0A0029DC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		646228502A376B0A0029DC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		646407482A9DF984006FF769 /* InstrumentProfileMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileMapper.swift; sourceTree = "<group>"; };
@@ -937,6 +939,7 @@
 				6486B97E2AD4167800D8D5FA /* LiveIpfCommand.swift */,
 				64FFE59E2AD430E4003D3353 /* ScheduleCommand.swift */,
 				649282E92AD55323008F0F04 /* IpfConnectCommand.swift */,
+				645CD0032AE145E600F99FCF /* DumpCommand.swift */,
 				648BD56A2AC4576F004A3A95 /* HelpCommand.swift */,
 				648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */,
 			);
@@ -1983,6 +1986,7 @@
 				649282EB2AD55323008F0F04 /* IpfConnectCommand.swift in Sources */,
 				6486B97F2AD4167800D8D5FA /* LiveIpfCommand.swift in Sources */,
 				645BE8522AC31E7C0028243D /* PerfTestCommand.swift in Sources */,
+				645CD0042AE145E600F99FCF /* DumpCommand.swift in Sources */,
 				641BDD5D2ACD67A000236B78 /* LatencyListener.swift in Sources */,
 				641BDD622ACD697B00236B78 /* AbstractEventListener.swift in Sources */,
 				641BDD582AC71CCE00236B78 /* LatencyTestCommand.swift in Sources */,

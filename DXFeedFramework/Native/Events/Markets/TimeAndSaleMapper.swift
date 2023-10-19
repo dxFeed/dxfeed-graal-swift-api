@@ -20,23 +20,22 @@ class TimeAndSaleMapper: Mapper {
 
     func toNative(event: MarketEvent) -> UnsafeMutablePointer<dxfg_event_type_t>? {
         let pointer = UnsafeMutablePointer<dxfg_time_and_sale_t>.allocate(capacity: 1)
-        var pointee = pointer.pointee
-        pointee.market_event.event_symbol = event.eventSymbol.toCStringRef()
-        pointee.market_event.event_time = event.eventTime
+        pointer.pointee.market_event.event_symbol = event.eventSymbol.toCStringRef()
+        pointer.pointee.market_event.event_time = event.eventTime
 
         let timeAndSale = event.timeAndSale
-        pointee.event_flags = timeAndSale.eventFlags
-        pointee.index = timeAndSale.index
-        pointee.time_nano_part = timeAndSale.timeNanoPart
-        pointee.exchange_code = timeAndSale.exchangeCode
-        pointee.price = timeAndSale.price
-        pointee.size = timeAndSale.size
-        pointee.bid_price = timeAndSale.bidPrice
-        pointee.ask_price = timeAndSale.askPrice
-        pointee.exchange_sale_conditions = timeAndSale.exchangeSaleConditions?.toCStringRef()
-        pointee.flags = timeAndSale.flags
-        pointee.buyer = timeAndSale.buyer?.toCStringRef()
-        pointee.seller = timeAndSale.seller?.toCStringRef()
+        pointer.pointee.event_flags = timeAndSale.eventFlags
+        pointer.pointee.index = timeAndSale.index
+        pointer.pointee.time_nano_part = timeAndSale.timeNanoPart
+        pointer.pointee.exchange_code = timeAndSale.exchangeCode
+        pointer.pointee.price = timeAndSale.price
+        pointer.pointee.size = timeAndSale.size
+        pointer.pointee.bid_price = timeAndSale.bidPrice
+        pointer.pointee.ask_price = timeAndSale.askPrice
+        pointer.pointee.exchange_sale_conditions = timeAndSale.exchangeSaleConditions?.toCStringRef()
+        pointer.pointee.flags = timeAndSale.flags
+        pointer.pointee.buyer = timeAndSale.buyer?.toCStringRef()
+        pointer.pointee.seller = timeAndSale.seller?.toCStringRef()
         let eventType = pointer.withMemoryRebound(to: dxfg_event_type_t.self, capacity: 1) { pointer in
             pointer.pointee.clazz = DXFG_EVENT_TIME_AND_SALE
             return pointer

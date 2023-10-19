@@ -39,9 +39,8 @@ class NativePublisher {
             nativeEvents.forEach { mapper.releaseNative(native: $0) }
         }
         let thread = currentThread()
-        let result = try ErrorCheck.nativeCall(thread, dxfg_DXPublisher_publishEvents(thread,
+        _ = try ErrorCheck.nativeCall(thread, dxfg_DXPublisher_publishEvents(thread,
                                                                                       publisher,
                                                                                       listPointer))
-        print(result)
     }
 }

@@ -19,24 +19,23 @@ class CandleMapper: Mapper {
 
     func toNative(event: MarketEvent) -> UnsafeMutablePointer<dxfg_event_type_t>? {
         let pointer = UnsafeMutablePointer<dxfg_candle_t>.allocate(capacity: 1)
-        var pointee = pointer.pointee
-        pointee.event_symbol = event.eventSymbol.toCStringRef()
-        pointee.event_time = event.eventTime
+        pointer.pointee.event_symbol = event.eventSymbol.toCStringRef()
+        pointer.pointee.event_time = event.eventTime
 
         let candle = event.candle
-        pointee.event_flags = candle.eventFlags
-        pointee.index = candle.index
-        pointee.count = candle.count
-        pointee.open = candle.open
-        pointee.high = candle.high
-        pointee.low = candle.low
-        pointee.close = candle.close
-        pointee.volume = candle.volume
-        pointee.vwap = candle.vwap
-        pointee.bid_volume = candle.bidVolume
-        pointee.ask_volume = candle.askVolume
-        pointee.imp_volatility = candle.impVolatility
-        pointee.open_interest = candle.openInterest
+        pointer.pointee.event_flags = candle.eventFlags
+        pointer.pointee.index = candle.index
+        pointer.pointee.count = candle.count
+        pointer.pointee.open = candle.open
+        pointer.pointee.high = candle.high
+        pointer.pointee.low = candle.low
+        pointer.pointee.close = candle.close
+        pointer.pointee.volume = candle.volume
+        pointer.pointee.vwap = candle.vwap
+        pointer.pointee.bid_volume = candle.bidVolume
+        pointer.pointee.ask_volume = candle.askVolume
+        pointer.pointee.imp_volatility = candle.impVolatility
+        pointer.pointee.open_interest = candle.openInterest
 
         let eventType = pointer.withMemoryRebound(to: dxfg_event_type_t.self, capacity: 1) { pointer in
             pointer.pointee.clazz = DXFG_EVENT_CANDLE

@@ -20,27 +20,26 @@ class OptionSaleMapper: Mapper {
 
     func toNative(event: MarketEvent) -> UnsafeMutablePointer<dxfg_event_type_t>? {
         let pointer = UnsafeMutablePointer<TypeAlias>.allocate(capacity: 1)
-        var pointee = pointer.pointee
-        pointee.market_event.event_symbol = event.eventSymbol.toCStringRef()
-        pointee.market_event.event_time = event.eventTime
+        pointer.pointee.market_event.event_symbol = event.eventSymbol.toCStringRef()
+        pointer.pointee.market_event.event_time = event.eventTime
 
         let optionSale = event.optionSale
 
-        pointee.event_flags = optionSale.eventFlags
-        pointee.index = optionSale.index
-        pointee.time_sequence = optionSale.timeSequence
-        pointee.time_nano_part = optionSale.timeNanoPart
-        pointee.exchange_code = optionSale.exchangeCode
-        pointee.price = optionSale.price
-        pointee.size = optionSale.size
-        pointee.bid_price = optionSale.bidPrice
-        pointee.ask_price = optionSale.askPrice
-        pointee.exchange_sale_conditions = optionSale.exchangeSaleConditions.toCStringRef()
-        pointee.flags = optionSale.flags
-        pointee.underlying_price = optionSale.underlyingPrice
-        pointee.volatility = optionSale.volatility
-        pointee.delta = optionSale.delta
-        pointee.option_symbol = optionSale.optionSymbol.toCStringRef()
+        pointer.pointee.event_flags = optionSale.eventFlags
+        pointer.pointee.index = optionSale.index
+        pointer.pointee.time_sequence = optionSale.timeSequence
+        pointer.pointee.time_nano_part = optionSale.timeNanoPart
+        pointer.pointee.exchange_code = optionSale.exchangeCode
+        pointer.pointee.price = optionSale.price
+        pointer.pointee.size = optionSale.size
+        pointer.pointee.bid_price = optionSale.bidPrice
+        pointer.pointee.ask_price = optionSale.askPrice
+        pointer.pointee.exchange_sale_conditions = optionSale.exchangeSaleConditions.toCStringRef()
+        pointer.pointee.flags = optionSale.flags
+        pointer.pointee.underlying_price = optionSale.underlyingPrice
+        pointer.pointee.volatility = optionSale.volatility
+        pointer.pointee.delta = optionSale.delta
+        pointer.pointee.option_symbol = optionSale.optionSymbol.toCStringRef()
 
         let eventType = pointer.withMemoryRebound(to: dxfg_event_type_t.self, capacity: 1) { pointer in
             pointer.pointee.clazz = DXFG_EVENT_OPTION_SALE
