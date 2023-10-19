@@ -52,8 +52,46 @@ Where:
         }
         let address = arguments[1]
         let types = arguments[2]
-        let symbols = arguments[3].components(separatedBy: ",")
 
+        let symbols = arguments[3]
+        var symbolsList = [String]()
+        func addSymbol(str: String) {
+            if str.hasPrefix("ipf[") && str.hasSuffix("]") {
+                if let address = str.slice(from: "[", to: "]") {
+                    let profiles = try? DXInstrumentProfileReader().readFromFile(address: address)
+                    profiles?.forEach({ profile in
+                        symbolsList.append(profile.symbol)
+                    })
+                }
+            } else {
+                symbolsList.append(str)
+            }
+        }
+        var parentheses = 0
+        var tempSrting = ""
+        symbols.forEach { character in
+            switch character {
+            case "{", "(", "[":
+                parentheses += 1
+                tempSrting.append(character)
+            case "}", ")", "]":
+                if parentheses > 0 {
+                    parentheses -= 1
+                }
+                tempSrting.append(character)
+            case ",":
+                if parentheses == 0 {
+                    addSymbol(str: tempSrting)
+                    tempSrting = ""
+                } else {
+                    tempSrting.append(character)
+                }
+            default:
+                tempSrting.append(character)
+            }
+        }
+
+        addSymbol(str: tempSrting)
         var time: String?
         if arguments.count > 4 {
             time = arguments[4]
@@ -61,7 +99,7 @@ Where:
 
         let listener = ConnectEventListener()
         subscription.createSubscription(address: address,
-                                        symbols: symbols,
+                                        symbols: symbolsList,
                                         types: types,
                                         listener: listener,
                                         time: time)
