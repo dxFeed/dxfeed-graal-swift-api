@@ -19,7 +19,7 @@ class DumpCommand: ToolsCommand {
     Enforces a streaming contract for subscription. A wildcard enabled by default.
     This was designed to receive data from a file.
     Usage: Dump <address> <types> <symbols> [<options>]
-    
+
     Where:
     <address>  is a URL to Schedule API defaults file
     <types>    is comma-separated list of dxfeed event types ({eventTypeNames}).
@@ -31,29 +31,29 @@ class DumpCommand: ToolsCommand {
     var publisher: DXPublisher?
     var isQuite = false
 
-    func execute() {
-        var arguments: [String]!
+    private lazy var arguments: Arguments = {
         do {
-            arguments = try ArgumentParser().parse(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 4)
+            let arguments = try Arguments(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 4)
+            return arguments
         } catch {
             print(fullDescription)
+            fatalError()
         }
+    }()
+
+    func execute() {
         let address = arguments[1]
         let types = arguments[2]
-        let argumentsObj = Arguments(arguments: arguments, symbolPosition: 3)
-        let symbols = argumentsObj.parseSymbols()
+        let symbols = arguments.parseSymbols(at: 3)
 
-        var tapeFile = argumentsObj.tape
+        isQuite = arguments.isQuite
 
-        isQuite = argumentsObj.isQuite
-        
-        var properties = argumentsObj.properties
         do {
             let inputEndpoint = try DXEndpoint
                 .builder()
                 .withRole(.streamFeed)
                 .withProperty(DXEndpoint.Property.wildcardEnable.rawValue, "true")
-                .withProperties(properties)
+                .withProperties(arguments.properties)
                 .withName("DumpTool")
                 .build()
 
@@ -63,7 +63,7 @@ class DumpCommand: ToolsCommand {
             let subscription = try inputEndpoint.getFeed()?.createSubscription(eventTypes)
             var outputEndpoint: DXEndpoint?
 
-            if let tapeFile = tapeFile {
+            if let tapeFile = arguments.tape {
                 outputEndpoint = try DXEndpoint
                     .builder()
                     .withRole(.publisher)

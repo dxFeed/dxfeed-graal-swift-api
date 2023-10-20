@@ -28,13 +28,17 @@ class IpfConnectCommand: ToolsCommand {
     sample: DXFeedIpfConnect TimeAndSale sample.ipf.zip
     """
 
-    func execute() {
-        var arguments: [String]!
+    private lazy var arguments: Arguments = {
         do {
-            arguments = try ArgumentParser().parse(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 2)
+            let arguments = try Arguments(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 2)
+            return arguments
         } catch {
             print(fullDescription)
+            fatalError()
         }
+    }()
+
+    func execute() {
         let eventType = arguments[1]
         let ipfFile = arguments[2]
         try? SystemProperty.setProperty(DXEndpoint.Property.address.rawValue, "demo.dxfeed.com:7300")

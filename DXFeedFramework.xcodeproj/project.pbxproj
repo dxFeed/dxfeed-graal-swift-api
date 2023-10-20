@@ -189,7 +189,7 @@
 		646D19E22A3C994000C82315 /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
 		646D19E32A3C994100C82315 /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
 		647426A82ABC7F5E0012F793 /* ConnectEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426A62ABC7F080012F793 /* ConnectEventListener.swift */; };
-		647426AD2ABC85F20012F793 /* ArgumentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426AC2ABC85F20012F793 /* ArgumentParser.swift */; };
+		647426AD2ABC85F20012F793 /* Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426AC2ABC85F20012F793 /* Arguments.swift */; };
 		647426AF2ABC93900012F793 /* EventCode+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426AE2ABC93900012F793 /* EventCode+String.swift */; };
 		6479BC2B2A4F35A300A3D404 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6479BC2A2A4F35A300A3D404 /* QuoteView.swift */; };
 		6486B9582AD00BDC00D8D5FA /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9572AD00BDC00D8D5FA /* Summary.swift */; };
@@ -315,7 +315,6 @@
 		64D8BB452A39BB730071BC88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D8BB432A39BB730071BC88 /* Main.storyboard */; };
 		64D8BB472A39BB740071BC88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D8BB462A39BB740071BC88 /* Assets.xcassets */; };
 		64D8BB4A2A39BB740071BC88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D8BB482A39BB740071BC88 /* LaunchScreen.storyboard */; };
-		64D8C9522AE17739009E4799 /* Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D8C9512AE17739009E4799 /* Arguments.swift */; };
 		64DA26B62AA1EF47005B1757 /* DXProfileIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26B52AA1EF47005B1757 /* DXProfileIterator.swift */; };
 		64DA26B82AA20095005B1757 /* NativeInstrumentProfileConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26B72AA20095005B1757 /* NativeInstrumentProfileConnection.swift */; };
 		64DA26BA2AA20AAA005B1757 /* DXInstrumentProfileConnectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26B92AA20AAA005B1757 /* DXInstrumentProfileConnectionState.swift */; };
@@ -652,7 +651,7 @@
 		6469F8D22A3B401700846831 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		646D19E02A3C970700C82315 /* DXFTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFTimer.swift; sourceTree = "<group>"; };
 		647426A62ABC7F080012F793 /* ConnectEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectEventListener.swift; sourceTree = "<group>"; };
-		647426AC2ABC85F20012F793 /* ArgumentParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentParser.swift; sourceTree = "<group>"; };
+		647426AC2ABC85F20012F793 /* Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arguments.swift; sourceTree = "<group>"; };
 		647426AE2ABC93900012F793 /* EventCode+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventCode+String.swift"; sourceTree = "<group>"; };
 		6479BC2A2A4F35A300A3D404 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		6486B9572AD00BDC00D8D5FA /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
@@ -780,7 +779,6 @@
 		64D8BB462A39BB740071BC88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64D8BB492A39BB740071BC88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64D8BB4B2A39BB740071BC88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		64D8C9512AE17739009E4799 /* Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arguments.swift; sourceTree = "<group>"; };
 		64DA26B52AA1EF47005B1757 /* DXProfileIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXProfileIterator.swift; sourceTree = "<group>"; };
 		64DA26B72AA20095005B1757 /* NativeInstrumentProfileConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInstrumentProfileConnection.swift; sourceTree = "<group>"; };
 		64DA26B92AA20AAA005B1757 /* DXInstrumentProfileConnectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileConnectionState.swift; sourceTree = "<group>"; };
@@ -933,8 +931,7 @@
 			children = (
 				64148B6E2ABB5C4A0063110E /* PerfTestCL.entitlements */,
 				64148B662ABB5C320063110E /* main.swift */,
-				64D8C9512AE17739009E4799 /* Arguments.swift */,
-				647426AC2ABC85F20012F793 /* ArgumentParser.swift */,
+				647426AC2ABC85F20012F793 /* Arguments.swift */,
 				647426A62ABC7F080012F793 /* ConnectEventListener.swift */,
 				645BE8532AC3229D0028243D /* ToolsCommand.swift */,
 				641BDD572AC71CCE00236B78 /* LatencyTestCommand.swift */,
@@ -1980,7 +1977,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64D8C9522AE17739009E4799 /* Arguments.swift in Sources */,
 				648BD56D2AC56A04004A3A95 /* SubscriptionUtils.swift in Sources */,
 				648BD56B2AC4576F004A3A95 /* HelpCommand.swift in Sources */,
 				649282E82AD54919008F0F04 /* ScheduleUtils.swift in Sources */,
@@ -2000,7 +1996,7 @@
 				647426A82ABC7F5E0012F793 /* ConnectEventListener.swift in Sources */,
 				644FE5CE2AC1EC1500580E3A /* TimeInterval+Ext.swift in Sources */,
 				64148B672ABB5C320063110E /* main.swift in Sources */,
-				647426AD2ABC85F20012F793 /* ArgumentParser.swift in Sources */,
+				647426AD2ABC85F20012F793 /* Arguments.swift in Sources */,
 				64098F4E2ACD73920020D741 /* PerfTestEventListener.swift in Sources */,
 				641BDD592AC7215200236B78 /* LatencyDiagnostic.swift in Sources */,
 				648BD5692AC450D6004A3A95 /* ConnectCommand.swift in Sources */,

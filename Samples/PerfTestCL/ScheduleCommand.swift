@@ -29,14 +29,17 @@ class ScheduleCommand: ToolsCommand {
     sample: ScheduleSample  schedule.properties.zip  sample.ipf.zip  IBM  2011-05-26-14:15:00
 
     """
-
-    func execute() {
-        var arguments: [String]!
+    private lazy var arguments: Arguments = {
         do {
-            arguments = try ArgumentParser().parse(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 3)
+            let arguments = try Arguments(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 3)
+            return arguments
         } catch {
             print(fullDescription)
+            fatalError()
         }
+    }()
+
+    func execute() {
         do {
             let defaultFile = arguments[1]
             let profileFile = arguments[2]

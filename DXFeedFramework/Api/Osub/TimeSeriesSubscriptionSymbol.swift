@@ -37,6 +37,16 @@ public class TimeSeriesSubscriptionSymbol: IndexedEventSubscriptionSymbol<AnyHas
         self.init(symbol: symbol, fromTime: Long(date.timeIntervalSince1970) * 1000)
     }
 
+    /// Initializes a new instance of the ``TimeSeriesSubscriptionSymbol`` class
+    /// with a specified event symbol and from date
+    ///
+    /// - Parameters:
+    ///   - symbol: The event ``Symbol``
+    ///   - date: Date. Just for easing initialization with date object
+    convenience public init(symbol: Symbol, date: Date) {
+        self.init(symbol: symbol.stringValue, fromTime: Long(date.timeIntervalSince1970) * 1000)
+    }
+
     static func == (lhs: TimeSeriesSubscriptionSymbol, rhs: TimeSeriesSubscriptionSymbol) -> Bool {
         return lhs === rhs || lhs.symbol == rhs.symbol
     }

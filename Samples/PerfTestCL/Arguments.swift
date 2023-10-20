@@ -1,24 +1,21 @@
 //
-//  Arguments.swift
-//  Tools
+//  ArgumentParser.swift
+//  PerfTestCL
 //
-//  Created by Aleksey Kosylo on 19.10.23.
+//  Created by Aleksey Kosylo on 21.09.23.
 //
 
 import Foundation
 import DXFeedFramework
 
+enum ArgumentParserException: Error {
+    case error(message: String)
+}
+
 class Arguments {
+    private let arguments: [String]
 
-    let arguments: [String]
-    let symbolPosition: Int
-
-    init(arguments: [String], symbolPosition: Int) {
-        self.arguments = arguments
-        self.symbolPosition = symbolPosition
-    }
-
-    lazy var properties: [String: String] = {
+    public lazy var properties: [String: String] = {
         var properties = [String: String]()
         if let propIndex = arguments.firstIndex(of: "-p") {
             arguments[propIndex + 1].split(separator: ",").forEach { substring in
@@ -33,22 +30,55 @@ class Arguments {
         return properties
     }()
 
-    lazy var isQuite: Bool = {
+    public lazy var isQuite: Bool = {
         if let isQuiteIndex = arguments.firstIndex(of: "-q") {
             return true
         }
         return false
     }()
 
-    lazy var tape: String? = {
+    public lazy var tape: String? = {
         if let tapeIndex = arguments.firstIndex(of: "-t") {
             return arguments[tapeIndex + 1]
         }
         return nil
     }()
 
-    func parseSymbols() -> [String] {
-        let symbols = arguments[symbolPosition]
+    public lazy var time: String? = {
+        if arguments.count > 4 {
+            return arguments[4]
+        } else {
+            return nil
+        }
+    }()
+
+    init(_ cmd: [String], requiredNumberOfArguments: Int) throws {
+        print("Parse \(cmd) to \(requiredNumberOfArguments) arguments")
+
+        if cmd.count - 1 < requiredNumberOfArguments {
+            throw ArgumentParserException.error(message:
+"""
+Cmd \(cmd) contains not enough \(cmd.count - 1) arguments. Expected \(requiredNumberOfArguments)
+""")
+        }
+        // 0 Arg is path to executed app
+        self.arguments =  Array(cmd[1..<cmd.count])
+    }
+
+    public subscript(index: Int) -> String {
+        arguments[index]
+    }
+
+    public var count: Int {
+        arguments.count
+    }
+
+    public func parseSymbols(at index: Int) -> [Symbol] {
+        let symbols = arguments[index]
+        if symbols.lowercased() == "all" {
+            return [WildcardSymbol.all]
+        }
+
         var symbolsList = [String]()
         func addSymbol(str: String) {
             if str.hasPrefix("ipf[") && str.hasSuffix("]") {
@@ -85,7 +115,6 @@ class Arguments {
                 tempSrting.append(character)
             }
         }
-
         addSymbol(str: tempSrting)
         return symbolsList
     }

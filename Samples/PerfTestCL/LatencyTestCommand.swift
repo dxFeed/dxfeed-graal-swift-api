@@ -30,24 +30,27 @@ class LatencyTestCommand: ToolsCommand {
                         The "dxfeed.wildcard.enable" property must be set to true to enable wildcard subscription.
     """
     var subscription = Subscription()
-    func execute() {
-        var arguments: [String]!
-
+    private lazy var arguments: Arguments = {
         do {
-            arguments = try ArgumentParser().parse(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 4)
+            let arguments = try Arguments(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 4)
+            return arguments
         } catch {
             print(fullDescription)
+            fatalError()
         }
+    }()
 
+    func execute() {
         let address = arguments[1]
         let types = arguments[2]
-        let symbols = arguments[3].components(separatedBy: ",")
 
         let listener = LatencyEventListener()
+
         subscription.createSubscription(address: address,
-                                        symbols: symbols,
+                                        symbols: arguments.parseSymbols(at: 3),
                                         types: types,
                                         listener: listener,
+                                        properties: arguments.properties,
                                         time: nil)
 
         let timer = DXFTimer(timeInterval: 2)

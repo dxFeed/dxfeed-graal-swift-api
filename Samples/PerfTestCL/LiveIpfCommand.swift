@@ -38,13 +38,17 @@ class LiveIpfCommand: ToolsCommand {
     var collector: DXInstrumentProfileCollector?
     var connection: DXInstrumentProfileConnection?
 
-    func execute() {
-        var arguments: [String]!
+    private lazy var arguments: Arguments = {
         do {
-            arguments = try ArgumentParser().parse(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 1)
+            let arguments = try Arguments(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 1)
+            return arguments
         } catch {
             print(fullDescription)
+            fatalError()
         }
+    }()
+
+    func execute() {
         do {
             collector = try DXInstrumentProfileCollector()
             connection = try DXInstrumentProfileConnection(arguments[1], collector!)
