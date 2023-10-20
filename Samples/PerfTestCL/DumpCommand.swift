@@ -41,6 +41,7 @@ class DumpCommand: ToolsCommand {
         }
     }()
 
+
     func execute() {
         let address = arguments[1]
         let types = arguments[2]
