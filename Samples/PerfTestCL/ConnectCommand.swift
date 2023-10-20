@@ -9,6 +9,7 @@ import Foundation
 import DXFeedFramework
 
 class ConnectCommand: ToolsCommand {
+    var isTools: Bool = true
     var cmd = "Connect"
     var shortDescription = "Connects to specified address(es)."
 
@@ -55,7 +56,7 @@ Where:
         let listener = ConnectEventListener()
         subscription.createSubscription(address: arguments[1],
                                         symbols: arguments.parseSymbols(at: 3),
-                                        types: arguments[2],
+                                        types: arguments.parseTypes(at: 2),
                                         listener: listener,
                                         properties: arguments.properties,
                                         time: arguments.time)

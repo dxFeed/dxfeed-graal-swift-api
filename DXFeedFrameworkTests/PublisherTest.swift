@@ -24,17 +24,25 @@ final class PublisherTest: XCTestCase {
 
     func execute() throws {
         do {
-            let endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.publisher).withProperty("test", "value").build()
+            let endpoint: DXEndpoint? = try DXEndpoint
+                .builder()
+                .withRole(.publisher)
+                .withProperty("test", "value")
+                .build()
             try endpoint?.connect(":7400")
 
             let testQuote = Quote("AAPL")
             testQuote.bidSize = 100
             testQuote.askPrice = 666
             try? testQuote.setSequence(10)
-            let feedEndpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
-            var publisher = endpoint?.getPublisher()
+            let feedEndpoint = try DXEndpoint
+                .builder()
+                .withRole(.feed)
+                .withProperty("test", "value")
+                .build()
+            let publisher = endpoint?.getPublisher()
             let connectedExpectation = expectation(description: "Connected")
-            var stateListener: TestEndpoointStateListener? = TestEndpoointStateListener { listener in
+            let stateListener: TestEndpoointStateListener? = TestEndpoointStateListener { listener in
                 listener.callback = { state in
                     if state == .connected {
                         connectedExpectation.fulfill()

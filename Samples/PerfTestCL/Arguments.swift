@@ -73,6 +73,12 @@ Cmd \(cmd) contains not enough \(cmd.count - 1) arguments. Expected \(requiredNu
         arguments.count
     }
 
+    public func parseTypes(at index: Int) -> [EventCode] {
+        return arguments[2].split(separator: ",").compactMap { str in
+            return EventCode(string: String(str))
+        }
+    }
+
     public func parseSymbols(at index: Int) -> [Symbol] {
         let symbols = arguments[index]
         if symbols.lowercased() == "all" {

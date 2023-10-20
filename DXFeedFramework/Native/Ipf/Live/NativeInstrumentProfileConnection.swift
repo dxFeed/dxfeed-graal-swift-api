@@ -33,7 +33,8 @@ class NativeInstrumentProfileConnection {
         }
     }
 
-    private static let listenerCallback: dxfg_ipf_connection_state_change_listener_func = {_, oldState, newState, context in
+    private static let listenerCallback: dxfg_ipf_connection_state_change_listener_func
+    = {_, oldState, newState, context in
         if let context = context {
             let endpoint: AnyObject = bridge(ptr: context)
             if let listener =  endpoint as? WeakListener {

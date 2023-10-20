@@ -8,6 +8,7 @@
 import Foundation
 
 class HelpCommand: ToolsCommand {
+    var isTools: Bool = true
     var cmd = "Help"
 
     var shortDescription = "Help tool."

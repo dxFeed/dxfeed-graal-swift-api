@@ -56,6 +56,10 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "ScheduleSample"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "DXFeedIpfConnect Quote https://demo:demo@tools.dxfeed.com/ipf"
             isEnabled = "NO">
          </CommandLineArgument>
@@ -76,12 +80,12 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = " Dump demo.dxfeed.com:7300 timeandsale ETH/USD:GDAX -p dxfeed.wildcard.enable=true,one_more_prop=abc -t test_tape_ios.txt[format=text] -q"
+            argument = " Dump demo.dxfeed.com:7300 timeandsale,quote,profile,order,trade IBM,AAPL,ETH/USD:GDAX -p dxfeed.wildcard.enable=true,one_more_prop=abc -t test_tape_ios.txt[format=text] -q"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = " Dump localhost:6666 TimeAndSale all -p dxfeed.wildcard.enable=true,one_more_prop=abc -t test_tape_ios.txt[format=text] -q"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "LatencyTest mddqa.in.devexperts.com:7400 TimeAndSale ETH/USD:GDAX"

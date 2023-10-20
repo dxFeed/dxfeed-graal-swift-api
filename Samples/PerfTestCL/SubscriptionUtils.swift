@@ -14,13 +14,13 @@ class Subscription {
 
     func createSubscription<O>(address: String,
                                symbols: [Symbol],
-                               types: String,
+                               types: [EventCode],
                                listener: O,
                                properties: [String: String],
                                time: String?)
     where O: DXEventListener, O: Hashable {
         print("""
-Create subscription to \(address) for \(types):\(symbols) with properties:\(properties) and time \(time)
+Create subscription to \(address) for \(types):\(symbols) with properties:\(properties) and time \(time ?? "---")
 """)
         endpoint = try? DXEndpoint
             .builder()
@@ -28,8 +28,8 @@ Create subscription to \(address) for \(types):\(symbols) with properties:\(prop
             .withProperties(properties)
             .build()
         _ = try? endpoint?.connect(address)
-        types.split(separator: ",").forEach { str in
-            let subscription = try? endpoint?.getFeed()?.createSubscription(EventCode(string: String(str)))
+        types.forEach { str in
+            let subscription = try? endpoint?.getFeed()?.createSubscription(str)
             try? subscription?.add(observer: listener)
             if time != nil {
                 guard let date = TimeUtil.parse(time!) else {

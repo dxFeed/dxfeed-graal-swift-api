@@ -248,9 +248,9 @@ class NativeSchedule {
     public static func setDefaults(_ data: Data) throws {
         let thread = currentThread()
         _ = try data.withUnsafeBytes({ pointer in
-            let result = try ErrorCheck.nativeCall(thread, dxfg_Schedule_setDefaults(thread,
-                                                                        pointer.baseAddress,
-                                                                        Int32(data.count)))
+            _ = try ErrorCheck.nativeCall(thread, dxfg_Schedule_setDefaults(thread,
+                                                                            pointer.baseAddress,
+                                                                            Int32(data.count)))
         })
     }
 

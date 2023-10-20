@@ -8,6 +8,7 @@
 import Foundation
 
 class LatencyTestCommand: ToolsCommand {
+    var isTools: Bool = true
     var cmd = "LatencyTest"
 
     var shortDescription = "Connects to the specified address(es) and calculates latency."
@@ -42,7 +43,7 @@ class LatencyTestCommand: ToolsCommand {
 
     func execute() {
         let address = arguments[1]
-        let types = arguments[2]
+        let types = arguments.parseTypes(at: 2)
 
         let listener = LatencyEventListener()
 

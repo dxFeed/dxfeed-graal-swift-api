@@ -8,6 +8,7 @@
 import Foundation
 
 protocol ToolsCommand {
+    var isTools: Bool { get }
     var cmd: String { get }
     var shortDescription: String { get }
     var fullDescription: String { get }
