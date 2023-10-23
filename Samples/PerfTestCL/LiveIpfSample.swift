@@ -1,5 +1,5 @@
 //
-//  LiveIpfCommand.swift
+//  LiveIpfSample.swift
 //  Tools
 //
 //  Created by Aleksey Kosylo on 09.10.23.
@@ -8,7 +8,7 @@
 import Foundation
 import DXFeedFramework
 
-class LiveIpfCommand: ToolsCommand {
+class LiveIpfSample: ToolsCommand {
     var isTools: Bool = false
     lazy var name = {
         stringReference(self)
@@ -33,7 +33,7 @@ class LiveIpfCommand: ToolsCommand {
     Where:
 
     <ipf-url>  is URL for the instruments profiles.
-    Example of url: " + \(LiveIpfCommand.defaultIpfUrl)
+    Example of url: " + \(LiveIpfSample.defaultIpfUrl)
 
     """
     var collector: DXInstrumentProfileCollector?
@@ -52,7 +52,7 @@ class LiveIpfCommand: ToolsCommand {
     func execute() {
         do {
             collector = try DXInstrumentProfileCollector()
-            connection = try DXInstrumentProfileConnection(arguments.count > 1 ? arguments[1] : LiveIpfCommand.defaultIpfUrl, collector!)
+            connection = try DXInstrumentProfileConnection(arguments.count > 1 ? arguments[1] : LiveIpfSample.defaultIpfUrl, collector!)
             // Update period can be used to re-read IPF files, not needed for services supporting IPF "live-update"
             try connection?.setUpdatePeriod(60000)
             connection?.add(observer: self)
@@ -69,13 +69,13 @@ class LiveIpfCommand: ToolsCommand {
     }
 }
 
-extension LiveIpfCommand: DXInstrumentProfileConnectionObserver {
+extension LiveIpfSample: DXInstrumentProfileConnectionObserver {
     func connectionDidChangeState(old: DXInstrumentProfileConnectionState, new: DXInstrumentProfileConnectionState) {
         print("Connection state: \(new)")
     }
 }
 
-extension LiveIpfCommand: DXInstrumentProfileUpdateListener {
+extension LiveIpfSample: DXInstrumentProfileUpdateListener {
     func instrumentProfilesUpdated(_ instruments: [DXFeedFramework.InstrumentProfile]) {
         instruments.forEach { ipf in
             if ipf.getIpfType() == .removed {
@@ -100,8 +100,8 @@ Last modified: \(TimeUtil.toLocalDateString(millis: collector?.getLastUpdateTime
     }
 }
 
-extension LiveIpfCommand: Hashable {
-    static func == (lhs: LiveIpfCommand, rhs: LiveIpfCommand) -> Bool {
+extension LiveIpfSample: Hashable {
+    static func == (lhs: LiveIpfSample, rhs: LiveIpfSample) -> Bool {
         return lhs === rhs || lhs.name == rhs.name
     }
 

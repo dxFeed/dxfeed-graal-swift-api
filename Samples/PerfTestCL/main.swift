@@ -10,11 +10,11 @@ import Foundation
 let commands: [ToolsCommand] = [PerfTestTool(),
                                 ConnectTool(),
                                 LatencyTestTool(),
-                                LiveIpfCommand(),
-                                ScheduleCommand(),
-                                IpfConnectCommand(),
+                                LiveIpfSample(),
+                                ScheduleSample(),
+                                IpfConnect(),
                                 DumpTool(),
-                                HelpCommand()]
+                                HelpTool()]
 
 func getCommand(_ cmd: String) -> ToolsCommand? {
     return commands.first { command in

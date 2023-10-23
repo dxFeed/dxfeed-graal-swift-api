@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HelpCommand: ToolsCommand {
+class HelpTool: ToolsCommand {
     var isTools: Bool = true
     var cmd = "Help"
 

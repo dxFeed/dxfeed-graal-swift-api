@@ -1,5 +1,5 @@
 //
-//  IpfConnectCommand.swift
+//  IpfConnect.swift
 //  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 10.10.23.
@@ -8,7 +8,7 @@
 import Foundation
 import DXFeedFramework
 
-class IpfConnectCommand: ToolsCommand {
+class IpfConnect: ToolsCommand {
     var isTools: Bool = false
     lazy var name = {
         stringReference(self)
@@ -66,8 +66,8 @@ class IpfConnectCommand: ToolsCommand {
         return result ?? [String]()
     }
 }
-extension IpfConnectCommand: Hashable {
-    static func == (lhs: IpfConnectCommand, rhs: IpfConnectCommand) -> Bool {
+extension IpfConnect: Hashable {
+    static func == (lhs: IpfConnect, rhs: IpfConnect) -> Bool {
         return lhs === rhs || lhs.name == rhs.name
     }
 
@@ -75,7 +75,7 @@ extension IpfConnectCommand: Hashable {
         hasher.combine(name)
     }
 }
-extension IpfConnectCommand: DXEventListener {
+extension IpfConnect: DXEventListener {
     func receiveEvents(_ events: [DXFeedFramework.MarketEvent]) {
         events.forEach { mEvent in
             print("\(mEvent.eventSymbol): \(mEvent.toString())")
