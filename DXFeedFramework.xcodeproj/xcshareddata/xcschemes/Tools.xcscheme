@@ -57,14 +57,14 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "ScheduleSample"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "DXFeedIpfConnect Quote https://demo:demo@tools.dxfeed.com/ipf"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "ScheduleSample  schedule.zip  sample.ipf.zip  AAPL  2012-05-26-14:15:00"
+            argument = "ScheduleSample  schedule.zip  sample.ipf.zip  AAPL 2012-05-26-14:15:00"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
@@ -86,6 +86,10 @@
          <CommandLineArgument
             argument = " Dump localhost:6666 TimeAndSale all -p dxfeed.wildcard.enable=true,one_more_prop=abc -t test_tape_ios.txt[format=text] -q"
             isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Dump tapeK.txt[speed=max] TimeAndSale all -q -t net_tapeK2.tape"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "LatencyTest mddqa.in.devexperts.com:7400 TimeAndSale ETH/USD:GDAX"

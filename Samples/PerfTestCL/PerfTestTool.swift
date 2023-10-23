@@ -1,5 +1,5 @@
 //
-//  PerfTestCommand.swift
+//  PerfTestTool.swift
 //  Tools
 //
 //  Created by Aleksey Kosylo on 26.09.23.
@@ -8,7 +8,7 @@
 import Foundation
 import DXFeedFramework
 
-class PerfTestCommand: ToolsCommand {
+class PerfTestTool: ToolsCommand {
     var isTools: Bool = true
     var cmd: String = "PerfTest"
     var shortDescription: String = "Connects to specified address and calculates performance counters."
