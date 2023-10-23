@@ -17,6 +17,10 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/TradeETH.html)
 public class TradeETH: TradeBase {
+    public override var type: EventCode {
+        return .tradeETH
+    }
+
     /// Returns string representation of this trade event.
     public override func toString() -> String {
         return "TradeETH{\(baseFieldsToString())}"
