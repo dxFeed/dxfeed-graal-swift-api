@@ -106,7 +106,6 @@ extension DumpTool: DXEventListener {
                 print(events)
             }
             count += events.count
-            print("Published \(count)")
             try publisher?.publish(events: events)
         } catch {
             print("Dump tool publish error: \(error)")
