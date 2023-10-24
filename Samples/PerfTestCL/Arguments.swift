@@ -14,6 +14,7 @@ enum ArgumentParserException: Error {
 
 class Arguments {
     private let allParameters: [String]
+    private let namelessParameters: [String]
 
     public lazy var properties: [String: String] = {
         var properties = [String: String]()
@@ -62,27 +63,42 @@ Cmd \(cmd) contains not enough \(cmd.count - 1) arguments. Expected \(requiredNu
         }
         // 0 Arg is path to executed app
         self.allParameters =  Array(cmd[1..<cmd.count])
+        if let firstNamedParameter = cmd.firstIndex(where: { str in
+            str.hasPrefix("-")
+        }) {
+            self.namelessParameters = Array(cmd[1..<firstNamedParameter])
+        } else {
+            self.namelessParameters = self.allParameters
+        }
     }
 
     public subscript(index: Int) -> String {
-        allParameters[index]
+        namelessParameters[index]
     }
 
     public var count: Int {
-        allParameters.count
+        namelessParameters.count
     }
 
     public func parseTypes(at index: Int) -> [EventCode] {
-        if allParameters[2] == "all" {
+        if namelessParameters.count <= index {
             return EventCode.allCases
         }
-        return allParameters[2].split(separator: ",").compactMap { str in
+
+        if namelessParameters[2] == "all" {
+            return EventCode.allCases
+        }
+        return namelessParameters[2].split(separator: ",").compactMap { str in
             return EventCode(string: String(str))
         }
     }
 
     public func parseSymbols(at index: Int) -> [Symbol] {
-        let symbols = allParameters[index]
+        if namelessParameters.count <= index {
+            return [WildcardSymbol.all]
+        }
+
+        let symbols = namelessParameters[index]
         if symbols.lowercased() == "all" {
             return [WildcardSymbol.all]
         }
