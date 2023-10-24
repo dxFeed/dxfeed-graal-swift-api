@@ -13,7 +13,7 @@ import Foundation
 /// that is available about orders on the market at any given moment of time.
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/AnalyticOrder.html)
-public class AnalyticOrder: OrderBase {
+public class AnalyticOrder: Order {
     public override var type: EventCode {
         return .analyticOrder
     }

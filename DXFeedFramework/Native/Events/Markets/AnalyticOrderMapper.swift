@@ -47,6 +47,12 @@ class AnalyticOrderMapper: Mapper {
         pointer.pointee.iceberg_executed_size = order.icebergExecutedSize
         pointer.pointee.iceberg_flags = order.icebergFlags
 
+        if let marketMaker = order.marketMaker {
+            pointer.pointee.order_base.market_maker = marketMaker.toCStringRef()
+        } else {
+            pointer.pointee.order_base.market_maker = nil
+        }
+
         let eventType = pointer.withMemoryRebound(to: dxfg_event_type_t.self, capacity: 1) { pointer in
             pointer.pointee.clazz = DXFG_EVENT_ANALYTIC_ORDER
             return pointer
