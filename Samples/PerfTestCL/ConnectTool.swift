@@ -19,7 +19,7 @@ Connect
 =======
 
 Usage:
-  Connect <address> <types> <symbols> [<time>]
+  Connect <address> <types> <symbols> [-f <time>]
 
 Where:
     address - The address to connect to retrieve data (remote host or local tape file).
