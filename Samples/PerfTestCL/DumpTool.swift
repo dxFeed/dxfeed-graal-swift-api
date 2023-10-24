@@ -9,7 +9,6 @@ import Foundation
 import DXFeedFramework
 
 class DumpTool: ToolsCommand {
-    var count = 0
     var isTools: Bool = true
     var cmd: String = "Dump"
 
@@ -116,7 +115,6 @@ extension DumpTool: DXEventListener {
                     print(event.toString())
                 }
             }
-            count += events.count
             try publisher?.publish(events: events)
         } catch {
             print("Dump tool publish error: \(error)")
