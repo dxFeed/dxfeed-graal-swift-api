@@ -12,8 +12,8 @@ extension Profile {
     convenience init(native: dxfg_profile_t) {
         self.init(String(pointee: native.market_event.event_symbol))
         self.eventTime = native.market_event.event_time
-        self.descriptionStr = String(pointee: native.description)
-        self.statusReason = String(pointee: native.status_reason)
+        self.descriptionStr = String(nullable: native.description)
+        self.statusReason = String(nullable: native.status_reason)
         self.haltStartTime = native.halt_start_time
         self.haltEndTime = native.halt_end_time
         self.highLimitPrice = native.high_limit_price

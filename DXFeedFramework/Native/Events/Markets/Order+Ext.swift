@@ -29,6 +29,6 @@ extension Order {
         self.tradePrice = native.order_base.trade_price
         self.tradeSize = native.order_base.trade_size
 
-        self.marketMaker = String(pointee: native.market_maker)
+        self.marketMaker = String(nullable: native.market_maker)
     }
 }

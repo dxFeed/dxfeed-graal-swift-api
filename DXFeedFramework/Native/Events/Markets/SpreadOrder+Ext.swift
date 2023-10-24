@@ -29,6 +29,6 @@ extension SpreadOrder {
         self.tradePrice = native.order_base.trade_price
         self.tradeSize = native.order_base.trade_size
 
-        self.spreadSymbol = String(pointee: native.spread_symbol)
+        self.spreadSymbol = String(nullable: native.spread_symbol)
     }
 }

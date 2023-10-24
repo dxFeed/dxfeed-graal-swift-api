@@ -73,7 +73,7 @@ public class OptionSale: MarketEvent, IIndexedEvent {
     /// Delta is the first derivative of an option price by an underlying price.
     public var delta: Double = .nan
     /// Gets or sets option symbol of this event.
-    public var optionSymbol: String = ""
+    public var optionSymbol: String?
 
     public init(_ eventSymbol: String) {
         self.eventSymbol = eventSymbol
