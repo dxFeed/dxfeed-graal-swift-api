@@ -83,7 +83,7 @@ class DumpTool: ToolsCommand {
             try inputEndpoint.awaitNotConnected()
             try inputEndpoint.closeAndAWaitTermination()
 
-            try outputEndpoint?.awaitNotConnected()
+            try outputEndpoint?.awaitProcessed()
             try outputEndpoint?.closeAndAWaitTermination()
         } catch {
             print("Dump tool error: \(error)")
