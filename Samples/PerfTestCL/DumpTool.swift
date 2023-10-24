@@ -29,6 +29,8 @@ class DumpTool: ToolsCommand {
               for Candle event specify symbol with aggregation like in ""AAPL{{=d}}""
 
     sample: Dump demo.dxfeed.com:7300 quote AAPL,IBM,ETH/USD:GDAX -t "tape_test.txt[format=text]"
+
+    sampe: Dump tapeK2.tape[speed=max] all all -q -t ios_tapeK2.tape
     """
     var publisher: DXPublisher?
     var isQuite = false
@@ -103,7 +105,9 @@ extension DumpTool: DXEventListener {
     func receiveEvents(_ events: [DXFeedFramework.MarketEvent]) {
         do {
             if !isQuite {
-                print(events)
+                events.forEach { event in
+                    print(event.toString())
+                }
             }
             count += events.count
             try publisher?.publish(events: events)
