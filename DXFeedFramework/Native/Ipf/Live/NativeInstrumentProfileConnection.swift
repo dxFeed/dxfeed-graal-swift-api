@@ -60,6 +60,7 @@ class NativeInstrumentProfileConnection {
     }
 
     deinit {
+        try? close()
         removeListener()
 
         let thread = currentThread()
