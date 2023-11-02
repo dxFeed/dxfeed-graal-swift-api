@@ -42,4 +42,3 @@ class TradeETHMapper: Mapper {
         return eventType
     }
 }
-
