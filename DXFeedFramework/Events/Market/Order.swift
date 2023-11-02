@@ -27,7 +27,7 @@ public class Order: OrderBase {
         return
 """
 Order{\(baseFieldsToString()), \
-marketMaker=\(marketMaker ?? "null")}
+marketMaker='\(marketMaker ?? "null")'}
 """
     }
 }
