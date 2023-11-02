@@ -73,7 +73,7 @@ class DumpTool: ToolsCommand {
             if let tapeFile = arguments.tape {
                 outputEndpoint = try DXEndpoint
                     .builder()
-                    .withRole(.publisher)
+                    .withRole(.streamPublisher)
                     .withProperty(DXEndpoint.Property.wildcardEnable.rawValue, "true")
                     .withName("DumpTool")
                     .build()
