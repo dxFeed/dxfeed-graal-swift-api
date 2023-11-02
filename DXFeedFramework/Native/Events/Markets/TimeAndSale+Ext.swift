@@ -22,7 +22,7 @@ extension TimeAndSale {
         self.askPrice = native.ask_price
         self.exchangeSaleConditions = String(pointee: native.exchange_sale_conditions)
         self.flags = native.flags
-        self.buyer = String(pointee: native.buyer)
-        self.seller = String(pointee: native.seller)
+        self.buyer = String(nullable: native.buyer)
+        self.seller = String(nullable: native.seller)
     }
 }
