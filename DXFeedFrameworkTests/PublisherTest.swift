@@ -55,7 +55,7 @@ final class PublisherTest: XCTestCase {
                 return listener
             }
 
-            feedEndpoint.add(observer: stateListener!)
+            feedEndpoint.add(listener: stateListener!)
             let subscription = try feedEndpoint.getFeed()?.createSubscription(.quote)
             try feedEndpoint.connect("localhost:7400")
             let receivedEventExp = expectation(description: "Received events \(EventCode.quote)")
@@ -68,7 +68,7 @@ final class PublisherTest: XCTestCase {
                 return anonymCl
             }
 
-            try subscription?.add(observer: listener)
+            try subscription?.add(listener: listener)
             try subscription?.addSymbols(["AAPL"])
             wait(for: [connectedExpectation], timeout: 1)
             wait(for: [receivedEventExp], timeout: 20)

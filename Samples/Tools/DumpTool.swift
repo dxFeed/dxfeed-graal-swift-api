@@ -81,7 +81,7 @@ class DumpTool: ToolsCommand {
                 publisher = outputEndpoint?.getPublisher()
             }
 
-            try subscription?.add(observer: self)
+            try subscription?.add(listener: self)
             try subscription?.addSymbols(symbols)
 
             try inputEndpoint.connect(address)

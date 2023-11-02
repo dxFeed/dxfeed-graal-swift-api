@@ -75,7 +75,7 @@ final class FeedTest: XCTestCase {
             }
             return anonymCl
         }
-        try subscription?.add(observer: listener)
+        try subscription?.add(listener: listener)
         XCTAssertNotNil(subscription, "Subscription shouldn't be nil")
         try subscription?.addSymbols(symbols)
         wait(for: [receivedEventExp], timeout: 5)
@@ -174,7 +174,7 @@ final class FeedTest: XCTestCase {
             }
             return anonymCl
         }
-        try subscription?.add(observer: listener)
+        try subscription?.add(listener: listener)
         try subscription?.addSymbols(["ETH/USD:GDAX", "IBM"])
         wait(for: [receivedEventExp], timeout: 10)
     }

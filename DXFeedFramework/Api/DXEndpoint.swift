@@ -186,8 +186,8 @@ public class DXEndpoint {
     private lazy var publisher: DXPublisher? = {
         try? DXPublisher(native: endpointNative.getNativePublisher())
     }()
-    /// A list of state change listeners callback. observersSet - not typed variable(as storage).
-    private var observersSet = ConcurrentWeakHashTable<DXEndpointObserver>()
+    /// A list of state change listeners callback. listeneresSet - not typed variable(as storage).
+    private var listeneresSet = ConcurrentWeakHashTable<DXEndpointListener>()
 
     private static var instances = [Role: DXEndpoint]()
 
@@ -202,18 +202,18 @@ public class DXEndpoint {
         try native.addListener(self)
     }
     /// Adds listener that is notified about changes in ``getState()`` property.
-    /// Installed listener can be removed with ``remove(_:)`` method.
-    public func add<O>(observer: O)
-    where O: DXEndpointObserver,
+    /// Installed listener can be removed with ``remove(listener:)`` method.
+    public func add<O>(listener: O)
+    where O: DXEndpointListener,
           O: Hashable {
-              observersSet.insert(observer)
+              listeneresSet.insert(listener)
           }
     /// Removes listener that is notified about changes in ``getState()`` property.
-    /// It removes the listener that was previously installed with ``add(observer:)`` method.
-    public func remove<O>(_ observer: O)
-    where O: DXEndpointObserver,
+    /// It removes the listener that was previously installed with ``add(listener:)`` method.
+    public func remove<O>(listener: O)
+    where O: DXEndpointListener,
           O: Hashable {
-              observersSet.remove(observer)
+              listeneresSet.remove(listener)
           }
     /// Creates new ``Builder`` instance.
     /// Use ``Builder/build()`` to build an instance of ``DXEndpoint`` when
@@ -248,8 +248,8 @@ public class DXEndpoint {
     /// **This method does not wait until connection actually gets established**. The actual connection establishment
     /// happens asynchronously after the invocation of this method. However, this method waits until notification
     /// about state transition from ``DXEndpointState/notConnected`` to ``DXEndpointState/connecting``
-    /// gets processed by all ``DXEndpointObserver`` that were installed via
-    /// ``add(observer:)`` method.
+    /// gets processed by all ``DXEndpointListener`` that were installed via
+    /// ``add(listener:)`` method.
     /// - Parameters:
     ///   - address: The data source address.
     /// - Returns: ``DXEndpoint``
@@ -267,7 +267,7 @@ public class DXEndpoint {
     ///
     /// **Note:** The method will not connect endpoint that was not initially connected with
     /// ``connect(_:)`` method or was disconnected with ``disconnect()``  method.
-    /// The method initiates a short-path way for reconnecting, so whether observers will have a chance to see
+    /// The method initiates a short-path way for reconnecting, so whether listeners will have a chance to see
     /// an intermediate state ``DXEndpointState/notConnected`` depends on the implementation.
     /// - Throws: GraalException. Rethrows exception from Java.recore
     public func reconnect() throws {
@@ -514,10 +514,10 @@ public class Builder {
 
 extension DXEndpoint: EndpointListener {
     func changeState(old: DXEndpointState, new: DXEndpointState) {
-        observersSet.reader {
+        listeneresSet.reader {
             let enumerator = $0.objectEnumerator()
-            while let observer = enumerator.nextObject() as? DXEndpointObserver {
-                observer.endpointDidChangeState(old: old, new: new)
+            while let listener = enumerator.nextObject() as? DXEndpointListener {
+                listener.endpointDidChangeState(old: old, new: new)
             }
         }
     }

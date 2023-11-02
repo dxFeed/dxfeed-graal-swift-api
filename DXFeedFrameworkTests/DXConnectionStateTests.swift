@@ -39,7 +39,7 @@ final class DXConnectionStateTests: XCTestCase {
                             DXEndpointState.connecting: expectation(description: "Connecting"),
                             DXEndpointState.notConnected: expectation(description: "NotConnected")]
         let listener = TestListener(expectations: expectations)
-        endpoint?.add(observer: listener)
+        endpoint?.add(listener: listener)
         let exps = Array(expectations.filter({ element in
             element.key != .notConnected
         }).values)
@@ -94,7 +94,7 @@ final class DXConnectionStateTests: XCTestCase {
         let expectations = [DXEndpointState.connected: expectation(description: "Connected"),
                             DXEndpointState.connecting: expectation(description: "Connecting")]
         let listener = TestListener(expectations: expectations)
-        endpoint?.add(observer: listener)
+        endpoint?.add(listener: listener)
         try endpoint?.connect(":4777")
         let exps = Array(expectations.filter({ element in
             element.key != .notConnected

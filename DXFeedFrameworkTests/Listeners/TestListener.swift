@@ -9,7 +9,7 @@ import Foundation
 import XCTest
 @testable import DXFeedFramework
 
-class TestListener: DXEndpointObserver {
+class TestListener: DXEndpointListener {
     var expectations: [DXEndpointState: XCTestExpectation]
     init(expectations: [DXEndpointState: XCTestExpectation]) {
         self.expectations = expectations

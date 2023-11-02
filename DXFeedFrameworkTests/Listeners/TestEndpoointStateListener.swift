@@ -8,7 +8,7 @@
 import Foundation
 @testable import DXFeedFramework
 
-class TestEndpoointStateListener: DXEndpointObserver, Hashable {
+class TestEndpoointStateListener: DXEndpointListener, Hashable {
     func endpointDidChangeState(old: DXFeedFramework.DXEndpointState, new: DXFeedFramework.DXEndpointState) {
         callback(new)
     }

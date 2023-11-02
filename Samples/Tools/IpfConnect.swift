@@ -44,7 +44,7 @@ class IpfConnect: ToolsCommand {
         let ipfFile = arguments[2]
         try? SystemProperty.setProperty(DXEndpoint.Property.address.rawValue, "demo.dxfeed.com:7300")
         let subscription = try? DXEndpoint.getInstance().getFeed()?.createSubscription([EventCode(string: eventType)])
-        try? subscription?.add(observer: self)
+        try? subscription?.add(listener: self)
         let symbols = getSymbols(fileName: ipfFile)
         try? subscription?.addSymbols(symbols)
         // Print till input new line

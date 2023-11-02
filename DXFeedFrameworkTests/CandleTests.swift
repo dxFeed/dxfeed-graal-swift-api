@@ -71,7 +71,7 @@ final class CandleTests: XCTestCase {
             }
             return anonymCl
         }
-        try subscription?.add(observer: listener)
+        try subscription?.add(listener: listener)
         try subscription?.addSymbols(symbol)
         wait(for: [receivedEventExp], timeout: 10)
         try? endpoint?.disconnect()
@@ -193,7 +193,7 @@ final class CandleTests: XCTestCase {
             }
             return anonymCl
         }
-        try subscription?.add(observer: listener)
+        try subscription?.add(listener: listener)
         try subscription?.addSymbols(symbol)
         wait(for: [beginEventsExp, endEventsExp], timeout: 10)
         try? endpoint?.disconnect()
@@ -223,7 +223,7 @@ final class CandleTests: XCTestCase {
         testDelegate.wasSnapshotExpect = snapshotExpect
         testDelegate.wasUpdateExpect = updateExpect
         snapshotProcessor.add(testDelegate)
-        try subscription?.add(observer: snapshotProcessor)
+        try subscription?.add(listener: snapshotProcessor)
         try subscription?.addSymbols(symbol)
         wait(for: [snapshotExpect, updateExpect], timeout: 10)
         try? endpoint?.disconnect()

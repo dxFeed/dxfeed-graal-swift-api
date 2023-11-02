@@ -28,7 +28,7 @@ final class IPFTests: XCTestCase {
         }
     }
 
-    class AnonymousConnectionListener: DXInstrumentProfileConnectionObserver, Hashable {
+    class AnonymousConnectionListener: DXInstrumentProfileConnectionListener, Hashable {
         static func == (lhs: AnonymousConnectionListener, rhs: AnonymousConnectionListener) -> Bool {
             lhs === rhs
         }
@@ -218,10 +218,10 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
         }
         try collector.updateInstrumentProfile(profile: bothListnersProfile)
         wait(seconds: 1)
-        try collector.add(observer: listener)
-        try collector.add(observer: listener2)
+        try collector.add(listener: listener)
+        try collector.add(listener: listener2)
         wait(for: [expectation1, expectation2], timeout: 2.0)
-        collector.remove(observer: listener2)
+        collector.remove(listener: listener2)
         try collector.updateInstrumentProfile(profile: firstListnerProfile)
         wait(for: [expectation3], timeout: 2.0)
     }
@@ -244,7 +244,7 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
         let expectationCollector = expectation(description: "Collector")
         expectationCollector.assertForOverFulfill = false
         let collector = try DXInstrumentProfileCollector()
-        let collectorObserver = AnonymousProfileListener { anonymCl in
+        let collectorListener = AnonymousProfileListener { anonymCl in
             anonymCl.callback = { profiles in
                 if profiles.count > 0 {
                     expectationCollector.fulfill()
@@ -252,11 +252,11 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
             }
             return anonymCl
         }
-        try collector.add(observer: collectorObserver)
+        try collector.add(listener: collectorListener)
         let expectationConnection = expectation(description: "Connection")
         expectationConnection.expectedFulfillmentCount = 3 // connecting, connected, completed
         let connection = try DXInstrumentProfileConnection(address, collector)
-        let connectionObserver = AnonymousConnectionListener { anonymCl in
+        let connectionListener = AnonymousConnectionListener { anonymCl in
             anonymCl.callback = { _, new in
                 switch new {
                 case .notConnected:
@@ -273,7 +273,7 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
             }
             return anonymCl
         }
-        connection.add(observer: connectionObserver)
+        connection.add(listener: connectionListener)
         try connection.start()
         wait(for: [expectationConnection, expectationCollector], timeout: 20.0)
     }
