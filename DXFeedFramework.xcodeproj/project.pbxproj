@@ -555,7 +555,7 @@
 		64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDxFeedGraalNativeSdk.dylib; path = graal_builds/osx_universal/libDxFeedGraalNativeSdk.dylib; sourceTree = "<group>"; };
 		64148B642ABB5C320063110E /* Tools */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tools; sourceTree = BUILT_PRODUCTS_DIR; };
 		64148B662ABB5C320063110E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		64148B6E2ABB5C4A0063110E /* PerfTestCL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PerfTestCL.entitlements; sourceTree = "<group>"; };
+		64148B6E2ABB5C4A0063110E /* Tools.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tools.entitlements; sourceTree = "<group>"; };
 		6417DD1E2A39C9A7008912D6 /* LatencyDiagnostic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatencyDiagnostic.swift; sourceTree = "<group>"; };
 		641A59992AB4794E003899FB /* TradeETH.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeETH.swift; sourceTree = "<group>"; };
 		641AC1A82A61AE4000EF6D6C /* DXAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXAliases.swift; sourceTree = "<group>"; };
@@ -930,10 +930,10 @@
 			path = Interop;
 			sourceTree = "<group>";
 		};
-		64148B652ABB5C320063110E /* PerfTestCL */ = {
+		64148B652ABB5C320063110E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				64148B6E2ABB5C4A0063110E /* PerfTestCL.entitlements */,
+				64148B6E2ABB5C4A0063110E /* Tools.entitlements */,
 				64148B662ABB5C320063110E /* main.swift */,
 				647426AC2ABC85F20012F793 /* Arguments.swift */,
 				647426A62ABC7F080012F793 /* ConnectEventListener.swift */,
@@ -948,7 +948,7 @@
 				648BD56A2AC4576F004A3A95 /* HelpTool.swift */,
 				648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */,
 			);
-			path = PerfTestCL;
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		641BCBBF2A21051A00FE23C2 /* Market */ = {
@@ -1345,7 +1345,7 @@
 				64B627162A375BBA00196D07 /* QuoteTableApp */,
 				642DC9262AAA21C000974F5C /* IpfTableApp */,
 				64B4364C2AB9D3410003919E /* ScheduleSampleApp */,
-				64148B652ABB5C320063110E /* PerfTestCL */,
+				64148B652ABB5C320063110E /* Tools */,
 			);
 			path = Samples;
 			sourceTree = "<group>";
@@ -2488,7 +2488,7 @@
 		64148B682ABB5C320063110E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Samples/PerfTestCL/PerfTestCL.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Samples/Tools/Tools.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2505,7 +2505,7 @@
 		64148B692ABB5C320063110E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Samples/PerfTestCL/PerfTestCL.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Samples/Tools/Tools.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;

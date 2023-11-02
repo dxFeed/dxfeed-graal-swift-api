@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  SwiftTestCLI
+//  Tools
 //
 //  Created by Aleksey Kosylo on 20.02.2023.
 //

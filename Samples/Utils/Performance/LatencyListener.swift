@@ -1,6 +1,6 @@
 //
 //  LatencyListener.swift
-//  Tools
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 04.10.23.
 //

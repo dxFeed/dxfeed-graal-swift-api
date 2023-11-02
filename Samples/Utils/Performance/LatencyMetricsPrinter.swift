@@ -1,6 +1,6 @@
 //
 //  LatencyMetricsPrinter.swift
-//  PerfTestCL
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 25.09.23.
 //
