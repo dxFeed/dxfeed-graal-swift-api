@@ -175,25 +175,55 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
         wait(for: [expectation], timeout: 1.0)
     }
 
-    func testProfileListener() throws {
+    func testProfileMultipleListeners() throws {
         let collector = try DXInstrumentProfileCollector()
-        let expectation = expectation(description: "Received profile")
-        let newProfile = InstrumentProfile()
-        newProfile.symbol = "TEST_123"
+        let expectation1 = expectation(description: "Received profile")
+        expectation1.assertForOverFulfill = false
+        let expectation3 = expectation(description: "Received profile")
+        expectation3.assertForOverFulfill = false
+        let bothListnersProfile = InstrumentProfile()
+        bothListnersProfile.symbol = "TEST_123"
+        let firstListnerProfile = InstrumentProfile()
+        bothListnersProfile.symbol = "OnlyFirst_123"
         let listener = AnonymousProfileListener { anonymCl in
             anonymCl.callback = { profiles in
                 if profiles.count == 1 {
                     let profile = profiles.first
-                    if profile == newProfile {
-                        expectation.fulfill()
+                    if profile == bothListnersProfile {
+                        expectation1.fulfill()
+                    }
+                    if profile == firstListnerProfile {
+                        expectation3.fulfill()
                     }
                 }
             }
             return anonymCl
         }
+        let expectation2 = expectation(description: "Received profile after publish")
+        expectation2.assertForOverFulfill = false
+
+        let listener2 = AnonymousProfileListener { anonymCl in
+            anonymCl.callback = { profiles in
+                if profiles.count == 1 {
+                    let profile = profiles.first
+                    if profile == bothListnersProfile {
+                        expectation2.fulfill()
+                    }
+                    if profile == firstListnerProfile {
+                        XCTAssert(false)
+                    }
+                }
+            }
+            return anonymCl
+        }
+        try collector.updateInstrumentProfile(profile: bothListnersProfile)
+        wait(seconds: 1)
         try collector.add(observer: listener)
-        try collector.updateInstrumentProfile(profile: newProfile)
-        wait(for: [expectation], timeout: 2.0)
+        try collector.add(observer: listener2)
+        wait(for: [expectation1, expectation2], timeout: 2.0)
+        collector.remove(observer: listener2)
+        try collector.updateInstrumentProfile(profile: firstListnerProfile)
+        wait(for: [expectation3], timeout: 2.0)
     }
 
     func testConnectionState() {

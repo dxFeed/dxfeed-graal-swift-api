@@ -15,4 +15,8 @@ class WeakBox<T> {
     init(value: T) {
         self._value = value as AnyObject
     }
+
+    func resetValue() {
+        _value = nil
+    }
 }
