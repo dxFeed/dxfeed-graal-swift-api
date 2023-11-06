@@ -188,7 +188,6 @@
 		646D19E12A3C970700C82315 /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
 		646D19E22A3C994000C82315 /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
 		646D19E32A3C994100C82315 /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
-		647426A82ABC7F5E0012F793 /* ConnectEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426A62ABC7F080012F793 /* ConnectEventListener.swift */; };
 		647426AD2ABC85F20012F793 /* Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426AC2ABC85F20012F793 /* Arguments.swift */; };
 		647426AF2ABC93900012F793 /* EventCode+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426AE2ABC93900012F793 /* EventCode+String.swift */; };
 		6479BC2B2A4F35A300A3D404 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6479BC2A2A4F35A300A3D404 /* QuoteView.swift */; };
@@ -652,7 +651,6 @@
 		6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Ext.swift"; sourceTree = "<group>"; };
 		6469F8D22A3B401700846831 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		646D19E02A3C970700C82315 /* DXFTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFTimer.swift; sourceTree = "<group>"; };
-		647426A62ABC7F080012F793 /* ConnectEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectEventListener.swift; sourceTree = "<group>"; };
 		647426AC2ABC85F20012F793 /* Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arguments.swift; sourceTree = "<group>"; };
 		647426AE2ABC93900012F793 /* EventCode+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventCode+String.swift"; sourceTree = "<group>"; };
 		6479BC2A2A4F35A300A3D404 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
@@ -936,7 +934,6 @@
 				64148B6E2ABB5C4A0063110E /* Tools.entitlements */,
 				64148B662ABB5C320063110E /* main.swift */,
 				647426AC2ABC85F20012F793 /* Arguments.swift */,
-				647426A62ABC7F080012F793 /* ConnectEventListener.swift */,
 				645BE8532AC3229D0028243D /* ToolsCommand.swift */,
 				641BDD572AC71CCE00236B78 /* LatencyTestTool.swift */,
 				645BE8512AC31E7C0028243D /* PerfTestTool.swift */,
@@ -1999,7 +1996,6 @@
 				644FE5CD2AC1E9E200580E3A /* PerfDiagnostic.swift in Sources */,
 				644FE5CF2AC1F25900580E3A /* DXFTimer.swift in Sources */,
 				64FFE59F2AD430E4003D3353 /* ScheduleSample.swift in Sources */,
-				647426A82ABC7F5E0012F793 /* ConnectEventListener.swift in Sources */,
 				644FE5CE2AC1EC1500580E3A /* TimeInterval+Ext.swift in Sources */,
 				64148B672ABB5C320063110E /* main.swift in Sources */,
 				647426AD2ABC85F20012F793 /* Arguments.swift in Sources */,

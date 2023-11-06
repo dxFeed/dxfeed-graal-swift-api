@@ -12,6 +12,9 @@ enum ArgumentParserException: Error {
     case error(message: String)
 }
 
+/// Be careful with indexes
+/// The command name is included in the resulting array
+/// and therefore 0 is not the first parameter. It is command name
 class Arguments {
     private let allParameters: [String]
     private let namelessParameters: [String]
@@ -47,6 +50,13 @@ class Arguments {
 
     public lazy var time: String? = {
         if let tapeIndex = allParameters.firstIndex(of: "-f") {
+            return allParameters[tapeIndex + 1]
+        }
+        return nil
+    }()
+
+    public lazy var source: String? = {
+        if let tapeIndex = allParameters.firstIndex(of: "-s") {
             return allParameters[tapeIndex + 1]
         }
         return nil

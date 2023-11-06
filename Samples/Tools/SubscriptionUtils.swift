@@ -26,6 +26,7 @@ Create subscription to \(address) for \(types):\(symbols) with properties:\(prop
             .builder()
             .withRole(.feed)
             .withProperties(properties)
+            .withName("SubscriptionEndpoint")
             .build()
         _ = try? endpoint?.connect(address)
         types.forEach { str in
