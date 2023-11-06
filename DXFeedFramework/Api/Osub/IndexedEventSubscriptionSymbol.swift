@@ -1,5 +1,5 @@
 //
-//  IndexedEventSubscriptionSymbol.swift
+//  GenericIndexedEventSubscriptionSymbol.swift
 //  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 01.06.23.
@@ -17,7 +17,7 @@ import Foundation
 /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/IndexedEventSubscriptionSymbol.html)
 ///
 /// `T`: The type of event symbol
-public class IndexedEventSubscriptionSymbol<T: Equatable>: Symbol {
+public class GenericIndexedEventSubscriptionSymbol<T: Equatable>: Symbol {
     /// Gets event symbol.
     let symbol: T
     /// Gets indexed event source. ``IndexedEventSource``
@@ -39,8 +39,39 @@ public class IndexedEventSubscriptionSymbol<T: Equatable>: Symbol {
     }
 }
 
-extension IndexedEventSubscriptionSymbol: Equatable {
-    public static func == (lhs: IndexedEventSubscriptionSymbol<T>, rhs: IndexedEventSubscriptionSymbol<T>) -> Bool {
+extension GenericIndexedEventSubscriptionSymbol: Equatable {
+    public static func == (lhs: GenericIndexedEventSubscriptionSymbol<T>,
+                           rhs: GenericIndexedEventSubscriptionSymbol<T>) -> Bool {
         return lhs === rhs || (lhs.symbol == rhs.symbol && lhs.source == rhs.source)
+    }
+}
+
+/// Non-generic version, for using with Symbol protocol without equatable T
+public class IndexedEventSubscriptionSymbol: Symbol {
+    /// Gets event symbol.
+    let symbol: Symbol
+    /// Gets indexed event source. ``IndexedEventSource``
+    let source: IndexedEventSource
+    /// Initializes a new instance of the ``IndexedEventSubscriptionSymbol`` class
+    /// with a specified event symbol and source.
+    ///
+    /// - Parameters:
+    ///   - symbol: The event symbol.
+    ///   - source: The event source.
+    public init(symbol: Symbol, source: IndexedEventSource) {
+        self.symbol = symbol
+        self.source = source
+    }
+
+    /// Custom symbol has to return string representation.
+    public var stringValue: String {
+        return "\(symbol.stringValue)source=\(source.toString())"
+    }
+}
+
+extension IndexedEventSubscriptionSymbol: Equatable {
+    public static func == (lhs: IndexedEventSubscriptionSymbol,
+                           rhs: IndexedEventSubscriptionSymbol) -> Bool {
+        return lhs === rhs || (lhs.symbol.stringValue == rhs.symbol.stringValue && lhs.source == rhs.source)
     }
 }

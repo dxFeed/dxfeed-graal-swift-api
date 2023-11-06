@@ -11,13 +11,13 @@ import Foundation
 ///
 /// There are the following kinds of order sources:
 ///
-/// Synthetic sources ``COMPOSITE_BID``, ``COMPOSITE_ASK``,
-///     ``REGIONAL_BID``, and ``REGIONAL_ASK`` are provided for convenience of a consolidated
+/// Synthetic sources ``compsoiteBid``, ``compsoiteAsk``,
+///     ``regionalBid``, and ``regionalAsk`` are provided for convenience of a consolidated
 ///     order book and are automatically generated based on the corresponding ``Quote`` events.
-/// Aggregate sources ``AGGREGATE_BID`` and ``AGGREGATE_ASK`` provide
+/// Aggregate sources ``agregateBid`` and ``agregateAsk`` provide
 ///     futures depth (aggregated by price level) and NASDAQ Level II (top of book for each market maker).
 ///     These source cannot be directly published to via dxFeed API.
-/// ``isPublishable(Class) Publishable`` sources ``DEFAULT``, ``NTV``, and ``ISE``
+/// ``isPublishable(eventType:)`` sources ``defaultOrderSource``, ``NTV``, and ``ISE``
 ///     support full range of dxFeed API features.
 ///
 ///
@@ -294,7 +294,7 @@ public class OrderSource: IndexedEventSource {
     /// Gets a value indicating whether the given event type can be directly published with this source.
     ///
     /// Subscription on such sources can be observed directly via ``DXPublisher``
-    /// Subscription on such sources is observed via instances of  ``IndexedEventSubscriptionSymbol``
+    /// Subscription on such sources is observed via instances of  ``GenericIndexedEventSubscriptionSymbol``
     /// - Parameters:
     ///   - eventype : Possible values ``Order``, ``AnalyticOrder``, ``SpreadOrder``
     /// - Returns: true- events can be directly published with this source
