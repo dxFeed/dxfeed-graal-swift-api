@@ -257,7 +257,6 @@ extension TimeAndSale {
 TimeAndSale{\(eventSymbol), \
 eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
 eventFlags=\(eventFlags.toHexString()), \
-index=\(index.toHexString()), \
 time=\(TimeUtil.toLocalDateString(millis: time)), \
 timeNanoPart=\(timeNanoPart), \
 sequence=\(getSequence()), \

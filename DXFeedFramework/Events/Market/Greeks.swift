@@ -121,7 +121,6 @@ extension Greeks {
 Greeks{\(eventSymbol), \
 eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
 eventFlags=\(eventFlags.toHexString()), \
-index=\(index.toHexString()), \
 time=\(TimeUtil.toLocalDateString(millis: time)), \
 sequence=\(self.getSequence()), \
 price=\(price), \

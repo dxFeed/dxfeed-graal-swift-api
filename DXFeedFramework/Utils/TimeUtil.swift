@@ -20,7 +20,7 @@ public class TimeUtil {
     }()
     static let dateFormatterWithMillis = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyyMMdd-HHmmss.SSS"
+        formatter.dateFormat = "yyyyMMdd-HHmmss.SSSZZZZZ"
         return formatter
     }()
 
