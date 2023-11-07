@@ -19,12 +19,13 @@ class QuoteTableViewController: UIViewController {
     @IBOutlet var quoteTableView: UITableView!
     @IBOutlet var connectionStatusLabel: UILabel!
     @IBOutlet var agregationSwitch: UISwitch!
+    @IBOutlet var editButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .tableBackground
         self.quoteTableView.backgroundColor = .tableBackground
-
+        self.editButton.tintColor = .white
         quoteTableView.separatorStyle = .none
         self.connectionStatusLabel.text = DXEndpointState.notConnected.convetToString()
     }
