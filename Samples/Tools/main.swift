@@ -17,8 +17,9 @@ let commands: [ToolsCommand] = [PerfTestTool(),
                                 HelpTool()]
 
 func getCommand(_ cmd: String) -> ToolsCommand? {
+    var cmd = cmd.lowercased()
     return commands.first { command in
-        command.cmd == cmd
+        command.cmd.lowercased() == cmd
     }
 }
 
