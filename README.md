@@ -181,7 +181,7 @@ from [Release](https://github.com/dxFeed/dxfeed-graal-swift-api/releases) (tools
 * [LatencyTest](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/LatencyTestTool.swift)
   connects to the specified address(es) and calculates latency.
 
-To run tools on macOs, it may be necessary to unquarantine them:
+To run tools on macOS, it may be necessary to unquarantine them:
 
 ```
 sudo /usr/bin/xattr -r -d com.apple.quarantine <directory_with_tools>
