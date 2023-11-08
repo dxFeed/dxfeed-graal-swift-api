@@ -58,6 +58,9 @@ class DumpTool: ToolsCommand {
         isQuite = arguments.isQuite
 
         do {
+            try arguments.properties.forEach { key, value in
+                try SystemProperty.setProperty(key, value)
+            }
             let inputEndpoint = try DXEndpoint
                 .builder()
                 .withRole(.streamFeed)
