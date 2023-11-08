@@ -9,12 +9,12 @@ the [dxFeed Graal Native](https://dxfeed.jfrog.io/artifactory/maven-open/com/dxf
 which was compiled with [GraalVM Native Image](https://www.graalvm.org/latest/reference-manual/native-image/)
 and [dxFeed Java API](https://docs.dxfeed.com/dxfeed/api/overview-summary.html) (our flagman API).
 
-:warning: It’s an **alpha** version and still under active development. **Don’t use it in a production environment.**
+:warning: It’s an **alpha** version and still under active development.
 
-
+![Build](https://github.com/dxFeed/dxfeed-graal-swift-api/actions/workflows/build.yml/badge.svg)
 ![Language](https://img.shields.io/badge/language-swift-blueviolet)
-![Platform](https://img.shields.io/badge/platform-ios--arm64%20%7C%20osx--x64%20%7C%20osx--arm64-lightgrey)
-![License](https://img.shields.io/badge/license-MPL--2.0-orange)
+![Platform](https://img.shields.io/badge/platform-ios--arm64%20%7C%20ios--simulator--x64%20%7C%20ios--simulator--arm64%20%7C%20osx--x64%20%7C%20osx--arm64-lightgrey)
+[![License](https://img.shields.io/badge/license-MPL--2.0-orange)](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/LICENSE)
 
 
 ## Table of Contents
@@ -179,7 +179,7 @@ from [Release](https://github.com/dxFeed/dxfeed-graal-swift-api/releases) (tools
   connects to the specified address(es) and calculates performance counters (events per second, memory usage, CPU usage,
   etc.)
 * [LatencyTest](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/LatencyTestTool.swift)
-  connects to the specified address(es) and calculates latency.
+  connects to the specified address(es) and calculates latency
 
 To run tools on macOS, it may be necessary to unquarantine them:
 
@@ -190,11 +190,11 @@ sudo /usr/bin/xattr -r -d com.apple.quarantine <directory_with_tools>
 ## Samples
 
 * [DXFeedIpfConnect](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/IpfConnect.swift)
-    This sample demonstrates how to subscribe to available symbols using IPF. It uses a DxFeed.
+    This sample demonstrates how to subscribe to available symbols using IPF. It uses a DxFeed
 * [DXFeedLiveIpfSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/LiveIpfSample.swift)
-  This sample demonstrates how to an instrument profile URL and reads instrument profiles with support of streaming live updates.
+  This sample demonstrates how to an instrument profile URL and reads instrument profiles with support of streaming live updates
 * [ScheduleSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/ScheduleSample.swift)
-  This sample demonstrates different use cases of Schedule API.
+  This sample demonstrates different use cases of Schedule API
   
 ## Current State
 
@@ -356,16 +356,16 @@ sudo /usr/bin/xattr -r -d com.apple.quarantine <directory_with_tools>
 
 - [x] [InstrumentProfile](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/ipf/InstrumentProfile.html)
   represents basic profile information about a market instrument
-  ([Java API sample](https://github.com/devexperts/QD/blob/master/dxfeed-samples/src/main/java/com/dxfeed/sample/ipf/DXFeedIpfConnect.java), [Swift API sample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/IpfConnect.swift))
+  ([Java API sample](https://github.com/devexperts/QD/blob/master/dxfeed-samples/src/main/java/com/dxfeed/sample/ipf/DXFeedIpfConnect.java))
 
 - [x] [InstrumentProfileCollector](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/ipf/live/InstrumentProfileCollector.html)
   collects instrument profile updates and provides the live instrument profiles list
-  ([Java API sample](https://github.com/devexperts/QD/blob/master/dxfeed-samples/src/main/java/com/dxfeed/sample/ipf/DXFeedLiveIpfSample.java), [Swift API sample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/LiveIpfSample.swift))
+  ([Java API sample](https://github.com/devexperts/QD/blob/master/dxfeed-samples/src/main/java/com/dxfeed/sample/ipf/DXFeedLiveIpfSample.java))
   
 - [x] [Schedule](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/schedule/Schedule.html)
   provides an API to retrieving and exploring the trading schedules of various exchanges and different financial
   instrument classes
-  ([Java API sample](https://github.com/devexperts/QD/blob/master/dxfeed-samples/src/main/java/com/dxfeed/sample/schedule/ScheduleSample.java), [Swift API sample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/ScheduleSample.swift))
+  ([Java API sample](https://github.com/devexperts/QD/blob/master/dxfeed-samples/src/main/java/com/dxfeed/sample/schedule/ScheduleSample.java))
 
 ### Services
 
