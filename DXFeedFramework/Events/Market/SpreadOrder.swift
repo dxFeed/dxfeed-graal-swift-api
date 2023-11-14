@@ -17,7 +17,7 @@ import Foundation
 /// Spread order is similar to a regular ``Order``, but it has a
 /// ``SpreadSymbol`` property that contains the symbol
 /// of the actual spread that is being represented by spread order object.
-/// ``MarketEvent.EventSymbol`` property contains the underlying symbol
+/// ``IEventType/eventSymbol`` property contains the underlying symbol
 /// that was used in subscription.
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/SpreadOrder.html)

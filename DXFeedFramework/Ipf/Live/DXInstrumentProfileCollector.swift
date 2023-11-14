@@ -37,8 +37,10 @@ public class DXInstrumentProfileCollector {
     public func add<O>(listener: O) throws
     where O: DXInstrumentProfileUpdateListener,
           O: Hashable {
-              try native.addListener(listener)
-              listeners.insert(listener)
+              if !listeners.member(listener) {
+                  try native.addListener(listener)
+                  listeners.insert(listener)
+              }
           }
 
     /// Removes listener that is notified about any updates in the set of instrument profiles.
