@@ -107,49 +107,10 @@ Cmd \(cmd) contains not enough \(cmd.count - 1) arguments. Expected \(requiredNu
         if namelessParameters.count <= index {
             return [WildcardSymbol.all]
         }
-
         let symbols = namelessParameters[index]
         if symbols.lowercased() == "all" {
             return [WildcardSymbol.all]
         }
-
-        var symbolsList = [String]()
-        func addSymbol(str: String) {
-            if str.hasPrefix("ipf[") && str.hasSuffix("]") {
-                if let address = str.slice(from: "[", to: "]") {
-                    let profiles = try? DXInstrumentProfileReader().readFromFile(address: address)
-                    profiles?.forEach({ profile in
-                        symbolsList.append(profile.symbol)
-                    })
-                }
-            } else {
-                symbolsList.append(str)
-            }
-        }
-        var parentheses = 0
-        var tempSrting = ""
-        symbols.forEach { character in
-            switch character {
-            case "{", "(", "[":
-                parentheses += 1
-                tempSrting.append(character)
-            case "}", ")", "]":
-                if parentheses > 0 {
-                    parentheses -= 1
-                }
-                tempSrting.append(character)
-            case ",":
-                if parentheses == 0 {
-                    addSymbol(str: tempSrting)
-                    tempSrting = ""
-                } else {
-                    tempSrting.append(character)
-                }
-            default:
-                tempSrting.append(character)
-            }
-        }
-        addSymbol(str: tempSrting)
-        return symbolsList
+        return (try? SymbolParser.parse(symbols)) ?? [String]()
     }
 }
