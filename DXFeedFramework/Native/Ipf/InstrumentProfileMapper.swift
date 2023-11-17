@@ -23,8 +23,8 @@ class InstrumentProfileMapper {
     }
 
     func releaseNative(native: UnsafeMutablePointer<dxfg_instrument_profile_t>) {
-        native.pointee.customFields.deinitialize(count: 1)
-        native.pointee.customFields.deallocate()
+        native.pointee.custom_fields.deinitialize(count: 1)
+        native.pointee.custom_fields.deallocate()
         native.deinitialize(count: 1)
         native.deallocate()
     }
