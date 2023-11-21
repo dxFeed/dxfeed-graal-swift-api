@@ -55,4 +55,5 @@ class NativeTimeFormat: NativeBox<dxfg_time_format_t> {
         let timeFormat = try ErrorCheck.nativeCall(thread, dxfg_TimeFormat_asFullIso(thread, timeFormat.native))
         self.init(native: timeFormat)
     }
+    
 }

@@ -255,9 +255,9 @@ extension TimeAndSale {
     public func toString() -> String {
         return """
 TimeAndSale{\(eventSymbol), \
-eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
+eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
 eventFlags=\(eventFlags.toHexString()), \
-time=\(TimeUtil.toLocalDateString(millis: time)), \
+time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time))  ?? ""), \
 timeNanoPart=\(timeNanoPart), \
 sequence=\(getSequence()), \
 exchange=\(StringUtil.encodeChar(char: exchangeCode)), \

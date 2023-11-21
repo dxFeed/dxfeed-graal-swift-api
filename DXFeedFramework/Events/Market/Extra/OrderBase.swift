@@ -285,18 +285,19 @@ extension OrderBase {
 
     /// Returns string representation of this candle fields.
     func baseFieldsToString() -> String {
+
         return
 """
 \(eventSymbol), \
-eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
+eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
 source=\(eventSource.name), \
 eventFlags=\(eventFlags.toHexString()), \
 index=\(index.toHexString()), \
-time=\(TimeUtil.toLocalDateString(millis: time)), \
+time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
 sequence=\(getSequence()), \
 timeNanoPart=\(timeNanoPart), \
 action=\(action), \
-actionTime=\(TimeUtil.toLocalDateString(millis: actionTime)), \
+actionTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: actionTime)) ?? ""), \
 orderId=\(orderId), \
 auxOrderId=\(auxOrderId), \
 price=\(price), \

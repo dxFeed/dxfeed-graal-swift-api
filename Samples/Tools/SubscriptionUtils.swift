@@ -34,7 +34,7 @@ Create subscription to \(address) for \(types):\(symbols) with properties:\(prop
             let subscription = try? endpoint?.getFeed()?.createSubscription(str)
             try? subscription?.add(listener: listener)
             if time != nil {
-                guard let date = TimeUtil.parse(time!) else {
+                guard let date: Date = try? DXTimeFormat.defaultTimeFormat?.parse(time!) else {
                     fatalError("Couldn't parse string \(time ?? "") to Date object")
                 }
                 let timeSubscriptionSymbols = symbols.map { symbol in

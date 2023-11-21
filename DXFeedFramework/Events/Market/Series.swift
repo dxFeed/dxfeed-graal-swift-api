@@ -109,10 +109,10 @@ extension Series {
         return
 """
 Series{\(eventSymbol), \
-eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
+eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
 eventFlags=\(eventFlags.toHexString()), \
 index=\(index.toHexString()), \
-time=\(TimeUtil.toLocalDateString(millis: time)), \
+time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
 sequence=\(self.getSequence()), \
 expiration=\(DayUtil.getYearMonthDayByDayId(Int(expiration))), \
 volatility=\(volatility), \
