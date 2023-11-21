@@ -9,6 +9,7 @@ import XCTest
 @testable import DXFeedFramework
 @_implementationOnly import graal_api
 
+// swiftlint:disable type_body_length
 final class IPFTests: XCTestCase {
     class AnonymousProfileListener: DXInstrumentProfileUpdateListener, Hashable {
         static func == (lhs: AnonymousProfileListener, rhs: AnonymousProfileListener) -> Bool {
@@ -304,3 +305,4 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
         XCTAssert(inputStr == resultstr)
     }
 }
+// swiftlint:enable type_body_length

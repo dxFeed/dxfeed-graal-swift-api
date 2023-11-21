@@ -40,7 +40,7 @@ public class DXTimePeriod {
         let timePeriod = try NativeTimePeriod(value: value)
         self.init(timePeriod: timePeriod)
     }
-    
+
     /// Returns TimePeriod represented with a given string.
     ///
     /// Allowable format is ISO8601 duration, but there are some simplifications and modifications available:
@@ -64,7 +64,7 @@ public class DXTimePeriod {
     public func getSeconds() throws -> Int32 {
         return try timePeriod.getSeconds()
     }
-    
+
     /// Returns value in nanoseconds.
     public func getNanos() throws -> Long {
         return try timePeriod.getNanos()

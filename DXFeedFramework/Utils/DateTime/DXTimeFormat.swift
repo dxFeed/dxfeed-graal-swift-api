@@ -40,7 +40,6 @@ public class DXTimeFormat {
         return try? DXTimeFormat(withMillis: self)
     }()
 
-
     /// Returns TimeFormat instance for a specified timezone.
     /// - Throws: GraalException. Rethrows exception from Java.
     public convenience init(timeZone: DXTimeZone) throws {
@@ -61,7 +60,7 @@ public class DXTimeFormat {
         let timeFormat = try NativeTimeFormat(withMillis: timeFormat.timeFormat)
         self.init(timeFormat: timeFormat)
     }
-    
+
     /// Returns TimeFormat instance that produces full ISO8610 string of "yyyy-MM-dd'T'HH:mm:ss.SSSX".
     /// - Throws: GraalException. Rethrows exception from Java.
     public convenience init(fullIso timeFormat: DXTimeFormat) throws {
@@ -183,7 +182,7 @@ public extension DXTimeFormat {
     ///   - value: time date and time to format.
     /// - Returns: string representation of data and time.
     /// - Throws: GraalException. Rethrows exception from Java.
-    func format(value: Long) throws -> String? {       
+    func format(value: Long) throws -> String? {
         return try NativeTimeUtil.format(timeFormat: timeFormat, value: value)
     }
 }

@@ -71,21 +71,16 @@ class NativeTimeZone: NativeBox<dxfg_time_zone_t> {
         return result
     }
 
-    func getOffset2(era: Int32,
-                    year: Int32,
-                    month: Int32,
-                    day: Int32,
-                    dayOfWeek: Int32,
-                    milliseconds: Int32) throws -> Int32 {
+    func getOffset2(offset: DXDateOffset) throws -> Int32 {
         let thread = currentThread()
         let result = try ErrorCheck.nativeCall(thread, dxfg_TimeZone_getOffset2(thread,
                                                                                 native,
-                                                                                era,
-                                                                                year,
-                                                                                month,
-                                                                                day,
-                                                                                dayOfWeek,
-                                                                                milliseconds))
+                                                                                offset.era,
+                                                                                offset.year,
+                                                                                offset.month,
+                                                                                offset.day,
+                                                                                offset.dayOfWeek,
+                                                                                offset.milliseconds))
         return result
     }
 
