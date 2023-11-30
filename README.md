@@ -15,6 +15,7 @@ and [dxFeed Java API](https://docs.dxfeed.com/dxfeed/api/overview-summary.html) 
 ![Platform](https://img.shields.io/badge/platform-ios--arm64%20%7C%20ios--simulator--x64%20%7C%20ios--simulator--arm64%20%7C%20osx--x64%20%7C%20osx--arm64-lightgrey)
 ![Language](https://img.shields.io/badge/language-swift-blueviolet)
 [![Release](https://img.shields.io/github/v/release/dxFeed/dxfeed-graal-swift-api)](https://github.com/dxFeed/dxfeed-graal-swift-api/releases/latest)
+[![SPM](https://img.shields.io/badge/spm-blue)](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Package.swift)
 [![License](https://img.shields.io/badge/license-MPL--2.0-orange)](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/LICENSE)
 
 
