@@ -168,12 +168,37 @@ Quote{AAPL, eventTime=0, time=20231130-123206.000, timeNanoPart=0, sequence=0, b
 </details>
 
 ### How to connect with token based authorization
+```swift
+// For token based authorization, use the following address format:
+// "demo.dxfeed.com:7300[login=entitle:token]"
+let endpoint = try DXEndpoint.builder()
+    .withProperty("dxfeed.address", "demo.dxfeed.com:7300[login=entitle:token]")
+    .build()
+let subscription = try endpoint.getFeed()?.createSubscription(EventCode.quote)
+let eventListener = Listener()
+try subscription?.add(listener: eventListener)
+try subscription?.addSymbols("AAPL")
+wait(seconds: 2)
+```
 <details>
 <summary>Output</summary>
 <br>
 
 ```
-
+I 231130 125257.772 [main] QD - Using QDS-3.325+file-UNKNOWN, (C) Devexperts
+I 231130 125257.776 [main] QD - Using scheme com.dxfeed.api.impl.DXFeedScheme slfwemJduh1J7ibvy9oo8DABTNhNALFQfw0KmE40CMI
+I 231130 125257.779 [main] MARS - Started time synchronization tracker using multicast 239.192.51.45:5145 with BTRAu
+I 231130 125257.783 [main] MARS - Started JVM self-monitoring
+I 231130 125257.783 [main] QD - monitoring with collectors [Ticker, Stream, History]
+I 231130 125257.784 [main] QD - monitoring DXEndpoint with dxfeed.address=demo.dxfeed.com:7300[login=entitle:token]
+I 231130 125257.785 [main] EntitleLoginHandlerFactory - Registering auth scheme 'entitle'
+I 231130 125257.785 [main] EntitleLoginHandlerFactory - Using auth scheme 'entitle' with token: token
+I 231130 125257.786 [main] ClientSocket-Distributor - Starting ClientSocketConnector to demo.dxfeed.com:7300
+I 231130 125257.786 [demo.dxfeed.com:7300-Reader] ClientSocketConnector - Resolving IPs for demo.dxfeed.com
+I 231130 125257.787 [demo.dxfeed.com:7300-Reader] ClientSocketConnector - Connecting to 208.93.103.170:7300
+I 231130 125257.891 [demo.dxfeed.com:7300-Reader] ClientSocketConnector - Connected to 208.93.103.170:7300
+D 231130 125257.995 [demo.dxfeed.com:7300-Reader] QD - Distributor received protocol descriptor multiplexor@fFLro [type=qtp, version=QDS-3.319, opt=hs, mars.root=mdd.demo-amazon.multiplexor-demo1] sending [TICKER, STREAM, HISTORY, DATA] from 208.93.103.170
+Quote{AAPL, eventTime=0, time=20231130-123452.000, timeNanoPart=0, sequence=0, bidTime=20231130-123451.000, bidExchange=K, bidPrice=189.47, bidSize=3.0, askTime=20231130-123452.000, askExchange=P, askPrice=189.53, askSize=9.0}
 ```
 
 </details>
