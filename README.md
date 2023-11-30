@@ -9,7 +9,7 @@ the [dxFeed Graal Native](https://dxfeed.jfrog.io/artifactory/maven-open/com/dxf
 which was compiled with [GraalVM Native Image](https://www.graalvm.org/latest/reference-manual/native-image/)
 and [dxFeed Java API](https://docs.dxfeed.com/dxfeed/api/overview-summary.html) (our flagman API).
 
-:warning: It’s an **alpha** version and still under active development.
+:warning: It’s an **beta** version and still under active development.
 
 ![Build](https://github.com/dxFeed/dxfeed-graal-swift-api/actions/workflows/build.yml/badge.svg)
 ![Language](https://img.shields.io/badge/language-swift-blueviolet)
@@ -26,6 +26,9 @@ and [dxFeed Java API](https://docs.dxfeed.com/dxfeed/api/overview-summary.html) 
 - [Documentation](#documentation)
 - [Requirements](#requirements)
 - [Usage](#usage)
+    * [How to connect to demo](#how-to-connect-to-demo)
+    * [How to connect with token based authorization](#how-to-connect-with-token-based-authorization)
+    * [How to connect to dxLink](#how-to-connect-to-dxlink)
 - [Tools](#tools)
 - [Samples](#samples)
 - [Current State](#current-state)
@@ -37,7 +40,7 @@ dxFeed Graal Swift API allows developers to create efficient applications in Swi
 
 ### Milestones
 
-As part of our ongoing development efforts, we are pleased to announce that a new repository is currently under construction and is expected to be completed by Q4’2023. We are working diligently to ensure that this new repository meets all of our standards for performance, security, and scalability. We will be providing regular updates throughout the development process.
+As part of our ongoing development efforts, we are pleased to announce that a new repository is currently under construction and is expected to be completed by Q1’2024. We are working diligently to ensure that this new repository meets all of our standards for performance, security, and scalability. We will be providing regular updates throughout the development process.
 
 If you have any questions, please contact us via
 our [customer portal](https://jira.in.devexperts.com/servicedesk/customer/portal/1/create/122).
@@ -124,7 +127,7 @@ Is supported in the Rosetta 2 x64 emulator.
 [iOS]: https://support.apple.com/ios
 
 ## Usage
-
+### How to connect to demo
 ```swift
 class Listener: DXEventListener {
     func receiveEvents(_ events: [MarketEvent]) {
@@ -163,10 +166,33 @@ Quote{AAPL, eventTime=0, time=20221219-223312.000, timeNanoPart=0, sequence=0, b
 
 </details>
 
+### How to connect with token based authorization
+<details>
+<summary>Output</summary>
+<br>
+
+```
+
+```
+
+</details>
+
+### How to connect to dxLink
+<details>
+<summary>Output</summary>
+<br>
+
+```
+```
+
+</details>
+
+To familiarize with the dxLink protocol, please click [here](https://demo.dxfeed.com/dxlink-ws/debug/#/protocol)
+
 ## Tools
 
 [Tools](https://github.com/dxFeed/dxfeed-graal-swift-api/tree/swift/Samples/Tools/)
-is a collection of tools that allow you to subscribe to various market events for the specified symbols. The tools can
+is a collection of utilities that allow you to subscribe to various market events for the specified symbols. The tools can
 be
 downloaded
 from [Release](https://github.com/dxFeed/dxfeed-graal-swift-api/releases) (tools.zip includes self-contained versions)
@@ -189,37 +215,42 @@ sudo /usr/bin/xattr -r -d com.apple.quarantine <directory_with_tools>
 
 ## Samples
 
-* [DXFeedIpfConnect](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/IpfConnect.swift)
-    This sample demonstrates how to subscribe to available symbols using IPF. It uses a DxFeed
-* [DXFeedLiveIpfSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/LiveIpfSample.swift)
-  This sample demonstrates how to an instrument profile URL and reads instrument profiles with support of streaming live updates
-* [ScheduleSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/ScheduleSample.swift)
-  This sample demonstrates different use cases of Schedule API
+- [ ] ConvertTapeFile demonstrates how to convert one tape file to another tape file with optional intermediate processing or filtering
+- [ ] DxFeedFileParser is a simple demonstration of how events are read form a tape file
+- [ ] DxFeedSample is a simple demonstration of how to create multiple event listeners and subscribe to `Quote` and `Trade` events
+- [ ] PrintQuoteEvents is a simple demonstration of how to subscribe to the `Quote` event, using a `DxFeed` instance singleton and `dxfeed.properties` file
+- [ ] WriteTapeFile is a simple demonstration of how to write events to a tape file
+- [ ] DxFeedIpfConnect is a simple demonstration of how to get Instrument Profiles
+- [x] [DXFeedLiveIpfSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/LiveIpfSample.swift)
+is a simple demonstration of how to get live updates for Instrument Profiles
+- [ ] DxFeedPublishProfiles is a simple demonstration of how to publish market events
+- [x] [ScheduleSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/ScheduleSample.swift)
+  is a simple demonstration of how to get various scheduling information for instruments
   
 ## Current State
 
 ### Endpoint Roles
 
-- [x] [Feed](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Role.html#FEED)
+- [x] [FEED](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Role.html#FEED)
   connects to the remote data feed provider and is optimized for real-time or delayed data processing,
   **this is a default role**
 
-- [x] [StreamFeed](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Role.html#STREAM_FEED)
+- [x] [STREAM_FEED](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Role.html#STREAM_FEED)
   is similar to `Feed` and also connects to the remote data feed provider but is designed for bulk data parsing from
   files
 
-- [x] [Publisher](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Role.html#PUBLISHER)
+- [x] [PUBLISHER](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Role.html#PUBLISHER)
   connects to the remote publisher hub (also known as multiplexor) or creates a publisher on the local host
 
-- [x] [StreamPublisher](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Role.html#STREAM_PUBLISHER)
+- [x] [STREAM_PUBLISHER](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Role.html#STREAM_PUBLISHER)
   is similar to `Publisher` and also connects to the remote publisher hub, but is designed for bulk data publishing
 
 
-- [x] [LocalHub](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Role.html#LOCAL_HUB)
+- [x] [LOCAL_HUB](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Role.html#LOCAL_HUB)
   is a local hub without the ability to establish network connections. Events published via `Publisher` are delivered to
   local `Feed` only
 
-- [ ] [OnDemandFeed](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Role.html#ON_DEMAND_FEED)
+- [ ] [ON_DEMAND_FEED](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Role.html#ON_DEMAND_FEED)
   is similar to `Feed`, but it is designed to be used
   with  [OnDemandService](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/ondemand/OnDemandService.html) for historical
   data replay only
@@ -285,7 +316,7 @@ sudo /usr/bin/xattr -r -d com.apple.quarantine <directory_with_tools>
 
 ### Subscription Symbols
 
-- [x] String
+- [x] [String](https://developer.apple.com/documentation/swift/string)
   is a string representation of the symbol
 
 - [x] [TimeSeriesSubscriptionSymbol](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/TimeSeriesSubscriptionSymbol.html)
@@ -309,6 +340,8 @@ sudo /usr/bin/xattr -r -d com.apple.quarantine <directory_with_tools>
 - [ ] [DXFeedTimeSeriesSubscription](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedTimeSeriesSubscription.html)
   extends `DXFeedSubscription` to conveniently subscribe to time series events for a set of symbols and event types
   ([Java API sample](https://github.com/devexperts/QD/blob/master/dxfeed-samples/src/main/java/com/dxfeed/sample/api/DXFeedConnect.java))
+
+- [ ] [ObservableSubscription](https://github.com/devexperts/QD/blob/master/dxfeed-api/src/main/java/com/dxfeed/api/osub/ObservableSubscription.java) is an observable set of subscription symbols for the specific event type ([Java API sample](https://github.com/devexperts/QD/blob/master/dxfeed-samples/src/main/java/com/dxfeed/sample/_simple_/PublishProfiles.java))
 
 - [ ] [GetLastEvent](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeed.html#getLastEvent-E-)
   returns the last event for the specified event instance
@@ -360,17 +393,20 @@ sudo /usr/bin/xattr -r -d com.apple.quarantine <directory_with_tools>
 
 - [x] [InstrumentProfileReader](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/ipf/InstrumentProfileReader.html) reads 
   instrument profiles from the stream using Instrument Profile Format (IPF)
-  
-- [x] [InstrumentProfileConnection](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/ipf/live/InstrumentProfileConnection.html) 
-  connects to an instrument profile URL and reads instrument profiles with support of streaming live updates
-  
+
 - [x] [InstrumentProfileCollector](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/ipf/live/InstrumentProfileCollector.html)
   collects instrument profile updates and provides the live instrument profiles list
   ([Java API sample](https://github.com/devexperts/QD/blob/master/dxfeed-samples/src/main/java/com/dxfeed/sample/ipf/DXFeedLiveIpfSample.java))
-  
+ 
+- [x] [InstrumentProfileConnection](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/ipf/live/InstrumentProfileConnection.html) 
+  connects to an instrument profile URL and reads instrument profiles with support of streaming live updates
+
 - [x] [Schedule](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/schedule/Schedule.html) 
   provides API to retrieve and explore various exchanges’ trading schedules and different financial instrument classes
   ([Java API sample](https://github.com/devexperts/QD/blob/master/dxfeed-samples/src/main/java/com/dxfeed/sample/schedule/ScheduleSample.java))
+
+- [ ] [Option Series](https://github.com/devexperts/QD/blob/master/dxfeed-api/src/main/java/com/dxfeed/ipf/option/OptionSeries.java) is a series of call and put options with different strike sharing the same attributes of expiration, last trading day, spc, multiplies, etc. ([Java API sample](https://github.com/devexperts/QD/blob/master/dxfeed-samples/src/main/java/com/dxfeed/sample/ipf/option/DXFeedOptionChain.java))
+
 
 ### Services
 
