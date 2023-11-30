@@ -167,9 +167,9 @@ Quote{AAPL, eventTime=0, time=20231130-123206.000, timeNanoPart=0, sequence=0, b
 
 </details>
 
-### How to connect with token based authorization
+### How to connect with token-based authorization
 ```swift
-// For token based authorization, use the following address format:
+// For token-based authorization, use the following address format:
 // "demo.dxfeed.com:7300[login=entitle:token]"
 let endpoint = try DXEndpoint.builder()
     .withProperty("dxfeed.address", "demo.dxfeed.com:7300[login=entitle:token]")
@@ -238,7 +238,7 @@ Quote{AAPL, eventTime=0, time=20231130-123421.000, timeNanoPart=0, sequence=0, b
 
 </details>
 
-To familiarize with the dxLink protocol, please click [here](https://demo.dxfeed.com/dxlink-ws/debug/#/protocol)
+To familiarize with the dxLink protocol, please click [here].(https://demo.dxfeed.com/dxlink-ws/debug/#/protocol)
 
 ## Tools
 
