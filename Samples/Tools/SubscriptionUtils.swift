@@ -12,6 +12,7 @@ class Subscription {
     var endpoint: DXEndpoint?
     var subscriptions = [DXFeedSubcription]()
 
+    // swiftlint:disable function_parameter_count
     func createSubscription<O>(address: String,
                                symbols: [Symbol],
                                types: [EventCode],
@@ -21,7 +22,8 @@ class Subscription {
                                source: String? = nil)
     where O: DXEventListener, O: Hashable {
         print("""
-Create subscription to \(address) for \(types):\(symbols) with properties:\(properties) and time \(time ?? "---")
+Create subscription to \(address) for \(types): \
+\(symbols.count > 20 ? Array(symbols[0..<20]) : symbols) with properties:\(properties) and time \(time ?? "---")
 """)
         endpoint = try? DXEndpoint
             .builder()
@@ -34,7 +36,7 @@ Create subscription to \(address) for \(types):\(symbols) with properties:\(prop
             let subscription = try? endpoint?.getFeed()?.createSubscription(str)
             try? subscription?.add(listener: listener)
             if time != nil {
-                guard let date = TimeUtil.parse(time!) else {
+                guard let date: Date = try? DXTimeFormat.defaultTimeFormat?.parse(time!) else {
                     fatalError("Couldn't parse string \(time ?? "") to Date object")
                 }
                 let timeSubscriptionSymbols = symbols.map { symbol in
@@ -59,5 +61,6 @@ Create subscription to \(address) for \(types):\(symbols) with properties:\(prop
             }
         }
     }
-}
+    // swiftlint:enable function_parameter_count
 
+}

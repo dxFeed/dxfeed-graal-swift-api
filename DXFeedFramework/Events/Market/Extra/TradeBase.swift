@@ -172,8 +172,8 @@ extension TradeBase {
     func baseFieldsToString() -> String {
         return """
 \(eventSymbol), \
-eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
-time=\(TimeUtil.toLocalDateString(millis: time)), \
+eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
+time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
 timeNanoPart=\(timeNanoPart), \
 sequence=\(self.getSequence()), \
 exchange=\(StringUtil.encodeChar(char: exchangeCode)), \

@@ -136,9 +136,9 @@ extension Candle {
     func baseFieldsToString() -> String {
         return """
 \(eventSymbol), \
-eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
+eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
 eventFlags=\(eventFlags.toHexString()), \
-time=\(TimeUtil.toLocalDateString(millis: time)), \
+time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
 sequence=\(getSequence()), \
 count=\(count), \
 open=\(open), \

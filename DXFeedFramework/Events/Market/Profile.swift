@@ -143,13 +143,13 @@ extension Profile {
     func baseFieldsToString() -> String {
         return """
 \(eventSymbol), \
-eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
+eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
 description='\(descriptionStr ?? "null")', \
 SSR=\(shortSaleRestriction), \
 status=\(tradingStatus), \
 statusReason='\(statusReason ?? "null")', \
-haltStartTime=\(TimeUtil.toLocalDateStringWithoutMillis(millis: haltStartTime)), \
-haltEndTime=\(TimeUtil.toLocalDateStringWithoutMillis(millis: haltEndTime)), \
+haltStartTime=\((try? DXTimeFormat.defaultTimeFormat?.format(value: haltStartTime)) ?? ""), \
+haltEndTime=\((try? DXTimeFormat.defaultTimeFormat?.format(value: haltEndTime)) ?? ""), \
 highLimitPrice=\(highLimitPrice), \
 lowLimitPrice=\(lowLimitPrice), \
 high52WeekPrice=\(high52WeekPrice), \

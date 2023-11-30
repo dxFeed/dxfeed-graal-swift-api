@@ -11,14 +11,35 @@ import Foundation
 /// Utility class for check native calls.
 /// The location of the imported functions is in the header files "dxfg_catch_exception.h".
 class ErrorCheck {
+
+    enum Result: Int32 {
+        case success = 0
+    }
+
     static func test() throws {
         let exception = GraalException.undefined
         throw exception
     }
+
+    @discardableResult
+    static func nativeCall(_ thread: OpaquePointer!, _ code: Int64) throws -> Int64 {
+        if code < Result.success.rawValue {
+            if let exception = fetchException(thread) {
+                throw exception
+            }
+            return code
+        } else {
+            return code
+        }
+    }
+
     @discardableResult
     static func nativeCall(_ thread: OpaquePointer!, _ code: Int32) throws -> Int32 {
-        if code < 0 {
-            throw fetchException(thread)
+        if code < Result.success.rawValue {
+            if let exception = fetchException(thread) {
+                throw exception
+            }
+            return code
         } else {
             return code
         }
@@ -28,7 +49,13 @@ class ErrorCheck {
         if let result = result {
             return result
         } else {
-            throw fetchException(thread)
+            if let exception = fetchException(thread) {
+                throw exception
+            } else {
+                throw GraalException.fail(message: "Something went wrong. Graal exception is empty",
+                                          className: "",
+                                          stack: "")
+            }
         }
     }
 
@@ -39,7 +66,7 @@ class ErrorCheck {
         }
     }
 
-    private static func fetchException(_ thread: OpaquePointer!) -> GraalException {
+    private static func fetchException(_ thread: OpaquePointer!) -> GraalException? {
         let exception = dxfg_get_and_clear_thread_exception_t(thread)
         if let pointee = exception?.pointee {
             let message = String(pointee: pointee.message, default: "Graall Exception")
@@ -51,10 +78,8 @@ class ErrorCheck {
             dxfg_Exception_release(thread, exception)
             return gException
         } else {
-            return GraalException.fail(message: "Something went wrong. Graal exception is empty",
-                                       className: "", stack: "")
+            return nil
         }
-
     }
 
 }

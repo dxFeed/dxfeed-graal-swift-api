@@ -9,7 +9,6 @@ import XCTest
 @testable import DXFeedFramework
 
 final class DateTimeParserTest: XCTestCase {
-
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -19,7 +18,8 @@ final class DateTimeParserTest: XCTestCase {
     }
 
     func testZero() {
-        XCTAssert(TimeUtil.parse(" 0    ") == Date(millisecondsSince1970: 0))
+        let date: Date? = try? DXTimeFormat.defaultTimeFormat?.parse(" 0    ")
+        XCTAssert(date == Date(millisecondsSince1970: 0))
     }
 
     private func checkDate(_ date: Date?, components: DateComponents) {
@@ -32,23 +32,23 @@ final class DateTimeParserTest: XCTestCase {
         let dateComponents = calendar.dateComponents(in: components.timeZone ?? TimeZone.current, from: date)
         print(components)
         print(dateComponents)
-        XCTAssert(components.year == dateComponents.year)
-        XCTAssert(components.month == dateComponents.month)
-        XCTAssert(components.day == dateComponents.day)
-        XCTAssert(components.hour == dateComponents.hour)
-        XCTAssert(components.minute == dateComponents.minute)
-        XCTAssert(components.second == dateComponents.second)
+        XCTAssert(components.year == dateComponents.year, "\(date) Not equals \(components)")
+        XCTAssert(components.month == dateComponents.month, "\(date) Not equals \(components)")
+        XCTAssert(components.day == dateComponents.day, "\(date) Not equals \(components)")
+        XCTAssert(components.hour == dateComponents.hour, "\(date) Not equals \(components)")
+        XCTAssert(components.minute == dateComponents.minute, "\(date) Not equals \(components)")
+        XCTAssert(components.second == dateComponents.second, "\(date) Not equals \(components)")
     }
 
     func testDate1() {
-        checkDate(TimeUtil.parse("20070101-123456"),
+        checkDate(try? DXTimeFormat.defaultTimeFormat?.parse("20070101-123456"),
                   components: DateComponents(year: 2007, month: 01, day: 01, hour: 12, minute: 34, second: 56))
-        checkDate(TimeUtil.parse("20070101-123456.123"),
+        checkDate(try? DXTimeFormat.defaultTimeFormat?.parse("20070101-123456.123"),
                   components: DateComponents(year: 2007, month: 01, day: 01, hour: 12, minute: 34, second: 56))
-        checkDate(TimeUtil.parse("2005-12-31 21:00:00"),
+        checkDate(try? DXTimeFormat.defaultTimeFormat?.parse("2005-12-31 21:00:00"),
                   components: DateComponents(year: 2005, month: 12, day: 31, hour: 21, minute: 0, second: 0))
 
-        checkDate(TimeUtil.parse("2005-12-31 21:00:00.123+03:00"),
+        checkDate(try? DXTimeFormat.defaultTimeFormat?.parse("2005-12-31 21:00:00.123+03:00"),
                   components: DateComponents(timeZone:
                                                 TimeZone(secondsFromGMT: 3 * 60 * 60),
                                              year: 2005,
@@ -57,7 +57,7 @@ final class DateTimeParserTest: XCTestCase {
                                              hour: 21,
                                              minute: 0,
                                              second: 0))
-        checkDate(TimeUtil.parse("2005-12-31 23:10:00.123+0400"),
+        checkDate(try? DXTimeFormat.defaultTimeFormat?.parse("2005-12-31 23:10:00.123+0400"),
                   components: DateComponents(timeZone:
                                                 TimeZone(secondsFromGMT: 4 * 60 * 60),
                                              year: 2005,
@@ -66,7 +66,7 @@ final class DateTimeParserTest: XCTestCase {
                                              hour: 23,
                                              minute: 10,
                                              second: 0))
-        checkDate(TimeUtil.parse("2007-11-02Z"),
+        checkDate(try? DXTimeFormat.defaultTimeFormat?.parse("2007-11-02Z"),
                   components: DateComponents(timeZone: TimeZone(identifier: "UTC"),
                                              year: 2007,
                                              month: 11,
@@ -78,15 +78,7 @@ final class DateTimeParserTest: XCTestCase {
     }
 
     func testDate2() {
-        checkDate(TimeUtil.parse("1"),
-                  components: DateComponents(timeZone: TimeZone(identifier: "UTC"),
-                                             year: 1970,
-                                             month: 1,
-                                             day: 1,
-                                             hour: 0,
-                                             minute: 0,
-                                             second: 0))
-        checkDate(TimeUtil.parse("2005-11-30 21:00:00Z"),
+        checkDate(try? DXTimeFormat.defaultTimeFormat?.parse("2005-11-30 21:00:00Z"),
                   components: DateComponents(timeZone:
                                                 TimeZone(identifier: "UTC"),
                                              year: 2005,
@@ -95,7 +87,7 @@ final class DateTimeParserTest: XCTestCase {
                                              hour: 21,
                                              minute: 0,
                                              second: 0))
-        checkDate(TimeUtil.parse("2005-11-30T21:00:00Z"),
+        checkDate(try? DXTimeFormat.defaultTimeFormat?.parse("2005-11-30T21:00:00Z"),
                   components: DateComponents(timeZone:
                                                 TimeZone(identifier: "UTC"),
                                              year: 2005,
@@ -104,13 +96,18 @@ final class DateTimeParserTest: XCTestCase {
                                              hour: 21,
                                              minute: 0,
                                              second: 0))
-        checkDate(TimeUtil.parse("2005-11-30T21:00:00"),
+        checkDate(try? DXTimeFormat.defaultTimeFormat?.parse("2005-11-30T21:00:00"),
                   components: DateComponents(year: 2005,
                                              month: 11,
                                              day: 30,
                                              hour: 21,
                                              minute: 0,
                                              second: 0))
+    }
+
+    func testWrongDate() {
+        let date: Date? = try? DXTimeFormat.defaultTimeFormat?.parse("1")
+        XCTAssert(date == nil)
     }
 
 }

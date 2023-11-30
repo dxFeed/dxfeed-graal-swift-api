@@ -110,9 +110,9 @@ extension TheoPrice {
     public func toString() -> String {
         return """
 TheoPrice{\(eventSymbol) \
-eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
+eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
 eventFlags=\(eventFlags.toHexString()), \
-time=\(TimeUtil.toLocalDateString(millis: time)), \
+time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
 sequence=\(self.getSequence()), \
 price=\(price) \
 underlyingPrice=\(underlyingPrice), \
