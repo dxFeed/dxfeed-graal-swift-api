@@ -50,7 +50,7 @@ class LatencyTestTool: ToolsCommand {
         subscription.createSubscription(address: address,
                                         symbols: arguments.parseSymbols(at: 3),
                                         types: types,
-                                        listener: listener,
+                                        listeners: [listener],
                                         properties: arguments.properties,
                                         time: nil)
 

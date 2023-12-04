@@ -16,7 +16,7 @@ class Subscription {
     func createSubscription<O>(address: String,
                                symbols: [Symbol],
                                types: [EventCode],
-                               listener: O,
+                               listeners: [O],
                                properties: [String: String],
                                time: String?,
                                source: String? = nil)
@@ -34,7 +34,10 @@ Create subscription to \(address) for \(types): \
         _ = try? endpoint?.connect(address)
         types.forEach { str in
             let subscription = try? endpoint?.getFeed()?.createSubscription(str)
-            try? subscription?.add(listener: listener)
+
+            listeners.forEach { listener in
+                try? subscription?.add(listener: listener)
+            }
             if time != nil {
                 guard let date: Date = try? DXTimeFormat.defaultTimeFormat?.parse(time!) else {
                     fatalError("Couldn't parse string \(time ?? "") to Date object")

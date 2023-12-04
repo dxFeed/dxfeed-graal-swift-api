@@ -46,7 +46,7 @@ class PerfTestTool: ToolsCommand {
         subscription.createSubscription(address: address,
                                         symbols: arguments.parseSymbols(at: 3),
                                         types: arguments.parseTypes(at: 2),
-                                        listener: listener,
+                                        listeners: [listener],
                                         properties: arguments.properties,
                                         time: nil)
 

@@ -51,12 +51,21 @@ class DumpTool: ToolsCommand {
         }
     }()
 
+    private var listeners = [EventListener]()
+
     func execute() {
         let address = arguments[1]
         let symbols = arguments.parseSymbols(at: 3)
 
         isQuite = arguments.isQuite
 
+        if !isQuite {
+            listeners.append(EventListener(callback: { events in
+                events.forEach { event in
+                    print(event.toString())
+                }
+            }))
+        }
         do {
             try arguments.properties.forEach { key, value in
                 try SystemProperty.setProperty(key, value)
@@ -82,9 +91,18 @@ class DumpTool: ToolsCommand {
                     .build()
                 try outputEndpoint?.connect("tape:\(tapeFile)")
                 publisher = outputEndpoint?.getPublisher()
+                listeners.append(EventListener(callback: { [weak self] events in
+                    do {
+                        _ = try self?.publisher?.publish(events: events)
+                    } catch {
+                        print("Connect tool publish error: \(error)")
+                    }
+                }))
             }
+            try listeners.forEach { listener in
+                try subscription?.add(listener: listener)
 
-            try subscription?.add(listener: self)
+            }
             try subscription?.addSymbols(symbols)
 
             try inputEndpoint.connect(address)
@@ -96,31 +114,6 @@ class DumpTool: ToolsCommand {
             try outputEndpoint?.closeAndAWaitTermination()
         } catch {
             print("Dump tool error: \(error)")
-        }
-    }
-}
-
-extension DumpTool: Hashable {
-    static func == (lhs: DumpTool, rhs: DumpTool) -> Bool {
-        return lhs === rhs
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(stringReference(self))
-    }
-}
-
-extension DumpTool: DXEventListener {
-    func receiveEvents(_ events: [DXFeedFramework.MarketEvent]) {
-        do {
-            if !isQuite {
-                events.forEach { event in
-                    print(event.toString())
-                }
-            }
-            try publisher?.publish(events: events)
-        } catch {
-            print("Dump tool publish error: \(error)")
         }
     }
 }
