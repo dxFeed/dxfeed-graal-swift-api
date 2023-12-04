@@ -16,6 +16,7 @@ class Subscription {
     func createSubscription<O>(address: String,
                                symbols: [Symbol],
                                types: [EventCode],
+                               role: DXEndpoint.Role,
                                listeners: [O],
                                properties: [String: String],
                                time: String?,
@@ -27,7 +28,7 @@ Create subscription to \(address) for \(types): \
 """)
         endpoint = try? DXEndpoint
             .builder()
-            .withRole(.feed)
+            .withRole(role)
             .withProperties(properties)
             .withName("SubscriptionEndpoint")
             .build()

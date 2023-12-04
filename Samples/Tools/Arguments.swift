@@ -41,6 +41,13 @@ class Arguments {
         return false
     }()
 
+    public lazy var isForceStream: Bool = {
+        if let isForceStream = allParameters.firstIndex(of: "--force-stream") {
+            return true
+        }
+        return false
+    }()
+
     public lazy var tape: String? = {
         if let tapeIndex = allParameters.firstIndex(of: "-t") {
             return allParameters[tapeIndex + 1]

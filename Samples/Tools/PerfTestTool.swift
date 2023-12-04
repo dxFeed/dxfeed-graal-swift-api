@@ -17,7 +17,7 @@ class PerfTestTool: ToolsCommand {
     Connects to the specified address(es) and calculates performance counters (events per second, cpu usage, etc).
 
     Usage:
-    path_to_app <address> <types> <symbols>
+    path_to_app <address> <types> <symbols> [<options>]
 
     Where:
 
@@ -25,6 +25,7 @@ class PerfTestTool: ToolsCommand {
                     For Token-Based Authorization, use the following format: "<address>:<port>[login=entitle:<token>]".
     types (pos. 1)    Required. Comma-separated list of dxfeed event types (e.g. Quote, TimeAndSale).
     symbols (pos. 2)  Required. Comma-separated list of symbol names to get events for (e.g. "IBM, AAPL, MSFT").
+    --force-stream    Enforces a streaming contract for subscription. The StreamFeed role is used instead of Feed.
     """
 
     private lazy var arguments: Arguments = {
@@ -46,6 +47,7 @@ class PerfTestTool: ToolsCommand {
         subscription.createSubscription(address: address,
                                         symbols: arguments.parseSymbols(at: 3),
                                         types: arguments.parseTypes(at: 2),
+                                        role: arguments.isForceStream ? .streamFeed : .feed,
                                         listeners: [listener],
                                         properties: arguments.properties,
                                         time: nil)
