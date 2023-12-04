@@ -39,6 +39,8 @@ final class DXConnectionTest: XCTestCase {
     override class func setUp() {
         // The experimental property must be enabled.
         try? SystemProperty.setProperty("dxfeed.experimental.dxlink.enable", "true")
+        // Set scheme for dxLink.
+        try? SystemProperty.setProperty("scheme", "ext:resource:dxlink.xml")
     }
 
     func testDXLinkConnection() throws {
