@@ -246,12 +246,12 @@ sudo /usr/bin/xattr -r -d com.apple.quarantine <directory_with_tools>
 
 ## Samples
 
-- [ ] ConvertTapeFile demonstrates how to convert one tape file to another tape file with optional intermediate processing or filtering
-- [ ] DxFeedFileParser is a simple demonstration of how events are read form a tape file
+- [x] ConvertTapeFile demonstrates how to convert one tape file to another tape file with optional intermediate processing or filtering
+- [x] DxFeedFileParser is a simple demonstration of how events are read form a tape file
 - [ ] DxFeedSample is a simple demonstration of how to create multiple event listeners and subscribe to `Quote` and `Trade` events
 - [ ] PrintQuoteEvents is a simple demonstration of how to subscribe to the `Quote` event, using a `DxFeed` instance singleton and `dxfeed.properties` file
 - [ ] WriteTapeFile is a simple demonstration of how to write events to a tape file
-- [X] [DxFeedIpfConnect](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/IpfConnect.swift) is a simple demonstration of how to get Instrument Profiles
+- [x] [DxFeedIpfConnect](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/IpfConnect.swift) is a simple demonstration of how to get Instrument Profiles
 - [x] [DXFeedLiveIpfSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/LiveIpfSample.swift)
 is a simple demonstration of how to get live updates for Instrument Profiles
 - [ ] DxFeedPublishProfiles is a simple demonstration of how to publish market events
