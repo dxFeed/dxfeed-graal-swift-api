@@ -60,14 +60,6 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "ScheduleSample  schedule.zip  sample.ipf.zip  -f AAPL 2012-05-26-14:15:00"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "DXFeedLiveIpfSample https://demo:demo@tools.dxfeed.com/ipf"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
             argument = "Connect demo.dxfeed.com:7300 TimeAndSale &quot;ipf[https://demo:demo@tools.dxfeed.com/ipf?TYPE=STOCK&amp;compression=zip],APPL&quot; -p monitoring.stat=1s"
             isEnabled = "YES">
          </CommandLineArgument>
