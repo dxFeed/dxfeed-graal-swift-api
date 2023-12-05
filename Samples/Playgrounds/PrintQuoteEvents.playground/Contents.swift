@@ -2,7 +2,7 @@ import Foundation
 import PlaygroundSupport
 import DXFeedFramework
 
-// Empty Listener with handler
+//Empty Listener with handler
 class Listener: DXEventListener, Hashable {
 
     static func == (lhs: Listener, rhs: Listener) -> Bool {
@@ -23,32 +23,23 @@ class Listener: DXEventListener, Hashable {
     }
 }
 
-// Creates multiple event listener and subscribe to Quote and Trade events.
+// A simple sample that shows how to subscribe to quotes for one instruments,
+// and print all received quotes to the console.
 // Use default DXFeed instance for that data feed address is defined by "dxfeed.properties" file.
+// The properties file is copied to the build output directory from the project directory.
+
+// Specified instrument name, for example AAPL, IBM, MSFT, etc.
 let symbol = "AAPL"
 
 // Use path to dxfeed.properties with feed address
 let propertiesFilePath = Bundle.main.path(forResource: "dxfeed.properties", ofType: nil)
 try SystemProperty.setProperty(DXEndpoint.Property.properties.rawValue, propertiesFilePath ?? "")
 
-let subscriptionQuote = try DXEndpoint.getInstance()
+// Creates a subscription attached to a default DXFeed with a Quote event type.
+// The endpoint address to use is stored in the "dxfeed.properties" file.
+let subscription = try DXEndpoint.getInstance()
     .getFeed()?
     .createSubscription(EventCode.quote)
-// Listener must be attached before symbols are added.
-let listener = Listener { listener in
-    listener.callback = { events in
-        events.forEach { event in
-            print("Mid = \((event.quote.bidPrice + event.quote.askPrice) / 2)")
-        }
-    }
-    return listener
-}
-try subscriptionQuote?.add(listener: listener)
-try subscriptionQuote?.addSymbols(symbol)
-
-let subscriptionTrade = try DXEndpoint.getInstance()
-    .getFeed()?
-    .createSubscription([EventCode.trade, EventCode.quote])
 let listenerTrade = Listener { listener in
     listener.callback = { events in
         events.forEach { event in
@@ -58,8 +49,8 @@ let listenerTrade = Listener { listener in
     return listener
 }
 // Listener must be attached before symbols are added.
-try subscriptionTrade?.add(listener: listenerTrade)
-try subscriptionTrade?.addSymbols(symbol)
+try subscription?.add(listener: listenerTrade)
+try subscription?.addSymbols(symbol)
 
 
 // infinity execution

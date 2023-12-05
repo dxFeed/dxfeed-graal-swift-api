@@ -8,7 +8,7 @@
 import XCTest
 @testable import DXFeedFramework
 
-private class Listener: DXEventListener {
+private class DXConnectionListener: DXEventListener {
     let expectation: XCTestExpectation
 
     init(expectation: XCTestExpectation) {
@@ -24,8 +24,8 @@ private class Listener: DXEventListener {
     }
 }
 
-extension Listener: Hashable {
-    static func == (lhs: Listener, rhs: Listener) -> Bool {
+extension DXConnectionListener: Hashable {
+    static func == (lhs: DXConnectionListener, rhs: DXConnectionListener) -> Bool {
         return lhs === rhs
     }
 
@@ -51,7 +51,7 @@ final class DXConnectionTest: XCTestCase {
             .build()
         let subscription = try endpoint.getFeed()?.createSubscription(EventCode.quote)
         let receivedEventsExpectation = expectation(description: "Received events")
-        let eventListener = Listener(expectation: receivedEventsExpectation)
+        let eventListener = DXConnectionListener(expectation: receivedEventsExpectation)
         try subscription?.add(listener: eventListener)
         try subscription?.addSymbols("AAPL")
         wait(for: [receivedEventsExpectation], timeout: 2)
@@ -65,7 +65,7 @@ final class DXConnectionTest: XCTestCase {
             .build()
         let subscription = try endpoint.getFeed()?.createSubscription(EventCode.quote)
         let receivedEventsExpectation = expectation(description: "Received events")
-        let eventListener = Listener(expectation: receivedEventsExpectation)
+        let eventListener = DXConnectionListener(expectation: receivedEventsExpectation)
         try subscription?.add(listener: eventListener)
         try subscription?.addSymbols("AAPL")
         wait(for: [receivedEventsExpectation], timeout: 2)

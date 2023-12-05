@@ -1,7 +1,7 @@
 import Foundation
 import DXFeedFramework
 
-//Empty Listener with handler
+// Empty Listener with handler
 class Listener: DXEventListener, Hashable {
 
     static func == (lhs: Listener, rhs: Listener) -> Bool {
