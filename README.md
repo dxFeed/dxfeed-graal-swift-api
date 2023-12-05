@@ -252,7 +252,7 @@ sudo /usr/bin/xattr -r -d com.apple.quarantine <directory_with_tools>
 - [x] [PrintQuoteEvents](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/PrintQuoteEvents.playground/Contents.swift) is a simple demonstration of how to subscribe to the `Quote` event, using a `DxFeed` instance singleton and `dxfeed.properties` file
 - [x] [WriteTapeFile](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/WriteTapeFile.playground/Contents.swift) is a simple demonstration of how to write events to a tape file
 - [x] [DxFeedIpfConnect](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/DxFeedIpfConnect.playground/Contents.swift) is a simple demonstration of how to get Instrument Profiles
-- [x] [DXFeedLiveIpfSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/LiveIpfSample.swift)
+- [x] [DXFeedLiveIpfSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/DXFeedLiveIpfSample.playground/Contents.swift)
 is a simple demonstration of how to get live updates for Instrument Profiles
 - [ ] DxFeedPublishProfiles is a simple demonstration of how to publish market events
 - [x] [ScheduleSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/ScheduleSample.swift)
