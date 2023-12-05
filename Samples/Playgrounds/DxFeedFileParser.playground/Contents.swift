@@ -23,14 +23,14 @@ class Listener: DXEventListener, Hashable {
 }
 
 
-var file: String = ""
-var types: [EventCode] = [.quote]
-var symbols = "AAPL"
+let file: String = ""
+let types: [EventCode] = [.quote]
+let symbols = "AAPL"
 var eventCounter = 0
 
 // Create endpoint specifically for file parsing.
-var endpoint = try DXEndpoint.create(.streamFeed)
-var feed = endpoint.getFeed()
+let endpoint = try DXEndpoint.create(.streamFeed)
+let feed = endpoint.getFeed()
 
 // Subscribe to a specified event and symbol.
 var sub = try feed?.createSubscription(types)

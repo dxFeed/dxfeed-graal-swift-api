@@ -542,6 +542,7 @@
 		6401A5142A5820C9009BA686 /* DXFeedAllTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = DXFeedAllTests.xctestplan; sourceTree = "<group>"; };
 		6406F2562AD9820700B58C42 /* NativePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativePublisher.swift; sourceTree = "<group>"; };
 		6406F25A2AD987EB00B58C42 /* PublisherTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherTest.swift; sourceTree = "<group>"; };
+		6408BB712B1F2D14005D7797 /* WriteTapeFile.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = WriteTapeFile.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		64098F492ACD6AF20020D741 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		64098F4C2ACD73820020D741 /* PerfTestEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfTestEventListener.swift; sourceTree = "<group>"; };
 		64098F542ACD7E940020D741 /* PerformanceMetricsPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceMetricsPrinter.swift; sourceTree = "<group>"; };
@@ -1008,6 +1009,7 @@
 				644C528D2B1E1CB8002C034C /* ConvertTapeFile.playground */,
 				644C52902B1E345E002C034C /* DxFeedSample.playground */,
 				6435EE3C2B1F1E9200E8496C /* PrintQuoteEvents.playground */,
+				6408BB712B1F2D14005D7797 /* WriteTapeFile.playground */,
 			);
 			path = Playgrounds;
 			sourceTree = "<group>";
@@ -1467,6 +1469,8 @@
 				64262CCB2A4DA64700BA6BA3 /* Packages */,
 				803BAC0E29BFA50700FFAB1C /* Products */,
 				803BAC2529BFA67C00FFAB1C /* Frameworks */,
+				C825416ED3A0E46B52373A8F /* xcschemes */,
+				C8254B3C92B620BC72193130 /* 8.4 */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1612,6 +1616,62 @@
 				80FC415E29CA2C5100E6B611 /* NativeProperty.swift */,
 			);
 			path = Property;
+			sourceTree = "<group>";
+		};
+		C825416ED3A0E46B52373A8F /* xcschemes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = xcschemes;
+			path = DXFeedFramework.xcodeproj/project.xcworkspace/xcuserdata/akosylo.xcuserdatad/xcschemes;
+			sourceTree = "<group>";
+		};
+		C82542FFD107EFFF8F3ADE0D /* checksums */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = checksums;
+			sourceTree = "<group>";
+		};
+		C82549AC99CBAC409C9F0CC3 /* vcsMetadata */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = vcsMetadata;
+			sourceTree = "<group>";
+		};
+		C8254B3C92B620BC72193130 /* 8.4 */ = {
+			isa = PBXGroup;
+			children = (
+				C8254BF430409866B626ED3C /* fileChanges */,
+				C82549AC99CBAC409C9F0CC3 /* vcsMetadata */,
+				C82542FFD107EFFF8F3ADE0D /* checksums */,
+				C8254EE12256EB1C633A366E /* fileHashes */,
+				C8254FDB0F46F8BE3FC99B3D /* dependencies-accessors */,
+			);
+			name = 8.4;
+			path = .gradle/8.4;
+			sourceTree = "<group>";
+		};
+		C8254BF430409866B626ED3C /* fileChanges */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = fileChanges;
+			sourceTree = "<group>";
+		};
+		C8254EE12256EB1C633A366E /* fileHashes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = fileHashes;
+			sourceTree = "<group>";
+		};
+		C8254FDB0F46F8BE3FC99B3D /* dependencies-accessors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "dependencies-accessors";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
