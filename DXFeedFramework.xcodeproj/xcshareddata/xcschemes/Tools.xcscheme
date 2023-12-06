@@ -61,6 +61,14 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Connect demo.dxfeed.com:7300 TimeAndSale &quot;ipf[https://demo:demo@tools.dxfeed.com/ipf?TYPE=STOCK&amp;compression=zip],APPL&quot; -p monitoring.stat=1s"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "qds connect demo.dxfeed.com:7300 Quote AAPL,IBM"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "qds &quot;connect &quot;dxlink:wss://demo.dxfeed.com/dxlink-ws&quot; Quote AAPL&quot; -p dxfeed.experimental.dxlink.enable=true,scheme=ext:resource:dxlink.xml "
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

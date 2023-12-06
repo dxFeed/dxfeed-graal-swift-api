@@ -47,13 +47,15 @@ final class DXConnectionTest: XCTestCase {
         // For token-based authorization, use the following address format:
         // "dxlink:wss://demo.dxfeed.com/dxlink-ws[login=dxlink:token]"
         let endpoint = try DXEndpoint.builder()
-            .withProperty("dxfeed.address", "dxlink:wss://demo.dxfeed.com/dxlink-ws")
             .build()
+
         let subscription = try endpoint.getFeed()?.createSubscription(EventCode.quote)
         let receivedEventsExpectation = expectation(description: "Received events")
         let eventListener = DXConnectionListener(expectation: receivedEventsExpectation)
         try subscription?.add(listener: eventListener)
         try subscription?.addSymbols("AAPL")
+        try endpoint.connect("dxlink:wss://demo.dxfeed.com/dxlink-ws")
+
         wait(for: [receivedEventsExpectation], timeout: 2)
     }
 
@@ -61,13 +63,14 @@ final class DXConnectionTest: XCTestCase {
         // For token-based authorization, use the following address format:
         // "demo.dxfeed.com:7300[login=entitle:token]"
         let endpoint = try DXEndpoint.builder()
-            .withProperty("dxfeed.address", "demo.dxfeed.com:7300")
             .build()
         let subscription = try endpoint.getFeed()?.createSubscription(EventCode.quote)
         let receivedEventsExpectation = expectation(description: "Received events")
         let eventListener = DXConnectionListener(expectation: receivedEventsExpectation)
         try subscription?.add(listener: eventListener)
         try subscription?.addSymbols("AAPL")
+        try endpoint.connect("demo.dxfeed.com:7300")
+
         wait(for: [receivedEventsExpectation], timeout: 2)
     }
 
