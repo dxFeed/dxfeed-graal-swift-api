@@ -40,7 +40,9 @@ class PerfTestTool: ToolsCommand {
     var subscription = Subscription()
     func execute() {
         let address = arguments[1]
-
+        arguments.properties.forEach { key, value in
+            try? SystemProperty.setProperty(key, value)
+        }
         let listener = PerfTestEventListener()
 
         subscription.createSubscription(address: address,

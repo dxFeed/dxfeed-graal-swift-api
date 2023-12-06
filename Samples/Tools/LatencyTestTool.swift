@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import DXFeedFramework
 
 class LatencyTestTool: ToolsCommand {
     var isTools: Bool = true
@@ -45,7 +46,9 @@ class LatencyTestTool: ToolsCommand {
     func execute() {
         let address = arguments[1]
         let types = arguments.parseTypes(at: 2)
-
+        arguments.properties.forEach { key, value in
+            try? SystemProperty.setProperty(key, value)
+        }
         let listener = LatencyEventListener()
 
         subscription.createSubscription(address: address,
