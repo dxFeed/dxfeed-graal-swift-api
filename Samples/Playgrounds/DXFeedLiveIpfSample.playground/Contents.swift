@@ -11,7 +11,6 @@ class Listener: DXInstrumentProfileUpdateListener, Hashable {
         self.collector = collector
     }
 
-
     func instrumentProfilesUpdated(_ instruments: [DXFeedFramework.InstrumentProfile]) {
         // We can observe REMOVED elements - need to add necessary filtering
         // See javadoc for InstrumentProfileCollector for more details
@@ -48,7 +47,6 @@ Last modified: \(
 
 }
 
-
 // An sample that demonstrates a subscription using InstrumentProfile.
 let defaultIpfUrl = "https://demo:demo@tools.dxfeed.com/ipf"
 
@@ -60,7 +58,6 @@ try connection.start()
 // It is possible to add listener after connection is started - updates will not be missed in this case
 let listener = Listener(collector)
 try collector.add(listener: listener)
-
 
 // infinity execution
 PlaygroundPage.current.needsIndefiniteExecution = true

@@ -22,7 +22,6 @@ class Listener: DXEventListener, Hashable {
     }
 }
 
-
 guard let inputFilePath = Bundle.main.path(forResource: "ConvertTapeFile.in", ofType: nil),
       let outputFilePath = NSURL.fileURL(withPathComponents: [NSTemporaryDirectory(), "ConvertTapeFile.out"])?.path else {
     fatalError("Wrong path to output file")
@@ -100,4 +99,3 @@ ConvertTapeFile:
 has been successfully tapped to
 \(outputAddress)
 """)
-

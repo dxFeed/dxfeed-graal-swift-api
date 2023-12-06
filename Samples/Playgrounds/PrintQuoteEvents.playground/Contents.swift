@@ -52,7 +52,6 @@ let listenerTrade = Listener { listener in
 try subscription?.add(listener: listenerTrade)
 try subscription?.addSymbols(symbol)
 
-
 // infinity execution
 PlaygroundPage.current.needsIndefiniteExecution = true
 
