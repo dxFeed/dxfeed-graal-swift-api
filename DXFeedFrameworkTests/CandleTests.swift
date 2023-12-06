@@ -1,10 +1,8 @@
 //
-//  CandleTests.swift
-//  DXFeedFrameworkTests
+//  Copyright (C) 2023 Devexperts LLC. All rights reserved.
+//  This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+//  If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
-//  Created by Aleksey Kosylo on 13.07.23.
-//
-// swiftlint:disable function_parameter_count
 
 import XCTest
 @testable import DXFeedFramework
@@ -133,7 +131,7 @@ final class CandleTests: XCTestCase {
                     priceLevel: 999.35,
                     exchangeCode: "A")
     }
-
+    // swiftlint:disable function_parameter_count
     private func checkSymbol(_ candleSymbol: CandleSymbol,
                              baseSymbol: String,
                              period: Double?,
@@ -154,6 +152,7 @@ final class CandleTests: XCTestCase {
         }
         XCTAssert(candleSymbol.exchange?.exchangeCode == exchangeCode, "Exchange is not correct")
     }
+    // swiftlint:enable function_parameter_count
 
     func testCandleTypeEnum() throws {
         let fvalue = try? CandleType.parse("d")
@@ -249,4 +248,3 @@ private class TestSnapshotDelegate: SnapshotDelegate {
         }
     }
 }
-// swiftlint:enable function_parameter_count
