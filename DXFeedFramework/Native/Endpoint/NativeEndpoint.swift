@@ -43,7 +43,6 @@ class NativeEndpoint {
             let nativeFeed = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_getFeed(thread, self.endpoint))
             return NativeFeed(feed: nativeFeed)
         } catch {
-            print(error)
             return nil
         }
     }()
@@ -54,7 +53,6 @@ class NativeEndpoint {
             let nativeFeed = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_getPublisher(thread, self.endpoint))
             return NativePublisher(publisher: nativeFeed)
         } catch {
-            print(error)
             return nil
         }
     }()

@@ -94,9 +94,7 @@ public enum CandlePrice: DXCandlePrice, CaseIterable {
             if attribute != other.toString() {
                 return try MarketEventSymbols.changeAttributeStringByKey(symbol, attributeKey, other.toString())
             }
-        } catch let error {
-            print(error)
-        }
+        } catch let error { }
         return symbol
     }
     /// Gets candle price of the given candle symbol string.

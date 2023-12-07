@@ -43,9 +43,7 @@ public class NativeInstrumentProfileCollector {
                     do {
                         let profile = try iterator.next()
                         profiles.append(profile)
-                    } catch {
-                        print("NativeInstrumentProfileCollector: exception \(error)")
-                    }
+                    } catch { }
                 }
                 listener.value?.instrumentProfilesUpdated(profiles)
             }

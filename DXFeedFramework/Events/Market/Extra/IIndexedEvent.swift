@@ -47,7 +47,7 @@ public protocol IIndexedEvent: IEventType {
     /// Gets or sets transactional event flags.
     var eventFlags: Int32 { get set }
     /// Gets or sets unique per-symbol index of this event.
-    var index: Long { get set }
+    var index: Long { get }
 }
 
 /// Just wrapper around event flags.

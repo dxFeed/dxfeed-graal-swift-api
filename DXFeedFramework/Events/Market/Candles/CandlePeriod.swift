@@ -61,9 +61,7 @@ public class CandlePeriod {
                                                                          attribute,
                                                                          other.toString())
             }
-        } catch let error {
-            print(error)
-        }
+        } catch let error { }
         return symbol
     }
 

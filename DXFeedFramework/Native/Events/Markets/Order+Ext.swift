@@ -13,7 +13,7 @@ extension Order {
 
         self.eventTime = native.order_base.market_event.event_time
         self.eventFlags = native.order_base.event_flags
-        self.index = native.order_base.index
+        try? self.setIndex(native.order_base.index)
         self.timeSequence = native.order_base.time_sequence
         self.timeNanoPart = native.order_base.time_nano_part
         self.actionTime = native.order_base.action_time
