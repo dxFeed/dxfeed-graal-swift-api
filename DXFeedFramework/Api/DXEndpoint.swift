@@ -277,7 +277,7 @@ public class DXEndpoint {
     /// This method does nothing if this endpoint is ``DXEndpointState/closed``
     /// The endpoint ``getState()`` immediately becomes ``DXEndpointState/notConnected`` otherwise.
     /// This method does not release all resources that are associated with this endpoint.
-    /// Use ``close()`` or ``closeAndAWaitTermination()`` methods to release all resources.
+    /// Use ``close()`` or ``closeAndAwaitTermination()`` methods to release all resources.
     /// - Throws: GraalException. Rethrows exception from Java.recore
     public func disconnect() throws {
         try self.endpointNative.disconnect()
@@ -287,7 +287,7 @@ public class DXEndpoint {
     /// This method does nothing if this endpoint is``DXEndpointState/closed``.
     /// The endpoint``getState()`` immediately becomes``DXEndpointState/notConnected`` otherwise.
     /// This method does not release all resources that are associated with this endpoint.
-    /// Use ``close()`` or ``closeAndAWaitTermination()`` methods to release all resources.
+    /// Use ``close()`` or ``closeAndAwaitTermination()`` methods to release all resources.
     /// - Throws: GraalException. Rethrows exception from Java.recore
     public func disconnectAndClear() throws {
         try self.endpointNative.disconnectAndClear()
@@ -311,8 +311,8 @@ public class DXEndpoint {
     ///
     /// This method ensures that ``DXEndpoint`` can be safely garbage-collected
     /// when all outside references to it are lost.
-    public func closeAndAWaitTermination() throws {
-        try self.endpointNative.closeAndAWaitTermination()
+    public func closeAndAwaitTermination() throws {
+        try self.endpointNative.closeAndAwaitTermination()
     }
     /// Changes password for this endpoint.
     /// This method shall be called before ``connect(_:)`` together
@@ -349,7 +349,7 @@ public class DXEndpoint {
     /// Waits while this endpoint ``getState()`` becomes ``DXEndpointState/notConnected`` or
     /// ``DXEndpointState/closed``. It is a signal that any files that were opened with
     /// ``connect(_:)`` with parameter "file:..."  method were finished reading, but not necessary were completely
-    /// processed by the corresponding subscription listeners. Use ``closeAndAWaitTermination()`` after
+    /// processed by the corresponding subscription listeners. Use ``closeAndAwaitTermination()`` after
     /// this method returns to make sure that all processing has completed.
     /// **This method is blocking.**
     /// - Throws: GraalException. Rethrows exception from Java.recore

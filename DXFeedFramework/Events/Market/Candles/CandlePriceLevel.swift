@@ -62,7 +62,7 @@ public class CandlePriceLevel {
                                                                          attributeKey,
                                                                          other.toString())
             }
-        } catch let error { }
+        } catch _ { }
         return symbol
     }
 

@@ -75,7 +75,7 @@ public enum CandleSession: DXCandleSession, CaseIterable {
             if other == false || other == nil {
                 _ = MarketEventSymbols.removeAttributeStringByKey(symbol, attributeKey)
             }
-        } catch let error { }
+        } catch _ { }
         return symbol
     }
     /// Gets candle session of the given candle symbol string.

@@ -76,7 +76,7 @@ public enum CandleAlignment: DXCandleAlignment, CaseIterable {
                                                                          attributeKey,
                                                                          other.toString())
             }
-        } catch let error { }
+        } catch _ { }
         return symbol
     }
 
@@ -146,7 +146,7 @@ extension CandleAlignment: ICandleSymbolProperty {
                                                                             CandleAlignment.attributeKey,
                                                                             self.toString())
                 return res
-            } catch let error { }
+            } catch _ { }
         }
         return symbol
     }

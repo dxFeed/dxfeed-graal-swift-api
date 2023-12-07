@@ -21,9 +21,9 @@ class Listener: DXEventListener, Hashable {
         _ = overrides(self)
     }
 }
-
+let pathComponents = [NSTemporaryDirectory(), "ConvertTapeFile.out"]
 guard let inputFilePath = Bundle.main.path(forResource: "ConvertTapeFile.in", ofType: nil),
-      let outputFilePath = NSURL.fileURL(withPathComponents: [NSTemporaryDirectory(), "ConvertTapeFile.out"])?.path else {
+      let outputFilePath = NSURL.fileURL(withPathComponents: pathComponents)?.path else {
     fatalError("Wrong path to output file")
 }
 
@@ -87,11 +87,11 @@ try inputEndpoint.connect(inputAddress)
 
 // Wait until all data is read and processed, and then gracefully close input endpoint.
 try inputEndpoint.awaitNotConnected()
-try inputEndpoint.closeAndAWaitTermination()
+try inputEndpoint.closeAndAwaitTermination()
 
 // Wait until all data is processed and written, and then gracefully close output endpoint.
 try outputEndpoint.awaitProcessed()
-try outputEndpoint.closeAndAWaitTermination()
+try outputEndpoint.closeAndAwaitTermination()
 
 print("""
 ConvertTapeFile:

@@ -106,7 +106,7 @@ class PerfTestViewController: UIViewController {
 
     @IBAction func connectTapped(_ sender: Any) {
         if isConnected {
-            try? endpoint?.closeAndAWaitTermination()
+            try? endpoint?.closeAndAwaitTermination()
             subscription = nil
         } else {
             guard let address = addressTextField.text else {
