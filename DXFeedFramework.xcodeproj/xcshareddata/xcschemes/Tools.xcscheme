@@ -56,7 +56,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = " qds nettest p :6666  -w -S 10"
+            argument = " qds post :6666"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
