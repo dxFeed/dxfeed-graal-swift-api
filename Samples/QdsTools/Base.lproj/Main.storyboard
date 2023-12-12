@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22146" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22122"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -38,13 +38,13 @@
                                     <action selector="runCommand" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xqc-1m-oj1"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="dxscheme.wide=false,monitoring.stat=10s" borderStyle="roundedRect" placeholder="VM Options" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gwh-pe-8Au">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="dxscheme.wide=false" borderStyle="roundedRect" placeholder="VM Options" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gwh-pe-8Au">
                                 <rect key="frame" x="10" y="157" width="309.33333333333331" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="STDIN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nYs-ZA-cWE">
-                                <rect key="frame" x="10" y="201" width="373" height="34"/>
+                                <rect key="frame" x="10" y="201" width="305" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -66,17 +66,26 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9TF-ev-P36">
+                                <rect key="frame" x="325" y="200.66666666666666" width="58" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Post"/>
+                                <connections>
+                                    <action selector="postTap" destination="BYZ-38-t0r" eventType="touchUpInside" id="DJ7-uY-gOZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="9TF-ev-P36" firstAttribute="centerY" secondItem="nYs-ZA-cWE" secondAttribute="centerY" id="0ah-Ed-c3K"/>
                             <constraint firstItem="neo-x0-b0T" firstAttribute="centerY" secondItem="RYO-aA-319" secondAttribute="centerY" id="2B7-aw-e94"/>
                             <constraint firstItem="Ksy-oT-8Dh" firstAttribute="top" secondItem="MTw-fb-gik" secondAttribute="bottom" constant="10" id="BTq-TJ-Xxb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ksy-oT-8Dh" secondAttribute="bottom" constant="10" id="BhP-WL-ALr"/>
+                            <constraint firstItem="9TF-ev-P36" firstAttribute="leading" secondItem="nYs-ZA-cWE" secondAttribute="trailing" constant="10" id="Fsr-OH-r11"/>
                             <constraint firstItem="gwh-pe-8Au" firstAttribute="trailing" secondItem="RYO-aA-319" secondAttribute="trailing" id="JDe-wx-U36"/>
                             <constraint firstItem="RYO-aA-319" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="Jwe-TL-1OH"/>
                             <constraint firstItem="Hjz-xS-Op9" firstAttribute="top" secondItem="nYs-ZA-cWE" secondAttribute="bottom" constant="10" id="MaN-uH-ekO"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nYs-ZA-cWE" secondAttribute="trailing" constant="10" id="N06-fO-1zd"/>
                             <constraint firstAttribute="trailing" secondItem="Hjz-xS-Op9" secondAttribute="trailing" constant="2" id="PV3-14-xKu"/>
                             <constraint firstItem="Ksy-oT-8Dh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="Rtl-LM-d1n"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5LQ-ip-WNj" secondAttribute="trailing" constant="10" id="TXP-6I-28A"/>
@@ -87,6 +96,7 @@
                             <constraint firstItem="gwh-pe-8Au" firstAttribute="top" secondItem="RYO-aA-319" secondAttribute="bottom" constant="10" id="kmg-hA-AuH"/>
                             <constraint firstItem="5LQ-ip-WNj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="ksy-dG-1Le"/>
                             <constraint firstItem="MTw-fb-gik" firstAttribute="top" secondItem="Hjz-xS-Op9" secondAttribute="bottom" constant="10" id="mqN-zo-3B5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9TF-ev-P36" secondAttribute="trailing" constant="10" id="oRb-iE-6cq"/>
                             <constraint firstItem="Hjz-xS-Op9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="2" id="p1Z-hK-VD3"/>
                             <constraint firstItem="nYs-ZA-cWE" firstAttribute="top" secondItem="gwh-pe-8Au" secondAttribute="bottom" constant="10" id="pAn-oJ-OWD"/>
                             <constraint firstItem="gwh-pe-8Au" firstAttribute="leading" secondItem="RYO-aA-319" secondAttribute="leading" id="pgd-a2-TLR"/>
@@ -115,7 +125,7 @@
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

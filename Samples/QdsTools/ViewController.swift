@@ -45,7 +45,7 @@ class ViewController: UIViewController {
                             Command("Invoke"),
                             Command("Multiplexor"),
                             Command("NetTest", defaultParameter: "p :6666 -S 1 -c stream"),
-                            Command("Post", defaultParameter: ":6666", stdin: "Quote AAPL 20240101-000000 1"),
+                            Command("Post", defaultParameter: ":6666", stdin: "Quote AAPL 0 Q 0 0"),
                             Command("Services"),
                             Command("SchemeDump"),
                             Command("SubscriptionDumpParser"),
@@ -84,6 +84,10 @@ class ViewController: UIViewController {
             self.pickerView(pickerView, didSelectRow: index, inComponent: 0)
             cmdTextField.becomeFirstResponder()
         }
+    }
+
+    @IBAction func postTap() {
+        postCmd()
     }
 
     @IBAction func runCommand() {
@@ -157,6 +161,25 @@ class ViewController: UIViewController {
             textView.scrollRangeToVisible(bottom)
         }
     }
+
+    fileprivate func postCmd() {
+        let fileHandleForWriting = inPipe.fileHandleForWriting
+
+        let stringToWrite = stdIntextField.text ?? "?"
+        if let dataToWrite = (stringToWrite + "\n").data(using: .utf8) {
+            fileHandleForWriting.write(dataToWrite)
+        }
+
+        var symbols = stringToWrite.components(separatedBy: " ")
+        if let lastSymbol = symbols.last {
+            if var value = Int(lastSymbol) {
+                value += 1
+                symbols[symbols.endIndex - 1] = String(value)
+            }
+        }
+        stdIntextField.text = symbols.joined(separator: " ")
+        stdIntextField.resignFirstResponder()
+    }
 }
 
 extension ViewController: UIPickerViewDataSource {
@@ -188,14 +211,7 @@ extension ViewController: UITextFieldDelegate {
             runCommand()
             textField.resignFirstResponder()
         } else {
-            let fileHandleForWriting = inPipe.fileHandleForWriting
-
-            let stringToWrite = (textField.text ?? "?") + "\n"
-
-            if let dataToWrite = stringToWrite.data(using: .utf8) {
-                fileHandleForWriting.write(dataToWrite)
-            }
-            textField.resignFirstResponder()
+            postCmd()
         }
         return true
     }
