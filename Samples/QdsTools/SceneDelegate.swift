@@ -6,7 +6,7 @@
 //  
 
 import UIKit
-
+import ShowTouches
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -15,6 +15,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
+
+        let config = ShowTouchesConfig(touchColor: UIView().tintColor.withAlphaComponent(0.6),
+                                       circleSize: 40,
+//                                       shortTapTresholdDuration: 0.11,
+                                       shortTapInitialCircleRadius: 12,
+                                       shortTapFinalCircleRadius: 37)
+
+        UIWindow.configure(config)
+        UIWindow.showTouches()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

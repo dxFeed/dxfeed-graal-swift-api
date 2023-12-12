@@ -155,6 +155,7 @@
 		6455C3C72B20A44E00257986 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6455C3C52B20A44E00257986 /* LaunchScreen.storyboard */; };
 		6455C3D32B20A61F00257986 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		6455C3D42B20A61F00257986 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6455E2372B2855730086222E /* ShowTouches in Frameworks */ = {isa = PBXBuildFile; productRef = 6455E2362B2855730086222E /* ShowTouches */; };
 		645A34952A937C7200709F29 /* BinaryInteger+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645A34942A937C7200709F29 /* BinaryInteger+Ext.swift */; };
 		645BE84E2AC3170F0028243D /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		645BE84F2AC3170F0028243D /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -924,6 +925,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6455C3D32B20A61F00257986 /* DXFeedFramework.framework in Frameworks */,
+				6455E2372B2855730086222E /* ShowTouches in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1855,6 +1857,9 @@
 				6455C3D12B20A61400257986 /* PBXTargetDependency */,
 			);
 			name = QdsTools;
+			packageProductDependencies = (
+				6455E2362B2855730086222E /* ShowTouches */,
+			);
 			productName = QdsTools;
 			productReference = 6455C3B82B20A44D00257986 /* QdsTools.app */;
 			productType = "com.apple.product-type.application";
@@ -2034,6 +2039,9 @@
 				Base,
 			);
 			mainGroup = 803BAC0329BFA50700FFAB1C;
+			packageReferences = (
+				6455E2352B2855730086222E /* XCRemoteSwiftPackageReference "ShowTouches" */,
+			);
 			productRefGroup = 803BAC0E29BFA50700FFAB1C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -3758,10 +3766,26 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		6455E2352B2855730086222E /* XCRemoteSwiftPackageReference "ShowTouches" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Cyberbeni/ShowTouches";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		64262CCD2A4DA64700BA6BA3 /* RealityKitContent */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RealityKitContent;
+		};
+		6455E2362B2855730086222E /* ShowTouches */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6455E2352B2855730086222E /* XCRemoteSwiftPackageReference "ShowTouches" */;
+			productName = ShowTouches;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

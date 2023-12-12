@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "showtouches",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Cyberbeni/ShowTouches",
+      "state" : {
+        "branch" : "master",
+        "revision" : "1c32407861e20ee2b046e1119c36e9d6385b4ab0"
+      }
+    }
+  ],
+  "version" : 2
+}

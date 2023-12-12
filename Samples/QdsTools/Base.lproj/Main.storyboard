@@ -111,6 +111,7 @@
                         <outlet property="cmdTextField" destination="5LQ-ip-WNj" id="IeA-Vm-zzG"/>
                         <outlet property="consoleTextView" destination="MTw-fb-gik" id="Y1o-zz-Dyp"/>
                         <outlet property="hostnameLabel" destination="Ksy-oT-8Dh" id="ojo-hA-3rb"/>
+                        <outlet property="postBtn" destination="9TF-ev-P36" id="X8P-FL-9nr"/>
                         <outlet property="stdIntextField" destination="nYs-ZA-cWE" id="CmQ-hz-11L"/>
                         <outlet property="vmOptionsTextField" destination="gwh-pe-8Au" id="gG2-fb-s0u"/>
                     </connections>

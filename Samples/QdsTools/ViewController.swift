@@ -7,8 +7,25 @@
 
 import UIKit
 import DXFeedFramework
+import ShowTouches
 
 class ViewController: UIViewController {
+    class TouchConfig {
+        let touchColor: UIColor
+        let circleSize: CGFloat
+        let shortTapTresholdDuration: Double
+        let shortTapInitialCircleRadius: CGFloat
+        let shortTapFinalCircleRadius: CGFloat
+
+        init(touchColor: UIColor, circleSize: CGFloat, shortTapTresholdDuration: Double, shortTapInitialCircleRadius: CGFloat, shortTapFinalCircleRadius: CGFloat) {
+            self.touchColor = touchColor
+            self.circleSize = circleSize
+            self.shortTapTresholdDuration = shortTapTresholdDuration
+            self.shortTapInitialCircleRadius = shortTapInitialCircleRadius
+            self.shortTapFinalCircleRadius = shortTapFinalCircleRadius
+        }
+
+    }
     private struct Command {
         let cmd: String
         let stdin: String
@@ -27,12 +44,20 @@ class ViewController: UIViewController {
     @IBOutlet var vmOptionsTextField: UITextField!
     @IBOutlet var stdIntextField: UITextField!
 
+    @IBOutlet var postBtn: UIButton!
     @IBOutlet var hostnameLabel: UILabel!
     var pickerView = UIPickerView()
 
     let outPipe = Pipe()
     let errorPipe = Pipe()
     let inPipe = Pipe()
+    
+    let config = TouchConfig(touchColor: UIView().tintColor.withAlphaComponent(0.6),
+                                   circleSize: 40,
+                                    shortTapTresholdDuration: 0.11,
+                                   shortTapInitialCircleRadius: 12,
+                                   shortTapFinalCircleRadius: 37)
+
     private let commands = [Command("Compare"),
                             Command("Connect", defaultParameter: "iphone11.local:6666 Quote AAPL"),
                             Command("Dump"),
@@ -75,6 +100,14 @@ class ViewController: UIViewController {
         redirectStd()
     }
 
+    func performTouchInView(button: UIButton) {
+        self.showExpandingCircle(at: CGPoint(x: button.bounds.midX, y: button.bounds.midY),
+                                 //CGPoint(x: button.frame.width/2, y: button.frame.height/2),
+                                 in: button)
+        postCmd()
+    }
+
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let index = commands.lastIndex(where: { cmd in
@@ -88,6 +121,14 @@ class ViewController: UIViewController {
 
     @IBAction func postTap() {
         postCmd()
+        var repeatCounter = 0
+
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { timer in
+            repeatCounter += 1
+            if repeatCounter <= 10 {
+                self.performTouchInView(button: self.postBtn)
+            }
+        }
     }
 
     @IBAction func runCommand() {
@@ -129,7 +170,7 @@ class ViewController: UIViewController {
         setvbuf(stdout, nil, _IONBF, 0)
         dup2(errorPipe .fileHandleForWriting.fileDescriptor,
              STDERR_FILENO)
-        errorPipe .fileHandleForReading.readabilityHandler = { [weak self] handle in
+        errorPipe.fileHandleForReading.readabilityHandler = { [weak self] handle in
             let data = handle.availableData
             let str = String(data: data, encoding: .ascii) ?? "<Non-ascii data of size\(data.count)>\n"
             DispatchQueue.main.async {
@@ -180,6 +221,54 @@ class ViewController: UIViewController {
         stdIntextField.text = symbols.joined(separator: " ")
         stdIntextField.resignFirstResponder()
     }
+
+    func showExpandingCircle(at position: CGPoint, in view: UIView) {
+        let circleLayer = CAShapeLayer()
+        let initialRadius = config.shortTapInitialCircleRadius
+        let finalRadius = config.shortTapFinalCircleRadius
+        circleLayer.position = CGPoint(x: position.x - initialRadius, y: position.y - initialRadius)
+
+        let startPathRect = CGRect(x: 0, y: 0, width: initialRadius * 2, height: initialRadius * 2)
+        let startPath = UIBezierPath(roundedRect: startPathRect, cornerRadius: initialRadius)
+
+        let endPathOrigin = initialRadius - finalRadius
+        let endPathRect = CGRect(x: endPathOrigin, y: endPathOrigin, width: finalRadius * 2, height: finalRadius * 2)
+        let endPath = UIBezierPath(roundedRect: endPathRect, cornerRadius: finalRadius)
+
+        circleLayer.path = startPath.cgPath
+        circleLayer.fillColor = UIColor.clear.cgColor
+        circleLayer.strokeColor = config.touchColor.cgColor
+        circleLayer.lineWidth = 2.0
+        view.layer.addSublayer(circleLayer)
+
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            circleLayer.removeFromSuperlayer()
+        }
+
+        // Expanding animation
+        let expandingAnimation = CABasicAnimation(keyPath: "path")
+        expandingAnimation.fromValue = startPath.cgPath
+        expandingAnimation.toValue = endPath.cgPath
+        expandingAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        expandingAnimation.duration = 0.4
+        expandingAnimation.repeatCount = 1.0
+        circleLayer.add(expandingAnimation, forKey: "expandingAnimation")
+        circleLayer.path = endPath.cgPath
+
+        // Delayed fade out animation
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {
+            let fadingOutAnimation = CABasicAnimation(keyPath: "opacity")
+            fadingOutAnimation.fromValue = 1.0
+            fadingOutAnimation.toValue = 0.0
+            fadingOutAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+            fadingOutAnimation.duration = 0.15
+            circleLayer.add(fadingOutAnimation, forKey: "fadeOutAnimation")
+            circleLayer.opacity = 0.0
+        }
+
+        CATransaction.commit()
+    }
 }
 
 extension ViewController: UIPickerViewDataSource {
@@ -216,3 +305,4 @@ extension ViewController: UITextFieldDelegate {
         return true
     }
 }
+
