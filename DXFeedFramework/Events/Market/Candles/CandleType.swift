@@ -167,6 +167,7 @@ public enum CandleType: DXCandleType, CaseIterable {
         }
         return sValue
     }
+
     /// Returns string representation of this candle type.
     ///
     /// The string representation of candle type is the shortest unique prefix of the

@@ -14,17 +14,11 @@ import Foundation
 ///
 /// (For more details see)[https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/option/Series.html]
 public class Series: MarketEvent, IIndexedEvent {
-    public var type: EventCode = .series
-
     public var eventSource: IndexedEventSource = .defaultSource
 
     public var eventFlags: Int32 = 0
 
     public var index: Long = 0
-
-    public var eventSymbol: String
-
-    public var eventTime: Int64 = 0
 
     /*
      * EventFlags property has several significant bits that are packed into an integer in the following way:
@@ -59,7 +53,29 @@ public class Series: MarketEvent, IIndexedEvent {
     public var interest: Double = .nan
 
     public init(_ eventSymbol: String) {
+        super.init(type: .series)
         self.eventSymbol = eventSymbol
+    }
+
+    /// Returns string representation of this candle event.
+    public override func toString() -> String {
+        return
+"""
+Series{\(eventSymbol), \
+eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
+eventFlags=\(eventFlags.toHexString()), \
+index=\(index.toHexString()), \
+time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
+sequence=\(self.getSequence()), \
+expiration=\(DayUtil.getYearMonthDayByDayId(Int(expiration))), \
+volatility=\(volatility), \
+callVolume=\(callVolume), \
+putVolume=\(putVolume), \
+putCallRatio=\(putCallRatio), \
+forwardPrice=\(forwardPrice), \
+dividend=\(dividend), \
+interest=\(interest)
+"""
     }
 }
 
@@ -103,24 +119,4 @@ extension Series {
         return callVolume.isNaN ? putVolume : putVolume + putVolume
     }
 
-    /// Returns string representation of this candle event.
-    public func toString() -> String {
-        return
-"""
-Series{\(eventSymbol), \
-eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
-eventFlags=\(eventFlags.toHexString()), \
-index=\(index.toHexString()), \
-time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
-sequence=\(self.getSequence()), \
-expiration=\(DayUtil.getYearMonthDayByDayId(Int(expiration))), \
-volatility=\(volatility), \
-callVolume=\(callVolume), \
-putVolume=\(putVolume), \
-putCallRatio=\(putCallRatio), \
-forwardPrice=\(forwardPrice), \
-dividend=\(dividend), \
-interest=\(interest)
-"""
-    }
 }

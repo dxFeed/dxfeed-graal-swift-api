@@ -18,11 +18,6 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/option/TheoPrice.html)
 public class TheoPrice: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringConvertible {
-    public var type: EventCode = .theoPrice
-
-    public var eventSymbol: String
-
-    public var eventTime: Int64 = 0
 
     public var eventSource: IndexedEventSource = .defaultSource
 
@@ -54,6 +49,7 @@ public class TheoPrice: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStri
     public var interest: Double = .nan
 
     public init(_ eventSymbol: String) {
+        super.init(type: .theoPrice)
         self.eventSymbol = eventSymbol
     }
 
@@ -72,6 +68,24 @@ dividend: \(dividend), \
 interest: \(interest)
 """
         }
+
+    /// Returns string representation of this order fields.
+    public override func toString() -> String {
+        return """
+TheoPrice{\(eventSymbol) \
+eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
+eventFlags=\(eventFlags.toHexString()), \
+time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
+sequence=\(self.getSequence()), \
+price=\(price) \
+underlyingPrice=\(underlyingPrice), \
+delta=\(delta), \
+gamma=\(gamma), \
+dividend=\(dividend), \
+interest=\(interest), \
+}
+"""
+    }
 }
 
 extension TheoPrice {
@@ -104,22 +118,5 @@ extension TheoPrice {
             )
         }
         index = Long(index & ~Long(MarketEventConst.maxSequence)) | Long(sequence)
-    }
-    /// Returns string representation of this order fields.
-    public func toString() -> String {
-        return """
-TheoPrice{\(eventSymbol) \
-eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
-eventFlags=\(eventFlags.toHexString()), \
-time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
-sequence=\(self.getSequence()), \
-price=\(price) \
-underlyingPrice=\(underlyingPrice), \
-delta=\(delta), \
-gamma=\(gamma), \
-dividend=\(dividend), \
-interest=\(interest), \
-}
-"""
     }
 }

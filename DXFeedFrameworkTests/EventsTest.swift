@@ -8,6 +8,13 @@ import XCTest
 @testable import DXFeedFramework
 
 final class EventsTest: XCTestCase {
+    func testEventEquality() throws {
+        let quote = Quote("aa")
+        let quote1 = Quote("abc")
+        XCTAssert(quote.hashCode != quote1.hashCode)
+        XCTAssert(quote.hashCode == quote.hashCode)
+    }
+
     func testConversion() throws {
         let convertedSet = Set(EventCode.allCases.map { $0.nativeCode() }.compactMap { EventCode.convert($0)  })
         let difValues = Array(Set(EventCode.allCases).symmetricDifference(convertedSet))

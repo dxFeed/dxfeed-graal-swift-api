@@ -40,6 +40,7 @@ public class CandleExchange {
     public static func getAttribute(_ symbol: String?) -> CandleExchange {
         return valueOf(MarketEventSymbols.getExchangeCode(symbol))
     }
+
     /// Returns string representation of this exchange.
     /// It is the string  "COMPOSITE"  for ``Composite`` exchange or
     /// exchange character otherwise.

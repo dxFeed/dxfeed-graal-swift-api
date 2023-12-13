@@ -13,9 +13,6 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/AnalyticOrder.html)
 public class AnalyticOrder: Order {
-    public override var type: EventCode {
-        return .analyticOrder
-    }
     /*
      * Analytic flags property has several significant bits that are packed into an integer in the following way:
      *      31...2       1    0
@@ -36,9 +33,9 @@ public class AnalyticOrder: Order {
     public var icebergExecutedSize: Double = .nan
     /// Gets or sets iceberg type of this analytic order.
     public var icebergFlags: Int32 = 0
-    /// Initializes a new instance of the <see cref="AnalyticOrder"/> class.
-    public override init(_ eventSymbol: String) {
-        super.init(eventSymbol)
+    /// Initializes a new instance of the ``AnalyticOrder`` class.
+    public init(_ eventSymbol: String) {
+        super.init(eventSymbol: eventSymbol, type: .analyticOrder)
     }
 
     /// Returns string representation of this candle event.

@@ -140,6 +140,7 @@ public enum CandlePrice: DXCandlePrice, CaseIterable {
         }
         return sValue
     }
+
     /// Returns string representation of this candle price.
     ///
     /// - Returns: The string representation.

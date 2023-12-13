@@ -52,12 +52,12 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "PerfTest  localhost:6666 TimeAndSale YQKNT"
-            isEnabled = "NO">
+            argument = "PerfTest  localhost:7777 TimeAndSale YQKNT"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = " qds post :6666"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Dump"

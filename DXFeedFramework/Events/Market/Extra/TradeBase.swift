@@ -12,13 +12,6 @@ import Foundation
 ///
 /// [For more details see] (https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/TradeBase.html)
 public class TradeBase: MarketEvent, ILastingEvent {
-    public var type: EventCode {
-        return .trade
-    }
-
-    public var eventSymbol: String
-    public var eventTime: Int64 = 0
-
     /*
      * Flags property has several significant bits that are packed into an integer in the following way:
      *   31..4     3    2    1    0
@@ -55,7 +48,8 @@ public class TradeBase: MarketEvent, ILastingEvent {
     /// Do not use this method directly.
     var flags: Int32 = 0
 
-    public init(_ symbol: String) {
+    public init(symbol: String, type: EventCode) {
+        super.init(type: type)
         self.eventSymbol = symbol
     }
 
@@ -78,7 +72,7 @@ flags: \(flags)
     }
 
     /// Returns string representation of this base trade event's.
-    public func toString() -> String {
+    public override func toString() -> String {
         return "\(typeName){\(baseFieldsToString())}"
     }
 

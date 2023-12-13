@@ -25,4 +25,7 @@ public protocol IEventType {
     ///
     /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/EventType.html#getEventTime--)
     var eventTime: Int64 { get set }
+
+    ///  Hashcode fot perftest and other purposes.
+    var hashCode: Int { get }
 }
