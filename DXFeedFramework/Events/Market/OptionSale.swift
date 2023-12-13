@@ -17,17 +17,12 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/OptionSale.html)
 public class OptionSale: MarketEvent, IIndexedEvent {
-    public var type: EventCode = .optionSale
 
     public var eventSource: IndexedEventSource = .defaultSource
 
     public var eventFlags: Int32 = 0
 
     public var index: Long = 0
-
-    public var eventSymbol: String
-
-    public var eventTime: Int64 = 0
 
     /*
      * EventFlags property has several significant bits that are packed into an integer in the following way:
@@ -75,7 +70,38 @@ public class OptionSale: MarketEvent, IIndexedEvent {
     public var optionSymbol: String?
 
     public init(_ eventSymbol: String) {
+        super.init(type: .optionSale)
         self.eventSymbol = eventSymbol
+    }
+
+    /// Returns string representation of this time and sale event.
+    public override func toString() -> String {
+        return """
+OptionSale{\(eventSymbol), \
+eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
+eventFlags=\(eventFlags.toHexString()), \
+index=\(index.toHexString()), \
+time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
+timeNanoPart=\(timeNanoPart), \
+sequence=\(getSequence()), \
+exchange=\(StringUtil.encodeChar(char: exchangeCode)), \
+price=\(price), \
+size=\(size), \
+bid=\(bidPrice), \
+ask=\(askPrice), \
+ESC='\(exchangeSaleConditions ?? "null")', \
+TTE=\(StringUtil.encodeChar(char: Int16(getTradeThroughExempt().unicodeScalars.first?.value ?? 0))), \
+side=\(aggressorSide), \
+spread=\(isSpreadLeg), \
+ETH=\(isExtendedTradingHours), \
+validTick=\(isValidTick), \
+type=\(optionSaleType), \
+underlyingPrice=\(underlyingPrice), \
+volatility=\(volatility), \
+delta=\(delta), \
+optionSymbol='\(optionSymbol ?? "null")'\
+}
+"""
     }
 }
 
@@ -233,33 +259,4 @@ extension OptionSale {
         optionSaleType == .cancel
     }
 
-    /// Returns string representation of this time and sale event.
-    public func toString() -> String {
-        return """
-OptionSale{\(eventSymbol), \
-eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
-eventFlags=\(eventFlags.toHexString()), \
-index=\(index.toHexString()), \
-time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
-timeNanoPart=\(timeNanoPart), \
-sequence=\(getSequence()), \
-exchange=\(StringUtil.encodeChar(char: exchangeCode)), \
-price=\(price), \
-size=\(size), \
-bid=\(bidPrice), \
-ask=\(askPrice), \
-ESC='\(exchangeSaleConditions ?? "null")', \
-TTE=\(StringUtil.encodeChar(char: Int16(getTradeThroughExempt().unicodeScalars.first?.value ?? 0))), \
-side=\(aggressorSide), \
-spread=\(isSpreadLeg), \
-ETH=\(isExtendedTradingHours), \
-validTick=\(isValidTick), \
-type=\(optionSaleType), \
-underlyingPrice=\(underlyingPrice), \
-volatility=\(volatility), \
-delta=\(delta), \
-optionSymbol='\(optionSymbol ?? "null")'\
-}
-"""
-    }
 }

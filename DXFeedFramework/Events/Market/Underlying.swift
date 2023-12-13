@@ -14,12 +14,6 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/option/Underlying.html)
 public class Underlying: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringConvertible {
-    public var type: EventCode = .underlying
-
-    public var eventSymbol: String
-
-    public var eventTime: Int64 = 0
-
     public var eventSource: IndexedEventSource = .defaultSource
 
     public var eventFlags: Int32 = 0
@@ -48,6 +42,7 @@ public class Underlying: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStr
     public var putCallRatio: Double = .nan
 
     public init(_ eventSymbol: String) {
+        super.init(type: .underlying)
         self.eventSymbol = eventSymbol
     }
 
@@ -65,7 +60,24 @@ callVolume: \(callVolume), \
 putVolume: \(putVolume), \
 putCallRatio: \(putCallRatio)
 """
-        }
+    }
+
+    /// Returns string representation of this underlying fields.
+    public override func toString() -> String {
+        return """
+Underlying{"\(eventSymbol) \
+eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
+eventFlags=\(eventFlags.toHexString()), \
+time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
+sequence=\(self.getSequence()), \
+volatility=\(volatility), \
+frontVolatility=\(frontVolatility), \
+backVolatility=\(backVolatility), \
+callVolume=\(callVolume), \
+putVolume=\(putVolume), \
+putCallRatio=\(putCallRatio)}
+"""
+    }
 }
 
 extension Underlying {
@@ -106,20 +118,5 @@ extension Underlying {
         }
         index = Long(index & ~Long(MarketEventConst.maxSequence)) | Long(sequence)
     }
-    /// Returns string representation of this underlying fields.
-    public func toString() -> String {
-        return """
-Underlying{"\(eventSymbol) \
-eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
-eventFlags=\(eventFlags.toHexString()), \
-time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
-sequence=\(self.getSequence()), \
-volatility=\(volatility), \
-frontVolatility=\(frontVolatility), \
-backVolatility=\(backVolatility), \
-callVolume=\(callVolume), \
-putVolume=\(putVolume), \
-putCallRatio=\(putCallRatio)}
-"""
-    }
+
 }

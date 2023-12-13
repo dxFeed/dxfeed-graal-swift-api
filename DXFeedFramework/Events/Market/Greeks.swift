@@ -23,12 +23,6 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/option/Greeks.html)
 public class Greeks: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringConvertible {
-    public var type: EventCode = .greeks
-
-    public var eventSymbol: String
-
-    public var eventTime: Int64 = 0
-
     public var eventSource: IndexedEventSource = .defaultSource
 
     public var eventFlags: Int32 = 0
@@ -62,6 +56,7 @@ public class Greeks: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringC
     public var vega: Double = .nan
 
     public init(_ eventSymbol: String) {
+        super.init(type: .greeks)
         self.eventSymbol = eventSymbol
     }
 
@@ -79,6 +74,24 @@ gamma: \(gamma), \
 theta: \(theta), \
 rho: \(rho), \
 vega: \(vega)
+"""
+    }
+
+    /// Returns string representation of this greeks fields.
+    public override func toString() -> String {
+        return """
+Greeks{\(eventSymbol), \
+eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
+eventFlags=\(eventFlags.toHexString()), \
+time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
+sequence=\(self.getSequence()), \
+price=\(price), \
+volatility=\(volatility), \
+delta=\(delta), \
+gamma=\(gamma), \
+theta=\(theta), \
+rho=\(rho), \
+vega=\(vega)}
 """
     }
 }
@@ -114,21 +127,5 @@ extension Greeks {
         }
         index = Long(index & ~Long(MarketEventConst.maxSequence)) | Long(sequence)
     }
-    /// Returns string representation of this greeks fields.
-    public func toString() -> String {
-        return """
-Greeks{\(eventSymbol), \
-eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
-eventFlags=\(eventFlags.toHexString()), \
-time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
-sequence=\(self.getSequence()), \
-price=\(price), \
-volatility=\(volatility), \
-delta=\(delta), \
-gamma=\(gamma), \
-theta=\(theta), \
-rho=\(rho), \
-vega=\(vega)}
-"""
-    }
+
 }

@@ -127,6 +127,7 @@ public class CandlePeriod {
         self.type = type
         self.periodIntervalMillis = type.rawValue.periodIntervalMillis * Long(value)
     }
+
     /// Returns string representation of this candle period.
     ///
     /// - Returns: The string representation.

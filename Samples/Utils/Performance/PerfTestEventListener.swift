@@ -9,7 +9,13 @@ import DXFeedFramework
 
 class PerfTestEventListener: AbstractEventListener {
     private let diagnostic = PerfDiagnostic()
+    private var blackHoleHashCode: Int = 0
+
     override func handleEvents(_ events: [MarketEvent]) {
+        events.forEach {
+            //use logical OR to avoid overflow
+            blackHoleHashCode = blackHoleHashCode | $0.hashCode
+        }
         let count = events.count
         diagnostic.updateCounters(Int64(count))
     }

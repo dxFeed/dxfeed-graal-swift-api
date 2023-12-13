@@ -10,9 +10,24 @@ import Foundation
 /// extend this class. Market event classes are simple beans with setter and getter methods for their
 /// properties and minimal business logic. All market events have ``type``
 /// property that is defined by this class.
-public protocol MarketEvent: IEventType {
-    var type: EventCode { get }
-    func toString() -> String
+public class MarketEvent: IEventType {
+    public var eventSymbol: String = ""
+
+    public var eventTime: Int64 = 0
+
+    public lazy var hashCode: Int = {
+        return Int(bitPattern: Unmanaged.passUnretained(self).toOpaque())
+    }()
+
+    public var type: EventCode
+
+    public func toString() -> String {
+        return "Override toString() method"
+    }
+
+    internal init(type: EventCode) {
+        self.type = type
+    }
 }
 
 public struct MarketEventConst {

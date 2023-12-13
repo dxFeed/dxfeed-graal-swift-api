@@ -16,10 +16,6 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/Summary.html)
 public class Summary: MarketEvent, ILastingEvent, CustomStringConvertible {
-    public let type: EventCode = .summary
-    public var eventSymbol: String
-    public var eventTime: Int64 = 0
-
     /*
      * Flags property has several significant bits that are packed into an integer in the following way:
      *   31..4     3    2    1    0
@@ -61,6 +57,7 @@ public class Summary: MarketEvent, ILastingEvent, CustomStringConvertible {
 
     /// Initializes a new instance of the ``Summary`` class.
     public init(_ eventSymbol: String) {
+        super.init(type: .summary)
         self.eventSymbol = eventSymbol
     }
 
@@ -79,6 +76,27 @@ prevDayClosePrice: \(prevDayClosePrice), \
 prevDayVolume: \(prevDayVolume), \
 openInterest: \(openInterest), \
 flags: \(flags)
+"""
+    }
+
+    /// Returns string representation of this summary fields.
+    public override func toString() -> String {
+        return
+"""
+Summary{\(eventSymbol), \
+eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
+day=\(DayUtil.getYearMonthDayByDayId(dayId)), \
+dayOpen=\(dayOpenPrice), \
+dayHigh=\(dayHighPrice), \
+dayLow=\(dayLowPrice), \
+dayClose=\(dayClosePrice), \
+dayCloseType=\(dayClosePriceType), \
+prevDay=\(DayUtil.getYearMonthDayByDayId(prevDayId)), \
+prevDayClose=\(prevDayClosePrice), \
+prevDayCloseType=\(prevDayClosePriceType), \
+prevDayVolume=\(prevDayVolume), \
+openInterest=\(openInterest), \
+}
 """
     }
 }
@@ -113,24 +131,4 @@ extension Summary {
         }
     }
 
-    /// Returns string representation of this summary fields.
-    public func toString() -> String {
-        return
-"""
-Summary{\(eventSymbol), \
-eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
-day=\(DayUtil.getYearMonthDayByDayId(dayId)), \
-dayOpen=\(dayOpenPrice), \
-dayHigh=\(dayHighPrice), \
-dayLow=\(dayLowPrice), \
-dayClose=\(dayClosePrice), \
-dayCloseType=\(dayClosePriceType), \
-prevDay=\(DayUtil.getYearMonthDayByDayId(prevDayId)), \
-prevDayClose=\(prevDayClosePrice), \
-prevDayCloseType=\(prevDayClosePriceType), \
-prevDayVolume=\(prevDayVolume), \
-openInterest=\(openInterest), \
-}
-"""
-    }
 }

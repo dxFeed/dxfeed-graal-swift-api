@@ -115,6 +115,7 @@ public enum CandleSession: DXCandleSession, CaseIterable {
         }
         return sValue
     }
+
     /// Returns string representation of this candle session.
     ///
     /// - Returns: The string representation.
