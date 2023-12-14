@@ -20,8 +20,11 @@
     "environmentVariableEntries" : [
 
     ],
+    "maximumTestRepetitions" : 10,
     "testRepetitionMode" : "retryOnFailure",
-    "threadSanitizerEnabled" : true
+    "testTimeoutsEnabled" : true,
+    "threadSanitizerEnabled" : true,
+    "undefinedBehaviorSanitizerEnabled" : true
   },
   "testTargets" : [
     {
