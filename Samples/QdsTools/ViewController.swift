@@ -171,6 +171,8 @@ class ViewController: UIViewController {
         }
 
         var symbols = stringToWrite.components(separatedBy: " ")
+        // increment last value.
+        // to easy sending seqeunce of events
         if let lastSymbol = symbols.last {
             if var value = Int(lastSymbol) {
                 value += 1
