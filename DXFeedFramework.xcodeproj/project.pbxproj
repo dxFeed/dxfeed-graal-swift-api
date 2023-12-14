@@ -71,19 +71,6 @@
 		641E45F92B1DE51700649363 /* EventsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641E45F82B1DE51700649363 /* EventsListener.swift */; };
 		642528D02A3C534D00A04E41 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
 		642528D12A3C534D00A04E41 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
-		64262CCE2A4DA64700BA6BA3 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; platformFilters = (xros, ); productRef = 64262CCD2A4DA64700BA6BA3 /* RealityKitContent */; };
-		64262CD02A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CCF2A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift */; };
-		64262CD22A4DA64700BA6BA3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CD12A4DA64700BA6BA3 /* ContentView.swift */; };
-		64262CD72A4DA64800BA6BA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64262CD62A4DA64800BA6BA3 /* Preview Assets.xcassets */; };
-		64262CDB2A4DA66100BA6BA3 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
-		64262CDC2A4DA66100BA6BA3 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		64262CE12A4DADCF00BA6BA3 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CE02A4DADCF00BA6BA3 /* Endpoint.swift */; };
-		64262CE22A4DB68B00BA6BA3 /* Endpoint+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6277C2A3762D000196D07 /* Endpoint+Ext.swift */; };
-		64262CE42A4DC16F00BA6BA3 /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CE32A4DC16F00BA6BA3 /* QuoteViewModel.swift */; };
-		64262CE92A4DC70C00BA6BA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64262CD32A4DA64800BA6BA3 /* Assets.xcassets */; };
-		64262CEA2A4DC71600BA6BA3 /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
-		64262CEB2A4DC77600BA6BA3 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646979712A3B5AF60003A9BA /* Colors.xcassets */; };
-		64262CED2A4DC8BC00BA6BA3 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CEC2A4DC8BC00BA6BA3 /* DataSource.swift */; };
 		6426C8912A531AAE00236784 /* EndpointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC416029CA376E00E6B611 /* EndpointTest.swift */; };
 		6426C8932A531AB500236784 /* ThreadsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76C29C101CF00F240CB /* ThreadsTest.swift */; };
 		64278C6C2A602CA20074B5AA /* CandleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64278C6B2A602CA20074B5AA /* CandleTests.swift */; };
@@ -202,7 +189,6 @@
 		646D19E32A3C994100C82315 /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
 		647426AD2ABC85F20012F793 /* Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426AC2ABC85F20012F793 /* Arguments.swift */; };
 		647426AF2ABC93900012F793 /* EventCode+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426AE2ABC93900012F793 /* EventCode+String.swift */; };
-		6479BC2B2A4F35A300A3D404 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6479BC2A2A4F35A300A3D404 /* QuoteView.swift */; };
 		648468AC2B0D06FA008297AE /* DXDateOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648468AB2B0D06FA008297AE /* DXDateOffset.swift */; };
 		6486B9582AD00BDC00D8D5FA /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9572AD00BDC00D8D5FA /* Summary.swift */; };
 		6486B95B2AD015B400D8D5FA /* PriceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B95A2AD015B400D8D5FA /* PriceType.swift */; };
@@ -388,13 +374,6 @@
 			remoteGlobalIDString = 803BAC0C29BFA50700FFAB1C;
 			remoteInfo = DxFeedSwiftFramework;
 		};
-		64262CDD2A4DA66100BA6BA3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 803BAC0429BFA50700FFAB1C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 803BAC0C29BFA50700FFAB1C;
-			remoteInfo = DxFeedSwiftFramework;
-		};
 		642DC9392AAA222700974F5C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 803BAC0429BFA50700FFAB1C /* Project object */;
@@ -477,17 +456,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				6417DD1A2A39C22C008912D6 /* DXFeedFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64262CDF2A4DA66100BA6BA3 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				64262CDC2A4DA66100BA6BA3 /* DXFeedFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -619,15 +587,7 @@
 		641BDD5C2ACD67A000236B78 /* LatencyListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatencyListener.swift; sourceTree = "<group>"; };
 		641BDD602ACD697B00236B78 /* AbstractEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractEventListener.swift; sourceTree = "<group>"; };
 		641E45F82B1DE51700649363 /* EventsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListener.swift; sourceTree = "<group>"; };
-		64262CC92A4DA64600BA6BA3 /* DXVisionQuoteTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXVisionQuoteTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64262CCC2A4DA64700BA6BA3 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
-		64262CCF2A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionQuoteTableAppApp.swift; sourceTree = "<group>"; };
-		64262CD12A4DA64700BA6BA3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		64262CD32A4DA64800BA6BA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		64262CD62A4DA64800BA6BA3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		64262CE02A4DADCF00BA6BA3 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
-		64262CE32A4DC16F00BA6BA3 /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
-		64262CEC2A4DC8BC00BA6BA3 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		64278C6B2A602CA20074B5AA /* CandleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleTests.swift; sourceTree = "<group>"; };
 		64278C6D2A602D2B0074B5AA /* Candle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candle.swift; sourceTree = "<group>"; };
 		64278C6F2A602FA00074B5AA /* Candle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Candle+Ext.swift"; sourceTree = "<group>"; };
@@ -718,7 +678,6 @@
 		646D19E02A3C970700C82315 /* DXFTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFTimer.swift; sourceTree = "<group>"; };
 		647426AC2ABC85F20012F793 /* Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arguments.swift; sourceTree = "<group>"; };
 		647426AE2ABC93900012F793 /* EventCode+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventCode+String.swift"; sourceTree = "<group>"; };
-		6479BC2A2A4F35A300A3D404 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		648468AB2B0D06FA008297AE /* DXDateOffset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXDateOffset.swift; sourceTree = "<group>"; };
 		6486B9572AD00BDC00D8D5FA /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		6486B95A2AD015B400D8D5FA /* PriceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceType.swift; sourceTree = "<group>"; };
@@ -894,15 +853,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		64262CC62A4DA64600BA6BA3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64262CCE2A4DA64700BA6BA3 /* RealityKitContent in Frameworks */,
-				64262CDB2A4DA66100BA6BA3 /* DXFeedFramework.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		642DC9222AAA21C000974F5C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1067,35 +1017,12 @@
 			path = Playgrounds;
 			sourceTree = "<group>";
 		};
-		64262CCA2A4DA64700BA6BA3 /* VisionQuoteTableApp */ = {
-			isa = PBXGroup;
-			children = (
-				64262CCF2A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift */,
-				64262CD12A4DA64700BA6BA3 /* ContentView.swift */,
-				6479BC2A2A4F35A300A3D404 /* QuoteView.swift */,
-				64262CEC2A4DC8BC00BA6BA3 /* DataSource.swift */,
-				64262CE02A4DADCF00BA6BA3 /* Endpoint.swift */,
-				64262CE32A4DC16F00BA6BA3 /* QuoteViewModel.swift */,
-				64262CD32A4DA64800BA6BA3 /* Assets.xcassets */,
-				64262CD52A4DA64800BA6BA3 /* Preview Content */,
-			);
-			path = VisionQuoteTableApp;
-			sourceTree = "<group>";
-		};
 		64262CCB2A4DA64700BA6BA3 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
 				64262CCC2A4DA64700BA6BA3 /* RealityKitContent */,
 			);
 			path = Packages;
-			sourceTree = "<group>";
-		};
-		64262CD52A4DA64800BA6BA3 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				64262CD62A4DA64800BA6BA3 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		642BE4C52A2E1B550052340A /* Events */ = {
@@ -1478,7 +1405,6 @@
 			children = (
 				641E45FD2B1DF67E00649363 /* Playgrounds */,
 				6469F8D12A3B400100846831 /* Utils */,
-				64262CCA2A4DA64700BA6BA3 /* VisionQuoteTableApp */,
 				644BD75B2A44726F00A0BF99 /* ARQuoteTableApp */,
 				64D8BB3C2A39BB730071BC88 /* LatencyTestApp */,
 				64B6275D2A3761A000196D07 /* PertTestApp */,
@@ -1553,7 +1479,6 @@
 				64B6275C2A3761A000196D07 /* DXPertTestApp.app */,
 				64D8BB3B2A39BB730071BC88 /* DXLatencyTestApp.app */,
 				644BD75A2A44726F00A0BF99 /* DXARQuoteTableApp.app */,
-				64262CC92A4DA64600BA6BA3 /* DXVisionQuoteTableApp.app */,
 				642DC9252AAA21C000974F5C /* DXIpfTableApp.app */,
 				64B4364B2AB9D3410003919E /* ScheduleSampleApp.app */,
 				64148B642ABB5C320063110E /* Tools */,
@@ -1778,28 +1703,6 @@
 			productReference = 64148B642ABB5C320063110E /* Tools */;
 			productType = "com.apple.product-type.tool";
 		};
-		64262CC82A4DA64600BA6BA3 /* DXVisionQuoteTableApp */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 64262CDA2A4DA64800BA6BA3 /* Build configuration list for PBXNativeTarget "DXVisionQuoteTableApp" */;
-			buildPhases = (
-				64262CC52A4DA64600BA6BA3 /* Sources */,
-				64262CC62A4DA64600BA6BA3 /* Frameworks */,
-				64262CC72A4DA64600BA6BA3 /* Resources */,
-				64262CDF2A4DA66100BA6BA3 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				64262CDE2A4DA66100BA6BA3 /* PBXTargetDependency */,
-			);
-			name = DXVisionQuoteTableApp;
-			packageProductDependencies = (
-				64262CCD2A4DA64700BA6BA3 /* RealityKitContent */,
-			);
-			productName = VisionQuoteTableApp;
-			productReference = 64262CC92A4DA64600BA6BA3 /* DXVisionQuoteTableApp.app */;
-			productType = "com.apple.product-type.application";
-		};
 		642DC9242AAA21C000974F5C /* DXIpfTableApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 642DC9382AAA21C300974F5C /* Build configuration list for PBXNativeTarget "DXIpfTableApp" */;
@@ -1988,9 +1891,6 @@
 					64148B632ABB5C320063110E = {
 						CreatedOnToolsVersion = 14.3;
 					};
-					64262CC82A4DA64600BA6BA3 = {
-						CreatedOnToolsVersion = 15.0;
-					};
 					642DC9242AAA21C000974F5C = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -2045,7 +1945,6 @@
 				64B6275B2A3761A000196D07 /* DXPertTestApp */,
 				64D8BB3A2A39BB730071BC88 /* DXLatencyTestApp */,
 				644BD7592A44726F00A0BF99 /* DXARQuoteTableApp */,
-				64262CC82A4DA64600BA6BA3 /* DXVisionQuoteTableApp */,
 				642DC9242AAA21C000974F5C /* DXIpfTableApp */,
 				64B4364A2AB9D3410003919E /* ScheduleSampleApp */,
 				6455C3B72B20A44D00257986 /* QdsTools */,
@@ -2055,16 +1954,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		64262CC72A4DA64600BA6BA3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64262CEB2A4DC77600BA6BA3 /* Colors.xcassets in Resources */,
-				64262CE92A4DC70C00BA6BA3 /* Assets.xcassets in Resources */,
-				64262CD72A4DA64800BA6BA3 /* Preview Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		642DC9232AAA21C000974F5C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2243,21 +2132,6 @@
 				641BDD592AC7215200236B78 /* LatencyDiagnostic.swift in Sources */,
 				648BD5692AC450D6004A3A95 /* ConnectTool.swift in Sources */,
 				64098F562ACD7E940020D741 /* PerformanceMetricsPrinter.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64262CC52A4DA64600BA6BA3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64262CED2A4DC8BC00BA6BA3 /* DataSource.swift in Sources */,
-				64262CEA2A4DC71600BA6BA3 /* DXFTimer.swift in Sources */,
-				64262CD22A4DA64700BA6BA3 /* ContentView.swift in Sources */,
-				6479BC2B2A4F35A300A3D404 /* QuoteView.swift in Sources */,
-				64262CE12A4DADCF00BA6BA3 /* Endpoint.swift in Sources */,
-				64262CE22A4DB68B00BA6BA3 /* Endpoint+Ext.swift in Sources */,
-				64262CE42A4DC16F00BA6BA3 /* QuoteViewModel.swift in Sources */,
-				64262CD02A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2602,11 +2476,6 @@
 			target = 803BAC0C29BFA50700FFAB1C /* DXFeedFramework */;
 			targetProxy = 6417DD1B2A39C22C008912D6 /* PBXContainerItemProxy */;
 		};
-		64262CDE2A4DA66100BA6BA3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 803BAC0C29BFA50700FFAB1C /* DXFeedFramework */;
-			targetProxy = 64262CDD2A4DA66100BA6BA3 /* PBXContainerItemProxy */;
-		};
 		642DC93A2AAA222700974F5C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 803BAC0C29BFA50700FFAB1C /* DXFeedFramework */;
@@ -2802,80 +2671,6 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = NO;
 				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		64262CD82A4DA64800BA6BA3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Samples/VisionQuoteTableApp/Preview Content\"";
-				DEVELOPMENT_TEAM = NU75WFM6U6;
-				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = DXVisionQuoteTable;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXVisionQuoteTable;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = xros;
-				SUPPORTED_PLATFORMS = "xros xrsimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				XROS_DEPLOYMENT_TARGET = 1.0;
-			};
-			name = Debug;
-		};
-		64262CD92A4DA64800BA6BA3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Samples/VisionQuoteTableApp/Preview Content\"";
-				DEVELOPMENT_TEAM = NU75WFM6U6;
-				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = DXVisionQuoteTable;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXVisionQuoteTable;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = xros;
-				SUPPORTED_PLATFORMS = "xros xrsimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				VALIDATE_PRODUCT = YES;
-				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Release;
 		};
@@ -3648,15 +3443,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		64262CDA2A4DA64800BA6BA3 /* Build configuration list for PBXNativeTarget "DXVisionQuoteTableApp" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				64262CD82A4DA64800BA6BA3 /* Debug */,
-				64262CD92A4DA64800BA6BA3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		642DC9382AAA21C300974F5C /* Build configuration list for PBXNativeTarget "DXIpfTableApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -3757,13 +3543,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		64262CCD2A4DA64700BA6BA3 /* RealityKitContent */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = RealityKitContent;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 803BAC0429BFA50700FFAB1C /* Project object */;
 }
