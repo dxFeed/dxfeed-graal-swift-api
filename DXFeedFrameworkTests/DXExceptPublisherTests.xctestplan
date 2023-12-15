@@ -47,7 +47,6 @@
         "EndpointTest\/testGetInstance()",
         "EndpointTest\/testSupportProperty()",
         "EventsTest\/testConversion()",
-        "FeedTest\/testCandle()",
         "FeedTest\/testCreateSymbol()",
         "FeedTest\/testFeedCreateMultipleSubscription()",
         "FeedTest\/testFeedCreateMultipleSubscriptionWithSymbol()",
@@ -97,9 +96,6 @@
         "SystemPropertyTest\/testEmojiRead()",
         "SystemPropertyTest\/testRead()",
         "SystemPropertyTest\/testWrite()",
-        "ThreadsTest\/testEquality()",
-        "ThreadsTest\/testInDifferentQueues()",
-        "ThreadsTest\/testInDifferentThreads()",
         "UtilsTest\/testAsciiCharToString()",
         "UtilsTest\/testCharacter()",
         "UtilsTest\/testUnicodeCharToString()"
