@@ -57,7 +57,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = " qds post :6666"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Dump"
@@ -72,12 +72,12 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "qds &quot;connect &quot;dxlink:wss://demo.dxfeed.com/dxlink-ws&quot; Quote AAPL&quot; -p dxfeed.experimental.dxlink.enable=true,scheme=ext:resource:dxlink.xml "
+            argument = "qds &quot;connect &quot;dxlink:wss://demo.dxfeed.com/dxlink-ws&quot; Quote AAPL&quot; --properties dxfeed.experimental.dxlink.enable=true,scheme=ext:resource:dxlink.xml "
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Connect demo.dxfeed.com:7300 candle AAPL -f 2012-05-26-14:15:00"
-            isEnabled = "NO">
+            argument = "Connect demo.dxfeed.com:7300 quote AAPL,IBM"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = " Dump demo.dxfeed.com:7300 timeandsale,quote,profile,order,trade IBM,AAPL,ETH/USD:GDAX -p dxfeed.wildcard.enable=true,one_more_prop=abc -t test_tape_ios.txt[format=text] -q"

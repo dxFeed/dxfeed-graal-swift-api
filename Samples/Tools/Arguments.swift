@@ -15,16 +15,43 @@ enum ArgumentParserException: Error {
 /// The command name is included in the resulting array
 /// and therefore 0 is not the first parameter. It is command name
 class Arguments {
+    struct ArgParameter {
+        let shortName: String?
+        let longName: String?
+
+        public static func == (lhs: ArgParameter,
+                               rhs: String) -> Bool {
+            if let shortName = lhs.shortName {
+                if "-\(shortName)" == rhs {
+                    return true
+                }
+            }
+            if let longName = lhs.longName {
+                if "--\(longName)" == rhs {
+                    return true
+                }
+            }
+            return false
+        }
+    }
+
     private let allParameters: [String]
     private let namelessParameters: [String]
 
+    private let propertiesParameter = ArgParameter(shortName: "p", longName: "properties")
+    private let quiteParameter = ArgParameter(shortName: "q", longName: "quite")
+    private let forceStreamParameter = ArgParameter(shortName: nil, longName: "force-stream")
+    private let tapeParameter = ArgParameter(shortName: "t", longName: "tape")
+    private let fromTimeParameter = ArgParameter(shortName: "f", longName: "from-time")
+    private let sourceParameter = ArgParameter(shortName: "s", longName: "source")
+
     public lazy var properties: [String: String] = {
         var properties = [String: String]()
-        if let propIndex = allParameters.firstIndex(of: "-p") {
+        if let propIndex = allParameters.firstIndex(where: { return propertiesParameter == $0 }) {
             allParameters[propIndex + 1].split(separator: ",").forEach { substring in
                 let prop = substring.split(separator: "=")
                 if prop.count == 2 {
-                    properties[String(prop.first!)] = String(prop.last!)
+                    properties[String(prop.first!)]  = String(prop.last!)
                 } else {
                     print("Wrong property \(prop)")
                 }
@@ -33,39 +60,38 @@ class Arguments {
         return properties
     }()
 
-    public lazy var isQuite: Bool = {
-        if let isQuiteIndex = allParameters.firstIndex(of: "-q") {
+    private func value(for param: ArgParameter) -> Bool {
+        if allParameters.firstIndex(where: { param == $0 }) != nil {
             return true
         }
         return false
+    }
+
+    private func value(for param: ArgParameter) -> String? {
+        if let tapeIndex = allParameters.firstIndex(where: { param == $0 }) {
+            return allParameters[tapeIndex + 1]
+        }
+        return nil
+    }
+
+    public lazy var isQuite: Bool = {
+        return value(for: quiteParameter)
     }()
 
     public lazy var isForceStream: Bool = {
-        if let isForceStream = allParameters.firstIndex(of: "--force-stream") {
-            return true
-        }
-        return false
+        return value(for: forceStreamParameter)
     }()
 
     public lazy var tape: String? = {
-        if let tapeIndex = allParameters.firstIndex(of: "-t") {
-            return allParameters[tapeIndex + 1]
-        }
-        return nil
+        return value(for: tapeParameter)
     }()
 
     public lazy var time: String? = {
-        if let tapeIndex = allParameters.firstIndex(of: "-f") {
-            return allParameters[tapeIndex + 1]
-        }
-        return nil
+        return value(for: fromTimeParameter)
     }()
 
     public lazy var source: String? = {
-        if let tapeIndex = allParameters.firstIndex(of: "-s") {
-            return allParameters[tapeIndex + 1]
-        }
-        return nil
+        return value(for: sourceParameter)
     }()
 
     public lazy var qdsCommandLine: [String]? = {
@@ -124,11 +150,12 @@ Cmd \(cmd) contains not enough \(cmd.count - 1) arguments. Expected \(requiredNu
         }
     }
 
-    public func parseSymbols(at index: Int) -> [Symbol] {
-        if namelessParameters.count <= index {
+    public func parseSymbols() -> [Symbol] {
+        let symbolsPosition = 3
+        if namelessParameters.count <= symbolsPosition {
             return [WildcardSymbol.all]
         }
-        let symbols = namelessParameters[index]
+        let symbols = namelessParameters[symbolsPosition]
         if symbols.lowercased() == "all" {
             return [WildcardSymbol.all]
         }

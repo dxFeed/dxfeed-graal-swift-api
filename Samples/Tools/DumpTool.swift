@@ -54,7 +54,7 @@ class DumpTool: ToolsCommand {
 
     func execute() {
         let address = arguments[1]
-        let symbols = arguments.parseSymbols(at: 3)
+        let symbols = arguments.parseSymbols()
 
         isQuite = arguments.isQuite
 

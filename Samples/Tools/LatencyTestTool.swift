@@ -52,7 +52,7 @@ class LatencyTestTool: ToolsCommand {
         let listener = LatencyEventListener()
 
         subscription.createSubscription(address: address,
-                                        symbols: arguments.parseSymbols(at: 3),
+                                        symbols: arguments.parseSymbols(),
                                         types: types,
                                         role: arguments.isForceStream ? .streamFeed : .feed,
                                         listeners: [listener],
