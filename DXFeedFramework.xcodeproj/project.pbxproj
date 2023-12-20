@@ -68,6 +68,7 @@
 		641BDD5E2ACD67A400236B78 /* LatencyListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BDD5C2ACD67A000236B78 /* LatencyListener.swift */; };
 		641BDD612ACD697B00236B78 /* AbstractEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BDD602ACD697B00236B78 /* AbstractEventListener.swift */; };
 		641BDD622ACD697B00236B78 /* AbstractEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BDD602ACD697B00236B78 /* AbstractEventListener.swift */; };
+		641C64AC2B331B160023CFAD /* ObservableSubscriptionChangeListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641C64AB2B331B160023CFAD /* ObservableSubscriptionChangeListener.swift */; };
 		641E45F92B1DE51700649363 /* EventsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641E45F82B1DE51700649363 /* EventsListener.swift */; };
 		642528D02A3C534D00A04E41 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
 		642528D12A3C534D00A04E41 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
@@ -586,6 +587,7 @@
 		641BDD5A2AC72BD400236B78 /* ConcurrentWeakHashTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentWeakHashTable.swift; sourceTree = "<group>"; };
 		641BDD5C2ACD67A000236B78 /* LatencyListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatencyListener.swift; sourceTree = "<group>"; };
 		641BDD602ACD697B00236B78 /* AbstractEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractEventListener.swift; sourceTree = "<group>"; };
+		641C64AB2B331B160023CFAD /* ObservableSubscriptionChangeListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableSubscriptionChangeListener.swift; sourceTree = "<group>"; };
 		641E45F82B1DE51700649363 /* EventsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListener.swift; sourceTree = "<group>"; };
 		64278C6B2A602CA20074B5AA /* CandleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleTests.swift; sourceTree = "<group>"; };
 		64278C6D2A602D2B0074B5AA /* Candle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candle.swift; sourceTree = "<group>"; };
@@ -1320,6 +1322,7 @@
 				64ACBCDE2A2897EA00032C53 /* String+Symbol.swift */,
 				64ACBCE02A28999B00032C53 /* WildcardSymbol.swift */,
 				6447A5E22A8F611700739CCF /* IObservableSubscription.swift */,
+				641C64AB2B331B160023CFAD /* ObservableSubscriptionChangeListener.swift */,
 			);
 			path = Osub;
 			sourceTree = "<group>";
@@ -2265,6 +2268,7 @@
 				64C771F62A94ADDA009868C2 /* Direction.swift in Sources */,
 				64BDDB312AD7E5A600694210 /* AnalyticOrderMapper.swift in Sources */,
 				640C3FDC2A618B2000555161 /* MarketEventSymbols.swift in Sources */,
+				641C64AC2B331B160023CFAD /* ObservableSubscriptionChangeListener.swift in Sources */,
 				642BE4D42A2F5D730052340A /* TimeAndSale+Ext.swift in Sources */,
 				64ACBCD92A279F7900032C53 /* DXEventListener.swift in Sources */,
 				64ECD6852A9DDF6200B36935 /* DXInstrumentProfileCollector.swift in Sources */,
