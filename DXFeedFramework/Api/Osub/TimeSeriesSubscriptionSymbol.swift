@@ -61,3 +61,11 @@ extension TimeSeriesSubscriptionSymbol: CustomStringConvertible {
         return stringValue
     }
 }
+
+extension TimeSeriesSubscriptionSymbol: Hashable {
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.symbol)
+        hasher.combine(self.fromTime)
+    }
+}

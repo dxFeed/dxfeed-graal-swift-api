@@ -45,3 +45,13 @@ public class WildcardSymbol: Symbol {
         return symbol
     }
 }
+
+extension WildcardSymbol: Hashable {
+    public static func == (lhs: WildcardSymbol, rhs: WildcardSymbol) -> Bool {
+        return lhs.symbol == rhs.symbol
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.symbol)
+    }
+}

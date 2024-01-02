@@ -20,7 +20,6 @@ class NativeSubscription {
     var nativeSubscriptionChangeListener: UnsafeMutablePointer<dxfg_observable_subscription_change_listener_t>?
     private var subscriptionListener: WeakSubscriptionChangeListener?
 
-
     private let mapper = EventMapper()
     weak var listener: DXEventListener?
     weak var subscriptionChangeListener: ObservableSubscriptionChangeListener?
@@ -62,17 +61,23 @@ class NativeSubscription {
         if let context = context {
             let listener: AnyObject = bridge(ptr: context)
             if let listener = listener as? WeakSubscriptionChangeListener {
-                listener.value?.subscriptionChangeListener?.symbolsAdded(symbols: [""])
+                if let symbols = symbols {
+                    let result = SymbolMapper.newSymbols(symbols: symbols)
+                    listener.value?.subscriptionChangeListener?.symbolsAdded(symbols: Set(result))
+                }
             }
         }
     }
 
     static let symbolsRemovedCallback: dxfg_ObservableSubscriptionChangeListener_function_symbolsRemoved
-    = {_, symbols, context in
+    = { _, symbols, context in
         if let context = context {
             let listener: AnyObject = bridge(ptr: context)
             if let listener = listener as? WeakSubscriptionChangeListener {
-                listener.value?.subscriptionChangeListener?.symbolsRemoved(symbols: [""])
+                if let symbols = symbols {
+                    let result = SymbolMapper.newSymbols(symbols: symbols)
+                    listener.value?.subscriptionChangeListener?.symbolsRemoved(symbols: Set(result))
+                }
             }
         }
     }
@@ -82,7 +87,7 @@ class NativeSubscription {
         if let context = context {
             let listener: AnyObject = bridge(ptr: context)
             if let listener = listener as? WeakSubscriptionChangeListener {
-                listener.value?.subscriptionChangeListener?.subscriptionClosed()o
+                listener.value?.subscriptionChangeListener?.subscriptionClosed()
             }
         }
     }
@@ -104,7 +109,21 @@ class NativeSubscription {
                                            dxfg_JavaObjectHandler_release(thread,
                                                                           &(subscription.pointee.handler)))
         }
+
+        if let nativeSubscriptionChangeListener = nativeSubscriptionChangeListener {
+            let thread = currentThread()
+            _ = try? ErrorCheck.nativeCall(thread,
+                                          dxfg_DXFeedSubscription_removeChangeListener(
+                                            thread,
+                                            subscription,
+                                            nativeSubscriptionChangeListener))
+            _ = try? ErrorCheck.nativeCall(thread,
+                                           dxfg_JavaObjectHandler_release(
+                                            thread,
+                                            &(nativeSubscriptionChangeListener.pointee.handler)))
+        }
     }
+
     init(subscription: UnsafeMutablePointer<dxfg_subscription_t>?) {
         self.subscription = subscription
     }
@@ -223,13 +242,22 @@ class NativeSubscription {
     /// - Throws: GraalException. Rethrows exception from Java.
     func removeChangeListener(_ listener: ObservableSubscriptionChangeListener) throws {
         if listener === subscriptionChangeListener {
+            defer {
+                nativeSubscriptionChangeListener = nil
+                subscriptionChangeListener = nil
+            }
             let thread = currentThread()
             _ = try ErrorCheck.nativeCall(thread,
-                                          dxfg_DXFeedSubscription_removeChangeListener(thread,
-                                                                                       subscription,
-                                                                                       nativeSubscriptionChangeListener))
-            nativeSubscriptionChangeListener = nil
-            subscriptionChangeListener = nil
+                                          dxfg_DXFeedSubscription_removeChangeListener(
+                                            thread,
+                                            subscription,
+                                            nativeSubscriptionChangeListener))
+            if let nativeSubscriptionChangeListener = nativeSubscriptionChangeListener {
+                _ = try ErrorCheck.nativeCall(thread,
+                                              dxfg_JavaObjectHandler_release(
+                                                thread,
+                                                &(nativeSubscriptionChangeListener.pointee.handler)))
+            }
         }
     }
 }
