@@ -73,6 +73,8 @@
 		641C64B22B346A2E0023CFAD /* DXObservableSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641C64B12B346A2E0023CFAD /* DXObservableSubscription.swift */; };
 		641C64B42B347C430023CFAD /* DXObservableSubscriptionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641C64B32B347C430023CFAD /* DXObservableSubscriptionTest.swift */; };
 		641E45F92B1DE51700649363 /* EventsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641E45F82B1DE51700649363 /* EventsListener.swift */; };
+		6423E4652B445B92006B208D /* DXFeedTimeSeriesSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6423E4642B445B92006B208D /* DXFeedTimeSeriesSubscription.swift */; };
+		6423E4672B44613D006B208D /* NativeTimeSeriesSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6423E4662B44613D006B208D /* NativeTimeSeriesSubscription.swift */; };
 		642528D02A3C534D00A04E41 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
 		642528D12A3C534D00A04E41 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
 		6426C8912A531AAE00236784 /* EndpointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC416029CA376E00E6B611 /* EndpointTest.swift */; };
@@ -596,6 +598,8 @@
 		641C64B12B346A2E0023CFAD /* DXObservableSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXObservableSubscription.swift; sourceTree = "<group>"; };
 		641C64B32B347C430023CFAD /* DXObservableSubscriptionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXObservableSubscriptionTest.swift; sourceTree = "<group>"; };
 		641E45F82B1DE51700649363 /* EventsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListener.swift; sourceTree = "<group>"; };
+		6423E4642B445B92006B208D /* DXFeedTimeSeriesSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFeedTimeSeriesSubscription.swift; sourceTree = "<group>"; };
+		6423E4662B44613D006B208D /* NativeTimeSeriesSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeTimeSeriesSubscription.swift; sourceTree = "<group>"; };
 		64278C6B2A602CA20074B5AA /* CandleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleTests.swift; sourceTree = "<group>"; };
 		64278C6D2A602D2B0074B5AA /* Candle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candle.swift; sourceTree = "<group>"; };
 		64278C6F2A602FA00074B5AA /* Candle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Candle+Ext.swift"; sourceTree = "<group>"; };
@@ -956,6 +960,7 @@
 				64104FCB2A2629D800D1FC41 /* NativeSubscription.swift */,
 				641C64AF2B34679D0023CFAD /* NativeObservableSubscription.swift */,
 				641C64B12B346A2E0023CFAD /* DXObservableSubscription.swift */,
+				6423E4662B44613D006B208D /* NativeTimeSeriesSubscription.swift */,
 			);
 			path = Subscription;
 			sourceTree = "<group>";
@@ -1603,6 +1608,7 @@
 				641BCBBB2A20ED8100FE23C2 /* DXEndpointListener.swift */,
 				64104FC82A26298D00D1FC41 /* DXFeedSubcription.swift */,
 				64ACBCD82A279F7900032C53 /* DXEventListener.swift */,
+				6423E4642B445B92006B208D /* DXFeedTimeSeriesSubscription.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -2355,6 +2361,7 @@
 				64E342522AAB29CF00457994 /* InstrumentProfileType.swift in Sources */,
 				648E98AA2AAF625800BFD219 /* IIndexedEvent+Ext.swift in Sources */,
 				64A42F452B0B933B001C3ACC /* NativeTimeUtil.swift in Sources */,
+				6423E4672B44613D006B208D /* NativeTimeSeriesSubscription.swift in Sources */,
 				6447A5E32A8F611700739CCF /* IObservableSubscription.swift in Sources */,
 				64A42F4E2B0B9FA4001C3ACC /* DXTimeZone.swift in Sources */,
 				64104FC92A26298D00D1FC41 /* DXFeedSubcription.swift in Sources */,
@@ -2378,6 +2385,7 @@
 				64656F772A1DFED9006A0B19 /* EndpointState+Native.swift in Sources */,
 				6498E6B52AB1D4480093A065 /* NativeSchedule.swift in Sources */,
 				64DA26BC2AA20B66005B1757 /* InstrumentProfileConnectionState+ext.swift in Sources */,
+				6423E4652B445B92006B208D /* DXFeedTimeSeriesSubscription.swift in Sources */,
 				64BA92612A306BA900BE26A0 /* Profile+Ext.swift in Sources */,
 				64BA926B2A3072CA00BE26A0 /* TradeMapper.swift in Sources */,
 				6447A5E12A8E5A5400739CCF /* IndexedEventSource.swift in Sources */,
