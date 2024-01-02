@@ -11,12 +11,18 @@ import Foundation
 /// The location of the imported functions is in the header files "dxfg_subscription.h".
 class NativeSubscription {
     private class WeakSubscription: WeakBox<NativeSubscription> { }
+    private class WeakSubscriptionChangeListener: WeakBox<NativeSubscription> { }
+
     private static let listeners = ConcurrentArray<WeakSubscription>()
 
     let subscription: UnsafeMutablePointer<dxfg_subscription_t>?
     var nativeListener: UnsafeMutablePointer<dxfg_feed_event_listener_t>?
+    var nativeSubscriptionChangeListener: UnsafeMutablePointer<dxfg_observable_subscription_change_listener_t>?
+    private var subscriptionListener: WeakSubscriptionChangeListener?
+
     private let mapper = EventMapper()
     weak var listener: DXEventListener?
+    weak var subscriptionChangeListener: ObservableSubscriptionChangeListener?
 
     private static let finalizeCallback: dxfg_finalize_function = { _, context in
         if let context = context {
@@ -50,6 +56,42 @@ class NativeSubscription {
         }
     }
 
+    static let symbolsAddedCallback:
+    dxfg_ObservableSubscriptionChangeListener_function_symbolsAdded = { _, symbols, context in
+        if let context = context {
+            let listener: AnyObject = bridge(ptr: context)
+            if let listener = listener as? WeakSubscriptionChangeListener {
+                if let symbols = symbols {
+                    let result = SymbolMapper.newSymbols(symbols: symbols)
+                    listener.value?.subscriptionChangeListener?.symbolsAdded(symbols: Set(result))
+                }
+            }
+        }
+    }
+
+    static let symbolsRemovedCallback: dxfg_ObservableSubscriptionChangeListener_function_symbolsRemoved
+    = { _, symbols, context in
+        if let context = context {
+            let listener: AnyObject = bridge(ptr: context)
+            if let listener = listener as? WeakSubscriptionChangeListener {
+                if let symbols = symbols {
+                    let result = SymbolMapper.newSymbols(symbols: symbols)
+                    listener.value?.subscriptionChangeListener?.symbolsRemoved(symbols: Set(result))
+                }
+            }
+        }
+    }
+
+    static let subscriptionClosedCallback: dxfg_ObservableSubscriptionChangeListener_function_subscriptionClosed
+    = {_, context in
+        if let context = context {
+            let listener: AnyObject = bridge(ptr: context)
+            if let listener = listener as? WeakSubscriptionChangeListener {
+                listener.value?.subscriptionChangeListener?.subscriptionClosed()
+            }
+        }
+    }
+
     deinit {
         if let nativeListener = nativeListener {
             let thread = currentThread()
@@ -67,7 +109,21 @@ class NativeSubscription {
                                            dxfg_JavaObjectHandler_release(thread,
                                                                           &(subscription.pointee.handler)))
         }
+
+        if let nativeSubscriptionChangeListener = nativeSubscriptionChangeListener {
+            let thread = currentThread()
+            _ = try? ErrorCheck.nativeCall(thread,
+                                          dxfg_DXFeedSubscription_removeChangeListener(
+                                            thread,
+                                            subscription,
+                                            nativeSubscriptionChangeListener))
+            _ = try? ErrorCheck.nativeCall(thread,
+                                           dxfg_JavaObjectHandler_release(
+                                            thread,
+                                            &(nativeSubscriptionChangeListener.pointee.handler)))
+        }
     }
+
     init(subscription: UnsafeMutablePointer<dxfg_subscription_t>?) {
         self.subscription = subscription
     }
@@ -156,5 +212,52 @@ class NativeSubscription {
             return true
         }
         return success != 0
+    }
+
+    /// - Throws: GraalException. Rethrows exception from Java.
+    func addChangeListener(_ listener: ObservableSubscriptionChangeListener) throws {
+        if subscriptionChangeListener == nil {
+            let thread = currentThread()
+
+            let weakListener = WeakSubscriptionChangeListener(value: self)
+            subscriptionListener = weakListener
+            let voidPtr = bridge(obj: weakListener)
+
+            nativeSubscriptionChangeListener = try ErrorCheck.nativeCall(
+                thread,
+                dxfg_ObservableSubscriptionChangeListener_new(thread,
+                                                              NativeSubscription.symbolsAddedCallback,
+                                                              NativeSubscription.symbolsRemovedCallback,
+                                                              NativeSubscription.subscriptionClosedCallback,
+                                                              voidPtr))
+            _ = try ErrorCheck.nativeCall(thread,
+                                          dxfg_DXFeedSubscription_addChangeListener(thread,
+                                                                                    subscription,
+                                                                                    nativeSubscriptionChangeListener))
+
+        }
+        subscriptionChangeListener = listener
+    }
+
+    /// - Throws: GraalException. Rethrows exception from Java.
+    func removeChangeListener(_ listener: ObservableSubscriptionChangeListener) throws {
+        if listener === subscriptionChangeListener {
+            defer {
+                nativeSubscriptionChangeListener = nil
+                subscriptionChangeListener = nil
+            }
+            let thread = currentThread()
+            _ = try ErrorCheck.nativeCall(thread,
+                                          dxfg_DXFeedSubscription_removeChangeListener(
+                                            thread,
+                                            subscription,
+                                            nativeSubscriptionChangeListener))
+            if let nativeSubscriptionChangeListener = nativeSubscriptionChangeListener {
+                _ = try ErrorCheck.nativeCall(thread,
+                                              dxfg_JavaObjectHandler_release(
+                                                thread,
+                                                &(nativeSubscriptionChangeListener.pointee.handler)))
+            }
+        }
     }
 }

@@ -26,4 +26,8 @@ public protocol IObservableSubscription {
     ///   - eventType: The event type.
     /// - Returns: **true** if this subscription contains the corresponding event type
     func isContains(_ eventType: EventCode) -> Bool
+
+    func addChangeListener(_ listener: ObservableSubscriptionChangeListener) throws
+
+    func removeChangeListener(_ listener: ObservableSubscriptionChangeListener) throws
 }
