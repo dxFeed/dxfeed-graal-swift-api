@@ -34,7 +34,7 @@ final class CandleTests: XCTestCase {
     }
 
     func testFetchingCandlesByLongSymbol() throws {
-        let candleSymbol = try CandleSymbol.valueOf("AAPL{=3y,price=bid,tho=true,a=s,pl=1000.5}")
+        let candleSymbol = try CandleSymbol.valueOf("AAPL{=3y,price=bid,tho=true}")
         let symbol = TimeSeriesSubscriptionSymbol(symbol: candleSymbol, fromTime: 1660125159)
         try fetchCandles(symbol)
     }
