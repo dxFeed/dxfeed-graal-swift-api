@@ -8,10 +8,19 @@
 import Foundation
 
 public class DXFeedTimeSeriesSubscription: DXFeedSubcription {
-    private var fromTime = Long.max
-
+    /// Subscription native wrapper.
+    private let native: NativeTimeSeriesSubscription?
 
     internal init(native: NativeTimeSeriesSubscription?, events: [EventCode]) throws {
+        if let native = native {
+            self.native = native
+        } else {
+            throw ArgumentException.argumentNil
+        }
         try super.init(native: native?.subscription, events: events)
+    }
+
+    func set(fromTime: Long) throws {
+        try native?.set(fromTime: fromTime)
     }
 }

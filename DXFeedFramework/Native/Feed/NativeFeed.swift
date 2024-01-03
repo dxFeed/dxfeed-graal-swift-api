@@ -47,7 +47,6 @@ class NativeFeed {
         return NativeSubscription(subscription: subscription)
     }
 
-
     func createTimeSeriesSubscription(_ events: [EventCode]) throws -> NativeTimeSeriesSubscription? {
         let nativeCodes = events.map { $0.nativeCode() }
         let elements = ListNative(elements: nativeCodes)
@@ -59,9 +58,10 @@ class NativeFeed {
 
         let thread = currentThread()
         let subscription = try ErrorCheck.nativeCall(thread,
-                                                     dxfg_DXFeed_createTimeSeriesSubscription2(thread,
-                                                                                     self.feed,
-                                                                                     listPointer))
+                                                     dxfg_DXFeed_createTimeSeriesSubscription2(
+                                                        thread,
+                                                        self.feed,
+                                                        listPointer))
         return NativeTimeSeriesSubscription(native: subscription)
     }
 

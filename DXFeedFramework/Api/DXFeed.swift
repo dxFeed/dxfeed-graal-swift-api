@@ -44,8 +44,11 @@ public class DXFeed {
         return try DXFeedSubcription(native: native.createSubscription(event), events: [event])
     }
 
+    public func createTimeSeriesSubscription(_ events: [EventCode]) throws -> DXFeedTimeSeriesSubscription {
+        return try DXFeedTimeSeriesSubscription(native: native.createTimeSeriesSubscription(events), events: events)
+    }
+
     public func createTimeSeriesSubscription(_ event: EventCode) throws -> DXFeedTimeSeriesSubscription {
         return try DXFeedTimeSeriesSubscription(native: native.createTimeSeriesSubscription(event), events: [event])
-
     }
 }
