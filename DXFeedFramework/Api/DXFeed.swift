@@ -52,7 +52,7 @@ public class DXFeed {
     /// - Parameters:
     ///     - events: The list of event codes.
     /// - Returns: ``DXFeedSubscription``
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java, ``ArgumentException/invalidOperationException(_:)``
     public func createTimeSeriesSubscription(_ events: [EventCode]) throws -> DXFeedTimeSeriesSubscription {
         return try DXFeedTimeSeriesSubscription(native: native.createTimeSeriesSubscription(events), events: events)
     }
@@ -65,7 +65,7 @@ public class DXFeed {
     /// - Parameters:
     ///     - event:  event code.
     /// - Returns: ``DXFeedSubscription``
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java, ``ArgumentException/invalidOperationException(_:)``
     public func createTimeSeriesSubscription(_ event: EventCode) throws -> DXFeedTimeSeriesSubscription {
         return try DXFeedTimeSeriesSubscription(native: native.createTimeSeriesSubscription(event), events: [event])
     }

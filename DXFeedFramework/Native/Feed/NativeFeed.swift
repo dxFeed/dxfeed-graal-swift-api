@@ -46,8 +46,13 @@ class NativeFeed {
                                                                                     event.nativeCode()))
         return NativeSubscription(subscription: subscription)
     }
-
+    
     func createTimeSeriesSubscription(_ events: [EventCode]) throws -> NativeTimeSeriesSubscription? {
+        try events.forEach {
+            if !$0.isTimeSeriesEvent() {
+                throw ArgumentException.invalidOperationException("\($0) is not TimeSeriesEvent")
+            }
+        }
         let nativeCodes = events.map { $0.nativeCode() }
         let elements = ListNative(elements: nativeCodes)
         let listPointer = elements.newList()
@@ -66,6 +71,9 @@ class NativeFeed {
     }
 
     func createTimeSeriesSubscription(_ event: EventCode) throws -> NativeTimeSeriesSubscription? {
+        if !event.isTimeSeriesEvent() {
+            throw ArgumentException.invalidOperationException("\(event) is not TimeSeriesEvent")
+        }
         let thread = currentThread()
         let subscription = try ErrorCheck.nativeCall(thread,
                                                      dxfg_DXFeed_createTimeSeriesSubscription(thread,
