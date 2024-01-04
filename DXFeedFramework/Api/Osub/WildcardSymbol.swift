@@ -7,7 +7,7 @@
 import Foundation
 /// Represents [wildcard] subscription to all events of the specific event type.
 ///
-/// The ``all`` constant can be added to any ``DXFeedSubcription`` instance with ``DXFeedSubcription/addSymbols(_:)-32ill`` method
+/// The ``all`` constant can be added to any ``DXFeedSubscription`` instance with ``DXFeedSubscription/addSymbols(_:)-32ill`` method
 /// to the effect of subscribing to all possible event symbols. The corresponding subscription will start
 /// receiving all published events of the corresponding types.
 ///
@@ -28,7 +28,7 @@ public class WildcardSymbol: Symbol {
     /// is disabled by default in upstream feed configuration.
     /// Make that sure you have adequate resources and understand the impact before using it.
     /// It can be used for low-frequency events only (like Forex quotes), because each instance
-    /// of ``DXFeedSubcription`` processes events in a single thread
+    /// of ``DXFeedSubscription`` processes events in a single thread
     /// and there is no provision to load-balance wildcard
     /// subscription amongst multiple threads.
     public static let all = WildcardSymbol(symbol: reservedPrefix)

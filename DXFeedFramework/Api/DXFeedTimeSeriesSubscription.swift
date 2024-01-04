@@ -7,17 +7,17 @@
 
 import Foundation
 
-/// Extends ``DXFeedSubcription`` to conveniently subscribe to time-series of
-/// events for a set of symbols and event types. 
+/// Extends ``DXFeedSubscription`` to conveniently subscribe to time-series of
+/// events for a set of symbols and event types.
 ///
 /// This class decorates symbols
-/// that are passed to xxxSymbols methods in ``DXFeedSubcription``
+/// that are passed to xxxSymbols methods in ``DXFeedSubscription``
 /// by wrapping them into ``TimeSeriesSubscriptionSymbol`` instances with
 /// the current value of fromTime property.
 ///
 ///  Only events that implement ``ITimeSeriesEvent`` interface can be
 /// subscribed to with DXFeedTimeSeriesSubscription``.
-public class DXFeedTimeSeriesSubscription: DXFeedSubcription {
+public class DXFeedTimeSeriesSubscription: DXFeedSubscription {
     /// Subscription native wrapper.
     private let native: NativeTimeSeriesSubscription?
 

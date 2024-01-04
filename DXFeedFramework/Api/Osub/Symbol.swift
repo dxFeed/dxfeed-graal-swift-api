@@ -8,7 +8,7 @@ import Foundation
 
 /// Protocol for implement your custom symbol
 ///
-/// Dervied from  this procol can be used with ``DXFeedSubcription`` to specify subscription
+/// Dervied from  this procol can be used with ``DXFeedSubscription`` to specify subscription
 
 public protocol Symbol {
     /// Custom symbol has to return string representation.

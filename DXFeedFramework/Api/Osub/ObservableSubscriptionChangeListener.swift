@@ -50,7 +50,7 @@ public protocol ObservableSubscriptionChangeListener: AnyObject {
     func symbolsRemoved(symbols: Set<AnyHashable>)
 
     /// Invoked after subscription is closed or when this listener is
-    /// ``DXFeedSubcription/removeChangeListener(_:)`` from the subscription.
+    /// ``DXFeedSubscription/removeChangeListener(_:)`` from the subscription.
     /// ``DXPublisher`` ``DXPublisher/getSubscription(_:)`` is considered to be closed
     /// when the corresponding ``DXEndpoint`` is ``DXEndpoint/close()``.
     /// Default implementation is empty.

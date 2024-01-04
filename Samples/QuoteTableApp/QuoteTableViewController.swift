@@ -9,8 +9,8 @@ import DXFeedFramework
 
 class QuoteTableViewController: UIViewController {
     private var endpoint: DXEndpoint?
-    private var subscription: DXFeedSubcription?
-    private var profileSubscription: DXFeedSubcription?
+    private var subscription: DXFeedSubscription?
+    private var profileSubscription: DXFeedSubscription?
 
     var dataSource = [String: QuoteModel]()
     var symbols = ["AAPL", "IBM", "MSFT", "EUR/CAD", "ETH/USD:GDAX", "GOOG", "BAC", "CSCO", "ABCE", "INTC", "PFE"]

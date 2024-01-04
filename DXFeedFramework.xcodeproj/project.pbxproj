@@ -47,7 +47,7 @@
 		64104FC32A210F2400D1FC41 /* EventCode+Native.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC22A210F2400D1FC41 /* EventCode+Native.swift */; };
 		64104FC52A26059B00D1FC41 /* ConcurrentSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC42A26059B00D1FC41 /* ConcurrentSet.swift */; };
 		64104FC72A2613BC00D1FC41 /* ConcurrentArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC62A2613BC00D1FC41 /* ConcurrentArray.swift */; };
-		64104FC92A26298D00D1FC41 /* DXFeedSubcription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC82A26298D00D1FC41 /* DXFeedSubcription.swift */; };
+		64104FC92A26298D00D1FC41 /* DXFeedSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC82A26298D00D1FC41 /* DXFeedSubscription.swift */; };
 		64104FCC2A2629D800D1FC41 /* NativeSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FCB2A2629D800D1FC41 /* NativeSubscription.swift */; };
 		64104FD32A277B2D00D1FC41 /* ListNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FD22A277B2D00D1FC41 /* ListNative.swift */; };
 		64125E362A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (Required, ); }; };
@@ -574,7 +574,7 @@
 		64104FC22A210F2400D1FC41 /* EventCode+Native.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventCode+Native.swift"; sourceTree = "<group>"; };
 		64104FC42A26059B00D1FC41 /* ConcurrentSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentSet.swift; sourceTree = "<group>"; };
 		64104FC62A2613BC00D1FC41 /* ConcurrentArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentArray.swift; sourceTree = "<group>"; };
-		64104FC82A26298D00D1FC41 /* DXFeedSubcription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFeedSubcription.swift; sourceTree = "<group>"; };
+		64104FC82A26298D00D1FC41 /* DXFeedSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFeedSubscription.swift; sourceTree = "<group>"; };
 		64104FCB2A2629D800D1FC41 /* NativeSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSubscription.swift; sourceTree = "<group>"; };
 		64104FCD2A2637EA00D1FC41 /* EventsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTest.swift; sourceTree = "<group>"; };
 		64104FD22A277B2D00D1FC41 /* ListNative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNative.swift; sourceTree = "<group>"; };
@@ -1609,7 +1609,7 @@
 				64656F662A1CCFC2006A0B19 /* DXPublisher.swift */,
 				64656F6C2A1CFB10006A0B19 /* DXEndpointState.swift */,
 				641BCBBB2A20ED8100FE23C2 /* DXEndpointListener.swift */,
-				64104FC82A26298D00D1FC41 /* DXFeedSubcription.swift */,
+				64104FC82A26298D00D1FC41 /* DXFeedSubscription.swift */,
 				64ACBCD82A279F7900032C53 /* DXEventListener.swift */,
 				6423E4642B445B92006B208D /* DXFeedTimeSeriesSubscription.swift */,
 			);
@@ -2367,7 +2367,7 @@
 				6423E4672B44613D006B208D /* NativeTimeSeriesSubscription.swift in Sources */,
 				6447A5E32A8F611700739CCF /* IObservableSubscription.swift in Sources */,
 				64A42F4E2B0B9FA4001C3ACC /* DXTimeZone.swift in Sources */,
-				64104FC92A26298D00D1FC41 /* DXFeedSubcription.swift in Sources */,
+				64104FC92A26298D00D1FC41 /* DXFeedSubscription.swift in Sources */,
 				64ABC1032AD9294D00904D78 /* OptionSaleMapper.swift in Sources */,
 				64104FD32A277B2D00D1FC41 /* ListNative.swift in Sources */,
 				649706862AD832860068FF88 /* Series+Ext.swift in Sources */,

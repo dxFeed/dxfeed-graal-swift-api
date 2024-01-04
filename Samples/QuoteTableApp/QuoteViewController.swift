@@ -9,7 +9,7 @@ import DXFeedFramework
 
 class QuoteViewController: UIViewController {
     private var endpoint: DXEndpoint?
-    private var subscription: DXFeedSubcription?
+    private var subscription: DXFeedSubscription?
 
     @IBOutlet var connectButton: UIButton!
     @IBOutlet var addressTextField: UITextField!

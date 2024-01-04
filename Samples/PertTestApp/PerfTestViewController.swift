@@ -26,7 +26,7 @@ class PerfTestViewController: UIViewController {
     }()
 
     private var endpoint: DXEndpoint?
-    private var subscription: DXFeedSubcription?
+    private var subscription: DXFeedSubscription?
 
     var blackHoleInt: Int64 = 0
 
