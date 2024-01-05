@@ -14,7 +14,7 @@ import Foundation
 /// the market at any given moment of time.
 ///
 /// Spread order is similar to a regular ``Order``, but it has a
-/// ``SpreadSymbol`` property that contains the symbol
+/// ``spreadSymbol`` property that contains the symbol
 /// of the actual spread that is being represented by spread order object.
 /// ``IEventType/eventSymbol`` property contains the underlying symbol
 /// that was used in subscription.

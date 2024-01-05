@@ -47,13 +47,14 @@ let outputEndpoint = try DXEndpoint.builder()
 
 // Create and link event processor for all types of events.
 // Note: Set of processed event types could be limited if needed.
-let eventTypes: [EventCode] = EventCode.allCases.compactMap { eventCode in
-    if EventCode.unsupported().contains(eventCode) {
-        return nil
-    } else {
-        return eventCode
-    }
-}
+let eventTypes = [Quote.self,
+                  Candle.self,
+                  TimeAndSale.self,
+                  Trade.self,
+                  TradeETH.self,
+                  Profile.self,
+                  Summary.self,
+                  TheoPrice.self]
 
 let feed = inputEndpoint.getFeed()
 let subscription = try feed?.createSubscription(eventTypes)

@@ -55,7 +55,7 @@ final class PublisherTest: XCTestCase {
             }
 
             feedEndpoint.add(listener: stateListener!)
-            let subscription = try feedEndpoint.getFeed()?.createSubscription(.quote)
+            let subscription = try feedEndpoint.getFeed()?.createSubscription(Quote.self)
             try feedEndpoint.connect("localhost:7400")
             let receivedEventExp = expectation(description: "Received events \(EventCode.quote)")
             receivedEventExp.assertForOverFulfill = false

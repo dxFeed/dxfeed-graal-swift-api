@@ -14,7 +14,7 @@ class Subscription {
     // swiftlint:disable function_parameter_count
     func createSubscription<O>(address: String,
                                symbols: [Symbol],
-                               types: [EventCode],
+                               types: [IEventType.Type],
                                role: DXEndpoint.Role,
                                listeners: [O],
                                properties: [String: String],

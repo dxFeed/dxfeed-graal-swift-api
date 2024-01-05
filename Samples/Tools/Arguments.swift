@@ -137,16 +137,33 @@ Cmd \(cmd) contains not enough \(cmd.count - 1) arguments. Expected \(requiredNu
         namelessParameters.count
     }
 
-    public func parseTypes(at index: Int) -> [EventCode] {
-        if namelessParameters.count <= index {
-            return EventCode.allCases
-        }
+    public func parseTypes(at index: Int) -> [IEventType.Type] {
+        let allTypes = [Candle.self,
+                        Trade.self,
+                        TradeETH.self,
+                        Quote.self,
+                        TimeAndSale.self,
+                        Profile.self,
+                        Summary.self,
+                        Greeks.self,
+                        Underlying.self,
+                        TheoPrice.self,
+                        Order.self,
+                        AnalyticOrder.self,
+                        SpreadOrder.self,
+                        Series.self,
+                        OptionSale.self]
 
-        if namelessParameters[2] == "all" {
-            return EventCode.allCases
+        if namelessParameters.count <= index {
+            return allTypes
         }
+        if namelessParameters[2] == "all" {
+            return allTypes
+        }
+        let typesDict = Dictionary(uniqueKeysWithValues:
+                                    allTypes.map { ($0.type, $0) })
         return namelessParameters[2].split(separator: ",").compactMap { str in
-            return EventCode(string: String(str))
+            return typesDict[EventCode(string: String(str))]
         }
     }
 

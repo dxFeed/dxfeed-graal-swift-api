@@ -11,16 +11,16 @@ class DXObservableSubscription {
     /// Subscription native wrapper.
     private let native: NativeObservableSubscription
     /// List of event types associated with this ``DXObservableSubscription``
-    fileprivate let events: Set<EventCode>
+    fileprivate let types: [IEventType.Type]
 
     /// - Throws: ``GraalException`` Rethrows exception from Java, ``ArgumentException/argumentNil``
-    internal init(native: NativeObservableSubscription?, events: [EventCode]) throws {
+    internal init(native: NativeObservableSubscription?, events: [IEventType.Type]) throws {
         if let native = native {
             self.native = native
         } else {
             throw ArgumentException.argumentNil
         }
-        self.events = Set(events)
+        self.types = events
     }
 }
 
@@ -29,12 +29,14 @@ extension DXObservableSubscription: IObservableSubscription {
         return native.isClosed()
     }
 
-    public var eventTypes: Set<EventCode> {
-        return events
+    public var eventTypes: [IEventType.Type] {
+        return types
     }
 
-    public func isContains(_ eventType: EventCode) -> Bool {
-        return events.contains(eventType)
+    public func isContains(_ eventType: IEventType.Type) -> Bool {
+        return types.contains { type in
+            type == eventType
+        }
     }
 
     /// - Throws: GraalException. Rethrows exception from Java.

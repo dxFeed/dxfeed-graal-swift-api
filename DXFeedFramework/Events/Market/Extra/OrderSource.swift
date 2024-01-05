@@ -6,7 +6,7 @@
 
 import Foundation
 
-/// Identifies source of ``Order``, ``AnalyticOrder``, ``OtcMarketsOrder`` and ``SpreadOrder`` events.
+/// Identifies source of ``Order``, ``AnalyticOrder``, OtcMarketsOrder and ``SpreadOrder`` events.
 ///
 /// There are the following kinds of order sources:
 ///

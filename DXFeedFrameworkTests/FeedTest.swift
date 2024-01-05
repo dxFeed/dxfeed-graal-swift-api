@@ -9,7 +9,7 @@ import XCTest
 
 final class FeedTest: XCTestCase {
     func testInitializationWithNilNativeSubscription() {
-        XCTAssertThrowsError(try DXFeedSubscription(native: nil, events: [.quote])) { error in
+        XCTAssertThrowsError(try DXFeedSubscription(native: nil, types: [Quote.self])) { error in
             // Assert
             XCTAssertTrue(error is ArgumentException)
         }
@@ -28,7 +28,10 @@ final class FeedTest: XCTestCase {
         XCTAssertNotNil(endpoint, "Endpoint shouldn't be nil")
         let feed = endpoint?.getFeed()
         XCTAssertNotNil(feed, "Feed shouldn't be nil")
-        var subscription = try feed?.createSubscription([.order, .timeAndSale, .analyticOrder, .summary])
+        var subscription = try feed?.createSubscription([Order.self,
+                                                         TimeAndSale.self,
+                                                         AnalyticOrder.self,
+                                                         Summary.self])
         XCTAssertNotNil(subscription, "Subscription shouldn't be nil")
         subscription = nil
     }
@@ -38,7 +41,7 @@ final class FeedTest: XCTestCase {
         XCTAssertNotNil(endpoint, "Endpoint shouldn't be nil")
         let feed = endpoint?.getFeed()
         XCTAssertNotNil(feed, "Feed shouldn't be nil")
-        var subscription = try feed?.createSubscription(.order)
+        var subscription = try feed?.createSubscription(Order.self)
         XCTAssertNotNil(subscription, "Subscription shouldn't be nil")
         subscription = nil
     }
@@ -73,9 +76,9 @@ final class FeedTest: XCTestCase {
         let feed = endpoint?.getFeed()
         XCTAssertNotNil(feed, "Feed shouldn't be nil")
         var differentSymbols = Set<String>()
-        let code = EventCode.quote
-        let subscription = try feed?.createSubscription(code)
-        let receivedEventExp = expectation(description: "Received events \(code)")
+        let type = Quote.self
+        let subscription = try feed?.createSubscription(type)
+        let receivedEventExp = expectation(description: "Received events \(type)")
         receivedEventExp.assertForOverFulfill = false
         let listener = AnonymousClass { anonymCl in
             anonymCl.callback = { events in
@@ -101,27 +104,27 @@ final class FeedTest: XCTestCase {
     }
 
     func testTimeAndSale() throws {
-        try waitingEvent(code: .timeAndSale)
+        try waitingEvent(TimeAndSale.self)
     }
 
     func testQuote() throws {
-        try waitingEvent(code: .quote)
+        try waitingEvent(Quote.self)
     }
 
     func testTrade() throws {
-        try waitingEvent(code: .trade)
+        try waitingEvent(Trade.self)
     }
 
     func testProfile() throws {
-        try waitingEvent(code: .profile)
+        try waitingEvent(Profile.self)
     }
 
     func testSeries() throws {
-        try waitingEvent(code: .series)
+        try waitingEvent(Series.self)
     }
 
     func testOrder() throws {
-        try waitingEvent(code: .order)
+        try waitingEvent(Order.self)
     }
 
 //    func testOptionSale() throws {
@@ -172,17 +175,17 @@ final class FeedTest: XCTestCase {
         return false
     }
 
-    func waitingEvent(code: EventCode) throws {
+    func waitingEvent(_ type: IEventType.Type) throws {
         let endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         try endpoint.connect("demo.dxfeed.com:7300")
-        let subscription = try endpoint.getFeed()?.createSubscription(code)
-        let receivedEventExp = expectation(description: "Received events \(code)")
+        let subscription = try endpoint.getFeed()?.createSubscription(type)
+        let receivedEventExp = expectation(description: "Received events \(type)")
         receivedEventExp.assertForOverFulfill = false
         let listener = AnonymousClass { anonymCl in
             anonymCl.callback = { events in
                 if events.count > 0 {
                     let event = events.first
-                    if FeedTest.checkType(code, event) {
+                    if FeedTest.checkType(type.type, event) {
                         receivedEventExp.fulfill()
                     }
                 }

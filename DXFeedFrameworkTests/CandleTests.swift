@@ -8,6 +8,7 @@ import XCTest
 @testable import DXFeedFramework
 
 final class CandleTests: XCTestCase {
+    let type = Candle.self
 
     func testFetchingCandlesByString() throws {
         let symbol = TimeSeriesSubscriptionSymbol(symbol: "AAPL{=15d}", fromTime: 1660125159)
@@ -52,11 +53,10 @@ final class CandleTests: XCTestCase {
     }
 
     func fetchCandles(_ symbol: TimeSeriesSubscriptionSymbol) throws {
-        let code = EventCode.candle
         var endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         try endpoint?.connect("demo.dxfeed.com:7300")
-        let subscription = try endpoint?.getFeed()?.createSubscription(code)
-        let receivedEventExp = expectation(description: "Received events \(code)")
+        let subscription = try endpoint?.getFeed()?.createSubscription(type)
+        let receivedEventExp = expectation(description: "Received events \(type)")
         receivedEventExp.assertForOverFulfill = false
         let listener = AnonymousClass { anonymCl in
             anonymCl.callback = { events in
@@ -165,12 +165,11 @@ final class CandleTests: XCTestCase {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yy"
         let symbol = TimeSeriesSubscriptionSymbol(symbol: "AAPL{=1d}", date: dateFormatter.date(from: string)!)
-        let code = EventCode.candle
         var endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         try endpoint?.connect("demo.dxfeed.com:7300")
-        let subscription = try endpoint?.getFeed()?.createSubscription(code)
-        let beginEventsExp = expectation(description: "Begin events \(code)")
-        let endEventsExp = expectation(description: "End events \(code)")
+        let subscription = try endpoint?.getFeed()?.createSubscription(type)
+        let beginEventsExp = expectation(description: "Begin events \(type)")
+        let endEventsExp = expectation(description: "End events \(type)")
         let listener = AnonymousClass { anonymCl in
             anonymCl.callback = { events in
                 if events.count > 0 {
@@ -208,13 +207,12 @@ final class CandleTests: XCTestCase {
         let startDate = dateFormatter.date(from: string)!
         let componentsLeftTime = Calendar.current.dateComponents([.weekOfMonth], from: startDate, to: Date())
         let symbol = TimeSeriesSubscriptionSymbol(symbol: "ETH/USD:GDAX{=1w}", date: startDate)
-        let code = EventCode.candle
         var endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         try endpoint?.connect("demo.dxfeed.com:7300")
-        let subscription = try endpoint?.getFeed()?.createSubscription(code)
-        let snapshotExpect = expectation(description: "Snapshot \(code)")
+        let subscription = try endpoint?.getFeed()?.createSubscription(type)
+        let snapshotExpect = expectation(description: "Snapshot \(type)")
         snapshotExpect.assertForOverFulfill = false
-        let updateExpect = expectation(description: "Incremental update \(code)")
+        let updateExpect = expectation(description: "Incremental update \(type)")
         updateExpect.assertForOverFulfill = false
         let snapshotProcessor = SnapshotProcessor()
         let testDelegate = TestSnapshotDelegate()

@@ -49,8 +49,8 @@ class QuoteTableViewController: UIViewController {
         endpoint?.add(listener: self)
         _ = try? endpoint?.connect("demo.dxfeed.com:7300")
 
-        subscription = try? endpoint?.getFeed()?.createSubscription(.quote)
-        profileSubscription = try? endpoint?.getFeed()?.createSubscription(.profile)
+        subscription = try? endpoint?.getFeed()?.createSubscription(Quote.self)
+        profileSubscription = try? endpoint?.getFeed()?.createSubscription(Profile.self)
         try? subscription?.add(listener: self)
         try? profileSubscription?.add(listener: self)
         symbols.forEach {

@@ -37,7 +37,7 @@ let address = ":7700"
 let endpoint = try DXEndpoint.create(.publisher).connect(address)
 let publisher = endpoint.getPublisher()
 let listener = PublishListener(publisher: publisher!)
-let subscription = try publisher?.getSubscription(EventCode.profile)
+let subscription = try publisher?.getSubscription(Profile.self)
 try subscription?.addChangeListener(listener)
 
 // infinity execution

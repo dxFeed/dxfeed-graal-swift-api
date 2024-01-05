@@ -59,12 +59,12 @@ public class DXPublisher {
     ///    - event: eventType the class of event.
     /// - Returns: Observable subscription for the specified event type.
     /// - Throws: GraalException. Rethrows exception from Java.
-    public func getSubscription(_ event: EventCode) throws -> IObservableSubscription {
-        if let subscription = subscriptionsByClass[event] {
+    public func getSubscription(_ event: IEventType.Type) throws -> IObservableSubscription {
+        if let subscription = subscriptionsByClass[event.type] {
             return subscription
         } else {
             let subscription = try DXObservableSubscription(native: native.createSubscription(event), events: [event])
-            subscriptionsByClass[event] = subscription
+            subscriptionsByClass[event.type] = subscription
             return subscription
         }
     }

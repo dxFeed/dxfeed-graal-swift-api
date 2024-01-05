@@ -22,13 +22,13 @@ public class DXFeedTimeSeriesSubscription: DXFeedSubscription {
     private let native: NativeTimeSeriesSubscription?
 
     /// - Throws: ``GraalException`` Rethrows exception from Java, ``ArgumentException/argumentNil``
-    internal init(native: NativeTimeSeriesSubscription?, events: [EventCode]) throws {
+    internal init(native: NativeTimeSeriesSubscription?, types: [IEventType.Type]) throws {
         if let native = native {
             self.native = native
         } else {
             throw ArgumentException.argumentNil
         }
-        try super.init(native: native?.subscription, events: events)
+        try super.init(native: native?.subscription, types: types)
     }
 
     /// Set the earliest timestamp from which time-series of events shall be received.

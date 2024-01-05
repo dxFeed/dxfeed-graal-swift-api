@@ -6,9 +6,10 @@
 
 import Foundation
 
-/// Protocol for all market events. All market events are objects that
+/// Protocol for all market events. 
+/// All market events are objects that
 /// extend this class. Market event classes are simple beans with setter and getter methods for their
-/// properties and minimal business logic. All market events have ``type``
+/// properties and minimal business logic. All market events have ``type-swift.property``
 /// property that is defined by this class.
 public class MarketEvent: IEventType {
     public var eventSymbol: String = ""

@@ -30,5 +30,4 @@ public protocol IEventType {
     var hashCode: Int { get }
 
     static var type: EventCode { get }
-
 }

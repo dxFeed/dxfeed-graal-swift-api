@@ -39,7 +39,7 @@ try SystemProperty.setProperty(DXEndpoint.Property.properties.rawValue, properti
 // The endpoint address to use is stored in the "dxfeed.properties" file.
 let subscription = try DXEndpoint.getInstance()
     .getFeed()?
-    .createSubscription(EventCode.quote)
+    .createSubscription(Quote.self)
 let listenerTrade = Listener { listener in
     listener.callback = { events in
         events.forEach { event in
