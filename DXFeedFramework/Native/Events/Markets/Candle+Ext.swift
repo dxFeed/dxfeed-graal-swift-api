@@ -9,7 +9,7 @@ import Foundation
 
 extension Candle {
     convenience init(native: dxfg_candle_t) {
-        self.init(type: .candle)
+        self.init()
         self.eventSymbol = String(pointee: native.event_symbol)
         self.eventTime = native.event_time
         self.eventFlags = native.event_flags

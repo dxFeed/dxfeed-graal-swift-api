@@ -28,4 +28,7 @@ public protocol IEventType {
 
     ///  Hashcode fot perftest and other purposes.
     var hashCode: Int { get }
+
+    static var type: EventCode { get }
+
 }

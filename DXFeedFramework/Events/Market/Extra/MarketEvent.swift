@@ -25,9 +25,11 @@ public class MarketEvent: IEventType {
         return "Override toString() method"
     }
 
-    internal init(type: EventCode) {
-        self.type = type
+    internal init() {
+        self.type = Self.type
     }
+
+    public class var type: EventCode { fatalError("Override type field") }
 }
 
 public struct MarketEventConst {

@@ -16,9 +16,10 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/TradeETH.html)
 public class TradeETH: TradeBase {
+    public class override var type: EventCode { .tradeETH }
 
     public init(_ symbol: String) {
-        super.init(symbol: symbol, type: .tradeETH)
+        super.init(symbol: symbol, type: Self.type)
     }
 
     /// Returns string representation of this trade event.

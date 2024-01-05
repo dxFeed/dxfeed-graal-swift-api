@@ -18,20 +18,6 @@ final class DXTimeSeriesSubscriptionTest: XCTestCase {
         try createSubscriptionFor(multiple: true)
     }
 
-    func testCreateSubscriptionWithUnsupportedEvents() throws {
-        let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
-        let feed = endpoint.getFeed()
-        try EventCode.allCases.forEach { eventCode in
-            if !eventCode.isTimeSeriesEvent() {
-                XCTAssertThrowsError(try feed?.createTimeSeriesSubscription(eventCode)) { error in
-                    guard case ArgumentException.invalidOperationException(_) = error else {
-                        return XCTFail("Unsupported exception \(error)")
-                    }
-                }
-            }
-        }
-    }
-
     func testCreateWithNil() throws {
         XCTAssertThrowsError(try DXFeedTimeSeriesSubscription(native: nil, events: [.candle])) { error in
             XCTAssertTrue(error is ArgumentException)
@@ -42,8 +28,8 @@ final class DXTimeSeriesSubscriptionTest: XCTestCase {
         let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
         let feed = endpoint.getFeed()
 
-        let subscription = multiple ? try feed?.createTimeSeriesSubscription([.candle]) :
-        try feed?.createTimeSeriesSubscription(.candle)
+        let subscription = multiple ? try feed?.createTimeSeriesSubscription([Candle.self]) :
+        try feed?.createTimeSeriesSubscription(Candle.self)
         let receivedEventsExpectation = expectation(description: "Received events")
         receivedEventsExpectation.assertForOverFulfill = false
         let listener = AnonymousClass { anonymCl in
@@ -58,5 +44,12 @@ final class DXTimeSeriesSubscriptionTest: XCTestCase {
         wait(for: [receivedEventsExpectation], timeout: 2.0)
     }
 
-    
+    func testGeneric() throws {
+        let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
+        let feed = endpoint.getFeed()
+        _ = try feed?.createTimeSeriesSubscription(Candle.self)
+        _ = try feed?.createTimeSeriesSubscription(TimeAndSale.self)
+        _ = try feed?.createTimeSeriesSubscription(Greeks.self)
+    }
+
 }

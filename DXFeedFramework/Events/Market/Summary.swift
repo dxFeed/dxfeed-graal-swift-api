@@ -16,6 +16,8 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/Summary.html)
 public class Summary: MarketEvent, ILastingEvent, CustomStringConvertible {
+    public class override var type: EventCode { .summary }
+
     /*
      * Flags property has several significant bits that are packed into an integer in the following way:
      *   31..4     3    2    1    0
@@ -57,7 +59,7 @@ public class Summary: MarketEvent, ILastingEvent, CustomStringConvertible {
 
     /// Initializes a new instance of the ``Summary`` class.
     public init(_ eventSymbol: String) {
-        super.init(type: .summary)
+        super.init()
         self.eventSymbol = eventSymbol
     }
 

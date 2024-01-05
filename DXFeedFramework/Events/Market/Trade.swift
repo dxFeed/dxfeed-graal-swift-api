@@ -14,8 +14,10 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/Trade.html)
 public class Trade: TradeBase {
+    public class override var type: EventCode { .trade }
+
     public init(_ symbol: String) {
-        super.init(symbol: symbol, type: .trade)
+        super.init(symbol: symbol, type: Self.type)
     }
 
     /// Returns string representation of this trade event.

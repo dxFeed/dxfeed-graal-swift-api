@@ -117,8 +117,8 @@ public class OrderBase: MarketEvent, IIndexedEvent, CustomStringConvertible {
     /// Gets or sets trade size for events containing trade-related action.
     public var tradeSize: Double = .nan
 
-    init(eventSymbol: String, type: EventCode) {
-        super.init(type: type)
+    init(eventSymbol: String) {
+        super.init()
         self.eventSymbol = eventSymbol
     }
 

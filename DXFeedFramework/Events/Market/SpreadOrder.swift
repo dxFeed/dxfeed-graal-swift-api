@@ -21,12 +21,14 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/SpreadOrder.html)
 public class SpreadOrder: OrderBase {
+    public class override var type: EventCode { .spreadOrder }
+
     /// Gets or sets spread symbol of this event.
     public var spreadSymbol: String?
 
     /// Initializes a new instance of the ``SpreadOrder`` class.
     public init(_ eventSymbol: String) {
-        super.init(eventSymbol: eventSymbol, type: .spreadOrder)
+        super.init(eventSymbol: eventSymbol)
     }
 
     /// Returns string representation of this candle event.

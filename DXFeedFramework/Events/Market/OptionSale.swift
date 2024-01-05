@@ -17,6 +17,7 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/OptionSale.html)
 public class OptionSale: MarketEvent, IIndexedEvent {
+    public class override var type: EventCode { .optionSale }
 
     public var eventSource: IndexedEventSource = .defaultSource
 
@@ -70,7 +71,7 @@ public class OptionSale: MarketEvent, IIndexedEvent {
     public var optionSymbol: String?
 
     public init(_ eventSymbol: String) {
-        super.init(type: .optionSale)
+        super.init()
         self.eventSymbol = eventSymbol
     }
 
