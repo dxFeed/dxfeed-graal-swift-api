@@ -91,6 +91,25 @@ class NativeEndpoint {
         return self.publisher
     }
 
+    func getEventTypes() throws -> [EventCode] {
+        let thread = currentThread()
+        let list = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_getEventTypes(
+            thread, endpoint))
+        defer {
+            _ = try? ErrorCheck.nativeCall(thread,
+                                       dxfg_CList_EventClazz_release(thread, list))
+        }
+        var events = [EventCode]()
+        if let elements = list.pointee.elements {
+            for index in 0..<Int(list.pointee.size) {
+                if let element = elements[index]?.pointee, let code = EventCode.convert(element) {
+                    events.append(code)
+                }
+            }
+        }
+        return events
+    }
+
     func addListener(_ listener: EndpointListener) throws {
         removeListener()
         let weakListener = WeakListener(value: listener)

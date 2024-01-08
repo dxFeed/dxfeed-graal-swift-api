@@ -255,7 +255,9 @@ is a simple demonstration of how to get live updates for Instrument Profiles
 - [ ] DxFeedPublishProfiles is a simple demonstration of how to publish market events
 - [x] [ScheduleSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/ScheduleSample.playground/Contents.swift)
   is a simple demonstration of how to get various scheduling information for instruments
-  
+- [x] [DXFeedconnect](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/DXFeedconnect.playground/Contents.swift)
+  is a simple demonstration of how to subscribe to different events using TimeSeriesSubscription
+
 ## Current State
 
 ### Endpoint Roles
@@ -366,9 +368,8 @@ is a simple demonstration of how to get live updates for Instrument Profiles
 - [x] [DXFeedSubscription](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html)
   is a subscription for a set of symbols and event types
 
-- [ ] [DXFeedTimeSeriesSubscription](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedTimeSeriesSubscription.html)
+- [x] [DXFeedTimeSeriesSubscription](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedTimeSeriesSubscription.html)
   extends `DXFeedSubscription` to conveniently subscribe to time series events for a set of symbols and event types
-  ([Java API sample](https://github.com/devexperts/QD/blob/master/dxfeed-samples/src/main/java/com/dxfeed/sample/api/DXFeedConnect.java))
 
 - [x] [ObservableSubscription](https://github.com/devexperts/QD/blob/master/dxfeed-api/src/main/java/com/dxfeed/api/osub/ObservableSubscription.java) is an observable set of subscription symbols for the specific event type ([Java API sample](https://github.com/devexperts/QD/blob/master/dxfeed-samples/src/main/java/com/dxfeed/sample/_simple_/PublishProfiles.java))
 

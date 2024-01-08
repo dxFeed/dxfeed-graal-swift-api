@@ -75,4 +75,29 @@ final class EndpointTest: XCTestCase {
         testGetInstance(role: .feed, count: 150)
         testGetInstance(role: .publisher, count: 150)
     }
+
+
+    func testGetEventTypes() throws {
+        let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
+        let feed = endpoint.getFeed()
+        let connectedExpectation = expectation(description: "Connected")
+
+        let stateListener: TestEndpoointStateListener? = TestEndpoointStateListener { listener in
+            listener.callback = { state in
+                if state == .connected {
+                    print("Connected")
+                    do {
+                        let types = try endpoint.getEventTypes()
+                        print(types)
+                    } catch {
+                        print(error)
+                    }
+                    connectedExpectation.fulfill()
+                }
+            }
+            return listener
+        }
+        endpoint.add(listener: stateListener!)
+        wait(for: [connectedExpectation], timeout: 1)
+    }
 }
