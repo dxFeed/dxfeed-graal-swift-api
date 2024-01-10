@@ -73,4 +73,29 @@ extension MarketEvent {
     public var optionSale: OptionSale {
         return (self as? OptionSale)!
     }
+    /// Use only for event.type which supported  ``ILastingEvent``
+    public var lastingEvent: ILastingEvent? {
+        switch self.type {
+        case .quote:
+            return self.quote as ILastingEvent
+        case .profile:
+            return self.profile as ILastingEvent
+        case .summary:
+            return self.summary as ILastingEvent
+        case .greeks:
+            return self.greeks as ILastingEvent
+        case .candle:
+            return self.candle as ILastingEvent
+        case .underlying:
+            return self.underlying as ILastingEvent
+        case .theoPrice:
+            return self.theoPrice as ILastingEvent
+        case .trade:
+            return self.trade as ILastingEvent
+        case .tradeETH:
+            return self.tradeETH as ILastingEvent
+        default:
+            return nil
+        }
+    }
 }
