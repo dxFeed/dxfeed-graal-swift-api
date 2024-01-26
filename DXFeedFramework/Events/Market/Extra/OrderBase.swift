@@ -243,7 +243,7 @@ extension OrderBase {
             TimeNanosUtil.getNanosFromMillisAndNanoPart(time, timeNanoPart)
         }
         set {
-            time = TimeNanosUtil.getNanoPartFromNanos(newValue)
+            time = TimeNanosUtil.getMillisFromNanos(newValue)
             timeNanoPart = Int32(TimeNanosUtil.getNanoPartFromNanos(newValue))
         }
     }
