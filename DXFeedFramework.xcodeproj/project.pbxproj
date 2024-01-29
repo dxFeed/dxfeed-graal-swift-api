@@ -347,6 +347,9 @@
 		64ECD6822A9DDC2800B36935 /* DXInstrumentProfileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD6812A9DDC2800B36935 /* DXInstrumentProfileReader.swift */; };
 		64ECD6852A9DDF6200B36935 /* DXInstrumentProfileCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD6842A9DDF6200B36935 /* DXInstrumentProfileCollector.swift */; };
 		64ECD6872A9DDFBE00B36935 /* DXInstrumentProfileConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD6862A9DDFBE00B36935 /* DXInstrumentProfileConnection.swift */; };
+		64F73B9F2B6788B00088EC37 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F73B9E2B6788B00088EC37 /* Promise.swift */; };
+		64F73BA42B67B28B0088EC37 /* NativePromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F73BA32B67B28B0088EC37 /* NativePromise.swift */; };
+		64F73BA62B67CD5B0088EC37 /* GraalException+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F73BA52B67CD5B0088EC37 /* GraalException+Ext.swift */; };
 		64FCAF902A572D4600971F4E /* libDxFeedGraalNativeSdk.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		803BAC1629BFA50700FFAB1C /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		803BAC1C29BFA50700FFAB1C /* DxFeedSwiftFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -854,6 +857,9 @@
 		64ECD6812A9DDC2800B36935 /* DXInstrumentProfileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileReader.swift; sourceTree = "<group>"; };
 		64ECD6842A9DDF6200B36935 /* DXInstrumentProfileCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileCollector.swift; sourceTree = "<group>"; };
 		64ECD6862A9DDFBE00B36935 /* DXInstrumentProfileConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileConnection.swift; sourceTree = "<group>"; };
+		64F73B9E2B6788B00088EC37 /* Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
+		64F73BA32B67B28B0088EC37 /* NativePromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativePromise.swift; sourceTree = "<group>"; };
+		64F73BA52B67CD5B0088EC37 /* GraalException+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GraalException+Ext.swift"; sourceTree = "<group>"; };
 		64F9C6C12B4BFD8F003ED014 /* DXFeedconnect.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = DXFeedconnect.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DXFeedFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DxFeedSwiftFramework.h; sourceTree = "<group>"; };
@@ -1490,6 +1496,22 @@
 			path = Live;
 			sourceTree = "<group>";
 		};
+		64F73B9D2B67863B0088EC37 /* Promise */ = {
+			isa = PBXGroup;
+			children = (
+				64F73B9E2B6788B00088EC37 /* Promise.swift */,
+			);
+			path = Promise;
+			sourceTree = "<group>";
+		};
+		64F73BA22B67B2750088EC37 /* Promise */ = {
+			isa = PBXGroup;
+			children = (
+				64F73BA32B67B28B0088EC37 /* NativePromise.swift */,
+			);
+			path = Promise;
+			sourceTree = "<group>";
+		};
 		803BAC0329BFA50700FFAB1C = {
 			isa = PBXGroup;
 			children = (
@@ -1529,6 +1551,7 @@
 				8088D77A29C5D8AD00F240CB /* Native */,
 				64656F552A1B6A07006A0B19 /* Utils */,
 				64ECD6802A9DD80000B36935 /* Ipf */,
+				64F73B9D2B67863B0088EC37 /* Promise */,
 				64C771FD2A9504D7009868C2 /* Extra */,
 				6498E6B02AB1D40C0093A065 /* Schedule */,
 				8088D77029C3A25D00F240CB /* SystemProperty.swift */,
@@ -1590,6 +1613,7 @@
 				64104FCA2A2629C400D1FC41 /* Subscription */,
 				64437A902A9DF1C4005929B2 /* Ipf */,
 				6498E6B32AB1D43A0093A065 /* Schedule */,
+				64F73BA22B67B2750088EC37 /* Promise */,
 				64ACBCE42A28AEE200032C53 /* SymbolMappers */,
 				64A42F432B0B9320001C3ACC /* Utils */,
 			);
@@ -1604,6 +1628,7 @@
 				8088D77C29C8DAF800F240CB /* GraalErrorCode.swift */,
 				64656F612A1B9FF7006A0B19 /* EnumException.swift */,
 				640C3FCB2A616B6200555161 /* ArgumentException.swift */,
+				64F73BA52B67CD5B0088EC37 /* GraalException+Ext.swift */,
 			);
 			path = ErrorHandling;
 			sourceTree = "<group>";
@@ -2291,6 +2316,7 @@
 			files = (
 				64BDDB322AD7E5A600694210 /* SpreadOrderMapper.swift in Sources */,
 				64ACBCE32A289A0700032C53 /* TimeSeriesSubscriptionSymbol.swift in Sources */,
+				64F73B9F2B6788B00088EC37 /* Promise.swift in Sources */,
 				645A34952A937C7200709F29 /* BinaryInteger+Ext.swift in Sources */,
 				641C64B22B346A2E0023CFAD /* DXObservableSubscription.swift in Sources */,
 				64A42F502B0BA668001C3ACC /* DXTimeFormat.swift in Sources */,
@@ -2367,6 +2393,7 @@
 				6498E6BD2AB1E0510093A065 /* ScheduleSession.swift in Sources */,
 				64BDDB262AD6F6B500694210 /* IcebergType.swift in Sources */,
 				8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */,
+				64F73BA62B67CD5B0088EC37 /* GraalException+Ext.swift in Sources */,
 				64DA26BE2AA20EDB005B1757 /* DXInstrumentProfileConnectionListener.swift in Sources */,
 				64656F732A1D0A84006A0B19 /* EndpointListener.swift in Sources */,
 				64BDDB282AD7D8D300694210 /* Order+Ext.swift in Sources */,
@@ -2468,6 +2495,7 @@
 				64BDDB1E2AD6CC6A00694210 /* Order.swift in Sources */,
 				64437A8F2A9DEE6F005929B2 /* InstrumentProfile.swift in Sources */,
 				64C771FA2A94D692009868C2 /* ShortSaleRestriction.swift in Sources */,
+				64F73BA42B67B28B0088EC37 /* NativePromise.swift in Sources */,
 				64656F5E2A1B97F2006A0B19 /* NativeFeed.swift in Sources */,
 				6486B97D2AD057F200D8D5FA /* OrderSource.swift in Sources */,
 				64656F6F2A1CFC12006A0B19 /* WeakBox.swift in Sources */,
