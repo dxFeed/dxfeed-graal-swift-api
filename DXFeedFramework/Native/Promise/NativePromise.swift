@@ -11,7 +11,9 @@ import Foundation
 class NativePromise {
     public typealias PromiseHandler =  (_: NativePromise) -> Void
 
+    let native: UnsafeMutablePointer<dxfg_promise_event_t>?
     let promise: UnsafeMutablePointer<dxfg_promise_t>?
+
     private static let mapper = EventMapper()
 
     private class WeakPromises: WeakBox<PromiseHandler> { }
@@ -24,7 +26,7 @@ class NativePromise {
                 guard let listener = weakListener.value else {
                     return
                 }
-                let native = NativePromise(promise: promise)
+                let native = NativePromise(native: nil, promise: promise)
                 listener(native)
                 NativePromise.listeners.removeAll(where: {
                     return $0 === weakListener
@@ -43,12 +45,19 @@ class NativePromise {
         }
     }
 
-    init(promise: UnsafeMutablePointer<dxfg_promise_t>?) {
+    init(native: UnsafeMutablePointer<dxfg_promise_event_t>?, promise: UnsafeMutablePointer<dxfg_promise_t>?) {
+        self.native = native
         self.promise = promise
     }
 
     func getResult() -> MarketEvent? {
-        return nil
+        let thread = currentThread()
+        if let result = try? ErrorCheck.nativeCall(thread, dxfg_Promise_EventType_getResult(thread, native)) {
+            let marketEvent = try? EventMapper().fromNative(native: result)
+            return marketEvent
+        } else {
+            return nil
+        }
     }
 
     func hasResult() -> Bool {
@@ -96,10 +105,10 @@ class NativePromise {
         return nil
     }
 
-    func await(millis timeOut: Int32) throws -> MarketEvent? {
+    func await(millis timeOut: Int32) throws -> Bool {
         let thread = currentThread()
-        try ErrorCheck.nativeCall(thread, dxfg_Promise_await2(thread, promise, timeOut))
-        return nil
+        let success = try ErrorCheck.nativeCall(thread, dxfg_Promise_await2(thread, promise, timeOut))
+        return success == ErrorCheck.Result.success.rawValue
     }
 
     func awaitWithoutException(millis timeOut: Int32) {
@@ -147,7 +156,7 @@ class NativePromise {
                 return pointer
             }
             let result = try? ErrorCheck.nativeCall(thread, dxfg_Promise_completed(thread, promise, handler))
-            return NativePromise(promise: result)
+            return NativePromise(native: nil, promise: result)
         }
         return nil
     }
@@ -157,7 +166,7 @@ class NativePromise {
         let promise = UnsafeMutablePointer<dxfg_promise_t>.allocate(capacity: 1)
         if let nativeEvent = exception.toNative() {
             let result = try? ErrorCheck.nativeCall(thread, dxfg_Promise_failed(thread, promise, nativeEvent))
-            return NativePromise(promise: result)
+            return NativePromise(native: nil, promise: result)
         }
         return nil
     }
@@ -180,6 +189,6 @@ class NativePromise {
 
         let thread = currentThread()
         let result = try ErrorCheck.nativeCall(thread, dxfg_Promises_allOf(thread, promiseList))
-        return NativePromise(promise: result)
+        return NativePromise(native: nil, promise: result)
     }
 }

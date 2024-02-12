@@ -7,17 +7,22 @@
 
 import Foundation
 
-class Promise {
+public class Promise {
     public typealias PromiseHandler =  (_: Promise) -> Void
 
     private let native: NativePromise
+    private var result: MarketEvent? = nil
 
     internal init(native: NativePromise) {
         self.native = native
     }
 
     public func getResult() -> MarketEvent? {
-        return native.getResult()
+        if result != nil {
+            return result
+        }
+        result =  native.getResult()
+        return result
     }
 
     public func hasResult() -> Bool {
@@ -41,7 +46,10 @@ class Promise {
     }
 
     public func await(millis timeOut: Int32) throws -> MarketEvent? {
-        return try native.await(millis: timeOut)
+        if try native.await(millis: timeOut) {
+            return getResult()
+        }
+        return nil
     }
 
     public func awaitWithoutException(millis timeOut: Int32) {
@@ -83,7 +91,7 @@ class Promise {
     }
 
     public static func allOf(promises: [Promise]) throws -> Promise? {
-        if let native = try NativePromise.allOf(promises: promises.map { $0.native } ) {
+        if let native = try NativePromise.allOf(promises: promises.map { $0.native }) {
             return Promise(native: native)
         } else {
             return nil

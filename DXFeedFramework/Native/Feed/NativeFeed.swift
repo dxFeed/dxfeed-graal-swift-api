@@ -148,4 +148,48 @@ class NativeFeed {
         }
         return results
     }
+
+    func getLastEventPromise(type: IEventType.Type, symbol: Symbol) throws -> NativePromise {
+        let thread = currentThread()
+        let converted = SymbolMapper.newNative(symbol)
+        let native = try ErrorCheck.nativeCall(thread, 
+                                               dxfg_DXFeed_getLastEventPromise(thread,
+                                                                               feed,
+                                                                               type.type.nativeCode(),
+                                                                               converted))        
+        return NativePromise(native: native, promise: &native.pointee.handler)
+
+    }
+
+    func getLastEventPromises(type: IEventType.Type, symbols: [Symbol]) throws -> [NativePromise]? {
+        let nativeSymbols = symbols.compactMap { SymbolMapper.newNative($0) }
+        let elements = ListNative(pointers: nativeSymbols)
+        let listPointer = elements.newList()
+        defer {
+            listPointer.deinitialize(count: 1)
+            listPointer.deallocate()
+            nativeSymbols.forEach { SymbolMapper.clearNative(symbol: $0) }
+        }
+        let thread = currentThread()
+        let native = try ErrorCheck.nativeCall(thread,
+                                               dxfg_DXFeed_getLastEventsPromises(thread,
+                                                                                 feed,
+                                                                                 type.type.nativeCode(),
+                                                                                 listPointer))
+        var result = [NativePromise]()
+        for index in 0..<Int(native.pointee.list.size) {
+            let promise = native.pointee.list.elements[index]
+            promise?.withMemoryRebound(to: dxfg_promise_event_t.self, capacity: 1, { pointer in
+                result.append(NativePromise(native: pointer, promise: &pointer.pointee.handler))
+            })
+        }
+        return result
+    }
+
+    func getIndexedEventsPromise(type: IEventType.Type, symbol: Symbol,  source: IndexedEventSource) throws -> NativePromise? {
+        return nil
+    }
+    func getTimeSeriesPromise(type: IEventType.Type, symbol: Symbol, from: Long, to: Long) throws -> NativePromise? {
+        return nil
+    }
 }
