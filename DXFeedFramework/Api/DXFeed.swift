@@ -97,11 +97,17 @@ public extension DXFeed {
         })
     }
 
-    func getIndexedEventsPromise(type: IEventType.Type, symbol: Symbol,  source: IndexedEventSource) throws -> Promise? {
-        return nil
+    func getIndexedEventsPromise(type: IEventType.Type, symbol: Symbol, source: IndexedEventSource) throws -> Promise? {
+        let nativePromise = try native.getIndexedEventsPromise(type: type, symbol: symbol, source: source)
+        return Promise(native: nativePromise)
     }
-    
-    func getTimeSeriesPromise(type: IEventType.Type, symbol: Symbol, from: Long, to: Long) throws -> Promise? {
-        return nil
+
+    func getTimeSeriesPromise(type: IEventType.Type, symbol: Symbol, fromTime: Long, toTime: Long) throws -> Promise? {
+        let nativePromise = try native.getTimeSeriesPromise(type: type,
+                                                            symbol: symbol,
+                                                            fromTime: fromTime,
+                                                            toTime: toTime)
+        return Promise(native: nativePromise)
+
     }
 }

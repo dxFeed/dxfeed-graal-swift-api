@@ -11,18 +11,17 @@ public class Promise {
     public typealias PromiseHandler =  (_: Promise) -> Void
 
     private let native: NativePromise
-    private var result: MarketEvent? = nil
 
     internal init(native: NativePromise) {
         self.native = native
     }
 
-    public func getResult() -> MarketEvent? {
-        if result != nil {
-            return result
-        }
-        result =  native.getResult()
-        return result
+    public func getResults() throws -> [MarketEvent]? {
+        return try native.getResults()
+    }
+
+    public func getResult() throws -> MarketEvent? {
+        return try native.getResult()
     }
 
     public func hasResult() -> Bool {
@@ -47,7 +46,7 @@ public class Promise {
 
     public func await(millis timeOut: Int32) throws -> MarketEvent? {
         if try native.await(millis: timeOut) {
-            return getResult()
+            return try getResult()
         }
         return nil
     }
