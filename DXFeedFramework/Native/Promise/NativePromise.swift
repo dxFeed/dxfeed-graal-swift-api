@@ -8,21 +8,15 @@
 import Foundation
 @_implementationOnly import graal_api
 
-class NativePromise {
-    class HandlerBox<T> {
-        private var _value: AnyObject?
-        var value: T? {
-            return _value as? T
-        }
-        init(value: T) {
-            self._value = value as AnyObject
-        }
-        func resetValue() {
-            _value = nil
-        }
-    }
+internal protocol PromiseListener: AnyObject {
+    func finished()
+}
 
-    public typealias PromiseHandler =  (_: NativePromise) -> Void
+/// Native wrapper over the Java com.dxfeed.promise.Promise class.
+/// The location of the imported functions is in the header files "dxfg_feed.h".
+class NativePromise {
+    private class WeakListener: WeakBox<PromiseListener> { }
+    typealias PromiseHandler =  (_: NativePromise) -> Void
 
     let promise: UnsafeMutablePointer<dxfg_promise_t>?
 
@@ -31,22 +25,26 @@ class NativePromise {
     private var result: MarketEvent?
     private var results: [MarketEvent]?
 
-    private static let listeners = ConcurrentArray<HandlerBox<PromiseHandler>>()
+    private static let listeners = ConcurrentArray<WeakListener>()
 
     static let listenerCallback: dxfg_promise_handler_function = { _, promise, context in
         if let context = context {
+
             let listener: AnyObject = bridge(ptr: context)
-            if let weakListener =  listener as? HandlerBox<PromiseHandler> {
+            if let weakListener =  listener as? WeakListener {
+                defer {
+                    NativePromise.listeners.removeAll(where: {
+                        return $0 === weakListener
+                    })
+                }
                 guard let listener = weakListener.value else {
                     return
                 }
                 promise?.withMemoryRebound(to: dxfg_promise_event_t.self, capacity: 1, { pointer in
                     let native = NativePromise(promise: &pointer.pointee.handler)
-                    listener(native)
+                    listener.finished()
                 })
-                NativePromise.listeners.removeAll(where: {
-                    return $0 === weakListener
-                })
+
             }
         }
     }
@@ -103,6 +101,15 @@ class NativePromise {
         return res
     }
 
+    func isDone() -> Bool {
+        let thread = currentThread()
+        if let result = try? ErrorCheck.nativeCall(thread, dxfg_Promise_isDone(thread, promise)) {
+            return result == 1
+        } else {
+            return false
+        }
+    }
+
     func hasResult() -> Bool {
         let thread = currentThread()
         if let result = try? ErrorCheck.nativeCall(thread, dxfg_Promise_hasResult(thread, promise)) {
@@ -142,10 +149,10 @@ class NativePromise {
         return nil
     }
 
-    func await() throws -> MarketEvent? {
+    func await() throws -> Bool {
         let thread = currentThread()
-        try ErrorCheck.nativeCall(thread, dxfg_Promise_await(thread, promise))
-        return nil
+        let success = try ErrorCheck.nativeCall(thread, dxfg_Promise_await(thread, promise))
+        return success == ErrorCheck.Result.success.rawValue
     }
 
     func await(millis timeOut: Int32) throws -> Bool {
@@ -154,9 +161,10 @@ class NativePromise {
         return success == ErrorCheck.Result.success.rawValue
     }
 
-    func awaitWithoutException(millis timeOut: Int32) {
+    func awaitWithoutException(millis timeOut: Int32) -> Bool {
         let thread = currentThread()
-        _ = try? ErrorCheck.nativeCall(thread, dxfg_Promise_awaitWithoutException(thread, promise, timeOut))
+        let success = try? ErrorCheck.nativeCall(thread, dxfg_Promise_awaitWithoutException(thread, promise, timeOut))
+        return success == ErrorCheck.Result.success.rawValue
     }
 
     func cancel() {
@@ -166,12 +174,20 @@ class NativePromise {
 
     func complete(result: MarketEvent) throws {
         let thread = currentThread()
-        let nativeEvent = try NativePromise.mapper.toNative(event: result)
-        try ErrorCheck.nativeCall(thread, dxfg_Promise_EventType_complete(thread, promise, nativeEvent))
+        if let nativeEvent = try NativePromise.mapper.toNative(event: result) {
+            defer {
+                NativePromise.mapper.releaseNative(native: nativeEvent)
+            }
+            try ErrorCheck.nativeCall(thread, dxfg_Promise_EventType_complete(thread, promise, nativeEvent))
+        }
     }
 
     func completeExceptionally(_ exception: GraalException) throws {
         if let nativeException = exception.toNative() {
+//            defer {
+//                nativeException.deinitialize(count: 1)
+//                nativeException.deallocate()
+//            }
             let thread = currentThread()
             try ErrorCheck.nativeCall(thread, dxfg_Promise_completeExceptionally(thread, promise, nativeException))
         } else {
@@ -179,9 +195,9 @@ class NativePromise {
         }
     }
 
-    func whenDone(handler: @escaping NativePromise.PromiseHandler) {
+    func whenDone(handler: PromiseListener) {
         let thread = currentThread()
-        let weakListener = HandlerBox(value: handler)
+        let weakListener = WeakListener(value: handler)
         NativePromise.listeners.append(newElement: weakListener)
         let voidPtr = bridge(obj: weakListener)
         _ = try? ErrorCheck.nativeCall(thread,
@@ -189,29 +205,6 @@ class NativePromise {
                                                              promise,
                                                              NativePromise.listenerCallback,
                                                              voidPtr))
-    }
-
-    static func completed(result: MarketEvent) -> NativePromise? {
-        let thread = currentThread()
-        let promise = UnsafeMutablePointer<dxfg_promise_t>.allocate(capacity: 1)
-        if let nativeEvent = try? NativePromise.mapper.toNative(event: result) {
-            let handler = nativeEvent.withMemoryRebound(to: dxfg_java_object_handler.self, capacity: 1) { pointer in
-                return pointer
-            }
-            let result = try? ErrorCheck.nativeCall(thread, dxfg_Promise_completed(thread, promise, handler))
-            return NativePromise(promise: result)
-        }
-        return nil
-    }
-
-    static func failed(exception: GraalException) -> NativePromise? {
-        let thread = currentThread()
-        let promise = UnsafeMutablePointer<dxfg_promise_t>.allocate(capacity: 1)
-        if let nativeEvent = exception.toNative() {
-            let result = try? ErrorCheck.nativeCall(thread, dxfg_Promise_failed(thread, promise, nativeEvent))
-            return NativePromise(promise: result)
-        }
-        return nil
     }
 
     static func allOf(promises: [NativePromise]) throws -> NativePromise? {
@@ -242,5 +235,11 @@ class NativePromise {
 
         let result = try ErrorCheck.nativeCall(thread, dxfg_Promises_allOf(thread, promiseList))
         return NativePromise(promise: result)
+    }
+
+    static func removeListener(listener: PromiseListener) {
+        listeners.removeAll { listener in
+            listener.value === listener
+        }
     }
 }

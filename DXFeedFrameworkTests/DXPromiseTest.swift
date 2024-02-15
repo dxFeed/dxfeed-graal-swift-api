@@ -25,7 +25,19 @@ final class DXPromiseTest: XCTestCase {
         return promise
     }
 
-    func testGetResult() {
+    func testGetAsyncResultWithTimeout() {
+        getAsyncResult(timeOut: 1000)
+    }
+
+    func testGetAsyncResultWithTimeoutWithoutException() {
+        getAsyncResult(timeOut: 1000, withException: false)
+    }
+
+    func testGetAsyncResultNoTimeout() {
+        getAsyncResult(timeOut: nil)
+    }
+
+    func getAsyncResult(timeOut: Int32?, withException: Bool = true) {
         do {
             let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
             let feed = endpoint.getFeed()
@@ -33,8 +45,21 @@ final class DXPromiseTest: XCTestCase {
                                            symbol: "ETH/USD:GDAX",
                                            feed: feed!)
             XCTAssert(promise.hasResult() == false)
-            let result = try promise.await(millis: 1000)
+            var result: MarketEvent?
+            if let timeOut = timeOut {
+                if withException {
+                    result = try promise.await(millis: timeOut)
+                } else {
+                    if promise.awaitWithoutException(millis: timeOut) {
+                        result = try promise.getResult()
+                    }
+                }
+            } else {
+                result = try promise.await()
+            }
             XCTAssert(result != nil)
+            XCTAssert(promise.hasResult() == true)
+
             XCTAssert(result === (try? promise.getResult()))
         } catch {
             XCTAssert(false, "testGetResult \(error)")
@@ -223,6 +248,99 @@ final class DXPromiseTest: XCTestCase {
             XCTAssert(false, "testAllOffPromises \(error)")
         }
 
+    }
+
+    func testCompletePromise() {
+        do {
+            let endpoint = try DXEndpoint.create()
+            let feed = endpoint.getFeed()
+            let promise = try eventPromise(type: Quote.self,
+                                           symbol: "ETH/USD:GDAX",
+                                           feed: feed!)
+            XCTAssert(promise.hasResult() == false)
+            let receivedEventExp = expectation(description: "Received promise")
+            promise.whenDone { [weak promise]_ in
+                if (try? promise?.getResult()) != nil {
+                    receivedEventExp.fulfill()
+                }
+            }
+            try promise.complete(result: Quote("AAPL"))
+            wait(for: [receivedEventExp], timeout: 1)
+
+        } catch {
+            XCTAssert(false, "testCompletePromise \(error)")
+        }
+    }
+
+    func testCompleteExceptPromise() throws {
+        throw XCTSkip("Graal doesn't have impl for ExceptionMapper.toJava and always throws exception illegalStateException")
+        do {
+            let endpoint = try DXEndpoint.create()
+            let feed = endpoint.getFeed()
+            let promise = try eventPromise(type: Quote.self,
+                                           symbol: "ETH/USD:GDAX",
+                                           feed: feed!)
+            XCTAssert(promise.hasResult() == false)
+            let receivedEventExp = expectation(description: "Received promise")
+            promise.whenDone { [weak promise]_ in
+                receivedEventExp.fulfill()
+            }
+            try promise.completeExceptionally(GraalException.fail(message: "Failed from iOS", className: "TestClas", stack: "Stack empty"))
+            wait(for: [receivedEventExp], timeout: 1)
+
+        } catch {
+            XCTAssert(false, "testCompleteExceptPromise \(error)")
+        }
+    }
+
+    func testIsCanceled() throws {
+        do {
+            let endpoint = try DXEndpoint.create()
+            let feed = endpoint.getFeed()
+            let promise = try eventPromise(type: Quote.self,
+                                           symbol: "ETH/USD:GDAX",
+                                           feed: feed!)
+            let isCanceled = promise.isCancelled()
+            XCTAssert(isCanceled == false)
+        } catch {
+            XCTAssert(false, "testIsCanceled \(error)")
+        }
+    }
+
+    func testGetException() throws {
+        do {
+            let endpoint = try DXEndpoint.create()
+            let feed = endpoint.getFeed()
+            let promise = try eventPromise(type: Quote.self,
+                                           symbol: "ETH/USD:GDAX",
+                                           feed: feed!)
+            let exception = promise.getException()
+            XCTAssert(exception == nil)
+        } catch {
+            XCTAssert(false, "testGetException \(error)")
+        }
+    }
+
+    func testCancelPromise() {
+        do {
+            let endpoint = try DXEndpoint.create()
+            let feed = endpoint.getFeed()
+            let promise = try eventPromise(type: Quote.self,
+                                           symbol: "ETH/USD:GDAX",
+                                           feed: feed!)
+            XCTAssert(promise.hasResult() == false)
+            let receivedEventExp = expectation(description: "Received promise")
+            promise.whenDone { [weak promise]_ in
+                if promise?.isCancelled() == true {
+                    receivedEventExp.fulfill()
+                }
+            }
+            try promise.cancel()
+            wait(for: [receivedEventExp], timeout: 1)
+
+        } catch {
+            XCTAssert(false, "testCompletePromise \(error)")
+        }
     }
 
 }
