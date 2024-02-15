@@ -141,7 +141,7 @@ public class Promise {
 }
 
 extension Promise: PromiseListener {
-    func finished() {
+    func done() {
         handlers.forEach { handler in
             handler(self)
         }

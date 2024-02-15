@@ -9,7 +9,7 @@ import Foundation
 @_implementationOnly import graal_api
 
 internal protocol PromiseListener: AnyObject {
-    func finished()
+    func done()
 }
 
 /// Native wrapper over the Java com.dxfeed.promise.Promise class.
@@ -42,7 +42,7 @@ class NativePromise {
                 }
                 promise?.withMemoryRebound(to: dxfg_promise_event_t.self, capacity: 1, { pointer in
                     let native = NativePromise(promise: &pointer.pointee.handler)
-                    listener.finished()
+                    listener.done()
                 })
 
             }
