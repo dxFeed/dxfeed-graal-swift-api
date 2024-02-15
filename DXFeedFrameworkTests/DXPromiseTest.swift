@@ -59,14 +59,15 @@ final class DXPromiseTest: XCTestCase {
             }
             XCTAssert(result != nil)
             XCTAssert(promise.hasResult() == true)
-
             XCTAssert(result === (try? promise.getResult()))
+            XCTAssert(promise.isDone() == true)
+            XCTAssert(promise.hasException() == false)
         } catch {
             XCTAssert(false, "testGetResult \(error)")
         }
     }
 
-    func testGetAyncResult() {
+    func testGetAsyncResult() {
         do {
             let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
             let feed = endpoint.getFeed()
@@ -287,7 +288,6 @@ final class DXPromiseTest: XCTestCase {
             }
             try promise.completeExceptionally(GraalException.fail(message: "Failed from iOS", className: "TestClas", stack: "Stack empty"))
             wait(for: [receivedEventExp], timeout: 1)
-
         } catch {
             XCTAssert(false, "testCompleteExceptPromise \(error)")
         }

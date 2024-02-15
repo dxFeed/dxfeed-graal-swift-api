@@ -64,16 +64,15 @@ public class Promise {
     public func getException() -> GraalException? {
         return native.getException()
     }
-    
+
     /// Wait for computation to complete and return its result or throw an exception in case of exceptional completion.
     /// This method waits forever.
     /// - Returns: result of computation.
     /// - Throws : GraalException. Rethrows exception from Java
     public func await() throws -> MarketEvent? {
-        if try native.await() {
-            return try getResult()
-        }
-        return nil
+        _ = try native.await()
+        return try getResult()
+
     }
 
     /// Wait for computation to complete and return its result or throw an exception in case of exceptional completion.
