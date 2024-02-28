@@ -35,7 +35,7 @@ public class SnapshotProcessor {
 
     private func processEvents(events: [MarketEvent]) {
         let isSnapshot = processSnapshotAndTx(events)
-        processEventsNow(isSnapshot)
+        (processEventsNow)(isSnapshot)
         transactionReceived(isSnapshot)
     }
 

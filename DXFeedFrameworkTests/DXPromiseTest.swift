@@ -8,6 +8,7 @@
 import XCTest
 @testable import DXFeedFramework
 
+// swiftlint:disable type_body_length
 final class DXPromiseTest: XCTestCase {
 
     override func setUpWithError() throws {
@@ -48,14 +49,16 @@ final class DXPromiseTest: XCTestCase {
             var result: MarketEvent?
             if let timeOut = timeOut {
                 if withException {
-                    result = try promise.await(millis: timeOut)
+                    try promise.await(millis: timeOut)
+                    result = try promise.getResult()
                 } else {
                     if promise.awaitWithoutException(millis: timeOut) {
                         result = try promise.getResult()
                     }
                 }
             } else {
-                result = try promise.await()
+                try promise.await()
+                result = try promise.getResult()
             }
             XCTAssert(result != nil)
             XCTAssert(promise.hasResult() == true)
@@ -112,7 +115,7 @@ final class DXPromiseTest: XCTestCase {
             guard let promise = try feed?.getIndexedEventsPromise(type: Trade.self,
                                                                   symbol: "ETH/USD:GDAX",
                                                                   source: OrderSource.agregateAsk!) else {
-                XCTAssert(false, "Promises is nil")
+                XCTAssert(false, "Promise is nil")
                 return
             }
             XCTAssert(!promise.hasResult())
@@ -128,7 +131,7 @@ final class DXPromiseTest: XCTestCase {
             guard let promise = try feed?.getIndexedEventsPromise(type: Trade.self,
                                                                   symbol: "ETH/USD:GDAX_TEST",
                                                                   source: OrderSource.agregateAsk!) else {
-                XCTAssert(false, "Promises is nil")
+                XCTAssert(false, "Promise is nil")
                 return
             }
             XCTAssert(!promise.hasResult())
@@ -148,7 +151,8 @@ final class DXPromiseTest: XCTestCase {
                 XCTAssert(false, "Promises is empty")
             }
             try promises?.forEach({ promise in
-                guard let result = try promise.await(millis: 1500), result === (try? promise.getResult()) else {
+                try promise.await(millis: 1500)
+                guard (try? promise.getResult()) != nil else {
                     XCTAssert(false, "Result shoud have value")
                     return
                 }
@@ -192,7 +196,8 @@ final class DXPromiseTest: XCTestCase {
                 XCTAssert(false, "Promises is empty")
             }
             try promises?.forEach({ promise in
-                guard let result = try promise.await(millis: 1000), result === (try? promise.getResult()) else {
+                try promise.await(millis: 1000)
+                guard (try? promise.getResult()) != nil else {
                     XCTAssert(false, "Result shoud have value")
                     return
                 }
@@ -206,16 +211,19 @@ final class DXPromiseTest: XCTestCase {
 
     func testGetTimeSeriesResult() {
         do {
+            let date = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
             let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
             let feed = endpoint.getFeed()
             guard let promise = try feed?.getTimeSeriesPromise(type: Candle.self,
-                                                               symbol: "ETH/USD:GDAX",
-                                                               fromTime: 1000,
-                                                               toTime: 0) else {
-                XCTAssert(false, "Promises is nil")
+                                                               symbol: "AAPL{=1d}",
+                                                               fromTime: Long(date.millisecondsSince1970),
+                                                               toTime: Long.max) else {
+                XCTAssert(false, "Empty promise")
                 return
             }
-            _ = try promise.getResults()
+            try promise.await(millis: 2000)
+            let results = try promise.getResults()
+            XCTAssert((results?.count ?? 0) > 0)
         } catch {
             XCTAssert(false, "testGetTimeSeriesResult \(error)")
         }
@@ -228,7 +236,7 @@ final class DXPromiseTest: XCTestCase {
             let promise = try eventPromise(type: Profile.self, symbol: "IBM", feed: feed!)
             guard var promises = try feed?.getLastEventPromises(type: Quote.self,
                                                                 symbols: ["ETH/USD:GDAX", "AAPL"]) else {
-                XCTAssert(false, "Empty promises")
+                XCTAssert(false, "Empty promise")
                 return
             }
             promises.append(promise)
@@ -274,7 +282,10 @@ final class DXPromiseTest: XCTestCase {
     }
 
     func testCompleteExceptPromise() throws {
-        throw XCTSkip("Graal doesn't have impl for ExceptionMapper.toJava and always throws exception illegalStateException")
+        throw XCTSkip("""
+                      Graal doesn't have impl for ExceptionMapper.toJava.
+                      and always throws exception illegalStateException
+""")
         do {
             let endpoint = try DXEndpoint.create()
             let feed = endpoint.getFeed()
@@ -283,10 +294,12 @@ final class DXPromiseTest: XCTestCase {
                                            feed: feed!)
             XCTAssert(promise.hasResult() == false)
             let receivedEventExp = expectation(description: "Received promise")
-            promise.whenDone { [weak promise]_ in
+            promise.whenDone { _ in
                 receivedEventExp.fulfill()
             }
-            try promise.completeExceptionally(GraalException.fail(message: "Failed from iOS", className: "TestClas", stack: "Stack empty"))
+            try promise.completeExceptionally(GraalException.fail(message: "Failed from iOS",
+                                                                  className: "TestClas",
+                                                                  stack: "Stack empty"))
             wait(for: [receivedEventExp], timeout: 1)
         } catch {
             XCTAssert(false, "testCompleteExceptPromise \(error)")
@@ -335,7 +348,7 @@ final class DXPromiseTest: XCTestCase {
                     receivedEventExp.fulfill()
                 }
             }
-            try promise.cancel()
+            promise.cancel()
             wait(for: [receivedEventExp], timeout: 1)
 
         } catch {
@@ -343,4 +356,25 @@ final class DXPromiseTest: XCTestCase {
         }
     }
 
+    func testTask() async throws {
+        let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
+        let feed = endpoint.getFeed()
+        let date = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
+        guard let task = feed?.getTimeSeries(type: Candle.self,
+                                             symbol: "AAPL{=1d}",
+                                             fromTime: Long(date.millisecondsSince1970),
+                                             toTime: Long.max) else {
+            XCTAssert(false, "Async task is nil")
+            return
+        }
+        let result = await task.result
+        switch result {
+        case .success(let value):
+            XCTAssert((value?.count ?? 0) > 0)
+        case .failure(let value):
+            XCTAssert(false, "\(value)")
+        }
+    }
+
 }
+// swiftlint:enable type_body_length

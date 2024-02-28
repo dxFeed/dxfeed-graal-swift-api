@@ -102,6 +102,30 @@ public extension DXFeed {
         return Promise(native: nativePromise)
     }
 
+
+    @available(macOS 10.15, *)
+    func getTimeSeries(type: IEventType.Type, symbol: Symbol, fromTime: Long, toTime: Long) -> Task<[MarketEvent]?, Error> {
+        let task = Task {
+            let defaultValue: [MarketEvent]? = nil
+            if Task.isCancelled {
+                return defaultValue
+            }
+            let nativePromise = try native.getTimeSeriesPromise(type: type,
+                                                                symbol: symbol,
+                                                                fromTime: fromTime,
+                                                                toTime: toTime)
+            let promise = Promise(native: nativePromise)
+            while !promise.hasResult() {
+                try? await Task.sleep(nanoseconds: 100_000_000)
+                if Task.isCancelled {
+                    return defaultValue
+                }
+            }
+            return try promise.getResults()
+        }
+        return task
+    }
+
     func getTimeSeriesPromise(type: IEventType.Type, symbol: Symbol, fromTime: Long, toTime: Long) throws -> Promise? {
         let nativePromise = try native.getTimeSeriesPromise(type: type,
                                                             symbol: symbol,
