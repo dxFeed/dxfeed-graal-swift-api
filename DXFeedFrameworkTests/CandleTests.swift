@@ -226,6 +226,18 @@ final class CandleTests: XCTestCase {
         try? endpoint?.disconnect()
         endpoint = nil
     }
+
+    func testCandleSymbols() {
+        XCTAssert(CandlePeriod.day == CandlePeriod.valueOf(value: 1, type: .day))
+        XCTAssert(CandleSymbol.valueOf("TEST123", [CandlePeriod.day]).toString() == "TEST123{=d}")
+        XCTAssert(CandleSymbol.valueOf("TEST123", [CandlePeriod.valueOf(value: 2, type: .day)]).toString()
+                  == "TEST123{=2d}")
+        XCTAssert(CandleSymbol.valueOf("TEST123", [CandlePeriod.tick]).toString() == "TEST123")
+        let testSymbol = try? CandleSymbol.valueOf("TEST123{=12d}")
+        XCTAssert(testSymbol?.period?.type == .day && testSymbol?.period?.value == 12)
+        XCTAssert(testSymbol == CandleSymbol.valueOf("TEST123", [CandlePeriod.valueOf(value: 12, type: .day)]))
+        XCTAssert(CandleSymbol.valueOf("TEST1", [CandlePrice.ask]).toString() == "TEST1{price=ask}")
+    }
 }
 
 private class TestSnapshotDelegate: SnapshotDelegate {

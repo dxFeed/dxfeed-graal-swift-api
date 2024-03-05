@@ -88,7 +88,7 @@ public class CandleSymbol {
     /// Converts the given string symbol into the candle symbol object.
     ///
     /// - Throws: ArgumentException/invalidOperationException(_:)
-    static func valueOf(_ symbol: String) throws -> CandleSymbol {
+    public static func valueOf(_ symbol: String) throws -> CandleSymbol {
         return try CandleSymbol(symbol)
     }
     /// Converts the given string symbol into the candle symbol object with the specified attribute set.
@@ -97,7 +97,7 @@ public class CandleSymbol {
     ///  - symbol:The string symbol.
     ///  - attributes: The attributes to set.
     /// - Throws: ArgumentException/invalidOperationException(_:)
-    static func valueOf(_ symbol: String, _ properties: [ICandleSymbolProperty]) -> CandleSymbol {
+    public static func valueOf(_ symbol: String, _ properties: [ICandleSymbolProperty]) -> CandleSymbol {
         return CandleSymbol(symbol, properties)
     }
 }
@@ -111,5 +111,11 @@ extension CandleSymbol: Equatable {
 extension CandleSymbol: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(symbol)
+    }
+}
+
+extension CandleSymbol: Symbol {
+    public var stringValue: String {
+        return self.toString()
     }
 }
