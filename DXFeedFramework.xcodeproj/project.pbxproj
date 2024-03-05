@@ -647,6 +647,7 @@
 		6435EE3C2B1F1E9200E8496C /* PrintQuoteEvents.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = PrintQuoteEvents.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		64437A8E2A9DEE6F005929B2 /* InstrumentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfile.swift; sourceTree = "<group>"; };
 		64437A912A9DF1DE005929B2 /* NativeInstrumentProfileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInstrumentProfileReader.swift; sourceTree = "<group>"; };
+		644551C92B973A0D0069E3A2 /* FetchDailyCandles.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = FetchDailyCandles.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6447A5DA2A8E559000739CCF /* ILastingEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILastingEvent.swift; sourceTree = "<group>"; };
 		6447A5DC2A8E56CF00739CCF /* ITimeSeriesEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITimeSeriesEvent.swift; sourceTree = "<group>"; };
 		6447A5DE2A8E56FC00739CCF /* IIndexedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IIndexedEvent.swift; sourceTree = "<group>"; };
@@ -1059,6 +1060,7 @@
 				640885C62B1F657300E6CF88 /* ScheduleSample.playground */,
 				641C64AE2B344E770023CFAD /* PublishProfiles.playground */,
 				64F9C6C12B4BFD8F003ED014 /* DXFeedconnect.playground */,
+				644551C92B973A0D0069E3A2 /* FetchDailyCandles.playground */,
 			);
 			path = Playgrounds;
 			sourceTree = "<group>";
