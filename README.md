@@ -248,8 +248,6 @@ is a simple demonstration of how to get live updates for Instrument Profiles
 - [ ] DxFeedPublishProfiles is a simple demonstration of how to publish market events
 - [x] [ScheduleSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/ScheduleSample.playground/Contents.swift)
   is a simple demonstration of how to get various scheduling information for instruments
-- [x] [DXFeedconnect](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/DXFeedconnect.playground/Contents.swift)
-  is a simple demonstration of how to subscribe to different events using TimeSeriesSubscription
 
 ## Current State
 
