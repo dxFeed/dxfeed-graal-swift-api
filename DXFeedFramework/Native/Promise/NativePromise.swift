@@ -72,6 +72,9 @@ class NativePromise {
             let listPointer = try ErrorCheck.nativeCall(thread,
                                                         dxfg_Promise_List_EventType_getResult(thread,
                                                                                               promiseEvents))
+            defer {
+                _ = try? ErrorCheck.nativeCall(thread, dxfg_CList_EventType_release(thread, listPointer))
+            }
             var results = [MarketEvent]()
             let size = listPointer.pointee.size
             for index in 0..<Int(size) {
@@ -95,6 +98,9 @@ class NativePromise {
         let res = try promise?.withMemoryRebound(to: dxfg_promise_event_t.self, capacity: 1, { promiseEvent in
             let result = try ErrorCheck.nativeCall(thread, dxfg_Promise_EventType_getResult(thread, promiseEvent))
             let marketEvent = try EventMapper().fromNative(native: result)
+            defer {
+                _ = try? ErrorCheck.nativeCall(thread, dxfg_EventType_release(thread, result))
+            }
             self.result = marketEvent
             return marketEvent
         })
