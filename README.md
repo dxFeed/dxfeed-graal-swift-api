@@ -119,12 +119,12 @@ Is supported in the Rosetta 2 x64 emulator.
 [iOS]: https://support.apple.com/ios
 
 ## Installation
-In Xcode, go to File → Add Package Dependencies... OR select your project in the Project Editor, go to the Package Dependencies tab, and press the + (plus).
+In Xcode, go to File → Add Package Dependencies... OR select your project in the Project Editor, go to the Package Dependencies tab, and press the + (plus).  
 
-Enter a Package URL https://github.com/dxFeed/dxfeed-graal-swift-api
-Select the package you want to add.
-Select a Dependency Rule.
-Click Add Package.
+Enter a Package URL https://github.com/dxFeed/dxfeed-graal-swift-api  
+Select the package you want to add.  
+Select a Dependency Rule.  
+Click Add Package.  
 
 ## Usage
 ### How to connect to QD endpoint
