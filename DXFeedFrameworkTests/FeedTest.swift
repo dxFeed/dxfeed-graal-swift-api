@@ -8,6 +8,11 @@ import XCTest
 @testable import DXFeedFramework
 
 final class FeedTest: XCTestCase {
+
+    override class func setUp() {
+        _ = Isolate.shared
+    }
+
     func testInitializationWithNilNativeSubscription() {
         XCTAssertThrowsError(try DXFeedSubscription(native: nil, types: [Quote.self])) { error in
             // Assert
@@ -195,5 +200,40 @@ final class FeedTest: XCTestCase {
         try subscription?.add(listener: listener)
         try subscription?.addSymbols(["ETH/USD:GDAX", "IBM"])
         wait(for: [receivedEventExp], timeout: 10)
+    }
+
+    func testSetGetSymbols() throws {
+        // Symbol is protocol. Protocol doesn't support equatable. It is workaround for checking unique symbols.
+        struct SymbolEquatable: Equatable {
+            let value: Symbol
+            static func == (lhs: SymbolEquatable, rhs: SymbolEquatable) -> Bool {
+                return lhs.value.stringValue == rhs.value.stringValue
+            }
+        }
+
+        let symbols: [Symbol] = [
+            "AAPL_TEST",
+            "AAPL_TEST{=d}",
+            WildcardSymbol.all,
+            CandleSymbol.valueOf("AAPL0", [CandlePeriod.day]),
+            TimeSeriesSubscriptionSymbol(symbol: "AAPL2", fromTime: 1),
+            IndexedEventSubscriptionSymbol(symbol: "AAPL1", source: .defaultSource),
+            IndexedEventSubscriptionSymbol(symbol: "AAPL3", source: OrderSource.ntv!),
+            IndexedEventSubscriptionSymbol(symbol: "AAPL4", source: try OrderSource.valueOf(identifier: 1))
+        ]
+        let endpoint = try DXEndpoint.create()
+        let feed = try endpoint.getFeed()?.createSubscription([Candle.self])
+        try feed?.setSymbols(symbols)
+        if let resultSymbols = try feed?.getSymbols() {
+            // Sorted arrays use for comparing.
+            let equals = symbols.map { symbol in
+                SymbolEquatable(value: symbol)
+            }.sorted { $0.value.stringValue > $1.value.stringValue } == resultSymbols.map({ symbol in
+                SymbolEquatable(value: symbol)
+            }).sorted { $0.value.stringValue > $1.value.stringValue }
+            XCTAssert(equals)
+        } else {
+            XCTAssert(false, "Subscription returned null")
+        }
     }
 }

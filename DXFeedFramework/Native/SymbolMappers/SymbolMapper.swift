@@ -99,7 +99,7 @@ class SymbolMapper {
             let result = native.withMemoryRebound(to: dxfg_candle_symbol_t.self, capacity: 1) { pointer in
                 String(pointee: pointer.pointee.symbol)
             }
-            return result
+            return try? CandleSymbol.valueOf(result)
         case WILDCARD:
             return WildcardSymbol.all
         case INDEXED_EVENT_SUBSCRIPTION: fatalError("Add case for INDEXED_EVENT_SUBSCRIPTION")

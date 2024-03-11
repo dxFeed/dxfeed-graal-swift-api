@@ -89,6 +89,27 @@ public class DXFeedSubscription {
     public func removeSymbols(_ symbols: [Symbol]) throws {
         try native.removeSymbols(symbols)
     }
+
+    /// Changes the set of subscribed symbols so that it contains just the symbols from the specified collection.
+    ///
+    /// All registered event listeners will receive update on the last events for all
+    /// newly added symbols.
+    ///
+    /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html#setSymbols-java.util.Collection-)
+    /// - Parameters:
+    ///   - symbol: The collection of symbols.
+    /// - Throws: GraalException. Rethrows exception from Java.
+    public func setSymbols(_ symbols: [Symbol]) throws {
+        try native.setSymbols(symbols)
+    }
+
+    /// Returns a set of subscribed symbols.
+    ///
+    /// - Returns: The collection of symbols.
+    /// - Throws: GraalException. Rethrows exception from Java.
+    public func getSymbols() throws -> [Symbol] {
+        return try native.getSymbols()
+    }
 }
 
 extension DXFeedSubscription: DXEventListener {
