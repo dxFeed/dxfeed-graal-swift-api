@@ -147,8 +147,39 @@ tradeSize: \(tradeSize)
 
     /// Returns string representation of this candle event.
     public override func toString() -> String {
-        return "OrderBase{\(baseFieldsToString())}"
+        return "\(Swift.type(of: self)){\(baseFieldsToString())}"
     }
+
+    /// Returns string representation of this candle fields.
+    func baseFieldsToString() -> String {
+
+        return
+"""
+\(eventSymbol), \
+eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
+source=\(eventSource.name), \
+eventFlags=\(eventFlags.toHexString()), \
+index=\(index.toHexString()), \
+time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
+sequence=\(getSequence()), \
+timeNanoPart=\(timeNanoPart), \
+action=\(action), \
+actionTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: actionTime)) ?? ""), \
+orderId=\(orderId), \
+auxOrderId=\(auxOrderId), \
+price=\(price), \
+size=\(size), \
+executedSize=\(executedSize), \
+count=\(count), \
+exchange=\(StringUtil.encodeChar(char: Int16(getExchangeCode()))), \
+side=\(orderSide), \
+scope=\(scope), \
+tradeId=\(tradeId), \
+tradePrice=\(tradePrice), \
+tradeSize=\(tradeSize)
+"""
+    }
+
 }
 
 extension OrderBase {
@@ -278,35 +309,5 @@ extension OrderBase {
                                           shift: OrderBase.scopeShift,
                                           bits: newValue.rawValue))
         }
-    }
-
-    /// Returns string representation of this candle fields.
-    func baseFieldsToString() -> String {
-
-        return
-"""
-\(eventSymbol), \
-eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
-source=\(eventSource.name), \
-eventFlags=\(eventFlags.toHexString()), \
-index=\(index.toHexString()), \
-time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
-sequence=\(getSequence()), \
-timeNanoPart=\(timeNanoPart), \
-action=\(action), \
-actionTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: actionTime)) ?? ""), \
-orderId=\(orderId), \
-auxOrderId=\(auxOrderId), \
-price=\(price), \
-size=\(size), \
-executedSize=\(executedSize), \
-count=\(count), \
-exchange=\(StringUtil.encodeChar(char: Int16(getExchangeCode()))), \
-side=\(orderSide), \
-scope=\(scope), \
-tradeId=\(tradeId), \
-tradePrice=\(tradePrice), \
-tradeSize=\(tradeSize)
-"""
     }
 }

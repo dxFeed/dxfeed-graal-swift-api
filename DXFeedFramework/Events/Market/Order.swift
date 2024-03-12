@@ -23,13 +23,8 @@ public class Order: OrderBase {
     public convenience init(_ eventSymbol: String) {
         self.init(eventSymbol: eventSymbol)
     }
-
-    /// Returns string representation of this candle event.
-    public override func toString() -> String {
-        return
-"""
-Order{\(baseFieldsToString()), \
-marketMaker='\(marketMaker ?? "null")'}
-"""
+    
+    override func baseFieldsToString() -> String {
+        super.baseFieldsToString() + ", marketMaker='\(marketMaker ?? "null")'"
     }
 }
