@@ -325,10 +325,11 @@ public class DXEndpoint {
     /// Changes password for this endpoint.
     /// This method shall be called before ``connect(_:)`` together
     /// with ``set(userName:)`` to configure service access credentials.
-    /// </summary>
-    /// <param name="password">The user password.</param>
-    /// <returns>Returns this ``DXEndpoint``.</returns>
-    /// <exception cref="ArgumentNullException">If password is null.</exception>
+    ///
+    /// - Parameters:
+    ///    - password: The user password.
+    /// - Returns: ``DXEndpoint``
+    /// - Throws: GraalException. Rethrows exception from Java.
     public func set(password: String) throws -> Self {
         try endpointNative.set(password: password)
         return self
@@ -336,10 +337,11 @@ public class DXEndpoint {
     /// Changes user name for this endpoint.
     /// This method shall be called before ``connect(_:)`` together
     /// with ``set(password:)`` to configure service access credentials.
-    /// </summary>
-    /// <param name="user">The user name.</param>
-    /// <returns>Returns this ``DXEndpoint``.</returns>
-    /// <exception cref="ArgumentNullException">If user is null.</exception>
+    ///
+    /// - Parameters:
+    ///    - userName: The user name.
+    /// - Returns: ``DXEndpoint``
+    /// - Throws: GraalException. Rethrows exception from Java.
     public func set(userName: String) throws -> Self {
         try endpointNative.set(userName: userName)
         return self
