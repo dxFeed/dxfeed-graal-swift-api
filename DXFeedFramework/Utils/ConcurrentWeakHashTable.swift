@@ -6,7 +6,7 @@
 
 import Foundation
 
-public class ConcurrentWeakHashTable<T> {
+class ConcurrentWeakHashTable<T> {
     internal var set: NSHashTable<AnyObject> = .weakObjects()
     private let accessQueue = DispatchQueue(label: "com.dxfeed.set_nshashtable", attributes: .concurrent)
 
