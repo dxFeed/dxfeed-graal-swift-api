@@ -139,7 +139,6 @@ public class OtcMarketsOrder: Order {
         return (otcMarketsFlags & OtcMarketsOrder.NMS_CONDITIONAL) != 0
     }
 
-
     /// Changes whether this event represents a NMS conditional.
     /// - Parameters:
     ///    - nmsConditional: true if this event represents a NMS conditional.

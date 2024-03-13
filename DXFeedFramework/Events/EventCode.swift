@@ -48,4 +48,6 @@ public enum EventCode: CaseIterable {
     case series
     /// See ``OptionSale``
     case optionSale
+    /// See ``OtcMarketsOrder``
+    case otcMarketsOrder
 }

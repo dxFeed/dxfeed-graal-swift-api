@@ -320,6 +320,7 @@
 		64C004722BA074500009F7C9 /* OtcMarketsOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C004712BA074500009F7C9 /* OtcMarketsOrder.swift */; };
 		64C004742BA09C110009F7C9 /* OtcMarketsOrder+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C004732BA09C110009F7C9 /* OtcMarketsOrder+Ext.swift */; };
 		64C004762BA09FDC0009F7C9 /* OtcMarketsPriceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C004752BA09FDC0009F7C9 /* OtcMarketsPriceType.swift */; };
+		64C004782BA1C25C0009F7C9 /* OtcMarketsOrderMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C004772BA1C25C0009F7C9 /* OtcMarketsOrderMapper.swift */; };
 		64C771F22A94A224009868C2 /* Character+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C771F12A94A224009868C2 /* Character+Ext.swift */; };
 		64C771F42A94A86E009868C2 /* Side.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C771F32A94A86E009868C2 /* Side.swift */; };
 		64C771F62A94ADDA009868C2 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C771F52A94ADDA009868C2 /* Direction.swift */; };
@@ -839,6 +840,7 @@
 		64C004712BA074500009F7C9 /* OtcMarketsOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtcMarketsOrder.swift; sourceTree = "<group>"; };
 		64C004732BA09C110009F7C9 /* OtcMarketsOrder+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OtcMarketsOrder+Ext.swift"; sourceTree = "<group>"; };
 		64C004752BA09FDC0009F7C9 /* OtcMarketsPriceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtcMarketsPriceType.swift; sourceTree = "<group>"; };
+		64C004772BA1C25C0009F7C9 /* OtcMarketsOrderMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtcMarketsOrderMapper.swift; sourceTree = "<group>"; };
 		64C771F12A94A224009868C2 /* Character+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Ext.swift"; sourceTree = "<group>"; };
 		64C771F32A94A86E009868C2 /* Side.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Side.swift; sourceTree = "<group>"; };
 		64C771F52A94ADDA009868C2 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
@@ -1124,6 +1126,7 @@
 				64AF04422AE6AA230091F6F1 /* TradeETH+Ext.swift */,
 				64AF04402AE6A9E90091F6F1 /* TradeETHMapper.swift */,
 				64EAA1A32B7B4DA1005087BC /* IndexedEventSource+Ext.swift */,
+				64C004772BA1C25C0009F7C9 /* OtcMarketsOrderMapper.swift */,
 				64C004732BA09C110009F7C9 /* OtcMarketsOrder+Ext.swift */,
 			);
 			path = Markets;
@@ -2464,6 +2467,7 @@
 				64656F622A1B9FF7006A0B19 /* EnumException.swift in Sources */,
 				641BCBC12A21077800FE23C2 /* EventCode.swift in Sources */,
 				64ACBCE82A28CF9700032C53 /* IndexedEventSubscriptionSymbol.swift in Sources */,
+				64C004782BA1C25C0009F7C9 /* OtcMarketsOrderMapper.swift in Sources */,
 				649F48882A615BED0016FDD1 /* CandleType.swift in Sources */,
 				64BDDB2E2AD7DC5E00694210 /* OrderMapper.swift in Sources */,
 				649706842AD82B070068FF88 /* Series.swift in Sources */,

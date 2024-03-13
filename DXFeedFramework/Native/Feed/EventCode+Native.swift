@@ -92,6 +92,8 @@ extension EventCode {
             return DXFG_EVENT_SERIES
         case .optionSale:
             return DXFG_EVENT_OPTION_SALE
+        case .otcMarketsOrder:
+            return DXFG_EVENT_ORDER;
         }
     }
 }
