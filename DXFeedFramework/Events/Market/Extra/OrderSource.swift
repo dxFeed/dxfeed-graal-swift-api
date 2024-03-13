@@ -247,7 +247,7 @@ public class OrderSource: IndexedEventSource {
             throw ArgumentException.exception("duplicate name \(name)")
         }
     }
-    
+
     private static func isFullOrderBookFlag(_ pubFlags: Int) -> Bool {
         return (pubFlags & OrderSource.fullOrderBook) != 0
     }
