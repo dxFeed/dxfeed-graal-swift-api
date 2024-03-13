@@ -93,7 +93,7 @@ extension EventCode {
         case .optionSale:
             return DXFG_EVENT_OPTION_SALE
         case .otcMarketsOrder:
-            return DXFG_EVENT_ORDER;
+            return DXFG_EVENT_ORDER
         }
     }
 }

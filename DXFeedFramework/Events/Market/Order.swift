@@ -23,7 +23,7 @@ public class Order: OrderBase {
     public convenience init(_ eventSymbol: String) {
         self.init(eventSymbol: eventSymbol)
     }
-    
+
     override func baseFieldsToString() -> String {
         super.baseFieldsToString() + ", marketMaker='\(marketMaker ?? "null")'"
     }

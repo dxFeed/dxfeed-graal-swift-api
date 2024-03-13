@@ -97,13 +97,18 @@ public extension DXFeed {
         })
     }
 
-    func getIndexedEventsPromise(type: IEventType.Type, symbol: Symbol, source: IndexedEventSource) throws -> Promise? {
+    func getIndexedEventsPromise(type: IEventType.Type,
+                                 symbol: Symbol,
+                                 source: IndexedEventSource) throws -> Promise? {
         let nativePromise = try native.getIndexedEventsPromise(type: type, symbol: symbol, source: source)
         return Promise(native: nativePromise)
     }
 
     @available(macOS 10.15, *)
-    func getTimeSeries(type: IEventType.Type, symbol: Symbol, fromTime: Long, toTime: Long) -> Task<[MarketEvent]?, Error> {
+    func getTimeSeries(type: IEventType.Type,
+                       symbol: Symbol,
+                       fromTime: Long,
+                       toTime: Long) -> Task<[MarketEvent]?, Error> {
         let task = Task {
             let defaultValue: [MarketEvent]? = nil
             if Task.isCancelled {

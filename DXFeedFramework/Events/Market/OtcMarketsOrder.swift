@@ -42,7 +42,7 @@ public class OtcMarketsOrder: Order {
     private var quoteAccessPayment: Long = 0
     var otcMarketsFlags: Long = 0
 
-    ///Creates new OTC Markets order event with default values.
+    /// Creates new OTC Markets order event with default values.
     public convenience init(_ eventSymbol: String) {
         self.init(eventSymbol: eventSymbol)
     }
@@ -82,7 +82,10 @@ public class OtcMarketsOrder: Order {
     ///
     /// - Returns: OTC Markets price type of this OTC Markets order events.
     public func getOtcMarketsPriceType() -> OtcMarketsPriceType {
-        return OtcMarketsPriceType.valueOf(Int(BitUtil.getBits(flags: otcMarketsFlags, mask: OtcMarketsOrder.OTC_PRICE_TYPE_MASK, shift: OtcMarketsOrder.OTC_PRICE_TYPE_SHIFT)))
+        return OtcMarketsPriceType.valueOf(
+            Int(BitUtil.getBits(flags: otcMarketsFlags,
+                                mask: OtcMarketsOrder.OTC_PRICE_TYPE_MASK,
+                                shift: OtcMarketsOrder.OTC_PRICE_TYPE_SHIFT)))
     }
 
     /// Changes OTC Markets price type of this OTC Markets order events.
@@ -110,7 +113,6 @@ public class OtcMarketsOrder: Order {
         otcMarketsFlags | OtcMarketsOrder.SATURATED :
         otcMarketsFlags & ~OtcMarketsOrder.SATURATED
     }
-
 
     /// Returns whether this event is in 'AutoEx' mode.
     /// If this event is in 'AutoEx' mode then a response to an OTC Link trade message will be immediate.
@@ -143,7 +145,9 @@ public class OtcMarketsOrder: Order {
     /// - Parameters:
     ///    - nmsConditional: true if this event represents a NMS conditional.
     public func setNmsConditional(_ nmsConditional: Bool) {
-        otcMarketsFlags = nmsConditional ? otcMarketsFlags | OtcMarketsOrder.NMS_CONDITIONAL : otcMarketsFlags & ~OtcMarketsOrder.NMS_CONDITIONAL
+        otcMarketsFlags = nmsConditional ?
+        otcMarketsFlags | OtcMarketsOrder.NMS_CONDITIONAL :
+        otcMarketsFlags & ~OtcMarketsOrder.NMS_CONDITIONAL
     }
 
     override func baseFieldsToString() -> String {
