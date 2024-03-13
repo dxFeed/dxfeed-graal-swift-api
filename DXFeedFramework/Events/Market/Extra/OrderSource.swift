@@ -38,7 +38,7 @@ public class OrderSource: IndexedEventSource {
 
     /// The default source with zero identifier for all events that do not support multiple sources.
     public static let defaultOrderSource =
-    try? OrderSource(0, "DEFAULT", pubOrder | pubAnalyticOrder | pubSpreadOrder | fullOrderBook)
+    try? OrderSource(0, "DEFAULT", pubOrder | pubAnalyticOrder | pubOtcMarketsOrder | pubSpreadOrder | fullOrderBook)
 
     /// Bid side of a composite ``Quote``
     ///
@@ -346,6 +346,10 @@ public class OrderSource: IndexedEventSource {
     public static func getEventTypeMask(_ eventType: AnyClass) throws -> Int {
         if eventType == Order.self {
             return pubOrder
+        }
+        
+        if eventType == OtcMarketsOrder.self {
+            return pubOtcMarketsOrder
         }
 
         if eventType == AnalyticOrder.self {
