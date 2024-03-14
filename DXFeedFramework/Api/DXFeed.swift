@@ -8,7 +8,7 @@ import Foundation
 
 /// Main entry class for dxFeed API.
 ///
-/// [Read it first Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeed.html)
+/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeed.html)
 public class DXFeed {
     /// Feed native wrapper.
     private let native: NativeFeed
