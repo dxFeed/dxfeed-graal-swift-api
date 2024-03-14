@@ -53,7 +53,16 @@ jobs:
       - name: Zip Documentations
         run: cd documentations/Build/Products/Debug; zip ../../../../documentation.zip DXFeedFramework.doccarchive -r; cd -
 
-      - name: Checkl file 
+      - name: Create HTML Docs
+        run: ./build_doc.sh
+        shell: sh
+
+      - name: Commit Docs
+        run: |
+          git add docs
+          git commit -m "Update DocC"
+
+      - name: Checkl file
         run: ls -al release_sp.sh        
 
       - name: Calculate package checksum         
