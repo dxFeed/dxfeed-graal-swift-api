@@ -6,7 +6,7 @@
 
 import Foundation
 
-/// SWIFT Wrapper over the Java java.lang.System class, contains work with property getter/setter methods.
+/// Wrapper over the Java java.lang.System class, contains work with property getter/setter methods.
 ///
 /// In Java world, these properties can be set by passing the "-Dprop=value" argument in command line
 /// or calls java.lang.System.setProperty(String key, String value).
