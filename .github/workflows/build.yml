@@ -54,7 +54,7 @@ jobs:
         run: cd documentations/Build/Products/Debug; zip ../../../../documentation.zip DXFeedFramework.doccarchive -r; cd -
 
       - name: Create HTML Docs
-        run: ./build_doc.sh
+        run: ./build_doc.sh ${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}
         shell: sh
 
       - name: Commit Docs
