@@ -253,7 +253,11 @@ public class OrderSource: IndexedEventSource {
     }
 
     private static func isPublishableFlag(_ pubFlags: Int) -> Bool {
-        return  (pubFlags & (OrderSource.pubOrder | OrderSource.pubAnalyticOrder | OrderSource.pubOtcMarketsOrder | OrderSource.pubSpreadOrder)) == 0
+        let mask = OrderSource.pubOrder |
+        OrderSource.pubAnalyticOrder |
+        OrderSource.pubOtcMarketsOrder |
+        OrderSource.pubSpreadOrder
+        return (pubFlags & mask) == 0
     }
 
         /// Determines whether specified source identifier refers to special order source.
@@ -347,7 +351,7 @@ public class OrderSource: IndexedEventSource {
         if eventType == Order.self {
             return pubOrder
         }
-        
+
         if eventType == OtcMarketsOrder.self {
             return pubOtcMarketsOrder
         }

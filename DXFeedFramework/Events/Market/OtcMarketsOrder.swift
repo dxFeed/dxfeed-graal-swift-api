@@ -47,119 +47,97 @@ public class OtcMarketsOrder: Order {
         self.init(eventSymbol: eventSymbol)
     }
 
-    /// Returns whether this event is available for business within the operating hours of the OTC Link system.
+    /// Gets or sets a value indicating whether this event is available for business within the operating hours of the OTC Link system.
     /// All quotes will be closed at the start of the trading day and will remain closed until the traders open theirs.
-    ///
-    /// - Returns: true if this event is available for business within the operating hours of the OTC Link system.
-    public func isOpen() -> Bool {
-        return (otcMarketsFlags & OtcMarketsOrder.OPEN) != 0
+    public var isOpen: Bool {
+        get {
+            (otcMarketsFlags & OtcMarketsOrder.OPEN) != 0
+        }
+        set {
+            otcMarketsFlags = newValue ?
+            otcMarketsFlags | OtcMarketsOrder.OPEN :
+            otcMarketsFlags & ~OtcMarketsOrder.OPEN
+        }
     }
 
-    /// Changes whether this event is available for business within the operating hours of the OTC Link system.
-    ///
-    /// - Parameters:
-    ///    - open: true if this event is available for business within the operating hours of the OTC Link system.
-    public func setOpen(_ open: Bool) {
-        otcMarketsFlags = open ? otcMarketsFlags | OtcMarketsOrder.OPEN : otcMarketsFlags & ~OtcMarketsOrder.OPEN
+    /// Gets or sets a value indicating whether this event is unsolicited.
+    public var isUnsolicited: Bool {
+        get {
+            (otcMarketsFlags & OtcMarketsOrder.UNSOLICITED) != 0
+        }
+        set {
+            otcMarketsFlags = newValue ? otcMarketsFlags |
+            OtcMarketsOrder.UNSOLICITED :
+            otcMarketsFlags & ~OtcMarketsOrder.UNSOLICITED
+        }
     }
 
-    /// Returns whether this event is unsolicited.
-    ///
-    /// - Returns: true if this event is unsolicited.
-    public func isUnsolicited() -> Bool {
-        return (otcMarketsFlags & OtcMarketsOrder.UNSOLICITED) != 0
+    /// Gets or sets OTC Markets price type of this OTC Markets order events.
+    public var otcMarketsPriceType: OtcMarketsPriceType {
+        get {
+            return OtcMarketsPriceType.valueOf(
+                Int(BitUtil.getBits(flags: otcMarketsFlags,
+                                    mask: OtcMarketsOrder.OTC_PRICE_TYPE_MASK,
+                                    shift: OtcMarketsOrder.OTC_PRICE_TYPE_SHIFT)))
+        }
+        set {
+            otcMarketsFlags = BitUtil.setBits(flags: otcMarketsFlags,
+                                              mask: OtcMarketsOrder.OTC_PRICE_TYPE_MASK,
+                                              shift: OtcMarketsOrder.OTC_PRICE_TYPE_SHIFT,
+                                              bits: Long(newValue.rawValue.code))
+        }
     }
 
-    /// Changes whether this event is unsolicited.
-    /// - Parameters:
-    ///    - unsolicited: true if this event is unsolicited.
-    public func setUnsolicited(_ unsolicited: Bool) {
-        otcMarketsFlags = unsolicited ? otcMarketsFlags |
-        OtcMarketsOrder.UNSOLICITED : otcMarketsFlags & ~OtcMarketsOrder.UNSOLICITED
+    /// Gets or sets a value indicating whether this event should NOT be considered for the inside price.
+    public var isSaturated: Bool {
+        get {
+            (otcMarketsFlags & OtcMarketsOrder.SATURATED) != 0
+        }
+        set {
+            otcMarketsFlags = newValue ?
+            otcMarketsFlags | OtcMarketsOrder.SATURATED :
+            otcMarketsFlags & ~OtcMarketsOrder.SATURATED
+        }
     }
 
-    /// Returns OTC Markets price type of this OTC Markets order events.
-    ///
-    /// - Returns: OTC Markets price type of this OTC Markets order events.
-    public func getOtcMarketsPriceType() -> OtcMarketsPriceType {
-        return OtcMarketsPriceType.valueOf(
-            Int(BitUtil.getBits(flags: otcMarketsFlags,
-                                mask: OtcMarketsOrder.OTC_PRICE_TYPE_MASK,
-                                shift: OtcMarketsOrder.OTC_PRICE_TYPE_SHIFT)))
-    }
-
-    /// Changes OTC Markets price type of this OTC Markets order events.
-    /// - Parameters:
-    ///    - otcPriceType: otcPriceType OTC Markets price type of this OTC Markets order events.
-    public func setOtcMarketsPriceType(_ otcPriceType: OtcMarketsPriceType) {
-        otcMarketsFlags = BitUtil.setBits(flags: otcMarketsFlags,
-                                          mask: OtcMarketsOrder.OTC_PRICE_TYPE_MASK,
-                                          shift: OtcMarketsOrder.OTC_PRICE_TYPE_SHIFT,
-                                          bits: Long(otcPriceType.rawValue.code))
-    }
-
-    /// Returns whether this event should NOT be considered for the inside price.
-    ///
-    /// - Returns: true if this event should NOT be considered for the inside price.
-    public func isSaturated() -> Bool {
-        return (otcMarketsFlags & OtcMarketsOrder.SATURATED) != 0
-    }
-
-    /// Changes whether this event should NOT be considered for the inside price.
-    /// - Parameters:
-    ///    - saturated:saturated true if this event should NOT be considered for the inside price.
-    public func setSaturated(_ saturated: Bool) {
-        otcMarketsFlags = saturated ?
-        otcMarketsFlags | OtcMarketsOrder.SATURATED :
-        otcMarketsFlags & ~OtcMarketsOrder.SATURATED
-    }
-
-    /// Returns whether this event is in 'AutoEx' mode.
+    /// Gets or sets a value indicating whether this event is in 'AutoEx' mode.
     /// If this event is in 'AutoEx' mode then a response to an OTC Link trade message will be immediate.
-    ///
-    /// - Returns: true if this event is in 'AutoEx' mode.
-    public func isAutoExecution() -> Bool {
-        return (otcMarketsFlags & OtcMarketsOrder.AUTO_EXECUTION) != 0
+    public var isAutoExecution: Bool {
+        get {
+            (otcMarketsFlags & OtcMarketsOrder.AUTO_EXECUTION) != 0
+        }
+        set {
+            otcMarketsFlags = newValue ?
+            otcMarketsFlags | OtcMarketsOrder.AUTO_EXECUTION :
+            otcMarketsFlags & ~OtcMarketsOrder.AUTO_EXECUTION
+        }
     }
 
-    /// Changes whether this event is in 'AutoEx' mode.
-    /// - Parameters:
-    ///    - autoExecution: true if this event is in 'AutoEx' mode.
-    public func setAutoExecution(_ autoExecution: Bool) {
-        otcMarketsFlags = autoExecution ?
-        otcMarketsFlags | OtcMarketsOrder.AUTO_EXECUTION :
-        otcMarketsFlags & ~OtcMarketsOrder.AUTO_EXECUTION
-    }
-
-    /// Returns whether this event represents a NMS conditional.
+    /// Gets or sets a value indicating whether this event represents a NMS conditional.
     /// This flag indicates the displayed ``OrderBase/size`` size
     /// is a round lot at least two times greater than the minimum round lot size in the security
     /// and a trade message relating to the event cannot be sent or filled for less than the displayed size.
-    /// - Returns: true if this event represents a NMS conditional.
-
-    public func isNmsConditional() -> Bool {
-        return (otcMarketsFlags & OtcMarketsOrder.NMS_CONDITIONAL) != 0
-    }
-
-    /// Changes whether this event represents a NMS conditional.
-    /// - Parameters:
-    ///    - nmsConditional: true if this event represents a NMS conditional.
-    public func setNmsConditional(_ nmsConditional: Bool) {
-        otcMarketsFlags = nmsConditional ?
-        otcMarketsFlags | OtcMarketsOrder.NMS_CONDITIONAL :
-        otcMarketsFlags & ~OtcMarketsOrder.NMS_CONDITIONAL
+    public var isNmsConditional: Bool {
+        get {
+            (otcMarketsFlags & OtcMarketsOrder.NMS_CONDITIONAL) != 0
+        }
+        set {
+            otcMarketsFlags = newValue ?
+            otcMarketsFlags | OtcMarketsOrder.NMS_CONDITIONAL :
+            otcMarketsFlags & ~OtcMarketsOrder.NMS_CONDITIONAL
+        }
     }
 
     override func baseFieldsToString() -> String {
         super.baseFieldsToString() +
         """
 , QAP=\(quoteAccessPayment)\
-, open=\(isOpen())\
-, unsolicited=\(isUnsolicited())\
-, priceType=\(getOtcMarketsPriceType())\
-, saturated=\(isSaturated())\
-, autoEx=\(isAutoExecution())\
-, NMS=\(isNmsConditional())
+, open=\(isOpen)\
+, unsolicited=\(isUnsolicited)\
+, priceType=\(otcMarketsPriceType)\
+, saturated=\(isSaturated)\
+, autoEx=\(isAutoExecution)\
+, NMS=\(isNmsConditional)
 """
     }
 }
