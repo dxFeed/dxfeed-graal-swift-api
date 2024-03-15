@@ -161,6 +161,11 @@ public class OrderSource: IndexedEventSource {
     /// Members Exchange. Record for price level book.
     public static let memx = try? OrderSource("memx", pubOrder)
 
+    /// Blue Ocean Technologies Alternative Trading System.
+    /// ``Order`` events are publishable on this
+    ///  source and the corresponding subscription can be observed via ``DXPublisher``.
+    public static let OCEA = try? OrderSource("OCEA", pubOrder)
+
     /// Pink Sheets. Record for price level book.
     /// Pink sheets are listings for stocks that trade over-the-counter (OTC).
     /// ``Order`` and ``OtcMarketsOrder`` events are publishable on this
