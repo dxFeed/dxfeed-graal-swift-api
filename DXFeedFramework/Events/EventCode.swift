@@ -42,12 +42,12 @@ public enum EventCode: CaseIterable {
     case order
     /// See ``AnalyticOrder``
     case analyticOrder
+    /// See ``OtcMarketsOrder``
+    case otcMarketsOrder
     /// See ``SpreadOrder``
     case spreadOrder
     /// See ``Series``
     case series
     /// See ``OptionSale``
     case optionSale
-    /// See ``OtcMarketsOrder``
-    case otcMarketsOrder
 }

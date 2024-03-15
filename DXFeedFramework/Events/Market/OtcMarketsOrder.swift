@@ -21,26 +21,25 @@ public class OtcMarketsOrder: Order {
      /// |                Extended Quote Flags                 |             Quote Flags             |
      /// +-----------------------------------------------------+-------------------------------------+
      */
-    // swiftlint:disable identifier_name
-    private static let NMS_CONDITIONAL: Long = 1 << 6
-    private static let AUTO_EXECUTION: Long = 1 << 5
-    private static let SATURATED: Long = 1 << 4
+
+    private static let nmsConditional = 1 << 6
+    private static let autoExecution = 1 << 5
+    private static let saturated = 1 << 4
 
     // OTC_PRICE_TYPE values are taken from OtcMarketsPriceType enum.
-    private static let OTC_PRICE_TYPE_MASK: Long = 3
-    private static let OTC_PRICE_TYPE_SHIFT: Long = 2
+    private static let otcPriceTypeMask = 3
+    private static let otcPriceTypeShift = 2
 
-    private static let UNSOLICITED: Long = 1 << 1
-    private static let OPEN: Long = 1
-    // swiftlint:enable identifier_name
+    private static let unsolicited = 1 << 1
+    private static let open = 1
 
     /// Returns Quote Access Payment (QAP) of this OTC Markets order.
     /// QAP functionality allows participants to dynamically set access fees or rebates,
     /// in real-time and on a per-security basis through OTC Dealer or OTC FIX connections.
     /// Positive integers (1 to 30) indicate a rebate, and negative integers (-1 to -30) indicate an access fee.
     /// 0 indicates no rebate or access fee.
-    private var quoteAccessPayment: Long = 0
-    var otcMarketsFlags: Long = 0
+    internal var quoteAccessPayment: Int32 = 0
+    internal var otcMarketsFlags: Int32 = 0
 
     /// Creates new OTC Markets order event with default values.
     public convenience init(_ eventSymbol: String) {
@@ -51,24 +50,24 @@ public class OtcMarketsOrder: Order {
     /// All quotes will be closed at the start of the trading day and will remain closed until the traders open theirs.
     public var isOpen: Bool {
         get {
-            (otcMarketsFlags & OtcMarketsOrder.OPEN) != 0
+            (otcMarketsFlags & Int32(OtcMarketsOrder.open)) != 0
         }
         set {
             otcMarketsFlags = newValue ?
-            otcMarketsFlags | OtcMarketsOrder.OPEN :
-            otcMarketsFlags & ~OtcMarketsOrder.OPEN
+            otcMarketsFlags | Int32(OtcMarketsOrder.open) :
+            otcMarketsFlags & ~Int32(OtcMarketsOrder.open)
         }
     }
 
     /// Gets or sets a value indicating whether this event is unsolicited.
     public var isUnsolicited: Bool {
         get {
-            (otcMarketsFlags & OtcMarketsOrder.UNSOLICITED) != 0
+            (otcMarketsFlags & Int32(OtcMarketsOrder.unsolicited)) != 0
         }
         set {
             otcMarketsFlags = newValue ? otcMarketsFlags |
-            OtcMarketsOrder.UNSOLICITED :
-            otcMarketsFlags & ~OtcMarketsOrder.UNSOLICITED
+            Int32(OtcMarketsOrder.unsolicited) :
+            otcMarketsFlags & ~Int32(OtcMarketsOrder.unsolicited)
         }
     }
 
@@ -76,27 +75,27 @@ public class OtcMarketsOrder: Order {
     public var otcMarketsPriceType: OtcMarketsPriceType {
         get {
             return OtcMarketsPriceType.valueOf(
-                Int(BitUtil.getBits(flags: otcMarketsFlags,
-                                    mask: OtcMarketsOrder.OTC_PRICE_TYPE_MASK,
-                                    shift: OtcMarketsOrder.OTC_PRICE_TYPE_SHIFT)))
+                Int(BitUtil.getBits(flags: Int(otcMarketsFlags),
+                                    mask: OtcMarketsOrder.otcPriceTypeMask,
+                                    shift: OtcMarketsOrder.otcPriceTypeShift)))
         }
         set {
-            otcMarketsFlags = BitUtil.setBits(flags: otcMarketsFlags,
-                                              mask: OtcMarketsOrder.OTC_PRICE_TYPE_MASK,
-                                              shift: OtcMarketsOrder.OTC_PRICE_TYPE_SHIFT,
-                                              bits: Long(newValue.rawValue.code))
+            otcMarketsFlags = Int32(BitUtil.setBits(flags: Int(otcMarketsFlags),
+                                                    mask: OtcMarketsOrder.otcPriceTypeMask,
+                                                    shift: OtcMarketsOrder.otcPriceTypeShift,
+                                                    bits: newValue.rawValue.code))
         }
     }
 
     /// Gets or sets a value indicating whether this event should NOT be considered for the inside price.
     public var isSaturated: Bool {
         get {
-            (otcMarketsFlags & OtcMarketsOrder.SATURATED) != 0
+            (otcMarketsFlags & Int32(OtcMarketsOrder.saturated)) != 0
         }
         set {
             otcMarketsFlags = newValue ?
-            otcMarketsFlags | OtcMarketsOrder.SATURATED :
-            otcMarketsFlags & ~OtcMarketsOrder.SATURATED
+            otcMarketsFlags | Int32(OtcMarketsOrder.saturated) :
+            otcMarketsFlags & ~Int32(OtcMarketsOrder.saturated)
         }
     }
 
@@ -104,12 +103,12 @@ public class OtcMarketsOrder: Order {
     /// If this event is in 'AutoEx' mode then a response to an OTC Link trade message will be immediate.
     public var isAutoExecution: Bool {
         get {
-            (otcMarketsFlags & OtcMarketsOrder.AUTO_EXECUTION) != 0
+            (otcMarketsFlags & Int32(OtcMarketsOrder.autoExecution)) != 0
         }
         set {
             otcMarketsFlags = newValue ?
-            otcMarketsFlags | OtcMarketsOrder.AUTO_EXECUTION :
-            otcMarketsFlags & ~OtcMarketsOrder.AUTO_EXECUTION
+            otcMarketsFlags | Int32(OtcMarketsOrder.autoExecution) :
+            otcMarketsFlags & ~Int32(OtcMarketsOrder.autoExecution)
         }
     }
 
@@ -119,12 +118,12 @@ public class OtcMarketsOrder: Order {
     /// and a trade message relating to the event cannot be sent or filled for less than the displayed size.
     public var isNmsConditional: Bool {
         get {
-            (otcMarketsFlags & OtcMarketsOrder.NMS_CONDITIONAL) != 0
+            (otcMarketsFlags & Int32(OtcMarketsOrder.nmsConditional)) != 0
         }
         set {
             otcMarketsFlags = newValue ?
-            otcMarketsFlags | OtcMarketsOrder.NMS_CONDITIONAL :
-            otcMarketsFlags & ~OtcMarketsOrder.NMS_CONDITIONAL
+            otcMarketsFlags | Int32(OtcMarketsOrder.nmsConditional) :
+            otcMarketsFlags & ~Int32(OtcMarketsOrder.nmsConditional)
         }
     }
 

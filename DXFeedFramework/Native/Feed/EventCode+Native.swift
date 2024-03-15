@@ -42,6 +42,8 @@ extension EventCode {
             return .order
         case DXFG_EVENT_ANALYTIC_ORDER:
             return .analyticOrder
+        case DXFG_EVENT_OTC_MARKETS_ORDER:
+            return .otcMarketsOrder
         case DXFG_EVENT_SPREAD_ORDER:
             return .spreadOrder
         case DXFG_EVENT_SERIES:
@@ -86,14 +88,14 @@ extension EventCode {
             return DXFG_EVENT_ORDER
         case .analyticOrder:
             return DXFG_EVENT_ANALYTIC_ORDER
+        case .otcMarketsOrder:
+            return DXFG_EVENT_OTC_MARKETS_ORDER
         case .spreadOrder:
             return DXFG_EVENT_SPREAD_ORDER
         case .series:
             return DXFG_EVENT_SERIES
         case .optionSale:
             return DXFG_EVENT_OPTION_SALE
-        case .otcMarketsOrder:
-            return DXFG_EVENT_ORDER
         }
     }
 }
