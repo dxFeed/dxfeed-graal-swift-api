@@ -1,7 +1,7 @@
 import Cocoa
 import DXFeedFramework
 
-/// Fetches last N days of candles for a specified symbol, prints them, and exits.
+// Fetches last N days of candles for a specified symbol, prints them, and exits.
 
 // await couldn't use directly in Playground(this is accompanied by errors like: execution stopped with unexpected state)
 Task {
