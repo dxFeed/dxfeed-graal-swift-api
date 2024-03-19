@@ -28,6 +28,9 @@ class NativeEndpoint {
 
     private static let listenerCallback: dxfg_endpoint_state_change_listener_func = {_, oldState, newState, context in
         if let context = context {
+            ThreadManager.insertPthread()
+            let currentThread = graal_get_current_thread(Isolate.shared.isolate.pointee)
+            print("change state \(currentThread) \(pthread_mach_thread_np(pthread_self()))")
             let endpoint: AnyObject = bridge(ptr: context)
             if let listener =  endpoint as? WeakListener {
                 var old = (try? EnumUtil.valueOf(value: DXEndpointState.convert(oldState))) ?? .notConnected
