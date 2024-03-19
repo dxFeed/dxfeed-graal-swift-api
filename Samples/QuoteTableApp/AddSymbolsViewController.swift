@@ -12,38 +12,42 @@ import DXFeedFramework
 class AddSymbolsViewController: UIViewController {
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var symbolsTableView: UITableView!
-    
-    static let kSymbolsKey = "kSymbolsKey"
-    var symbols: [String]? = nil
+    @IBOutlet var titleLabel: UILabel!
+
+    var symbols = [String]()
     var selectedSymbols = Set<String>()
+    var dataProvider = SymbolsDataProvider()
 
     override func viewDidLoad() {
-        reloadData()
+        selectedSymbols = Set(dataProvider.selectedSymbols)
+        symbols = dataProvider.allSymbols.sorted()
+
+        titleLabel.textColor = .text
+
         symbolsTableView.backgroundColor = .tableBackground
         symbolsTableView.separatorStyle = .none
 
-        searchBar.searchTextField.textColor = .text
-        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(
-            string: "Search symbol",
-            attributes: [.foregroundColor: UIColor.text!.withAlphaComponent(0.5)]
-        )
-        searchBar.barTintColor = .tableBackground
+//        searchBar.searchTextField.textColor = .text
+//        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(
+//            string: "Search symbol",
+//            attributes: [.foregroundColor: UIColor.text!.withAlphaComponent(0.5)]
+//        )
+//        searchBar.barTintColor = .tableBackground
         super.viewDidLoad()
         view.backgroundColor = .tableBackground
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        DispatchQueue.global(qos: .background).async { 
-//            [weak self] in
-            self.readIpf()
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            self?.readIpf()
         }
     }
 
     func readIpf() {
         let reader = DXInstrumentProfileReader()
         do {
-            let result = try reader.readFromFile(address: "https://demo:demo@tools.dxfeed.com/ipf?compression=zip")
+            let result = try reader.readFromFile(address: "https://demo:demo@tools.dxfeed.com/ipf?TYPE=FOREX,STOCK&compression=zip")
             guard let result = result  else {
                 return
             }
@@ -51,10 +55,8 @@ class AddSymbolsViewController: UIViewController {
                 return ipf.symbol
             }
             DispatchQueue.main.async {
-                self.saveLocalSymbols(symbols: stocksData)
-                self.reloadData()
+                self.reloadData(symbols: stocksData)
             }
-            print(stocksData)
         } catch {
         }
     }
@@ -63,26 +65,21 @@ class AddSymbolsViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
-    func reloadData() {
-        symbols = loadLocalSymbols()?.sorted()
+    @IBAction func addTouchUpInside(_ sender: UIButton) {
+        dataProvider.addSymbols(selectedSymbols)
+        dataProvider.allSymbols = symbols
+        self.navigationController?.popViewController(animated: true)
+    }
+
+    func reloadData(symbols: [String]) {
+        self.symbols = symbols.sorted()
         symbolsTableView.reloadData()
     }
 }
 
-extension AddSymbolsViewController {
-    func loadLocalSymbols() -> [String]? {
-        UserDefaults.standard.value(forKey: AddSymbolsViewController.kSymbolsKey) as? [String]
-    }
-
-    func saveLocalSymbols(symbols: [String]) {
-        if symbols.count > 0 {
-            UserDefaults.standard.setValue(symbols, forKey: AddSymbolsViewController.kSymbolsKey)
-        }
-    }
-}
 extension AddSymbolsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return symbols?.count ?? 0
+        return symbols.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,9 +87,8 @@ extension AddSymbolsViewController: UITableViewDelegate, UITableViewDataSource {
                 as? SymbolCell else {
             return UITableViewCell()
         }
-        let symbol = symbols?[indexPath.row]
-        let value = symbol ?? ""
-        cell.update(symbol: value, check: selectedSymbols.contains(value))
+        let symbol = symbols[indexPath.row]
+        cell.update(symbol: symbol, check: selectedSymbols.contains(symbol))
         return cell
     }
     
@@ -101,14 +97,12 @@ extension AddSymbolsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-
-        let symbol = symbols?[indexPath.row]
-        let value = symbol ?? ""
-        let checked = selectedSymbols.contains(value)
+        let symbol = symbols[indexPath.row]
+        let checked = selectedSymbols.contains(symbol)
         if checked {
-            selectedSymbols.remove(value)
+            selectedSymbols.remove(symbol)
         } else {
-            selectedSymbols.insert(value)
+            selectedSymbols.insert(symbol)
         }
         tableView.reloadRows(at: [indexPath], with: .none)
         return indexPath
