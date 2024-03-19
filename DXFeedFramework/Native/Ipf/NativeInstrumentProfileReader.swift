@@ -40,6 +40,7 @@ class NativeInstrumentProfileReader {
     }
 
     func readFromFile(address: String) throws -> [InstrumentProfile] {
+        print("read from file")
         let thread = currentThread()
         let result = try ErrorCheck.nativeCall(thread,
                                                dxfg_InstrumentProfileReader_readFromFile(thread,

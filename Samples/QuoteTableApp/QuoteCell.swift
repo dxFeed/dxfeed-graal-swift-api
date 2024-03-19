@@ -21,12 +21,16 @@ class QuoteCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.symbolNameLabel.textColor = .text
+        self.askLabel.textColor = .text
+        self.bidLabel.textColor = .text
         self.backgroundContentView.layer.cornerRadius = 10
         self.backgroundContentView.clipsToBounds = true
         self.contentView.backgroundColor = .tableBackground
         self.backgroundContentView.backgroundColor = .cellBackground
         priceContentView.layer.cornerRadius = 10
         priceContentView.clipsToBounds = true
+        priceContentView.backgroundColor = .clear
     }
 
     func updateAsk(value: Bool?) {
