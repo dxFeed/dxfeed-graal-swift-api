@@ -7,6 +7,17 @@
 
 import Foundation
 
+struct InstrumentInfo: Codable {
+    let symbol: String
+    let descriptionStr: String
+}
+
+extension InstrumentInfo: Comparable {
+    static func < (lhs: InstrumentInfo, rhs: InstrumentInfo) -> Bool {
+        return lhs.symbol < rhs.symbol
+    }
+}
+
 class SymbolsDataProvider {
     static let kSelectedSymbolsKey = "kSelectedSymbolsKey"
     static let kSymbolsKey = "kSymbolsKey"
@@ -14,25 +25,28 @@ class SymbolsDataProvider {
     init() {
     }
 
-    var allSymbols: [String] {
+    var allSymbols: [InstrumentInfo] {
         get {
-            return (UserDefaults.standard.object(forKey: SymbolsDataProvider.kSymbolsKey) as? [String]) ?? [String]()
+            if let data = UserDefaults.standard.value(forKey: SymbolsDataProvider.kSymbolsKey) as? Data {
+                let myObject = try? PropertyListDecoder().decode([InstrumentInfo].self, from: data)
+                return myObject ?? [InstrumentInfo]()
+            }
+            return [InstrumentInfo]()
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: SymbolsDataProvider.kSymbolsKey)
+            UserDefaults.standard.set(try? PropertyListEncoder().encode(newValue),
+                                      forKey: SymbolsDataProvider.kSymbolsKey)
             UserDefaults.standard.synchronize()
         }
     }
 
     var selectedSymbols: [String] {
-        get {
-            return (UserDefaults.standard.object(forKey: SymbolsDataProvider.kSelectedSymbolsKey) as? [String]) ?? [String]()
+        let existingSymbols = UserDefaults.standard.object(forKey: SymbolsDataProvider.kSelectedSymbolsKey)
+        if existingSymbols != nil {
+            return existingSymbols as? [String] ?? [String]()
+        } else {
+            return ["AAPL", "IBM", "ETH/USD:GDAX"]
         }
-//        set {
-//            let currentSymbols = selectedSymbols
-//            let newValues = Set(newValue).subtracting(Set(currentSymbols))
-//            UserDefaults.standard.set(currentSymbols + newValues, forKey: SymbolsDataProvider.kSelectedSymbolsKey)
-//        }
     }
 
     func addSymbols(_ symbols: Set<String>) {
@@ -54,6 +68,4 @@ class SymbolsDataProvider {
         UserDefaults.standard.set(symbols, forKey: SymbolsDataProvider.kSelectedSymbolsKey)
         UserDefaults.standard.synchronize()
     }
-
-
 }

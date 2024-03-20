@@ -53,6 +53,7 @@ extension SymbolsViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         let symbol = symbols[indexPath.row]
+        cell.selectionStyle = .none
         cell.update(symbol: symbol, check: false)
         cell.overrideUserInterfaceStyle = .dark
         return cell
