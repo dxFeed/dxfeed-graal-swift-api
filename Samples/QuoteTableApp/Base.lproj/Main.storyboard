@@ -225,9 +225,8 @@
                                 </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="er8-zz-YEu">
-                                <rect key="frame" x="343" y="58.666666666666657" width="40" height="35"/>
+                                <rect key="frame" x="337" y="58.666666666666657" width="46" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="4Pc-Oc-hIj"/>
                                     <constraint firstAttribute="height" constant="35" id="jDE-l3-0g0"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
@@ -321,7 +320,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cbg-fQ-Qn4">
-                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="90"/>
+                                                    <rect key="frame" x="10" y="0.0" width="353" height="90"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="--------------" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ybg-Bu-TvM">
                                                             <rect key="frame" x="10" y="0.0" width="333" height="90"/>
@@ -341,8 +340,8 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="Cbg-fQ-Qn4" secondAttribute="bottom" constant="10" id="Ay3-cZ-fSy"/>
-                                                <constraint firstAttribute="trailing" secondItem="Cbg-fQ-Qn4" secondAttribute="trailing" constant="20" symbolic="YES" id="MQP-kV-3o6"/>
-                                                <constraint firstItem="Cbg-fQ-Qn4" firstAttribute="leading" secondItem="3S8-DK-dno" secondAttribute="leading" id="n3Z-BQ-GI7"/>
+                                                <constraint firstAttribute="trailing" secondItem="Cbg-fQ-Qn4" secondAttribute="trailing" constant="10" id="MQP-kV-3o6"/>
+                                                <constraint firstItem="Cbg-fQ-Qn4" firstAttribute="leading" secondItem="3S8-DK-dno" secondAttribute="leading" constant="10" id="n3Z-BQ-GI7"/>
                                                 <constraint firstItem="Cbg-fQ-Qn4" firstAttribute="top" secondItem="3S8-DK-dno" secondAttribute="top" id="nKb-Lk-Uo1"/>
                                             </constraints>
                                         </tableViewCellContentView>

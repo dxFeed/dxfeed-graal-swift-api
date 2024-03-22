@@ -52,22 +52,20 @@ class QuoteTableViewController: UIViewController {
     func subscribe(_ unlimited: Bool) {
         print("UI Current thread \(Thread.current)")
 
-        if endpoint != nil {
-            try? endpoint?.disconnect()
-//            try? endpoint?.disconnectAndClear()
-//            try? endpoint?.close()
+        if endpoint == nil {
+            try? SystemProperty.setProperty(DXEndpoint.ExtraPropery.heartBeatTimeout.rawValue, "15s")
+
+            let builder = try? DXEndpoint.builder().withRole(.feed)
+            if !unlimited {
+                _ = try? builder?.withProperty(DXEndpoint.Property.aggregationPeriod.rawValue, "1")
+            }
+            endpoint = try? builder?.build()
+            endpoint?.add(listener: self)
+            _ = try? endpoint?.connect("demo.dxfeed.com:7300")
+        } else {
             subscription = nil
             profileSubscription = nil
         }
-        try? SystemProperty.setProperty(DXEndpoint.ExtraPropery.heartBeatTimeout.rawValue, "15s")
-
-        let builder = try? DXEndpoint.builder().withRole(.feed)
-        if !unlimited {
-            _ = try? builder?.withProperty(DXEndpoint.Property.aggregationPeriod.rawValue, "1")
-        }
-        endpoint = try? builder?.build()
-        endpoint?.add(listener: self)
-        _ = try? endpoint?.connect("demo.dxfeed.com:7300")
 
         subscription = try? endpoint?.getFeed()?.createSubscription(Quote.self)
         profileSubscription = try? endpoint?.getFeed()?.createSubscription(Profile.self)
@@ -89,7 +87,6 @@ class QuoteTableViewController: UIViewController {
         if let newView = self.storyboard?.instantiateViewController(withIdentifier: "SymbolsViewController") as? SymbolsViewController {
             self.navigationController?.pushViewController(newView, animated: true)
         }
-
     }
 }
 
