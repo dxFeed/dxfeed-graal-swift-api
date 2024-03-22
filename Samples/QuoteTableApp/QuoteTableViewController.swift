@@ -20,9 +20,11 @@ class QuoteTableViewController: UIViewController {
     @IBOutlet var connectionStatusLabel: UILabel!
     @IBOutlet var agregationSwitch: UISwitch!
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var addButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addButton.tintColor = .text
         agregationSwitch.isHidden = true
         titleLabel.textColor = .text
         connectionStatusLabel.textColor = .text
