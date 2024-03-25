@@ -120,30 +120,30 @@ final class PublisherTest: XCTestCase {
         let testEventListenr = AnonymousClass { anonymCl in
             anonymCl.callback = { events in
                 if events.count > 0 {
-                    let event = events.first?.otcMarketsOrder
+                    let event = events.first!.otcMarketsOrder
 
                     if event.eventSymbol == SYMBOL1 {
-                        XCTAssert(event.price = order1.price)
-                        XCTAssert(event.quoteAccessPayment = order1.quoteAccessPayment)
-                        XCTAssert(event.isOpen = order1.isOpen)
-                        XCTAssert(event.isUnsolicited = order1.isUnsolicited)
-                        XCTAssert(event.otcMarketsPriceType = .order1.otcMarketsPriceType)
-                        XCTAssert(event.isSaturated = order1.isSaturated)
-                        XCTAssert(event.isAutoExecution = order1.isAutoExecution)
-                        XCTAssert(event.isNmsConditional = order1.isNmsConditional)
-                        XCTAssert(event.otcMarketsFlags = order1.otcMarketsFlags)
+                        XCTAssert(event.price == order1.price)
+                        XCTAssert(event.quoteAccessPayment == order1.quoteAccessPayment)
+                        XCTAssert(event.isOpen == order1.isOpen)
+                        XCTAssert(event.isUnsolicited == order1.isUnsolicited)
+                        XCTAssert(event.otcMarketsPriceType == order1.otcMarketsPriceType)
+                        XCTAssert(event.isSaturated == order1.isSaturated)
+                        XCTAssert(event.isAutoExecution == order1.isAutoExecution)
+                        XCTAssert(event.isNmsConditional == order1.isNmsConditional)
+                        XCTAssert(event.otcMarketsFlags == order1.otcMarketsFlags)
                         receivedEvent1Exp.fulfill()
                     } else if event.eventSymbol == SYMBOL2 {
-                        XCTAssert(event.price = order2.price)
+                        XCTAssert(event.price == order2.price)
 
-                        XCTAssert(event.quoteAccessPayment = order2.quoteAccessPayment)
-                        XCTAssert(event.isOpen = order2.isOpen)
-                        XCTAssert(event.isUnsolicited = order2.isUnsolicited)
-                        XCTAssert(event.otcMarketsPriceType = .order2.otcMarketsPriceType)
-                        XCTAssert(event.isSaturated = order2.isSaturated)
-                        XCTAssert(event.isAutoExecution = order2.isAutoExecution)
-                        XCTAssert(event.isNmsConditional = order2.isNmsConditional)
-                        XCTAssert(event.otcMarketsFlags = order2.otcMarketsFlags)
+                        XCTAssert(event.quoteAccessPayment == order2.quoteAccessPayment)
+                        XCTAssert(event.isOpen == order2.isOpen)
+                        XCTAssert(event.isUnsolicited == order2.isUnsolicited)
+                        XCTAssert(event.otcMarketsPriceType == order2.otcMarketsPriceType)
+                        XCTAssert(event.isSaturated == order2.isSaturated)
+                        XCTAssert(event.isAutoExecution == order2.isAutoExecution)
+                        XCTAssert(event.isNmsConditional == order2.isNmsConditional)
+                        XCTAssert(event.otcMarketsFlags == order2.otcMarketsFlags)
                         receivedEvent2Exp.fulfill()
                     }
                     print(event)
