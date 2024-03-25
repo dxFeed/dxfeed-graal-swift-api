@@ -13,6 +13,8 @@ class OtcMarketsOrderMapper: Mapper {
 
     func fromNative(native: UnsafeMutablePointer<dxfg_event_type_t>) -> MarketEvent? {
         let event = native.withMemoryRebound(to: type, capacity: 1) { native in
+            print("ASD")
+            let native123 = native.pointee
             return OtcMarketsOrder(otcNative: native.pointee)
         }
         return event

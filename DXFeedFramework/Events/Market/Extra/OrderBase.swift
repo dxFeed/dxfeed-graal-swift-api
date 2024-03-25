@@ -27,7 +27,7 @@ public class OrderBase: MarketEvent, IIndexedEvent, CustomStringConvertible {
 
     public var eventFlags: Int32 = 0
 
-    public private(set) var index: Long = 0
+    public var index: Long = 0
 
     /*
      * Flags property has several significant bits that are packed into an integer in the following way:

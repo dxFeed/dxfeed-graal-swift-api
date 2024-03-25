@@ -8,6 +8,8 @@
 import Foundation
 
 public class OtcMarketsOrder: Order {
+    public class override var type: EventCode { .otcMarketsOrder }
+
     private static let serialVersionUID: Long = 0
 
     // ========================= private static =========================
@@ -38,8 +40,8 @@ public class OtcMarketsOrder: Order {
     /// in real-time and on a per-security basis through OTC Dealer or OTC FIX connections.
     /// Positive integers (1 to 30) indicate a rebate, and negative integers (-1 to -30) indicate an access fee.
     /// 0 indicates no rebate or access fee.
-    internal var quoteAccessPayment: Int32 = 0
-    internal var otcMarketsFlags: Int32 = 0
+    public var quoteAccessPayment: Int32 = 0
+    public var otcMarketsFlags: Int32 = 0
 
     /// Creates new OTC Markets order event with default values.
     public convenience init(_ eventSymbol: String) {

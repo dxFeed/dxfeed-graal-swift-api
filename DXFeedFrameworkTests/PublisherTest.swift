@@ -75,4 +75,87 @@ final class PublisherTest: XCTestCase {
             print("\(error)")
         }
     }
+
+    func testOtcPublishing() throws {
+        throw XCTSkip("skip. otc not ready")
+
+        let SYMBOL1 = "AAPL_TEST1"
+        let SYMBOL2 = "AAPL_TEST2"
+        let order1 = OtcMarketsOrder(SYMBOL1)
+        order1.orderSide = .buy
+        order1.marketMaker = "MM1"
+        order1.scope = .order
+        order1.price = 10.0
+        order1.size = 1
+        order1.index = 1
+        order1.quoteAccessPayment = -30
+        order1.isOpen = true
+        order1.isUnsolicited = true
+        order1.otcMarketsPriceType = .actual
+        order1.isSaturated = true
+        order1.isAutoExecution = true
+        order1.isNmsConditional = true
+
+        let order2 = OtcMarketsOrder(SYMBOL2)
+        order2.orderSide = .buy
+        order2.marketMaker = "MM1"
+        order2.scope = .order
+        order2.price = 10.0
+        order2.size = 1
+        order2.index = 1
+        order2.quoteAccessPayment = -30
+        order2.isOpen = true
+        order2.isUnsolicited = true
+        order2.otcMarketsPriceType = .wanted
+        order2.isSaturated = true
+        order2.isAutoExecution = false
+        order2.isNmsConditional = false
+
+        let endpoint = try DXEndpoint.create(.localHub)
+        let feed = endpoint.getFeed()
+        let sub = try feed!.createSubscription([OtcMarketsOrder.self])
+        let receivedEvent1Exp = expectation(description: "Received events \(SYMBOL1)")
+        let receivedEvent2Exp = expectation(description: "Received events \(SYMBOL2)")
+
+        let testEventListenr = AnonymousClass { anonymCl in
+            anonymCl.callback = { events in
+                if events.count > 0 {
+                    let event = events.first?.otcMarketsOrder
+
+                    if event.eventSymbol == SYMBOL1 {
+                        XCTAssert(event.price = order1.price)
+                        XCTAssert(event.quoteAccessPayment = order1.quoteAccessPayment)
+                        XCTAssert(event.isOpen = order1.isOpen)
+                        XCTAssert(event.isUnsolicited = order1.isUnsolicited)
+                        XCTAssert(event.otcMarketsPriceType = .order1.otcMarketsPriceType)
+                        XCTAssert(event.isSaturated = order1.isSaturated)
+                        XCTAssert(event.isAutoExecution = order1.isAutoExecution)
+                        XCTAssert(event.isNmsConditional = order1.isNmsConditional)
+                        XCTAssert(event.otcMarketsFlags = order1.otcMarketsFlags)
+                        receivedEvent1Exp.fulfill()
+                    } else if {
+                        XCTAssert(event.price = order2.price)
+
+                        XCTAssert(event.quoteAccessPayment = order2.quoteAccessPayment)
+                        XCTAssert(event.isOpen = order2.isOpen)
+                        XCTAssert(event.isUnsolicited = order2.isUnsolicited)
+                        XCTAssert(event.otcMarketsPriceType = .order2.otcMarketsPriceType)
+                        XCTAssert(event.isSaturated = order2.isSaturated)
+                        XCTAssert(event.isAutoExecution = order2.isAutoExecution)
+                        XCTAssert(event.isNmsConditional = order2.isNmsConditional)
+                        XCTAssert(event.otcMarketsFlags = order2.otcMarketsFlags)
+                        receivedEvent2Exp.fulfill()
+                    }
+                    print(event)
+                }
+            }
+            return anonymCl
+        }
+        try sub.add(listener: testEventListenr)
+        let publisher = endpoint.getPublisher()
+        try sub.addSymbols([SYMBOL1, SYMBOL2])
+        try publisher?.publish(events: [order1, order2])
+        wait(for: [receivedEvent1Exp, receivedEvent2Exp], timeout: 1)
+
+    }
 }

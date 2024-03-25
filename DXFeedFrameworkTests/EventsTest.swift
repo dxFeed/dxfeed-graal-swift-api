@@ -16,7 +16,6 @@ final class EventsTest: XCTestCase {
     }
 
     func testConversion() throws {
-        throw XCTSkip("Skip test until otc ")
         let convertedSet = Set(EventCode.allCases.map { $0.nativeCode() }.compactMap { EventCode.convert($0)  })
         let difValues = Array(Set(EventCode.allCases).symmetricDifference(convertedSet))
         XCTAssert(difValues.count == 0, "Not equal enums. Please, take a look on \(difValues)")
