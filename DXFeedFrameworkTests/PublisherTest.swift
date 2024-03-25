@@ -133,7 +133,7 @@ final class PublisherTest: XCTestCase {
                         XCTAssert(event.isNmsConditional = order1.isNmsConditional)
                         XCTAssert(event.otcMarketsFlags = order1.otcMarketsFlags)
                         receivedEvent1Exp.fulfill()
-                    } else if {
+                    } else if event.eventSymbol == SYMBOL2 {
                         XCTAssert(event.price = order2.price)
 
                         XCTAssert(event.quoteAccessPayment = order2.quoteAccessPayment)
