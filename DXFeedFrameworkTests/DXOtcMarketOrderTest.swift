@@ -32,7 +32,7 @@ final class DXOtcMarketOrderTest: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
+    // swiftlint:disable function_body_length
     func testOtcPublishing() throws {
         let SYMBOL1 = "AAPL_TEST1"
         let SYMBOL2 = "AAPL_TEST2"
@@ -113,6 +113,7 @@ final class DXOtcMarketOrderTest: XCTestCase {
         try sub.addSymbols([SYMBOL1, SYMBOL2])
         try publisher?.publish(events: [order1, order2])
         wait(for: [receivedEvent1Exp], timeout: 1)
-
     }
+    // swiftlint:enable function_body_length
+
 }
