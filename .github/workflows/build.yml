@@ -53,19 +53,24 @@ jobs:
       - name: Zip Documentations
         run: cd documentations/Build/Products/Debug; zip ../../../../documentation.zip DXFeedFramework.doccarchive -r; cd -
 
-      - name: Checkl file 
+      - name: Commit Docs
+        run: |
+          git add docs
+          git commit -m "Update DocC"
+
+      - name: Check file
         run: ls -al release_sp.sh        
 
       - name: Calculate package checksum         
         run: ./release_sp.sh ${{ github.ref_name }} DXFeedFramework
         shell: sh
      
-      - name: Commit files
+      - name: Commit spm update
         run: |          
           git config --local user.name "GitHub Action"
           git commit Package.swift -m "Update Package.swift"
 
-      - name: Push to swift branch. Update swift package.
+      - name: Push to swift branch. Update swift package and DocC.
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -90,3 +95,27 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       
+  build_and_upload_docs:
+    needs: release
+    if: (startsWith(github.event.ref, 'refs/tags/') && endsWith(github.event.ref, 'build'))
+    name: Build & Upload Docs
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch dep
+        run: gradle fetchDependencies
+
+      - name: Create HTML Docs
+        run: ./build_doc.sh ${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}
+        shell: sh
+
+      - name: Upload Doc
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: help
+          commit_message: 'deploy: ${{ github.ref_name }}'
+          allow_empty_commit: true

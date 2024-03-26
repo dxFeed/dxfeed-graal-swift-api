@@ -8,7 +8,7 @@ import Foundation
 
 /// Main entry class for dxFeed API.
 ///
-/// [Read it first Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeed.html)
+/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeed.html)
 public class DXFeed {
     /// Feed native wrapper.
     private let native: NativeFeed
@@ -85,6 +85,29 @@ public extension DXFeed {
 }
 
 public extension DXFeed {
+    @available(iOS 13.0, *)
+    @available(macOS 10.15, *)
+    func getLastEvent(type: IEventType.Type,
+                      symbol: Symbol) -> Task<MarketEvent?, Error> {
+        let task = Task {
+            let defaultValue: MarketEvent? = nil
+            if Task.isCancelled {
+                return defaultValue
+            }
+            let nativePromise = try native.getLastEventPromise(type: type,
+                                                               symbol: symbol)
+            let promise = Promise(native: nativePromise)
+            while !promise.hasResult() {
+                try? await Task.sleep(nanoseconds: 100_000_000)
+                if Task.isCancelled {
+                    return defaultValue
+                }
+            }
+            return try promise.getResult()
+        }
+        return task
+    }
+
     func getLastEventPromise(type: IEventType.Type, symbol: Symbol) throws -> Promise? {
         let nativePromise = try native.getLastEventPromise(type: type, symbol: symbol)
         return Promise(native: nativePromise)
@@ -97,13 +120,37 @@ public extension DXFeed {
         })
     }
 
-    func getIndexedEventsPromise(type: IEventType.Type,
-                                 symbol: Symbol,
-                                 source: IndexedEventSource) throws -> Promise? {
+    @available(iOS 13.0, *)
+    @available(macOS 10.15, *)
+    func getIndexedEvents(type: IEventType.Type,
+                          symbol: Symbol,
+                          source: IndexedEventSource) -> Task<[MarketEvent]?, Error> {
+        let task = Task {
+            let defaultValue: [MarketEvent]? = nil
+            if Task.isCancelled {
+                return defaultValue
+            }
+            let nativePromise = try native.getIndexedEventsPromise(type: type,
+                                                                   symbol: symbol,
+                                                                   source: source)
+            let promise = Promise(native: nativePromise)
+            while !promise.hasResult() {
+                try? await Task.sleep(nanoseconds: 100_000_000)
+                if Task.isCancelled {
+                    return defaultValue
+                }
+            }
+            return try promise.getResults()
+        }
+        return task
+    }
+
+    func getIndexedEventsPromise(type: IEventType.Type, symbol: Symbol, source: IndexedEventSource) throws -> Promise? {
         let nativePromise = try native.getIndexedEventsPromise(type: type, symbol: symbol, source: source)
         return Promise(native: nativePromise)
     }
 
+    @available(iOS 13.0, *)
     @available(macOS 10.15, *)
     func getTimeSeries(type: IEventType.Type,
                        symbol: Symbol,

@@ -21,6 +21,7 @@ final class DXPromiseTest: XCTestCase {
 
     private func eventPromise(type: IEventType.Type, symbol: String, feed: DXFeed) throws -> Promise {
         guard let promise =  try feed.getLastEventPromise(type: type, symbol: symbol) else {
+            XCTAssert(false, "Couldnt receive promise")
             fatalError("Couldnt receive promise")
         }
         return promise
@@ -355,7 +356,7 @@ final class DXPromiseTest: XCTestCase {
         }
     }
 
-    func testTask() async throws {
+    func testTimeSeriesTask() async throws {
         let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
         let feed = endpoint.getFeed()
         let date = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
@@ -370,6 +371,47 @@ final class DXPromiseTest: XCTestCase {
         switch result {
         case .success(let value):
             XCTAssert((value?.count ?? 0) > 0)
+        case .failure(let value):
+            XCTAssert(false, "\(value)")
+        }
+    }
+
+    func testIndexedEventTask() async throws {
+        throw XCTSkip("""
+                     Skiped
+""")
+        let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
+        let feed = endpoint.getFeed()
+        let date = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
+        guard let task = feed?.getIndexedEvents(type: Series.self,
+                                                symbol: "ETH/USD:GDAX",
+                                                source: OrderSource.agregateAsk!) else {
+            XCTAssert(false, "Async task is nil")
+            return
+        }
+        let result = await task.result
+        switch result {
+        case .success(let value):
+            XCTAssert((value?.count ?? 0) > 0)
+        case .failure(let value):
+            XCTAssert(false, "\(value)")
+        }
+    }
+
+    func testLastEventTask() async throws {
+        let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
+        let feed = endpoint.getFeed()
+        let date = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
+        guard let task = feed?.getLastEvent(type: Trade.self,
+                                            symbol: "ETH/USD:GDAX")
+        else {
+            XCTAssert(false, "Async task is nil")
+            return
+        }
+        let result = await task.result
+        switch result {
+        case .success(let value):
+            XCTAssert(value != nil)
         case .failure(let value):
             XCTAssert(false, "\(value)")
         }
