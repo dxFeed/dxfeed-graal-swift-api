@@ -10,24 +10,34 @@ import XCTest
 
 final class DXLastEventTest: XCTestCase {
     private func testEvents(_ symbol: String) -> [MarketEvent] {
+        var result = [MarketEvent]()
 
         let testQuote = Quote(symbol)
         testQuote.bidSize = Double.random(in: 1000.0..<2000.0)
         testQuote.askPrice = Double.random(in: 1000.0..<2000.0)
+        result.append(testQuote)
+
         let testTrade = Trade(symbol)
         testTrade.price = Double.random(in: 1000.0..<2000.0)
+        result.append(testTrade)
+
         let testTradeEth = TradeETH(symbol)
         testTradeEth.price = Double.random(in: 1000.0..<2000.0)
+        result.append(testTradeEth)
+
         let testProfile = Profile(symbol)
         testProfile.highLimitPrice = Double.random(in: 1000.0..<2000.0)
+        result.append(testProfile)
 
         let summary = Summary(symbol)
         summary.dayId = 10
-        var result = [testQuote, testTrade, testTradeEth, testProfile, summary]
+        result.append(summary)
+
         if let candleSymbol = try? CandleSymbol.valueOf(symbol) {
             let candle = Candle(candleSymbol)
             result.append(candle)
         }
+
         let greeks = Greeks(symbol)
         greeks.price = Double.random(in: 1000.0..<2000.0)
         result.append(greeks)
@@ -67,6 +77,9 @@ final class DXLastEventTest: XCTestCase {
         case let last as Candle:
             let test = getEvent(type: last.type).candle
             XCTAssert(last.eventSymbol == test.eventSymbol)
+            XCTAssert(last.close.isNaN)
+            XCTAssert(last.askVolume.isNaN)
+
         case let last as Summary:
             let test = getEvent(type: last.type).summary
             XCTAssert(last.dayId == test.dayId)
@@ -85,7 +98,7 @@ final class DXLastEventTest: XCTestCase {
     }
 
     func testGetLastEvents() {
-        let symbol = "AAPL_TEST"
+        let symbol = "AAPL_TEST{=d}"
 
         let events = testEvents(symbol)
         getLastEvents(symbol: symbol, events: events) { feed in
@@ -105,26 +118,10 @@ final class DXLastEventTest: XCTestCase {
     }
 
     func getLastEvents(symbol: String, events: [MarketEvent], fetching: ((DXFeed?) -> Void)) {
-        let port = Int.random(in: 7500..<7600)
         do {
-            let endpoint: DXEndpoint? = try DXEndpoint.create(.publisher)
-            try endpoint?.connect(":\(port)")
+            let endpoint: DXEndpoint? = try DXEndpoint.create(.localHub)
             let publisher = endpoint?.getPublisher()
             let connectedExpectation = expectation(description: "Connected")
-            let stateListener: TestEndpoointStateListener? = TestEndpoointStateListener { listener in
-                listener.callback = { state in
-                    if state == .connected {
-                        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.3) {
-                            print(Thread.current.threadName)
-                            try? publisher?.publish(events: events)
-                            connectedExpectation.fulfill()
-                        }
-                    }
-                }
-                return listener
-            }
-            let feedEndpoint = try DXEndpoint.create(.feed)
-            feedEndpoint.add(listener: stateListener!)
             let allTypes = [Candle.self,
                             Trade.self,
                             TradeETH.self,
@@ -140,11 +137,15 @@ final class DXLastEventTest: XCTestCase {
                             SpreadOrder.self,
                             Series.self,
                             OptionSale.self]
-            let subscription = try feedEndpoint.getFeed()?.createSubscription(allTypes)
-            try feedEndpoint.connect("localhost:\(port)")
+            let subscription = try endpoint?.getFeed()?.createSubscription(allTypes)
             try subscription?.addSymbols(symbol)
+            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.3) {
+                print(Thread.current.threadName)
+                try? publisher?.publish(events: events)
+                connectedExpectation.fulfill()
+            }
             wait(for: [connectedExpectation], timeout: 1)
-            fetching(feedEndpoint.getFeed())
+            fetching(endpoint?.getFeed())
         } catch {
             XCTAssert(false, "\(error)")
         }

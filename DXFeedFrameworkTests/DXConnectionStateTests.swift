@@ -8,7 +8,7 @@ import XCTest
 @testable import DXFeedFramework
 
 final class DXConnectionStateTests: XCTestCase {
-    static let port = 7301
+    static let port = Int.random(in: 7800..<7900)
     static let endpointAddress = "localhost:\(port)"
 
     static var publisherEndpoint: DXEndpoint?
@@ -49,43 +49,40 @@ final class DXConnectionStateTests: XCTestCase {
         let expsNotConnected = Array(expectations.filter({ element in
             element.key == .notConnected
         }).values)
-        wait(for: expsNotConnected, timeout: 5)
+        wait(for: expsNotConnected, timeout: 1)
     }
 
     func testListenerDealloc() throws {
         var endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint should be not nil")
         _ = try endpoint?.connect(Self.endpointAddress)
-        var state = try? endpoint?.getState()
         try endpoint?.close()
         try endpoint?.disconnect()
-        wait(seconds: 2)
-//        Isolate.shared.callGC()
-        state = try? endpoint?.getState()
-        try endpoint?.close()
-        state = try? endpoint?.getState()
 //        Isolate.shared.callGC()
         try endpoint?.close()
-        state = try? endpoint?.getState()
 //        Isolate.shared.callGC()
-        state = try? endpoint?.getState()
+        try endpoint?.close()
+//        Isolate.shared.callGC()
         endpoint = nil
         endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint should be not nil")
         _ = try endpoint?.connect(Self.endpointAddress)
         try endpoint?.disconnect()
-        print("\(state ?? .notConnected)")
-        wait(seconds: 3)
+        XCTAssertEqual(try endpoint?.getState(), .notConnected)
     }
 
     func testReconnect() throws {
         let endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint should be not nil")
         try endpoint.connect(Self.endpointAddress)
-        wait(seconds: 1)
+        wait(for: [expectation(for: NSPredicate(block: { object, _ in
+            let state = try? (object as? DXEndpoint)?.getState()
+            return state! == .connected
+        }), evaluatedWith: endpoint)], timeout: 2)
+        XCTAssertEqual(try endpoint.getState(), .connected)
         try endpoint.reconnect()
-        wait(seconds: 1)
         try endpoint.close()
+        XCTAssertEqual(try endpoint.getState(), .closed)
     }
 
     func testCreationPublisher() throws {
@@ -94,22 +91,22 @@ final class DXConnectionStateTests: XCTestCase {
                             DXEndpointState.connecting: expectation(description: "Connecting")]
         let listener = TestListener(expectations: expectations)
         endpoint?.add(listener: listener)
-        try endpoint?.connect(":4777")
-        let exps = Array(expectations.filter({ element in
-            element.key != .notConnected
-        }).values)
-        wait(for: exps, timeout: 1)
+        try endpoint?.connect(":\(Int.random(in: 7800..<7900))")
+        wait(for: Array(expectations.values), timeout: 1)
         endpoint = nil
-        wait(seconds: 2)
+        wait(seconds: 1)
     }
 
     func testDisconnectAndClear() throws {
         let endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint should be not nil")
         try endpoint.connect(Self.endpointAddress)
-        wait(seconds: 1)
+        wait(for: [expectation(for: NSPredicate(block: { object, _ in
+            let state = try? (object as? DXEndpoint)?.getState()
+            return state! == .connected
+        }), evaluatedWith: endpoint)], timeout: 2)
         try endpoint.disconnectAndClear()
-        wait(seconds: 1)
+        XCTAssertEqual(try endpoint.getState(), .notConnected)
     }
 
 }

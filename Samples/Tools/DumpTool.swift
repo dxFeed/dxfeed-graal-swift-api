@@ -52,6 +52,13 @@ class DumpTool: ToolsCommand {
 
     private var listeners = [EventListener]()
 
+    fileprivate func close(_ inputEndpoint: DXEndpoint, _ outputEndpoint: DXEndpoint?) throws {
+        try inputEndpoint.awaitNotConnected()
+        try inputEndpoint.closeAndAwaitTermination()
+        try outputEndpoint?.awaitProcessed()
+        try outputEndpoint?.closeAndAwaitTermination()
+    }
+
     func execute() {
         let address = arguments[1]
         let symbols = arguments.parseSymbols()
@@ -106,11 +113,7 @@ class DumpTool: ToolsCommand {
 
             try inputEndpoint.connect(address)
 
-            try inputEndpoint.awaitNotConnected()
-            try inputEndpoint.closeAndAwaitTermination()
-
-            try outputEndpoint?.awaitProcessed()
-            try outputEndpoint?.closeAndAwaitTermination()
+            try close(inputEndpoint, outputEndpoint)
         } catch {
             print("Dump tool error: \(error)")
         }

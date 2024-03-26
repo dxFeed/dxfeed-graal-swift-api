@@ -176,6 +176,8 @@ final class FeedTest: XCTestCase {
             return event is Series
         case .optionSale:
             return event is OptionSale
+        case .otcMarketsOrder:
+            return event is OtcMarketsOrder
         }
         return false
     }
