@@ -252,7 +252,6 @@ final class DXPromiseTest: XCTestCase {
             })
             wait(for: [receivedEventExp], timeout: 1)
             promises.removeAll()
-            wait(seconds: 1)
         } catch {
             XCTAssert(false, "testAllOffPromises \(error)")
         }

@@ -105,10 +105,8 @@ final class DXLastEventTest: XCTestCase {
     }
 
     func getLastEvents(symbol: String, events: [MarketEvent], fetching: ((DXFeed?) -> Void)) {
-        let port = Int.random(in: 7500..<7600)
         do {
-            let endpoint: DXEndpoint? = try DXEndpoint.create(.publisher)
-            try endpoint?.connect(":\(port)")
+            let endpoint: DXEndpoint? = try DXEndpoint.create(.localHub)
             let publisher = endpoint?.getPublisher()
             let connectedExpectation = expectation(description: "Connected")
             let stateListener: TestEndpoointStateListener? = TestEndpoointStateListener { listener in
@@ -141,8 +139,12 @@ final class DXLastEventTest: XCTestCase {
                             Series.self,
                             OptionSale.self]
             let subscription = try feedEndpoint.getFeed()?.createSubscription(allTypes)
-            try feedEndpoint.connect("localhost:\(port)")
             try subscription?.addSymbols(symbol)
+            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.3) {
+                print(Thread.current.threadName)
+                try? publisher?.publish(events: events)
+                connectedExpectation.fulfill()
+            }
             wait(for: [connectedExpectation], timeout: 1)
             fetching(feedEndpoint.getFeed())
         } catch {

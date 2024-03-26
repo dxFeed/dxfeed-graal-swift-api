@@ -51,10 +51,8 @@ final class DXObservableSubscriptionTest: XCTestCase {
 
     func testCreateSubscription() throws {
         let events = Profile.self
-        let port = Int.random(in: 7800..<7900)
-        let address = ":\(port)"
 
-        let endpoint = try DXEndpoint.create(.publisher).connect(address)
+        let endpoint = try DXEndpoint.create(.localHub)
         let publisher = endpoint.getPublisher()
         let listener = PublishListener(publisher: publisher!)
         let subscription = try publisher?.getSubscription(events)
@@ -62,8 +60,7 @@ final class DXObservableSubscriptionTest: XCTestCase {
 
         let receivedEventsExpectation = expectation(description: "Received events")
 
-        let feedEndpoint = try DXEndpoint.create().connect("localhost:\(port)")
-        let feedSubscription = try feedEndpoint.getFeed()?.createSubscription(events)
+        let feedSubscription = try endpoint.getFeed()?.createSubscription(events)
         let eventListener = AnonymousClass { anonymCl in
             anonymCl.callback = { events in
                 events.forEach { mEvent in
