@@ -34,8 +34,6 @@ final class DXOtcMarketOrderTest: XCTestCase {
     }
 
     func testOtcPublishing() throws {
-        throw XCTSkip("skip. otc not ready")
-
         let SYMBOL1 = "AAPL_TEST1"
         let SYMBOL2 = "AAPL_TEST2"
         let order1 = OtcMarketsOrder(SYMBOL1)
@@ -77,31 +75,34 @@ final class DXOtcMarketOrderTest: XCTestCase {
         let testEventListenr = AnonymousClass { anonymCl in
             anonymCl.callback = { events in
                 if events.count > 0 {
-                    let event = events.first!.otcMarketsOrder
-                    if event.eventSymbol == SYMBOL1 {
-                        XCTAssertEqual(event.marketMaker, "MM1")
-                        XCTAssertEqual(event.price, 10)
-                        XCTAssertEqual(event.quoteAccessPayment, -30)
-                        XCTAssertEqual(event.isOpen, true)
-                        XCTAssertEqual(event.isUnsolicited, true)
-                        XCTAssertEqual(event.otcMarketsPriceType, .actual)
-                        XCTAssertEqual(event.isSaturated, true)
-                        XCTAssertEqual(event.isAutoExecution, true)
-                        XCTAssertEqual(event.isNmsConditional, true)
-                        XCTAssertEqual(event.otcMarketsFlags, order1.otcMarketsFlags)
-                        receivedEvent1Exp.fulfill()
-                    } else if event.eventSymbol == SYMBOL2 {
-                        XCTAssertEqual(event.marketMaker, "MM2")
-                        XCTAssertEqual(event.price, 10)
-                        XCTAssertEqual(event.quoteAccessPayment, -30)
-                        XCTAssertEqual(event.isOpen, true)
-                        XCTAssertEqual(event.isUnsolicited, true)
-                        XCTAssertEqual(event.otcMarketsPriceType, .actual)
-                        XCTAssertEqual(event.isSaturated, true)
-                        XCTAssertEqual(event.isAutoExecution, false)
-                        XCTAssertEqual(event.isNmsConditional, false)
-                        XCTAssertEqual(event.otcMarketsFlags, order2.otcMarketsFlags)
-                        receivedEvent1Exp.fulfill()
+                    events.forEach { event in
+                        XCTAssertEqual(event.type, .otcMarketsOrder)
+                        var event = event.otcMarketsOrder
+                        if event.eventSymbol == SYMBOL1 {
+                            XCTAssertEqual(event.marketMaker, "MM1")
+                            XCTAssertEqual(event.price, 10)
+                            XCTAssertEqual(event.quoteAccessPayment, -30)
+                            XCTAssertEqual(event.isOpen, true)
+                            XCTAssertEqual(event.isUnsolicited, true)
+                            XCTAssertEqual(event.otcMarketsPriceType, .actual)
+                            XCTAssertEqual(event.isSaturated, true)
+                            XCTAssertEqual(event.isAutoExecution, true)
+                            XCTAssertEqual(event.isNmsConditional, true)
+                            XCTAssertEqual(event.otcMarketsFlags, order1.otcMarketsFlags)
+                            receivedEvent1Exp.fulfill()
+                        } else if event.eventSymbol == SYMBOL2 {
+                            XCTAssertEqual(event.marketMaker, "MM2")
+                            XCTAssertEqual(event.price, 10)
+                            XCTAssertEqual(event.quoteAccessPayment, -30)
+                            XCTAssertEqual(event.isOpen, true)
+                            XCTAssertEqual(event.isUnsolicited, true)
+                            XCTAssertEqual(event.otcMarketsPriceType, .wanted)
+                            XCTAssertEqual(event.isSaturated, true)
+                            XCTAssertEqual(event.isAutoExecution, false)
+                            XCTAssertEqual(event.isNmsConditional, false)
+                            XCTAssertEqual(event.otcMarketsFlags, order2.otcMarketsFlags)
+                            receivedEvent1Exp.fulfill()
+                        }
                     }
                 }
             }

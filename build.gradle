@@ -6,7 +6,7 @@ repositories {
     }
 }
 
-def native_version = '1.1.8'
+def native_version = '1.1.10'
 def name = 'graal-native-sdk'
 dependencies {
     implementation(group: 'com.dxfeed', name: "${name}", version: "${native_version}", classifier: 'aarch64-osx', ext: 'zip')
@@ -28,6 +28,8 @@ task fetchDependencies(type: Copy) {
     }
     from sourceSets.main.runtimeClasspath
     into 'downloads'
+
+    new File('graal_builds').deleteDir()
 
     doLast {
         println "fetch dep:"
