@@ -30,7 +30,8 @@ class EventMapper: Mapper {
                                                     .analyticOrder: AnalyticOrderMapper(),
                                                     .spreadOrder: SpreadOrderMapper(),
                                                     .series: SeriesMapper(),
-                                                    .optionSale: OptionSaleMapper()]
+                                                    .optionSale: OptionSaleMapper(),
+                                                    .otcMarketsOrder: OtcMarketsOrderMapper()]
 
     func fromNative(native: UnsafeMutablePointer<dxfg_event_type_t>) throws -> MarketEvent? {
         let code = try EnumUtil.valueOf(value: EventCode.convert(native.pointee.clazz))

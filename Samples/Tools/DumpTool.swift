@@ -52,6 +52,13 @@ class DumpTool: ToolsCommand {
 
     private var listeners = [EventListener]()
 
+    fileprivate func close(_ inputEndpoint: DXEndpoint, _ outputEndpoint: DXEndpoint?) throws {
+        try inputEndpoint.awaitNotConnected()
+        try inputEndpoint.closeAndAwaitTermination()
+        try outputEndpoint?.awaitProcessed()
+        try outputEndpoint?.closeAndAwaitTermination()
+    }
+
     func execute() {
         let address = arguments[1]
         let symbols = arguments.parseSymbols()
@@ -91,12 +98,8 @@ class DumpTool: ToolsCommand {
                 try outputEndpoint?.connect("tape:\(tapeFile)")
                 publisher = outputEndpoint?.getPublisher()
                 listeners.append(EventListener(callback: { [weak self] events in
-                    do {
-                        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.3) {
-                                                   try? self?.publisher?.publish(events: events)
-                                               }
-                    } catch {
-                        print("Connect tool publish error: \(error)")
+                    DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.3) {
+                        try? self?.publisher?.publish(events: events)
                     }
                 }))
             }
@@ -108,11 +111,7 @@ class DumpTool: ToolsCommand {
 
             try inputEndpoint.connect(address)
 
-            try inputEndpoint.awaitNotConnected()
-            try inputEndpoint.closeAndAwaitTermination()
-
-            try outputEndpoint?.awaitProcessed()
-            try outputEndpoint?.closeAndAwaitTermination()
+            try close(inputEndpoint, outputEndpoint)
         } catch {
             print("Dump tool error: \(error)")
         }

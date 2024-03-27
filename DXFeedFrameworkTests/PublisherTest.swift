@@ -42,14 +42,6 @@ final class PublisherTest: XCTestCase {
                 .build()
             let publisher = endpoint?.getPublisher()
             let connectedExpectation = expectation(description: "Connected")
-            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.3) {
-                print("\(pthread_mach_thread_np(pthread_self()))")
-                print(Thread.current.threadName)
-            }
-            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.3) {
-                print("\(pthread_mach_thread_np(pthread_self()))")
-                print(Thread.current.threadName)
-            }
             let stateListener: TestEndpoointStateListener? = TestEndpoointStateListener { listener in
                 listener.callback = { state in
                     if state == .connected {

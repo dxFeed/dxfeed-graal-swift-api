@@ -73,6 +73,11 @@ extension MarketEvent {
     public var optionSale: OptionSale {
         return (self as? OptionSale)!
     }
+    /// Use only for event.type is ``EventCode/otcMarketsOrder``
+    public var otcMarketsOrder: OtcMarketsOrder {
+        return (self as? OtcMarketsOrder)!
+    }
+
     /// Use only for event.type which supported  ``ILastingEvent``
     public var lastingEvent: ILastingEvent? {
         switch self.type {
