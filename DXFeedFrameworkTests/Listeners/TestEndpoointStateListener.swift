@@ -12,10 +12,6 @@ class TestEndpoointStateListener: DXEndpointListener, Hashable {
         callback(new)
     }
 
-    deinit {
-        print("deinit TestEndpoointStateListener \(Thread.current.threadName) \(Thread.current.name ?? "")")
-    }
-
     static func == (lhs: TestEndpoointStateListener, rhs: TestEndpoointStateListener) -> Bool {
         lhs === rhs
     }

@@ -19,10 +19,6 @@ class QuoteViewController: UIViewController {
 
     var isConnected = false
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     func updateConnectButton() {
         DispatchQueue.main.async {
             self.connectButton.setTitle(self.isConnected ? "Disconnect" : "Connect", for: .normal)
