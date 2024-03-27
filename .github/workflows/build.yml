@@ -53,11 +53,6 @@ jobs:
       - name: Zip Documentations
         run: cd documentations/Build/Products/Debug; zip ../../../../documentation.zip DXFeedFramework.doccarchive -r; cd -
 
-      - name: Commit Docs
-        run: |
-          git add docs
-          git commit -m "Update DocC"
-
       - name: Check file
         run: ls -al release_sp.sh        
 
@@ -70,7 +65,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git commit Package.swift -m "Update Package.swift"
 
-      - name: Push to swift branch. Update swift package and DocC.
+      - name: Push to swift branch. Update swift package.
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
