@@ -78,7 +78,7 @@ public class Promise {
     /// - Returns: result of computation.
     /// - Throws : GraalException. Rethrows exception from Java
     public func await(millis timeOut: Int32) throws {
-        try native.await(millis: timeOut)
+        _ = try native.await(millis: timeOut)
     }
     /// Wait for computation to complete and return its result or throw an exception in case of exceptional completion.
     /// If the wait times out, then the computation is ``cancel()`` cancelled and exception is thrown.
