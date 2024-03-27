@@ -9,92 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Quote View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="QuoteViewController" customModule="DXARQuoteTableApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="740" verticalCompressionResistancePriority="740" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="demo.dxfeed.com:7300" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N4U-G9-2iX">
-                                <rect key="frame" x="15" y="79.666666666666671" width="233" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vaf-y4-aEy">
-                                <rect key="frame" x="263" y="79" width="120" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="8fN-Hp-uf8"/>
-                                    <constraint firstAttribute="height" constant="35" id="wgN-qC-J4k"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Connect"/>
-                                <connections>
-                                    <action selector="connectTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1zx-4p-1gs"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ETH/USD:GDAX" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wcs-LR-85q">
-                                <rect key="frame" x="14.999999999999986" y="133.66666666666666" width="231.66666666666663" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="Ls7-M5-yV5"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDX-TW-ZYB">
-                                <rect key="frame" x="257.66666666666669" y="133" width="125.33333333333331" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="mEh-k6-PJ4"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Subscribe"/>
-                                <connections>
-                                    <action selector="subscribeTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zHE-Zo-szN"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hwD-zA-Ffc">
-                                <rect key="frame" x="0.0" y="186" width="393" height="237"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="237" id="cGi-oc-s5R"/>
-                                </constraints>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="hwD-zA-Ffc" firstAttribute="top" secondItem="wDX-TW-ZYB" secondAttribute="bottom" constant="18" id="2FP-7i-RMu"/>
-                            <constraint firstItem="N4U-G9-2iX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="919-Tu-w43"/>
-                            <constraint firstItem="wDX-TW-ZYB" firstAttribute="leading" secondItem="wcs-LR-85q" secondAttribute="trailing" constant="11" id="IFO-eB-Cr2"/>
-                            <constraint firstItem="wcs-LR-85q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="Ig9-DQ-e8I"/>
-                            <constraint firstItem="hwD-zA-Ffc" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="KxV-p7-R5c"/>
-                            <constraint firstItem="wDX-TW-ZYB" firstAttribute="centerY" secondItem="wcs-LR-85q" secondAttribute="centerY" id="Orb-ZI-hKH"/>
-                            <constraint firstItem="hwD-zA-Ffc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="X91-c8-BRP"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wDX-TW-ZYB" secondAttribute="trailing" constant="10" id="Zix-ay-ee4"/>
-                            <constraint firstItem="wcs-LR-85q" firstAttribute="width" secondItem="N4U-G9-2iX" secondAttribute="width" multiplier="0.994956" id="bhV-lK-kyl"/>
-                            <constraint firstItem="wcs-LR-85q" firstAttribute="top" secondItem="N4U-G9-2iX" secondAttribute="bottom" constant="20" id="evX-Fa-xB7"/>
-                            <constraint firstItem="Vaf-y4-aEy" firstAttribute="centerY" secondItem="N4U-G9-2iX" secondAttribute="centerY" id="hsN-LM-xJq"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Vaf-y4-aEy" secondAttribute="trailing" constant="10" id="pDP-ci-Hvh"/>
-                            <constraint firstItem="Vaf-y4-aEy" firstAttribute="leading" secondItem="N4U-G9-2iX" secondAttribute="trailing" constant="15" id="rU2-Tg-0WN"/>
-                            <constraint firstItem="Vaf-y4-aEy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="yUn-fv-bWY"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="addressTextField" destination="N4U-G9-2iX" id="EFi-7S-Wik"/>
-                        <outlet property="connectButton" destination="Vaf-y4-aEy" id="SaJ-eK-3Xv"/>
-                        <outlet property="eventsTextView" destination="hwD-zA-Ffc" id="uYl-Bs-rAv"/>
-                        <outlet property="subscribeButton" destination="wDX-TW-ZYB" id="IR4-7u-82f"/>
-                        <outlet property="symbolTextField" destination="wcs-LR-85q" id="F82-p4-p7Y"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="139.69465648854961" y="4.9295774647887329"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="QKB-6U-fsV">
             <objects>
@@ -142,7 +56,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bpL-FX-1nC">
                                                             <rect key="frame" x="201.66666666666663" y="5" width="171.33333333333337" height="80"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfZ-3h-hz9" customClass="PaddingLabel" customModule="DXARQuoteTableApp" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OfZ-3h-hz9" customClass="PaddingLabel" customModule="DXARQuoteTableApp" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="84" height="80"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -153,7 +67,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="my2-SE-epx" customClass="PaddingLabel" customModule="DXARQuoteTableApp" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="my2-SE-epx" customClass="PaddingLabel" customModule="DXARQuoteTableApp" customModuleProvider="target">
                                                                     <rect key="frame" x="87.000000000000028" y="0.0" width="84.333333333333343" height="80"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -507,17 +421,14 @@
     </scenes>
     <designables>
         <designable name="OfZ-3h-hz9">
-            <size key="intrinsicContentSize" width="41.666666666666671" height="30.333333333333332"/>
+            <size key="intrinsicContentSize" width="24.666666666666668" height="20.333333333333332"/>
         </designable>
         <designable name="my2-SE-epx">
-            <size key="intrinsicContentSize" width="45.333333333333329" height="30.333333333333332"/>
+            <size key="intrinsicContentSize" width="28.333333333333332" height="20.333333333333332"/>
         </designable>
     </designables>
     <resources>
         <image name="pencil" catalog="system" width="128" height="113"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

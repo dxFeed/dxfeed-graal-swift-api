@@ -125,7 +125,6 @@
 		644BD7612A44726F00A0BF99 /* ARQuoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BD7602A44726F00A0BF99 /* ARQuoteTableViewController.swift */; };
 		644BD7662A44727000A0BF99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 644BD7652A44727000A0BF99 /* Assets.xcassets */; };
 		644BD7692A44727000A0BF99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644BD7672A44727000A0BF99 /* LaunchScreen.storyboard */; };
-		644BD76F2A44746000A0BF99 /* QuoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6272C2A375C0E00196D07 /* QuoteViewController.swift */; };
 		644BD7702A44746000A0BF99 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6272F2A375C0F00196D07 /* PaddingLabel.swift */; };
 		644BD7712A44746000A0BF99 /* QuoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B627322A375C0F00196D07 /* QuoteTableViewController.swift */; };
 		644BD7722A44746000A0BF99 /* QuoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B627292A375C0E00196D07 /* QuoteModel.swift */; };
@@ -201,13 +200,13 @@
 		646D19E32A3C994100C82315 /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
 		647426AD2ABC85F20012F793 /* Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426AC2ABC85F20012F793 /* Arguments.swift */; };
 		647426AF2ABC93900012F793 /* EventCode+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426AE2ABC93900012F793 /* EventCode+String.swift */; };
+		64820AAF2BB2E26100BDFD0B /* DXOtcMarketOrderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64820AAE2BB2E26100BDFD0B /* DXOtcMarketOrderTest.swift */; };
 		6482F3D12BA492A60079AC3D /* SymbolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482F3D02BA492A60079AC3D /* SymbolsViewController.swift */; };
 		6482F3D22BA492A60079AC3D /* SymbolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482F3D02BA492A60079AC3D /* SymbolsViewController.swift */; };
 		6482F3D72BA49AB70079AC3D /* AddSymbolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482F3D62BA49AB70079AC3D /* AddSymbolsViewController.swift */; };
 		6482F3D82BA49AB70079AC3D /* AddSymbolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482F3D62BA49AB70079AC3D /* AddSymbolsViewController.swift */; };
 		6482F3DA2BA83AA20079AC3D /* SymbolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482F3D92BA83AA20079AC3D /* SymbolCell.swift */; };
 		6482F3DB2BA83AA20079AC3D /* SymbolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482F3D92BA83AA20079AC3D /* SymbolCell.swift */; };
-		64820AAF2BB2E26100BDFD0B /* DXOtcMarketOrderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64820AAE2BB2E26100BDFD0B /* DXOtcMarketOrderTest.swift */; };
 		648468AC2B0D06FA008297AE /* DXDateOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648468AB2B0D06FA008297AE /* DXDateOffset.swift */; };
 		6486B9582AD00BDC00D8D5FA /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9572AD00BDC00D8D5FA /* Summary.swift */; };
 		6486B95B2AD015B400D8D5FA /* PriceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B95A2AD015B400D8D5FA /* PriceType.swift */; };
@@ -292,7 +291,6 @@
 		64B436572AB9D3470003919E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64B436562AB9D3470003919E /* Assets.xcassets */; };
 		64B4365A2AB9D3470003919E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B436582AB9D3470003919E /* LaunchScreen.storyboard */; };
 		64B627352A375C0F00196D07 /* QuoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B627292A375C0E00196D07 /* QuoteModel.swift */; };
-		64B627382A375C0F00196D07 /* QuoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6272C2A375C0E00196D07 /* QuoteViewController.swift */; };
 		64B627392A375C0F00196D07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6272D2A375C0E00196D07 /* AppDelegate.swift */; };
 		64B6273A2A375C0F00196D07 /* QuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6272E2A375C0F00196D07 /* QuoteCell.swift */; };
 		64B6273B2A375C0F00196D07 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6272F2A375C0F00196D07 /* PaddingLabel.swift */; };
@@ -727,10 +725,10 @@
 		646D19E02A3C970700C82315 /* DXFTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFTimer.swift; sourceTree = "<group>"; };
 		647426AC2ABC85F20012F793 /* Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arguments.swift; sourceTree = "<group>"; };
 		647426AE2ABC93900012F793 /* EventCode+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventCode+String.swift"; sourceTree = "<group>"; };
+		64820AAE2BB2E26100BDFD0B /* DXOtcMarketOrderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXOtcMarketOrderTest.swift; sourceTree = "<group>"; };
 		6482F3D02BA492A60079AC3D /* SymbolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsViewController.swift; sourceTree = "<group>"; };
 		6482F3D62BA49AB70079AC3D /* AddSymbolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSymbolsViewController.swift; sourceTree = "<group>"; };
 		6482F3D92BA83AA20079AC3D /* SymbolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolCell.swift; sourceTree = "<group>"; };
-		64820AAE2BB2E26100BDFD0B /* DXOtcMarketOrderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXOtcMarketOrderTest.swift; sourceTree = "<group>"; };
 		648468AB2B0D06FA008297AE /* DXDateOffset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXDateOffset.swift; sourceTree = "<group>"; };
 		6486B9572AD00BDC00D8D5FA /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		6486B95A2AD015B400D8D5FA /* PriceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceType.swift; sourceTree = "<group>"; };
@@ -814,7 +812,6 @@
 		64B4365B2AB9D3470003919E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64B627152A375BBA00196D07 /* DXQuoteTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXQuoteTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B627292A375C0E00196D07 /* QuoteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteModel.swift; sourceTree = "<group>"; };
-		64B6272C2A375C0E00196D07 /* QuoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteViewController.swift; sourceTree = "<group>"; };
 		64B6272D2A375C0E00196D07 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64B6272E2A375C0F00196D07 /* QuoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteCell.swift; sourceTree = "<group>"; };
 		64B6272F2A375C0F00196D07 /* PaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
@@ -1444,7 +1441,6 @@
 				64B6272F2A375C0F00196D07 /* PaddingLabel.swift */,
 				64B627292A375C0E00196D07 /* QuoteModel.swift */,
 				64B627322A375C0F00196D07 /* QuoteTableViewController.swift */,
-				64B6272C2A375C0E00196D07 /* QuoteViewController.swift */,
 				64B6272E2A375C0F00196D07 /* QuoteCell.swift */,
 				64B627342A375C0F00196D07 /* SceneDelegate.swift */,
 				6482F3D02BA492A60079AC3D /* SymbolsViewController.swift */,
@@ -2266,7 +2262,6 @@
 				644BD7742A44746000A0BF99 /* SceneDelegate.swift in Sources */,
 				644BD7792A44746C00A0BF99 /* DXFTimer.swift in Sources */,
 				644BD7702A44746000A0BF99 /* PaddingLabel.swift in Sources */,
-				644BD76F2A44746000A0BF99 /* QuoteViewController.swift in Sources */,
 				644BD7712A44746000A0BF99 /* QuoteTableViewController.swift in Sources */,
 				644BD75D2A44726F00A0BF99 /* AppDelegate.swift in Sources */,
 				640F8A542BA9C8D600C7BE22 /* SymbolsDataProvider.swift in Sources */,
@@ -2316,7 +2311,6 @@
 				64B6273E2A375C0F00196D07 /* QuoteTableViewController.swift in Sources */,
 				64B627392A375C0F00196D07 /* AppDelegate.swift in Sources */,
 				64B627352A375C0F00196D07 /* QuoteModel.swift in Sources */,
-				64B627382A375C0F00196D07 /* QuoteViewController.swift in Sources */,
 				6482F3DA2BA83AA20079AC3D /* SymbolCell.swift in Sources */,
 				6482F3D12BA492A60079AC3D /* SymbolsViewController.swift in Sources */,
 			);
