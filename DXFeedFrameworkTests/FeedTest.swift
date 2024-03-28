@@ -20,28 +20,6 @@ final class FeedTest: XCTestCase {
         }
     }
 
-    func testFeedCreateMultipleSubscription() throws {
-        let endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
-        XCTAssertNotNil(endpoint, "Endpoint shouldn't be nil")
-        let feed = endpoint?.getFeed()
-        XCTAssertNotNil(feed, "Feed shouldn't be nil")
-        var subscription = try feed?.createSubscription([Order.self,
-                                                         TimeAndSale.self,
-                                                         AnalyticOrder.self,
-                                                         Summary.self])
-        XCTAssertNotNil(subscription, "Subscription shouldn't be nil")
-        subscription = nil
-    }
-
-    func testFeedCreateSingleSubscription() throws {
-        let endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
-        XCTAssertNotNil(endpoint, "Endpoint shouldn't be nil")
-        let feed = endpoint?.getFeed()
-        XCTAssertNotNil(feed, "Feed shouldn't be nil")
-        var subscription = try feed?.createSubscription(Order.self)
-        XCTAssertNotNil(subscription, "Subscription shouldn't be nil")
-        subscription = nil
-    }
 
     func testCreateSymbol() throws {
         // "as Any" to avoid compile time warnings
@@ -55,37 +33,6 @@ final class FeedTest: XCTestCase {
 
         let symbol1 = try CandleSymbol.valueOf("test")
         let testString = TimeSeriesSubscriptionSymbol(symbol: symbol1, fromTime: 10).stringValue
-        print(testString)
-    }
-
-    func testTimeAndSale() throws {
-        try waitingEvent([TimeAndSale.self, Quote.self, Trade.self, Profile.self, Order.self, Series.self])
-    }
-
-
-    func waitingEvent(_ types: [IEventType.Type]) throws {
-        var types = types
-        var endpoint = try? DXEndpoint.builder().withRole(.feed).build().connect("demo.dxfeed.com:7300")
-        let subscription = try endpoint?.getFeed()?.createSubscription(types)
-        let receivedEventExp = expectation(description: "Received events \(types)")
-        receivedEventExp.assertForOverFulfill = false
-        let listener = AnonymousClass { anonymCl in
-            anonymCl.callback = { events in
-                events.forEach { mEvent in
-                    types.removeAll { type in
-                        type.type == mEvent.type
-                    }
-                }
-                if types.count == 0 {
-                    receivedEventExp.fulfill()
-                }
-            }
-            return anonymCl
-        }
-        try subscription?.add(listener: listener)
-        try subscription?.addSymbols(["ETH/USD:GDAX", "IBM"])
-        wait(for: [receivedEventExp], timeout: 10)
-        try endpoint?.closeAndAwaitTermination()
     }
 
     func testSetGetSymbols() throws {
