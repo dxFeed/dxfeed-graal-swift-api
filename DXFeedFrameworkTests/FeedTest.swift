@@ -20,14 +20,6 @@ final class FeedTest: XCTestCase {
         }
     }
 
-    func testFeedCreation() throws {
-        let endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
-        XCTAssertNotNil(endpoint, "Endpoint shouldn't be nil")
-        var feed = endpoint?.getFeed()
-        XCTAssertNotNil(feed, "Feed shouldn't be nil")
-        feed = nil
-    }
-
     func testFeedCreateMultipleSubscription() throws {
         let endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint shouldn't be nil")
