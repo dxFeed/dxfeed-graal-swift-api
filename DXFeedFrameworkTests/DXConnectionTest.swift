@@ -71,5 +71,6 @@ final class DXConnectionTest: XCTestCase {
         try endpoint.connect("demo.dxfeed.com:7300")
 
         wait(for: [receivedEventsExpectation], timeout: 2)
+        try endpoint.closeAndAwaitTermination()
     }
 }

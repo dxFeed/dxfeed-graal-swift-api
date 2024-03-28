@@ -73,7 +73,9 @@ final class CandleTests: XCTestCase {
         try subscription?.addSymbols(symbol)
         wait(for: [receivedEventExp], timeout: 10)
         try? endpoint?.disconnect()
+        try endpoint?.closeAndAwaitTermination()
         endpoint = nil
+
     }
 
     func testParseShortSymbol() throws {
