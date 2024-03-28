@@ -26,7 +26,6 @@
         "DXObservableSubscriptionTest",
         "DXSnapshotProcessorTest",
         "EndpointTest\/testGetInstance()",
-        "FeedTest",
         "IPFTests\/testResolveSourceURL()",
         "IsolateTest",
         "IsolateTest\/test123()",
