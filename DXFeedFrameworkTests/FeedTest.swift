@@ -106,6 +106,7 @@ final class FeedTest: XCTestCase {
         wait(for: [receivedEventExp], timeout: 5)
 
         try subscription?.removeSymbols(symbols)
+        try endpoint?.closeAndAwaitTermination()
     }
 
     func testTimeAndSale() throws {
@@ -202,6 +203,7 @@ final class FeedTest: XCTestCase {
         try subscription?.add(listener: listener)
         try subscription?.addSymbols(["ETH/USD:GDAX", "IBM"])
         wait(for: [receivedEventExp], timeout: 10)
+        try endpoint.closeAndAwaitTermination()
     }
 
     func testSetGetSymbols() throws {

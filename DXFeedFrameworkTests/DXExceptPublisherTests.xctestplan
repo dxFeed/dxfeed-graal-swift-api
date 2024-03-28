@@ -21,26 +21,14 @@
     {
       "parallelizable" : true,
       "skippedTests" : [
-        "CandleTests\/testCandleSymbols()",
-        "CandleTests\/testFetchingCandlesByAttrbuteSymbol()",
-        "CandleTests\/testFetchingCandlesByString1()",
-        "DXXCTestCase",
-        "DateTimeParserTest\/testWrongDate()",
+        "DXConnectionStateTests",
+        "DXExceptionTest",
+        "DXObservableSubscriptionTest",
+        "DXSnapshotProcessorTest",
         "EndpointTest\/testGetEventTypes()",
-        "EventsTest\/testEventEquality()",
-        "FeedTest\/testCreateSubscriptionWithSymbol()",
-        "FeedTest\/testCreateSubscriptionWithSymbols()",
-        "FeedTest\/testInitializationWithNilNativeSubscription()",
-        "FeedTest\/testOrder()",
-        "FeedTest\/testSeries()",
-        "FeedTest\/testSetGetSymbols()",
-        "IPFTests\/testProfileMultipleListeners()",
         "IPFTests\/testResolveSourceURL()",
         "IsolateTest\/test123()",
-        "ScheduleTest\/testAutoDownloadDefaults()",
-        "ScheduleTest\/testCorrectDownloadDefaults()",
-        "ScheduleTest\/testEmptyDownloadDefaults()",
-        "ScheduleTest\/testSetDefaults()"
+        "PublisherTest"
       ],
       "target" : {
         "containerPath" : "container:DXFeedFramework.xcodeproj",

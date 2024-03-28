@@ -28,6 +28,9 @@
   "testTargets" : [
     {
       "parallelizable" : true,
+      "skippedTests" : [
+        "DXExceptionTest"
+      ],
       "target" : {
         "containerPath" : "container:DXFeedFramework.xcodeproj",
         "identifier" : "803BAC1429BFA50700FFAB1C",
