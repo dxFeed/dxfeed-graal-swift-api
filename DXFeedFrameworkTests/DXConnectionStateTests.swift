@@ -10,10 +10,11 @@ import XCTest
 final class DXConnectionStateTests: XCTestCase {
     static let port = Int.random(in: 7800..<7900)
     static let endpointAddress = "localhost:\(port)"
-
+   
     static var publisherEndpoint: DXEndpoint?
 
     override class func setUp() {
+        // publisherEndpoint receives incoming connection
         publisherEndpoint = try? DXEndpoint.builder().withRole(.publisher).withProperty("test", "value").build()
         _ = try? publisherEndpoint?.connect(":\(Self.port)")
     }
@@ -50,6 +51,7 @@ final class DXConnectionStateTests: XCTestCase {
             element.key == .notConnected
         }).values)
         wait(for: expsNotConnected, timeout: 1)
+        try? endpoint?.closeAndAwaitTermination()
     }
 
     func testListenerDealloc() throws {
@@ -69,6 +71,7 @@ final class DXConnectionStateTests: XCTestCase {
         _ = try endpoint?.connect(Self.endpointAddress)
         try endpoint?.disconnect()
         XCTAssertEqual(try endpoint?.getState(), .notConnected)
+        try? endpoint?.closeAndAwaitTermination()
     }
 
     func testReconnect() throws {
@@ -81,7 +84,7 @@ final class DXConnectionStateTests: XCTestCase {
         }), evaluatedWith: endpoint)], timeout: 2)
         XCTAssertEqual(try endpoint.getState(), .connected)
         try endpoint.reconnect()
-        try endpoint.close()
+        try endpoint.closeAndAwaitTermination()
         XCTAssertEqual(try endpoint.getState(), .closed)
     }
 
@@ -107,6 +110,7 @@ final class DXConnectionStateTests: XCTestCase {
         }), evaluatedWith: endpoint)], timeout: 2)
         try endpoint.disconnectAndClear()
         XCTAssertEqual(try endpoint.getState(), .notConnected)
+        try? endpoint.closeAndAwaitTermination()
     }
 
 }

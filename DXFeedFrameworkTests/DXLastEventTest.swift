@@ -146,6 +146,7 @@ final class DXLastEventTest: XCTestCase {
             }
             wait(for: [connectedExpectation], timeout: 1)
             fetching(endpoint?.getFeed())
+            try endpoint?.closeAndAwaitTermination()
         } catch {
             XCTAssert(false, "\(error)")
         }
