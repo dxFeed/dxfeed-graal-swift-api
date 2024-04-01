@@ -22,6 +22,10 @@ class ConcurrentSet<T>: CustomStringConvertible where T: Hashable {
         reader { $0.count }
     }
 
+    public func contains(_ member: T) -> Bool {
+        reader { $0.contains(member) }
+    }
+
     public func insert(_ newMember: T) {
         writer { $0.insert(newMember) }
     }
@@ -33,6 +37,7 @@ class ConcurrentSet<T>: CustomStringConvertible where T: Hashable {
     public func remove(at position: Set<T>.Index) {
         writer { $0.remove(at: position) }
     }
+
     public func removeAll() {
         writer { $0.removeAll() }
     }

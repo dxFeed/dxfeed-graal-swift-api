@@ -23,7 +23,7 @@ class ThreadManager {
     private static let kThreadKey = "GraalThread"
     private static let key = UnsafeMutablePointer<pthread_key_t>.allocate(capacity: 1)
     static var str1: String = ""
-    private static var graalThreads = Set<String>()
+    private static var graalThreads = ConcurrentSet<String>()
 
     private init() {
         pthread_key_create(ThreadManager.key) { pointer in
@@ -58,11 +58,13 @@ class ThreadManager {
     }
 
     static func insertPthread() {
-        graalThreads.insert("\(pthread_mach_thread_np(pthread_self()))")
+        let value = "\(pthread_mach_thread_np(pthread_self()))"
+        graalThreads.insert(value)
     }
 
     static func containsPthread() -> Bool {
-        ThreadManager.graalThreads.contains("\(pthread_mach_thread_np(pthread_self()))")
+        let value = "\(pthread_mach_thread_np(pthread_self()))"
+        return ThreadManager.graalThreads.contains(value)
     }
 
 }
