@@ -45,20 +45,26 @@ class PerfTestTool: ToolsCommand {
         }
         let listener = PerfTestEventListener()
 
+        let symbols = arguments.parseSymbols()
+        let types = arguments.parseTypes(at: 2)
         subscription.createSubscription(address: address,
-                                        symbols: arguments.parseSymbols(),
-                                        types: arguments.parseTypes(at: 2),
+                                        symbols: symbols,
+                                        types: types,
                                         role: arguments.isForceStream ? .streamFeed : .feed,
                                         listeners: [listener],
                                         properties: arguments.properties,
                                         time: nil)
 
         let timer = DXFTimer(timeInterval: 2)
-        let printer = PerformanceMetricsPrinter()
+        let printers = [SamplePerformancePrinter(),
+                        MonitoringStatsPrinter(numberOfSubscription: symbols.count * types.count,
+                                               address: address)] as [PerformanceMetricsPrinter]
         timer.eventHandler = {
             let metrics = listener.metrics()
             listener.updateCpuUsage()
-            printer.update(metrics)
+            printers.forEach({ printer in
+                printer.update(metrics)
+            })
         }
         timer.resume()
         // Calculate till input new line

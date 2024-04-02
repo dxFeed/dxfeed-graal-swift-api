@@ -56,6 +56,10 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "PerfTest  demo.dxfeed.com:7300 TimeAndSale,Quote,profile ETH/USD:GDAX,AAPL -p monitoring.stat=2s"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = " qds post :6666"
             isEnabled = "NO">
          </CommandLineArgument>
@@ -68,7 +72,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "qds connect demo.dxfeed.com:7300 Quote AAPL,IBM"
+            argument = "qds connect demo.dxfeed.com:7300 TimeAndSale AAPL,AAPL2,IBM,ETH/USD:GDAX -p monitoring.stat=10s"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
@@ -81,7 +85,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = " Dump demo.dxfeed.com:7300 timeandsale,quote,profile,order,trade IBM,AAPL,ETH/USD:GDAX -p dxfeed.wildcard.enable=true,one_more_prop=abc -t test_tape_ios.txt[format=text] -q"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = " Dump localhost:6666 TimeAndSale all -p dxfeed.wildcard.enable=true,one_more_prop=abc -t test_tape_ios.txt[format=text] -q"

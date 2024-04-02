@@ -6,7 +6,11 @@
 
 import Foundation
 
-class PerformanceMetricsPrinter {
+protocol PerformanceMetricsPrinter {
+    func update(_ metrics: PerformanceMetrics)
+}
+
+class SamplePerformancePrinter: PerformanceMetricsPrinter {
     let numberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
