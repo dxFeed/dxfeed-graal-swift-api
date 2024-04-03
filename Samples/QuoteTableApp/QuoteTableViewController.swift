@@ -17,7 +17,6 @@ class QuoteTableViewController: UIViewController {
     let dataProvider = SymbolsDataProvider()
 
     @IBOutlet var quoteTableView: UITableView!
-    @IBOutlet var connectionStatusLabel: UILabel!
     @IBOutlet var agregationSwitch: UISwitch!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var addButton: UIButton!
@@ -25,14 +24,11 @@ class QuoteTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        agregationSwitch.isHidden = true
         titleLabel.textColor = .text
-        connectionStatusLabel.textColor = .text
         self.view.backgroundColor = .tableBackground
         self.quoteTableView.backgroundColor = .clear
 
         quoteTableView.separatorStyle = .none
-        self.connectionStatusLabel.text = DXEndpointState.notConnected.convetToString()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -45,7 +41,7 @@ class QuoteTableViewController: UIViewController {
                 dataSource[$0] = QuoteModel()
             }
             quoteTableView.reloadData()
-            self.subscribe(self.agregationSwitch.isOn)
+            self.subscribe(false)
         }
     }
 
@@ -84,9 +80,7 @@ class QuoteTableViewController: UIViewController {
 
 extension QuoteTableViewController: DXEndpointListener {
     func endpointDidChangeState(old: DXEndpointState, new: DXEndpointState) {
-        DispatchQueue.main.async {
-            self.connectionStatusLabel.text = new.convetToString()
-        }
+
     }
 }
 

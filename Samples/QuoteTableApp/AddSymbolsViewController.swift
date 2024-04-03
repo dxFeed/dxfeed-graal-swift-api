@@ -79,6 +79,11 @@ class AddSymbolsViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
+    @IBAction func clearTouchUpInside(_ sender: UIButton) {
+        self.selectedSymbols = Set()
+        symbolsTableView.reloadData()
+    }
+
     func reloadData(symbols: [InstrumentInfo]) {
         self.symbols = symbols.sorted()
         changeActivityIndicator()
