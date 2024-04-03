@@ -11,7 +11,7 @@ import DXFeedFramework
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        UIButton.appearance().tintColor = .text
+//        UIButton.appearance().tintColor = .text
 //        var thread: Thread? = Thread {
 //            var endpoint = try? DXEndpoint.create()
 //            print("execute1 in new thread \(pthread_mach_thread_np(pthread_self()))")
