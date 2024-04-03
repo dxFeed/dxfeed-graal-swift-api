@@ -189,8 +189,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Symbols" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoO-1b-zGR">
-                                <rect key="frame" x="144.33333333333334" y="0.0" width="104.66666666666666" height="34.333333333333336"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Table" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoO-1b-zGR">
+                                <rect key="frame" x="138" y="0.0" width="117" height="34.333333333333336"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -346,15 +346,15 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAp-V5-Z62">
-                                <rect key="frame" x="10" y="58.666666666666657" width="39.666666666666664" height="34.333333333333343"/>
+                                <rect key="frame" x="10" y="59" width="39.666666666666664" height="34.333333333333343"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system"/>
                                 <connections>
                                     <action selector="cancelTouchUpInside:" destination="79B-Xp-7rI" eventType="touchUpInside" id="RjE-8p-g81"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add symbols" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLk-vV-8iK">
-                                <rect key="frame" x="118" y="59" width="157" height="33.666666666666657"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Symbols" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLk-vV-8iK">
+                                <rect key="frame" x="116" y="59" width="161" height="34"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -362,14 +362,6 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="zJJ-7e-ZQd">
                                 <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WrJ-Bm-Xd1">
-                                <rect key="frame" x="319" y="58.333333333333343" width="64" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Clear"/>
-                                <connections>
-                                    <action selector="clearTouchUpInside:" destination="79B-Xp-7rI" eventType="touchUpInside" id="tPi-mE-gxg"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="M5x-oT-av7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -377,13 +369,10 @@
                             <constraint firstItem="oAp-V5-Z62" firstAttribute="leading" secondItem="M5x-oT-av7" secondAttribute="leading" constant="10" id="7J6-7c-d7F"/>
                             <constraint firstItem="zJJ-7e-ZQd" firstAttribute="centerX" secondItem="8PD-ZW-3hk" secondAttribute="centerX" id="IhR-M9-vJj"/>
                             <constraint firstItem="NLk-vV-8iK" firstAttribute="centerX" secondItem="8PD-ZW-3hk" secondAttribute="centerX" id="SnC-qE-Yud"/>
-                            <constraint firstItem="M5x-oT-av7" firstAttribute="trailing" secondItem="WrJ-Bm-Xd1" secondAttribute="trailing" constant="10" id="aGm-6S-m3x"/>
                             <constraint firstItem="NLk-vV-8iK" firstAttribute="top" secondItem="M5x-oT-av7" secondAttribute="top" id="bIs-Rd-GQ5"/>
                             <constraint firstItem="NLk-vV-8iK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oAp-V5-Z62" secondAttribute="trailing" constant="10" id="dBZ-t9-uMT"/>
                             <constraint firstItem="M5x-oT-av7" firstAttribute="bottom" secondItem="tEr-Ho-kQr" secondAttribute="bottom" id="eaw-St-FPk"/>
                             <constraint firstItem="zJJ-7e-ZQd" firstAttribute="centerY" secondItem="8PD-ZW-3hk" secondAttribute="centerY" id="hTd-xg-1nj"/>
-                            <constraint firstItem="WrJ-Bm-Xd1" firstAttribute="centerY" secondItem="NLk-vV-8iK" secondAttribute="centerY" id="i7m-fO-UKJ"/>
-                            <constraint firstItem="WrJ-Bm-Xd1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NLk-vV-8iK" secondAttribute="trailing" constant="20" id="ixi-h0-i5s"/>
                             <constraint firstItem="NLk-vV-8iK" firstAttribute="centerY" secondItem="oAp-V5-Z62" secondAttribute="centerY" id="jxJ-oH-D0X"/>
                             <constraint firstItem="tEr-Ho-kQr" firstAttribute="top" secondItem="oAp-V5-Z62" secondAttribute="bottom" constant="20.329999999999998" id="nFT-yB-Pfs"/>
                             <constraint firstItem="M5x-oT-av7" firstAttribute="trailing" secondItem="tEr-Ho-kQr" secondAttribute="trailing" constant="10" id="pNb-fB-tQ5"/>
