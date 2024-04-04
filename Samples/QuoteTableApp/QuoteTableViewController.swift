@@ -24,15 +24,26 @@ class QuoteTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        titleLabel.textColor = .text
         self.view.backgroundColor = .tableBackground
         self.quoteTableView.backgroundColor = .clear
 
         quoteTableView.separatorStyle = .none
+
+        NotificationCenter.default.addObserver(forName: .selectedSymbolsChanged, object: nil, queue: nil) { [weak self] (notification) in
+            guard let strongSelf = self else {
+                return
+            }
+
+            strongSelf.loadQuotes()
+        }
+        loadQuotes()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+
+    func loadQuotes() {
         let newSymbols = dataProvider.selectedSymbols
         if symbols != newSymbols {
             symbols = newSymbols
@@ -44,7 +55,7 @@ class QuoteTableViewController: UIViewController {
             self.subscribe(false)
         }
     }
-
+    
     func subscribe(_ unlimited: Bool) {
         if endpoint == nil {
             try? SystemProperty.setProperty(DXEndpoint.ExtraPropery.heartBeatTimeout.rawValue, "15s")
