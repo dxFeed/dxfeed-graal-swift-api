@@ -24,56 +24,28 @@ struct PerformanceMetrics {
     let currentTime: TimeInterval
 }
 
-class PerfDiagnostic {
-    private var absoluteStartTime: Date?
+class UsageStats {
+    var cpuUsage: Double = 0
+    var peakCpuUsage: Double = 0
 
-    private var cpuUsage: Double = 0
-    private var peakCpuUsage: Double = 0
-
-    private var memmoryUsage: Double = 0
-    private var peakMemmoryUsage: Double = 0
-
-    private var startTime = Date.now
-
-    private var counter = Counter()
-    private var counterListener = Counter()
-
-    private var lastValue: Int64 = 0
-    private var lastListenerValue: Int64 = 0
+    var memmoryUsage: Double = 0
+    var peakMemmoryUsage: Double = 0
 
     let coresCount = ProcessInfo.processInfo.processorCount
 
-    func getMetrics() -> PerformanceMetrics {
-        let lastStart = self.startTime
-        let currentValue = self.counter.value
-        let currentListenerValue = self.counterListener.value
+    func convertThreadInfoToThreadBasicInfo(_ threadInfo: [integer_t]) -> thread_basic_info {
+        var result = thread_basic_info()
 
-        self.startTime = Date.now
-        if absoluteStartTime == nil {
-            absoluteStartTime = self.startTime
-        }
-        let seconds = self.startTime.timeIntervalSince(lastStart)
-        let speed = seconds == 0 ? 0 : Double(currentValue - self.lastValue) / seconds
+        result.user_time = time_value_t(seconds: threadInfo[0], microseconds: threadInfo[1])
+        result.system_time = time_value_t(seconds: threadInfo[2], microseconds: threadInfo[3])
+        result.cpu_usage = threadInfo[4]
+        result.policy = threadInfo[5]
+        result.run_state = threadInfo[6]
+        result.flags = threadInfo[7]
+        result.suspend_count = threadInfo[8]
+        result.sleep_time = threadInfo[9]
 
-        let speedListener =  Double(currentListenerValue - self.lastListenerValue) / seconds
-        let eventsIncall = speed / speedListener
-
-        self.lastValue = currentValue
-        self.lastListenerValue = currentListenerValue
-
-        return PerformanceMetrics(rateOfEvent: NSNumber(value: speed),
-                       rateOfListeners: NSNumber(value: speedListener),
-                       numberOfEvents: NSNumber(value: eventsIncall),
-                       cpuUsage: NSNumber(value: cpuUsage),
-                       peakCpuUsage: NSNumber(value: peakCpuUsage),
-                       memmoryUsage: NSNumber(value: memmoryUsage),
-                       peakMemmoryUsage: NSNumber(value: peakMemmoryUsage),
-                       currentTime: startTime.timeIntervalSince(absoluteStartTime ?? startTime))
-    }
-
-    func updateCounters(_ count: Int64) {
-        counter.add(count)
-        counterListener.add(1)
+        return result
     }
 
     func updateCpuUsage() {
@@ -133,7 +105,7 @@ class PerfDiagnostic {
         return result
     }
 
-    func calculateMemmoryUsage() -> Double {
+    private func calculateMemmoryUsage() -> Double {
         var taskInfo = task_vm_info_data_t()
         var count = mach_msg_type_number_t(MemoryLayout<task_vm_info>.size) / 4
         _ = withUnsafeMutablePointer(to: &taskInfo) {
@@ -145,19 +117,55 @@ class PerfDiagnostic {
         return usedMb
     }
 
-    private func convertThreadInfoToThreadBasicInfo(_ threadInfo: [integer_t]) -> thread_basic_info {
-        var result = thread_basic_info()
+}
 
-        result.user_time = time_value_t(seconds: threadInfo[0], microseconds: threadInfo[1])
-        result.system_time = time_value_t(seconds: threadInfo[2], microseconds: threadInfo[3])
-        result.cpu_usage = threadInfo[4]
-        result.policy = threadInfo[5]
-        result.run_state = threadInfo[6]
-        result.flags = threadInfo[7]
-        result.suspend_count = threadInfo[8]
-        result.sleep_time = threadInfo[9]
+class PerfDiagnostic {
+    private var absoluteStartTime: Date?
 
-        return result
+    private var startTime = Date.now
+
+    private var counter = Counter()
+    private var counterListener = Counter()
+
+    private var lastValue: Int64 = 0
+    private var lastListenerValue: Int64 = 0
+    private let usageStats = UsageStats()
+
+    func getMetrics() -> PerformanceMetrics {
+        let lastStart = self.startTime
+        let currentValue = self.counter.value
+        let currentListenerValue = self.counterListener.value
+
+        self.startTime = Date.now
+        if absoluteStartTime == nil {
+            absoluteStartTime = self.startTime
+        }
+        let seconds = self.startTime.timeIntervalSince(lastStart)
+        let speed = seconds == 0 ? 0 : Double(currentValue - self.lastValue) / seconds
+
+        let speedListener =  Double(currentListenerValue - self.lastListenerValue) / seconds
+        let eventsIncall = speed / speedListener
+
+        self.lastValue = currentValue
+        self.lastListenerValue = currentListenerValue
+
+        return PerformanceMetrics(rateOfEvent: NSNumber(value: speed),
+                                  rateOfListeners: NSNumber(value: speedListener),
+                                  numberOfEvents: NSNumber(value: eventsIncall),
+                                  cpuUsage: NSNumber(value: usageStats.cpuUsage),
+                                  peakCpuUsage: NSNumber(value: usageStats.peakCpuUsage),
+                                  memmoryUsage: NSNumber(value: usageStats.memmoryUsage),
+                                  peakMemmoryUsage: NSNumber(value: usageStats.peakMemmoryUsage),
+                                  currentTime: startTime.timeIntervalSince(absoluteStartTime ?? startTime))
+    }
+
+    func updateCounters(_ count: Int64) {
+        counter.add(count)
+        counterListener.add(1)
+    }
+
+    func updateCpuUsage() {
+        usageStats.updateCpuUsage()
     }
 
     func cleanTime() {

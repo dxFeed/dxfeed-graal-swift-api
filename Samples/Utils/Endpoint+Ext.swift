@@ -9,18 +9,16 @@ import DXFeedFramework
 
 extension DXEndpointState {
     func convetToString() -> String {
-        var status = "Not connected 🔴"
+        var status = "🔴 Not connected"
         switch self {
         case .notConnected:
-            status = "Not connected 🔴"
+            status = "🔴 Not connected"
         case .connecting:
-            status = "Connecting 🟠"
+            status = "🟠 Connecting"
         case .connected:
-            status = "Connected 🟢"
+            status = "🟢 Connected"
         case .closed:
-            status = "Closed 🔴"
-        @unknown default:
-            status = "Not connected 🔴"
+            status = "🔴 Closed"
         }
         return status
     }

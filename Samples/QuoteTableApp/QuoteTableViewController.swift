@@ -13,41 +13,64 @@ class QuoteTableViewController: UIViewController {
     private var profileSubscription: DXFeedSubscription?
 
     var dataSource = [String: QuoteModel]()
-    var symbols = ["AAPL", "IBM", "MSFT", "EUR/CAD", "ETH/USD:GDAX", "GOOG", "BAC", "CSCO", "ABCE", "INTC", "PFE"]
+    var symbols = [String]()
+    let dataProvider = SymbolsDataProvider()
 
     @IBOutlet var quoteTableView: UITableView!
-    @IBOutlet var connectionStatusLabel: UILabel!
     @IBOutlet var agregationSwitch: UISwitch!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var addButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.view.backgroundColor = .tableBackground
-        self.quoteTableView.backgroundColor = .tableBackground
+        self.quoteTableView.backgroundColor = .clear
 
         quoteTableView.separatorStyle = .none
-        self.connectionStatusLabel.text = DXEndpointState.notConnected.convetToString()
+
+        NotificationCenter.default.addObserver(forName: .selectedSymbolsChanged, object: nil, queue: nil) { [weak self] (notification) in
+            guard let strongSelf = self else {
+                return
+            }
+
+            strongSelf.loadQuotes()
+        }
+        loadQuotes()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        subscribe(agregationSwitch.isOn)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
 
+    func loadQuotes() {
+        let newSymbols = dataProvider.selectedSymbols
+        if symbols != newSymbols {
+            symbols = newSymbols
+            dataSource.removeAll()
+            symbols.forEach {
+                dataSource[$0] = QuoteModel()
+            }
+            quoteTableView.reloadData()
+            self.subscribe(false)
+        }
+    }
+    
     func subscribe(_ unlimited: Bool) {
-        if endpoint != nil {
-            try? endpoint?.disconnect()
+        if endpoint == nil {
+            try? SystemProperty.setProperty(DXEndpoint.ExtraPropery.heartBeatTimeout.rawValue, "15s")
+
+            let builder = try? DXEndpoint.builder().withRole(.feed)
+            if !unlimited {
+                _ = try? builder?.withProperty(DXEndpoint.Property.aggregationPeriod.rawValue, "1")
+            }
+            endpoint = try? builder?.build()
+            endpoint?.add(listener: self)
+            _ = try? endpoint?.connect("demo.dxfeed.com:7300")
+        } else {
             subscription = nil
             profileSubscription = nil
         }
-        try? SystemProperty.setProperty(DXEndpoint.ExtraPropery.heartBeatTimeout.rawValue, "10s")
-
-        let builder = try? DXEndpoint.builder().withRole(.feed)
-        if !unlimited {
-            _ = try? builder?.withProperty(DXEndpoint.Property.aggregationPeriod.rawValue, "1")
-        }
-        endpoint = try? builder?.build()
-        endpoint?.add(listener: self)
-        _ = try? endpoint?.connect("demo.dxfeed.com:7300")
 
         subscription = try? endpoint?.getFeed()?.createSubscription(Quote.self)
         profileSubscription = try? endpoint?.getFeed()?.createSubscription(Profile.self)
@@ -58,6 +81,7 @@ class QuoteTableViewController: UIViewController {
         }
         try? subscription?.addSymbols(symbols)
         try? profileSubscription?.addSymbols(symbols)
+
     }
 
     @IBAction func changeAggregationPeriod(_ sender: UISwitch) {
@@ -67,23 +91,19 @@ class QuoteTableViewController: UIViewController {
 
 extension QuoteTableViewController: DXEndpointListener {
     func endpointDidChangeState(old: DXEndpointState, new: DXEndpointState) {
-        DispatchQueue.main.async {
-            self.connectionStatusLabel.text = new.convetToString()
-        }
+
     }
 }
 
 extension QuoteTableViewController: DXEventListener {
     func receiveEvents(_ events: [MarketEvent]) {
-
         events.forEach { event in
             switch event.type {
             case .quote:
                 dataSource[event.eventSymbol]?.update(event.quote)
             case .profile:
                 dataSource[event.eventSymbol]?.update(event.profile.descriptionStr ?? "")
-            default:
-                print(event)
+            default: break
             }
         }
         DispatchQueue.main.async {
@@ -112,5 +132,12 @@ extension QuoteTableViewController: UITableViewDataSource {
 extension QuoteTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
+    }
+}
+
+extension QuoteTableViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

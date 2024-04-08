@@ -39,6 +39,7 @@ class NativeInstrumentProfileConnection {
             if let listener =  endpoint as? WeakListener {
                 var old = (try? EnumUtil.valueOf(value: DXInstrumentProfileConnectionState.convert(oldState)))
                 var new = (try? EnumUtil.valueOf(value: DXInstrumentProfileConnectionState.convert(newState)))
+                ThreadManager.insertPthread()
                 listener.value?.listener?.connectionDidChangeState(old: old ?? .notConnected,
                                                                    new: new ?? .notConnected)
             }

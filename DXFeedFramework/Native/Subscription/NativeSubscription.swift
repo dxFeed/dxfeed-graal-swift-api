@@ -51,6 +51,7 @@ class NativeSubscription {
                         }
                     }
                 }
+                ThreadManager.insertPthread()
                 subscription.listener?.receiveEvents(events)
             }
         }

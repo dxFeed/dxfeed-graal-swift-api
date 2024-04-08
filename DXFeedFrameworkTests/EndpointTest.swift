@@ -78,6 +78,9 @@ final class EndpointTest: XCTestCase {
 
     func testGetEventTypes() throws {
         let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
+        defer {
+            try? endpoint.closeAndAwaitTermination()
+        }
         let connectedExpectation = expectation(description: "Connected")
 
         let stateListener: TestEndpoointStateListener? = TestEndpoointStateListener { listener in

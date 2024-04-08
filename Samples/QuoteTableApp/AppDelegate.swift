@@ -5,12 +5,33 @@
 //
 
 import UIKit
+import DXFeedFramework
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+//        UIButton.appearance().tintColor = .text
+//        var thread: Thread? = Thread {
+//            var endpoint = try? DXEndpoint.create()
+//            print("execute1 in new thread \(pthread_mach_thread_np(pthread_self()))")
+//            try? SystemProperty.setProperty("test", "test")
+//            try? SystemProperty.setProperty("test", "test")
+//
+////            while(true) {
+////                Thread.sleep(forTimeInterval: 0.1)
+////            }
+//        }
+//        thread?.start()
+//        thread = nil
+//        Thread.sleep(forTimeInterval: 0.1)
+////        var thread2: Thread? = Thread {
+////            print("execute2 in new thread \(pthread_mach_thread_np(pthread_self()))")
+////            _ = try? DXEndpoint.create()
+////        }
+////        thread2?.start()
+////        thread2 = nil
+////        
         return true
     }
 

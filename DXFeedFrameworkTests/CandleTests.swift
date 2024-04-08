@@ -73,7 +73,9 @@ final class CandleTests: XCTestCase {
         try subscription?.addSymbols(symbol)
         wait(for: [receivedEventExp], timeout: 10)
         try? endpoint?.disconnect()
+        try endpoint?.closeAndAwaitTermination()
         endpoint = nil
+
     }
 
     func testParseShortSymbol() throws {
@@ -195,6 +197,7 @@ final class CandleTests: XCTestCase {
         try subscription?.addSymbols(symbol)
         wait(for: [beginEventsExp, endEventsExp], timeout: 10)
         try? endpoint?.disconnect()
+        try? endpoint?.closeAndAwaitTermination()
         endpoint = nil
         let sec = 5
         _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
@@ -224,6 +227,7 @@ final class CandleTests: XCTestCase {
         try subscription?.addSymbols(symbol)
         wait(for: [snapshotExpect, updateExpect], timeout: 10)
         try? endpoint?.disconnect()
+        try? endpoint?.closeAndAwaitTermination()
         endpoint = nil
     }
 

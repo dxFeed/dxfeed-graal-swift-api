@@ -30,6 +30,9 @@ final class DXSnapshotProcessorTest: XCTestCase, SnapshotDelegate {
 
     func testExample() throws {
         let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
+        defer {
+            try? endpoint.closeAndAwaitTermination()
+        }
         let feed = endpoint.getFeed()
         let subscription = try feed?.createSubscription([Candle.self])
         let snapshotProcessor = SnapshotProcessor()

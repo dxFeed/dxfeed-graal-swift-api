@@ -26,6 +26,7 @@ struct LatencyMetrics {
     let error: NSNumber
     let rateOfSymbols: NSNumber
     let currentTime: TimeInterval
+    let cpuUsage: NSNumber
 }
 
 private class ConcurrentArray<T>: CustomStringConvertible {
@@ -119,6 +120,7 @@ class LatencyDiagnostic {
     private var startTime = Date.now
     private var deltas = ConcurrentArray<Int64>()
     private var symbols = ConcurrentSet<String>()
+    private var usageStats = UsageStats()
 
     func addDeltas(_ delta: Int64) {
         self.deltas.append(newElement: delta)
@@ -146,15 +148,17 @@ class LatencyDiagnostic {
         }
         let seconds = self.startTime.timeIntervalSince(lastStart)
         return LatencyDiagnostic.createMetrics(currentDeltas,
-                                        currentSymbols,
-                                        seconds,
-                                        startTime.timeIntervalSince(absoluteStartTime ?? startTime))
+                                               currentSymbols,
+                                               seconds,
+                                               startTime.timeIntervalSince(absoluteStartTime ?? startTime),
+                                               usageStats.cpuUsage)
     }
 
     private static func createMetrics(_ currentDeltas: [Int64],
                                       _ currentSymbols: [String],
                                       _ seconds: TimeInterval,
-                                      _ currentTime: TimeInterval) -> LatencyMetrics {
+                                      _ currentTime: TimeInterval,
+                                      _ cpuUsage: Double) -> LatencyMetrics {
         let min = currentDeltas.min() ?? 0
         let max = currentDeltas.max() ?? 0
         let mean = calculateMean(currentDeltas)
@@ -173,7 +177,8 @@ class LatencyDiagnostic {
                               stdDev: NSNumber(value: stdDev),
                               error: NSNumber(value: error.isNaN ? 0 : error),
                               rateOfSymbols: NSNumber(value: currentSymbols.count),
-                              currentTime: currentTime)
+                              currentTime: currentTime,
+        cpuUsage: NSNumber(value: cpuUsage))
     }
 
     private static func calculatePercentile(_ deltas: [Int64], excelPercentile: Double) -> Double {
@@ -219,5 +224,9 @@ class LatencyDiagnostic {
 
     func cleanTime() {
         absoluteStartTime = nil
+    }
+
+    func updateCpuUsage() {
+        usageStats.updateCpuUsage()
     }
 }

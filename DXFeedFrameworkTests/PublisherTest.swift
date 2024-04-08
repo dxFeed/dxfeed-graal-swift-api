@@ -19,6 +19,7 @@ final class PublisherTest: XCTestCase {
 
     func testCreatePublisher() throws {
         try execute()
+        wait(seconds: 2)
     }
 
     func execute() throws {
@@ -46,6 +47,7 @@ final class PublisherTest: XCTestCase {
                     if state == .connected {
                         connectedExpectation.fulfill()
                         DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.3) {
+                            print("\(pthread_mach_thread_np(pthread_self()))")
                             print(Thread.current.threadName)
                             try? publisher?.publish(events: [testQuote])
                         }
@@ -74,5 +76,18 @@ final class PublisherTest: XCTestCase {
         } catch {
             print("\(error)")
         }
+    }
+
+    func testDEtachThread() {
+        // create isolate in main thread
+        try? SystemProperty.setProperty("test", "test")
+
+        var thread: Thread? = Thread {
+            // touch graal in background
+            try? SystemProperty.setProperty("test", "test")
+        }
+        thread?.start()
+        thread = nil
+        wait(seconds: 2)
     }
 }

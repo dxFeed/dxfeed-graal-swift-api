@@ -6,7 +6,11 @@
 
 import Foundation
 
-class LatencyMetricsPrinter {
+protocol LatencyPrinter {
+    func update(_ metrics: LatencyMetrics)
+}
+
+class LatencyMetricsPrinter: LatencyPrinter {
     let numberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal

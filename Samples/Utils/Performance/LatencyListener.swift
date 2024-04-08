@@ -43,4 +43,8 @@ class LatencyEventListener: AbstractEventListener {
     func cleanTime() {
         diagnostic.cleanTime()
     }
+
+    func updateCpuUsage() {
+        diagnostic.updateCpuUsage()
+    }
 }
