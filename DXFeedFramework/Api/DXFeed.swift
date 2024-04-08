@@ -75,16 +75,43 @@ public class DXFeed {
 }
 
 public extension DXFeed {
+
+    /// Returns the last event for the specified event instance.
+    ///
+    /// This method works only for event types that implement ``ILastingEvent`` marker interface.
+    /// This method **does not** make any remote calls to the uplink data provider.
+    /// It just retrieves last received event from the local cache of this feed.
+    /// - Parameters:
+    ///    - type: Type of MarketEvent.
+    /// - Returns: ``ILastingEvent``
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     func getLastEvent(type: MarketEvent) throws -> ILastingEvent? {
         return try native.getLastEvent(type: type)
     }
 
+    /// Returns the last events for the specified list of event instances.
+    ///
+    /// This is a bulk version of  ``getLastEvent(type:)`` method.
+    /// - Parameters:
+    ///    - types:  The  list of MarketEvent.
+    /// - Returns: The list of ``ILastingEvent``
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     func getLastEvents(types: [MarketEvent]) throws -> [ILastingEvent] {
         return try native.getLastEvents(types: types)
     }
 }
 
 public extension DXFeed {
+    ///  Requests the last event for the specified event type and symbol.
+    ///
+    /// This method works only for event types that implement ``ILastingEvent`` marker interface.
+    /// This method requests the data from the the uplink data provider,
+    /// creates new event of the specified ``IEventType``,
+    /// and Success the resulting task with this event.
+    /// - Parameters:
+    ///    - type:  ``IEventType``.
+    ///    - symbol: ``Symbol``
+    /// - Returns: Task
     @available(iOS 13.0, *)
     @available(macOS 10.15, *)
     func getLastEvent(type: IEventType.Type,
@@ -108,11 +135,33 @@ public extension DXFeed {
         return task
     }
 
+    ///  Requests the last event for the specified event type and symbol.
+    ///
+    /// This method works only for event types that implement ``ILastingEvent`` marker interface.
+    /// This method requests the data from the the uplink data provider,
+    /// creates new event of the specified ``IEventType``,
+    /// and complete the resulting promis the resulting promise with this event.
+    /// - Parameters:
+    ///    - type:  ``IEventType``.
+    ///    - symbol: ``Symbol``
+    /// - Returns: ``Promise``
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     func getLastEventPromise(type: IEventType.Type, symbol: Symbol) throws -> Promise? {
         let nativePromise = try native.getLastEventPromise(type: type, symbol: symbol)
         return Promise(native: nativePromise)
     }
 
+    ///  Requests the last events for the specified event type and a collection of symbols.
+    ///
+    /// This method works only for event types that implement ``ILastingEvent`` marker interface.
+    /// This method requests the data from the the uplink data provider,
+    /// creates new events of the specified ``IEventType``,
+    /// and complete the resulting promise with these events.
+    /// - Parameters:
+    ///    - type:  ``IEventType``.
+    ///    - symbol: The list of ``Symbol``
+    /// - Returns: The list of ``Promise``
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     func getLastEventPromises(type: IEventType.Type, symbols: [Symbol]) throws -> [Promise]? {
         let nativePromises = try native.getLastEventPromises(type: type, symbols: symbols)
         return nativePromises?.map({ promise in
@@ -120,6 +169,18 @@ public extension DXFeed {
         })
     }
 
+    ///  Requests a list of indexed events for the specified event type, symbol, and source.
+    ///
+    /// This method works only for event types that implement ``IndexedEventSource`` marker interface.
+    /// This method requests the data from the the uplink data provider,
+    /// creates a list of events of the specified ``IEventType``,
+    /// and Success the resulting task with this list.
+    /// The events are ordered by ``IIndexedEvent/index`` in the list.
+    /// - Parameters:
+    ///    - type:  ``IEventType``.
+    ///    - symbol: ``Symbol``
+    ///    - source: ``IndexedEventSource``
+    /// - Returns: Task
     @available(iOS 13.0, *)
     @available(macOS 10.15, *)
     func getIndexedEvents(type: IEventType.Type,
@@ -145,11 +206,37 @@ public extension DXFeed {
         return task
     }
 
+    ///  Requests a list of indexed events for the specified event type, symbol, and source.
+    ///
+    /// This method works only for event types that implement ``IndexedEventSource`` marker interface.
+    /// This method requests the data from the the uplink data provider,
+    /// creates a list of events of the specified ``IEventType``,
+    /// and complete  the resulting promise with this list.
+    /// The events are ordered by ``IIndexedEvent/index`` in the list.
+    /// - Parameters:
+    ///    - type:  ``IEventType``.
+    ///    - symbol: ``Symbol``
+    ///    - source: ``IndexedEventSource``
+    /// - Returns: ``Promise``
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     func getIndexedEventsPromise(type: IEventType.Type, symbol: Symbol, source: IndexedEventSource) throws -> Promise? {
         let nativePromise = try native.getIndexedEventsPromise(type: type, symbol: symbol, source: source)
         return Promise(native: nativePromise)
     }
 
+    /// Requests time series of events for the specified event type, symbol, and a range of time.
+    ///
+    /// This method works only for event types that implement ``ITimeSeriesEvent`` interface.
+    /// This method requests the data from the the uplink data provider,
+    /// creates a list of events of the specified ``IEventType``,
+    /// and Success the resulting task with this list.
+    /// The events are ordered by ``ITimeSeriesEvent/time``in the list.
+    /// - Parameters:
+    ///    - type:  ``IEventType``.
+    ///    - symbol: ``Symbol``
+    ///    - fromTime: the time, inclusive, to request events from ``ITimeSeriesEvent/time``
+    ///    - toTime: the time, inclusive, to request events to ``ITimeSeriesEvent/time``
+    /// - Returns: Task
     @available(iOS 13.0, *)
     @available(macOS 10.15, *)
     func getTimeSeries(type: IEventType.Type,
@@ -176,7 +263,21 @@ public extension DXFeed {
         }
         return task
     }
-
+    
+    /// Requests time series of events for the specified event type, symbol, and a range of time.
+    ///
+    /// This method works only for event types that implement ``ITimeSeriesEvent`` interface.
+    /// This method requests the data from the the uplink data provider,
+    /// creates a list of events of the specified ``IEventType``,
+    /// and complete the resulting promise with this list.
+    /// The events are ordered by ``ITimeSeriesEvent/time``in the list.
+    /// - Parameters:
+    ///    - type:  ``IEventType``.
+    ///    - symbol: ``Symbol``
+    ///    - fromTime: the time, inclusive, to request events from ``ITimeSeriesEvent/time``
+    ///    - toTime: the time, inclusive, to request events to ``ITimeSeriesEvent/time``
+    /// - Returns: Task
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     func getTimeSeriesPromise(type: IEventType.Type, symbol: Symbol, fromTime: Long, toTime: Long) throws -> Promise? {
         let nativePromise = try native.getTimeSeriesPromise(type: type,
                                                             symbol: symbol,
