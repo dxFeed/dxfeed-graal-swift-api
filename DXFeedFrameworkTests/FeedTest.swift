@@ -62,4 +62,65 @@ final class FeedTest: XCTestCase {
             XCTAssert(false, "Subscription returned null")
         }
     }
+    
+
+    func testAttachDetach() throws {
+        let detachedSymbol = "TEST1"
+        let attachedSymbol = "TEST2"
+        let endpoint = try DXEndpoint.create()
+        do {
+            if let feed = endpoint.getFeed(), let publisher = endpoint.getPublisher() {
+                let subcription = try feed.createSubscription([TimeAndSale.self])
+                let expectation1 = expectation(description: "Events received")
+                let expectation2 = expectation(description: "Events received")
+                let listener = AnonymousClass { anonymCl in
+                    anonymCl.callback = { events in
+                        print(events)
+                        events.forEach { event in
+                            switch event.eventSymbol {
+                            case detachedSymbol:
+                                XCTFail("Received detached symbol \(event.toString())")
+                            case attachedSymbol:
+                                if event.timeAndSale.askPrice == 100 {
+                                    expectation1.fulfill()
+                                } else if event.timeAndSale.askPrice == 200 {
+                                    expectation2.fulfill()
+                                }
+                            default:
+                                XCTFail("Unexpected symbol \(event.toString())")
+                            }
+                        }
+                    }
+                    return anonymCl
+                }
+                try subcription.add(listener: listener)
+                try subcription.addSymbols(detachedSymbol)
+                try feed.detach(subscription: subcription)
+                try publisher.publish(events: [TimeAndSale(detachedSymbol)])
+                try feed.attach(subscription: subcription)
+                try feed.attach(subscription: subcription)
+                try subcription.addSymbols(attachedSymbol)
+
+                let tns1 = TimeAndSale(attachedSymbol)
+                tns1.askPrice = 100
+                try publisher.publish(events: [tns1])
+                wait(for: [expectation1], timeout: 1)
+
+                try subcription.detach(feed: feed)
+                try publisher.publish(events: [TimeAndSale(detachedSymbol)])
+                try subcription.attach(feed: feed)
+                tns1.askPrice = 200
+                try publisher.publish(events: [tns1])
+                wait(for: [expectation2], timeout: 1)
+                let symbols = try subcription.getSymbols().map { symbol in
+                    symbol.stringValue
+                }
+                XCTAssert(Set(symbols) == Set([attachedSymbol, detachedSymbol]))
+            } else {
+                XCTAssert(false, "Subscription returned null")
+            }
+        } catch {
+            XCTAssert(false, "Error during attach/detach \(error)")
+        }
+    }
 }

@@ -226,4 +226,20 @@ class NativeFeed {
                                                                                 toTime))
         return NativePromise(promise: &native.pointee.base)
     }
+
+    func attach(subscription: NativeSubscription) throws {
+        let thread = currentThread()
+        try ErrorCheck.nativeCall(thread,
+                                  dxfg_DXFeed_attachSubscription(thread,
+                                                                 feed,
+                                                                 subscription.subscription))
+    }
+
+    func detach(subscription: NativeSubscription) throws {
+        let thread = currentThread()
+        try ErrorCheck.nativeCall(thread,
+                                  dxfg_DXFeed_detachSubscription(thread,
+                                                                 feed,
+                                                                 subscription.subscription))
+    }
 }

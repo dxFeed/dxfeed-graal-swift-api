@@ -290,9 +290,27 @@ extension NativeSubscription {
             _ = try? ErrorCheck.nativeCall(thread, dxfg_CList_symbol_release(thread, nativeResult))
         }
 
-        var result: [Symbol] = SymbolMapper.newSymbols(symbols: nativeResult).compactMap({ obj in
+        let result: [Symbol] = SymbolMapper.newSymbols(symbols: nativeResult).compactMap({ obj in
             obj as? Symbol
         })
         return result
+    }
+}
+
+extension NativeSubscription {
+    func attach(feed: NativeFeed) throws {
+        let thread = currentThread()
+        try ErrorCheck.nativeCall(thread,
+                                  dxfg_DXFeedSubscription_attach(thread,
+                                                                 subscription,
+                                                                 feed.feed))
+    }
+
+    func detach(feed: NativeFeed) throws {
+        let thread = currentThread()
+        try ErrorCheck.nativeCall(thread,
+                                  dxfg_DXFeedSubscription_detach(thread,
+                                                                 subscription,
+                                                                 feed.feed))
     }
 }
