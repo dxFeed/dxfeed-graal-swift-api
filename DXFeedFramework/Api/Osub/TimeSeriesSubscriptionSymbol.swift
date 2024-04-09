@@ -52,7 +52,7 @@ public class TimeSeriesSubscriptionSymbol: GenericIndexedEventSubscriptionSymbol
 
     /// Custom symbol has to return string representation.
     public override var stringValue: String {
-        return "\(symbol){fromTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: fromTime)) ?? "")}"
+        return "\(symbol.description){fromTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: fromTime)) ?? "")}"
     }
 }
 

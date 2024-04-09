@@ -11,7 +11,7 @@ import Foundation
 /// representation of the candle symbol for subscription.
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/candle/CandleSymbol.html)
-public class CandleSymbol {
+public class CandleSymbol: CustomStringConvertible {
     /// Returns string representation of this symbol.
     public private(set) var symbol: String?
     /// Gets base market symbol without attributes.
@@ -85,6 +85,11 @@ public class CandleSymbol {
     func toString() -> String {
         return symbol ?? "null"
     }
+
+    public var description: String {
+        return toString()
+    }
+
     /// Converts the given string symbol into the candle symbol object.
     ///
     /// - Throws: ArgumentException/invalidOperationException(_:)

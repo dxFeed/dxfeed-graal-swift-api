@@ -12,7 +12,7 @@ import Foundation
 public class DXFeedSubscription {
     /// Subscription native wrapper.
     private let native: NativeSubscription
-    
+
     internal var nativeSubscription: NativeSubscription {
         return native
     }
@@ -177,6 +177,6 @@ public extension DXFeedSubscription {
     ///   - feed: The  ``DXFeed`` to detach from.
     /// - Throws: GraalException. Rethrows exception from Java.
     func detach(feed: DXFeed) throws {
-        try native.detach(feed: feed.nativeFeed) 
+        try native.detach(feed: feed.nativeFeed)
     }
 }

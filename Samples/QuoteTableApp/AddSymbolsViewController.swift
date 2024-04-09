@@ -42,7 +42,6 @@ class AddSymbolsViewController: UIViewController {
         dataProvider.allSymbols = symbols
     }
 
-
     func changeActivityIndicator() {
         if symbols.count == 0 {
             activityIndicator.isHidden = false

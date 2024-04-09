@@ -12,7 +12,7 @@ import Foundation
 public class DXFeed {
     /// Feed native wrapper.
     private let native: NativeFeed
-    
+
     internal var nativeFeed: NativeFeed {
         return native
     }
@@ -267,7 +267,7 @@ public extension DXFeed {
         }
         return task
     }
-    
+
     /// Requests time series of events for the specified event type, symbol, and a range of time.
     ///
     /// This method works only for event types that implement ``ITimeSeriesEvent`` interface.
