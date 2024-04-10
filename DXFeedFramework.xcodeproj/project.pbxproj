@@ -123,6 +123,14 @@
 		6447A5F12A8FDD1B00739CCF /* BitUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6447A5F02A8FDD1B00739CCF /* BitUtil.swift */; };
 		644B95E72BC542F600E95CB7 /* DXAttachTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B95E62BC542F600E95CB7 /* DXAttachTest.swift */; };
 		644B95E92BC54E4E00E95CB7 /* MarketEvent+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B95E82BC54E4E00E95CB7 /* MarketEvent+Ext.swift */; };
+		644B95ED2BC5844400E95CB7 /* OrderBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B95EC2BC5844400E95CB7 /* OrderBookModel.swift */; };
+		644B95F02BC5847000E95CB7 /* NativeOrderBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B95EF2BC5847000E95CB7 /* NativeOrderBookModel.swift */; };
+		644B95F22BC586AD00E95CB7 /* DXOrderBookModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B95F12BC586AD00E95CB7 /* DXOrderBookModelTest.swift */; };
+		644B95F42BC5873500E95CB7 /* OrderBookModelFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B95F32BC5873500E95CB7 /* OrderBookModelFilter.swift */; };
+		644B95F62BC58D3800E95CB7 /* OrderBookModelFilter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B95F52BC58D3800E95CB7 /* OrderBookModelFilter+Ext.swift */; };
+		644B95F82BC672E500E95CB7 /* ObservableListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B95F72BC672E500E95CB7 /* ObservableListModel.swift */; };
+		644B95FA2BC673BC00E95CB7 /* OrderBookModelListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B95F92BC673BC00E95CB7 /* OrderBookModelListener.swift */; };
+		644B95FC2BC67F6200E95CB7 /* NativeObservableListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644B95FB2BC67F6200E95CB7 /* NativeObservableListModel.swift */; };
 		644BD75D2A44726F00A0BF99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BD75C2A44726F00A0BF99 /* AppDelegate.swift */; };
 		644BD7612A44726F00A0BF99 /* ARQuoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BD7602A44726F00A0BF99 /* ARQuoteTableViewController.swift */; };
 		644BD7662A44727000A0BF99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 644BD7652A44727000A0BF99 /* Assets.xcassets */; };
@@ -677,6 +685,14 @@
 		6447A5F02A8FDD1B00739CCF /* BitUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitUtil.swift; sourceTree = "<group>"; };
 		644B95E62BC542F600E95CB7 /* DXAttachTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXAttachTest.swift; sourceTree = "<group>"; };
 		644B95E82BC54E4E00E95CB7 /* MarketEvent+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarketEvent+Ext.swift"; sourceTree = "<group>"; };
+		644B95EC2BC5844400E95CB7 /* OrderBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookModel.swift; sourceTree = "<group>"; };
+		644B95EF2BC5847000E95CB7 /* NativeOrderBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeOrderBookModel.swift; sourceTree = "<group>"; };
+		644B95F12BC586AD00E95CB7 /* DXOrderBookModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXOrderBookModelTest.swift; sourceTree = "<group>"; };
+		644B95F32BC5873500E95CB7 /* OrderBookModelFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookModelFilter.swift; sourceTree = "<group>"; };
+		644B95F52BC58D3800E95CB7 /* OrderBookModelFilter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderBookModelFilter+Ext.swift"; sourceTree = "<group>"; };
+		644B95F72BC672E500E95CB7 /* ObservableListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableListModel.swift; sourceTree = "<group>"; };
+		644B95F92BC673BC00E95CB7 /* OrderBookModelListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookModelListener.swift; sourceTree = "<group>"; };
+		644B95FB2BC67F6200E95CB7 /* NativeObservableListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeObservableListModel.swift; sourceTree = "<group>"; };
 		644BD75A2A44726F00A0BF99 /* DXARQuoteTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXARQuoteTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		644BD75C2A44726F00A0BF99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		644BD7602A44726F00A0BF99 /* ARQuoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARQuoteTableViewController.swift; sourceTree = "<group>"; };
@@ -1179,6 +1195,35 @@
 			path = Ipf;
 			sourceTree = "<group>";
 		};
+		644B95EA2BC5842600E95CB7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				644B95EB2BC5843200E95CB7 /* Market */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		644B95EB2BC5843200E95CB7 /* Market */ = {
+			isa = PBXGroup;
+			children = (
+				644B95EC2BC5844400E95CB7 /* OrderBookModel.swift */,
+				644B95F32BC5873500E95CB7 /* OrderBookModelFilter.swift */,
+				644B95F72BC672E500E95CB7 /* ObservableListModel.swift */,
+				644B95F92BC673BC00E95CB7 /* OrderBookModelListener.swift */,
+			);
+			path = Market;
+			sourceTree = "<group>";
+		};
+		644B95EE2BC5845800E95CB7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				644B95EF2BC5847000E95CB7 /* NativeOrderBookModel.swift */,
+				644B95F52BC58D3800E95CB7 /* OrderBookModelFilter+Ext.swift */,
+				644B95FB2BC67F6200E95CB7 /* NativeObservableListModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		644BD75B2A44726F00A0BF99 /* ARQuoteTableApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -1597,6 +1642,7 @@
 				8088D77A29C5D8AD00F240CB /* Native */,
 				64656F552A1B6A07006A0B19 /* Utils */,
 				64ECD6802A9DD80000B36935 /* Ipf */,
+				644B95EA2BC5842600E95CB7 /* Model */,
 				64F73B9D2B67863B0088EC37 /* Promise */,
 				64C771FD2A9504D7009868C2 /* Extra */,
 				6498E6B02AB1D40C0093A065 /* Schedule */,
@@ -1637,6 +1683,7 @@
 				64EAA1A52B838ED3005087BC /* DXSnapshotProcessorTest.swift */,
 				64820AAE2BB2E26100BDFD0B /* DXOtcMarketOrderTest.swift */,
 				644B95E62BC542F600E95CB7 /* DXAttachTest.swift */,
+				644B95F12BC586AD00E95CB7 /* DXOrderBookModelTest.swift */,
 			);
 			path = DXFeedFrameworkTests;
 			sourceTree = "<group>";
@@ -1662,6 +1709,7 @@
 				64104FD12A277B1A00D1FC41 /* Interop */,
 				64104FCA2A2629C400D1FC41 /* Subscription */,
 				64437A902A9DF1C4005929B2 /* Ipf */,
+				644B95EE2BC5845800E95CB7 /* Model */,
 				6498E6B32AB1D43A0093A065 /* Schedule */,
 				64F73BA22B67B2750088EC37 /* Promise */,
 				64ACBCE42A28AEE200032C53 /* SymbolMappers */,
@@ -2411,6 +2459,7 @@
 				64DA26BA2AA20AAA005B1757 /* DXInstrumentProfileConnectionState.swift in Sources */,
 				64278C6E2A602D2B0074B5AA /* Candle.swift in Sources */,
 				64ACBCE62A28BA7D00032C53 /* SymbolMapper.swift in Sources */,
+				644B95ED2BC5844400E95CB7 /* OrderBookModel.swift in Sources */,
 				64ECD6822A9DDC2800B36935 /* DXInstrumentProfileReader.swift in Sources */,
 				6486B9712AD0445E00D8D5FA /* UnderlyingMapper.swift in Sources */,
 				64E3637B2AD83459002E2B0D /* SeriesMapper.swift in Sources */,
@@ -2423,6 +2472,7 @@
 				6486B9732AD045C800D8D5FA /* TheoPrice.swift in Sources */,
 				64ACBCDF2A2897EA00032C53 /* String+Symbol.swift in Sources */,
 				64C004762BA09FDC0009F7C9 /* OtcMarketsPriceType.swift in Sources */,
+				644B95F62BC58D3800E95CB7 /* OrderBookModelFilter+Ext.swift in Sources */,
 				64B4363A2AB86D1A0003919E /* DayFilter.swift in Sources */,
 				64EAA1A42B7B4DA1005087BC /* IndexedEventSource+Ext.swift in Sources */,
 				64A42F3B2B07A7A3001C3ACC /* SymbolParser.swift in Sources */,
@@ -2448,6 +2498,7 @@
 				64B4363E2AB883350003919E /* SessionFilter.swift in Sources */,
 				6486B9612AD02D3900D8D5FA /* SummaryMapper.swift in Sources */,
 				64AF04412AE6A9E90091F6F1 /* TradeETHMapper.swift in Sources */,
+				644B95F42BC5873500E95CB7 /* OrderBookModelFilter.swift in Sources */,
 				64B436402AB8857F0003919E /* SessionFilter+Ext.swift in Sources */,
 				646407592AA0CA8D006FF769 /* NativeProfileIterator.swift in Sources */,
 				6469F8C82A3B25C900846831 /* MarketEvent+Access.swift in Sources */,
@@ -2462,8 +2513,10 @@
 				6486B9582AD00BDC00D8D5FA /* Summary.swift in Sources */,
 				64104FCC2A2629D800D1FC41 /* NativeSubscription.swift in Sources */,
 				64C772012A975102009868C2 /* Reference+Util.swift in Sources */,
+				644B95FA2BC673BC00E95CB7 /* OrderBookModelListener.swift in Sources */,
 				64656F6D2A1CFB10006A0B19 /* DXEndpointState.swift in Sources */,
 				64AF04432AE6AA230091F6F1 /* TradeETH+Ext.swift in Sources */,
+				644B95F02BC5847000E95CB7 /* NativeOrderBookModel.swift in Sources */,
 				6464074D2A9E352E006FF769 /* InstrumentProfileField.swift in Sources */,
 				64ABC0FF2AD91E6500904D78 /* OptionSale.swift in Sources */,
 				64ABC1012AD9284900904D78 /* OptionSale+Ext.swift in Sources */,
@@ -2538,6 +2591,7 @@
 				640C3FCC2A616B6200555161 /* ArgumentException.swift in Sources */,
 				64B436442AB88EA40003919E /* NativeDay.swift in Sources */,
 				642BE4C42A2E1AFF0052340A /* Quote.swift in Sources */,
+				644B95F82BC672E500E95CB7 /* ObservableListModel.swift in Sources */,
 				64656F602A1B9EC2006A0B19 /* EnumUtil.swift in Sources */,
 				64A42F492B0B9683001C3ACC /* NativeTimeFormat.swift in Sources */,
 				642BE4CA2A2E1C640052340A /* MarketEvent.swift in Sources */,
@@ -2563,6 +2617,7 @@
 				64656F5E2A1B97F2006A0B19 /* NativeFeed.swift in Sources */,
 				6486B97D2AD057F200D8D5FA /* OrderSource.swift in Sources */,
 				64656F6F2A1CFC12006A0B19 /* WeakBox.swift in Sources */,
+				644B95FC2BC67F6200E95CB7 /* NativeObservableListModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2578,6 +2633,7 @@
 				641C64B42B347C430023CFAD /* DXObservableSubscriptionTest.swift in Sources */,
 				64ACBCEC2A29FE2300032C53 /* XCTestCase+Utils.swift in Sources */,
 				6423E4692B457000006B208D /* DXTimeSeriesSubscriptionTest.swift in Sources */,
+				644B95F22BC586AD00E95CB7 /* DXOrderBookModelTest.swift in Sources */,
 				64ECD67F2A9CF4CB00B36935 /* IPFTests.swift in Sources */,
 				64ACBCD52A2789EF00032C53 /* TestListener.swift in Sources */,
 				646064EA2B4D8973009201E2 /* DXLastEventTest.swift in Sources */,
