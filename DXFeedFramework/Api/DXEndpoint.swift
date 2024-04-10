@@ -165,7 +165,7 @@ public class DXEndpoint {
 
     /// Defines extra property for ``DXEndpoint``. This properties can't check using
     /// ``Builder/isSupported(_:)``(always return false)
-    public enum ExtraPropery: String, CaseIterable {
+    public enum ExtraProperty: String, CaseIterable {
         /// Defines time out for outcoming connection. Example of value: "10s"
         case heartBeatTimeout              = "com.devexperts.connector.proto.heartbeatTimeout"
     }
