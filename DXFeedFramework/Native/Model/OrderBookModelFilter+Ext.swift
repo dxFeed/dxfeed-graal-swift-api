@@ -12,19 +12,19 @@ extension OrderBookModelFilter {
     func toNative() -> dxfg_order_book_model_filter_t {
         switch self {
         case .composite:
-            COMPOSITE
+            return COMPOSITE
         case .regional:
-            REGIONAL
+            return REGIONAL
         case .aggregate:
-            AGGREGATE
+            return AGGREGATE
         case .order:
-            ORDER
+            return ORDER
         case .compositeRegional:
-            COMPOSITE_REGIONAL
+            return COMPOSITE_REGIONAL
         case .compositeRegionalAgregate:
-            COMPOSITE_REGIONAL_AGGREGATE
+            return COMPOSITE_REGIONAL_AGGREGATE
         case .all:
-            ALL
+            return ALL
         }
     }
 
