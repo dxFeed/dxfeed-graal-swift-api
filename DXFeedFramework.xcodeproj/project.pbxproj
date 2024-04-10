@@ -363,6 +363,7 @@
 		64DA26C02AA224EB005B1757 /* NativeIPFConnectionListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA26BF2AA224EB005B1757 /* NativeIPFConnectionListener.swift */; };
 		64DB79342A376E1B00229597 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		64DB79352A376E1B00229597 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		64DF09312BC6BF18009F1486 /* ObservableListModelListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DF09302BC6BF18009F1486 /* ObservableListModelListener.swift */; };
 		64E342502AAB083700457994 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8D22A3B401700846831 /* Colors.swift */; };
 		64E342522AAB29CF00457994 /* InstrumentProfileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E342512AAB29CF00457994 /* InstrumentProfileType.swift */; };
 		64E3637B2AD83459002E2B0D /* SeriesMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E3637A2AD83459002E2B0D /* SeriesMapper.swift */; };
@@ -898,6 +899,7 @@
 		64DA26BB2AA20B66005B1757 /* InstrumentProfileConnectionState+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InstrumentProfileConnectionState+ext.swift"; sourceTree = "<group>"; };
 		64DA26BD2AA20EDB005B1757 /* DXInstrumentProfileConnectionListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileConnectionListener.swift; sourceTree = "<group>"; };
 		64DA26BF2AA224EB005B1757 /* NativeIPFConnectionListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeIPFConnectionListener.swift; sourceTree = "<group>"; };
+		64DF09302BC6BF18009F1486 /* ObservableListModelListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableListModelListener.swift; sourceTree = "<group>"; };
 		64E342512AAB29CF00457994 /* InstrumentProfileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileType.swift; sourceTree = "<group>"; };
 		64E3637A2AD83459002E2B0D /* SeriesMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesMapper.swift; sourceTree = "<group>"; };
 		64EAA1A12B7A38F8005087BC /* DXPromiseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXPromiseTest.swift; sourceTree = "<group>"; };
@@ -1210,6 +1212,7 @@
 				644B95F32BC5873500E95CB7 /* OrderBookModelFilter.swift */,
 				644B95F72BC672E500E95CB7 /* ObservableListModel.swift */,
 				644B95F92BC673BC00E95CB7 /* OrderBookModelListener.swift */,
+				64DF09302BC6BF18009F1486 /* ObservableListModelListener.swift */,
 			);
 			path = Market;
 			sourceTree = "<group>";
@@ -2524,6 +2527,7 @@
 				64E342522AAB29CF00457994 /* InstrumentProfileType.swift in Sources */,
 				648E98AA2AAF625800BFD219 /* IIndexedEvent+Ext.swift in Sources */,
 				64A42F452B0B933B001C3ACC /* NativeTimeUtil.swift in Sources */,
+				64DF09312BC6BF18009F1486 /* ObservableListModelListener.swift in Sources */,
 				6423E4672B44613D006B208D /* NativeTimeSeriesSubscription.swift in Sources */,
 				6447A5E32A8F611700739CCF /* IObservableSubscription.swift in Sources */,
 				64A42F4E2B0B9FA4001C3ACC /* DXTimeZone.swift in Sources */,

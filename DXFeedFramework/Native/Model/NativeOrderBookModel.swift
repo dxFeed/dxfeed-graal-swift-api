@@ -29,22 +29,13 @@ class NativeOrderBookModel {
         }
     }
 
-    static let listenerCallback: dxfg_order_book_model_listener_function = {_, nativeEvents, context in
+    static let listenerCallback: dxfg_order_book_model_listener_function = {_, _, context in
         if let context = context {
-            var events = [MarketEvent]()
             let listener: AnyObject = bridge(ptr: context)
             if let listener =  listener as? WeakModel {
                 guard let subscription = listener.value else {
                     return
                 }
-//                let count = Int(nativeEvents?.pointee.size ?? 0)
-//                for index in 0..<count {
-//                    if let element = nativeEvents?.pointee.elements[index] {
-//                        if let event = try? subscription.mapper.fromNative(native: element) {
-//                            events.append(event)
-//                        }
-//                    }
-//                }
                 ThreadManager.insertPthread()
                 subscription.listener?.modelChanged()
             }
