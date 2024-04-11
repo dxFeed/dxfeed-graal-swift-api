@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A model that allows to track order lists changes via listeners.
 public class ObservableListModel {
     let native: NativeObservableListModel
     private let listeners = ConcurrentWeakHashTable<AnyObject>()
@@ -15,9 +16,10 @@ public class ObservableListModel {
         self.native = native
     }
 
-    /// Adds a listener to this order book model.
+    /// Adds a listener to this observable list model.
     /// - Parameters:
     ///   - listener: ``ObservableListModelListener``.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func add<O>(listener: O) throws
     where O: ObservableListModelListener,
           O: Hashable {
@@ -29,23 +31,29 @@ public class ObservableListModel {
               listeners.insert(listener)
           }
 
-    /// Removes a listener from this order book model.
+    /// Removes a listener from this observable list model.
     /// - Parameters:
     ///   - listener: ``ObservableListModelListener``.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func remove<O>(listener: O)
     where O: ObservableListModelListener,
           O: Hashable {
               listeners.remove(listener)
           }
-
+    /// Returns an array containing all of the elements in this list in proper sequence (from first to last element).
+    /// - Returns: List of  ``MarketEvent``
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
+    public func getEvents() throws -> [MarketEvent]? {
+        return try native.getEvents()
+    }
 }
 
 extension ObservableListModel: ObservableListModelListener {
-    public func changed(order: [MarketEvent]) {
+    public func changed(orders: [MarketEvent]) {
         listeners.reader { items in
             let enumerator = items.objectEnumerator()
             while let listener = enumerator.nextObject() as? ObservableListModelListener {
-                listener.changed(order: order)
+                listener.changed(orders: orders)
             }
         }
     }

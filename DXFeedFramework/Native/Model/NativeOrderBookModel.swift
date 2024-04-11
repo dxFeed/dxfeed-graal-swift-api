@@ -29,7 +29,7 @@ class NativeOrderBookModel {
         }
     }
 
-    static let listenerCallback: dxfg_order_book_model_listener_function = {_, _, context in
+    private static let listenerCallback: dxfg_order_book_model_listener_function = {_, _, context in
         if let context = context {
             let listener: AnyObject = bridge(ptr: context)
             if let listener =  listener as? WeakModel {

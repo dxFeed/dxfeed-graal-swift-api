@@ -39,7 +39,7 @@ public protocol IObservableSubscription {
     ///
     /// - Parameters:
     ///   - listener: listener the subscription change listener.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     func addChangeListener(_ listener: ObservableSubscriptionChangeListener) throws
 
     /// Removes subscription change listener. This method does nothing if the given listener was not

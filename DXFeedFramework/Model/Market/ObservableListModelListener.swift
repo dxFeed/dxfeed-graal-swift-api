@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Callback interface that receives notifications about changes in ``ObservableListModel``
+/// Callback interface that receives notifications about changes in ``ObservableListModel``.
 public protocol ObservableListModelListener: AnyObject {
-    func changed(order: [MarketEvent])
+    func changed(orders: [MarketEvent])
 }

@@ -35,7 +35,7 @@ class NativeSubscription {
         }
     }
 
-    static let listenerCallback: dxfg_feed_event_listener_function = {_, nativeEvents, context in
+    private static let listenerCallback: dxfg_feed_event_listener_function = {_, nativeEvents, context in
         if let context = context {
             var events = [MarketEvent]()
             let listener: AnyObject = bridge(ptr: context)

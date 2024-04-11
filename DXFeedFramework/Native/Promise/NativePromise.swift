@@ -27,7 +27,7 @@ class NativePromise {
 
     private static let listeners = ConcurrentArray<WeakListener>()
 
-    static let listenerCallback: dxfg_promise_handler_function = { _, promise, context in
+    private static let listenerCallback: dxfg_promise_handler_function = { _, promise, context in
         if let context = context {
             ThreadManager.insertPthread()
 
