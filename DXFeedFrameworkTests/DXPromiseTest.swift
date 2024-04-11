@@ -20,10 +20,7 @@ final class DXPromiseTest: XCTestCase {
     }
 
     private func eventPromise(type: IEventType.Type, symbol: String, feed: DXFeed) throws -> Promise {
-        guard let promise =  try feed.getLastEventPromise(type: type, symbol: symbol) else {
-            XCTAssert(false, "Couldnt receive promise")
-            fatalError("Couldnt receive promise")
-        }
+        let promise =  try feed.getLastEventPromise(type: type, symbol: symbol) 
         return promise
     }
 
@@ -441,7 +438,6 @@ final class DXPromiseTest: XCTestCase {
             try? endpoint.closeAndAwaitTermination()
         }
         let feed = endpoint.getFeed()
-        let date = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
         guard let task = feed?.getLastEvent(type: Trade.self,
                                             symbol: "ETH/USD:GDAX")
         else {
@@ -455,6 +451,21 @@ final class DXPromiseTest: XCTestCase {
         case .failure(let value):
             XCTAssert(false, "\(value)")
         }
+    }
+
+    
+    func testLastEventsTask() async throws {
+        let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
+        defer {
+            try? endpoint.closeAndAwaitTermination()
+        }
+        guard let feed = endpoint.getFeed() else {
+            XCTAssert(false, "Feed is nil")
+            return
+        }
+
+        let result = try await feed.getLastEvents(type: Quote.self, symbols: ["ETH/USD:GDAX", "AAPL"])
+        XCTAssertEqual(result.count, 2)
     }
 
 }
