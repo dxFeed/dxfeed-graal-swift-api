@@ -10,17 +10,21 @@ import XCTest
 
 // swiftlint:disable type_body_length
 final class DXPromiseTest: XCTestCase {
+    var endpoint: DXEndpoint!
+    var feed: DXFeed!
 
     override func setUpWithError() throws {
+        endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
+        feed = endpoint.getFeed()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        try? endpoint.closeAndAwaitTermination()
     }
 
     private func eventPromise(type: IEventType.Type, symbol: String, feed: DXFeed) throws -> Promise {
-        let promise =  try feed.getLastEventPromise(type: type, symbol: symbol) 
+        let promise =  try feed.getLastEventPromise(type: type, symbol: symbol)
         return promise
     }
 
@@ -38,11 +42,7 @@ final class DXPromiseTest: XCTestCase {
 
     func getAsyncResult(timeOut: Int32?, withException: Bool = true) {
         do {
-            let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
-            defer {
-                try? endpoint.closeAndAwaitTermination()
-            }
-            let feed = endpoint.getFeed()
+
             let promise = try eventPromise(type: Trade.self,
                                            symbol: "ETH/USD:GDAX",
                                            feed: feed!)
@@ -73,11 +73,7 @@ final class DXPromiseTest: XCTestCase {
 
     func testGetAsyncResult() {
         do {
-            let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
-            defer {
-                try? endpoint.closeAndAwaitTermination()
-            }
-            let feed = endpoint.getFeed()
+
             let promise = try eventPromise(type: Trade.self,
                                            symbol: "ETH/USD:GDAX",
                                            feed: feed!)
@@ -97,11 +93,7 @@ final class DXPromiseTest: XCTestCase {
 
     func testGetResultWithException() {
         do {
-            let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
-            defer {
-                try? endpoint.closeAndAwaitTermination()
-            }
-            let feed = endpoint.getFeed()
+
             let promise = try eventPromise(type: Trade.self,
                                            symbol: "ETH/USD:GDAX_TEST",
                                            feed: feed!)
@@ -117,11 +109,7 @@ final class DXPromiseTest: XCTestCase {
 
     func testGetIndexedEventResult() {
         do {
-            let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
-            defer {
-                try? endpoint.closeAndAwaitTermination()
-            }
-            let feed = endpoint.getFeed()
+
             guard let promise = try feed?.getIndexedEventsPromise(type: Trade.self,
                                                                   symbol: "ETH/USD:GDAX",
                                                                   source: OrderSource.agregateAsk!) else {
@@ -137,11 +125,7 @@ final class DXPromiseTest: XCTestCase {
 
     func testGetIndexedEventResultWithException() {
         do {
-            let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
-            defer {
-                try? endpoint.closeAndAwaitTermination()
-            }
-            let feed = endpoint.getFeed()
+
             guard let promise = try feed?.getIndexedEventsPromise(type: Trade.self,
                                                                   symbol: "ETH/USD:GDAX_TEST",
                                                                   source: OrderSource.agregateAsk!) else {
@@ -158,11 +142,7 @@ final class DXPromiseTest: XCTestCase {
 
     func testGetMultipleResults() {
         do {
-            let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
-            defer {
-                try? endpoint.closeAndAwaitTermination()
-            }
-            let feed = endpoint.getFeed()
+
             let promises = try feed?.getLastEventPromises(type: Quote.self, symbols: ["ETH/USD:GDAX", "AAPL"])
             if promises?.isEmpty != false {
                 XCTAssert(false, "Promises is empty")
@@ -182,11 +162,7 @@ final class DXPromiseTest: XCTestCase {
     func testGetAyncMultipleResults() {
         do {
             let symbols = ["ETH/USD:GDAX", "AAPL"]
-            let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
-            defer {
-                try? endpoint.closeAndAwaitTermination()
-            }
-            let feed = endpoint.getFeed()
+
             let promises = try feed?.getLastEventPromises(type: Quote.self, symbols: symbols)
             if promises?.isEmpty != false {
                 XCTAssert(false, "Promises is empty")
@@ -209,11 +185,7 @@ final class DXPromiseTest: XCTestCase {
 
     func testGetMultipleResultsWithException() {
         do {
-            let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
-            defer {
-                try? endpoint.closeAndAwaitTermination()
-            }
-            let feed = endpoint.getFeed()
+
             let promises = try feed?.getLastEventPromises(type: Quote.self, symbols: ["ETH/USD:GDAX_TEST", "AAPL_TEST"])
             if promises?.isEmpty != false {
                 XCTAssert(false, "Promises is empty")
@@ -235,11 +207,7 @@ final class DXPromiseTest: XCTestCase {
     func testGetTimeSeriesResult() {
         do {
             let date = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
-            let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
-            defer {
-                try? endpoint.closeAndAwaitTermination()
-            }
-            let feed = endpoint.getFeed()
+
             guard let promise = try feed?.getTimeSeriesPromise(type: Candle.self,
                                                                symbol: "AAPL{=1d}",
                                                                fromTime: Long(date.millisecondsSince1970),
@@ -257,11 +225,7 @@ final class DXPromiseTest: XCTestCase {
 
     func testAllOffPromises() {
         do {
-            let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
-            defer {
-                try? endpoint.closeAndAwaitTermination()
-            }
-            let feed = endpoint.getFeed()
+
             let promise = try eventPromise(type: Profile.self, symbol: "IBM", feed: feed!)
             guard var promises = try feed?.getLastEventPromises(type: Quote.self,
                                                                 symbols: ["ETH/USD:GDAX", "AAPL"]) else {
@@ -384,52 +348,5 @@ final class DXPromiseTest: XCTestCase {
         }
     }
 
-    func testTimeSeriesTask() async throws {
-        let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
-        defer {
-            try? endpoint.closeAndAwaitTermination()
-        }
-        let feed = endpoint.getFeed()
-        let date = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
-        guard let task = feed?.getTimeSeries(type: Candle.self,
-                                             symbol: "AAPL{=1d}",
-                                             fromTime: Long(date.millisecondsSince1970),
-                                             toTime: Long.max) else {
-            XCTAssert(false, "Async task is nil")
-            return
-        }
-        let result = await task.result
-        switch result {
-        case .success(let value):
-            XCTAssert((value?.count ?? 0) > 0)
-        case .failure(let value):
-            XCTAssert(false, "\(value)")
-        }
-    }
-
-    func testIndexedEventTask() async throws {
-        throw XCTSkip("""
-                     Skiped
-""")
-        let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
-        defer {
-            try? endpoint.closeAndAwaitTermination()
-        }
-        let feed = endpoint.getFeed()
-        let date = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
-        guard let task = feed?.getIndexedEvents(type: Series.self,
-                                                symbol: "ETH/USD:GDAX",
-                                                source: OrderSource.agregateAsk!) else {
-            XCTAssert(false, "Async task is nil")
-            return
-        }
-        let result = await task.result
-        switch result {
-        case .success(let value):
-            XCTAssert((value?.count ?? 0) > 0)
-        case .failure(let value):
-            XCTAssert(false, "\(value)")
-        }
-    } 
 }
 // swiftlint:enable type_body_length

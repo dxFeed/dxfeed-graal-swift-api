@@ -8,7 +8,7 @@
 import XCTest
 @testable import DXFeedFramework
 
-final class DXAsyncLastTest: XCTestCase {
+final class DXAsyncLocalLastTest: XCTestCase {
     var endpoint: DXEndpoint!
     var feed: DXFeed!
     var publisher: DXPublisher!
@@ -58,5 +58,57 @@ final class DXAsyncLastTest: XCTestCase {
             event.eventSymbol
         })
         XCTAssertEqual(symbols, inputSymbols)
+    }
+}
+
+final class DXAsyncLastTest: XCTestCase {
+    var endpoint: DXEndpoint!
+    var feed: DXFeed!
+
+    override func setUpWithError() throws {
+        endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
+        feed = endpoint.getFeed()
+    }
+
+    override func tearDownWithError() throws {
+        try? endpoint.closeAndAwaitTermination()
+    }
+
+    func testTimeSeriesTask() async throws {
+        let date = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
+        guard let task = feed?.getTimeSeries(type: Candle.self,
+                                             symbol: "AAPL{=1d}",
+                                             fromTime: Long(date.millisecondsSince1970),
+                                             toTime: Long.max) else {
+            XCTAssert(false, "Async task is nil")
+            return
+        }
+        let result = await task.result
+        switch result {
+        case .success(let value):
+            XCTAssert((value?.count ?? 0) > 0)
+        case .failure(let value):
+            XCTAssert(false, "\(value)")
+        }
+    }
+
+    func testIndexedEventTask() async throws {
+        throw XCTSkip("""
+                     Skiped
+""")
+        let date = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
+        guard let task = feed?.getIndexedEvents(type: Series.self,
+                                                symbol: "ETH/USD:GDAX",
+                                                source: OrderSource.agregateAsk!) else {
+            XCTAssert(false, "Async task is nil")
+            return
+        }
+        let result = await task.result
+        switch result {
+        case .success(let value):
+            XCTAssert((value?.count ?? 0) > 0)
+        case .failure(let value):
+            XCTAssert(false, "\(value)")
+        }
     }
 }

@@ -99,7 +99,7 @@ extension QuoteTableViewController: DXEventListener {
     func receiveEvents(_ events: [MarketEvent]) {
         events.forEach { event in
             switch event.type {
-            case .quote:                
+            case .quote:
                 dataSource[event.eventSymbol]?.update(event.quote)
             case .profile:
                 dataSource[event.eventSymbol]?.update(event.profile.descriptionStr ?? "")

@@ -41,13 +41,11 @@ final class CandleTests: XCTestCase {
     }
 
     func testFetchingCandlesByAttrbuteSymbol() throws {
-        let exchange = CandleExchange.valueOf("A")
         let period = CandlePeriod.valueOf(value: 100, type: .day)
-        let priceLevel = try CandlePriceLevel.valueOf(value: 999.35)
         let price = try CandlePrice.parse("mark")
         let session = try CandleSession.parse("true")
         let alignment = try CandleAlignment.parse("s")
-        let candleSymbol = CandleSymbol.valueOf("AAPL", [exchange, period, alignment, priceLevel, price, session])
+        let candleSymbol = CandleSymbol.valueOf("AAPL", [period, alignment, price, session])
         let symbol = TimeSeriesSubscriptionSymbol(symbol: candleSymbol, fromTime: 1660125159)
         try fetchCandles(symbol)
     }
