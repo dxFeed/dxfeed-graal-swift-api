@@ -239,6 +239,26 @@ final class CandleTests: XCTestCase {
         XCTAssert(testSymbol?.period?.type == .day && testSymbol?.period?.value == 12)
         XCTAssert(testSymbol == CandleSymbol.valueOf("TEST123", [CandlePeriod.valueOf(value: 12, type: .day)]))
         XCTAssert(CandleSymbol.valueOf("TEST1", [CandlePrice.ask]).toString() == "TEST1{price=ask}")
+
+
+    }
+
+    func testNormalize() {
+        XCTAssertEqual("IBM&E", CandleSymbol.valueOf("IBM", CandleExchange.valueOf("E")).toString())
+        XCTAssertEqual("IBM", CandleSymbol.valueOf("IBM", CandleExchange.composite).toString())
+
+        XCTAssertEqual("IBM{=d}", CandleSymbol.valueOf("IBM", CandlePeriod.day).toString())
+        XCTAssertEqual("IBM", CandleSymbol.valueOf("IBM", CandlePeriod.tick).toString())
+
+        XCTAssertEqual("IBM{price=ask}", CandleSymbol.valueOf("IBM", [CandlePrice.ask]).toString())
+        XCTAssertEqual("IBM", CandleSymbol.valueOf("IBM", [CandlePrice.last]).toString())
+
+        XCTAssertEqual("EUR/USD{=2h,price=bid,source=bank}",
+                       CandleSymbol.valueOf("EUR/USD{source=bank}",
+                                            [CandlePrice.bid, CandlePeriod.valueOf(value: 2, type: CandleType.hour)]).toString())
+        XCTAssertEqual("IBM{=15m,aa=zz,price=bid}",
+                       CandleSymbol.valueOf("IBM{aa=zz,price=b}",
+                                            [CandlePeriod.valueOf(value: 15, type: CandleType.minute)]).toString())
     }
 }
 
