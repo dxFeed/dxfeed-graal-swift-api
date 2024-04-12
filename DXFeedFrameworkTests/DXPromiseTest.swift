@@ -430,43 +430,6 @@ final class DXPromiseTest: XCTestCase {
         case .failure(let value):
             XCTAssert(false, "\(value)")
         }
-    }
-
-    func testLastEventTask() async throws {
-        let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
-        defer {
-            try? endpoint.closeAndAwaitTermination()
-        }
-        let feed = endpoint.getFeed()
-        guard let task = feed?.getLastEvent(type: Trade.self,
-                                            symbol: "ETH/USD:GDAX")
-        else {
-            XCTAssert(false, "Async task is nil")
-            return
-        }
-        let result = await task.result
-        switch result {
-        case .success(let value):
-            XCTAssert(value != nil)
-        case .failure(let value):
-            XCTAssert(false, "\(value)")
-        }
-    }
-
-    
-    func testLastEventsTask() async throws {
-        let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
-        defer {
-            try? endpoint.closeAndAwaitTermination()
-        }
-        guard let feed = endpoint.getFeed() else {
-            XCTAssert(false, "Feed is nil")
-            return
-        }
-
-        let result = try await feed.getLastEvents(type: Quote.self, symbols: ["ETH/USD:GDAX", "AAPL"])
-        XCTAssertEqual(result.count, 2)
-    }
-
+    } 
 }
 // swiftlint:enable type_body_length

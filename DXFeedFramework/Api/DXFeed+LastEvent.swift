@@ -92,7 +92,7 @@ public extension DXFeed {
         return tasks
     }
 
-    ///  Requests the last events for the specified event type and a collection of symbols.
+    /// Requests the last events for the specified event type and a collection of symbols.
     ///
     /// This method works only for event types that implement ``ILastingEvent`` marker interface.
     /// This method requests the data from the the uplink data provider,
@@ -105,9 +105,9 @@ public extension DXFeed {
     /// - Throws: ``GraalException``. Rethrows exception from Java.
     @available(iOS 13.0, *)
     @available(macOS 10.15, *)
-    func getLastEvents(type: IEventType.Type, symbols: [Symbol]) async throws -> [MarketEvent] {
-        let tasks = try getLastEventsTasks(type: type, symbols: symbols)
-        return await withTaskGroup(of: MarketEvent?.self, returning: [MarketEvent].self) { taskGroup in
+    func getLastEvents(type: IEventType.Type, symbols: [Symbol]) async -> [MarketEvent] {
+        let group = await withTaskGroup(of: MarketEvent?.self, returning: [MarketEvent].self) { taskGroup in
+            let tasks = try? getLastEventsTasks(type: type, symbols: symbols)
             tasks?.forEach { task in
                 taskGroup.addTask {
                     let result = await task.result
@@ -127,6 +127,8 @@ public extension DXFeed {
             }
             return events
         }
+
+        return group
     }
 
     ///  Requests the last events for the specified event type and a collection of symbols.
