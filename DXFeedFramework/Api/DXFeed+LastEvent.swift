@@ -18,7 +18,6 @@ public extension DXFeed {
     ///    - type:  ``IEventType``.
     ///    - symbol: ``Symbol``
     /// - Returns: Task
-    /// - Throws: ``GraalException``. Rethrows exception from Java.
     @available(iOS 13.0, *)
     @available(macOS 10.15, *)
     func getLastEvent(type: IEventType.Type,
@@ -102,7 +101,6 @@ public extension DXFeed {
     ///    - type:  ``IEventType``.
     ///    - symbol: The list of ``Symbol``
     /// - Returns: The list of ``MarketEvent``
-    /// - Throws: ``GraalException``. Rethrows exception from Java.
     @available(iOS 13.0, *)
     @available(macOS 10.15, *)
     func getLastEvents(type: IEventType.Type, symbols: [Symbol]) async -> [MarketEvent] {
@@ -264,6 +262,5 @@ public extension DXFeed {
                                                             fromTime: fromTime,
                                                             toTime: toTime)
         return Promise(native: nativePromise)
-
     }
 }
