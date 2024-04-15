@@ -143,7 +143,7 @@ final class DXPromiseTest: XCTestCase {
     func testGetMultipleResults() {
         do {
 
-            let promises = try feed?.getLastEventPromises(type: Quote.self, symbols: ["ETH/USD:GDAX", "AAPL"])
+            let promises = try feed?.getLastEventsPromises(type: Quote.self, symbols: ["ETH/USD:GDAX", "AAPL"])
             if promises?.isEmpty != false {
                 XCTAssert(false, "Promises is empty")
             }
@@ -163,7 +163,7 @@ final class DXPromiseTest: XCTestCase {
         do {
             let symbols = ["ETH/USD:GDAX", "AAPL"]
 
-            let promises = try feed?.getLastEventPromises(type: Quote.self, symbols: symbols)
+            let promises = try feed?.getLastEventsPromises(type: Quote.self, symbols: symbols)
             if promises?.isEmpty != false {
                 XCTAssert(false, "Promises is empty")
             }
@@ -186,7 +186,7 @@ final class DXPromiseTest: XCTestCase {
     func testGetMultipleResultsWithException() {
         do {
 
-            let promises = try feed?.getLastEventPromises(type: Quote.self, symbols: ["ETH/USD:GDAX_TEST", "AAPL_TEST"])
+            let promises = try feed?.getLastEventsPromises(type: Quote.self, symbols: ["ETH/USD:GDAX_TEST", "AAPL_TEST"])
             if promises?.isEmpty != false {
                 XCTAssert(false, "Promises is empty")
             }
@@ -227,7 +227,7 @@ final class DXPromiseTest: XCTestCase {
         do {
 
             let promise = try eventPromise(type: Profile.self, symbol: "IBM", feed: feed!)
-            guard var promises = try feed?.getLastEventPromises(type: Quote.self,
+            guard var promises = try feed?.getLastEventsPromises(type: Quote.self,
                                                                 symbols: ["ETH/USD:GDAX", "AAPL"]) else {
                 XCTAssert(false, "Empty promise")
                 return

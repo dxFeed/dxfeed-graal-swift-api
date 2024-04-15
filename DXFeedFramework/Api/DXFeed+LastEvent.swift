@@ -70,7 +70,7 @@ public extension DXFeed {
     @available(iOS 13.0, *)
     @available(macOS 10.15, *)
     func getLastEventsTasks(type: IEventType.Type, symbols: [Symbol]) throws -> [Task<MarketEvent?, Error>]? {
-        let promises = try getLastEventPromises(type: type, symbols: symbols)
+        let promises = try getLastEventsPromises(type: type, symbols: symbols)
         let tasks = promises?.compactMap { promise in
             let task = Task {
                 let defaultValue: MarketEvent? = nil
@@ -140,7 +140,7 @@ public extension DXFeed {
     ///    - symbol: The list of ``Symbol``
     /// - Returns: The list of ``Promise``
     /// - Throws: ``GraalException``. Rethrows exception from Java.
-    func getLastEventPromises(type: IEventType.Type, symbols: [Symbol]) throws -> [Promise]? {
+    func getLastEventsPromises(type: IEventType.Type, symbols: [Symbol]) throws -> [Promise]? {
         let nativePromises = try nativeFeed.getLastEventPromises(type: type, symbols: symbols)
         return nativePromises?.map({ promise in
             Promise(native: promise)
