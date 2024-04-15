@@ -24,7 +24,7 @@ public class DXInstrumentProfileCollector {
 
     /// Creates instrument profile connection.
     ///
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public init() throws {
         self.native = try NativeInstrumentProfileCollector()
     }
@@ -32,7 +32,7 @@ public class DXInstrumentProfileCollector {
     ///
     /// If a set of instrument profiles is not empty, then this listener will be immediately
     /// ``DXInstrumentProfileUpdateListener/instrumentProfilesUpdated(_:)``.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func add<O>(listener: O) throws
     where O: DXInstrumentProfileUpdateListener,
           O: Hashable {
@@ -43,7 +43,7 @@ public class DXInstrumentProfileCollector {
           }
 
     /// Removes listener that is notified about any updates in the set of instrument profiles.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func remove<O>(listener: O)
     where O: DXInstrumentProfileUpdateListener,
           O: Hashable {
@@ -64,7 +64,7 @@ public class DXInstrumentProfileCollector {
     ///
     /// - Parameters:
     ///   - profile: ip instrument profile.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func updateInstrumentProfile(profile: InstrumentProfile) throws {
         try native.updateInstrumentProfile(profile: profile)
     }
@@ -77,7 +77,7 @@ public class DXInstrumentProfileCollector {
     /// then a removed instrument profile (with a removed type) can be exposed by this view.
     ///
     /// - Returns: a concurrent view of the set of instrument profiles.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func view() throws -> DXProfileIterator {
         let iterator = try native.view()
         return DXProfileIterator(iterator)
@@ -86,7 +86,7 @@ public class DXInstrumentProfileCollector {
     /// Create executor for processing instrument profile update notifications.
     ///
     /// - Returns: true in success case
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func createOnConcurrentLinkedQueue() throws -> Bool {
         let nativeExecutor = try NativeExecutor.createOnConcurrentLinkedQueue()
         return try native.setExecutor(nativeExecutor)
@@ -99,7 +99,7 @@ public class DXInstrumentProfileCollector {
     ///   - numberOfThreads: the number of threads to keep in the pool, even if they are idle
     ///   - nameOfthread: name of threadFactory. The factory to use when the executor creates a new thread
     /// - Returns: true in success case
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func createOnScheduledThreadPool(numberOfThreads: Int32,
                                             nameOfthread: String) throws -> Bool {
         let nativeExecutor = try NativeExecutor.createOnScheduledThreadPool(numberOfThreads: numberOfThreads,
@@ -114,7 +114,7 @@ public class DXInstrumentProfileCollector {
     ///   - numberOfThreads: the number of threads to keep in the pool, even if they are idle
     ///   - nameOfthread: name of threadFactory. The factory to use when the executor creates a new thread
     /// - Returns: true in success case
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func createOnFixedThreadPool(numberOfThreads: Int32,
                                         nameOfthread: String) throws -> Bool {
         let nativeExecutor = try NativeExecutor.createOnFixedThreadPool(numberOfThreads: numberOfThreads,

@@ -40,28 +40,28 @@ public class DXTimeFormat {
     }()
 
     /// Returns TimeFormat instance for a specified timezone.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public convenience init(timeZone: DXTimeZone) throws {
         let timeFormat = try NativeTimeFormat(timeZone: timeZone.timeZone)
         self.init(timeFormat: timeFormat)
     }
 
     /// Returns TimeFormat instance that also includes timezone into string
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public convenience init(withTimeZone timeFormat: DXTimeFormat) throws {
         let timeFormat = try NativeTimeFormat(withTimeZone: timeFormat.timeFormat)
         self.init(timeFormat: timeFormat)
     }
 
     /// Returns TimeFormat instance that also includes milliseconds into string
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public convenience init(withMillis timeFormat: DXTimeFormat) throws {
         let timeFormat = try NativeTimeFormat(withMillis: timeFormat.timeFormat)
         self.init(timeFormat: timeFormat)
     }
 
     /// Returns TimeFormat instance that produces full ISO8610 string of "yyyy-MM-dd'T'HH:mm:ss.SSSX".
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public convenience init(fullIso timeFormat: DXTimeFormat) throws {
         let timeFormat = try NativeTimeFormat(fullIso: timeFormat.timeFormat)
         self.init(timeFormat: timeFormat)
@@ -180,7 +180,7 @@ public extension DXTimeFormat {
     /// - Parameters:
     ///   - value: time date and time to format.
     /// - Returns: string representation of data and time.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     func format(value: Long) throws -> String? {
         return try NativeTimeUtil.format(timeFormat: timeFormat, value: value)
     }

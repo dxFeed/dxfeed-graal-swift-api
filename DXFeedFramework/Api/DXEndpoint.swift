@@ -224,7 +224,7 @@ public class DXEndpoint {
 
     /// Returns a set of all event types supported by this endpoint. The resulting set cannot be modified.
     ///
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func getEventTypes() throws -> [EventCode] {
         return try endpointNative.getEventTypes()
     }
@@ -260,7 +260,7 @@ public class DXEndpoint {
     /// - Parameters:
     ///   - address: The data source address.
     /// - Returns: ``DXEndpoint``
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     @discardableResult public func connect(_ address: String) throws -> Self {
         try self.endpointNative.connect(address)
         return self
@@ -276,7 +276,7 @@ public class DXEndpoint {
     /// ``connect(_:)`` method or was disconnected with ``disconnect()``  method.
     /// The method initiates a short-path way for reconnecting, so whether listeners will have a chance to see
     /// an intermediate state ``DXEndpointState/notConnected`` depends on the implementation.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func reconnect() throws {
         try self.endpointNative.reconnect()
     }
@@ -286,7 +286,7 @@ public class DXEndpoint {
     /// The endpoint ``getState()`` immediately becomes ``DXEndpointState/notConnected`` otherwise.
     /// This method does not release all resources that are associated with this endpoint.
     /// Use ``close()`` or ``closeAndAwaitTermination()`` methods to release all resources.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func disconnect() throws {
         try self.endpointNative.disconnect()
     }
@@ -296,7 +296,7 @@ public class DXEndpoint {
     /// The endpoint``getState()`` immediately becomes``DXEndpointState/notConnected`` otherwise.
     /// This method does not release all resources that are associated with this endpoint.
     /// Use ``close()`` or ``closeAndAwaitTermination()`` methods to release all resources.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func disconnectAndClear() throws {
         try self.endpointNative.disconnectAndClear()
     }
@@ -305,7 +305,7 @@ public class DXEndpoint {
     /// All network connection are terminated as with ``disconnect()``
     /// method and no further connections can be established.
     /// The endpoint ``getState()`` immediately becomes ``DXEndpointState/closed``.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func close() throws {
         try self.endpointNative.close()
     }
@@ -329,7 +329,7 @@ public class DXEndpoint {
     /// - Parameters:
     ///    - password: The user password.
     /// - Returns: ``DXEndpoint``
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func set(password: String) throws -> Self {
         try endpointNative.set(password: password)
         return self
@@ -341,7 +341,7 @@ public class DXEndpoint {
     /// - Parameters:
     ///    - userName: The user name.
     /// - Returns: ``DXEndpoint``
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func set(userName: String) throws -> Self {
         try endpointNative.set(userName: userName)
         return self
@@ -351,7 +351,7 @@ public class DXEndpoint {
     /// This is important when writing data to file via "tape:..." connector to make sure that
     /// all published data was written before closing this endpoint.
     /// **This method is blocking.**
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func awaitProcessed() throws {
         try endpointNative.awaitProcessed()
     }
@@ -362,14 +362,14 @@ public class DXEndpoint {
     /// processed by the corresponding subscription listeners. Use ``closeAndAwaitTermination()`` after
     /// this method returns to make sure that all processing has completed.
     /// **This method is blocking.**
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func awaitNotConnected() throws {
         try endpointNative.awaitNotConnected()
     }
 
     /// Gets the ``DXEndpointState`` of this endpoint.
     /// - Returns: ``DXEndpointState``
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func getState() throws -> DXEndpointState {
         return try endpointNative.getState()
     }
@@ -377,7 +377,7 @@ public class DXEndpoint {
     /// - Parameters:
     ///     - role: Role for endpoint. Default: ``DXEndpoint/Role-swift.enum/feed``
     /// - Returns: The created ``DXEndpoint`` instance.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public static func create(_ role: Role = .feed) throws -> DXEndpoint {
         return try Builder().withRole(role).build()
     }
@@ -385,7 +385,7 @@ public class DXEndpoint {
     /// Gets a default application-wide singleton instance of DXEndpoint with a ``DXEndpoint/Role-swift.enum/feed`` role.
     /// Most applications use only a single data-source and should rely on this method to get one.
     /// - Returns: Returns singleton instance of ``DXEndpoint``
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public static func getInstance(_ role: Role = .feed) throws -> DXEndpoint {
         defer {
             objc_sync_exit(self)
@@ -404,7 +404,7 @@ public class DXEndpoint {
 /// Builder class for ``DXEndpoint`` that supports additional configuration properties.
 ///
 /// Porting a Java class com.dxfeed.api.DXEndpoint.Builder.
-/// For more details see [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Builder.html)
+/// For more details see [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Builder.html)
 ///
 /// The ``build()`` method tries to load the default property file for the ``DXEndpoint/Role-swift.enum/feed``,
 /// ``DXEndpoint/Role-swift.enum/onDemandFeed`` and ``DXEndpoint/Role-swift.enum/publisher`` role.
@@ -450,7 +450,7 @@ public class Builder {
     /// - Parameters:
     ///   - name: The endpoint name.
     /// - Returns: Returns this ``Builder``
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func withName(_ name: String) throws -> Self {
         return try withProperty(DXEndpoint.Property.name.rawValue, name)
     }
@@ -460,7 +460,7 @@ public class Builder {
     /// - Parameters:
     ///   - role: The endpoint role ``DXEndpoint/Role-swift.enum``.
     /// - Returns: Returns this ``Builder``
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func withRole(_ role: Role) throws -> Self {
         self.role = role
         _ = try nativeBuilder?.withRole(role)
@@ -471,7 +471,7 @@ public class Builder {
     /// - Parameters:
     ///   - proeprty: Property name
     /// - Returns: Returns Bool
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func isSupported(_ property: String) throws -> Bool {
         return try nativeBuilder?.isSuppored(property: property) ?? false
     }
@@ -481,7 +481,7 @@ public class Builder {
     ///   - key: Property name
     ///   - value: Property value
     /// - Returns: Returns this ``Builder``
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func withProperty(_ key: String, _ value: String) throws -> Self {
         props[key] = value
         try nativeBuilder?.withProperty(key, value)
@@ -492,7 +492,7 @@ public class Builder {
     /// - Parameters:
     ///   - properties: The key-value collection
     /// - Returns: Returns this ``Builder``
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func withProperties(_ properties: [String: String]) throws -> Self {
         try properties.forEach { key, value in
             _ = try withProperty(key, value)
@@ -503,7 +503,7 @@ public class Builder {
     /// Builds ``DXEndpoint`` instance.
     /// This method tries to load default properties file.
     /// - Returns: Returns this ``DXEndpoint``
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func build() throws -> DXEndpoint {
         return try DXEndpoint(native: try nativeBuilder!.build(), role: role, name: getOrCreateEndpointName())
     }

@@ -39,12 +39,12 @@ extension DXObservableSubscription: IObservableSubscription {
         }
     }
 
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func addChangeListener(_ listener: ObservableSubscriptionChangeListener) throws {
         try native.addChangeListener(listener)
     }
 
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func removeChangeListener(_ listener: ObservableSubscriptionChangeListener) throws {
         try native.removeChangeListener(listener)
     }

@@ -39,7 +39,7 @@ public class DXInstrumentProfileConnection {
     ///   - address: address address.
     ///   - collector: instrument profile collector to push updates into.
     /// - Returns: new instrument profile connection.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public init(_ address: String, _ collector: DXInstrumentProfileCollector) throws {
         self.collector = collector
         native = try NativeInstrumentProfileConnection(collector.native, address)
@@ -65,14 +65,14 @@ public class DXInstrumentProfileConnection {
 
     /// Changes update period in milliseconds.
     ///
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func setUpdatePeriod(_ value: Long) throws {
         try native.setUpdatePeriod(value)
     }
 
     /// Returns state of this instrument profile connections.
     ///
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func getState() throws -> DXInstrumentProfileConnectionState {
         return try native.getState()
     }
@@ -91,7 +91,7 @@ public class DXInstrumentProfileConnection {
     /// This connection's state immediately changes to
     /// ``DXInstrumentProfileConnectionState/connecting`` and the actual connection establishment proceeds in the background.
     ///
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func start() throws {
         try native.start()
     }
@@ -100,7 +100,7 @@ public class DXInstrumentProfileConnection {
     ///
     /// ``DXInstrumentProfileConnectionState/closed`` and the background update procedures are terminated.
     ///
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func close() throws {
         try native.close()
     }

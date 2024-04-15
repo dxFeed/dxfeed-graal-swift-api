@@ -34,7 +34,7 @@ public class DXTimePeriod {
     }
 
     /// Returns ``TimePeriod`` with  value milliseconds
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     convenience init(value: Int64) throws {
         let timePeriod = try NativeTimePeriod(value: value)
         self.init(timePeriod: timePeriod)
@@ -49,7 +49,7 @@ public class DXTimePeriod {
     /// Number of seconds can be fractional. So it is possible to define duration accurate within milliseconds.
     /// Every part can be omitted. It is supposed that it's value is zero then.
     /// String "inf" recognized as unlimited period.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     convenience init(value: String) throws {
         let timePeriod = try NativeTimePeriod(value: value)
         self.init(timePeriod: timePeriod)

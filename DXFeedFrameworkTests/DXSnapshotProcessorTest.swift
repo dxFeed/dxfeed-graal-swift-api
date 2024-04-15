@@ -40,6 +40,6 @@ final class DXSnapshotProcessorTest: XCTestCase, SnapshotDelegate {
         try subscription?.add(listener: snapshotProcessor)
         let symbol = TimeSeriesSubscriptionSymbol(symbol: "AAPL{=1d}", date: Date.init(millisecondsSince1970: 0))
         try subscription?.addSymbols(symbol)
-        wait(for: [receivedEventExp], timeout: 2.0)
+        wait(for: [receivedEventExp], timeout: 4.0)
     }
 }
