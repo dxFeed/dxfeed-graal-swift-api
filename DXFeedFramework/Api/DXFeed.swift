@@ -93,6 +93,16 @@ public extension DXFeed {
         return try native.getLastEvent(type: type)
     }
 
+    /// Returns the last event for the specified event type and symbol if there is a subscription for it.
+    /// This method works only for event types that implement ``ILastingEvent`` marker interface.
+    /// This method **does not** make any remote calls to the uplink data provider.
+    /// It just retrieves last received event from the local cache of this feed.
+    /// The events are stored in the cache only if there is some
+    /// attached ``DXFeedSubscription`` that is subscribed to the corresponding event type and symbol.
+    func getLastEventIfSubscribed(type: IEventType.Type, symbol: Symbol) throws -> ILastingEvent? {
+        return try native.getLastEventIfSubscribed(type: type, symbol: symbol)
+    }
+
     /// Returns the last events for the specified list of event instances.
     ///
     /// This is a bulk version of  ``getLastEvent(type:)`` method.

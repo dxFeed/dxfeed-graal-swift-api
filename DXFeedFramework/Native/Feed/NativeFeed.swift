@@ -101,6 +101,26 @@ class NativeFeed {
         return event?.lastingEvent
     }
 
+    func getLastEventIfSubscribed(type: IEventType.Type, symbol: Symbol) throws -> ILastingEvent? {
+        let thread = currentThread()
+        let converted = SymbolMapper.newNative(symbol)
+        defer {
+            if let converted = converted {
+                SymbolMapper.clearNative(symbol: converted)
+            }
+        }
+        do {
+            let result = try ErrorCheck.nativeCall(thread,
+                                                   dxfg_DXFeed_getLastEventIfSubscribed(thread,
+                                                                                        feed,
+                                                                                        type.type.nativeCode(), 
+                                                                                        converted))
+            return try mapper.fromNative(native: result)?.lastingEvent
+        } catch GraalException.nullException {
+            return nil
+        }
+    }
+
     func getLastEvents(types: [MarketEvent]) throws -> [ILastingEvent] {
         let listPointer = UnsafeMutablePointer<dxfg_event_type_list>.allocate(capacity: 1)
         listPointer.pointee.size = Int32(types.count)
