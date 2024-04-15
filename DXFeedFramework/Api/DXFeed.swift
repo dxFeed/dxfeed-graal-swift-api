@@ -29,7 +29,7 @@ public class DXFeed {
     }
     /// Creates new subscription for a list of event types that is attached to this feed.
     ///
-    /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeed.html#createSubscription-java.lang.Class)
+    /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeed.html#createSubscription-java.lang.Class)
     /// - Parameters:
     ///     - types: The list of event types.
     /// - Returns: ``DXFeedSubscription``
@@ -39,11 +39,11 @@ public class DXFeed {
     }
     /// Creates new subscription for a one event type that is attached to this feed.
     ///
-    /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeed.html#createSubscription-java.lang.Class)
+    /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeed.html#createSubscription-java.lang.Class)
     /// - Parameters:
     ///     - type: event code
     /// - Returns: ``DXFeedSubscription``
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func createSubscription(_ type: IEventType.Type) throws -> DXFeedSubscription {
         return try DXFeedSubscription(native: native.createSubscription(type), types: [type])
     }
@@ -51,7 +51,7 @@ public class DXFeed {
     /// Creates new time series subscription for a single event type that is <i>attached</i> to this feed.
     /// For multiple event types in one subscription use
     /// ``createTimeSeriesSubscription(_:)-tuiu``
-    /// This method creates new ``DXFeedTimeSeriesSubscription`` and invokes ``attachSubscription``.
+    /// This method creates new ``DXFeedTimeSeriesSubscription`` and invokes ``attach(subscription:)``.
     ///
     /// - Parameters:
     ///     - types: The list of ITimeSeriesEvent.
@@ -65,7 +65,7 @@ public class DXFeed {
     /// Creates new time series subscription for a single event type that is <i>attached</i> to this feed.
     /// For multiple event types in one subscription use
     /// ``createTimeSeriesSubscription(_:)-tuiu``
-    /// This method creates new ``DXFeedTimeSeriesSubscription`` and invokes ``attachSubscription``.
+    /// This method creates new ``DXFeedTimeSeriesSubscription`` and invokes ``attach(subscription:)``.
     ///
     /// - Parameters:
     ///     - type:  type of ITimeSeriesEvent.

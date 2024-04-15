@@ -11,7 +11,7 @@ import Foundation
 /// for time series events from a specific time. By default, subscribing to time-series events by
 /// their event symbol object, the subscription is performed to a stream of new events as they happen only.
 ///
-/// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/TimeSeriesSubscriptionSymbol.html)
+/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/TimeSeriesSubscriptionSymbol.html)
 ///
 /// `T`: The type of event symbol.
 public class TimeSeriesSubscriptionSymbol: GenericIndexedEventSubscriptionSymbol<AnyHashable> {

@@ -20,7 +20,7 @@ public class DXProfileIterator {
         try self.native.hasNext()
     }
     /// Returns the next element in the iteration.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func next() throws -> InstrumentProfile {
         return try self.native.next()
     }

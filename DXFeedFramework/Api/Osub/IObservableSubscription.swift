@@ -8,20 +8,20 @@ import Foundation
 
 /// Observable set of subscription symbols for the specific event type.
 ///
-/// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/ObservableSubscription.html)
+/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/ObservableSubscription.html)
 public protocol IObservableSubscription {
     /// Gets a value indicating whether if this subscription is closed.
     ///
-    /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/ObservableSubscription.html#isClosed--)
+    /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/ObservableSubscription.html#isClosed--)
     func isClosed() -> Bool
     /// Gets a set of subscribed event types. The resulting set cannot be modified.
     ///
-    /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/ObservableSubscription.html#getEventTypes--)
+    /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/ObservableSubscription.html#getEventTypes--)
     /// - Returns: a set of subscribed event types.
     var eventTypes: [IEventType.Type] { get }
     /// Gets a value indicating whether if this subscription contains the corresponding event type.
     ///
-    /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/ObservableSubscription.html#containsEventType-java.lang.Class-)
+    /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/ObservableSubscription.html#containsEventType-java.lang.Class-)
     ///
     /// - Parameters:
     ///   - eventType: The event type.
@@ -39,7 +39,7 @@ public protocol IObservableSubscription {
     ///
     /// - Parameters:
     ///   - listener: listener the subscription change listener.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     func addChangeListener(_ listener: ObservableSubscriptionChangeListener) throws
 
     /// Removes subscription change listener. This method does nothing if the given listener was not
@@ -51,6 +51,6 @@ public protocol IObservableSubscription {
     /// 
     /// - Parameters:
     ///   - listener: listener the subscription change listener.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     func removeChangeListener(_ listener: ObservableSubscriptionChangeListener) throws
 }

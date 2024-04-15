@@ -37,7 +37,7 @@ public class DXFeedSubscription {
     /// or not attached to any feed.
     /// This method does nothing if this subscription is closed.
     ///
-    /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html#addEventListener-com.dxfeed.api.DXFeedEventListener)
+    /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html#addEventListener-com.dxfeed.api.DXFeedEventListener)
     /// - Throws: ``GraalException`` Rethrows exception from Java, ``ArgumentException/argumentNil``
     public func add<O>(listener: O) throws
     where O: DXEventListener,
@@ -51,7 +51,7 @@ public class DXFeedSubscription {
           }
     /// Removes listener for events.
     ///
-    /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html#addEventListener-com.dxfeed.api.DXFeedEventListener-)
+    /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html#addEventListener-com.dxfeed.api.DXFeedEventListener-)
     public func remove<O>(listener: O)
     where O: DXEventListener,
           O: Hashable {
@@ -63,10 +63,10 @@ public class DXFeedSubscription {
     /// All registered event listeners will receive update on the last events for
     /// newly added symbol.
     ///
-    /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html#addSymbols-java.util.Collection-)
+    /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html#addSymbols-java.util.Collection-)
     /// - Parameters:
     ///   - symbol: One symbol
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func addSymbols(_ symbol: Symbol) throws {
         try native.addSymbols(symbol)
     }
@@ -76,20 +76,20 @@ public class DXFeedSubscription {
     /// All registered event listeners will receive update on the last events for all
     /// newly added symbols.
     ///
-    /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html#addSymbols-java.util.Collection-)
+    /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html#addSymbols-java.util.Collection-)
     /// - Parameters:
     ///   - symbol: The collection of symbols.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func addSymbols(_ symbols: [Symbol]) throws {
         try native.addSymbols(symbols)
     }
 
     /// Removes the specified collection of symbols from the set of subscribed symbols.
     ///
-    ///  [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html#removeSymbols-java.util.Collection-)
+    ///  [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html#removeSymbols-java.util.Collection-)
     /// - Parameters:
     ///   - symbol: The collection of symbols.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func removeSymbols(_ symbols: [Symbol]) throws {
         try native.removeSymbols(symbols)
     }
@@ -99,10 +99,10 @@ public class DXFeedSubscription {
     /// All registered event listeners will receive update on the last events for all
     /// newly added symbols.
     ///
-    /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html#setSymbols-java.util.Collection-)
+    /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html#setSymbols-java.util.Collection-)
     /// - Parameters:
     ///   - symbol: The collection of symbols.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func setSymbols(_ symbols: [Symbol]) throws {
         try native.setSymbols(symbols)
     }
@@ -110,7 +110,7 @@ public class DXFeedSubscription {
     /// Returns a set of subscribed symbols.
     ///
     /// - Returns: The collection of symbols.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func getSymbols() throws -> [Symbol] {
         return try native.getSymbols()
     }
@@ -166,7 +166,7 @@ public extension DXFeedSubscription {
     ///
     /// - Parameters:
     ///   - feed: The  ``DXFeed`` to attach to.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     func attach(feed: DXFeed) throws {
         try native.attach(feed: feed.nativeFeed)
     }
@@ -175,7 +175,7 @@ public extension DXFeedSubscription {
     ///
     /// - Parameters:
     ///   - feed: The  ``DXFeed`` to detach from.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     func detach(feed: DXFeed) throws {
         try native.detach(feed: feed.nativeFeed)
     }

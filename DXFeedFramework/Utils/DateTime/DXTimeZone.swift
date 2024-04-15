@@ -14,7 +14,7 @@ import Foundation
 /// You can also get a TimeZone using getTimeZone along with a time zone ID. For instance, the time zone ID for the U.S. Pacific Time zone is "America/Los_Angeles". So, you can get a U.S. Pacific Time TimeZone object with.
 /// All methods throw exception: GraalException. Rethrows exception from Java.
 /// For more details
-/// see [Javadoc](https://docs.oracle.com/javase/8/docs/api/java/util/TimeZone.html)
+/// see [For more details see](https://docs.oracle.com/javase/8/docs/api/java/util/TimeZone.html)
 public class DXTimeZone {
     public static let defaultTimeZone: DXTimeZone? = {
         if let timeZone = NativeTimeZone.defaultTimeZone() {

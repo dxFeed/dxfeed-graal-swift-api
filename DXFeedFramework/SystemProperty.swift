@@ -14,7 +14,7 @@ import Foundation
 public class SystemProperty {
     /// Sets the system property indicated by the specified key.
     ///
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public static func setProperty(_ key: String, _ value: String) throws {
         try NativeProperty.setProperty(key, value)
     }

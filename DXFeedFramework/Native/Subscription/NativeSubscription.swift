@@ -215,7 +215,7 @@ class NativeSubscription {
         return success != 0
     }
 
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     func addChangeListener(_ listener: ObservableSubscriptionChangeListener) throws {
         if subscriptionChangeListener == nil {
             let thread = currentThread()
@@ -240,7 +240,7 @@ class NativeSubscription {
         subscriptionChangeListener = listener
     }
 
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     func removeChangeListener(_ listener: ObservableSubscriptionChangeListener) throws {
         if listener === subscriptionChangeListener {
             defer {
