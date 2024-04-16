@@ -664,6 +664,7 @@
 		642DC9352AAA21C300974F5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		642DC9402AAA290300974F5C /* IpfCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IpfCell.swift; sourceTree = "<group>"; };
 		6433B12C2BCE7ADD004EFED7 /* DXFeed+LastEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DXFeed+LastEvents.swift"; sourceTree = "<group>"; };
+		6433B1302BCE87D4004EFED7 /* RequestProfile.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RequestProfile.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6435EE3C2B1F1E9200E8496C /* PrintQuoteEvents.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = PrintQuoteEvents.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		64437A8E2A9DEE6F005929B2 /* InstrumentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfile.swift; sourceTree = "<group>"; };
 		64437A912A9DF1DE005929B2 /* NativeInstrumentProfileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInstrumentProfileReader.swift; sourceTree = "<group>"; };
@@ -1097,6 +1098,7 @@
 				641C64AE2B344E770023CFAD /* PublishProfiles.playground */,
 				64F9C6C12B4BFD8F003ED014 /* DXFeedconnect.playground */,
 				644551C92B973A0D0069E3A2 /* FetchDailyCandles.playground */,
+				6433B1302BCE87D4004EFED7 /* RequestProfile.playground */,
 			);
 			path = Playgrounds;
 			sourceTree = "<group>";

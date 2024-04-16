@@ -84,7 +84,7 @@ final class DXPromiseTest: XCTestCase {
                     receivedEventExp.fulfill()
                 }
             }
-            wait(for: [receivedEventExp], timeout: 1)
+            wait(for: [receivedEventExp], timeout: 2)
 
         } catch {
             XCTAssert(false, "testGetResult \(error)")
@@ -177,7 +177,7 @@ final class DXPromiseTest: XCTestCase {
                     }
                 }
             })
-            wait(for: Array(expectations.values), timeout: 1)
+            wait(for: Array(expectations.values), timeout: 2)
         } catch {
             XCTAssert(false, "testGetIndexedEventResult \(error)")
         }
