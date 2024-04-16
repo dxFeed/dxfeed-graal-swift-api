@@ -167,7 +167,38 @@ final class DXLastEventTest: XCTestCase {
         let existingQuotes = try feed?.getLastEventIfSubscribed(type: Quote.self, symbol: testSymbol)
         XCTAssertNotNil(existingQuotes)
         XCTAssertEqual(101, (existingQuotes as? Quote)?.askPrice)
-
     }
 
+    func testGetIndexedEventsIfSubscribed() throws {
+        let testSymbol = StringUtil.random(length: 5)
+        let type = Order.self
+        let endpoint: DXEndpoint? = try DXEndpoint.create(.localHub)
+        let feed = endpoint?.getFeed()
+        let publisher = endpoint?.getPublisher()
+        let nillOrderList = try feed?.getIndexedEventsIfSubscribed(type: type,
+                                                                   symbol: testSymbol,
+                                                                   source: .defaultSource)
+        XCTAssertNil(nillOrderList)
+        let subscription = try feed?.createSubscription([type])
+        try subscription?.addSymbols(testSymbol)
+        let emptyOrderList = try feed?.getIndexedEventsIfSubscribed(type: type,
+                                                                    symbol: testSymbol,
+                                                                    source: .defaultSource)
+        XCTAssertNil(emptyOrderList)
+
+        try publisher?.publish(events: [Order(testSymbol).also(block: { order in
+            try? order.setIndex(1)
+            order.orderSide = .buy
+            order.price = 10.5
+            order.size = 100
+        })])
+        let orderList = try feed?.getIndexedEventsIfSubscribed(type: type, symbol: testSymbol, source: .defaultSource)
+        XCTAssertEqual(1, orderList?.count)
+        let order = orderList?.first as? Order
+        XCTAssertNotNil(order)
+        XCTAssertEqual(1, order?.index)
+        XCTAssertEqual(Side.buy, order?.orderSide)
+        XCTAssertEqual(10.5, order?.price)
+        XCTAssertEqual(100, order?.size)
+    }
 }

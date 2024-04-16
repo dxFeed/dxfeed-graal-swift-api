@@ -93,21 +93,6 @@ public extension DXFeed {
         return try native.getLastEvent(type: type)
     }
 
-    /// Returns the last event for the specified event type and symbol if there is a subscription for it.
-    /// This method works only for event types that implement ``ILastingEvent`` marker interface.
-    /// This method **does not** make any remote calls to the uplink data provider.
-    /// It just retrieves last received event from the local cache of this feed.
-    /// The events are stored in the cache only if there is some
-    /// attached ``DXFeedSubscription`` that is subscribed to the corresponding event type and symbol.
-    /// - Parameters:
-    ///    - type: The event type ``IEventType``.
-    ///    - symbol: The ``Symbol``.
-    /// - Returns: The list of ``ILastingEvent``
-    /// - Throws: ``GraalException``. Rethrows exception from Java.
-    func getLastEventIfSubscribed(type: IEventType.Type, symbol: Symbol) throws -> ILastingEvent? {
-        return try native.getLastEventIfSubscribed(type: type, symbol: symbol)
-    }
-
     /// Returns the last events for the specified list of event instances.
     ///
     /// This is a bulk version of  ``getLastEvent(type:)`` method.
@@ -140,5 +125,45 @@ public extension DXFeed {
     /// - Throws: ``GraalException``. Rethrows exception from Java.
     func detach(subscription: DXFeedSubscription) throws {
         try native.detach(subscription: subscription.nativeSubscription)
+    }
+}
+
+public extension DXFeed {
+    /// Returns the last event for the specified event type and symbol if there is a subscription for it.
+    /// 
+    /// This method works only for event types that implement ``ILastingEvent`` marker interface.
+    /// This method **does not** make any remote calls to the uplink data provider.
+    /// It just retrieves last received event from the local cache of this feed.
+    /// The events are stored in the cache only if there is some
+    /// attached ``DXFeedSubscription`` that is subscribed to the corresponding event type and symbol.
+    /// - Parameters:
+    ///    - type: The event type ``IEventType``.
+    ///    - symbol: The ``Symbol``.
+    /// - Returns: The list of ``ILastingEvent``
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
+    func getLastEventIfSubscribed(type: IEventType.Type, symbol: Symbol) throws -> ILastingEvent? {
+        return try native.getLastEventIfSubscribed(type: type, symbol: symbol)
+    }
+
+    // Returns a list of indexed events for the specified event type, symbol, and source
+    /// if there is a subscription for it.
+    ///
+    /// This method works only for event types that implement ``IIndexedEvent``interface.
+    /// This method **does not** make any remote calls to the uplink data provider.
+    /// It just retrieves last received events from the local cache of this feed.
+    /// The events are stored in the cache only if there is some
+    /// attached ``DXFeedSubscription`` that is subscribed to the corresponding event type, symbol, and source.
+    /// - Parameters:
+    ///    - type: The event type ``IEventType``.
+    ///    - symbol: The ``Symbol``.
+    ///    - source: The ``IndexedEventSource``.
+    /// - Returns: The list of ``IIndexedEvent``
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
+    func getIndexedEventsIfSubscribed(type: IEventType.Type,
+                                      symbol: Symbol,
+                                      source: IndexedEventSource) throws -> [IIndexedEvent]? {
+        return try native.getIndexedEventsIfSubscribed(type: type,
+                                                       symbol: symbol,
+                                                       source: source)
     }
 }

@@ -113,9 +113,45 @@ class NativeFeed {
             let result = try ErrorCheck.nativeCall(thread,
                                                    dxfg_DXFeed_getLastEventIfSubscribed(thread,
                                                                                         feed,
-                                                                                        type.type.nativeCode(), 
+                                                                                        type.type.nativeCode(),
                                                                                         converted))
             return try mapper.fromNative(native: result)?.lastingEvent
+        } catch GraalException.nullException {
+            return nil
+        }
+    }
+
+    func getIndexedEventsIfSubscribed(type: IEventType.Type,
+                                      symbol: Symbol,
+                                      source: IndexedEventSource) throws -> [IIndexedEvent]? {
+        let thread = currentThread()
+        let converted = SymbolMapper.newNative(symbol)
+        defer {
+            if let converted = converted {
+                SymbolMapper.clearNative(symbol: converted)
+            }
+        }
+        do {
+            let result = try ErrorCheck.nativeCall(thread,
+                                                   dxfg_DXFeed_getIndexedEventsIfSubscribed(thread,
+                                                                                            feed,
+                                                                                            type.type.nativeCode(),
+                                                                                            converted,
+                                                                                            source.name.toCStringRef()))
+            if result.pointee.size == 0 {
+                return nil
+            } else {
+                var events = [IIndexedEvent]()
+                for index in 0..<Int(result.pointee.size) {
+                    guard let nativeElement = result.pointee.elements[index] else { continue }
+                    let event = try? mapper.fromNative(native: nativeElement)
+                    if let indexedEvent = event as? IIndexedEvent {
+                        events.append(indexedEvent)
+                    }
+                }
+                return events
+
+            }
         } catch GraalException.nullException {
             return nil
         }
