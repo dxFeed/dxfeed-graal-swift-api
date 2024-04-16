@@ -141,13 +141,47 @@ class NativeFeed {
             if result.pointee.size == 0 {
                 return nil
             } else {
-                var events = [IIndexedEvent]()
-                for index in 0..<Int(result.pointee.size) {
-                    guard let nativeElement = result.pointee.elements[index] else { continue }
+                let events: [IIndexedEvent] =
+                (0..<Int(result.pointee.size)).compactMap { index in
+                    guard let nativeElement = result.pointee.elements[index] else { return nil }
                     let event = try? mapper.fromNative(native: nativeElement)
-                    if let indexedEvent = event as? IIndexedEvent {
-                        events.append(indexedEvent)
-                    }
+                    return event?.indexedEvent
+                }
+                return events
+
+            }
+        } catch GraalException.nullException {
+            return nil
+        }
+    }
+
+    func getTimeSeriesIfSubscribed(type: IEventType.Type,
+                                   symbol: Symbol,
+                                   fromTime: Long,
+                                   toTime: Long) throws -> [ITimeSeriesEvent]? {
+        let thread = currentThread()
+        let converted = SymbolMapper.newNative(symbol)
+        defer {
+            if let converted = converted {
+                SymbolMapper.clearNative(symbol: converted)
+            }
+        }
+        do {
+            let result = try ErrorCheck.nativeCall(thread,
+                                                   dxfg_DXFeed_getTimeSeriesIfSubscribed(thread,
+                                                                                         feed,
+                                                                                         type.type.nativeCode(),
+                                                                                         converted,
+                                                                                         fromTime,
+                                                                                         toTime))
+            if result.pointee.size == 0 {
+                return nil
+            } else {
+                let events: [ITimeSeriesEvent] =
+                (0..<Int(result.pointee.size)).compactMap { index in
+                    guard let nativeElement = result.pointee.elements[index] else { return nil }
+                    let event = try? mapper.fromNative(native: nativeElement)
+                    return event?.timeSeriesEvent
                 }
                 return events
 

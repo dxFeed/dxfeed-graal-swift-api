@@ -72,4 +72,11 @@ public extension DXFeed {
                                                        symbol: symbol,
                                                        source: source)
     }
+
+    func getTimeSeriesIfSubscribed(type: IEventType.Type,
+                                   symbol: Symbol,
+                                   fromTime: Long,
+                                   toTime: Long) throws -> [ITimeSeriesEvent]? {
+        return try nativeFeed.getTimeSeriesIfSubscribed(type: type, symbol: symbol, fromTime: fromTime, toTime: toTime)
+    }
 }

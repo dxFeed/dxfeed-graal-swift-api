@@ -201,4 +201,62 @@ final class DXLastEventTest: XCTestCase {
         XCTAssertEqual(10.5, order?.price)
         XCTAssertEqual(100, order?.size)
     }
+
+    func testGetTimeSeriesIfSubscribed() throws {
+        let candleSymbol = CandleSymbol.valueOf( StringUtil.random(length: 5), [CandlePeriod.day])
+        guard let fromTime: Long = try DXTimeFormat.defaultTimeFormat?.parse("20150101"),
+              let toTime: Long = try DXTimeFormat.defaultTimeFormat?.parse("20150710") else {
+            XCTAssert(false, "Parsing failed")
+            return
+        }
+        let type = Candle.self
+        let endpoint: DXEndpoint? = try DXEndpoint.create(.localHub)
+        let feed = endpoint?.getFeed()
+        let publisher = endpoint?.getPublisher()
+        let subscription = try feed?.createSubscription([type])
+
+        do {
+            let nillList = try feed?.getTimeSeriesIfSubscribed(type: type,
+                                                               symbol: candleSymbol,
+                                                               fromTime: fromTime,
+                                                               toTime: toTime)
+            XCTAssertNil(nillList)
+        }
+        do {
+            // wrong sub time
+            try subscription?.addSymbols(TimeSeriesSubscriptionSymbol(symbol: candleSymbol, fromTime: toTime))
+            let nillList = try feed?.getTimeSeriesIfSubscribed(type: type,
+                                                               symbol: candleSymbol,
+                                                               fromTime: fromTime,
+                                                               toTime: toTime)
+            XCTAssertNil(nillList)
+        }
+        do {
+            // right sub time
+            try subscription?.addSymbols(TimeSeriesSubscriptionSymbol(symbol: candleSymbol, fromTime: fromTime))
+            let nillList = try feed?.getTimeSeriesIfSubscribed(type: type,
+                                                               symbol: candleSymbol,
+                                                               fromTime: fromTime,
+                                                               toTime: toTime)
+            XCTAssertNil(nillList)
+        }
+        do {
+            // publish something
+            try publisher?.publish(events: [Candle(candleSymbol).also(block: { candle in
+                candle.time = fromTime
+                candle.close = 10.5
+                candle.volume = 100
+            })])
+            let list = try feed?.getTimeSeriesIfSubscribed(type: type,
+                                                           symbol: candleSymbol,
+                                                           fromTime: fromTime,
+                                                           toTime: toTime)
+            XCTAssertEqual(1, list?.count)
+            let candle = list?.first as? Candle
+            XCTAssertNotNil(candle)
+            XCTAssertEqual(fromTime, candle?.time)
+            XCTAssertEqual(10.5, candle?.close)
+            XCTAssertEqual(100, candle?.volume)
+        }
+    }
 }
