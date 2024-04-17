@@ -84,7 +84,7 @@ class NativeFeed {
                                                     thread,
                                                     type.eventSymbol,
                                                     type.type.nativeCode())
-        )
+        ).value()
         defer {
             _ = try? ErrorCheck.nativeCall(thread,
                                            dxfg_EventType_release(
@@ -156,7 +156,7 @@ class NativeFeed {
                                                dxfg_DXFeed_getLastEventPromise(thread,
                                                                                feed,
                                                                                type.type.nativeCode(),
-                                                                               converted))
+                                                                               converted)).value()
         return NativePromise(promise: &native.pointee.handler)
 
     }
@@ -175,7 +175,7 @@ class NativeFeed {
                                                dxfg_DXFeed_getLastEventsPromises(thread,
                                                                                  feed,
                                                                                  type.type.nativeCode(),
-                                                                                 listPointer))
+                                                                                 listPointer)).value()
         var result = [NativePromise]()
         for index in 0..<Int(native.pointee.list.size) {
             let promise = native.pointee.list.elements[index]
@@ -201,7 +201,7 @@ class NativeFeed {
                                                                                    feed,
                                                                                    type.type.nativeCode(),
                                                                                    converted,
-                                                                                   nativeSource))
+                                                                                   nativeSource)).value()
 
         return NativePromise(promise: &native.pointee.base)
     }
@@ -223,7 +223,7 @@ class NativeFeed {
                                                                                 type.type.nativeCode(),
                                                                                 converted,
                                                                                 fromTime,
-                                                                                toTime))
+                                                                                toTime)).value()
         return NativePromise(promise: &native.pointee.base)
     }
 }
@@ -260,7 +260,7 @@ extension NativeFeed {
                                                    dxfg_DXFeed_getLastEventIfSubscribed(thread,
                                                                                         feed,
                                                                                         type.type.nativeCode(),
-                                                                                        converted))
+                                                                                        converted)).value()
             return try mapper.fromNative(native: result)?.lastingEvent
         } catch GraalException.nullException {
             return nil
@@ -283,7 +283,7 @@ extension NativeFeed {
                                                                                             feed,
                                                                                             type.type.nativeCode(),
                                                                                             converted,
-                                                                                            source.name.toCStringRef()))
+                                                                                            source.name.toCStringRef())).value()
             if result.pointee.size == 0 {
                 return nil
             } else {
@@ -319,7 +319,7 @@ extension NativeFeed {
                                                                                          type.type.nativeCode(),
                                                                                          converted,
                                                                                          fromTime,
-                                                                                         toTime))
+                                                                                         toTime)).value()
             if result.pointee.size == 0 {
                 return nil
             } else {

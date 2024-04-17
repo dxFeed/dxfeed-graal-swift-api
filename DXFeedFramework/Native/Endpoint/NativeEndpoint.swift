@@ -42,7 +42,7 @@ class NativeEndpoint {
     private lazy var feed: NativeFeed? = {
         let thread = currentThread()
         do {
-            let nativeFeed = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_getFeed(thread, self.endpoint))
+            let nativeFeed = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_getFeed(thread, self.endpoint)).value()
             return NativeFeed(feed: nativeFeed)
         } catch {
             return nil
@@ -52,7 +52,7 @@ class NativeEndpoint {
     private lazy var publisher: NativePublisher? = {
         let thread = currentThread()
         do {
-            let nativeFeed = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_getPublisher(thread, self.endpoint))
+            let nativeFeed = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_getPublisher(thread, self.endpoint)).value()
             return NativePublisher(publisher: nativeFeed)
         } catch {
             return nil
@@ -96,7 +96,7 @@ class NativeEndpoint {
     func getEventTypes() throws -> [EventCode] {
         let thread = currentThread()
         let list = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_getEventTypes(
-            thread, endpoint))
+            thread, endpoint)).value()
         defer {
             _ = try? ErrorCheck.nativeCall(thread,
                                        dxfg_CList_EventClazz_release(thread, list))
@@ -121,7 +121,7 @@ class NativeEndpoint {
         let listener = try ErrorCheck.nativeCall(thread,
                                                  dxfg_PropertyChangeListener_new(thread,
                                                                                  NativeEndpoint.listenerCallback,
-                                                                                 voidPtr))
+                                                                                 voidPtr)).value()
         self.listener = listener
         try ErrorCheck.nativeCall(thread, dxfg_Object_finalize(thread,
                                                                &(listener.pointee.handler),

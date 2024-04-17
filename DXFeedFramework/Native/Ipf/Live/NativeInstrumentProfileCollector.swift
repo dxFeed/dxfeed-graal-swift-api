@@ -100,7 +100,7 @@ public class NativeInstrumentProfileCollector {
 
     func view() throws -> NativeProfileIterator {
         let thread = currentThread()
-        let native = try ErrorCheck.nativeCall(thread, dxfg_InstrumentProfileCollector_view(thread, collector))
+        let native = try ErrorCheck.nativeCall(thread, dxfg_InstrumentProfileCollector_view(thread, collector)).value()
         return NativeProfileIterator(native, isDeallocated: true)
     }
 
@@ -114,7 +114,7 @@ public class NativeInstrumentProfileCollector {
 
     func getExecutor() throws -> NativeExecutor {
         let thread = currentThread()
-        let native = try ErrorCheck.nativeCall(thread, dxfg_InstrumentProfileCollector_getExecutor(thread, collector))
+        let native = try ErrorCheck.nativeCall(thread, dxfg_InstrumentProfileCollector_getExecutor(thread, collector)).value()
         return NativeExecutor(executor: native)
     }
 
@@ -132,7 +132,7 @@ public class NativeInstrumentProfileCollector {
         let nativeListener = try ErrorCheck.nativeCall(thread,
                                                  dxfg_InstrumentProfileUpdateListener_new(thread,
                                                                                           callback,
-                                                                                          voidPtr))
+                                                                                          voidPtr)).value()
         try ErrorCheck.nativeCall(thread, dxfg_Object_finalize(thread,
                                                                &(nativeListener.pointee.handler),
                                                                NativeInstrumentProfileCollector.finalizeCallback,

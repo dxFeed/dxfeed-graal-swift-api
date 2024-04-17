@@ -26,7 +26,7 @@ class NativeExecutor {
     static func createOnConcurrentLinkedQueue() throws -> NativeExecutor {
         let thread = currentThread()
         let executor = try ErrorCheck.nativeCall(thread,
-                                                 dxfg_ExecutorBaseOnConcurrentLinkedQueue_new(thread))
+                                                 dxfg_ExecutorBaseOnConcurrentLinkedQueue_new(thread)).value()
         return NativeExecutor(executor: executor)
     }
 
@@ -35,7 +35,7 @@ class NativeExecutor {
         let executor = try ErrorCheck.nativeCall(thread,
                                                  dxfg_Executors_newScheduledThreadPool(thread,
                                                                                        numberOfThreads,
-                                                                                       nameOfthread.toCStringRef()))
+                                                                                       nameOfthread.toCStringRef())).value()
         return NativeExecutor(executor: executor)
     }
 
@@ -44,7 +44,7 @@ class NativeExecutor {
         let executor = try ErrorCheck.nativeCall(thread,
                                                  dxfg_Executors_newFixedThreadPool(thread,
                                                                                    numberOfThreads,
-                                                                                   nameOfthread.toCStringRef()))
+                                                                                   nameOfthread.toCStringRef())).value()
         return NativeExecutor(executor: executor)
     }
 }
