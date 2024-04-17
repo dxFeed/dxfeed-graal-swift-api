@@ -71,7 +71,7 @@ final class DXOtcMarketOrderTest: XCTestCase {
                 if events.count > 0 {
                     events.forEach { event in
                         XCTAssertEqual(event.type, .otcMarketsOrder)
-                        var event = event.otcMarketsOrder
+                        let event = event.otcMarketsOrder
                         if event.eventSymbol == SYMBOL1 {
                             XCTAssertEqual(event.marketMaker, "MM1")
                             XCTAssertEqual(event.price, 10)

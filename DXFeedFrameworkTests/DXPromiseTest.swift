@@ -186,7 +186,8 @@ final class DXPromiseTest: XCTestCase {
     func testGetMultipleResultsWithException() {
         do {
 
-            let promises = try feed?.getLastEventsPromises(type: Quote.self, symbols: ["ETH/USD:GDAX_TEST", "AAPL_TEST"])
+            let promises = try feed?.getLastEventsPromises(type: Quote.self,
+                                                           symbols: ["ETH/USD:GDAX_TEST", "AAPL_TEST"])
             if promises?.isEmpty != false {
                 XCTAssert(false, "Promises is empty")
             }
