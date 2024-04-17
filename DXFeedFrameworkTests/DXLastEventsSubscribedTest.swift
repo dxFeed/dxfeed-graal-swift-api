@@ -76,7 +76,6 @@ final class DXLastEventsSubscribedTest: XCTestCase {
             return
         }
         let type = Candle.self
-        let subscription = try feed?.createSubscription([type])
 
         do {
             let nillList = try feed?.getTimeSeriesIfSubscribed(type: type,
@@ -85,6 +84,7 @@ final class DXLastEventsSubscribedTest: XCTestCase {
                                                                toTime: toTime)
             XCTAssertNil(nillList)
         }
+        let subscription = try feed?.createSubscription([type])
         do {
             // wrong sub time
             try subscription?.addSymbols(TimeSeriesSubscriptionSymbol(symbol: candleSymbol, fromTime: toTime))

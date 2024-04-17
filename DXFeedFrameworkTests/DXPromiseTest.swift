@@ -275,7 +275,8 @@ final class DXPromiseTest: XCTestCase {
     }
 
     func testCompleteExceptPromise() throws {
-        throw XCTSkip("""
+        // just use it to avoid warnings
+        try XCTSkipIf(true, """
                       Graal doesn't have impl for ExceptionMapper.toJava.
                       and always throws exception illegalStateException
 """)

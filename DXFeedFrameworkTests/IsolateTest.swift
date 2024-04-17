@@ -18,7 +18,8 @@ final class IsolateTest: XCTestCase {
     }
 
     func testCleanup() throws {
-        throw XCTSkip("Just for manual running")
+        // just use it to avoid warnings
+        try XCTSkipIf(true, "Just for manual running")
         let isolate = Isolate.shared
         isolate.cleanup()
         let sec = 5
