@@ -9,9 +9,11 @@ import Foundation
 
 extension Optional {
     func value() throws -> Wrapped {
-        guard let value = self else {
+        switch self {
+        case .none:
             throw GraalException.nullException
+        case .some(let val):
+            return val
         }
-        return value
     }
 }

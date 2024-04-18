@@ -100,6 +100,7 @@ class Isolate {
 
     func throwException() throws {
         let thread = currentThread()
-        _ = try ErrorCheck.nativeCall(thread, dxfg_throw_exception(thread))        
+        _ = try ErrorCheck.nativeCall(thread, dxfg_get_and_clear_thread_exception_t(thread)) // to init com.dxfeed.sdk.NativeUtils
+        _ = try ErrorCheck.nativeCall(thread, dxfg_throw_exception(thread))
     }
 }
