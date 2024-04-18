@@ -39,13 +39,17 @@ class NativeTimeFormat: NativeBox<dxfg_time_format_t> {
 
     convenience init(withTimeZone timeFormat: NativeTimeFormat) throws {
         let thread = currentThread()
-        let timeFormat = try ErrorCheck.nativeCall(thread, dxfg_TimeFormat_withTimeZone(thread, timeFormat.native)).value()
+        let timeFormat = try ErrorCheck.nativeCall(thread,
+                                                   dxfg_TimeFormat_withTimeZone(thread,
+                                                                                timeFormat.native)).value()
         self.init(native: timeFormat)
     }
 
     convenience init(withMillis timeFormat: NativeTimeFormat) throws {
         let thread = currentThread()
-        let timeFormat = try ErrorCheck.nativeCall(thread, dxfg_TimeFormat_withMillis(thread, timeFormat.native)).value()
+        let timeFormat = try ErrorCheck.nativeCall(thread,
+                                                   dxfg_TimeFormat_withMillis(thread,
+                                                                              timeFormat.native)).value()
         self.init(native: timeFormat)
     }
 

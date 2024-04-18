@@ -42,9 +42,10 @@ class NativeInstrumentProfileReader {
     func readFromFile(address: String) throws -> [InstrumentProfile] {
         let thread = currentThread()
         let result = try ErrorCheck.nativeCall(thread,
-                                               dxfg_InstrumentProfileReader_readFromFile(thread,
-                                                                                         reader,
-                                                                                         address.toCStringRef())).value()
+                                               dxfg_InstrumentProfileReader_readFromFile(
+                                                thread,
+                                                reader,
+                                                address.toCStringRef())).value()
         let instruments = convertFromNativeList(result)
         _ = try ErrorCheck.nativeCall(thread, dxfg_CList_InstrumentProfile_release(thread, result))
         return instruments
@@ -53,11 +54,12 @@ class NativeInstrumentProfileReader {
     func readFromFile(address: String, user: String, password: String) throws -> [InstrumentProfile] {
         let thread = currentThread()
         let result = try ErrorCheck.nativeCall(thread,
-                                               dxfg_InstrumentProfileReader_readFromFile2(thread,
-                                                                                          reader,
-                                                                                          address.toCStringRef(),
-                                                                                          user.toCStringRef(),
-                                                                                          password.toCStringRef())).value()
+                                               dxfg_InstrumentProfileReader_readFromFile2(
+                                                thread,
+                                                reader,
+                                                address.toCStringRef(),
+                                                user.toCStringRef(),
+                                                password.toCStringRef())).value()
         let instruments = convertFromNativeList(result)
         _ = try ErrorCheck.nativeCall(thread, dxfg_CList_InstrumentProfile_release(thread, result))
         return instruments

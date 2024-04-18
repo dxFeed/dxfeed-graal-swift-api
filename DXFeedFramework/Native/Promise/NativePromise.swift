@@ -97,7 +97,9 @@ class NativePromise {
         }
         let thread = currentThread()
         let res = try promise?.withMemoryRebound(to: dxfg_promise_event_t.self, capacity: 1, { promiseEvent in
-            let result = try ErrorCheck.nativeCall(thread, dxfg_Promise_EventType_getResult(thread, promiseEvent)).value()
+            let result = try ErrorCheck.nativeCall(thread,
+                                                   dxfg_Promise_EventType_getResult(thread,
+                                                                                    promiseEvent)).value()
             let marketEvent = try EventMapper().fromNative(native: result)
             defer {
                 _ = try? ErrorCheck.nativeCall(thread, dxfg_EventType_release(thread, result))

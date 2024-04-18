@@ -103,7 +103,10 @@ class NativeSchedule {
 
     public func getDayByYearMonthDay(yearMonthDay: Int32) throws -> ScheduleDay {
         let thread = currentThread()
-        let day = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getDayByYearMonthDay(thread, schedule, yearMonthDay)).value()
+        let day = try ErrorCheck.nativeCall(thread,
+                                            dxfg_Schedule_getDayByYearMonthDay(thread,
+                                                                               schedule,
+                                                                               yearMonthDay)).value()
         return try createDay(thread, day)
     }
 
@@ -223,7 +226,10 @@ class NativeSchedule {
 
     public func getSessionByTime(time: Long) throws -> ScheduleSession {
         let thread = currentThread()
-        let nextSession = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getSessionByTime(thread, schedule, time)).value()
+        let nextSession = try ErrorCheck.nativeCall(thread,
+                                                    dxfg_Schedule_getSessionByTime(thread,
+                                                                                   schedule,
+                                                                                   time)).value()
         let session = try createSession(thread, session: nextSession)
         return session
     }

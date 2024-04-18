@@ -39,7 +39,9 @@ class NativeTimePeriod: NativeBox<dxfg_time_period_t> {
 
     convenience init(value: String) throws {
         let thread = currentThread()
-        let timePeriod = try ErrorCheck.nativeCall(thread, dxfg_TimePeriod_valueOf2(thread, value.toCStringRef())).value()
+        let timePeriod = try ErrorCheck.nativeCall(thread,
+                                                   dxfg_TimePeriod_valueOf2(thread,
+                                                                            value.toCStringRef())).value()
         self.init(native: timePeriod)
     }
 

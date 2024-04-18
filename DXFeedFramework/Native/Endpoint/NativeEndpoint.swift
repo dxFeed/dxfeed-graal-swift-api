@@ -52,7 +52,9 @@ class NativeEndpoint {
     private lazy var publisher: NativePublisher? = {
         let thread = currentThread()
         do {
-            let nativeFeed = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_getPublisher(thread, self.endpoint)).value()
+            let nativeFeed = try ErrorCheck.nativeCall(thread,
+                                                       dxfg_DXEndpoint_getPublisher(thread,
+                                                                                    self.endpoint)).value()
             return NativePublisher(publisher: nativeFeed)
         } catch {
             return nil

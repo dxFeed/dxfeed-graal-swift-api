@@ -114,7 +114,9 @@ public class NativeInstrumentProfileCollector {
 
     func getExecutor() throws -> NativeExecutor {
         let thread = currentThread()
-        let native = try ErrorCheck.nativeCall(thread, dxfg_InstrumentProfileCollector_getExecutor(thread, collector)).value()
+        let native = try ErrorCheck.nativeCall(thread,
+                                               dxfg_InstrumentProfileCollector_getExecutor(thread,
+                                                                                           collector)).value()
         return NativeExecutor(executor: native)
     }
 

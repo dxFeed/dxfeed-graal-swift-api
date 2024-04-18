@@ -33,9 +33,10 @@ class NativeExecutor {
     static func createOnScheduledThreadPool(numberOfThreads: Int32, nameOfthread: String) throws -> NativeExecutor {
         let thread = currentThread()
         let executor = try ErrorCheck.nativeCall(thread,
-                                                 dxfg_Executors_newScheduledThreadPool(thread,
-                                                                                       numberOfThreads,
-                                                                                       nameOfthread.toCStringRef())).value()
+                                                 dxfg_Executors_newScheduledThreadPool(
+                                                    thread,
+                                                    numberOfThreads,
+                                                    nameOfthread.toCStringRef())).value()
         return NativeExecutor(executor: executor)
     }
 
