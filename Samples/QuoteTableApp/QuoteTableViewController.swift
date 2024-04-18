@@ -29,7 +29,9 @@ class QuoteTableViewController: UIViewController {
 
         quoteTableView.separatorStyle = .none
 
-        NotificationCenter.default.addObserver(forName: .selectedSymbolsChanged, object: nil, queue: nil) { [weak self] (_) in
+        NotificationCenter.default.addObserver(forName: .selectedSymbolsChanged,
+                                               object: nil,
+                                               queue: nil) { [weak self] (_) in
             guard let strongSelf = self else {
                 return
             }

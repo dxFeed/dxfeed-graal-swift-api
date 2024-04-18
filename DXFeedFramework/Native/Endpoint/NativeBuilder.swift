@@ -55,7 +55,7 @@ class NativeBuilder {
 
     func build() throws -> NativeEndpoint {
         let thread = currentThread()
-        let value = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_Builder_build(thread, builder))
+        let value = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_Builder_build(thread, builder)).value()
         return NativeEndpoint(value)
     }
 }

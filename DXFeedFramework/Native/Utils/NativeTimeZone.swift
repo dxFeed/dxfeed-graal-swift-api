@@ -24,7 +24,9 @@ class NativeTimeZone: NativeBox<dxfg_time_zone_t> {
 
     convenience init(timeZoneID: String) throws {
         let thread = currentThread()
-        let native = try ErrorCheck.nativeCall(thread, dxfg_TimeZone_getTimeZone(thread, timeZoneID.toCStringRef()))
+        let native = try ErrorCheck.nativeCall(thread,
+                                               dxfg_TimeZone_getTimeZone(thread,
+                                                                         timeZoneID.toCStringRef())).value()
         self.init(native: native)
     }
 

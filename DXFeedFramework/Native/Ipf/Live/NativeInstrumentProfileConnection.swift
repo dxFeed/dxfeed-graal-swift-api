@@ -153,7 +153,7 @@ class NativeInstrumentProfileConnection {
                                                  dxfg_IpfPropertyChangeListener_new(
                                                     thread,
                                                     NativeInstrumentProfileConnection.listenerCallback,
-                                                    voidPtr))
+                                                    voidPtr)).value()
 
         try ErrorCheck.nativeCall(thread, dxfg_Object_finalize(thread,
                                                                &(listener.pointee.handler),

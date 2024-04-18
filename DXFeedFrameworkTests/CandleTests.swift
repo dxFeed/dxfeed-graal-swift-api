@@ -264,7 +264,9 @@ final class CandleTests: XCTestCase {
 
         XCTAssertEqual("EUR/USD{=2h,price=bid,source=bank}",
                        CandleSymbol.valueOf("EUR/USD{source=bank}",
-                                            [CandlePrice.bid, CandlePeriod.valueOf(value: 2, type: CandleType.hour)]).toString())
+                                            [CandlePrice.bid,
+                                             CandlePeriod.valueOf(value: 2, type: CandleType.hour)]
+                                           ).toString())
         XCTAssertEqual("IBM{=15m,aa=zz,price=bid}",
                        CandleSymbol.valueOf("IBM{aa=zz,price=b}",
                                             [CandlePeriod.valueOf(value: 15, type: CandleType.minute)]).toString())

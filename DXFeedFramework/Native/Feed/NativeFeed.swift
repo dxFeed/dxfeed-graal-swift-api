@@ -84,7 +84,7 @@ class NativeFeed {
                                                     thread,
                                                     type.eventSymbol,
                                                     type.type.nativeCode())
-        )
+        ).value()
         defer {
             _ = try? ErrorCheck.nativeCall(thread,
                                            dxfg_EventType_release(
@@ -99,26 +99,6 @@ class NativeFeed {
 
         let event = try mapper.fromNative(native: inputEvent)
         return event?.lastingEvent
-    }
-
-    func getLastEventIfSubscribed(type: IEventType.Type, symbol: Symbol) throws -> ILastingEvent? {
-        let thread = currentThread()
-        let converted = SymbolMapper.newNative(symbol)
-        defer {
-            if let converted = converted {
-                SymbolMapper.clearNative(symbol: converted)
-            }
-        }
-        do {
-            let result = try ErrorCheck.nativeCall(thread,
-                                                   dxfg_DXFeed_getLastEventIfSubscribed(thread,
-                                                                                        feed,
-                                                                                        type.type.nativeCode(), 
-                                                                                        converted))
-            return try mapper.fromNative(native: result)?.lastingEvent
-        } catch GraalException.nullException {
-            return nil
-        }
     }
 
     func getLastEvents(types: [MarketEvent]) throws -> [ILastingEvent] {
@@ -176,7 +156,7 @@ class NativeFeed {
                                                dxfg_DXFeed_getLastEventPromise(thread,
                                                                                feed,
                                                                                type.type.nativeCode(),
-                                                                               converted))
+                                                                               converted)).value()
         return NativePromise(promise: &native.pointee.handler)
 
     }
@@ -195,7 +175,7 @@ class NativeFeed {
                                                dxfg_DXFeed_getLastEventsPromises(thread,
                                                                                  feed,
                                                                                  type.type.nativeCode(),
-                                                                                 listPointer))
+                                                                                 listPointer)).value()
         var result = [NativePromise]()
         for index in 0..<Int(native.pointee.list.size) {
             let promise = native.pointee.list.elements[index]
@@ -221,7 +201,7 @@ class NativeFeed {
                                                                                    feed,
                                                                                    type.type.nativeCode(),
                                                                                    converted,
-                                                                                   nativeSource))
+                                                                                   nativeSource)).value()
 
         return NativePromise(promise: &native.pointee.base)
     }
@@ -243,10 +223,12 @@ class NativeFeed {
                                                                                 type.type.nativeCode(),
                                                                                 converted,
                                                                                 fromTime,
-                                                                                toTime))
+                                                                                toTime)).value()
         return NativePromise(promise: &native.pointee.base)
     }
+}
 
+extension NativeFeed {
     func attach(subscription: NativeSubscription) throws {
         let thread = currentThread()
         try ErrorCheck.nativeCall(thread,
@@ -262,4 +244,85 @@ class NativeFeed {
                                                                  feed,
                                                                  subscription.subscription))
     }
+}
+
+extension NativeFeed {
+    func getLastEventIfSubscribed(type: IEventType.Type, symbol: Symbol) throws -> ILastingEvent? {
+        let thread = currentThread()
+        let converted = SymbolMapper.newNative(symbol)
+        defer {
+            if let converted = converted {
+                SymbolMapper.clearNative(symbol: converted)
+            }
+        }
+        guard let result = try ErrorCheck.nativeCall(thread,
+                                                     dxfg_DXFeed_getLastEventIfSubscribed(thread,
+                                                                                          feed,
+                                                                                          type.type.nativeCode(),
+                                                                                          converted)) else {
+            return nil
+        }
+        return try mapper.fromNative(native: result)?.lastingEvent
+    }
+
+    func getIndexedEventsIfSubscribed(type: IEventType.Type,
+                                      symbol: Symbol,
+                                      source: IndexedEventSource) throws -> [IIndexedEvent]? {
+        let thread = currentThread()
+        let converted = SymbolMapper.newNative(symbol)
+        defer {
+            if let converted = converted {
+                SymbolMapper.clearNative(symbol: converted)
+            }
+        }
+        guard let result = try ErrorCheck.nativeCall(thread,
+                                                     dxfg_DXFeed_getIndexedEventsIfSubscribed(
+                                                        thread,
+                                                        feed,
+                                                        type.type.nativeCode(),
+                                                        converted,
+                                                        source.name.toCStringRef())) else {
+            return nil
+        }
+
+        let events: [IIndexedEvent] =
+        (0..<Int(result.pointee.size)).compactMap { index in
+            guard let nativeElement = result.pointee.elements[index] else { return nil }
+            let event = try? mapper.fromNative(native: nativeElement)
+            return event?.indexedEvent
+        }
+        return events
+    }
+
+    func getTimeSeriesIfSubscribed(type: IEventType.Type,
+                                   symbol: Symbol,
+                                   fromTime: Long,
+                                   toTime: Long) throws -> [ITimeSeriesEvent]? {
+        let thread = currentThread()
+        let converted = SymbolMapper.newNative(symbol)
+        defer {
+            if let converted = converted {
+                SymbolMapper.clearNative(symbol: converted)
+            }
+        }
+        guard let result = try ErrorCheck.nativeCall(thread,
+                                                     dxfg_DXFeed_getTimeSeriesIfSubscribed(
+                                                        thread,
+                                                        feed,
+                                                        type.type.nativeCode(),
+                                                        converted,
+                                                        fromTime,
+                                                        toTime)) else {
+            return nil
+        }
+        let events: [ITimeSeriesEvent] =
+        (0..<Int(result.pointee.size)).compactMap { index in
+            guard let nativeElement = result.pointee.elements[index] else { return nil }
+            let event = try? mapper.fromNative(native: nativeElement)
+            return event?.timeSeriesEvent
+        }
+        return events
+
+    }
+
 }

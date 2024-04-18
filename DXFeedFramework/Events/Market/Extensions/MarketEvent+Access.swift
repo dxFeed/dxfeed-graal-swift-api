@@ -103,4 +103,12 @@ extension MarketEvent {
             return nil
         }
     }
+
+    public var indexedEvent: IIndexedEvent? {
+        return self as? IIndexedEvent
+    }
+
+    public var timeSeriesEvent: ITimeSeriesEvent? {
+        return self as? ITimeSeriesEvent
+    }
 }

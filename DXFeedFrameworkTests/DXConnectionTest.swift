@@ -35,7 +35,7 @@ extension DXConnectionListener: Hashable {
 }
 
 final class DXConnectionTest: XCTestCase {
-    override class func setUp() {
+    override func setUpWithError() throws {
         // The experimental property must be enabled.
         try? SystemProperty.setProperty("dxfeed.experimental.dxlink.enable", "true")
         // Set scheme for dxLink.

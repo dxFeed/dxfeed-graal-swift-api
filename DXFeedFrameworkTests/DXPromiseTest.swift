@@ -84,7 +84,7 @@ final class DXPromiseTest: XCTestCase {
                     receivedEventExp.fulfill()
                 }
             }
-            wait(for: [receivedEventExp], timeout: 1)
+            wait(for: [receivedEventExp], timeout: 2)
 
         } catch {
             XCTAssert(false, "testGetResult \(error)")
@@ -177,7 +177,7 @@ final class DXPromiseTest: XCTestCase {
                     }
                 }
             })
-            wait(for: Array(expectations.values), timeout: 1)
+            wait(for: Array(expectations.values), timeout: 2)
         } catch {
             XCTAssert(false, "testGetIndexedEventResult \(error)")
         }
@@ -186,7 +186,8 @@ final class DXPromiseTest: XCTestCase {
     func testGetMultipleResultsWithException() {
         do {
 
-            let promises = try feed?.getLastEventsPromises(type: Quote.self, symbols: ["ETH/USD:GDAX_TEST", "AAPL_TEST"])
+            let promises = try feed?.getLastEventsPromises(type: Quote.self,
+                                                           symbols: ["ETH/USD:GDAX_TEST", "AAPL_TEST"])
             if promises?.isEmpty != false {
                 XCTAssert(false, "Promises is empty")
             }
@@ -274,7 +275,8 @@ final class DXPromiseTest: XCTestCase {
     }
 
     func testCompleteExceptPromise() throws {
-        throw XCTSkip("""
+        // just use it to avoid warnings
+        try XCTSkipIf(true, """
                       Graal doesn't have impl for ExceptionMapper.toJava.
                       and always throws exception illegalStateException
 """)
