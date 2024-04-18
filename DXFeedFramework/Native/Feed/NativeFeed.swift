@@ -255,16 +255,14 @@ extension NativeFeed {
                 SymbolMapper.clearNative(symbol: converted)
             }
         }
-        do {
-            let result = try ErrorCheck.nativeCall(thread,
-                                                   dxfg_DXFeed_getLastEventIfSubscribed(thread,
-                                                                                        feed,
-                                                                                        type.type.nativeCode(),
-                                                                                        converted)).value()
-            return try mapper.fromNative(native: result)?.lastingEvent
-        } catch GraalException.nullException {
+        guard let result = try ErrorCheck.nativeCall(thread,
+                                                     dxfg_DXFeed_getLastEventIfSubscribed(thread,
+                                                                                          feed,
+                                                                                          type.type.nativeCode(),
+                                                                                          converted)) else {
             return nil
         }
+        return try mapper.fromNative(native: result)?.lastingEvent
     }
 
     func getIndexedEventsIfSubscribed(type: IEventType.Type,
@@ -277,28 +275,23 @@ extension NativeFeed {
                 SymbolMapper.clearNative(symbol: converted)
             }
         }
-        do {
-            let result = try ErrorCheck.nativeCall(thread,
-                                                   dxfg_DXFeed_getIndexedEventsIfSubscribed(thread,
-                                                                                            feed,
-                                                                                            type.type.nativeCode(),
-                                                                                            converted,
-                                                                                            source.name.toCStringRef())).value()
-            if result.pointee.size == 0 {
-                return nil
-            } else {
-                let events: [IIndexedEvent] =
-                (0..<Int(result.pointee.size)).compactMap { index in
-                    guard let nativeElement = result.pointee.elements[index] else { return nil }
-                    let event = try? mapper.fromNative(native: nativeElement)
-                    return event?.indexedEvent
-                }
-                return events
-
-            }
-        } catch GraalException.nullException {
+        guard let result = try ErrorCheck.nativeCall(thread,
+                                                     dxfg_DXFeed_getIndexedEventsIfSubscribed(
+                                                        thread,
+                                                        feed,
+                                                        type.type.nativeCode(),
+                                                        converted,
+                                                        source.name.toCStringRef())) else {
             return nil
         }
+
+        let events: [IIndexedEvent] =
+        (0..<Int(result.pointee.size)).compactMap { index in
+            guard let nativeElement = result.pointee.elements[index] else { return nil }
+            let event = try? mapper.fromNative(native: nativeElement)
+            return event?.indexedEvent
+        }
+        return events
     }
 
     func getTimeSeriesIfSubscribed(type: IEventType.Type,
@@ -312,29 +305,24 @@ extension NativeFeed {
                 SymbolMapper.clearNative(symbol: converted)
             }
         }
-        do {
-            let result = try ErrorCheck.nativeCall(thread,
-                                                   dxfg_DXFeed_getTimeSeriesIfSubscribed(thread,
-                                                                                         feed,
-                                                                                         type.type.nativeCode(),
-                                                                                         converted,
-                                                                                         fromTime,
-                                                                                         toTime)).value()
-            if result.pointee.size == 0 {
-                return nil
-            } else {
-                let events: [ITimeSeriesEvent] =
-                (0..<Int(result.pointee.size)).compactMap { index in
-                    guard let nativeElement = result.pointee.elements[index] else { return nil }
-                    let event = try? mapper.fromNative(native: nativeElement)
-                    return event?.timeSeriesEvent
-                }
-                return events
-
-            }
-        } catch GraalException.nullException {
+        guard let result = try ErrorCheck.nativeCall(thread,
+                                                     dxfg_DXFeed_getTimeSeriesIfSubscribed(
+                                                        thread,
+                                                        feed,
+                                                        type.type.nativeCode(),
+                                                        converted,
+                                                        fromTime,
+                                                        toTime)) else {
             return nil
         }
+        let events: [ITimeSeriesEvent] =
+        (0..<Int(result.pointee.size)).compactMap { index in
+            guard let nativeElement = result.pointee.elements[index] else { return nil }
+            let event = try? mapper.fromNative(native: nativeElement)
+            return event?.timeSeriesEvent
+        }
+        return events
+
     }
 
 }
