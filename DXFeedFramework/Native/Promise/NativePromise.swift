@@ -69,10 +69,13 @@ class NativePromise {
             return results
         }
         let thread = currentThread()
-        let res = try promise?.withMemoryRebound(to: dxfg_promise_events_t.self, capacity: 1, { promiseEvents in
-            let listPointer = try ErrorCheck.nativeCall(thread,
+        let res: [MarketEvent]? = try promise?.withMemoryRebound(to: dxfg_promise_events_t.self, 
+                                                                 capacity: 1, { promiseEvents in
+            guard let listPointer = try ErrorCheck.nativeCall(thread,
                                                         dxfg_Promise_List_EventType_getResult(thread,
-                                                                                              promiseEvents)).value()
+                                                                                              promiseEvents)) else {
+                return nil
+            }
             defer {
                 _ = try? ErrorCheck.nativeCall(thread, dxfg_CList_EventType_release(thread, listPointer))
             }
@@ -96,16 +99,21 @@ class NativePromise {
             return result
         }
         let thread = currentThread()
-        let res = try promise?.withMemoryRebound(to: dxfg_promise_event_t.self, capacity: 1, { promiseEvent in
-            let result = try ErrorCheck.nativeCall(thread,
-                                                   dxfg_Promise_EventType_getResult(thread,
-                                                                                    promiseEvent)).value()
+        let res: MarketEvent? = try promise?.withMemoryRebound(to: dxfg_promise_event_t.self,
+                                                               capacity: 1, { promiseEvent in
+            guard let result = try ErrorCheck.nativeCall(thread,
+                                                         dxfg_Promise_EventType_getResult(thread,
+                                                                                          promiseEvent)) else {
+                return nil
+            }
+
             let marketEvent = try EventMapper().fromNative(native: result)
             defer {
                 _ = try? ErrorCheck.nativeCall(thread, dxfg_EventType_release(thread, result))
             }
             self.result = marketEvent
             return marketEvent
+
         })
         return res
     }

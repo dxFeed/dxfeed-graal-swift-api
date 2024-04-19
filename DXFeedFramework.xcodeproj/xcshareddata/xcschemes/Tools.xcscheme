@@ -57,7 +57,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "PerfTest  demo.dxfeed.com:7300 TimeAndSale,Quote,profile ETH/USD:GDAX,AAPL -p monitoring.stat=2s"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = " qds post :6666"
@@ -68,8 +68,8 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Connect demo.dxfeed.com:7300 TRADE ETH/USD:GDAX"
-            isEnabled = "NO">
+            argument = "Connect demo.dxfeed.com:7300 TRADE AAPL"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "qds connect demo.dxfeed.com:7300 TimeAndSale AAPL,AAPL2,IBM,ETH/USD:GDAX -p monitoring.stat=10s"
