@@ -11,13 +11,19 @@ import DXFeedFramework
 final class DXOnDemandServiceTest: XCTestCase {
     func testCreateService() throws {
         let service = try OnDemandService.getInstance()
+        XCTAssertNotNil(service.getEndpoint())
+        XCTAssert(service.getEndpoint() === service.getEndpoint())
         checkNullBalues(service: service)
-        let endpoint = try DXEndpoint.create(.onDemandFeed)
-        let service2 = try OnDemandService.getInstance(endpoint: endpoint)
+        var endpoint: DXEndpoint? = try DXEndpoint.create(.onDemandFeed)
+        let service2 = try OnDemandService.getInstance(endpoint: endpoint!)
         checkNullBalues(service: service2)
-        let endpoint2 = service2.endpoint
-        let endpoint3 = service2.endpoint
+        weak var endpoint2 = service2.getEndpoint()
+        weak var endpoint3 = service2.getEndpoint()
         XCTAssert(endpoint2 === endpoint3)
+        XCTAssert(endpoint === endpoint3)
+        endpoint = nil
+        XCTAssert(endpoint2 !== service2.getEndpoint())
+
     }
 
     private func checkNullBalues(service: OnDemandService) {

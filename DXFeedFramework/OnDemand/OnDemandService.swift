@@ -14,31 +14,42 @@ import Foundation
 public class OnDemandService {
     var native: NativeOnDemandService
 
-    private init(native: NativeOnDemandService) {
+    private init(native: NativeOnDemandService, endpoint: DXEndpoint?) {
         self.native = native
+        self.pEndpoint = endpoint
     }
 
     /// Returns on-demand service for the default ``DXEndpoint`` instance with
     /// ``DXEndpoint/Role-swift.enum/onDemandFeed``role that is
     /// not connected to any other real-time or delayed data feed.
+    ///
     /// it is shortcut for ``getInstance(endpoint:)`` with ``DXEndpoint/getInstance(_:)`` for ``DXEndpoint/Role-swift.enum/onDemandFeed``
     ///  - Returns: ``OnDemandService``
     /// - Throws: ``GraalException``. Rethrows exception from Java.
     public static func getInstance() throws -> OnDemandService {
-        return OnDemandService(native: try NativeOnDemandService.getInstance())
+        return OnDemandService(native: try NativeOnDemandService.getInstance(), endpoint: nil)
     }
 
     /// Returns on-demand service for the specified ``DXEndpoint``
     ///  - Returns: ``OnDemandService``
     /// - Throws: ``GraalException``. Rethrows exception from Java.
     public static func getInstance(endpoint: DXEndpoint) throws -> OnDemandService {
-        return OnDemandService(native: try NativeOnDemandService.getInstance(endpoint: endpoint.nativeEndpoint))
+        return OnDemandService(native: try NativeOnDemandService.getInstance(endpoint: endpoint.nativeEndpoint), endpoint: endpoint)
     }
+    
+    private weak var pEndpoint: DXEndpoint?
 
-    /// Returns ``DXEndpoint`` that is associated with this on-demand service.
-    public lazy var endpoint: DXEndpoint? = {
+    private lazy var endpoint: DXEndpoint? = {
         return try? native.getEndpoint()
     }()
+
+    /// Returns ``DXEndpoint`` that is associated with this on-demand service.
+    public func getEndpoint() -> DXEndpoint? {
+        if let endpoint = pEndpoint {
+            return endpoint
+        }
+        return endpoint
+    }
 
     /// Returns true  when on-demand historical data replay mode is supported.
     public var isReplaySupported: Bool? {
