@@ -28,4 +28,3 @@ final class DXOnDemandServiceTest: XCTestCase {
         XCTAssertNotEqual(nil, service.getSpeed)
     }
 }
-

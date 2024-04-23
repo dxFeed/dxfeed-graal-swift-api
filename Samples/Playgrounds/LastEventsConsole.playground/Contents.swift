@@ -101,9 +101,5 @@ let view = V()
 view.feed = feed
 view.view.frame = CGRect(x: 0, y: 0, width: 400, height: 150)
 
-
 PlaygroundPage.current.liveView = view.view
 PlaygroundPage.current.needsIndefiniteExecution = true
-
-
-

@@ -69,7 +69,7 @@ class NativePromise {
             return results
         }
         let thread = currentThread()
-        let res: [MarketEvent]? = try promise?.withMemoryRebound(to: dxfg_promise_events_t.self, 
+        let res: [MarketEvent]? = try promise?.withMemoryRebound(to: dxfg_promise_events_t.self,
                                                                  capacity: 1, { promiseEvents in
             guard let listPointer = try ErrorCheck.nativeCall(thread,
                                                         dxfg_Promise_List_EventType_getResult(thread,
