@@ -30,7 +30,8 @@ class NativeOnDemandService {
 
     static func getInstance(endpoint: NativeEndpoint) throws -> NativeOnDemandService {
         let thread = currentThread()
-        let instance = try ErrorCheck.nativeCall(thread, dxfg_OnDemandService_getInstance2(thread, endpoint.endpoint)).value()
+        let instance = try ErrorCheck.nativeCall(thread,
+                                                 dxfg_OnDemandService_getInstance2(thread, endpoint.endpoint)).value()
         return NativeOnDemandService(native: instance)
     }
 
@@ -71,12 +72,19 @@ class NativeOnDemandService {
 
     func replay(date: Date) throws {
         let thread = currentThread()
-        try ErrorCheck.nativeCall(thread, dxfg_OnDemandService_replay(thread, native, Int64(date.millisecondsSince1970)))
+        try ErrorCheck.nativeCall(thread,
+                                  dxfg_OnDemandService_replay(thread,
+                                                              native,
+                                                              date.millisecondsSince1970()))
     }
 
     func replay(date: Date, speed: Double) throws {
         let thread = currentThread()
-        try ErrorCheck.nativeCall(thread, dxfg_OnDemandService_replay2(thread, native, Int64(date.millisecondsSince1970), speed))
+        try ErrorCheck.nativeCall(thread,
+                                  dxfg_OnDemandService_replay2(thread,
+                                                               native,
+                                                               date.millisecondsSince1970(),
+                                                               speed))
     }
 
     func pause() throws {

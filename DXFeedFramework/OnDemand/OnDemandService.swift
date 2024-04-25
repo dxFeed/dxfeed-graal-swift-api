@@ -34,9 +34,10 @@ public class OnDemandService {
     ///  - Returns: ``OnDemandService``
     /// - Throws: ``GraalException``. Rethrows exception from Java.
     public static func getInstance(endpoint: DXEndpoint) throws -> OnDemandService {
-        return OnDemandService(native: try NativeOnDemandService.getInstance(endpoint: endpoint.nativeEndpoint), endpoint: endpoint)
+        return OnDemandService(native: try NativeOnDemandService.getInstance(endpoint: endpoint.nativeEndpoint),
+                               endpoint: endpoint)
     }
-    
+
     private weak var pEndpoint: DXEndpoint?
 
     private lazy var endpoint: DXEndpoint? = {

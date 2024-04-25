@@ -211,7 +211,7 @@ final class DXPromiseTest: XCTestCase {
 
             guard let promise = try feed?.getTimeSeriesPromise(type: Candle.self,
                                                                symbol: "AAPL{=1d}",
-                                                               fromTime: Long(date.millisecondsSince1970),
+                                                               fromTime: date.millisecondsSince1970(),
                                                                toTime: Long.max) else {
                 XCTAssert(false, "Empty promise")
                 return
