@@ -803,6 +803,7 @@
 		64A42F4D2B0B9FA4001C3ACC /* DXTimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXTimeZone.swift; sourceTree = "<group>"; };
 		64A42F4F2B0BA668001C3ACC /* DXTimeFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXTimeFormat.swift; sourceTree = "<group>"; };
 		64A42F512B0BBB6D001C3ACC /* DXTimePeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXTimePeriod.swift; sourceTree = "<group>"; };
+		64A631CF2BDFAA27002E1002 /* OnDemandSample.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = OnDemandSample.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		64AAF0522A8113E800E8942B /* String+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Range.swift"; sourceTree = "<group>"; };
 		64AAF0542A82499A00E8942B /* ConcurrentDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentDict.swift; sourceTree = "<group>"; };
 		64AAF0562A82A3FC00E8942B /* ICandleSymbolProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICandleSymbolProperty.swift; sourceTree = "<group>"; };
@@ -1112,6 +1113,7 @@
 				64F9C6C12B4BFD8F003ED014 /* DXFeedconnect.playground */,
 				644551C92B973A0D0069E3A2 /* FetchDailyCandles.playground */,
 				6433B1302BCE87D4004EFED7 /* RequestProfile.playground */,
+				64A631CF2BDFAA27002E1002 /* OnDemandSample.playground */,
 				643A329C2BD15F2900F6F790 /* LastEventsConsole.playground */,
 			);
 			path = Playgrounds;
