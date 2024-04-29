@@ -35,9 +35,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EH9-zJ-QLZ">
-                                <rect key="frame" x="10" y="103" width="373" height="715"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ea7-hU-ecm">
+                                <rect key="frame" x="0.0" y="778" width="393" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="p7V-3p-HxW">
+                                        <rect key="frame" x="10" y="0.0" width="373" height="35"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="arrow.up.forward.app" catalog="system">
+                                            <color key="titleColor" name="TextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="openNews:" destination="KHT-AB-3Dx" eventType="touchUpInside" id="C3U-fH-Aig"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="3AJ-4L-z8W"/>
+                                    <constraint firstAttribute="trailing" secondItem="p7V-3p-HxW" secondAttribute="trailing" constant="10" id="4ZF-A8-jKA"/>
+                                    <constraint firstItem="p7V-3p-HxW" firstAttribute="top" secondItem="Ea7-hU-ecm" secondAttribute="top" id="7Do-Au-CyN"/>
+                                    <constraint firstItem="p7V-3p-HxW" firstAttribute="leading" secondItem="Ea7-hU-ecm" secondAttribute="leading" constant="10" id="E4w-hU-6tG"/>
+                                    <constraint firstAttribute="bottom" secondItem="p7V-3p-HxW" secondAttribute="bottom" constant="5" id="wLD-93-Kad"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EH9-zJ-QLZ">
+                                <rect key="frame" x="10" y="103" width="373" height="675"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOTICE: Data is delayed at least 15 minutes." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5WY-rQ-KMd">
+                                    <rect key="frame" x="0.0" y="178" width="373" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <color key="textColor" name="TextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuoteCellId" rowHeight="100" id="Soc-px-Ac2" customClass="QuoteCell" customModule="DXARQuoteTableApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="373" height="100"/>
@@ -133,9 +164,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="EH9-zJ-QLZ" firstAttribute="leading" secondItem="25G-gY-cKV" secondAttribute="leading" constant="10" id="40x-hA-kHB"/>
-                            <constraint firstItem="25G-gY-cKV" firstAttribute="bottom" secondItem="EH9-zJ-QLZ" secondAttribute="bottom" id="AGF-iT-Q1M"/>
+                            <constraint firstItem="Ea7-hU-ecm" firstAttribute="leading" secondItem="25G-gY-cKV" secondAttribute="leading" id="CNM-ue-2ci"/>
+                            <constraint firstItem="25G-gY-cKV" firstAttribute="bottom" secondItem="Ea7-hU-ecm" secondAttribute="bottom" id="ChU-cS-CLm"/>
                             <constraint firstItem="EH9-zJ-QLZ" firstAttribute="top" secondItem="25G-gY-cKV" secondAttribute="top" id="R9n-IO-jVn"/>
+                            <constraint firstItem="Ea7-hU-ecm" firstAttribute="top" secondItem="EH9-zJ-QLZ" secondAttribute="bottom" id="cbG-hd-1Z5"/>
                             <constraint firstItem="25G-gY-cKV" firstAttribute="trailing" secondItem="EH9-zJ-QLZ" secondAttribute="trailing" constant="10" id="hMT-0Z-bdv"/>
+                            <constraint firstItem="25G-gY-cKV" firstAttribute="trailing" secondItem="Ea7-hU-ecm" secondAttribute="trailing" id="mhd-BC-2Ge"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Quote Table" id="KgC-Ti-xjh">
@@ -152,12 +186,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="noticeButton" destination="p7V-3p-HxW" id="R5H-JF-IL3"/>
                         <outlet property="quoteTableView" destination="EH9-zJ-QLZ" id="Ud1-e6-WxZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FUD-rM-Z1P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="529" y="662"/>
+            <point key="canvasLocation" x="527.48091603053433" y="661.97183098591552"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="D6q-YU-yU1">
@@ -359,10 +394,15 @@
             <size key="intrinsicContentSize" width="45.333333333333329" height="30.333333333333332"/>
         </designable>
     </designables>
+    <color key="tintColor" name="TextColor"/>
     <resources>
+        <image name="arrow.up.forward.app" catalog="system" width="128" height="114"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="GreenBackground">
             <color red="0.0" green="0.45882352941176469" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextColor">
+            <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

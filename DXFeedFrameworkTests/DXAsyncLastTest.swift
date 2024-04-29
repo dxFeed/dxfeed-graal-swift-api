@@ -78,7 +78,7 @@ final class DXAsyncLastTest: XCTestCase {
         let date = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
         guard let task = feed?.getTimeSeries(type: Candle.self,
                                              symbol: "AAPL{=1d}",
-                                             fromTime: Long(date.millisecondsSince1970),
+                                             fromTime: date.millisecondsSince1970(),
                                              toTime: Long.max) else {
             XCTAssert(false, "Async task is nil")
             return
