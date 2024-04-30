@@ -11,7 +11,7 @@ import SwiftUI
 struct DXFeedCandleChartApp: App {
     var body: some Scene {
         WindowGroup {
-            CandleStickChart()
+            CandleStickChart(symbol: "ETH/USD:GDAX")
         }
     }
 }

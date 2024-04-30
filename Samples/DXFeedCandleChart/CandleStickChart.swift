@@ -58,13 +58,24 @@ enum CandleType: CaseIterable, Identifiable {
 }
 
 struct StockPrice: Identifiable {
+    let currency: String
     let timestamp: Date
+    var id: Date { timestamp }
+
     let open: Decimal
+    let close: Decimal
     let high: Decimal
     let low: Decimal
-    let close: Decimal
-    let currency: String
-    var id: Date { timestamp }
+
+    init(candle: Candle, currency: String) {
+        self.currency = currency
+        self.timestamp = Date(millisecondsSince1970: candle.time)
+        self.open =  Decimal(candle.open)
+        self.close = Decimal(candle.close)
+        self.high = Decimal(candle.high)
+        self.low = Decimal(candle.low)
+    }
+
 }
 
 
@@ -79,7 +90,7 @@ class CandleList: ObservableObject, SnapshotDelegate {
         if isSnapshot {
             DispatchQueue.main.async {
                 self.candles = result.map({ candle in
-                    let price = StockPrice(timestamp: Date(millisecondsSince1970: candle.time), open: Decimal(candle.open), high: Decimal(candle.high), low: Decimal(candle.low), close: Decimal(candle.close), currency: self.currency)
+                    let price = StockPrice(candle: candle, currency: self.currency)
                     return price
                 })
             }
@@ -87,7 +98,7 @@ class CandleList: ObservableObject, SnapshotDelegate {
         } else {
             DispatchQueue.main.async {
                 result.forEach { candle in
-                    let newPrice = StockPrice(timestamp: Date(millisecondsSince1970: candle.time), open: Decimal(candle.open), high: Decimal(candle.high), low: Decimal(candle.low), close: Decimal(candle.close), currency: self.currency)
+                    let newPrice = StockPrice(candle: candle, currency: self.currency)
                     if let index = self.candles.firstIndex(where: { price in
                         price.timestamp == newPrice.timestamp
                     }) {
@@ -98,7 +109,7 @@ class CandleList: ObservableObject, SnapshotDelegate {
         }
     }
 
-    let symbol: String = "AAPL"
+    let symbol: String
     public private(set) var currency = ""
     public private(set) var descriptionString = ""
 
@@ -109,7 +120,8 @@ class CandleList: ObservableObject, SnapshotDelegate {
     
     @Published var candles: [StockPrice]
 
-    init() {
+    init(symbol: String) {
+        self.symbol = symbol
         self.candles = [StockPrice]()
         try? createSubscription()
         fetchInfo()
@@ -148,10 +160,31 @@ struct CandleStickChart: View {
     @State private var selectedPrice: StockPrice?
     @State private var date = Calendar.current.date(byAdding: .month, value: -12, to: Date())!
     @State private var type: CandleType = .month
+    @State var xAxisValues = [Date]()
+    let dateFormatter: DateFormatter
 
-    init() {
-        self.list = CandleList()
+    init(symbol: String) {
+        dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.short
+        dateFormatter.timeStyle = DateFormatter.Style.none
+
+
+        self.list = CandleList(symbol: symbol)
         self.list.updateDate(date: self.date, type: self.type)
+        _xAxisValues = State(initialValue: calculateXaxisValues(firstValue: self.date))
+    }
+
+    func calculateXaxisValues(firstValue: Date) -> [Date] {
+        var values = [Date]()
+        let endDate = Date.now
+        let delta = endDate.distance(to: firstValue)
+
+        let maxInterval = 4
+        for index in 0...maxInterval {
+            let value = endDate.addingTimeInterval(TimeInterval(index) * delta / TimeInterval(maxInterval))
+            values.append(value)
+        }
+        return values.reversed()
     }
 
     var body: some View {
@@ -164,7 +197,9 @@ struct CandleStickChart: View {
                            displayedComponents: [.date]
                     ).onChange(of: date) { oldValue, newValue in
                         selectedPrice = nil
+                        xAxisValues = calculateXaxisValues(firstValue: newValue)
                         list.updateDate(date: newValue,type: type)
+
                     }
                     Picker("Type", selection: $type) {
                         Text("Week").tag(CandleType.week)
@@ -206,6 +241,20 @@ from \(date)
                 .foregroundStyle( price.close >= price.open ? .green : .red)
             }
             .chartYAxis { AxisMarks(preset: .extended) }
+            .chartXAxis {
+                                AxisMarks(values: xAxisValues) { value in
+                                    if let date = value.as(Date.self) {
+                                        AxisValueLabel(horizontalSpacing: -14, verticalSpacing: 10) {
+                                            VStack(alignment: .leading) {
+                                                Text(dateFormatter.string(from: date))
+                                            }
+                                        }
+                                    }
+                                    AxisGridLine(centered: true, stroke: StrokeStyle(lineWidth: 0.5))
+                                    AxisTick(centered: true, length: 0, stroke: .none)
+                                }
+                            }
+
             .chartOverlay { proxy in
                 GeometryReader { geo in
                     Rectangle().fill(.clear).contentShape(Rectangle())
@@ -246,7 +295,7 @@ from \(date)
                                 .frame(width: 2, height: lineHeight)
                                 .position(x: lineX, y: lineHeight / 2)
 
-                            PriceAnnotation(for: selectedPrice, currency: list.currency)
+                            CandleInfoView(for: selectedPrice, currency: list.currency)
                                 .frame(width: boxWidth, alignment: .leading)
                                 .background {
                                     RoundedRectangle(cornerRadius: 13)
@@ -390,7 +439,7 @@ extension CandleStickChart: AXChartDescriptorRepresentable {
 
 // MARK: - Preview
 
-struct PriceAnnotation: View {
+struct CandleInfoView: View {
     let price: StockPrice
     let currency: String
 
@@ -402,29 +451,17 @@ struct PriceAnnotation: View {
     var body: some View {
         VStack(alignment: .center, spacing: 4) {
             Text(price.timestamp.formatted(date: .abbreviated, time: .omitted))
-
-            HStack(spacing: 0) {
-                Text("Open: \(price.open.formatted(.currency(code: currency)))" ).foregroundColor(.secondary)                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-
-                Text("Close: \(price.close.formatted(.currency(code: currency)))").foregroundColor(.secondary)                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-
+            HStack(spacing: 10) {
+                Text("Open: \(price.open.formatted(.currency(code: currency)))" ).foregroundColor(.secondary).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).minimumScaleFactor(0.01)
+                Text("Close: \(price.close.formatted(.currency(code: currency)))").foregroundColor(.secondary).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).minimumScaleFactor(0.01)
             }
-
-            HStack(spacing: 0) {
-                Text("High: \(price.high.formatted(.currency(code: currency)))").foregroundColor(.secondary)                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-
-                Text("Low: \(price.low.formatted(.currency(code: currency)))").foregroundColor(.secondary)                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-
+            HStack(spacing: 10) {
+                Text("High: \(price.high.formatted(.currency(code: currency)))").foregroundColor(.secondary).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).minimumScaleFactor(0.01)
+                Text("Low: \(price.low.formatted(.currency(code: currency)))").foregroundColor(.secondary).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).minimumScaleFactor(0.01)
             }
         }
         .lineLimit(1)
         .font(.headline)
         .padding(.vertical)
-    }
-}
-
-struct CandleStickChart_Previews: PreviewProvider {
-    static var previews: some View {
-        CandleStickChart()
     }
 }
