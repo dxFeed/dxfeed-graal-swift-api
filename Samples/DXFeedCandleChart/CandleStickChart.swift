@@ -9,18 +9,24 @@ import SwiftUI
 import Charts
 import DXFeedFramework
 
-enum Constants {
-    static let previewChartHeight: CGFloat = 100
-}
-
 extension Decimal {
     var asDouble: Double { Double(truncating: self as NSNumber) }
+
+    func formatted(currency: String) -> String {
+        return self.formatted(.currency(code: currency))
+    }
+}
+
+extension Double {
+    func formatted(currency: String) -> String {
+        return self.formatted(.currency(code: currency))
+    }
 }
 
 extension StockPrice {
-    
+
     var isClosingHigher: Bool {
-        self.open < self.close
+        self.open <= self.close
     }
 
     var accessibilityTrendSummary: String {
@@ -28,18 +34,18 @@ extension StockPrice {
     }
 
     var accessibilityDescription: String {
-        return "Open: \(self.open.formatted(.currency(code: currency))), Close: \(self.close.formatted(.currency(code: currency))), High: \(self.high.formatted(.currency(code: currency))), Low: \(self.low.formatted(.currency(code: currency)))"
+        return "Open: \(self.open.formatted(currency: currency)), Close: \(self.close.formatted(currency: currency)), High: \(self.high.formatted(currency: currency)), Low: \(self.low.formatted(currency: currency))"
     }
 }
 
 extension Array {
-  mutating func safeReplace(_ newElement: Element, at:Int) {
-      if at >= 0 && at < self.count {
-          self[at] = newElement
-      } else {
-          print("error during replace")
-      }
-  }
+    mutating func safeReplace(_ newElement: Element, at:Int) {
+        if at >= 0 && at < self.count {
+            self[at] = newElement
+        } else {
+            print("error during replace")
+        }
+    }
 }
 
 enum CandleType: CaseIterable, Identifiable {
@@ -117,7 +123,7 @@ class CandleList: ObservableObject, SnapshotDelegate {
     var feed: DXFeed!
     var subscription: DXFeedSubscription?
     var snapshotProcessor: SnapshotProcessor!
-    
+
     @Published var candles: [StockPrice]
 
     init(symbol: String) {
@@ -156,25 +162,9 @@ class CandleList: ObservableObject, SnapshotDelegate {
 }
 
 struct CandleStickChart: View {
-    @ObservedObject var list: CandleList
-    @State private var selectedPrice: StockPrice?
-    @State private var date = Calendar.current.date(byAdding: .month, value: -12, to: Date())!
-    @State private var type: CandleType = .month
-    @State var xAxisValues = [Date]()
-    let dateFormatter: DateFormatter
+    static let startDate = Calendar.current.date(byAdding: .month, value: -12, to: Date())!
 
-    init(symbol: String) {
-        dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = DateFormatter.Style.short
-        dateFormatter.timeStyle = DateFormatter.Style.none
-
-
-        self.list = CandleList(symbol: symbol)
-        self.list.updateDate(date: self.date, type: self.type)
-        _xAxisValues = State(initialValue: calculateXaxisValues(firstValue: self.date))
-    }
-
-    func calculateXaxisValues(firstValue: Date) -> [Date] {
+    static func calculateXaxisValues(firstValue: Date) -> [Date] {
         var values = [Date]()
         let endDate = Date.now
         let delta = endDate.distance(to: firstValue)
@@ -187,24 +177,41 @@ struct CandleStickChart: View {
         return values.reversed()
     }
 
+    @ObservedObject var list: CandleList
+    @State private var selectedPrice: StockPrice?
+    @State private var date = startDate
+    @State private var type: CandleType = .month
+    @State var xAxisValues = CandleStickChart.calculateXaxisValues(firstValue: startDate)
+    let dateFormatter: DateFormatter
+    let symbol: String
+
+    init(symbol: String) {
+        dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.short
+        dateFormatter.timeStyle = DateFormatter.Style.none
+
+        self.symbol = symbol
+        self.list = CandleList(symbol: symbol)
+        self.list.updateDate(date: self.date, type: self.type)
+    }
+
     var body: some View {
         GeometryReader { reader in
             List {
                 Section {
                     DatePicker(
-                           "Start Date",
-                           selection: $date,
-                           displayedComponents: [.date]
+                        "Start Date",
+                        selection: $date,
+                        displayedComponents: [.date]
                     ).onChange(of: date) { oldValue, newValue in
                         selectedPrice = nil
-                        xAxisValues = calculateXaxisValues(firstValue: newValue)
+                        xAxisValues = CandleStickChart.calculateXaxisValues(firstValue: newValue)
                         list.updateDate(date: newValue,type: type)
-
                     }
                     Picker("Type", selection: $type) {
-                        Text("Week").tag(CandleType.week)
-                        Text("Month").tag(CandleType.month)
-                        Text("Year").tag(CandleType.year)
+                        ForEach(CandleType.allCases, id: \.self) { category in
+                            Text(String(describing: category).capitalized).tag(category)
+                        }
                     }.onChange(of: type) { oldValue, newValue in
                         selectedPrice = nil
                         list.updateDate(date: date, type: newValue)
@@ -215,108 +222,109 @@ struct CandleStickChart: View {
                 }
                 Section {
                     Text("""
-Candles \(String(describing: type))
-\(list.descriptionString)
-from \(date)
+Symbol: \(symbol)
+Type: \(String(describing: type).capitalized)
+Description: \(list.descriptionString)
+From time: \(date)
 """ )
-                        .font(.callout)
+                    .font(.callout)
                 }
             }
         }
     }
     private var chart: some View {
-            Chart($list.candles) { binding in
-                let price = binding.wrappedValue
+        Chart($list.candles) { binding in
+            let price = binding.wrappedValue
 
-                CandleStickMark(
-                    timestamp: .value("Date", price.timestamp),
-                    open: .value("Open", price.open),
-                    high: .value("High", price.high),
-                    low: .value("Low", price.low),
-                    close: .value("Close", price.close)
-                )
-                .accessibilityLabel("\(price.timestamp.formatted(date: .complete, time: .omitted)): \(price.accessibilityTrendSummary)")
-                .accessibilityValue(price.accessibilityDescription)
-                .accessibilityHidden(false)
-                .foregroundStyle( price.close >= price.open ? .green : .red)
-            }
-            .chartYAxis { AxisMarks(preset: .extended) }
-            .chartXAxis {
-                                AxisMarks(values: xAxisValues) { value in
-                                    if let date = value.as(Date.self) {
-                                        AxisValueLabel(horizontalSpacing: -14, verticalSpacing: 10) {
-                                            VStack(alignment: .leading) {
-                                                Text(dateFormatter.string(from: date))
-                                            }
-                                        }
-                                    }
-                                    AxisGridLine(centered: true, stroke: StrokeStyle(lineWidth: 0.5))
-                                    AxisTick(centered: true, length: 0, stroke: .none)
-                                }
-                            }
-
-            .chartOverlay { proxy in
-                GeometryReader { geo in
-                    Rectangle().fill(.clear).contentShape(Rectangle())
-                        .gesture(
-                            SpatialTapGesture()
-                                .onEnded { value in
-                                    let element = findElement(location: value.location, proxy: proxy, geometry: geo)
-                                    if selectedPrice?.timestamp == element?.timestamp {
-                                        // If tapping the same element, clear the selection.
-                                        selectedPrice = nil
-                                    } else {
-                                        selectedPrice = element
-                                    }
-                                }
-                                .exclusively(
-                                    before: DragGesture()
-                                        .onChanged { value in
-                                            selectedPrice = findElement(location: value.location, proxy: proxy, geometry: geo)
-                                        }
-                                )
-                        )
-                }
-            }
-            .chartOverlay { proxy in
-                ZStack(alignment: .topLeading) {
-                    GeometryReader { geo in
-                        if let selectedPrice {
-                            let dateInterval = Calendar.current.dateInterval(of: .day, for: selectedPrice.timestamp)!
-                            let startPositionX1 = proxy.position(forX: dateInterval.start) ?? 0
-
-                            let lineX = startPositionX1 + geo[proxy.plotAreaFrame].origin.x
-                            let lineHeight = geo[proxy.plotAreaFrame].maxY
-                            let boxWidth: CGFloat = geo.size.width
-                            let boxOffset = max(0, min(geo.size.width - boxWidth, lineX - boxWidth / 2))
-
-                            Rectangle()
-                                .fill(.gray.opacity(0.5))
-                                .frame(width: 2, height: lineHeight)
-                                .position(x: lineX, y: lineHeight / 2)
-
-                            CandleInfoView(for: selectedPrice, currency: list.currency)
-                                .frame(width: boxWidth, alignment: .leading)
-                                .background {
-                                    RoundedRectangle(cornerRadius: 13)
-                                        .foregroundStyle(.thickMaterial)
-                                        .padding(.horizontal, -8)
-                                        .padding(.vertical, -4)
-                                }
-                                .offset(x: boxOffset)
-                                .gesture(
-                                    TapGesture()
-                                        .onEnded { _ in
-                                            self.selectedPrice = nil
-                                        }
-                                )
+            CandleStickMark(
+                timestamp: .value("Date", price.timestamp),
+                open: .value("Open", price.open),
+                high: .value("High", price.high),
+                low: .value("Low", price.low),
+                close: .value("Close", price.close)
+            )
+            .accessibilityLabel("\(price.timestamp.formatted(date: .complete, time: .omitted)): \(price.accessibilityTrendSummary)")
+            .accessibilityValue(price.accessibilityDescription)
+            .accessibilityHidden(false)
+            .foregroundStyle( price.isClosingHigher ? .green : .red)
+        }
+        .chartYAxis { AxisMarks(preset: .extended) }
+        .chartXAxis {
+            AxisMarks(values: xAxisValues) { value in
+                if let date = value.as(Date.self) {
+                    AxisValueLabel(horizontalSpacing: -14, verticalSpacing: 10) {
+                        VStack(alignment: .leading) {
+                            Text(dateFormatter.string(from: date))
                         }
                     }
                 }
+                AxisGridLine(centered: true, stroke: StrokeStyle(lineWidth: 0.5))
+                AxisTick(centered: true, length: 0, stroke: .none)
             }
-            .accessibilityChartDescriptor(self)
-            .chartYAxis(.automatic)
-            .chartXAxis(.automatic)
+        }
+
+        .chartOverlay { proxy in
+            GeometryReader { geo in
+                Rectangle().fill(.clear).contentShape(Rectangle())
+                    .gesture(
+                        SpatialTapGesture()
+                            .onEnded { value in
+                                let element = findElement(location: value.location, proxy: proxy, geometry: geo)
+                                if selectedPrice?.timestamp == element?.timestamp {
+                                    // If tapping the same element, clear the selection.
+                                    selectedPrice = nil
+                                } else {
+                                    selectedPrice = element
+                                }
+                            }
+                            .exclusively(
+                                before: DragGesture()
+                                    .onChanged { value in
+                                        selectedPrice = findElement(location: value.location, proxy: proxy, geometry: geo)
+                                    }
+                            )
+                    )
+            }
+        }
+        .chartOverlay { proxy in
+            ZStack(alignment: .topLeading) {
+                GeometryReader { geo in
+                    if let selectedPrice {
+                        let dateInterval = Calendar.current.dateInterval(of: .day, for: selectedPrice.timestamp)!
+                        let startPositionX1 = proxy.position(forX: dateInterval.start) ?? 0
+
+                        let lineX = startPositionX1 + geo[proxy.plotAreaFrame].origin.x
+                        let lineHeight = geo[proxy.plotAreaFrame].maxY
+                        let boxWidth: CGFloat = geo.size.width
+                        let boxOffset = max(0, min(geo.size.width - boxWidth, lineX - boxWidth / 2))
+
+                        Rectangle()
+                            .fill(.gray.opacity(0.5))
+                            .frame(width: 2, height: lineHeight)
+                            .position(x: lineX, y: lineHeight / 2)
+
+                        CandleInfoView(for: selectedPrice, currency: list.currency)
+                            .frame(width: boxWidth, alignment: .leading)
+                            .background {
+                                RoundedRectangle(cornerRadius: 13)
+                                    .foregroundStyle(.thickMaterial)
+                                    .padding(.horizontal, -8)
+                                    .padding(.vertical, -4)
+                            }
+                            .offset(x: boxOffset)
+                            .gesture(
+                                TapGesture()
+                                    .onEnded { _ in
+                                        self.selectedPrice = nil
+                                    }
+                            )
+                    }
+                }
+            }
+        }
+        .accessibilityChartDescriptor(self)
+        .chartYAxis(.automatic)
+        .chartXAxis(.automatic)
 
     }
 
@@ -394,25 +402,25 @@ extension CandleStickChart: AXChartDescriptorRepresentable {
             title: "Closing Price",
             range: 0...highestValue(\.close),
             gridlinePositions: []
-        ) { value in "Closing: \(value.formatted(.currency(code: list.currency)))" }
+        ) { value in "Closing: \(value.formatted(currency: list.currency)))" }
 
         let openAxis = AXNumericDataAxisDescriptor(
             title: "Opening Price",
             range: lowestValue(\.open)...highestValue(\.open),
             gridlinePositions: []
-        ) { value in "Opening: \(value.formatted(.currency(code: list.currency)))" }
+        ) { value in "Opening: \(value.formatted(currency: list.currency))" }
 
         let highAxis = AXNumericDataAxisDescriptor(
             title: "Highest Price",
             range: lowestValue(\.high)...highestValue(\.high),
             gridlinePositions: []
-        ) { value in "High: \(value.formatted(.currency(code: list.currency)))" }
+        ) { value in "High: \(value.formatted(currency: list.currency))" }
 
         let lowAxis = AXNumericDataAxisDescriptor(
             title: "Lowest Price",
             range: lowestValue(\.low)...highestValue(\.low),
             gridlinePositions: []
-        ) { value in "Low: \(value.formatted(.currency(code: list.currency)))" }
+        ) { value in "Low: \(value.formatted(currency: list.currency))" }
 
         let series = AXDataSeriesDescriptor(
             name: list.descriptionString,
@@ -437,7 +445,7 @@ extension CandleStickChart: AXChartDescriptorRepresentable {
     }
 }
 
-// MARK: - Preview
+// MARK: - Detail Info View about candle
 
 struct CandleInfoView: View {
     let price: StockPrice
