@@ -115,6 +115,10 @@
 		643A329B2BD0137000F6F790 /* Optional+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643A329A2BD0137000F6F790 /* Optional+Ext.swift */; };
 		643A329F2BD2A04300F6F790 /* OnDemandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643A329E2BD2A04300F6F790 /* OnDemandService.swift */; };
 		643A32A22BD2AEFB00F6F790 /* NativeOnDemandService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643A32A12BD2AEFB00F6F790 /* NativeOnDemandService.swift */; };
+		643F41F52BDFE1B000A2176D /* DXFeedCandleChartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643F41F42BDFE1B000A2176D /* DXFeedCandleChartApp.swift */; };
+		643F41F92BDFE1B200A2176D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 643F41F82BDFE1B200A2176D /* Assets.xcassets */; };
+		643F41FC2BDFE1B200A2176D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 643F41FB2BDFE1B200A2176D /* Preview Assets.xcassets */; };
+		643F42012BDFE25D00A2176D /* CandleStickChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643F42002BDFE25D00A2176D /* CandleStickChart.swift */; };
 		64437A8F2A9DEE6F005929B2 /* InstrumentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64437A8E2A9DEE6F005929B2 /* InstrumentProfile.swift */; };
 		64437A922A9DF1DE005929B2 /* NativeInstrumentProfileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64437A912A9DF1DE005929B2 /* NativeInstrumentProfileReader.swift */; };
 		6447A5DB2A8E559000739CCF /* ILastingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6447A5DA2A8E559000739CCF /* ILastingEvent.swift */; };
@@ -679,6 +683,11 @@
 		643A329C2BD15F2900F6F790 /* LastEventsConsole.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = LastEventsConsole.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		643A329E2BD2A04300F6F790 /* OnDemandService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDemandService.swift; sourceTree = "<group>"; };
 		643A32A12BD2AEFB00F6F790 /* NativeOnDemandService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeOnDemandService.swift; sourceTree = "<group>"; };
+		643F41F22BDFE1B000A2176D /* DXFeedCandleChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXFeedCandleChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		643F41F42BDFE1B000A2176D /* DXFeedCandleChartApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFeedCandleChartApp.swift; sourceTree = "<group>"; };
+		643F41F82BDFE1B200A2176D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		643F41FB2BDFE1B200A2176D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		643F42002BDFE25D00A2176D /* CandleStickChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleStickChart.swift; sourceTree = "<group>"; };
 		64437A8E2A9DEE6F005929B2 /* InstrumentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfile.swift; sourceTree = "<group>"; };
 		64437A912A9DF1DE005929B2 /* NativeInstrumentProfileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInstrumentProfileReader.swift; sourceTree = "<group>"; };
 		644551C92B973A0D0069E3A2 /* FetchDailyCandles.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = FetchDailyCandles.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -951,6 +960,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		643F41EF2BDFE1B000A2176D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		644BD7572A44726F00A0BF99 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1206,6 +1222,25 @@
 				643A32A12BD2AEFB00F6F790 /* NativeOnDemandService.swift */,
 			);
 			path = OnDemandService;
+			sourceTree = "<group>";
+		};
+		643F41F32BDFE1B000A2176D /* DXFeedCandleChart */ = {
+			isa = PBXGroup;
+			children = (
+				643F41F42BDFE1B000A2176D /* DXFeedCandleChartApp.swift */,
+				643F42002BDFE25D00A2176D /* CandleStickChart.swift */,
+				643F41F82BDFE1B200A2176D /* Assets.xcassets */,
+				643F41FA2BDFE1B200A2176D /* Preview Content */,
+			);
+			path = DXFeedCandleChart;
+			sourceTree = "<group>";
+		};
+		643F41FA2BDFE1B200A2176D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				643F41FB2BDFE1B200A2176D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		64437A902A9DF1C4005929B2 /* Ipf */ = {
@@ -1533,6 +1568,7 @@
 				641E45FD2B1DF67E00649363 /* Playgrounds */,
 				6469F8D12A3B400100846831 /* Utils */,
 				644BD75B2A44726F00A0BF99 /* ARQuoteTableApp */,
+				643F41F32BDFE1B000A2176D /* DXFeedCandleChart */,
 				64D8BB3C2A39BB730071BC88 /* LatencyTestApp */,
 				64B6275D2A3761A000196D07 /* PertTestApp */,
 				64B627162A375BBA00196D07 /* QuoteTableApp */,
@@ -1626,6 +1662,7 @@
 				64B4364B2AB9D3410003919E /* ScheduleSampleApp.app */,
 				64148B642ABB5C320063110E /* Tools */,
 				6455C3B82B20A44D00257986 /* QdsTools.app */,
+				643F41F22BDFE1B000A2176D /* DXFeedCandleChart.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1885,6 +1922,23 @@
 			productReference = 642DC9252AAA21C000974F5C /* DXIpfTableApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		643F41F12BDFE1B000A2176D /* DXFeedCandleChart */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 643F41FD2BDFE1B200A2176D /* Build configuration list for PBXNativeTarget "DXFeedCandleChart" */;
+			buildPhases = (
+				643F41EE2BDFE1B000A2176D /* Sources */,
+				643F41EF2BDFE1B000A2176D /* Frameworks */,
+				643F41F02BDFE1B000A2176D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DXFeedCandleChart;
+			productName = DXFeedCandleChart;
+			productReference = 643F41F22BDFE1B000A2176D /* DXFeedCandleChart.app */;
+			productType = "com.apple.product-type.application";
+		};
 		644BD7592A44726F00A0BF99 /* DXARQuoteTableApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 644BD76C2A44727000A0BF99 /* Build configuration list for PBXNativeTarget "DXARQuoteTableApp" */;
@@ -2048,7 +2102,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				CLASSPREFIX = DX;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					64148B632ABB5C320063110E = {
@@ -2056,6 +2110,9 @@
 					};
 					642DC9242AAA21C000974F5C = {
 						CreatedOnToolsVersion = 15.0;
+					};
+					643F41F12BDFE1B000A2176D = {
+						CreatedOnToolsVersion = 15.2;
 					};
 					644BD7592A44726F00A0BF99 = {
 						CreatedOnToolsVersion = 14.3;
@@ -2112,6 +2169,7 @@
 				64B4364A2AB9D3410003919E /* ScheduleSampleApp */,
 				6455C3B72B20A44D00257986 /* QdsTools */,
 				64148B632ABB5C320063110E /* Tools */,
+				643F41F12BDFE1B000A2176D /* DXFeedCandleChart */,
 			);
 		};
 /* End PBXProject section */
@@ -2125,6 +2183,15 @@
 				642DC9432AAA299800974F5C /* Colors.xcassets in Resources */,
 				642DC9312AAA21C300974F5C /* Assets.xcassets in Resources */,
 				642DC92F2AAA21C000974F5C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		643F41F02BDFE1B000A2176D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				643F41FC2BDFE1B200A2176D /* Preview Assets.xcassets in Resources */,
+				643F41F92BDFE1B200A2176D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2310,6 +2377,15 @@
 				642DC9442AAA29EA00974F5C /* IpfCell.swift in Sources */,
 				642DC9282AAA21C000974F5C /* AppDelegate.swift in Sources */,
 				642DC92A2AAA21C000974F5C /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		643F41EE2BDFE1B000A2176D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				643F41F52BDFE1B000A2176D /* DXFeedCandleChartApp.swift in Sources */,
+				643F42012BDFE25D00A2176D /* CandleStickChart.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2939,6 +3015,76 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.IpfTableApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		643F41FE2BDFE1B200A2176D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Samples/DXFeedCandleChart/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXFeedCandleChart;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		643F41FF2BDFE1B200A2176D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Samples/DXFeedCandleChart/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXFeedCandleChart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -3654,6 +3800,15 @@
 			buildConfigurations = (
 				642DC9362AAA21C300974F5C /* Debug */,
 				642DC9372AAA21C300974F5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		643F41FD2BDFE1B200A2176D /* Build configuration list for PBXNativeTarget "DXFeedCandleChart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				643F41FE2BDFE1B200A2176D /* Debug */,
+				643F41FF2BDFE1B200A2176D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

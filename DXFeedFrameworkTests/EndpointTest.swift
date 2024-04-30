@@ -101,4 +101,15 @@ final class EndpointTest: XCTestCase {
         endpoint.add(listener: stateListener!)
         wait(for: [connectedExpectation], timeout: 1)
     }
+
+    func testRoleConvert() throws {
+        let roles: [DXEndpoint.Role] = [.feed, .onDemandFeed, .streamFeed, .publisher, .streamPublisher, .localHub]
+        let nativeCodes = roles.map { role in
+            role.toNatie()
+        }
+        XCTAssertEqual(nativeCodes.map { nativeRole in
+            DXEndpoint.Role.fromNative(nativeRole)
+        }, roles)
+    }
+    
 }
