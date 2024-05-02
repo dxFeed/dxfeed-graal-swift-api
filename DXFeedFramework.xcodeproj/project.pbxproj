@@ -119,6 +119,7 @@
 		643F41F92BDFE1B200A2176D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 643F41F82BDFE1B200A2176D /* Assets.xcassets */; };
 		643F41FC2BDFE1B200A2176D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 643F41FB2BDFE1B200A2176D /* Preview Assets.xcassets */; };
 		643F42012BDFE25D00A2176D /* CandleStickChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643F42002BDFE25D00A2176D /* CandleStickChart.swift */; };
+		643F42032BE3742D00A2176D /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646979712A3B5AF60003A9BA /* Colors.xcassets */; };
 		64437A8F2A9DEE6F005929B2 /* InstrumentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64437A8E2A9DEE6F005929B2 /* InstrumentProfile.swift */; };
 		64437A922A9DF1DE005929B2 /* NativeInstrumentProfileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64437A912A9DF1DE005929B2 /* NativeInstrumentProfileReader.swift */; };
 		6447A5DB2A8E559000739CCF /* ILastingEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6447A5DA2A8E559000739CCF /* ILastingEvent.swift */; };
@@ -1935,6 +1936,8 @@
 			dependencies = (
 			);
 			name = DXFeedCandleChart;
+			packageProductDependencies = (
+			);
 			productName = DXFeedCandleChart;
 			productReference = 643F41F22BDFE1B000A2176D /* DXFeedCandleChart.app */;
 			productType = "com.apple.product-type.application";
@@ -2154,6 +2157,8 @@
 				Base,
 			);
 			mainGroup = 803BAC0329BFA50700FFAB1C;
+			packageReferences = (
+			);
 			productRefGroup = 803BAC0E29BFA50700FFAB1C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -2190,6 +2195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				643F42032BE3742D00A2176D /* Colors.xcassets in Resources */,
 				643F41FC2BDFE1B200A2176D /* Preview Assets.xcassets in Resources */,
 				643F41F92BDFE1B200A2176D /* Assets.xcassets in Resources */,
 			);
@@ -3032,7 +3038,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Samples/DXFeedCandleChart/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -3067,7 +3073,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Samples/DXFeedCandleChart/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;

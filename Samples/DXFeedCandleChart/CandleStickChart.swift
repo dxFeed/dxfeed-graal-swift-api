@@ -34,7 +34,12 @@ extension StockPrice {
     }
 
     var accessibilityDescription: String {
-        return "Open: \(self.open.formatted(currency: currency)), Close: \(self.close.formatted(currency: currency)), High: \(self.high.formatted(currency: currency)), Low: \(self.low.formatted(currency: currency))"
+        return """
+Open: \(self.open.formatted(currency: currency)), \
+Close: \(self.close.formatted(currency: currency)), \
+High: \(self.high.formatted(currency: currency)), \
+Low: \(self.low.formatted(currency: currency))
+"""
     }
 }
 
@@ -93,16 +98,13 @@ class CandleList: ObservableObject, SnapshotDelegate {
             let candle = event.candle
             result.append(candle)
         }
-        if isSnapshot {
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            if isSnapshot {
                 self.candles = result.map({ candle in
                     let price = StockPrice(candle: candle, currency: self.currency)
                     return price
                 })
-            }
-
-        } else {
-            DispatchQueue.main.async {
+            } else {
                 result.forEach { candle in
                     let newPrice = StockPrice(candle: candle, currency: self.currency)
                     if let index = self.candles.firstIndex(where: { price in
@@ -193,45 +195,53 @@ struct CandleStickChart: View {
         self.symbol = symbol
         self.list = CandleList(symbol: symbol)
         self.list.updateDate(date: self.date, type: self.type)
+
     }
 
     var body: some View {
         GeometryReader { reader in
             List {
+
                 Section {
-                    DatePicker(
-                        "Start Date",
-                        selection: $date,
-                        displayedComponents: [.date]
-                    ).onChange(of: date) { oldValue, newValue in
-                        selectedPrice = nil
-                        xAxisValues = CandleStickChart.calculateXaxisValues(firstValue: newValue)
-                        list.updateDate(date: newValue,type: type)
-                    }
-                    Picker("Type", selection: $type) {
+                    chart.frame(height: max(reader.size.height/2, 300))
+                }.listRowBackground(Color.cellBackground)
+
+
+                Section("Chart parameters") {
+                    Picker("Candle type", selection: $type) {
                         ForEach(CandleType.allCases, id: \.self) { category in
                             Text(String(describing: category).capitalized).tag(category)
                         }
                     }.onChange(of: type) { oldValue, newValue in
                         selectedPrice = nil
                         list.updateDate(date: date, type: newValue)
+                    }.pickerStyle(SegmentedPickerStyle())
+
+                    .foregroundStyle(.text)
+                    DatePicker(
+                        selection: $date,
+                        displayedComponents: [.date]
+                    ){
+                        Text("Choose from time")
+                    }.onChange(of: date) { oldValue, newValue in
+                        selectedPrice = nil
+                        xAxisValues = CandleStickChart.calculateXaxisValues(firstValue: newValue)
+                        list.updateDate(date: newValue,type: type)
                     }
+                    .datePickerStyle(.compact)
+                    .foregroundStyle(.text)
+
                 }
-                Section {
-                    chart.frame(height: reader.size.height/2)
-                }
-                Section {
-                    Text("""
-Symbol: \(symbol)
-Type: \(String(describing: type).capitalized)
-Description: \(list.descriptionString)
-From time: \(date)
-""" )
-                    .font(.callout)
-                }
+                .listRowBackground(Color.cellBackground)
+                .listRowSeparator(.hidden)
             }
+            .preferredColorScheme(.dark)
+            .background(.tableBackground)
+            .scrollContentBackground(.hidden)
+
         }
     }
+
     private var chart: some View {
         Chart($list.candles) { binding in
             let price = binding.wrappedValue
@@ -307,9 +317,11 @@ From time: \(date)
                             .frame(width: boxWidth, alignment: .leading)
                             .background {
                                 RoundedRectangle(cornerRadius: 13)
+                                    .fill(Color.priceBackground)
                                     .foregroundStyle(.thickMaterial)
                                     .padding(.horizontal, -8)
                                     .padding(.vertical, -4)
+
                             }
                             .offset(x: boxOffset)
                             .gesture(
@@ -472,4 +484,5 @@ struct CandleInfoView: View {
         .font(.headline)
         .padding(.vertical)
     }
+
 }
