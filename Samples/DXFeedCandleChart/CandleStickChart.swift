@@ -217,16 +217,16 @@ struct CandleStickChart: View {
                         list.updateDate(date: date, type: newValue)
                     }.pickerStyle(SegmentedPickerStyle())
 
-                    .foregroundStyle(.text)
+                        .foregroundStyle(.text)
                     DatePicker(
                         selection: $date,
                         displayedComponents: [.date]
-                    ){
+                    ) {
                         Text("Choose from time")
-                    }.onChange(of: date) { oldValue, newValue in
+                    }.onChange(of: date) { _, newValue in
                         selectedPrice = nil
                         xAxisValues = CandleStickChart.calculateXaxisValues(firstValue: newValue)
-                        list.updateDate(date: newValue,type: type)
+                        list.updateDate(date: newValue, type: type)
                     }
                     .datePickerStyle(.compact)
                     .foregroundStyle(.text)
