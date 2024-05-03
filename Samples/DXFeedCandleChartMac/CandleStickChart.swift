@@ -86,7 +86,6 @@ struct StockPrice: Identifiable {
         self.high = Decimal(candle.high)
         self.low = Decimal(candle.low)
     }
-
 }
 
 
@@ -128,16 +127,20 @@ class CandleList: ObservableObject, SnapshotDelegate {
 
     @Published var candles: [StockPrice]
 
-    init(symbol: String) {
+    init(symbol: String, endpoint: DXEndpoint?) {
         self.symbol = symbol
         self.candles = [StockPrice]()
-        try? createSubscription()
+        try? createSubscription(endpoint: endpoint)
         fetchInfo()
     }
 
-    func createSubscription() throws {
-        endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
-        feed = endpoint.getFeed()
+    func createSubscription(endpoint: DXEndpoint?) throws {
+        if let endpoint = endpoint {
+            self.endpoint = endpoint
+        } else {
+            self.endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
+        }
+        feed = self.endpoint.getFeed()
         subscription = try feed?.createSubscription([Candle.self])
         snapshotProcessor = SnapshotProcessor()
         snapshotProcessor.add(self)
@@ -145,15 +148,18 @@ class CandleList: ObservableObject, SnapshotDelegate {
     }
 
     func fetchInfo() {
-        let reader = DXInstrumentProfileReader()
-        let result = try? reader.readFromFile(address: "https://demo:demo@tools.dxfeed.com/ipf?SYMBOL=\(symbol)")
-        guard let result = result  else {
-            return
+        DispatchQueue.global(qos: .background).async {
+            let reader = DXInstrumentProfileReader()
+            let result = try? reader.readFromFile(address: "https://demo:demo@tools.dxfeed.com/ipf?SYMBOL=\(self.symbol)")
+            guard let result = result  else {
+                return
+            }
+            result.forEach { profile in
+                self.currency = profile.currency
+                self.descriptionString = profile.descriptionStr
+            }
         }
-        result.forEach { profile in
-            currency = profile.currency
-            descriptionString = profile.descriptionStr
-        }
+
     }
 
     func updateDate(date: Date, type: CandleType) {
@@ -187,14 +193,13 @@ struct CandleStickChart: View {
     let dateFormatter: DateFormatter
     let symbol: String
 
-    init(symbol: String, type: CandleType = .month, date: Date? = nil) {
+    init(symbol: String, type: CandleType = .month, date: Date? = nil, endpoint: DXEndpoint?) {
         dateFormatter = DateFormatter()
         dateFormatter.dateStyle = DateFormatter.Style.short
         dateFormatter.timeStyle = DateFormatter.Style.none
 
         self.symbol = symbol
-        self.list = CandleList(symbol: symbol)
-
+        self.list = CandleList(symbol: symbol, endpoint: endpoint)
         _type = State(initialValue: type)
         if let date = date {
             _date = State(initialValue: date)
@@ -210,38 +215,38 @@ struct CandleStickChart: View {
 
                 Section {
                     chart.frame(height: max(reader.size.height/2, 300))
-                }.listRowBackground(Color.cellBackground)
+                }.listRowBackground(Color.sectionBackground)
 
                 Section("Chart parameters") {
                     Picker("Candle type", selection: $type) {
                         ForEach(CandleType.allCases, id: \.self) { category in
                             Text(String(describing: category).capitalized).tag(category)
                         }
-                    }.onChange(of: type) { _, newValue in
+                    }.onChange(of: type) { value in
                         selectedPrice = nil
-                        list.updateDate(date: date, type: newValue)
-                    }.pickerStyle(SegmentedPickerStyle())
+                        list.updateDate(date: date, type: value)
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .foregroundStyle(Color.labelText)
 
-                        .foregroundStyle(.text)
                     DatePicker(
                         selection: $date,
                         displayedComponents: [.date]
                     ) {
                         Text("Choose from time")
-                    }.onChange(of: date) { _, newValue in
+                    }.onChange(of: date) { value in
                         selectedPrice = nil
-                        xAxisValues = CandleStickChart.calculateXaxisValues(firstValue: newValue)
-                        list.updateDate(date: newValue, type: type)
+                        xAxisValues = CandleStickChart.calculateXaxisValues(firstValue: value)
+                        list.updateDate(date: value, type: type)
                     }
                     .datePickerStyle(.compact)
-                    .foregroundStyle(.text)
+                    .foregroundStyle(Color.labelText)
 
-                }
-                .listRowBackground(Color.cellBackground)
-                .listRowSeparator(.hidden)
+                }.listRowSeparator(.hidden)
+                    .listRowBackground(Color.sectionBackground)
             }
             .preferredColorScheme(.dark)
-            .background(.tableBackground)
+            .background(Color.viewBackground)
             .scrollContentBackground(.hidden)
 
         }
@@ -322,7 +327,7 @@ struct CandleStickChart: View {
                             .frame(width: boxWidth, alignment: .leading)
                             .background {
                                 RoundedRectangle(cornerRadius: 13)
-                                    .fill(Color.priceBackground)
+                                    .fill(Color.infoBackground)
                                     .foregroundStyle(.thickMaterial)
                                     .padding(.horizontal, -8)
                                     .padding(.vertical, -4)

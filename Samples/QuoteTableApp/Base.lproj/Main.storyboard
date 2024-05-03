@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fbd-3S-cKV">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -59,7 +58,7 @@
                                     <constraint firstAttribute="bottom" secondItem="p7V-3p-HxW" secondAttribute="bottom" constant="5" id="wLD-93-Kad"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EH9-zJ-QLZ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EH9-zJ-QLZ">
                                 <rect key="frame" x="10" y="103" width="373" height="675"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOTICE: Data is delayed at least 15 minutes." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5WY-rQ-KMd">
@@ -388,10 +387,10 @@
     </scenes>
     <designables>
         <designable name="OfZ-3h-hz9">
-            <size key="intrinsicContentSize" width="41.666666666666671" height="30.333333333333332"/>
+            <size key="intrinsicContentSize" width="24.666666666666668" height="20.333333333333332"/>
         </designable>
         <designable name="my2-SE-epx">
-            <size key="intrinsicContentSize" width="45.333333333333329" height="30.333333333333332"/>
+            <size key="intrinsicContentSize" width="28.333333333333332" height="20.333333333333332"/>
         </designable>
     </designables>
     <color key="tintColor" name="TextColor"/>

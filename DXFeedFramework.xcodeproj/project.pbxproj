@@ -205,7 +205,6 @@
 		6469F8C82A3B25C900846831 /* MarketEvent+Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8C72A3B25C900846831 /* MarketEvent+Access.swift */; };
 		6469F8CF2A3B300A00846831 /* MetricCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CB2A3B2F1200846831 /* MetricCell.swift */; };
 		6469F8D02A3B301C00846831 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
-		6469F8D32A3B401700846831 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8D22A3B401700846831 /* Colors.swift */; };
 		6469F8D42A3B401700846831 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8D22A3B401700846831 /* Colors.swift */; };
 		6469F8D52A3B401700846831 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8D22A3B401700846831 /* Colors.swift */; };
 		6469F8D62A3B408900846831 /* Endpoint+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6277C2A3762D000196D07 /* Endpoint+Ext.swift */; };
@@ -220,10 +219,14 @@
 		647A513D2BE4DDB600B8B8C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 647A51372BE4DDB600B8B8C9 /* Assets.xcassets */; };
 		647A513E2BE4DDB600B8B8C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 647A51392BE4DDB600B8B8C9 /* Preview Assets.xcassets */; };
 		647A513F2BE4DDB600B8B8C9 /* DXFeedCandleChartMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A513B2BE4DDB600B8B8C9 /* DXFeedCandleChartMacApp.swift */; };
-		647A51412BE4DF3700B8B8C9 /* CandleStickChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643F42002BDFE25D00A2176D /* CandleStickChart.swift */; };
 		647A51442BE4DFD600B8B8C9 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646979712A3B5AF60003A9BA /* Colors.xcassets */; };
 		647A51452BE4E02700B8B8C9 /* CandleStickChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643F42002BDFE25D00A2176D /* CandleStickChart.swift */; };
 		647A51482BE4EE0600B8B8C9 /* CandleStickChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643F42002BDFE25D00A2176D /* CandleStickChart.swift */; };
+		647A51492BE4F71700B8B8C9 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8D22A3B401700846831 /* Colors.swift */; };
+		647A514F2BE5113A00B8B8C9 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A514B2BE5102800B8B8C9 /* Color+Ext.swift */; };
+		647A51502BE5129200B8B8C9 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A514B2BE5102800B8B8C9 /* Color+Ext.swift */; };
+		647A51512BE512E100B8B8C9 /* CandleStickChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643F42002BDFE25D00A2176D /* CandleStickChart.swift */; };
+		647A51532BE5141600B8B8C9 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A514B2BE5102800B8B8C9 /* Color+Ext.swift */; };
 		64820AAF2BB2E26100BDFD0B /* DXOtcMarketOrderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64820AAE2BB2E26100BDFD0B /* DXOtcMarketOrderTest.swift */; };
 		6482F3D12BA492A60079AC3D /* SymbolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482F3D02BA492A60079AC3D /* SymbolsViewController.swift */; };
 		6482F3D22BA492A60079AC3D /* SymbolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482F3D02BA492A60079AC3D /* SymbolsViewController.swift */; };
@@ -793,6 +796,7 @@
 		647A51392BE4DDB600B8B8C9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		647A513A2BE4DDB600B8B8C9 /* DXFeedCandleChartMac.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = DXFeedCandleChartMac.entitlements; sourceTree = "<group>"; };
 		647A513B2BE4DDB600B8B8C9 /* DXFeedCandleChartMacApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DXFeedCandleChartMacApp.swift; sourceTree = "<group>"; };
+		647A514B2BE5102800B8B8C9 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		64820AAE2BB2E26100BDFD0B /* DXOtcMarketOrderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXOtcMarketOrderTest.swift; sourceTree = "<group>"; };
 		6482F3D02BA492A60079AC3D /* SymbolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsViewController.swift; sourceTree = "<group>"; };
 		6482F3D62BA49AB70079AC3D /* AddSymbolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSymbolsViewController.swift; sourceTree = "<group>"; };
@@ -1436,6 +1440,7 @@
 				647A51382BE4DDB600B8B8C9 /* Preview Content */,
 				647A513A2BE4DDB600B8B8C9 /* DXFeedCandleChartMac.entitlements */,
 				647A513B2BE4DDB600B8B8C9 /* DXFeedCandleChartMacApp.swift */,
+				647A514B2BE5102800B8B8C9 /* Color+Ext.swift */,
 				643F42002BDFE25D00A2176D /* CandleStickChart.swift */,
 			);
 			path = DXFeedCandleChartMac;
@@ -2496,7 +2501,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				647A513F2BE4DDB600B8B8C9 /* DXFeedCandleChartMacApp.swift in Sources */,
-				647A51412BE4DF3700B8B8C9 /* CandleStickChart.swift in Sources */,
+				647A51512BE512E100B8B8C9 /* CandleStickChart.swift in Sources */,
+				647A51532BE5141600B8B8C9 /* Color+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2518,6 +2524,7 @@
 			files = (
 				647A51452BE4E02700B8B8C9 /* CandleStickChart.swift in Sources */,
 				643F41F52BDFE1B000A2176D /* DXFeedCandleChartApp.swift in Sources */,
+				647A51502BE5129200B8B8C9 /* Color+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2574,12 +2581,13 @@
 				64B6273A2A375C0F00196D07 /* QuoteCell.swift in Sources */,
 				640F8A532BA9C8D600C7BE22 /* SymbolsDataProvider.swift in Sources */,
 				6482F3D72BA49AB70079AC3D /* AddSymbolsViewController.swift in Sources */,
-				6469F8D32A3B401700846831 /* Colors.swift in Sources */,
+				647A514F2BE5113A00B8B8C9 /* Color+Ext.swift in Sources */,
 				6469F8D62A3B408900846831 /* Endpoint+Ext.swift in Sources */,
 				64B6273B2A375C0F00196D07 /* PaddingLabel.swift in Sources */,
 				64B627402A375C0F00196D07 /* SceneDelegate.swift in Sources */,
 				647A51482BE4EE0600B8B8C9 /* CandleStickChart.swift in Sources */,
 				6469F8D82A3B4AA400846831 /* MetricCell.swift in Sources */,
+				647A51492BE4F71700B8B8C9 /* Colors.swift in Sources */,
 				646D19E22A3C994000C82315 /* DXFTimer.swift in Sources */,
 				64B6273E2A375C0F00196D07 /* QuoteTableViewController.swift in Sources */,
 				64B627392A375C0F00196D07 /* AppDelegate.swift in Sources */,
@@ -3254,7 +3262,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3289,7 +3297,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3519,7 +3527,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3553,7 +3561,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

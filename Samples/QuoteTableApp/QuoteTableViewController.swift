@@ -6,6 +6,7 @@
 
 import UIKit
 import DXFeedFramework
+import SwiftUI
 
 class QuoteTableViewController: UIViewController {
     private var endpoint: DXEndpoint?
@@ -141,6 +142,8 @@ extension QuoteTableViewController: UITableViewDataSource {
         let symbol = symbols[indexPath.row]
         let quote = dataSource[symbol]
         cell.update(model: quote, symbol: symbol, description: quote?.descriptionString)
+        cell.selectionStyle = .none
+
         return cell
     }
 }
@@ -149,11 +152,28 @@ extension QuoteTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let symbol = symbols[indexPath.row]
+        let candleChartViewController = MyUIHostingController(rootView: CandleStickChart(symbol: symbol, 
+                                                                                         type: .week,
+                                                                                         endpoint: endpoint))
+        candleChartViewController.title = symbol
+        self.navigationController?.pushViewController(candleChartViewController, animated: true)
+    }
 }
 
 extension QuoteTableViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                            shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+}
+
+class MyUIHostingController<Content>: UIHostingController<Content> where Content : View {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // fix for datepicker selected color
+        overrideUserInterfaceStyle = .dark
     }
 }

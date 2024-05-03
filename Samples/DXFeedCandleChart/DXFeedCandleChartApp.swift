@@ -11,7 +11,7 @@ import SwiftUI
 struct DXFeedCandleChartApp: App {
     var body: some Scene {
         WindowGroup {
-            CandleStickChart(symbol: "AAPL")
+            CandleStickChart(symbol: "AAPL", endpoint: nil)
         }
     }
 }
