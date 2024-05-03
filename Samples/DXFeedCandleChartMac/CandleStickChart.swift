@@ -187,15 +187,21 @@ struct CandleStickChart: View {
     let dateFormatter: DateFormatter
     let symbol: String
 
-    init(symbol: String) {
+    init(symbol: String, type: CandleType = .month, date: Date? = nil) {
         dateFormatter = DateFormatter()
         dateFormatter.dateStyle = DateFormatter.Style.short
         dateFormatter.timeStyle = DateFormatter.Style.none
 
         self.symbol = symbol
         self.list = CandleList(symbol: symbol)
-        self.list.updateDate(date: self.date, type: self.type)
 
+        _type = State(initialValue: type)
+        if let date = date {
+            _date = State(initialValue: date)
+            _xAxisValues = State(initialValue: CandleStickChart.calculateXaxisValues(firstValue: date))
+        }
+
+        self.list.updateDate(date: self.date, type: self.type)
     }
 
     var body: some View {
@@ -206,13 +212,12 @@ struct CandleStickChart: View {
                     chart.frame(height: max(reader.size.height/2, 300))
                 }.listRowBackground(Color.cellBackground)
 
-
                 Section("Chart parameters") {
                     Picker("Candle type", selection: $type) {
                         ForEach(CandleType.allCases, id: \.self) { category in
                             Text(String(describing: category).capitalized).tag(category)
                         }
-                    }.onChange(of: type) { oldValue, newValue in
+                    }.onChange(of: type) { _, newValue in
                         selectedPrice = nil
                         list.updateDate(date: date, type: newValue)
                     }.pickerStyle(SegmentedPickerStyle())
@@ -305,7 +310,7 @@ struct CandleStickChart: View {
 
                         let lineX = startPositionX1 + geo[proxy.plotAreaFrame].origin.x
                         let lineHeight = geo[proxy.plotAreaFrame].maxY
-                        let boxWidth: CGFloat = geo.size.width
+                        let boxWidth: CGFloat = min(geo.size.width, 400)
                         let boxOffset = max(0, min(geo.size.width - boxWidth, lineX - boxWidth / 2))
 
                         Rectangle()
