@@ -30,7 +30,7 @@ class QuoteTableViewController: UIViewController {
         self.quoteTableView.backgroundColor = .clear
 
         quoteTableView.separatorStyle = .none
-        
+
         noticeButton.setTitle("Learn more about dxFeed APIs", for: .normal)
         noticeButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
 
@@ -155,7 +155,7 @@ extension QuoteTableViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let symbol = symbols[indexPath.row]
-        let candleChartViewController = MyUIHostingController(rootView: CandleStickChart(symbol: symbol, 
+        let candleChartViewController = MyUIHostingController(rootView: CandleStickChart(symbol: symbol,
                                                                                          type: .week,
                                                                                          endpoint: endpoint))
         candleChartViewController.title = symbol
@@ -170,7 +170,7 @@ extension QuoteTableViewController: UIGestureRecognizerDelegate {
     }
 }
 
-class MyUIHostingController<Content>: UIHostingController<Content> where Content : View {
+class MyUIHostingController<Content>: UIHostingController<Content> where Content: View {
     override func viewDidLoad() {
         super.viewDidLoad()
         // fix for datepicker selected color

@@ -12,7 +12,7 @@ struct DXFeedCandleChartMacApp: App {
     let symbol = "AAPL"
     var body: some Scene {
         WindowGroup {
-            CandleStickChart(symbol: symbol, 
+            CandleStickChart(symbol: symbol,
                              type: .week,
                              date: Calendar.current.date(byAdding: .year, value: -4, to: Date()),
                              endpoint: nil)

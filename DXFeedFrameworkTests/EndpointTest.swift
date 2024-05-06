@@ -111,5 +111,5 @@ final class EndpointTest: XCTestCase {
             DXEndpoint.Role.fromNative(nativeRole)
         }, roles)
     }
-    
+
 }

@@ -44,9 +44,9 @@ Low: \(self.low.formatted(currency: currency))
 }
 
 extension Array {
-    mutating func safeReplace(_ newElement: Element, at:Int) {
-        if at >= 0 && at < self.count {
-            self[at] = newElement
+    mutating func safeReplace(_ newElement: Element, at index: Int) {
+        if index >= 0 && index < self.count {
+            self[index] = newElement
         } else {
             print("error during replace")
         }
@@ -87,7 +87,6 @@ struct StockPrice: Identifiable {
         self.low = Decimal(candle.low)
     }
 }
-
 
 class CandleList: ObservableObject, SnapshotDelegate {
     func receiveEvents(_ events: [DXFeedFramework.MarketEvent], isSnapshot: Bool) {
@@ -150,7 +149,8 @@ class CandleList: ObservableObject, SnapshotDelegate {
     func fetchInfo() {
         DispatchQueue.global(qos: .background).async {
             let reader = DXInstrumentProfileReader()
-            let result = try? reader.readFromFile(address: "https://demo:demo@tools.dxfeed.com/ipf?SYMBOL=\(self.symbol)")
+            let address = "https://demo:demo@tools.dxfeed.com/ipf?SYMBOL=\(self.symbol)"
+            let result = try? reader.readFromFile(address: address)
             guard let result = result  else {
                 return
             }
@@ -263,7 +263,9 @@ struct CandleStickChart: View {
                 low: .value("Low", price.low),
                 close: .value("Close", price.close)
             )
-            .accessibilityLabel("\(price.timestamp.formatted(date: .complete, time: .omitted)): \(price.accessibilityTrendSummary)")
+            .accessibilityLabel("""
+\(price.timestamp.formatted(date: .complete, time: .omitted)): \(price.accessibilityTrendSummary)
+""")
             .accessibilityValue(price.accessibilityDescription)
             .accessibilityHidden(false)
             .foregroundStyle( price.isClosingHigher ? .green : .red)
@@ -300,7 +302,9 @@ struct CandleStickChart: View {
                             .exclusively(
                                 before: DragGesture()
                                     .onChanged { value in
-                                        selectedPrice = findElement(location: value.location, proxy: proxy, geometry: geo)
+                                        selectedPrice = findElement(location: value.location,
+                                                                    proxy: proxy,
+                                                                    geometry: geo)
                                     }
                             )
                     )
@@ -355,7 +359,7 @@ struct CandleStickChart: View {
         if let date = proxy.value(atX: relativeXPosition) as Date? {
             // Find the closest date element.
             var minDistance: TimeInterval = .infinity
-            var index: Int? = nil
+            var index: Int?
             for dataIndex in list.candles.indices {
                 let nthSalesDataDistance = list.candles[dataIndex].timestamp.distance(to: date)
                 if abs(nthSalesDataDistance) < minDistance {
@@ -400,50 +404,49 @@ struct CandleStickMark: ChartContent {
 // MARK: - Accessibility
 
 extension CandleStickChart: AXChartDescriptorRepresentable {
-    func makeChartDescriptor() -> AXChartDescriptor {
+    func createLowest() -> ((KeyPath<StockPrice, Decimal>) -> (Double)) {
+        { path in
+            return list.candles.map { $0[keyPath: path]} .min()?.asDouble ?? 0
+        }
+    }
+    func createHighest() -> ((KeyPath<StockPrice, Decimal>) -> (Double)) {
 
+        { path in
+            return list.candles.map { $0[keyPath: path]} .max()?.asDouble ?? 0
+        }
+    }
+    func makeChartDescriptor() -> AXChartDescriptor {
         let dateStringConverter: ((Date) -> (String)) = { date in
             date.formatted(date: .abbreviated, time: .omitted)
         }
-
         // These closures help find the min/max for each axis
-        let lowestValue: ((KeyPath<StockPrice, Decimal>) -> (Double)) = { path in
-            return list.candles.map { $0[keyPath: path]} .min()?.asDouble ?? 0
-        }
-        let highestValue: ((KeyPath<StockPrice, Decimal>) -> (Double)) = { path in
-            return list.candles.map { $0[keyPath: path]} .max()?.asDouble ?? 0
-        }
-
+        let lowestValue = createLowest()
+        let highestValue = createHighest()
         let xAxis = AXCategoricalDataAxisDescriptor(
             title: "Date",
             categoryOrder: list.candles.map { dateStringConverter($0.timestamp) }
         )
-
         // Add axes for each data point captured in the candlestick
         let closeAxis = AXNumericDataAxisDescriptor(
             title: "Closing Price",
             range: 0...highestValue(\.close),
             gridlinePositions: []
         ) { value in "Closing: \(value.formatted(currency: list.currency)))" }
-
         let openAxis = AXNumericDataAxisDescriptor(
             title: "Opening Price",
             range: lowestValue(\.open)...highestValue(\.open),
             gridlinePositions: []
         ) { value in "Opening: \(value.formatted(currency: list.currency))" }
-
         let highAxis = AXNumericDataAxisDescriptor(
             title: "Highest Price",
             range: lowestValue(\.high)...highestValue(\.high),
             gridlinePositions: []
         ) { value in "High: \(value.formatted(currency: list.currency))" }
-
         let lowAxis = AXNumericDataAxisDescriptor(
             title: "Lowest Price",
             range: lowestValue(\.low)...highestValue(\.low),
             gridlinePositions: []
         ) { value in "Low: \(value.formatted(currency: list.currency))" }
-
         let series = AXDataSeriesDescriptor(
             name: list.descriptionString,
             isContinuous: false,
@@ -458,7 +461,6 @@ extension CandleStickChart: AXChartDescriptorRepresentable {
 
         return AXChartDescriptor(
             title: list.descriptionString,
-            summary: nil,
             xAxis: xAxis,
             yAxis: closeAxis,
             additionalAxes: [openAxis, highAxis, lowAxis],
@@ -482,12 +484,24 @@ struct CandleInfoView: View {
         VStack(alignment: .center, spacing: 4) {
             Text(price.timestamp.formatted(date: .abbreviated, time: .omitted))
             HStack(spacing: 10) {
-                Text("Open: \(price.open.formatted(.currency(code: currency)))" ).foregroundColor(.secondary).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).minimumScaleFactor(0.01)
-                Text("Close: \(price.close.formatted(.currency(code: currency)))").foregroundColor(.secondary).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).minimumScaleFactor(0.01)
+                Text("Open: \(price.open.formatted(.currency(code: currency)))")
+                    .foregroundColor(.secondary)
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                    .minimumScaleFactor(0.01)
+                Text("Close: \(price.close.formatted(.currency(code: currency)))")
+                    .foregroundColor(.secondary)
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                    .minimumScaleFactor(0.01)
             }
             HStack(spacing: 10) {
-                Text("High: \(price.high.formatted(.currency(code: currency)))").foregroundColor(.secondary).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).minimumScaleFactor(0.01)
-                Text("Low: \(price.low.formatted(.currency(code: currency)))").foregroundColor(.secondary).frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).minimumScaleFactor(0.01)
+                Text("High: \(price.high.formatted(.currency(code: currency)))")
+                    .foregroundColor(.secondary)
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                    .minimumScaleFactor(0.01)
+                Text("Low: \(price.low.formatted(.currency(code: currency)))")
+                    .foregroundColor(.secondary)
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                    .minimumScaleFactor(0.01)
             }
         }
         .lineLimit(1)
