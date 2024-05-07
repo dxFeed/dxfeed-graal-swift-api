@@ -311,3 +311,10 @@ extension OrderBase {
         }
     }
 }
+
+public extension OrderBase {
+    /// Returns true if this order has some size (sizeAsDouble is neither 0 nor NaN).
+    func hasSize() -> Bool {
+        return size != 0 && !size.isNaN
+    }
+}

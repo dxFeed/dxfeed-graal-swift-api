@@ -30,4 +30,27 @@ extension BinaryInteger {
     func toHexString() -> String {
         return "0x\(String(format: "%01X", Int(self)))"
     }
+
+    func compare(_ rhs: Self) -> ComparisonResult {
+        if self < rhs {
+            return .orderedAscending
+        } else if self > rhs {
+            return .orderedDescending
+        } else {
+            return .orderedSame
+        }
+    }
 }
+
+extension BinaryFloatingPoint {
+    func compare(_ rhs: Self) -> ComparisonResult {
+        if self < rhs {
+            return .orderedAscending
+        } else if self > rhs {
+            return .orderedDescending
+        } else {
+            return .orderedSame
+        }
+    }
+}
+

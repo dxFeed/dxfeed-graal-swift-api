@@ -20,6 +20,13 @@ public enum Scope: Int, CaseIterable {
 
     /// Represents individual order on the market.
     case order
+
+    var code: Int {
+        get {
+            return self.rawValue
+        }
+    }
+
 }
 
 /// Class extension for ``ScopeExt`` enum.

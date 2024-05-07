@@ -104,6 +104,7 @@ class QuoteTableViewController: UIViewController {
             UIApplication.shared.openURL(url)
         }
     }
+
 }
 
 extension QuoteTableViewController: DXEndpointListener {
@@ -154,16 +155,38 @@ extension QuoteTableViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let symbol = symbols[indexPath.row]
-        let candleChartViewController = MyUIHostingController(rootView: CandleStickChart(symbol: symbol,
-                                                                                         type: .week,
-                                                                                         endpoint: endpoint))
-        candleChartViewController.title = symbol
-        self.navigationController?.pushViewController(candleChartViewController, animated: true)
+        let symbol = self.symbols[indexPath.row]
+
+        let alert = UIAlertController(title: symbol, message: "", preferredStyle: .actionSheet)
+        let action = UIAlertAction(title: "Candles", style: .default) {
+            UIAlertAction in
+            let candleChartViewController = MyUIHostingController(rootView: CandleStickChart(symbol: symbol,
+                                                                                             type: .week,
+                                                                                             endpoint: self.endpoint))
+            candleChartViewController.title = symbol
+            self.navigationController?.pushViewController(candleChartViewController, animated: true)
+        }
+        alert.addAction(action)
+
+        let cancelAction = UIAlertAction(title: "MarketDepth", style: .default) {
+            UIAlertAction in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let viewController = storyboard.instantiateViewController(withIdentifier: "MarketDepthViewController") as? MarketDepthViewController {
+                viewController.feed = self.endpoint?.getFeed()
+                viewController.symbol = symbol
+                viewController.title = symbol
+                self.navigationController?.pushViewController(viewController, animated: true)
+            }
+        }
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+
+
     }
 }
 
 extension QuoteTableViewController: UIGestureRecognizerDelegate {
+    // swipe to back
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                            shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true

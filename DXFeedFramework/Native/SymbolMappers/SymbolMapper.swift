@@ -35,7 +35,14 @@ class SymbolMapper {
             pointer.pointee.from_time = symbol.fromTime
             let casted = pointer.withMemoryRebound(to: dxfg_symbol_t.self, capacity: 1) { $0 }
             return casted
-
+        case let symbol as IndexedEventSubscriptionSymbol:
+            let pointer = UnsafeMutablePointer<dxfg_indexed_event_subscription_symbol_t>.allocate(capacity: 1)
+            pointer.pointee.supper = dxfg_symbol_t(type: INDEXED_EVENT_SUBSCRIPTION)
+            pointer.pointee.symbol = newNative(symbol.symbol)
+            let nativeSource = symbol.source.toNative()
+            pointer.pointee.source = nativeSource
+            let casted = pointer.withMemoryRebound(to: dxfg_symbol_t.self, capacity: 1) { $0 }
+            return casted
         default:
             let pointer = UnsafeMutablePointer<dxfg_string_symbol_t>.allocate(capacity: 1)
             pointer.pointee.supper = dxfg_symbol_t(type: STRING)
@@ -62,7 +69,14 @@ class SymbolMapper {
             }
 
         case WILDCARD: break
-        case INDEXED_EVENT_SUBSCRIPTION: fatalError("Add case for INDEXED_EVENT_SUBSCRIPTION")
+        case INDEXED_EVENT_SUBSCRIPTION: 
+            symbol.withMemoryRebound(to: dxfg_indexed_event_subscription_symbol_t.self, capacity: 1) {
+                clearNative(symbol: $0.pointee.symbol)
+                $0.pointee.source.deinitialize(count: 1)
+                $0.pointee.source.deallocate()
+                $0.deinitialize(count: 1)
+                $0.deallocate()
+            }
         case TIME_SERIES_SUBSCRIPTION:
             symbol.withMemoryRebound(to: dxfg_time_series_subscription_symbol_t.self, capacity: 1) {
                 clearNative(symbol: $0.pointee.symbol)
@@ -102,7 +116,17 @@ class SymbolMapper {
             return try? CandleSymbol.valueOf(result)
         case WILDCARD:
             return WildcardSymbol.all
-        case INDEXED_EVENT_SUBSCRIPTION: fatalError("Add case for INDEXED_EVENT_SUBSCRIPTION")
+        case INDEXED_EVENT_SUBSCRIPTION: 
+            let result: IndexedEventSubscriptionSymbol? = native.withMemoryRebound(
+                to: dxfg_indexed_event_subscription_symbol_t.self, capacity: 1) { pointer in
+                if let symbol = SymbolMapper.newSymbol(native: pointer.pointee.symbol) as? Symbol {
+                    let source = IndexedEventSource.fromNative(native: pointer.pointee.source)
+                    return IndexedEventSubscriptionSymbol(symbol: symbol, source: source)
+                } else {
+                    return nil
+                }
+            }
+            return result
         case TIME_SERIES_SUBSCRIPTION:
             let result: TimeSeriesSubscriptionSymbol? = native.withMemoryRebound(
                 to: dxfg_time_series_subscription_symbol_t.self, capacity: 1) { pointer in
