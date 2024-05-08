@@ -28,7 +28,7 @@ extension BinaryInteger {
     }
 
     func toHexString() -> String {
-        return "0x\(String(format: "%01X", Int(self)))"
+        return "0x\(String(self, radix: 16))"
     }
 
     func compare(_ rhs: Self) -> ComparisonResult {
