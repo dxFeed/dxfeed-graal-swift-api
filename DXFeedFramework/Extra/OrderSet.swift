@@ -11,7 +11,7 @@ class OrderSet {
     var snapshot = Array<Order>()
     let comparator: (Order, Order) -> ComparisonResult
     ///add using comparator in orders
-    let orders = NSMutableOrderedSet()
+    var orders = Set<Order>()
     var depthLimit: Int = 0 {
         willSet {
             if newValue != depthLimit {
@@ -32,18 +32,15 @@ class OrderSet {
     }
 
     func clearBySource(_ source: IndexedEventSource) {
-        let predicate = NSPredicate { order, _ in
-            (order as? Order)?.eventSource == source
+        _isChanged = orders.removeIf { order in
+            order.eventSource == source
         }
-        _isChanged = orders.removeIf(using: predicate)
     }
 
     func remove(_ order: Order) {
-        if orders.contains(order) {
-            orders.remove(order)
+        if orders.remove(order) != nil {
             markAsChangedIfNeeded(order)
         }
-
     }
 
     func markAsChangedIfNeeded(_ order: Order) {
@@ -56,8 +53,7 @@ class OrderSet {
     }
 
     func add(_ order: Order) {
-        if !orders.contains(order) {
-            orders.add(order)
+        if orders.insert(order).inserted == true {
             markAsChangedIfNeeded(order)
         }
     }
@@ -93,12 +89,44 @@ class OrderSet {
         snapshot.removeAll()
         let limit = isDepthLimitUnbounded() ? .max : depthLimit
 
-        for (index, element) in orders.enumerated() {
-            if let order = element as? Order {
+        if #available(iOS 15.0, *) {
+            let sortComparator = OrderSortComparator(comparator: comparator)
+            let sorted = orders.sorted(using: sortComparator)
+            
+            for (index, element) in sorted.enumerated() {
                 if index < limit {
-                    snapshot.append(order)
+                    snapshot.append(element)
+                }
+            }
+        } else {
+            for (index, element) in orders.enumerated() {
+                if index < limit {
+                    snapshot.append(element)
                 }
             }
         }
+    }
+}
+
+@available(iOS 15.0, *)
+class OrderSortComparator: SortComparator {
+    typealias Compared = Order
+    let comparator: (Order, Order) -> ComparisonResult
+    var order: SortOrder = .forward
+
+    init(comparator: @escaping (Order, Order) -> ComparisonResult) {
+        self.comparator = comparator
+    }
+
+    static func == (lhs: OrderSortComparator, rhs: OrderSortComparator) -> Bool {
+        return lhs === rhs
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(stringReference(self))
+    }
+
+    func compare(_ lhs: Order, _ rhs: Order) -> ComparisonResult {
+        return self.comparator(lhs, rhs)
     }
 }

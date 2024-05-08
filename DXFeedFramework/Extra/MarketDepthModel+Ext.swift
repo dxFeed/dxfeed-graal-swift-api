@@ -56,11 +56,11 @@ extension MarketDepthModel {
 
     static let buyComparator: (Order, Order) -> ComparisonResult = { o1, o2 in
         o1.price < o2.price ? .orderedDescending :
-        o1.price > o2.price ? .orderedAscending : orderComparator(o1, o2)
+        (o1.price > o2.price ? .orderedAscending : orderComparator(o1, o2))
     }
 
     static let sellComparator: (Order, Order) -> ComparisonResult = { o1, o2 in
         o1.price < o2.price ? .orderedAscending :
-        o1.price > o2.price ? .orderedDescending : orderComparator(o1, o2)
+        (o1.price > o2.price ? .orderedDescending : orderComparator(o1, o2))
     }
 }

@@ -169,6 +169,7 @@ fileprivate class SourceTx {
             //                    pendingEvents.trimToSize();
         }
         listener?.modelChanged(changes: IndexedTxModel.Changes(isSnapshot: isSnapshot,
-                                                               source: source, events: processedEvents))
+                                                               source: source, 
+                                                               events: processedEvents))
     }
 }

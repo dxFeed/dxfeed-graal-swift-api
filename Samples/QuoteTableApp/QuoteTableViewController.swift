@@ -28,8 +28,7 @@ class QuoteTableViewController: UIViewController {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.view.backgroundColor = .tableBackground
         self.quoteTableView.backgroundColor = .clear
-
-        quoteTableView.separatorStyle = .none
+        self.quoteTableView.separatorStyle = .none
 
         noticeButton.setTitle("Learn more about dxFeed APIs", for: .normal)
         noticeButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
@@ -158,7 +157,7 @@ extension QuoteTableViewController: UITableViewDelegate {
         let symbol = self.symbols[indexPath.row]
 
         let alert = UIAlertController(title: symbol, message: "", preferredStyle: .actionSheet)
-        let action = UIAlertAction(title: "Candles", style: .default) {
+        let candlesAction = UIAlertAction(title: "Candles", style: .default) {
             UIAlertAction in
             let candleChartViewController = MyUIHostingController(rootView: CandleStickChart(symbol: symbol,
                                                                                              type: .week,
@@ -166,9 +165,9 @@ extension QuoteTableViewController: UITableViewDelegate {
             candleChartViewController.title = symbol
             self.navigationController?.pushViewController(candleChartViewController, animated: true)
         }
-        alert.addAction(action)
+        alert.addAction(candlesAction)
 
-        let cancelAction = UIAlertAction(title: "MarketDepth", style: .default) {
+        let marketDepthAction = UIAlertAction(title: "MarketDepth", style: .default) {
             UIAlertAction in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let viewController = storyboard.instantiateViewController(withIdentifier: "MarketDepthViewController") as? MarketDepthViewController {
@@ -177,6 +176,10 @@ extension QuoteTableViewController: UITableViewDelegate {
                 viewController.title = symbol
                 self.navigationController?.pushViewController(viewController, animated: true)
             }
+        }
+        alert.addAction(marketDepthAction)
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {_ in 
         }
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)

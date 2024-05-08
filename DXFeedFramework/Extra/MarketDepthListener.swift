@@ -7,16 +7,20 @@
 
 import Foundation
 
-class OrderBook {
-    let buyOrders: [Order]
-    let sellOrders: [Order]
+public class OrderBook {
+    public let buyOrders: [Order]
+    public let sellOrders: [Order]
 
     init(buyOrders: [Order], sellOrders: [Order]) {
         self.buyOrders = buyOrders
         self.sellOrders = sellOrders
     }
+    
+    public convenience init() {
+        self.init(buyOrders: [Order](), sellOrders: [Order]())
+    }
 }
 
-protocol MarketDepthListener: AnyObject {
+public protocol MarketDepthListener: AnyObject {
     func modelChanged(changes: OrderBook)
 }

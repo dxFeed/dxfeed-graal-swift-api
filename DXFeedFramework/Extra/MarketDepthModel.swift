@@ -21,7 +21,7 @@ public class MarketDepthModel {
     let sellOrders = OrderSet(comparator: sellComparator)
     var ordersByIndex = [Long: Order]()
 
-    let aggregationPeriodMillis: Long = 1000
+    let aggregationPeriodMillis: Long = 0 
     
     let txModel: IndexedTxModel
     weak var listener: MarketDepthListener?
@@ -29,13 +29,16 @@ public class MarketDepthModel {
     public init(symbol: String,
                 sources: [OrderSource],
                 mode: TxMode,
-                feed: DXFeed) throws {
+                feed: DXFeed,
+                listener: MarketDepthListener) throws {
         txModel = IndexedTxModel(mode: mode)
 
+        self.listener = listener
         self.symbol = symbol
         self.sources = sources
         self.feed = feed
         self.subscription = try feed.createSubscription(Order.self)
+
 
         txModel.setListener(self)
         try self.subscription.add(listener: txModel)
@@ -49,8 +52,18 @@ public class MarketDepthModel {
         }
     }
 
-    func setListener(_ listener: MarketDepthListener) {
+    public func setListener(_ listener: MarketDepthListener?) {
         self.listener = listener
+    }
+
+    public func setDepthLimit(_ depthLimit: Int) {
+        if self.depthLimit == depthLimit {
+            return
+        }
+        buyOrders.depthLimit = depthLimit
+        sellOrders.depthLimit = depthLimit
+        //cancel scheduled listeners
+        notifyListeners()
     }
 }
 
@@ -59,6 +72,7 @@ extension MarketDepthModel: TxModelListener {
         if update(changes) {
             if changes.isSnapshot || aggregationPeriodMillis == 0 {
                 // notify right now
+                notifyListeners()
             } else {
                 // notify with delay
             }
@@ -69,11 +83,8 @@ extension MarketDepthModel: TxModelListener {
         if listener == nil {
             return
         }
-
         listener?.modelChanged(changes: OrderBook(buyOrders: getBuyOrders(), sellOrders: getSellOrders()))
-
 //                taskScheduled.set(false);
-
     }
 
     func getBuyOrders() -> [Order] {

@@ -8,8 +8,18 @@
 import Foundation
 
 public extension Dictionary {
-    @inlinable public mutating func removeIf(condition: (Self.Element) -> Bool) {
+    @inlinable mutating func removeIf(condition: (Self.Element) -> Bool) {
         for (key, _) in filter(condition) { removeValue(forKey: key) }
+    }
+}
+
+public extension Set {
+    mutating func removeIf(condition: (Element) throws -> Bool) rethrows -> Bool {
+        for value in try self.filter(condition) {
+            remove(value)
+            return true
+        }
+        return false
     }
 }
 
