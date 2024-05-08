@@ -90,14 +90,15 @@ class OrderSet {
         let limit = isDepthLimitUnbounded() ? .max : depthLimit
 
         if #available(iOS 15.0, *) {
-            let sortComparator = OrderSortComparator(comparator: comparator)
-            let sorted = orders.sorted(using: sortComparator)
-            
-            for (index, element) in sorted.enumerated() {
-                if index < limit {
-                    snapshot.append(element)
+            if #available(macOS 12.0, *) {
+                let sortComparator = OrderSortComparator(comparator: comparator)
+                let sorted = orders.sorted(using: sortComparator)
+                for (index, element) in sorted.enumerated() {
+                    if index < limit {
+                        snapshot.append(element)
+                    }
                 }
-            }
+            }        
         } else {
             for (index, element) in orders.enumerated() {
                 if index < limit {
@@ -108,6 +109,7 @@ class OrderSet {
     }
 }
 
+@available(macOS 12.0, *)
 @available(iOS 15.0, *)
 class OrderSortComparator: SortComparator {
     typealias Compared = Order
