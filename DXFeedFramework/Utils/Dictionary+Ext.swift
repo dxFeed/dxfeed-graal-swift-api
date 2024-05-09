@@ -33,3 +33,14 @@ public extension NSMutableOrderedSet {
         return changed
     }
 }
+
+public extension NSMutableSet {
+    func removeIf(using: NSPredicate) -> Bool {
+        var changed = false
+        for (value) in filtered(using: using) {
+            remove(value)
+            changed = true
+        }
+        return changed
+    }
+}

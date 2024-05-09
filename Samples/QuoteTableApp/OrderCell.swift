@@ -45,13 +45,15 @@ class OrderCell: UITableViewCell {
         sizeContentView.superview?.backgroundColor = .tableBackground
     }
 
-    func update(price: Double,
-                size: Double,
+    func update(order: Order, 
                 maxSize: Double,
-                isAsk: Bool,
-                marketMaker: String?,
-                source: IndexedEventSource,
-                scope: Scope) {
+                isAsk: Bool) {
+        let price = order.price
+        let size = order.size
+        let marketMaker = order.marketMaker
+        let source = order.eventSource
+        let scope = order.scope
+
         priceLabel.text = formatter.string(from: NSNumber(value: price))
         sizeLabel.text = formatter.string(from: NSNumber(value: size))
         sizeContentView.backgroundColor = isAsk ? .green : .red

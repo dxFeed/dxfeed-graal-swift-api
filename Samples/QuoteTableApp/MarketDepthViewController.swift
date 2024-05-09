@@ -171,13 +171,9 @@ extension MarketDepthViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         let order = orderBook.buyOrders[indexPath.row]
-        cell.update(price: order.price,
-                    size: order.size,
+        cell.update(order: order,
                     maxSize: maxBuy,
-                    isAsk: true,
-                    marketMaker: order.marketMaker,
-                    source: order.eventSource,
-                    scope: order.scope)
+                    isAsk: true)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
@@ -189,13 +185,9 @@ extension MarketDepthViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         let order = orderBook.sellOrders[indexPath.row]
-        cell.update(price: order.price,
-                    size: order.size,
+        cell.update(order: order,
                     maxSize: maxSell,
-                    isAsk: false,
-                    marketMaker: order.marketMaker,
-                    source: order.eventSource,
-                    scope: order.scope)
+                    isAsk: false)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
