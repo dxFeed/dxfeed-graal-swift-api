@@ -42,7 +42,7 @@ extension IndexedTxModel: TxModelListener {
 
 extension IndexedTxModel: DXEventListener {
     func receiveEvents(_ events: [MarketEvent]) {
-        var sourceTx: SourceTx? = nil
+        var sourceTx: SourceTx?
         events.forEach { marketEvent in
             guard let order = marketEvent as? Order else {
                 return
@@ -79,7 +79,6 @@ extension IndexedTxModel: DXEventListener {
     }
 }
 
-
 extension IndexedTxModel: Hashable {
     public static func == (lhs: IndexedTxModel, rhs: IndexedTxModel) -> Bool {
         return lhs === rhs
@@ -90,8 +89,7 @@ extension IndexedTxModel: Hashable {
     }
 }
 
-
-fileprivate class SourceTx {
+private class SourceTx {
     private var isPartialSnapshot = false
     private var isCompleteSnapshot = false
 
@@ -101,10 +99,10 @@ fileprivate class SourceTx {
 
     let source: IndexedEventSource
     let mode: TxMode
-    
+
     weak var listener: TxModelListener?
 
-    init(source: IndexedEventSource, 
+    init(source: IndexedEventSource,
          mode: TxMode,
          listener: TxModelListener) {
         self.source = source
@@ -150,7 +148,7 @@ fileprivate class SourceTx {
             notifyListener(isSnapshot)
         }
     }
-    
+
     public func notifyListener() {
         notifyListener(false)
     }
@@ -169,7 +167,7 @@ fileprivate class SourceTx {
         }
 
         listener?.modelChanged(changes: IndexedTxModel.Changes(isSnapshot: isSnapshot,
-                                                               source: source, 
+                                                               source: source,
                                                                events: processedEvents))
     }
 }

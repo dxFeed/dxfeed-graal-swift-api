@@ -7,17 +7,20 @@
 
 import Foundation
 import UIKit
+import DXFeedFramework
+
 extension NSLayoutConstraint {
     func constraintWithMultiplier(_ multiplier: CGFloat) -> NSLayoutConstraint {
-        return NSLayoutConstraint(item: self.firstItem!, 
+        return NSLayoutConstraint(item: self.firstItem!,
                                   attribute: self.firstAttribute,
                                   relatedBy: self.relation,
                                   toItem: self.secondItem,
                                   attribute: self.secondAttribute,
-                                  multiplier: multiplier, 
+                                  multiplier: multiplier,
                                   constant: self.constant)
     }
 }
+
 class OrderCell: UITableViewCell {
     lazy var formatter: NumberFormatter =
     {
@@ -31,7 +34,8 @@ class OrderCell: UITableViewCell {
     @IBOutlet var sizeLabel: UILabel!
     @IBOutlet var sizeContentView: UIView!
     @IBOutlet var sizeConstraint: NSLayoutConstraint!
-    
+    @IBOutlet var infoLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -44,7 +48,10 @@ class OrderCell: UITableViewCell {
     func update(price: Double,
                 size: Double,
                 maxSize: Double,
-                isAsk: Bool) {
+                isAsk: Bool,
+                marketMaker: String?,
+                source: IndexedEventSource,
+                scope: Scope) {
         priceLabel.text = formatter.string(from: NSNumber(value: price))
         sizeLabel.text = formatter.string(from: NSNumber(value: size))
         sizeContentView.backgroundColor = isAsk ? .green : .red
@@ -57,5 +64,7 @@ class OrderCell: UITableViewCell {
         sizeContentView.superview?.addConstraint(newConstraint)
         self.layoutIfNeeded()
         sizeConstraint = newConstraint
+
+        infoLabel.text = "\(source.toString()) \(scope) \(marketMaker ?? "")"
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class MarketDepthHeaderView: UITableViewHeaderFooterView {
     @IBOutlet var titleLabel: UILabel!
-    
+
     func setTitle(_ title: String) {
         titleLabel.text = title
     }

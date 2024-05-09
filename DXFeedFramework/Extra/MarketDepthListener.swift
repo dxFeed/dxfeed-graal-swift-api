@@ -15,7 +15,7 @@ public class OrderBook {
         self.buyOrders = buyOrders
         self.sellOrders = sellOrders
     }
-    
+
     public convenience init() {
         self.init(buyOrders: [Order](), sellOrders: [Order]())
     }

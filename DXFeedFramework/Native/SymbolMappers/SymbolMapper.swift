@@ -69,7 +69,7 @@ class SymbolMapper {
             }
 
         case WILDCARD: break
-        case INDEXED_EVENT_SUBSCRIPTION: 
+        case INDEXED_EVENT_SUBSCRIPTION:
             symbol.withMemoryRebound(to: dxfg_indexed_event_subscription_symbol_t.self, capacity: 1) {
                 clearNative(symbol: $0.pointee.symbol)
                 $0.pointee.source.deinitialize(count: 1)
@@ -116,7 +116,7 @@ class SymbolMapper {
             return try? CandleSymbol.valueOf(result)
         case WILDCARD:
             return WildcardSymbol.all
-        case INDEXED_EVENT_SUBSCRIPTION: 
+        case INDEXED_EVENT_SUBSCRIPTION:
             let result: IndexedEventSubscriptionSymbol? = native.withMemoryRebound(
                 to: dxfg_indexed_event_subscription_symbol_t.self, capacity: 1) { pointer in
                 if let symbol = SymbolMapper.newSymbol(native: pointer.pointee.symbol) as? Symbol {

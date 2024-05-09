@@ -26,24 +26,24 @@ class MarketDepthViewController: UIViewController {
     @IBOutlet var connectButton: UIButton!
     @IBOutlet var sourcesTextField: UITextField!
     @IBOutlet var limitTextfield: UITextField!
-    
     @IBOutlet var ordersTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         endpoint = try? DXEndpoint.create().connect("demo.dxfeed.com:7300")
         feed = endpoint?.getFeed()!
 
         self.ordersTableView.backgroundColor = .clear
         self.ordersTableView.separatorStyle = .none
-        self.ordersTableView.register(UINib(nibName: "MarketDepthHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "MarketDepthHeaderView")
+        self.ordersTableView.register( UINib(nibName: "MarketDepthHeaderView", bundle: nil),
+                                      forHeaderFooterViewReuseIdentifier: "MarketDepthHeaderView")
         if #available(iOS 15.0, *) {
             self.ordersTableView.sectionHeaderTopPadding = 5
         }
         self.view.backgroundColor = .tableBackground
         self.sourcesTextField.backgroundColor = .cellBackground
-        self.sourcesTextField.placeholder = "Input sources splitted by ,"        
+        self.sourcesTextField.placeholder = "Input sources splitted by ,"
         self.sourcesTextField.textColor = .text
         self.limitTextfield.backgroundColor = .cellBackground
         self.limitTextfield.textColor = .text
@@ -51,7 +51,7 @@ class MarketDepthViewController: UIViewController {
         self.limitTextfield.text = "6"
 //        self.sourcesTextField.text = "ntv"
     }
-    
+
     @IBAction func connectModel(_ sender: UIButton) {
         do {
             let sources = try sourcesTextField.text?.split(separator: ",").map { str in
@@ -60,7 +60,7 @@ class MarketDepthViewController: UIViewController {
 
             if let sources = sources {
                 model = try MarketDepthModel(symbol: symbol,
-                                             sources: sources, 
+                                             sources: sources,
                                              aggregationPeriodMillis: 0,
                                              mode: .multiple,
                                              feed: feed,
@@ -96,7 +96,7 @@ extension MarketDepthViewController: MarketDepthListener {
 
 extension MarketDepthViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 60
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -104,8 +104,8 @@ extension MarketDepthViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MarketDepthHeaderView") as? MarketDepthHeaderView {
-            //        headerView.sectionTitleLabel.text = "TableView Heder \(section)"
+        if let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MarketDepthHeaderView"),
+           let headerView = headerView as? MarketDepthHeaderView {
             let sectionIndex = SectionIndex(rawValue: section)
             switch sectionIndex {
             case .buy:
@@ -123,7 +123,7 @@ extension MarketDepthViewController: UITableViewDelegate {
 }
 
 extension MarketDepthViewController: UITableViewDataSource {
-    
+
 //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 //        let sectionIndex = SectionIndex(rawValue: section)
 //        switch sectionIndex {
@@ -164,26 +164,38 @@ extension MarketDepthViewController: UITableViewDataSource {
         }
     }
 
-    func buyCell(_ tableView: UITableView, 
+    func buyCell(_ tableView: UITableView,
                  cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "OrderCell", for: indexPath)
                 as? OrderCell else {
             return UITableViewCell()
         }
         let order = orderBook.buyOrders[indexPath.row]
-        cell.update(price: order.price, size: order.size, maxSize: maxBuy, isAsk: true)
+        cell.update(price: order.price,
+                    size: order.size,
+                    maxSize: maxBuy,
+                    isAsk: true,
+                    marketMaker: order.marketMaker,
+                    source: order.eventSource,
+                    scope: order.scope)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
 
-    func sellCell(_ tableView: UITableView, 
+    func sellCell(_ tableView: UITableView,
                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "OrderCell", for: indexPath)
                 as? OrderCell else {
             return UITableViewCell()
         }
         let order = orderBook.sellOrders[indexPath.row]
-        cell.update(price: order.price, size: order.size, maxSize: maxSell, isAsk: false)
+        cell.update(price: order.price,
+                    size: order.size,
+                    maxSize: maxSell,
+                    isAsk: false,
+                    marketMaker: order.marketMaker,
+                    source: order.eventSource,
+                    scope: order.scope)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }

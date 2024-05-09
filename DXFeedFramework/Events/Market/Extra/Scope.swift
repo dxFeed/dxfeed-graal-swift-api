@@ -22,9 +22,7 @@ public enum Scope: Int, CaseIterable {
     case order
 
     var code: Int {
-        get {
-            return self.rawValue
-        }
+        return self.rawValue
     }
 
 }

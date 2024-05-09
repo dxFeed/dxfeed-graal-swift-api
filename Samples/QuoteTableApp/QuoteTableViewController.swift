@@ -157,8 +157,7 @@ extension QuoteTableViewController: UITableViewDelegate {
         let symbol = self.symbols[indexPath.row]
 
         let alert = UIAlertController(title: symbol, message: "", preferredStyle: .actionSheet)
-        let candlesAction = UIAlertAction(title: "Candles", style: .default) {
-            UIAlertAction in
+        let candlesAction = UIAlertAction(title: "Candles", style: .default) { _ in
             let candleChartViewController = MyUIHostingController(rootView: CandleStickChart(symbol: symbol,
                                                                                              type: .week,
                                                                                              endpoint: self.endpoint))
@@ -167,22 +166,19 @@ extension QuoteTableViewController: UITableViewDelegate {
         }
         alert.addAction(candlesAction)
 
-        let marketDepthAction = UIAlertAction(title: "MarketDepth", style: .default) {
-            UIAlertAction in
+        let marketDepthAction = UIAlertAction(title: "MarketDepth", style: .default) { _ in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let viewController = storyboard.instantiateViewController(withIdentifier: "MarketDepthViewController") as? MarketDepthViewController {
-                viewController.symbol = symbol
-                viewController.title = symbol
-                self.navigationController?.pushViewController(viewController, animated: true)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "MarketDepthViewController")
+            if let marketDepthViewController = viewController as? MarketDepthViewController {
+                marketDepthViewController.symbol = symbol
+                marketDepthViewController.title = symbol
+                self.navigationController?.pushViewController(marketDepthViewController, animated: true)
             }
         }
         alert.addAction(marketDepthAction)
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {_ in 
-        }
-        alert.addAction(cancelAction)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) {_ in })
         self.present(alert, animated: true, completion: nil)
-
 
     }
 }

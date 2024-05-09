@@ -8,16 +8,16 @@
 import Foundation
 
 extension MarketDepthModel {
-    static let orderComparator: (Order, Order) -> ComparisonResult = { o1, o2 in
-        let ind1 = o1.scope == Scope.order
-        let ind2 = o2.scope == Scope.order
+    static let orderComparator: (Order, Order) -> ComparisonResult = { order1, order2 in
+        let ind1 = order1.scope == Scope.order
+        let ind2 = order2.scope == Scope.order
         if ind1 && ind2 {
             // Both orders are individual orders
-            var compare = o1.timeSequence.compare(o2.timeSequence) // asc
+            var compare = order1.timeSequence.compare(order2.timeSequence) // asc
             if compare != .orderedSame {
                 return compare
             }
-            compare = o1.index.compare(o2.index) // asc
+            compare = order1.index.compare(order2.index) // asc
             return compare
         } else if ind1 {
             // First order is individual, second is not
@@ -27,40 +27,40 @@ extension MarketDepthModel {
             return .orderedAscending
         } else {
             // Both orders are non-individual orders
-            var compare = o2.size.compare(o1.size) // desc
+            var compare = order2.size.compare(order1.size) // desc
             if compare != .orderedSame {
                 return compare
             }
-            compare = o1.timeSequence.compare(o2.timeSequence) // asc
+            compare = order1.timeSequence.compare(order2.timeSequence) // asc
             if compare != .orderedSame {
                 return compare
             }
-            compare = ComparisonResult(rawValue: o1.scope.code - o2.scope.code)! // asc
+            compare = ComparisonResult(rawValue: order1.scope.code - order2.scope.code)! // asc
             if compare != .orderedSame {
                 return compare
             }
-            compare = ComparisonResult(rawValue: o1.getExchangeCode() - o2.getExchangeCode())! // asc
+            compare = ComparisonResult(rawValue: order1.getExchangeCode() - order2.getExchangeCode())! // asc
             if compare != .orderedSame {
                 return compare
             }
-            if let o1marketMaker = o1.marketMaker, let o2marketMaker = o2.marketMaker {
+            if let o1marketMaker = order1.marketMaker, let o2marketMaker = order2.marketMaker {
                 let compare = o1marketMaker.compare(o2marketMaker)
                 if compare != .orderedSame {
                     return compare
                 }
             }
-            compare = o1.index.compare(o2.index) // asc
+            compare = order1.index.compare(order2.index) // asc
             return compare
         }
     }
 
-    static let buyComparator: (Order, Order) -> ComparisonResult = { o1, o2 in
-        o1.price < o2.price ? .orderedDescending :
-        (o1.price > o2.price ? .orderedAscending : orderComparator(o1, o2))
+    static let buyComparator: (Order, Order) -> ComparisonResult = { order1, order2 in
+        order1.price < order2.price ? .orderedDescending :
+        (order1.price > order2.price ? .orderedAscending : orderComparator(order1, order2))
     }
 
-    static let sellComparator: (Order, Order) -> ComparisonResult = { o1, o2 in
-        o1.price < o2.price ? .orderedAscending :
-        (o1.price > o2.price ? .orderedDescending : orderComparator(o1, o2))
+    static let sellComparator: (Order, Order) -> ComparisonResult = { order1, order2 in
+        order1.price < order2.price ? .orderedAscending :
+        (order1.price > order2.price ? .orderedDescending : orderComparator(order1, order2))
     }
 }

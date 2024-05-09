@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public class MarketDepthModel {
     let symbol: String
     let sources: [OrderSource]
@@ -41,7 +40,6 @@ public class MarketDepthModel {
         self.feed = feed
         self.subscription = try feed.createSubscription(Order.self)
 
-
         txModel.setListener(self)
         try self.subscription.add(listener: txModel)
         if sources.count == 0 {
@@ -64,7 +62,7 @@ public class MarketDepthModel {
         }
         buyOrders.depthLimit = depthLimit
         sellOrders.depthLimit = depthLimit
-        //cancel scheduled listeners
+        // cancel scheduled listeners
         notifyListeners()
     }
 }
