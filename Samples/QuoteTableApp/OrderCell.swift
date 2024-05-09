@@ -48,7 +48,10 @@ class OrderCell: UITableViewCell {
         priceLabel.text = formatter.string(from: NSNumber(value: price))
         sizeLabel.text = formatter.string(from: NSNumber(value: size))
         sizeContentView.backgroundColor = isAsk ? .green : .red
-        let multiplier = min(size/maxSize, 1)
+        var multiplier = min(size/maxSize, 1)
+        if !multiplier.isFinite {
+            multiplier = 0
+        }
         let newConstraint = sizeConstraint.constraintWithMultiplier(multiplier)
         sizeContentView.superview?.removeConstraint(sizeConstraint)
         sizeContentView.superview?.addConstraint(newConstraint)

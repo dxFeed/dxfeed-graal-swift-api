@@ -21,18 +21,20 @@ public class MarketDepthModel {
     let sellOrders = OrderSet(comparator: sellComparator)
     var ordersByIndex = [Long: Order]()
 
-    let aggregationPeriodMillis: Long = 0 
-    
+    let aggregationPeriodMillis: Long
+
     let txModel: IndexedTxModel
     weak var listener: MarketDepthListener?
+    var task: DispatchWorkItem?
 
     public init(symbol: String,
                 sources: [OrderSource],
+                aggregationPeriodMillis: Long,
                 mode: TxMode,
                 feed: DXFeed,
                 listener: MarketDepthListener) throws {
         txModel = IndexedTxModel(mode: mode)
-
+        self.aggregationPeriodMillis = aggregationPeriodMillis
         self.listener = listener
         self.symbol = symbol
         self.sources = sources
@@ -71,45 +73,57 @@ extension MarketDepthModel: TxModelListener {
     func modelChanged(changes: IndexedTxModel.Changes) {
         if update(changes) {
             if changes.isSnapshot || aggregationPeriodMillis == 0 {
-                // notify right now
+                tryCancelTask()
                 notifyListeners()
             } else {
-                // notify with delay
+                scheduleTaskIfNeeded()
+            }
+        }
+    }
+
+    func tryCancelTask() {
+        task?.cancel()
+        task = nil
+    }
+
+    func scheduleTaskIfNeeded() {
+        if aggregationPeriodMillis > 0 {
+            if task == nil {
+                task?.cancel()
+                let task = DispatchWorkItem {
+                    self.notifyListeners()
+                }
+                DispatchQueue.global(qos: .background)
+                    .asyncAfter(deadline: .now() + (Double(aggregationPeriodMillis) / 1000),
+                                execute: task)
+                self.task = task
             }
         }
     }
 
     func notifyListeners() {
-        if listener == nil {
-            return
-        }
-        listener?.modelChanged(changes: OrderBook(buyOrders: getBuyOrders(), sellOrders: getSellOrders()))
-//                taskScheduled.set(false);
-    }
-
-    func getBuyOrders() -> [Order] {
-        return buyOrders.toList()
-    }
-
-    func getSellOrders() -> [Order] {
-        return sellOrders.toList()
+            if listener == nil {
+                return
+            }
+            listener?.modelChanged(changes: OrderBook(buyOrders: buyOrders.toList(), sellOrders: sellOrders.toList()))
+            task = nil
     }
 
     func update(_ changes: IndexedTxModel.Changes) -> Bool {
-        if changes.isSnapshot {
-            clearBySource(source: changes.source)
-        }
-        changes.events.forEach { order in
-            let removed = ordersByIndex.removeValue(forKey: order.index)
-            if let removed = removed {
-                getOrderSetForOrder(removed).remove(removed)
+            if changes.isSnapshot {
+                clearBySource(source: changes.source)
             }
-            if shallAdd(order) {
-                ordersByIndex[order.index] = order
-                getOrderSetForOrder(order).add(order)
+            changes.events.forEach { order in
+                let removed = ordersByIndex.removeValue(forKey: order.index)
+                if let removed = removed {
+                    getOrderSetForOrder(removed).remove(removed)
+                }
+                if shallAdd(order) {
+                    ordersByIndex[order.index] = order
+                    getOrderSetForOrder(order).add(order)
+                }
             }
-        }
-        return isChanged()
+            return isChanged()
     }
 
     func isChanged() -> Bool {

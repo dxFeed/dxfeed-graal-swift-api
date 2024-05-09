@@ -48,7 +48,7 @@ class MarketDepthViewController: UIViewController {
         self.limitTextfield.backgroundColor = .cellBackground
         self.limitTextfield.textColor = .text
         self.limitTextfield.placeholder = "Input limit"
-        self.limitTextfield.text = "10"
+        self.limitTextfield.text = "6"
 //        self.sourcesTextField.text = "ntv"
     }
     
@@ -60,7 +60,8 @@ class MarketDepthViewController: UIViewController {
 
             if let sources = sources {
                 model = try MarketDepthModel(symbol: symbol,
-                                             sources: sources,
+                                             sources: sources, 
+                                             aggregationPeriodMillis: 0,
                                              mode: .multiple,
                                              feed: feed,
                                              listener: self)
@@ -78,17 +79,11 @@ extension MarketDepthViewController: MarketDepthListener {
         var maxSell: Double = 0
         changes.buyOrders.forEach { order in
             maxBuy = max(maxBuy, order.size)
-//            print(order.orderSide, order.price, order.size)
         }
         changes.sellOrders.forEach { order in
             maxSell = max(maxSell, order.size)
-//            print(order.orderSide, order.price, order.size)
         }
-//        print("")
-        print("Bid[\(changes.buyOrders.count)]")
-//        changes.buyOrders.forEach { order in
-//            print(order.toString())
-//        }
+
         DispatchQueue.main.async {
             self.maxBuy = maxBuy
             self.maxSell = maxSell

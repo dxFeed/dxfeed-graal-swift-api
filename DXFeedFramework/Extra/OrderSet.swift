@@ -8,6 +8,8 @@
 import Foundation
 
 class OrderSet {
+    var lock = NSLock()
+
     var snapshot = NSMutableArray()
     let comparator: (Order, Order) -> ComparisonResult
     /// add using comparator in orders
@@ -32,6 +34,10 @@ class OrderSet {
     }
 
     func clearBySource(_ source: IndexedEventSource) {
+        lock.lock()
+        defer {
+            lock.unlock()
+        }
         let predicate = NSPredicate { order, _ in
             (order as? Order)?.eventSource == source
         }
@@ -39,6 +45,10 @@ class OrderSet {
     }
 
     func remove(_ order: Order) {
+        lock.lock()
+        defer {
+            lock.unlock()
+        }
         if orders.contains(order) {
             orders.remove(order)
             markAsChangedIfNeeded(order)
@@ -55,6 +65,10 @@ class OrderSet {
     }
 
     func add(_ order: Order) {
+        lock.lock()
+        defer {
+            lock.unlock()
+        }
         if !orders.contains(order) {
             orders.add(order)
             markAsChangedIfNeeded(order)
@@ -92,6 +106,11 @@ class OrderSet {
     }
 
     func updateSnapshot() {
+        lock.lock()
+        defer {
+            lock.unlock()
+        }
+
         _isChanged = false
         snapshot.removeAllObjects()
         let limit = isDepthLimitUnbounded() ? .max : depthLimit

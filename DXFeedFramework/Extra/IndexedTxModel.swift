@@ -157,8 +157,6 @@ fileprivate class SourceTx {
 
     public func notifyListener(_ isSnapshot: Bool) {
         if processedEvents.isEmpty {
-            print("notifyListener: nothing")
-
             return
         }
         defer {
@@ -170,7 +168,6 @@ fileprivate class SourceTx {
             return
         }
 
-        print("notifyListener: \(processedEvents.count) \(isSnapshot)")
         listener?.modelChanged(changes: IndexedTxModel.Changes(isSnapshot: isSnapshot,
                                                                source: source, 
                                                                events: processedEvents))
