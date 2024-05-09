@@ -67,9 +67,9 @@ class QuoteTableViewController: UIViewController {
             try? SystemProperty.setProperty(DXEndpoint.ExtraProperty.heartBeatTimeout.rawValue, "15s")
 
             let builder = try? DXEndpoint.builder().withRole(.feed)
-            if !unlimited {
-                _ = try? builder?.withProperty(DXEndpoint.Property.aggregationPeriod.rawValue, "1")
-            }
+//            if !unlimited {
+//                _ = try? builder?.withProperty(DXEndpoint.Property.aggregationPeriod.rawValue, "1")
+//            }
             endpoint = try? builder?.build()
             endpoint?.add(listener: self)
             _ = try? endpoint?.connect("demo.dxfeed.com:7300")
@@ -171,7 +171,6 @@ extension QuoteTableViewController: UITableViewDelegate {
             UIAlertAction in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let viewController = storyboard.instantiateViewController(withIdentifier: "MarketDepthViewController") as? MarketDepthViewController {
-                viewController.feed = self.endpoint?.getFeed()
                 viewController.symbol = symbol
                 viewController.title = symbol
                 self.navigationController?.pushViewController(viewController, animated: true)

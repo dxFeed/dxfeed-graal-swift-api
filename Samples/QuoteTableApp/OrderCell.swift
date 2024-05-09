@@ -23,7 +23,7 @@ class OrderCell: UITableViewCell {
     {
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 4
+        formatter.maximumFractionDigits = 8
         return formatter
     }()
 

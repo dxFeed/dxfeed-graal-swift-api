@@ -8,10 +8,10 @@
 import Foundation
 
 class OrderSet {
-    var snapshot = Array<Order>()
+    var snapshot = NSMutableArray()
     let comparator: (Order, Order) -> ComparisonResult
-    ///add using comparator in orders
-    var orders = Set<Order>()
+    /// add using comparator in orders
+    var orders = NSMutableOrderedSet()
     var depthLimit: Int = 0 {
         willSet {
             if newValue != depthLimit {
@@ -32,13 +32,15 @@ class OrderSet {
     }
 
     func clearBySource(_ source: IndexedEventSource) {
-        _isChanged = orders.removeIf { order in
-            order.eventSource == source
+        let predicate = NSPredicate { order, _ in
+            (order as? Order)?.eventSource == source
         }
+        _isChanged = orders.removeIf(using: predicate)
     }
 
     func remove(_ order: Order) {
-        if orders.remove(order) != nil {
+        if orders.contains(order) {
+            orders.remove(order)
             markAsChangedIfNeeded(order)
         }
     }
@@ -53,7 +55,8 @@ class OrderSet {
     }
 
     func add(_ order: Order) {
-        if orders.insert(order).inserted == true {
+        if !orders.contains(order) {
+            orders.add(order)
             markAsChangedIfNeeded(order)
         }
     }
@@ -67,10 +70,10 @@ class OrderSet {
     }
 
     func isOrderWithinDepthLimit(_ order: Order) -> Bool {
-        if (snapshot.isEmpty) {
+        if snapshot.count == 0 {
             return true
         }
-        if let last = snapshot.last {
+        if let last = snapshot.lastObject as? Order {
             let compareResult = comparator(last, order)
             return compareResult == .orderedSame || compareResult == .orderedDescending
         }
@@ -81,54 +84,26 @@ class OrderSet {
         if _isChanged {
             updateSnapshot()
         }
-        return Array(snapshot)
+        if let list = snapshot as? [Order] {
+            return list
+        } else {
+            fatalError("failed casting to array")
+        }
     }
 
     func updateSnapshot() {
         _isChanged = false
-        snapshot.removeAll()
+        snapshot.removeAllObjects()
         let limit = isDepthLimitUnbounded() ? .max : depthLimit
-
-        if #available(iOS 15.0, *) {
-            if #available(macOS 12.0, *) {
-                let sortComparator = OrderSortComparator(comparator: comparator)
-                let sorted = orders.sorted(using: sortComparator)
-                for (index, element) in sorted.enumerated() {
-                    if index < limit {
-                        snapshot.append(element)
-                    }
-                }
-            }        
-        } else {
-            for (index, element) in orders.enumerated() {
-                if index < limit {
-                    snapshot.append(element)
-                }
+        let sorted = orders.sortedArray { obj1, obj2 in
+            if let order1 = obj1 as? Order,
+               let order2 = obj2 as? Order {
+                return self.comparator(order1, order2)
             }
+            return .orderedSame
         }
-    }
-}
-
-@available(macOS 12.0, *)
-@available(iOS 15.0, *)
-class OrderSortComparator: SortComparator {
-    typealias Compared = Order
-    let comparator: (Order, Order) -> ComparisonResult
-    var order: SortOrder = .forward
-
-    init(comparator: @escaping (Order, Order) -> ComparisonResult) {
-        self.comparator = comparator
-    }
-
-    static func == (lhs: OrderSortComparator, rhs: OrderSortComparator) -> Bool {
-        return lhs === rhs
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(stringReference(self))
-    }
-
-    func compare(_ lhs: Order, _ rhs: Order) -> ComparisonResult {
-        return self.comparator(lhs, rhs)
+        for (index, element) in sorted.enumerated() where index < limit {
+            snapshot.add(element)
+        }
     }
 }

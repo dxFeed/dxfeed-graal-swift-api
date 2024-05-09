@@ -13,7 +13,9 @@ class MarketDepthViewController: UIViewController {
         case buy = 0
         case sell = 1
     }
-    var feed: DXFeed!
+
+    private var endpoint: DXEndpoint!
+    private var feed: DXFeed!
     var symbol: String!
 
     var model: MarketDepthModel?
@@ -29,6 +31,10 @@ class MarketDepthViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        endpoint = try? DXEndpoint.create().connect("demo.dxfeed.com:7300")
+        feed = endpoint?.getFeed()!
+
         self.ordersTableView.backgroundColor = .clear
         self.ordersTableView.separatorStyle = .none
         self.ordersTableView.register(UINib(nibName: "MarketDepthHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "MarketDepthHeaderView")
@@ -78,11 +84,11 @@ extension MarketDepthViewController: MarketDepthListener {
             maxSell = max(maxSell, order.size)
 //            print(order.orderSide, order.price, order.size)
         }
-        print("")
+//        print("")
         print("Bid[\(changes.buyOrders.count)]")
-        changes.buyOrders.forEach { order in
-            print(order.toString())
-        }
+//        changes.buyOrders.forEach { order in
+//            print(order.toString())
+//        }
         DispatchQueue.main.async {
             self.maxBuy = maxBuy
             self.maxSell = maxSell
