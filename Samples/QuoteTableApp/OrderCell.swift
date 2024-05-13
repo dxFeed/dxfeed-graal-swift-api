@@ -35,6 +35,8 @@ class OrderCell: UITableViewCell {
     @IBOutlet var sizeContentView: UIView!
     @IBOutlet var sizeConstraint: NSLayoutConstraint!
     @IBOutlet var infoLabel: UILabel!
+    static let redBarColor = UIColor.red.withAlphaComponent(0.3)
+    static let greenBarColor = UIColor.green.withAlphaComponent(0.3)
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,7 +44,7 @@ class OrderCell: UITableViewCell {
         self.priceLabel.textColor = .text
         self.sizeLabel.textColor = .text
         self.backgroundColor = .tableBackground
-        sizeContentView.superview?.backgroundColor = .tableBackground
+        sizeContentView.superview?.backgroundColor = .tableBackground        
     }
 
     func update(order: Order, 
@@ -56,7 +58,8 @@ class OrderCell: UITableViewCell {
 
         priceLabel.text = formatter.string(from: NSNumber(value: price))
         sizeLabel.text = formatter.string(from: NSNumber(value: size))
-        sizeContentView.backgroundColor = isAsk ? .green : .red
+        sizeContentView.backgroundColor = isAsk ?OrderCell.greenBarColor : OrderCell.redBarColor
+        sizeLabel.textColor = isAsk ? .green : .red
         var multiplier = min(size/maxSize, 1)
         if !multiplier.isFinite {
             multiplier = 0

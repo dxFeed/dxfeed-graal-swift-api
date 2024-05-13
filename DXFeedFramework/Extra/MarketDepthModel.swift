@@ -125,7 +125,7 @@ extension MarketDepthModel: TxModelListener {
     }
 
     func isChanged() -> Bool {
-        return buyOrders.isChanged() || sellOrders.isChanged()
+        return buyOrders.isChanged || sellOrders.isChanged
     }
 
     func clearBySource(source: IndexedEventSource) {

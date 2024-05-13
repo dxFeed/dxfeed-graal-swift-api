@@ -35,7 +35,7 @@ class MarketDepthViewController: UIViewController {
         feed = endpoint?.getFeed()!
 
         self.ordersTableView.backgroundColor = .clear
-        self.ordersTableView.separatorStyle = .none
+        self.ordersTableView.separatorStyle = .none        
         self.ordersTableView.register( UINib(nibName: "MarketDepthHeaderView", bundle: nil),
                                       forHeaderFooterViewReuseIdentifier: "MarketDepthHeaderView")
         if #available(iOS 15.0, *) {
@@ -48,7 +48,10 @@ class MarketDepthViewController: UIViewController {
         self.limitTextfield.backgroundColor = .cellBackground
         self.limitTextfield.textColor = .text
         self.limitTextfield.placeholder = "Input limit"
-        self.limitTextfield.text = "6"
+        self.limitTextfield.text = "5"
+
+        self.limitTextfield.delegate = self
+        self.sourcesTextField.delegate = self
 //        self.sourcesTextField.text = "ntv"
     }
 
@@ -96,7 +99,7 @@ extension MarketDepthViewController: MarketDepthListener {
 
 extension MarketDepthViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 45
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -104,17 +107,20 @@ extension MarketDepthViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if orderBook.sellOrders.count == 0 || orderBook.buyOrders.count == 0 {
+            return nil
+        }
         if let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MarketDepthHeaderView"),
            let headerView = headerView as? MarketDepthHeaderView {
             let sectionIndex = SectionIndex(rawValue: section)
             switch sectionIndex {
             case .buy:
-                headerView.setTitle("Bid")
+                headerView.setTitle("Bid", backgroundColor: .cellBackground)
             case .sell:
-                headerView.setTitle("Ask")
+                headerView.setTitle("Ask", backgroundColor: .cellBackground)
             default: break
             }
-            headerView.tintColor = .cellBackground
+            headerView.tintColor = .tableBackground
             return headerView
         } else {
             return nil
@@ -123,19 +129,6 @@ extension MarketDepthViewController: UITableViewDelegate {
 }
 
 extension MarketDepthViewController: UITableViewDataSource {
-
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        let sectionIndex = SectionIndex(rawValue: section)
-//        switch sectionIndex {
-//        case .buy:
-//            return "Buy orders"
-//        case .sell:
-//            return "Sell orders"
-//        default:
-//            return ""
-//        }
-//    }
-
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -190,5 +183,12 @@ extension MarketDepthViewController: UITableViewDataSource {
                     isAsk: false)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
+    }
+}
+
+extension MarketDepthViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+         textField.resignFirstResponder()
+        return true
     }
 }

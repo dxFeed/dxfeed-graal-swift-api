@@ -30,8 +30,14 @@ class QuoteTableViewController: UIViewController {
         self.quoteTableView.backgroundColor = .clear
         self.quoteTableView.separatorStyle = .none
 
-        noticeButton.setTitle("Learn more about dxFeed APIs", for: .normal)
-        noticeButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+        var attText = AttributedString.init("Learn more about dxFeed APIs")
+        attText.font = UIFont.systemFont(ofSize: 10, weight: .bold)
+        var configuration = UIButton.Configuration.plain()
+        configuration.imagePadding = 5
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        configuration.attributedTitle = attText
+        configuration.buttonSize = .mini
+        noticeButton.configuration = configuration
 
         NotificationCenter.default.addObserver(forName: .selectedSymbolsChanged,
                                                object: nil,

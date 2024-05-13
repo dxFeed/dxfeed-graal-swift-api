@@ -8,47 +8,42 @@
 import Foundation
 
 class OrderSet {
-    var lock = NSLock()
-
-    var snapshot = NSMutableArray()
-    let comparator: (Order, Order) -> ComparisonResult
+    private var lock = pthread_rwlock_t()
+    private var snapshot = NSMutableArray()
+    private let comparator: (Order, Order) -> ComparisonResult
     /// add using comparator in orders
-    var orders = NSMutableOrderedSet()
+    private var orders = NSMutableOrderedSet()
     var depthLimit: Int = 0 {
         willSet {
             if newValue != depthLimit {
-                _isChanged = true
+                isChanged = true
             }
         }
     }
 
-    private var _isChanged: Bool = false
+    private(set) var isChanged: Bool = false
+
+    deinit {
+         pthread_rwlock_destroy(&lock)
+     }
 
     init(comparator: @escaping (Order, Order) -> ComparisonResult) {
-
+        pthread_rwlock_init(&lock, nil)
         self.comparator = comparator
     }
 
-    func isChanged() -> Bool {
-        return _isChanged
-    }
-
     func clearBySource(_ source: IndexedEventSource) {
-        lock.lock()
-        defer {
-            lock.unlock()
-        }
+        pthread_rwlock_wrlock(&lock)
+        defer { pthread_rwlock_unlock(&lock) }
         let predicate = NSPredicate { order, _ in
             (order as? Order)?.eventSource == source
         }
-        _isChanged = orders.removeIf(using: predicate)
+        isChanged = orders.removeIf(using: predicate)
     }
 
     func remove(_ order: Order) {
-        lock.lock()
-        defer {
-            lock.unlock()
-        }
+        pthread_rwlock_wrlock(&lock)
+        defer { pthread_rwlock_unlock(&lock) }
         if orders.contains(order) {
             orders.remove(order)
             markAsChangedIfNeeded(order)
@@ -56,19 +51,17 @@ class OrderSet {
     }
 
     func markAsChangedIfNeeded(_ order: Order) {
-        if _isChanged {
+        if isChanged {
             return
         }
         if isDepthLimitUnbounded() || isSizeWithinDepthLimit() || isOrderWithinDepthLimit(order) {
-            _isChanged = true
+            isChanged = true
         }
     }
 
     func add(_ order: Order) {
-        lock.lock()
-        defer {
-            lock.unlock()
-        }
+        pthread_rwlock_wrlock(&lock)
+        defer { pthread_rwlock_unlock(&lock) }
         if !orders.contains(order) {
             orders.add(order)
             markAsChangedIfNeeded(order)
@@ -95,7 +88,7 @@ class OrderSet {
     }
 
     func toList() -> [Order] {
-        if _isChanged {
+        if isChanged {
             updateSnapshot()
         }
         if let list = snapshot as? [Order] {
@@ -106,12 +99,10 @@ class OrderSet {
     }
 
     func updateSnapshot() {
-        lock.lock()
-        defer {
-            lock.unlock()
-        }
+        pthread_rwlock_rdlock(&lock)
+        defer { pthread_rwlock_unlock(&lock) }
 
-        _isChanged = false
+        isChanged = false
         snapshot.removeAllObjects()
         let limit = isDepthLimitUnbounded() ? .max : depthLimit
         let sorted = orders.sortedArray { obj1, obj2 in

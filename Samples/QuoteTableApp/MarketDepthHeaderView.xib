@@ -12,20 +12,30 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="Ifz-si-Z8Q" customClass="MarketDepthHeaderView" customModule="DXQuoteTableApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cR-h1-itU">
-                    <rect key="frame" x="7" y="10" width="300" height="21"/>
-                    <autoresizingMask key="autoresizingMask"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cR-h1-itU">
+                    <rect key="frame" x="0.0" y="59" width="393" height="754"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Arf-30-SZV"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <constraints>
+                <constraint firstItem="1cR-h1-itU" firstAttribute="leading" secondItem="Arf-30-SZV" secondAttribute="leading" id="HtM-Jy-eZh"/>
+                <constraint firstItem="1cR-h1-itU" firstAttribute="top" secondItem="Arf-30-SZV" secondAttribute="top" id="d6U-Y7-6Bv"/>
+                <constraint firstItem="Arf-30-SZV" firstAttribute="bottom" secondItem="1cR-h1-itU" secondAttribute="bottom" constant="5" id="wGE-Tc-GcA"/>
+                <constraint firstItem="Arf-30-SZV" firstAttribute="trailing" secondItem="1cR-h1-itU" secondAttribute="trailing" id="y0v-jm-FfO"/>
+            </constraints>
             <connections>
                 <outlet property="titleLabel" destination="1cR-h1-itU" id="f1N-9D-zwQ"/>
             </connections>

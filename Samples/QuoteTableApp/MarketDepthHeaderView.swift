@@ -11,7 +11,8 @@ import UIKit
 class MarketDepthHeaderView: UITableViewHeaderFooterView {
     @IBOutlet var titleLabel: UILabel!
 
-    func setTitle(_ title: String) {
+    func setTitle(_ title: String, backgroundColor: UIColor) {
         titleLabel.text = title
+        titleLabel.backgroundColor = backgroundColor
     }
 }
