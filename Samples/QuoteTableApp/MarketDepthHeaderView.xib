@@ -15,29 +15,40 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cR-h1-itU">
-                    <rect key="frame" x="0.0" y="59" width="393" height="754"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="6"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="GwP-EP-cCs">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Bid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLG-WP-GpB">
+                            <rect key="frame" x="0.0" y="0.0" width="131" height="759"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hqi-jL-XMj">
+                            <rect key="frame" x="131" y="0.0" width="131" height="759"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGL-V6-IaU">
+                            <rect key="frame" x="262" y="0.0" width="131" height="759"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Arf-30-SZV"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="1cR-h1-itU" firstAttribute="leading" secondItem="Arf-30-SZV" secondAttribute="leading" id="HtM-Jy-eZh"/>
-                <constraint firstItem="1cR-h1-itU" firstAttribute="top" secondItem="Arf-30-SZV" secondAttribute="top" id="d6U-Y7-6Bv"/>
-                <constraint firstItem="Arf-30-SZV" firstAttribute="bottom" secondItem="1cR-h1-itU" secondAttribute="bottom" constant="5" id="wGE-Tc-GcA"/>
-                <constraint firstItem="Arf-30-SZV" firstAttribute="trailing" secondItem="1cR-h1-itU" secondAttribute="trailing" id="y0v-jm-FfO"/>
+                <constraint firstItem="Arf-30-SZV" firstAttribute="trailing" secondItem="GwP-EP-cCs" secondAttribute="trailing" id="82n-fk-Vl1"/>
+                <constraint firstItem="GwP-EP-cCs" firstAttribute="top" secondItem="Arf-30-SZV" secondAttribute="top" id="DNc-Q5-vU2"/>
+                <constraint firstItem="Arf-30-SZV" firstAttribute="bottom" secondItem="GwP-EP-cCs" secondAttribute="bottom" id="LDy-n7-db9"/>
+                <constraint firstItem="GwP-EP-cCs" firstAttribute="leading" secondItem="Arf-30-SZV" secondAttribute="leading" id="hsl-Mf-4iJ"/>
             </constraints>
             <connections>
-                <outlet property="titleLabel" destination="1cR-h1-itU" id="f1N-9D-zwQ"/>
+                <outlet property="titleLabel" destination="Hqi-jL-XMj" id="Cdf-8k-ucU"/>
             </connections>
             <point key="canvasLocation" x="164.8854961832061" y="190.84507042253523"/>
         </view>

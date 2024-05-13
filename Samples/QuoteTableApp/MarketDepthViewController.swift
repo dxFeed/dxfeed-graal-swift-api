@@ -20,13 +20,13 @@ class MarketDepthViewController: UIViewController {
 
     var model: MarketDepthModel?
     var orderBook = OrderBook()
-    var maxBuy: Double = 0
-    var maxSell: Double = 0
+    var maxValue: Double = 0
 
     @IBOutlet var connectButton: UIButton!
     @IBOutlet var sourcesTextField: UITextField!
     @IBOutlet var limitTextfield: UITextField!
     @IBOutlet var ordersTableView: UITableView!
+    @IBOutlet var headerStackView: UIStackView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ class MarketDepthViewController: UIViewController {
         feed = endpoint?.getFeed()!
 
         self.ordersTableView.backgroundColor = .clear
-        self.ordersTableView.separatorStyle = .none        
+//        self.ordersTableView.separatorStyle = .none        
         self.ordersTableView.register( UINib(nibName: "MarketDepthHeaderView", bundle: nil),
                                       forHeaderFooterViewReuseIdentifier: "MarketDepthHeaderView")
         if #available(iOS 15.0, *) {
@@ -78,19 +78,18 @@ class MarketDepthViewController: UIViewController {
 
 extension MarketDepthViewController: MarketDepthListener {
     func modelChanged(changes: DXFeedFramework.OrderBook) {
-        var maxBuy: Double = 0
-        var maxSell: Double = 0
+        var maxValue: Double = 0
         changes.buyOrders.forEach { order in
-            maxBuy = max(maxBuy, order.size)
+            maxValue = max(maxValue, order.size)
         }
         changes.sellOrders.forEach { order in
-            maxSell = max(maxSell, order.size)
+            maxValue = max(maxValue, order.size)
         }
 
         DispatchQueue.main.async {
-            self.maxBuy = maxBuy
-            self.maxSell = maxSell
+            self.maxValue = maxValue
             self.orderBook = changes
+            self.headerStackView.isHidden = changes.buyOrders.count == 0 && changes.sellOrders.count == 0
             self.ordersTableView.reloadData()
         }
     }
@@ -100,31 +99,6 @@ extension MarketDepthViewController: MarketDepthListener {
 extension MarketDepthViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 45
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if orderBook.sellOrders.count == 0 || orderBook.buyOrders.count == 0 {
-            return nil
-        }
-        if let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MarketDepthHeaderView"),
-           let headerView = headerView as? MarketDepthHeaderView {
-            let sectionIndex = SectionIndex(rawValue: section)
-            switch sectionIndex {
-            case .buy:
-                headerView.setTitle("Bid", backgroundColor: .cellBackground)
-            case .sell:
-                headerView.setTitle("Ask", backgroundColor: .cellBackground)
-            default: break
-            }
-            headerView.tintColor = .tableBackground
-            return headerView
-        } else {
-            return nil
-        }
     }
 }
 
@@ -165,8 +139,8 @@ extension MarketDepthViewController: UITableViewDataSource {
         }
         let order = orderBook.buyOrders[indexPath.row]
         cell.update(order: order,
-                    maxSize: maxBuy,
-                    isAsk: true)
+                    maxSize: maxValue,
+                    isBuy: true)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
@@ -179,8 +153,8 @@ extension MarketDepthViewController: UITableViewDataSource {
         }
         let order = orderBook.sellOrders[indexPath.row]
         cell.update(order: order,
-                    maxSize: maxSell,
-                    isAsk: false)
+                    maxSize: maxValue,
+                    isBuy: false)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }

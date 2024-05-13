@@ -31,10 +31,15 @@ class OrderCell: UITableViewCell {
     }()
 
     @IBOutlet var priceLabel: UILabel!
-    @IBOutlet var sizeLabel: UILabel!
-    @IBOutlet var sizeContentView: UIView!
-    @IBOutlet var sizeConstraint: NSLayoutConstraint!
-    @IBOutlet var infoLabel: UILabel!
+    @IBOutlet var sizeBuyLabel: UILabel!
+    @IBOutlet var sizeSellLabel: UILabel!
+
+    @IBOutlet var sizeBuyContentView: UIView!
+    @IBOutlet var sizeSellContentView: UIView!
+
+    @IBOutlet var sizeBuyConstraint: NSLayoutConstraint!
+    @IBOutlet var sizeSellConstraint: NSLayoutConstraint!
+
     static let redBarColor = UIColor.red.withAlphaComponent(0.3)
     static let greenBarColor = UIColor.green.withAlphaComponent(0.3)
 
@@ -42,14 +47,18 @@ class OrderCell: UITableViewCell {
         super.awakeFromNib()
 
         self.priceLabel.textColor = .text
-        self.sizeLabel.textColor = .text
+
+        sizeBuyLabel.textColor = .text
+        sizeSellLabel.textColor = .text
+
         self.backgroundColor = .tableBackground
-        sizeContentView.superview?.backgroundColor = .tableBackground        
+        sizeBuyContentView.superview?.backgroundColor = .tableBackground
+        sizeSellContentView.superview?.backgroundColor = .tableBackground
     }
 
     func update(order: Order, 
                 maxSize: Double,
-                isAsk: Bool) {
+                isBuy: Bool) {
         let price = order.price
         let size = order.size
         let marketMaker = order.marketMaker
@@ -57,19 +66,35 @@ class OrderCell: UITableViewCell {
         let scope = order.scope
 
         priceLabel.text = formatter.string(from: NSNumber(value: price))
-        sizeLabel.text = formatter.string(from: NSNumber(value: size))
-        sizeContentView.backgroundColor = isAsk ?OrderCell.greenBarColor : OrderCell.redBarColor
-        sizeLabel.textColor = isAsk ? .green : .red
+
+        sizeBuyLabel.text = formatter.string(from: NSNumber(value: size))
+        sizeBuyLabel.textColor = isBuy ? .green : .red
+       
+        sizeSellLabel.text = formatter.string(from: NSNumber(value: size))
+        sizeSellLabel.textColor = isBuy ? .green : .red
+
+        sizeBuyContentView.backgroundColor = isBuy ?OrderCell.greenBarColor : OrderCell.redBarColor
+        sizeSellContentView.backgroundColor = isBuy ?OrderCell.greenBarColor : OrderCell.redBarColor
+
         var multiplier = min(size/maxSize, 1)
         if !multiplier.isFinite {
             multiplier = 0
         }
-        let newConstraint = sizeConstraint.constraintWithMultiplier(multiplier)
-        sizeContentView.superview?.removeConstraint(sizeConstraint)
-        sizeContentView.superview?.addConstraint(newConstraint)
-        self.layoutIfNeeded()
-        sizeConstraint = newConstraint
+        update(constraint: &sizeBuyConstraint, multiplier: multiplier, on: sizeBuyContentView)
+        update(constraint: &sizeSellConstraint, multiplier: multiplier, on: sizeSellContentView)
 
-        infoLabel.text = "\(source.toString()) \(scope) \(marketMaker ?? "")"
+        sizeBuyLabel.isHidden = !isBuy
+        sizeSellLabel.isHidden = isBuy
+
+        sizeBuyContentView.isHidden  = !isBuy
+        sizeSellContentView.isHidden  = isBuy
+    }
+    
+    private func update(constraint: inout NSLayoutConstraint, multiplier: Double, on view: UIView) {
+        let newConstraint = constraint.constraintWithMultiplier(multiplier)
+        view.superview?.removeConstraint(constraint)
+        view.superview?.addConstraint(newConstraint)
+        self.layoutIfNeeded()
+        constraint = newConstraint
     }
 }
