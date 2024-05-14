@@ -10,8 +10,8 @@ import DXFeedFramework
 
 class MarketDepthViewController: UIViewController {
     enum SectionIndex: Int {
-        case buy = 0
-        case sell = 1
+        case buy = 1
+        case sell = 0
     }
 
     private var endpoint: DXEndpoint!
