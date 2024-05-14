@@ -163,7 +163,7 @@ extension QuoteTableViewController: UITableViewDelegate {
         let symbol = self.symbols[indexPath.row]
 
         let alert = UIAlertController(title: symbol, message: "", preferredStyle: .actionSheet)
-        let candlesAction = UIAlertAction(title: "Candles", style: .default) { _ in
+        let candlesAction = UIAlertAction(title: "Candle Chart", style: .default) { _ in
             let candleChartViewController = MyUIHostingController(rootView: CandleStickChart(symbol: symbol,
                                                                                              type: .week,
                                                                                              endpoint: self.endpoint))
@@ -172,7 +172,7 @@ extension QuoteTableViewController: UITableViewDelegate {
         }
         alert.addAction(candlesAction)
 
-        let marketDepthAction = UIAlertAction(title: "MarketDepth", style: .default) { _ in
+        let marketDepthAction = UIAlertAction(title: "Depth Of Market", style: .default) { _ in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "MarketDepthViewController")
             if let marketDepthViewController = viewController as? MarketDepthViewController {
