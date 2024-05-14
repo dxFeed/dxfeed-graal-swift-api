@@ -26,7 +26,7 @@ class OrderCell: UITableViewCell {
     {
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 8
+        formatter.maximumFractionDigits = 4
         return formatter
     }()
 
@@ -61,9 +61,6 @@ class OrderCell: UITableViewCell {
                 isBuy: Bool) {
         let price = order.price
         let size = order.size
-        let marketMaker = order.marketMaker
-        let source = order.eventSource
-        let scope = order.scope
 
         priceLabel.text = formatter.string(from: NSNumber(value: price))
 
@@ -77,7 +74,7 @@ class OrderCell: UITableViewCell {
         sizeSellContentView.backgroundColor = isBuy ?OrderCell.greenBarColor : OrderCell.redBarColor
 
         var multiplier = min(size/maxSize, 1)
-        if !multiplier.isFinite {
+        if !multiplier.isFinite || multiplier.isInfinite {
             multiplier = 0
         }
         update(constraint: &sizeBuyConstraint, multiplier: multiplier, on: sizeBuyContentView)

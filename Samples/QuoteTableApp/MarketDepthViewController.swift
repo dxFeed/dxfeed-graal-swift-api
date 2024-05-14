@@ -13,7 +13,9 @@ class MarketDepthViewController: UIViewController {
         case buy = 1
         case sell = 0
     }
-
+    private static let defaultCellSize: CGFloat = 40
+    private var cellSize: CGFloat = defaultCellSize
+    var numberOfRows = 0
     private var endpoint: DXEndpoint!
     private var feed: DXFeed!
     var symbol: String!
@@ -22,11 +24,9 @@ class MarketDepthViewController: UIViewController {
     var orderBook = OrderBook()
     var maxValue: Double = 0
 
-    @IBOutlet var connectButton: UIButton!
-    @IBOutlet var sourcesTextField: UITextField!
-    @IBOutlet var limitTextfield: UITextField!
     @IBOutlet var ordersTableView: UITableView!
     @IBOutlet var headerStackView: UIStackView!
+    @IBOutlet var headerConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,34 +42,37 @@ class MarketDepthViewController: UIViewController {
             self.ordersTableView.sectionHeaderTopPadding = 5
         }
         self.view.backgroundColor = .tableBackground
-        self.sourcesTextField.backgroundColor = .cellBackground
-        self.sourcesTextField.placeholder = "Input sources splitted by ,"
-        self.sourcesTextField.textColor = .text
-        self.limitTextfield.backgroundColor = .cellBackground
-        self.limitTextfield.textColor = .text
-        self.limitTextfield.placeholder = "Input limit"
-        self.limitTextfield.text = "5"
-
-        self.limitTextfield.delegate = self
-        self.sourcesTextField.delegate = self
-//        self.sourcesTextField.text = "ntv"
     }
 
-    @IBAction func connectModel(_ sender: UIButton) {
-        do {
-            let sources = try sourcesTextField.text?.split(separator: ",").map { str in
-                try OrderSource.valueOf(name: String(str))
-            }
+    private func calculateCells() {
+        let viewSize = ordersTableView.frame.size.height
+        numberOfRows = Int((viewSize / MarketDepthViewController.defaultCellSize) / 2)
+        cellSize = viewSize / CGFloat(numberOfRows) / 2
+    }
 
-            if let sources = sources {
-                model = try MarketDepthModel(symbol: symbol,
-                                             sources: sources,
-                                             aggregationPeriodMillis: 0,
-                                             mode: .multiple,
-                                             feed: feed,
-                                             listener: self)
-                model?.setDepthLimit(Int(self.limitTextfield.text ?? "") ?? 0)
-            }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        calculateCells()
+        model?.setDepthLimit(numberOfRows)
+
+        self.ordersTableView.reloadData()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        calculateCells()
+
+        do {
+            let sources = [OrderSource.agregateAsk!, OrderSource.agregateBid!]
+
+            model = try MarketDepthModel(symbol: symbol,
+                                         sources: sources,
+                                         aggregationPeriodMillis: 0,
+                                         mode: .multiple,
+                                         feed: feed,
+                                         listener: self)
+            model?.setDepthLimit(numberOfRows)
+
         } catch {
             print("MarketDepthModel: \(error)")
         }
@@ -98,7 +101,7 @@ extension MarketDepthViewController: MarketDepthListener {
 
 extension MarketDepthViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45
+        return cellSize
     }
 }
 
@@ -111,9 +114,9 @@ extension MarketDepthViewController: UITableViewDataSource {
         let sectionIndex = SectionIndex(rawValue: section)
         switch sectionIndex {
         case .buy:
-            return orderBook.buyOrders.count
+            return min(orderBook.buyOrders.count, numberOfRows)
         case .sell:
-            return orderBook.sellOrders.count
+            return min(orderBook.sellOrders.count, numberOfRows)
         default:
             return 0
         }
@@ -157,12 +160,5 @@ extension MarketDepthViewController: UITableViewDataSource {
                     isBuy: false)
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
-    }
-}
-
-extension MarketDepthViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-         textField.resignFirstResponder()
-        return true
     }
 }
