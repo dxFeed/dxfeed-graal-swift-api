@@ -210,7 +210,7 @@ class CandleList: ObservableObject, SnapshotDelegate {
 }
 
 struct CandleStickChart: View {
-    static let startDate = Calendar.current.date(byAdding: .month, value: -12, to: Date())!
+    static let startDate = Calendar.current.date(byAdding: .year, value: -1, to: Date())!
     @ObservedObject var list: CandleList
     @State private var selectedPrice: StockPrice?
     @State private var date = startDate
@@ -306,8 +306,6 @@ struct CandleStickChart: View {
         .chartXScale(domain: [date, Date()])
         .chartXAxis {
             var numberOfItems = calculatePossibleValuesCount(firstValue: date, with: type)
-            let _ = print("redraw xaxis \(date) \(type) \(numberOfItems) \(list.candles.count)")
-
             let xAxisValues = calculateXaxisValues(firstValue: date, with: type, valuesCount: numberOfItems)
             AxisMarks(values: xAxisValues) { value in
                 if let date = value.as(Date.self) {

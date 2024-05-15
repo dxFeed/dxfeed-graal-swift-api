@@ -184,6 +184,11 @@ extension QuoteTableViewController: UITableViewDelegate {
         alert.addAction(marketDepthAction)
 
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) {_ in })
+        let cell = tableView.cellForRow(at: indexPath)
+
+        alert.popoverPresentationController?.sourceView = self.quoteTableView
+        alert.popoverPresentationController?.sourceRect = cell?.frame ?? CGRect(x: 0, y: 0, width: 50, height: 50)
+
         self.present(alert, animated: true, completion: nil)
 
     }
