@@ -75,7 +75,7 @@ extension Candle {
     }
 }
 enum CandleType: CaseIterable, Identifiable {
-    case week, month, year
+    case minute, hour, day, week, month, year
     var id: Self { self }
     func toDxFeedValue() -> CandlePeriod {
         switch self {
@@ -85,6 +85,47 @@ enum CandleType: CaseIterable, Identifiable {
             return CandlePeriod.valueOf(value: 1, type: .month)
         case .year:
             return CandlePeriod.valueOf(value: 1, type: .year)
+        case .minute:
+            return CandlePeriod.valueOf(value: 1, type: .minute)
+        case .day:
+            return CandlePeriod.valueOf(value: 1, type: .day)
+        case .hour:
+            return CandlePeriod.valueOf(value: 1, type: .hour)
+        }
+    }
+
+    func calcualteStartDate() -> Date {
+        switch self {
+        case .minute:
+            return Calendar.current.date(byAdding: .hour, value: -12, to: Date())!
+        case .hour:
+            return Calendar.current.date(byAdding: .day, value: -7, to: Date())!
+        case .day:
+            return Calendar.current.date(byAdding: .year, value: -1, to: Date())!
+        case .week:
+            return Calendar.current.date(byAdding: .year, value: -5, to: Date())!
+        case .month:
+            return Calendar.current.date(byAdding: .year, value: -10, to: Date())!
+        case .year:
+            return Date(timeIntervalSince1970: 0)
+
+        }
+    }
+
+    func calculateRightShift() -> Int64 {
+        switch self {
+        case .minute:
+            return 60 * 1000
+        case .hour:
+            return 60 * 60 * 1000
+        case .day:
+            return 24 * 60 * 60 * 1000
+        case .week:
+            return 7 * 24 * 60 * 60 * 1000
+        case .month:
+            return 30 * 24 * 60 * 60 * 1000
+        case .year:
+            return 365 * 24 * 60 * 60 * 1000
         }
     }
 }
@@ -129,14 +170,32 @@ class CandleList: ObservableObject, SnapshotDelegate {
         }
         DispatchQueue.main.async{
             if isSnapshot {
-                var temp = result.map({ candle in
-                    self.maxValue = max(self.maxValue, candle.max())
-                    self.minValue = min(self.minValue, candle.min())
+                self.loadingInProgress = false
+                print("received snapshot \(Date())")
+                var maxValue = Double.zero
+                var minValue = Double.greatestFiniteMagnitude
+                
+                var minDate: Int64 = Int64.max
+                var maxDate: Int64 = 0
 
+                var temp = result.map({ candle in
+                    let time = candle.time
+                    minDate = min(minDate, time)
+                    maxDate = max(maxDate, time)
+                    maxValue = max(maxValue, candle.max())
+                    minValue = min(minValue, candle.min())
                     let price = StockPrice(candle: candle, currency: self.currency)
                     return price
                 })
+
+                self.maxValue = maxValue
+                self.minValue = minValue
+                self.maxDate = Date(millisecondsSince1970: maxDate + self.type.calculateRightShift())
+                self.minDate = Date(millisecondsSince1970: minDate)
                 self.candles = temp
+                self.xScrollPosition = temp.first!.timestamp
+                print("use \(self.xScrollPosition) \(temp[30])")
+                print("Loaded \(self.type) \(temp.count) \(self.minDate) \(self.maxDate)  \(self.minValue) \(self.maxValue)")
             } else {
                 result.forEach { candle in
                     self.maxValue = max(self.maxValue, candle.max())
@@ -162,8 +221,15 @@ class CandleList: ObservableObject, SnapshotDelegate {
     var snapshotProcessor: SnapshotProcessor!
 
     @Published var candles: [StockPrice]
+    @Published var xScrollPosition: Date = Date()
+
     var maxValue: Double = 0
     var minValue: Double = Double.greatestFiniteMagnitude
+    
+    var minDate = Date.now
+    var maxDate = Date.now
+
+    var loadingInProgress = false
 
     init(symbol: String, endpoint: DXEndpoint?) {
         self.symbol = symbol
@@ -200,8 +266,12 @@ class CandleList: ObservableObject, SnapshotDelegate {
         }
 
     }
-
-    func updateDate(date: Date, type: CandleType) {
+    var type = CandleType.year
+    func updateDate(type: CandleType) {
+        print("start load \(Date()) \(type)")
+        loadingInProgress = true
+        self.type = type
+        let date = type.calcualteStartDate()
         candles = [StockPrice]()
         let candleSymbol = CandleSymbol.valueOf(symbol, type.toDxFeedValue())
         let symbol = TimeSeriesSubscriptionSymbol(symbol: candleSymbol, date: date)
@@ -210,40 +280,38 @@ class CandleList: ObservableObject, SnapshotDelegate {
 }
 
 struct CandleStickChart: View {
-    static let startDate = Calendar.current.date(byAdding: .year, value: -1, to: Date())!
     @ObservedObject var list: CandleList
     @State private var selectedPrice: StockPrice?
-    @State private var date = startDate
-    @State private var type: CandleType = .month
+    @State private var type: CandleType = .week
 
-    @State private var xScrollPosition: Date = Date()
+
 
     let dateFormatter: DateFormatter
     let shortDateFormatter: DateFormatter
+    let hourDateFormatter: DateFormatter
+
     let symbol: String
     let xAxisCountPerScreen = 4
 
-    init(symbol: String, type: CandleType = .month, date: Date? = nil, endpoint: DXEndpoint?) {
+    init(symbol: String, type: CandleType = .week, date: Date? = nil, endpoint: DXEndpoint?) {
 
         dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yy"
 
         shortDateFormatter = DateFormatter()
         shortDateFormatter.dateFormat = "MM.yyyy"
+        hourDateFormatter = DateFormatter()
+        hourDateFormatter.dateStyle = .none
+        hourDateFormatter.timeStyle = .short
 
         self.symbol = symbol
         self.list = CandleList(symbol: symbol, endpoint: endpoint)
         _type = State(initialValue: type)
-        if let date = date {
-            _date = State(initialValue: date)
-        }
-        self.list.updateDate(date: self.date, type: self.type)
     }
 
     var body: some View {
         GeometryReader { reader in
             List {
-
                 Section {
                     chart.frame(height: max(reader.size.height/2, 300))
                 }.listRowBackground(Color.sectionBackground)
@@ -254,32 +322,30 @@ struct CandleStickChart: View {
                             Text(String(describing: category).capitalized).tag(category)
                         }
                     }.onChange(of: type) { value in
-                        calculateXScrollPosition()
                         selectedPrice = nil
-                        list.updateDate(date: date, type: value)
+                        list.updateDate(type: value)
                     }
-                    .pickerStyle(SegmentedPickerStyle())
                     .foregroundStyle(Color.labelText)
-
-                    DatePicker(
-                        selection: $date,
-                        displayedComponents: [.date]
-                    ) {
-                        Text("Choose from time")
-                    }.onChange(of: date) { value in
-                        calculateXScrollPosition()
-                        selectedPrice = nil
-                        list.updateDate(date: value, type: type)
-                    }
-                    .datePickerStyle(.compact)
-                    .foregroundStyle(Color.labelText)
-
                 }.listRowSeparator(.hidden)
                     .listRowBackground(Color.sectionBackground)
             }
             .preferredColorScheme(.dark)
             .background(Color.viewBackground)
             .scrollContentBackground(.hidden)
+            .onAppear {
+                self.list.updateDate(type: self.type)                
+            }
+        }
+    }
+    
+    func getYScale() -> ScaleDomain {
+        if list.candles.count == 0 {
+            return 0...0
+        }
+        if type == .minute {
+            return list.minValue...list.maxValue
+        } else {
+            return (list.minValue*0.95)...list.maxValue*1.05
         }
     }
 
@@ -302,19 +368,30 @@ struct CandleStickChart: View {
             .foregroundStyle( price.isClosingHigher ? .green : .red)
         }
         .chartYAxis { AxisMarks(preset: .extended) }
-        .chartYScale(domain: list.candles.count > 0 ? (list.minValue*0.8)...list.maxValue*1.2 : 0...0)
-        .chartXScale(domain: [date, Date()])
+        .chartYScale(domain: getYScale())
+        .chartXScale(domain: [list.minDate, list.maxDate])
         .chartXAxis {
-            var numberOfItems = calculatePossibleValuesCount(firstValue: date, with: type)
-            let xAxisValues = calculateXaxisValues(firstValue: date, with: type, valuesCount: numberOfItems)
-            AxisMarks(values: xAxisValues) { value in
-                if let date = value.as(Date.self) {
-                    AxisValueLabel(horizontalSpacing: -14, verticalSpacing: 10) {
-                        Text(type == .year ? shortDateFormatter.string(from: date) : dateFormatter.string(from: date))
+            if list.loadingInProgress {
+            } else {
+                let _ = print("load axis")
+                var numberOfItems = list.candles.count
+                let xAxisValues = calculateXaxisValues(firstValue: list.minDate, with: type, valuesCount: numberOfItems)
+                AxisMarks(values: xAxisValues) { value in
+                    if let date = value.as(Date.self) {
+                        AxisValueLabel(horizontalSpacing: -14, verticalSpacing: 10) {
+                            switch type {
+                            case .year:
+                                Text(shortDateFormatter.string(from: date))
+                            case .minute:
+                                Text(hourDateFormatter.string(from: date))
+                            default:
+                                Text(dateFormatter.string(from: date))
+                            }
+                        }
                     }
+                    AxisGridLine(centered: true, stroke: StrokeStyle(lineWidth: 0.5))
+                    AxisTick(centered: true, length: 0, stroke: .none)
                 }
-                AxisGridLine(centered: true, stroke: StrokeStyle(lineWidth: 0.5))
-                AxisTick(centered: true, length: 0, stroke: .none)
             }
         }
         .chartOverlay { proxy in
@@ -346,7 +423,7 @@ struct CandleStickChart: View {
             ZStack(alignment: .topLeading) {
                 GeometryReader { geo in
                     if let selectedPrice {
-                        let dateInterval = Calendar.current.dateInterval(of: .day, for: selectedPrice.timestamp)!
+                        let dateInterval = Calendar.current.dateInterval(of: .minute, for: selectedPrice.timestamp)!
                         let startPositionX1 = proxy.position(forX: dateInterval.start) ?? 0
 
                         let lineX = startPositionX1 + geo[proxy.plotAreaFrame].origin.x
@@ -384,35 +461,14 @@ struct CandleStickChart: View {
             if #available(iOS 17.0, *) {
                 AnyView(
                     anyView.chartScrollableAxes(.horizontal)
-                        .chartScrollPosition(x: $xScrollPosition)
+                        .chartScrollPosition(x: $list.xScrollPosition)
                         .chartXVisibleDomain(length: visibleDomains(type: type, valuesCount: list.candles.count)))
+
             } else {
                 anyView
             }
         })
-
         .accessibilityChartDescriptor(self)
-    }
-
-    func calculateXScrollPosition() {
-        var numberOfItems = calculatePossibleValuesCount(firstValue: date, with: type)
-        xScrollPosition = calculateXaxisValues(firstValue: date, with: type, valuesCount: numberOfItems)[xAxisCountPerScreen-1]
-    }
-
-    func calculatePossibleValuesCount(firstValue: Date, with type: CandleType) -> Int {
-        var numberOfItems = 0
-        switch(type) {
-        case .month:
-            let components = Calendar.current.dateComponents([.month], from: date, to: Date())
-            numberOfItems = components.month ?? 0
-        case .year:
-            let components = Calendar.current.dateComponents([.year], from: date, to: Date())
-            numberOfItems = components.year ?? 0
-        case .week:
-            let components = Calendar.current.dateComponents([.weekOfMonth], from: date, to: Date())
-            numberOfItems = components.weekOfMonth ?? 0
-        }
-        return numberOfItems + 1
     }
 
     func calculateXaxisValues(firstValue: Date, with type: CandleType, valuesCount: Int) -> [Date] {
@@ -422,7 +478,7 @@ struct CandleStickChart: View {
             visiblePages = Double(valuesCount)/Double(pointsOnScreen)
         }
         var values = [Date]()
-        let endDate = Date.now
+        let endDate = list.maxDate
         let delta = endDate.distance(to: firstValue)
         let maxInterval = Int(visiblePages.isNaN ? 1 : visiblePages) * xAxisCountPerScreen
         for index in 0...maxInterval {
@@ -435,11 +491,16 @@ struct CandleStickChart: View {
     private func visiblePointsOnScreen(type: CandleType, valuesCount: Int) -> Int {
         switch type {
         case .month:
-
             return min(valuesCount, 30)
         case .week:
             return min(valuesCount, 30)
         case .year:
+            return min(valuesCount, 30)
+        case .minute:
+            return min(valuesCount, 30)
+        case .day:
+            return min(valuesCount, 30)
+        case .hour:
             return min(valuesCount, 30)
         }
     }
@@ -449,7 +510,9 @@ struct CandleStickChart: View {
             return 1
         }
         let pointsOnScreen = visiblePointsOnScreen(type: type, valuesCount: valuesCount)
-        let dayDuration = 3600 * 24
+        let minuteDuration = 60
+        let hourDuration = 3600
+        let dayDuration = hourDuration * 24
         switch type {
         case .month:
             return dayDuration * 30 * pointsOnScreen
@@ -457,6 +520,12 @@ struct CandleStickChart: View {
             return dayDuration * 7 * pointsOnScreen
         case .year:
             return dayDuration * 365 * pointsOnScreen
+        case .minute:
+            return dayDuration / 48
+        case .day:
+            return dayDuration * 1 * pointsOnScreen
+        case .hour:
+            return hourDuration * 1 * pointsOnScreen
         }
     }
 
@@ -588,7 +657,7 @@ struct CandleInfoView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 4) {
-            Text(price.timestamp.formatted(date: .abbreviated, time: .omitted))
+            Text(price.timestamp.formatted(date: .abbreviated, time: .shortened))
             HStack(spacing: 10) {
                 Text("Open: \(price.open.formatted(.currency(code: currency)))")
                     .foregroundColor(.secondary)

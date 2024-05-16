@@ -39,7 +39,7 @@ let allTypes = [Candle.self,
                 Series.self,
                 OptionSale.self]
 
-let argSymbols = ["ETH/USD:GDAX"]
+let argSymbols = ["AAPL"]
 let argTime: String? = nil
 
 // To avoid release inside internal {} scope
