@@ -192,8 +192,11 @@ class CandleList: ObservableObject, SnapshotDelegate {
                 self.minValue = minValue
                 self.maxDate = Date(millisecondsSince1970: maxDate + self.type.calculateRightShift())
                 self.minDate = Date(millisecondsSince1970: minDate)
-                self.candles = temp
                 self.xScrollPosition = temp.first!.timestamp
+
+                self.candles = temp
+                self.objectWillChange.send()
+
                 print("use \(self.xScrollPosition) \(temp[30])")
                 print("Loaded \(self.type) \(temp.count) \(self.minDate) \(self.maxDate)  \(self.minValue) \(self.maxValue)")
             } else {
@@ -221,7 +224,7 @@ class CandleList: ObservableObject, SnapshotDelegate {
     var snapshotProcessor: SnapshotProcessor!
 
     @Published var candles: [StockPrice]
-    @Published var xScrollPosition: Date = Date()
+    @Published var xScrollPosition: Date = Date(millisecondsSince1970: 0)
 
     var maxValue: Double = 0
     var minValue: Double = Double.greatestFiniteMagnitude
@@ -277,6 +280,13 @@ class CandleList: ObservableObject, SnapshotDelegate {
         let symbol = TimeSeriesSubscriptionSymbol(symbol: candleSymbol, date: date)
         try? subscription?.setSymbols([symbol])
     }
+
+    func fakeLoading() {
+        loadingInProgress = true
+//        self.candles = [StockPrice]()
+        self.xScrollPosition = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+        loadingInProgress = false
+    }
 }
 
 struct CandleStickChart: View {
@@ -314,8 +324,18 @@ struct CandleStickChart: View {
             List {
                 Section {
                     chart.frame(height: max(reader.size.height/2, 300))
-                }.listRowBackground(Color.sectionBackground)
+                        .onAppear {
+                            //just workaround for swiftuicharts + scroll to
+                            self.list.fakeLoading()
+                //            self.selectedPrice = nil
+                //            self.list.updateDate(type: self.type)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                self.selectedPrice = nil
+                                self.list.updateDate(type: self.type)
+                            }
 
+                        }
+                }.listRowBackground(Color.sectionBackground)
                 Section("Chart parameters") {
                     Picker("Candle type", selection: $type) {
                         ForEach(CandleType.allCases, id: \.self) { category in
@@ -329,12 +349,10 @@ struct CandleStickChart: View {
                 }.listRowSeparator(.hidden)
                     .listRowBackground(Color.sectionBackground)
             }
+            
             .preferredColorScheme(.dark)
             .background(Color.viewBackground)
             .scrollContentBackground(.hidden)
-            .onAppear {
-                self.list.updateDate(type: self.type)                
-            }
         }
     }
     
@@ -372,12 +390,15 @@ struct CandleStickChart: View {
         .chartXScale(domain: [list.minDate, list.maxDate])
         .chartXAxis {
             if list.loadingInProgress {
+
             } else {
-                let _ = print("load axis")
                 var numberOfItems = list.candles.count
                 let xAxisValues = calculateXaxisValues(firstValue: list.minDate, with: type, valuesCount: numberOfItems)
                 AxisMarks(values: xAxisValues) { value in
+
                     if let date = value.as(Date.self) {
+                        let _ = print("load axis \(dateFormatter.string(from: date))")
+
                         AxisValueLabel(horizontalSpacing: -14, verticalSpacing: 10) {
                             switch type {
                             case .year:
@@ -459,10 +480,12 @@ struct CandleStickChart: View {
         }
         .ifTrue(true, apply: { anyView in
             if #available(iOS 17.0, *) {
+
                 AnyView(
                     anyView.chartScrollableAxes(.horizontal)
+                        .chartXVisibleDomain(length: visibleDomains(type: type, valuesCount: list.candles.count))
                         .chartScrollPosition(x: $list.xScrollPosition)
-                        .chartXVisibleDomain(length: visibleDomains(type: type, valuesCount: list.candles.count)))
+                )
 
             } else {
                 anyView
