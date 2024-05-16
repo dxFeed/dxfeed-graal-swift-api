@@ -380,12 +380,20 @@ struct CandleStickChart: View {
                 }
             }
         }
-        .chartScrollableAxes(.horizontal)
-        .chartScrollPosition(x: $xScrollPosition)
-        .chartXVisibleDomain(length: visibleDomains(type: type, valuesCount: list.candles.count))
+        .ifTrue(true, apply: { anyView in
+            if #available(iOS 17.0, *) {
+                AnyView(
+                    anyView.chartScrollableAxes(.horizontal)
+                        .chartScrollPosition(x: $xScrollPosition)
+                        .chartXVisibleDomain(length: visibleDomains(type: type, valuesCount: list.candles.count)))
+            } else {
+                anyView
+            }
+        })
+
         .accessibilityChartDescriptor(self)
     }
-    
+
     func calculateXScrollPosition() {
         var numberOfItems = calculatePossibleValuesCount(firstValue: date, with: type)
         xScrollPosition = calculateXaxisValues(firstValue: date, with: type, valuesCount: numberOfItems)[xAxisCountPerScreen-1]
@@ -408,8 +416,11 @@ struct CandleStickChart: View {
     }
 
     func calculateXaxisValues(firstValue: Date, with type: CandleType, valuesCount: Int) -> [Date] {
-        let pointsOnScreen = visiblePointsOnScreen(type: type, valuesCount: valuesCount)
-        let visiblePages = Double(valuesCount)/Double(pointsOnScreen)
+        var visiblePages: Double = 1
+        if #available(iOS 17.0, *) {
+            let pointsOnScreen = visiblePointsOnScreen(type: type, valuesCount: valuesCount)
+            visiblePages = Double(valuesCount)/Double(pointsOnScreen)
+        }
         var values = [Date]()
         let endDate = Date.now
         let delta = endDate.distance(to: firstValue)
@@ -424,9 +435,10 @@ struct CandleStickChart: View {
     private func visiblePointsOnScreen(type: CandleType, valuesCount: Int) -> Int {
         switch type {
         case .month:
+
             return min(valuesCount, 30)
         case .week:
-            return min(valuesCount, 52)
+            return min(valuesCount, 30)
         case .year:
             return min(valuesCount, 30)
         }
