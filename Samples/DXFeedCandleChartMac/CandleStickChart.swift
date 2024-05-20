@@ -229,8 +229,11 @@ class CandleList: ObservableObject, SnapshotDelegate {
     var maxDate: Date
 
     var loadingInProgress = false
-
-    init(symbol: String, endpoint: DXEndpoint?) {
+    let ipfAddress: String
+    init(symbol: String,
+         endpoint: DXEndpoint?,
+         ipfAddress: String) {
+        self.ipfAddress = ipfAddress
         let startDate = Date.now
         minDate = startDate
         maxDate = startDate
@@ -256,7 +259,7 @@ class CandleList: ObservableObject, SnapshotDelegate {
     func fetchInfo() {
         DispatchQueue.global(qos: .background).async {
             let reader = DXInstrumentProfileReader()
-            let address = "https://demo:demo@tools.dxfeed.com/ipf?SYMBOL=\(self.symbol)"
+            let address = self.ipfAddress + self.symbol
             let result = try? reader.readFromFile(address: address)
             guard let result = result  else {
                 return
@@ -299,7 +302,10 @@ struct CandleStickChart: View {
     let symbol: String
     let xAxisCountPerScreen = 4
 
-    init(symbol: String, type: CandleType = .week, endpoint: DXEndpoint?) {
+    init(symbol: String, 
+         type: CandleType = .week,
+         endpoint: DXEndpoint?,
+         ipfAddress: String) {
 
         dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yy"
@@ -311,7 +317,9 @@ struct CandleStickChart: View {
         hourDateFormatter.timeStyle = .short
 
         self.symbol = symbol
-        self.list = CandleList(symbol: symbol, endpoint: endpoint)
+        self.list = CandleList(symbol: symbol, 
+                               endpoint: endpoint,
+                               ipfAddress: ipfAddress)
         _type = State(initialValue: type)
     }
 
@@ -350,13 +358,6 @@ struct CandleStickChart: View {
             .background(Color.viewBackground)
             .scrollContentBackground(.hidden)
         }
-    }
-
-    private var shouldApplyScroll: Bool {
-        guard #available(iOS 17, *) else {
-            return true
-        }
-        return false
     }
 
     func getYScale() -> ClosedRange<Double> {

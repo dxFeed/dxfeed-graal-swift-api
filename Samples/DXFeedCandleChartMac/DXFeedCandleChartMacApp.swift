@@ -14,7 +14,8 @@ struct DXFeedCandleChartMacApp: App {
         WindowGroup {
             CandleStickChart(symbol: symbol,
                              type: .week,
-                             endpoint: nil)
+                             endpoint: nil,
+                             ipfAddress: "https://demo:demo@tools.dxfeed.com/ipf?SYMBOL=")
             .navigationTitle("CandleChart: \(symbol)")
         }
         .defaultSize(width: 800, height: 800)
