@@ -48,7 +48,7 @@ final class DXConnectionTest: XCTestCase {
         let endpoint = try DXEndpoint.builder()
             .build()
 
-        let subscription = try endpoint.getFeed()?.createSubscription(TheoPrice.self)
+        let subscription = try endpoint.getFeed()?.createSubscription(Candle.self)
         let receivedEventsExpectation = expectation(description: "Received events")
         let eventListener = DXConnectionListener(expectation: receivedEventsExpectation)
         try subscription?.add(listener: eventListener)
@@ -56,7 +56,7 @@ final class DXConnectionTest: XCTestCase {
 
         let symbol = TimeSeriesSubscriptionSymbol(symbol: "ETH/USD:GDAX{=d}", date: startDate)
 
-        try subscription?.addSymbols(".AAPL240524C110")
+        try subscription?.addSymbols(symbol)
         try endpoint.connect("dxlink:wss://demo.dxfeed.com/dxlink-ws")
         defer {
             try? endpoint.closeAndAwaitTermination()
