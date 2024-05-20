@@ -56,7 +56,7 @@ final class DXConnectionTest: XCTestCase {
 
         let symbol = TimeSeriesSubscriptionSymbol(symbol: "ETH/USD:GDAX{=d}", date: startDate)
 
-        try subscription?.addSymbols(symbol)
+        try subscription?.addSymbols(".AAPL240524C110")
         try endpoint.connect("dxlink:wss://demo.dxfeed.com/dxlink-ws")
         defer {
             try? endpoint.closeAndAwaitTermination()

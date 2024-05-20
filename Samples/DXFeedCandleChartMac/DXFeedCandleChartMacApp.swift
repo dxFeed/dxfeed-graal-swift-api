@@ -14,7 +14,6 @@ struct DXFeedCandleChartMacApp: App {
         WindowGroup {
             CandleStickChart(symbol: symbol,
                              type: .week,
-                             date: Calendar.current.date(byAdding: .year, value: -4, to: Date()),
                              endpoint: nil)
             .navigationTitle("CandleChart: \(symbol)")
         }

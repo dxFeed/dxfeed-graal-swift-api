@@ -92,8 +92,6 @@
 		6423E4652B445B92006B208D /* DXFeedTimeSeriesSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6423E4642B445B92006B208D /* DXFeedTimeSeriesSubscription.swift */; };
 		6423E4672B44613D006B208D /* NativeTimeSeriesSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6423E4662B44613D006B208D /* NativeTimeSeriesSubscription.swift */; };
 		6423E4692B457000006B208D /* DXTimeSeriesSubscriptionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6423E4682B457000006B208D /* DXTimeSeriesSubscriptionTest.swift */; };
-		64245BC42BE4DD7C00901522 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64245BC32BE4DD7C00901522 /* Assets.xcassets */; };
-		64245BC72BE4DD7C00901522 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64245BC62BE4DD7C00901522 /* Preview Assets.xcassets */; };
 		642528D02A3C534D00A04E41 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
 		642528D12A3C534D00A04E41 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
 		6425BE982B4849BE0071D706 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
@@ -703,11 +701,6 @@
 		6423E4662B44613D006B208D /* NativeTimeSeriesSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeTimeSeriesSubscription.swift; sourceTree = "<group>"; };
 		6423E4682B457000006B208D /* DXTimeSeriesSubscriptionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXTimeSeriesSubscriptionTest.swift; sourceTree = "<group>"; };
 		64245BBD2BE4DD7B00901522 /* DXFeedCandleChartMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXFeedCandleChartMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		64245BBF2BE4DD7B00901522 /* DXFeedCandleChartMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFeedCandleChartMacApp.swift; sourceTree = "<group>"; };
-		64245BC12BE4DD7B00901522 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		64245BC32BE4DD7C00901522 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		64245BC62BE4DD7C00901522 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		64245BC82BE4DD7C00901522 /* DXFeedCandleChartMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DXFeedCandleChartMac.entitlements; sourceTree = "<group>"; };
 		64278C6B2A602CA20074B5AA /* CandleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleTests.swift; sourceTree = "<group>"; };
 		64278C6D2A602D2B0074B5AA /* Candle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candle.swift; sourceTree = "<group>"; };
 		64278C6F2A602FA00074B5AA /* Candle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Candle+Ext.swift"; sourceTree = "<group>"; };
@@ -1203,27 +1196,6 @@
 			path = Playgrounds;
 			sourceTree = "<group>";
 		};
-		64245BBE2BE4DD7B00901522 /* DXFeedCandleChartMac */ = {
-			isa = PBXGroup;
-			children = (
-				64245BBF2BE4DD7B00901522 /* DXFeedCandleChartMacApp.swift */,
-				64245BC12BE4DD7B00901522 /* ContentView.swift */,
-				64245BC32BE4DD7C00901522 /* Assets.xcassets */,
-				64245BC82BE4DD7C00901522 /* DXFeedCandleChartMac.entitlements */,
-				64245BC52BE4DD7C00901522 /* Preview Content */,
-			);
-			name = DXFeedCandleChartMac;
-			path = ../../DXFeedCandleChartMac;
-			sourceTree = "<group>";
-		};
-		64245BC52BE4DD7C00901522 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				64245BC62BE4DD7C00901522 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
 		64262CCB2A4DA64700BA6BA3 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -1615,7 +1587,6 @@
 		64B4364C2AB9D3410003919E /* ScheduleSampleApp */ = {
 			isa = PBXGroup;
 			children = (
-				64245BBE2BE4DD7B00901522 /* DXFeedCandleChartMac */,
 				64B4364D2AB9D3410003919E /* AppDelegate.swift */,
 				64B4364F2AB9D3410003919E /* SceneDelegate.swift */,
 				64B436512AB9D3410003919E /* ViewController.swift */,
@@ -2332,9 +2303,7 @@
 			files = (
 				647A51442BE4DFD600B8B8C9 /* Colors.xcassets in Resources */,
 				647A513E2BE4DDB600B8B8C9 /* Preview Assets.xcassets in Resources */,
-				64245BC72BE4DD7C00901522 /* Preview Assets.xcassets in Resources */,
 				647A513D2BE4DDB600B8B8C9 /* Assets.xcassets in Resources */,
-				64245BC42BE4DD7C00901522 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

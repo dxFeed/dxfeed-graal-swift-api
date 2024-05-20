@@ -56,7 +56,7 @@ class OrderCell: UITableViewCell {
         sizeSellContentView.superview?.backgroundColor = .tableBackground
     }
 
-    func update(order: Order, 
+    func update(order: Order,
                 maxSize: Double,
                 isBuy: Bool) {
         let price = order.price
@@ -66,7 +66,7 @@ class OrderCell: UITableViewCell {
 
         sizeBuyLabel.text = formatter.string(from: NSNumber(value: size))
         sizeBuyLabel.textColor = isBuy ? .green : .red
-       
+
         sizeSellLabel.text = formatter.string(from: NSNumber(value: size))
         sizeSellLabel.textColor = isBuy ? .green : .red
 
@@ -86,7 +86,7 @@ class OrderCell: UITableViewCell {
         sizeBuyContentView.isHidden  = !isBuy
         sizeSellContentView.isHidden  = isBuy
     }
-    
+
     private func update(constraint: inout NSLayoutConstraint, multiplier: Double, on view: UIView) {
         let newConstraint = constraint.constraintWithMultiplier(multiplier)
         view.superview?.removeConstraint(constraint)
