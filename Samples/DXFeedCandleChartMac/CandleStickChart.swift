@@ -92,7 +92,7 @@ enum CandleType: CaseIterable, Identifiable {
     func calcualteStartDate() -> Date {
         switch self {
         case .minute:
-            return Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+            return Calendar.current.date(byAdding: .day, value: -7, to: Date())!
         case .hour:
             return Calendar.current.date(byAdding: .day, value: -7, to: Date())!
         case .day:
@@ -135,12 +135,14 @@ struct StockPrice: Identifiable {
     let close: Decimal
     let high: Decimal
     let low: Decimal
+    let isPoint: Bool
 
     init(currency: String, timestamp: Date, open: Decimal, close: Decimal, high: Decimal, low: Decimal) {
         self.currency = currency
         self.timestamp = timestamp
         self.open = open
         self.close = close
+        self.isPoint = open == close && high == low
         self.high = high
         self.low = low
     }
@@ -153,7 +155,6 @@ struct StockPrice: Identifiable {
                   high: Decimal(candle.high),
                   low: Decimal(candle.low))
     }
-
 }
 
 class CandleList: ObservableObject, SnapshotDelegate {
@@ -173,8 +174,8 @@ class CandleList: ObservableObject, SnapshotDelegate {
 
                 var minDate: Int64 = Int64.max
                 var maxDate: Int64 = 0
-
-                let temp = result.map { candle in
+                let firstNElements = result.prefix(150)
+                let temp = firstNElements.map { candle in
                     let time = candle.time
                     minDate = min(minDate, time)
                     maxDate = max(maxDate, time)
@@ -188,13 +189,17 @@ class CandleList: ObservableObject, SnapshotDelegate {
                 self.minValue = minValue
                 self.maxDate = Date(millisecondsSince1970: maxDate + self.type.calculateRightShift())
                 self.minDate = Date(millisecondsSince1970: minDate - self.type.calculateRightShift())
-                self.xScrollPosition = temp.first!.timestamp
+                if temp.count > 30 {
+                    self.xScrollPosition = "\(temp[29].timestamp.timeIntervalSince1970)"
+                } else {
+                    self.xScrollPosition = "\(temp.last!.timestamp.timeIntervalSince1970)"
+                }
+                self.xAxisLabels = self.calculateXaxisValues(with: self.type, values: temp)
 
                 self.candles = temp
-                self.objectWillChange.send()
-
-//                print("use \(self.xScrollPosition) \(temp[30])")
-//                print("Loaded \(self.type) \(temp.count) \(self.minDate) \(self.maxDate)  \(self.minValue) \(self.maxValue)")
+                self.xValues = temp.map({ stock in
+                    "\(stock.timestamp.timeIntervalSince1970)"
+                }).reversed()
             } else {
                 result.forEach { candle in
                     self.maxValue = max(self.maxValue, candle.max())
@@ -209,6 +214,43 @@ class CandleList: ObservableObject, SnapshotDelegate {
             }
         }
     }
+    private func visiblePointsOnScreen(type: CandleType, valuesCount: Int) -> Int {
+        switch type {
+        case .month:
+            return min(valuesCount, 30)
+        case .week:
+            return min(valuesCount, 30)
+        case .year:
+            return min(valuesCount, 30)
+        case .minute:
+            return min(valuesCount, 30)
+        case .day:
+            return min(valuesCount, 30)
+        case .hour:
+            return min(valuesCount, 30)
+        }
+    }
+    func calculateXaxisValues(with type: CandleType, values: [StockPrice]) -> [String] {
+        var visiblePages: Double = 1
+        let valuesCount = values.count
+        if #available(iOS 17.0, *) {
+            let pointsOnScreen = visiblePointsOnScreen(type: type, valuesCount: valuesCount)
+            visiblePages = Double(valuesCount)/Double(pointsOnScreen)
+        }
+        var stringValues = [String]()
+
+        // initial case, to avoid showing lines on empty screen
+        if values.count == 0 {
+            return [String]()
+        }
+
+        let maxInterval = Int(visiblePages.isNaN ? 1 : visiblePages) * 4
+        for position in stride(from: 0, to: valuesCount, by: valuesCount / maxInterval) {
+            stringValues.append("\(values[position].timestamp.timeIntervalSince1970)")
+        }
+        return stringValues
+    }
+
 
     let symbol: String
     public private(set) var currency = ""
@@ -220,7 +262,9 @@ class CandleList: ObservableObject, SnapshotDelegate {
     var snapshotProcessor: SnapshotProcessor!
 
     @Published var candles: [StockPrice]
-    @Published var xScrollPosition: Date = Date(millisecondsSince1970: 0)
+    @Published var xScrollPosition: String = ""
+    @Published var xAxisLabels = [String]()
+    var xValues = [String]()
 
     var maxValue: Double = 0
     var minValue: Double = Double.greatestFiniteMagnitude
@@ -285,7 +329,7 @@ class CandleList: ObservableObject, SnapshotDelegate {
 
     func fakeLoading() {
         loadingInProgress = true
-        self.xScrollPosition = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+        self.xScrollPosition = "\(Calendar.current.date(byAdding: .day, value: -1, to: Date())!.timeIntervalSince1970)"
         loadingInProgress = false
     }
 }
@@ -301,8 +345,9 @@ struct CandleStickChart: View {
 
     let symbol: String
     let xAxisCountPerScreen = 4
+    var xAxisValues: [String]?
 
-    init(symbol: String, 
+    init(symbol: String,
          type: CandleType = .week,
          endpoint: DXEndpoint?,
          ipfAddress: String) {
@@ -376,11 +421,12 @@ struct CandleStickChart: View {
             let price = binding.wrappedValue
 
             CandleStickMark(
-                timestamp: .value("Date", price.timestamp),
+                timestamp: .value("Date", "\(price.timestamp.timeIntervalSince1970)"),
                 open: .value("Open", price.open),
                 high: .value("High", price.high),
                 low: .value("Low", price.low),
-                close: .value("Close", price.close)
+                close: .value("Close", price.close),
+                stockPrice: price
             )
             .accessibilityLabel("""
 \(price.timestamp.formatted(date: .numeric, time: .omitted)): \(price.accessibilityTrendSummary)
@@ -389,28 +435,36 @@ struct CandleStickChart: View {
             .accessibilityHidden(false)
             .foregroundStyle( price.isClosingHigher ? .green : .red)
         }
-        .chartXScale(domain: [list.minDate, list.maxDate])
+        .chartXScale(domain: .automatic(dataType: String.self) { dates in
+            dates = list.xValues
+        })
         .chartYScale(domain: getYScale())
         .chartYAxis { AxisMarks(preset: .extended) }
         .chartXAxis {
+
             if list.loadingInProgress {
 
             } else {
-                let numberOfItems = list.candles.count
-                let xAxisValues = calculateXaxisValues(firstValue: list.minDate, with: type, valuesCount: numberOfItems)
+                let xAxisValues = self.list.xAxisLabels
                 AxisMarks(values: xAxisValues) { value in
-
-                    if let date = value.as(Date.self) {
-                        AxisValueLabel(horizontalSpacing: -14, verticalSpacing: 10) {
-                            switch type {
-                            case .year:
-                                Text(shortDateFormatter.string(from: date))
-                            case .minute:
-                                Text(hourDateFormatter.string(from: date))
-                            default:
-                                Text(dateFormatter.string(from: date))
+                    if let strDate = value.as(String.self) {
+                        if (strDate == xAxisValues.first!) {
+                            // workaround, to avoid ... inctead of latest value(now)
+                            AxisValueLabel("")
+                        } else {
+                            let date = Date(timeIntervalSince1970: TimeInterval(strDate) ?? 0)
+                            AxisValueLabel(horizontalSpacing: -14, verticalSpacing: 10) {
+                                switch type {
+                                case .year:
+                                    Text(shortDateFormatter.string(from: date))
+                                case .minute:
+                                    Text(hourDateFormatter.string(from: date))
+                                default:
+                                    Text(dateFormatter.string(from: date))
+                                }
                             }
                         }
+
                     }
                     AxisGridLine(centered: true, stroke: StrokeStyle(lineWidth: 0.5))
                     AxisTick(centered: true, length: 0, stroke: .none)
@@ -447,7 +501,7 @@ struct CandleStickChart: View {
                 GeometryReader { geo in
                     if let selectedPrice {
                         let dateInterval = Calendar.current.dateInterval(of: .minute, for: selectedPrice.timestamp)!
-                        let startPositionX1 = proxy.position(forX: dateInterval.start) ?? 0
+                        let startPositionX1 = proxy.position(forX: "\(dateInterval.start.timeIntervalSince1970)") ?? 0
 
                         let lineX = startPositionX1 + geo[proxy.plotAreaFrame].origin.x
                         let lineHeight = geo[proxy.plotAreaFrame].maxY
@@ -494,28 +548,6 @@ struct CandleStickChart: View {
         }
     }
 
-    func calculateXaxisValues(firstValue: Date, with type: CandleType, valuesCount: Int) -> [Date] {
-        var visiblePages: Double = 1
-        if #available(iOS 17.0, *) {
-            let pointsOnScreen = visiblePointsOnScreen(type: type, valuesCount: valuesCount)
-            visiblePages = Double(valuesCount)/Double(pointsOnScreen)
-        }
-        var values = [Date]()
-        let endDate = list.maxDate
-        let delta = endDate.distance(to: firstValue)
-
-        // initial case, to avoid showing lines on empty screen
-        if firstValue == endDate {
-            return [Date]()
-        }
-        let maxInterval = Int(visiblePages.isNaN ? 1 : visiblePages) * xAxisCountPerScreen
-        for index in 0...maxInterval {
-            let value = endDate.addingTimeInterval(TimeInterval(index) * delta / TimeInterval(maxInterval))
-            values.append(value)
-        }
-        return values
-    }
-
     private func visiblePointsOnScreen(type: CandleType, valuesCount: Int) -> Int {
         switch type {
         case .month:
@@ -538,32 +570,17 @@ struct CandleStickChart: View {
             return 1
         }
         let pointsOnScreen = visiblePointsOnScreen(type: type, valuesCount: valuesCount)
-        let hourDuration = 3600
-        let dayDuration = hourDuration * 24
-        switch type {
-        case .month:
-            return dayDuration * 30 * pointsOnScreen
-        case .week:
-            return dayDuration * 7 * pointsOnScreen
-        case .year:
-            return dayDuration * 365 * pointsOnScreen
-        case .minute:
-            return dayDuration / 48
-        case .day:
-            return dayDuration * 1 * pointsOnScreen
-        case .hour:
-            return hourDuration * 1 * pointsOnScreen
-        }
+        return pointsOnScreen
     }
 
     private func findElement(location: CGPoint, proxy: ChartProxy, geometry: GeometryProxy) -> StockPrice? {
         let relativeXPosition = location.x - geometry[proxy.plotAreaFrame].origin.x
-        if let date = proxy.value(atX: relativeXPosition) as Date? {
+        if let date = proxy.value(atX: relativeXPosition) as String? {
             // Find the closest date element.
             var minDistance: TimeInterval = .infinity
             var index: Int?
             for dataIndex in list.candles.indices {
-                let nthSalesDataDistance = list.candles[dataIndex].timestamp.distance(to: date)
+                let nthSalesDataDistance = list.candles[dataIndex].timestamp.distance(to: Date(timeIntervalSince1970: TimeInterval(date) ?? 0))
                 if abs(nthSalesDataDistance) < minDistance {
                     minDistance = abs(nthSalesDataDistance)
                     index = dataIndex
@@ -578,29 +595,51 @@ struct CandleStickChart: View {
 }
 
 struct CandleStickMark: ChartContent {
-    let timestamp: PlottableValue<Date>
+    let timestamp: PlottableValue<String>
     let open: PlottableValue<Decimal>
     let high: PlottableValue<Decimal>
     let low: PlottableValue<Decimal>
     let close: PlottableValue<Decimal>
+    let stockPrice: StockPrice
 
     var body: some ChartContent {
         Plot {
             // Composite ChartContent MUST be grouped into a plot for accessibility to work
-            BarMark(
-                x: timestamp,
-                yStart: open,
-                yEnd: close,
-                width: 4
-            )
-            BarMark(
-                x: timestamp,
-                yStart: high,
-                yEnd: low,
-                width: 1
-            )
+            if stockPrice.isPoint {
+                PointMark(x: timestamp,
+                          y: open).symbolSize(CandleStickMark.openCloseWidth)
+            } else {
+                BarMark(
+                    x: timestamp,
+                    yStart: open,
+                    yEnd: close,
+                    width: MarkDimension(floatLiteral: CandleStickMark.openCloseWidth)
+                )
+                BarMark(
+                    x: timestamp,
+                    yStart: high,
+                    yEnd: low,
+                    width: MarkDimension(floatLiteral: CandleStickMark.highLowWidth)
+                )
+            }
         }
     }
+
+    static let openCloseWidth: CGFloat = {
+        if #available(iOS 17, *) {
+            return 6
+        } else {
+            return 4
+        }
+    }()
+
+    static let highLowWidth: CGFloat = {
+        if #available(iOS 17, *) {
+            return 2
+        } else {
+            return 1
+        }
+    }()
 }
 
 // MARK: - Accessibility

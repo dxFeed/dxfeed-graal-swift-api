@@ -165,7 +165,7 @@ extension QuoteTableViewController: UITableViewDelegate {
         let alert = UIAlertController(title: symbol, message: "", preferredStyle: .actionSheet)
         let candlesAction = UIAlertAction(title: "Candle Chart", style: .default) { _ in
             let candleChartViewController = MyUIHostingController(rootView: CandleStickChart(symbol: symbol,
-                                                                                             type: .week,
+                                                                                             type: .day,
                                                                                              endpoint: self.endpoint,
                                                                                              ipfAddress: "https://demo:demo@tools.dxfeed.com/ipf?SYMBOL="))
             candleChartViewController.title = symbol
