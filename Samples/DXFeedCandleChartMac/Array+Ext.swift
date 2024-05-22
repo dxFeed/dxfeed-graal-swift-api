@@ -5,15 +5,14 @@
 //  If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //  
 
-import SwiftUI
+import Foundation
 
-@main
-struct DXFeedCandleChartApp: App {
-    var body: some Scene {
-        WindowGroup {
-            CandleChart(symbol: "AAPL",
-                        endpoint: nil,
-                        ipfAddress: "https://demo:demo@tools.dxfeed.com/ipf?SYMBOL=")
+extension Array {
+    mutating func safeReplace(_ newElement: Element, at index: Int) {
+        if index >= 0 && index < self.count {
+            self[index] = newElement
+        } else {
+            print("error during replace")
         }
     }
 }

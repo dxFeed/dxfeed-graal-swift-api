@@ -12,10 +12,10 @@ struct DXFeedCandleChartMacApp: App {
     let symbol = "AAPL"
     var body: some Scene {
         WindowGroup {
-            CandleStickChart(symbol: symbol,
-                             type: .week,
-                             endpoint: nil,
-                             ipfAddress: "https://demo:demo@tools.dxfeed.com/ipf?SYMBOL=")
+            CandleChart(symbol: symbol,
+                        type: .week,
+                        endpoint: nil,
+                        ipfAddress: "https://demo:demo@tools.dxfeed.com/ipf?SYMBOL=")
             .navigationTitle("CandleChart: \(symbol)")
         }
         .defaultSize(width: 800, height: 800)
