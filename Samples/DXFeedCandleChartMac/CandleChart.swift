@@ -126,16 +126,7 @@ struct CandleChart: View {
         }
     }
 
-    func getYScale() -> ClosedRange<Double> {
-        if list.candles.count == 0 {
-            return 0...0
-        }
-        if type == .minute {
-            return list.minValue...list.maxValue
-        } else {
-            return (list.minValue*0.95)...list.maxValue*1.05
-        }
-    }
+    
 
     private var chart: some View {
         Chart($list.candles) { binding in
@@ -154,7 +145,7 @@ struct CandleChart: View {
         .chartXScale(domain: .automatic(dataType: String.self) { dates in
             dates = list.xValues
         })
-        .chartYScale(domain: getYScale())
+        .chartYScale(domain: list.yScale())
         .chartYAxis { AxisMarks(preset: .extended) }
         .chartXAxis {
             if list.loadingInProgress {
@@ -325,8 +316,7 @@ struct CandlePlot: ChartContent {
     }()
 }
 
-// MARK: - Detail Info View about candle
-
+// MARK: - Info View with Prices
 struct CandleInfoView: View {
     let price: CandleModel
     let currency: String

@@ -37,8 +37,8 @@ class CandleChartModel: ObservableObject {
     @Published var xAxisLabels = [String]()
     var xValues = [String]()
 
-    var maxValue: Double = 0
-    var minValue: Double = Double.greatestFiniteMagnitude
+    private var maxValue: Double = 0
+    private var minValue: Double = Double.greatestFiniteMagnitude
     var type = CandlePickerType.year
 
     var loadingInProgress = false
@@ -120,6 +120,17 @@ class CandleChartModel: ObservableObject {
         }
         let pointsOnScreen = CandleChartModel.visiblePointsOnScreen(type: type, valuesCount: valuesCount)
         return pointsOnScreen
+    }
+
+    func yScale() -> ClosedRange<Double> {
+        if candles.count == 0 {
+            return 0...0
+        }
+        if type == .minute {
+            return minValue...maxValue
+        } else {
+            return (minValue*0.95)...maxValue*1.05
+        }
     }
 
     private static func calculateXaxisValues(with type: CandlePickerType, values: [CandleModel]) -> [String] {
