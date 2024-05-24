@@ -121,6 +121,7 @@
 		642C9A292BFDEAF20074864A /* CandlePickerType+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C9A282BFDEAF20074864A /* CandlePickerType+Ext.swift */; };
 		642C9A2A2BFDEAF20074864A /* CandlePickerType+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C9A282BFDEAF20074864A /* CandlePickerType+Ext.swift */; };
 		642C9A2B2BFDEAF20074864A /* CandlePickerType+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C9A282BFDEAF20074864A /* CandlePickerType+Ext.swift */; };
+		642C9A2D2BFE2FFE0074864A /* DXMarketDepthTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642C9A2C2BFE2FFE0074864A /* DXMarketDepthTest.swift */; };
 		642DC9282AAA21C000974F5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642DC9272AAA21C000974F5C /* AppDelegate.swift */; };
 		642DC92A2AAA21C000974F5C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642DC9292AAA21C000974F5C /* SceneDelegate.swift */; };
 		642DC92C2AAA21C000974F5C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642DC92B2AAA21C000974F5C /* ViewController.swift */; };
@@ -727,6 +728,7 @@
 		642C9A202BFDE71C0074864A /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
 		642C9A242BFDE9F00074864A /* CandleChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleChartModel.swift; sourceTree = "<group>"; };
 		642C9A282BFDEAF20074864A /* CandlePickerType+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CandlePickerType+Ext.swift"; sourceTree = "<group>"; };
+		642C9A2C2BFE2FFE0074864A /* DXMarketDepthTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXMarketDepthTest.swift; sourceTree = "<group>"; };
 		642DC9252AAA21C000974F5C /* DXIpfTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXIpfTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		642DC9272AAA21C000974F5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		642DC9292AAA21C000974F5C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -1829,6 +1831,7 @@
 				64820AAE2BB2E26100BDFD0B /* DXOtcMarketOrderTest.swift */,
 				644B95E62BC542F600E95CB7 /* DXAttachTest.swift */,
 				64048A5A2BD7E5BF00902590 /* DXOnDemandServiceTest.swift */,
+				642C9A2C2BFE2FFE0074864A /* DXMarketDepthTest.swift */,
 			);
 			path = DXFeedFrameworkTests;
 			sourceTree = "<group>";
@@ -2891,6 +2894,7 @@
 				648C72492B19CA5A00E2FEF3 /* DXExceptionTest.swift in Sources */,
 				649813C42ADD5CB2003CE3B3 /* TestEndpoointStateListener.swift in Sources */,
 				641C64B42B347C430023CFAD /* DXObservableSubscriptionTest.swift in Sources */,
+				642C9A2D2BFE2FFE0074864A /* DXMarketDepthTest.swift in Sources */,
 				64ACBCEC2A29FE2300032C53 /* XCTestCase+Utils.swift in Sources */,
 				6433B1322BCFC01F004EFED7 /* DXLastEventsSubscribedTest.swift in Sources */,
 				6423E4692B457000006B208D /* DXTimeSeriesSubscriptionTest.swift in Sources */,

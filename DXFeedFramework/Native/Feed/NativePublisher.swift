@@ -41,7 +41,7 @@ class NativePublisher {
             let thread = currentThread()
             _ = try ErrorCheck.nativeCall(thread, dxfg_DXPublisher_publishEvents(thread,
                                                                                  publisher,
-                                                                                 listPointer))
+                                                                                 listPointer))        
         }
     }
 

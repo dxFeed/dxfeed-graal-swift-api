@@ -11,4 +11,10 @@ extension XCTestCase {
         _ = XCTWaiter.wait(for: [expectation(description: "\(seconds) seconds waiting")],
                            timeout: TimeInterval(seconds))
     }
+
+    func wait(millis: Float) {
+        let seconds = millis / 1000
+        _ = XCTWaiter.wait(for: [expectation(description: "\(millis) millis waiting")],
+                           timeout: TimeInterval(seconds))
+    }
 }

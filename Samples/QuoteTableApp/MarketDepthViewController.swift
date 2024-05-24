@@ -83,9 +83,11 @@ extension MarketDepthViewController: MarketDepthListener {
     func modelChanged(changes: DXFeedFramework.OrderBook) {
         var maxValue: Double = 0
         changes.buyOrders.forEach { order in
+            print(order.eventSource.name)
             maxValue = max(maxValue, order.size)
         }
         changes.sellOrders.forEach { order in
+            print(order.eventSource.name)
             maxValue = max(maxValue, order.size)
         }
 

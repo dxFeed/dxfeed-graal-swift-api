@@ -10,7 +10,7 @@ import Foundation
 public class OrderBook {
     public let buyOrders: [Order]
     public let sellOrders: [Order]
-
+    public let name = "ASDas"
     init(buyOrders: [Order], sellOrders: [Order]) {
         self.buyOrders = buyOrders
         self.sellOrders = sellOrders

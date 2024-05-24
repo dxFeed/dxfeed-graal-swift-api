@@ -31,10 +31,14 @@ final class PublisherTest: XCTestCase {
                 .build()
             try endpoint?.connect(":7400")
 
-            let testQuote = Quote("AAPL")
-            testQuote.bidSize = 100
-            testQuote.askPrice = 666
-            try? testQuote.setSequence(10)
+            let order = Order("AAPL")
+            order.index = 0
+
+            order.orderSide = .buy
+            order.eventSource = OrderSource.ntv!
+            order.eventFlags = 0
+            order.size = 100
+            order.price = 666
             let feedEndpoint = try DXEndpoint
                 .builder()
                 .withRole(.feed)
@@ -49,7 +53,7 @@ final class PublisherTest: XCTestCase {
                         DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.3) {
                             print("\(pthread_mach_thread_np(pthread_self()))")
                             print(Thread.current.threadName)
-                            try? publisher?.publish(events: [testQuote])
+                            try? publisher?.publish(events: [order])
                         }
                     }
                 }
@@ -57,20 +61,25 @@ final class PublisherTest: XCTestCase {
             }
 
             feedEndpoint.add(listener: stateListener!)
-            let subscription = try feedEndpoint.getFeed()?.createSubscription(Quote.self)
+            let subscription = try feedEndpoint.getFeed()?.createSubscription(Order.self)
             try feedEndpoint.connect("localhost:7400")
             let receivedEventExp = expectation(description: "Received events \(EventCode.quote)")
             receivedEventExp.assertForOverFulfill = false
 
             let listener = AnonymousClass { anonymCl in
-                anonymCl.callback = { _ in
+                anonymCl.callback = { events in
+                    events.forEach { event in
+                        print(event.toString())
+                    }
                     receivedEventExp.fulfill()
                 }
                 return anonymCl
             }
 
             try subscription?.add(listener: listener)
-            try subscription?.addSymbols(["AAPL"])
+            let symbol = IndexedEventSubscriptionSymbol(symbol: "AAPL", source: OrderSource.ntv!)
+
+            try subscription?.addSymbols([symbol])
             wait(for: [connectedExpectation], timeout: 1)
             wait(for: [receivedEventExp], timeout: 20)
         } catch {

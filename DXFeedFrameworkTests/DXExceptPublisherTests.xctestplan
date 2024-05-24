@@ -24,6 +24,7 @@
         "DXConnectionStateTests",
         "DXConnectionTest",
         "DXExceptionTest",
+        "DXMarketDepthTest",
         "DXObservableSubscriptionTest",
         "DXSnapshotProcessorTest",
         "EndpointTest\/testGetInstance()",
