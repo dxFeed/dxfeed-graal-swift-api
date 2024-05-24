@@ -7,6 +7,7 @@
 import XCTest
 @testable import DXFeedFramework
 
+// swiftlint:disable function_body_length
 final class PublisherTest: XCTestCase {
 
     override func setUpWithError() throws {
@@ -100,3 +101,4 @@ final class PublisherTest: XCTestCase {
         wait(seconds: 2)
     }
 }
+// swiftlint:enable function_body_length

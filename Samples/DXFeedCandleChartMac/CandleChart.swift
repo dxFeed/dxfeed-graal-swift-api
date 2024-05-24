@@ -59,7 +59,6 @@ struct CandleModel: Identifiable {
 
 }
 
-
 struct CandleChart: View {
     @ObservedObject var list: CandleChartModel
     @State private var selectedPrice: CandleModel?
@@ -125,8 +124,6 @@ struct CandleChart: View {
             .scrollContentBackground(.hidden)
         }
     }
-
-    
 
     private var chart: some View {
         Chart($list.candles) { binding in

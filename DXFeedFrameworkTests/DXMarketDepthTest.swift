@@ -8,8 +8,10 @@
 import XCTest
 @testable import DXFeedFramework
 
+// swiftlint:disable type_body_length
+// swiftlint:disable function_body_length
 final class DXMarketDepthTest: XCTestCase, MarketDepthListener {
-    
+
     func modelChanged(changes: DXFeedFramework.OrderBook) {
         if orderBook.buyOrders != changes.buyOrders {
             changesBuy += 1
@@ -24,6 +26,8 @@ final class DXMarketDepthTest: XCTestCase, MarketDepthListener {
 
     let symbol = "INDEX-TEST"
     let source = OrderSource.defaultOrderSource!
+    let bookSize = 100
+
     var endpoint: DXEndpoint!
     var feed: DXFeed!
     var publisher: DXPublisher!
@@ -37,7 +41,12 @@ final class DXMarketDepthTest: XCTestCase, MarketDepthListener {
         endpoint = try DXEndpoint.create(.localHub)
         feed = endpoint.getFeed()
         publisher = endpoint.getPublisher()
-        model = try MarketDepthModel(symbol: symbol, sources: [source], aggregationPeriodMillis: 0, mode: .multiple, feed: feed, listener: self)
+        model = try MarketDepthModel(symbol: symbol,
+                                     sources: [source],
+                                     aggregationPeriodMillis: 0,
+                                     mode: .multiple,
+                                     feed: feed,
+                                     listener: self)
 
     }
 
@@ -55,21 +64,31 @@ final class DXMarketDepthTest: XCTestCase, MarketDepthListener {
         XCTAssert(same(order1: order2, order2: orderBook.buyOrders[1]))
         XCTAssert(same(order1: order3, order2: orderBook.buyOrders[2]))
 
-        try publisher.publish(events: [try createOrder(index: 2, side: .buy, price: 2, size: Double.nan, eventFlags: 0)])
+        try publisher.publish(events: [try createOrder(index: 2,
+                                                       side: .buy,
+                                                       price: 2,
+                                                       size: Double.nan, eventFlags: 0)])
         expectation1 = expectation(description: "Events received")
         wait(for: [expectation1!], timeout: 1.0)
         XCTAssertEqual(orderBook.buyOrders.count, 2)
         XCTAssertEqual(orderBook.sellOrders.count, 0)
         XCTAssert(same(order1: order2, order2: orderBook.buyOrders[0]))
 
-        try publisher.publish(events: [try createOrder(index: 1, side: .buy, price: 2, size: Double.nan, eventFlags: Order.removeEvent)])
+        try publisher.publish(events: [try createOrder(index: 1,
+                                                       side: .buy,
+                                                       price: 2,
+                                                       size: Double.nan, eventFlags: Order.removeEvent)])
         expectation1 = expectation(description: "Events received")
         wait(for: [expectation1!], timeout: 1.0)
         XCTAssertEqual(orderBook.buyOrders.count, 1)
         XCTAssertEqual(orderBook.sellOrders.count, 0)
         XCTAssert(same(order1: order3, order2: orderBook.buyOrders[0]))
 
-        try publisher.publish(events: [try createOrder(index: 0, side: .buy, price: 1, size: 1, eventFlags: Order.removeEvent | Order.snapshotEnd)])
+        try publisher.publish(events: [try createOrder(index: 0,
+                                                       side: .buy,
+                                                       price: 1,
+                                                       size: 1,
+                                                       eventFlags: Order.removeEvent | Order.snapshotEnd)])
         expectation1 = expectation(description: "Events received")
         wait(for: [expectation1!], timeout: 1.0)
         XCTAssertEqual(orderBook.buyOrders.count, 0)
@@ -77,7 +96,7 @@ final class DXMarketDepthTest: XCTestCase, MarketDepthListener {
 
         XCTAssertEqual(model.buyOrders.toList().count, 0)
     }
-    
+
     func testOrderChangeSide() throws {
         let order1 = try createOrder(index: 0, side: .buy, price: 1, size: 1, eventFlags: 0)
         try publisher.publish(events: [order1])
@@ -126,7 +145,7 @@ final class DXMarketDepthTest: XCTestCase, MarketDepthListener {
         XCTAssert(same(order1: sOrder2, order2: orderBook.sellOrders[0]))
         XCTAssert(same(order1: sOrder1, order2: orderBook.sellOrders[1]))
     }
-    
+
     func testMultipleUpdatesWithMixedSides() throws {
         let buyLowPrice = try createOrder(index: 0, side: .buy, price: 100, size: 1, eventFlags: 0)
         let buyHighPrice = try createOrder(index: 1, side: .buy, price: 200, size: 1, eventFlags: 0)
@@ -154,52 +173,84 @@ final class DXMarketDepthTest: XCTestCase, MarketDepthListener {
 
     func testEnforceEntryLimit() throws {
         model.setDepthLimit(3)
-        
+
         try publisher.publish(events: [try createOrder(index: 0, side: .buy, price: 5, size: 1, eventFlags: 0),
                                        try createOrder(index: 1, side: .buy, price: 4, size: 1, eventFlags: 0),
                                        try createOrder(index: 2, side: .buy, price: 3, size: 1, eventFlags: 0)])
-        
+
         expectation1 = expectation(description: "Events received0")
         expectation1?.assertForOverFulfill = false
         wait(for: [expectation1!], timeout: 1.0)
-        
-        try publisher.publish(events: [try createOrder(index: 3, side: .buy, price: 2, size: 1, eventFlags: 0)]) // outside limit
+
+        try publisher.publish(events: [try createOrder(index: 3,
+                                                       side: .buy,
+                                                       price: 2,
+                                                       size: 1,
+                                                       eventFlags: 0)]) // outside limit
         expectation1 = expectation(description: "Events received1")
         expectation1?.isInverted = true
         wait(for: [expectation1!], timeout: 0.1)
 
-        try publisher.publish(events: [try createOrder(index: 4, side: .buy, price: 1, size: 1, eventFlags: 0)]) // outside limit
+        try publisher.publish(events: [try createOrder(index: 4,
+                                                       side: .buy,
+                                                       price: 1,
+                                                       size: 1,
+                                                       eventFlags: 0)]) // outside limit
         expectation1 = expectation(description: "Events received2")
         expectation1?.isInverted = true
         wait(for: [expectation1!], timeout: 0.1)
 
-        try publisher.publish(events: [try createOrder(index: 4, side: .buy, price: 1, size: 2, eventFlags: 0)]) // modify outside limit
+        try publisher.publish(events: [try createOrder(index: 4,
+                                                       side: .buy,
+                                                       price: 1,
+                                                       size: 2,
+                                                       eventFlags: 0)]) // modify outside limit
         expectation1 = expectation(description: "Events received3")
         expectation1?.isInverted = true
         wait(for: [expectation1!], timeout: 0.1)
 
-        try publisher.publish(events: [try createOrder(index: 3, side: .buy, price: 2, size: .nan, eventFlags: 0)]) // remove outside limit
+        try publisher.publish(events: [try createOrder(index: 3,
+                                                       side: .buy,
+                                                       price: 2,
+                                                       size: .nan,
+                                                       eventFlags: 0)]) // remove outside limit
         expectation1 = expectation(description: "Events received4")
         expectation1?.isInverted = true
         wait(for: [expectation1!], timeout: 0.1)
 
-        try publisher.publish(events: [try createOrder(index: 2, side: .buy, price: 3, size: 2, eventFlags: 0)]) // update in limit
+        try publisher.publish(events: [try createOrder(index: 2,
+                                                       side: .buy,
+                                                       price: 3,
+                                                       size: 2,
+                                                       eventFlags: 0)]) // update in limit
         expectation1 = expectation(description: "Events received5")
         wait(for: [expectation1!], timeout: 1.0)
 
-        try publisher.publish(events: [try createOrder(index: 1, side: .buy, price: 3, size: .nan, eventFlags: 0)]) // remove in limit
+        try publisher.publish(events: [try createOrder(index: 1,
+                                                       side: .buy,
+                                                       price: 3,
+                                                       size: .nan,
+                                                       eventFlags: 0)]) // remove in limit
         expectation1 = expectation(description: "Events received6")
         wait(for: [expectation1!], timeout: 1.0)
 
         model.setDepthLimit(0)
         expectation1 = nil
 
-        try publisher.publish(events: [try createOrder(index: 4, side: .buy, price: 1, size: 3, eventFlags: 0)])
+        try publisher.publish(events: [try createOrder(index: 4,
+                                                       side: .buy,
+                                                       price: 1,
+                                                       size: 3,
+                                                       eventFlags: 0)])
         expectation1 = expectation(description: "Events received7")
         wait(for: [expectation1!], timeout: 1.0)
         XCTAssertEqual(orderBook.buyOrders.count, 3)
-       
-        try publisher.publish(events: [try createOrder(index: 8, side: .sell, price: 1, size: 3, eventFlags: 0)])
+
+        try publisher.publish(events: [try createOrder(index: 8,
+                                                       side: .sell,
+                                                       price: 1,
+                                                       size: 3,
+                                                       eventFlags: 0)])
         expectation1 = expectation(description: "Events received8")
         expectation1?.assertForOverFulfill = false
         wait(for: [expectation1!], timeout: 1.0)
@@ -215,18 +266,21 @@ final class DXMarketDepthTest: XCTestCase, MarketDepthListener {
         expectation1?.assertForOverFulfill = false
         wait(for: [expectation1!], timeout: 1.0)
     }
-    
+
     func testStressBuySellOrders() throws {
-        let bookSize = 100
         var book = [Order?](repeatElement(nil,
                                           count: bookSize))
         var expectedBuy = 0
         var expectedSell = 0
         for position in 0..<10000 {
-            var index = Int.random(in: 0..<bookSize)
+            let index = Int.random(in: 0..<bookSize)
             let size = Int.random(in: 1..<10)
             // Note: every 1/10 order will have size == 0 and will "remove"
-            let order = try createOrder(index: Int64(index), side: Bool.random() ? .buy : .sell, price: Double(size * 10), size: Double(size), eventFlags: 0)
+            let order = try createOrder(index: Int64(index),
+                                        side: Bool.random() ? .buy : .sell,
+                                        price: Double(size * 10),
+                                        size: Double(size),
+                                        eventFlags: 0)
             order.scope = .order
             let old = book[Int(index)]
             book[index] = order
@@ -236,45 +290,60 @@ final class DXMarketDepthTest: XCTestCase, MarketDepthListener {
             expectedSell += deltaSell
             try publisher.publish(events: [order])
         }
-        wait(for: [expectation(for: NSPredicate(format: "buyOrdersSize = %d", expectedBuy), evaluatedWith: self, handler: nil),
-                   expectation(for: NSPredicate(format: "sellOrdersSize = %d", expectedSell), evaluatedWith: self, handler: nil)],
+        wait(for: [expectation(for: NSPredicate(format: "buyOrdersSize = %d", expectedBuy),
+                               evaluatedWith: self,
+                               handler: nil),
+                   expectation(for: NSPredicate(format: "sellOrdersSize = %d", expectedSell),
+                               evaluatedWith: self,
+                               handler: nil)],
              timeout: 5)
         changesBuy = 0
         changesSell = 0
         // now send "empty snapshot"
-        let order = try createOrder(index: 0, side: .undefined, price: 0, size: 0, eventFlags: Order.removeEvent | Order.snapshotEnd | Order.snapshotBegin)
+        let order = try createOrder(index: 0,
+                                    side: .undefined,
+                                    price: 0,
+                                    size: 0,
+                                    eventFlags: Order.removeEvent | Order.snapshotEnd | Order.snapshotBegin)
         order.scope = .order
         try publisher.publish(events: [order])
-        wait(for: [expectation(for: NSPredicate(format: "buyOrdersSize = %d", 0), evaluatedWith: self, handler: nil),
-                   expectation(for: NSPredicate(format: "sellOrdersSize = %d", 0), evaluatedWith: self, handler: nil)],
+        wait(for: [expectation(for: NSPredicate(format: "buyOrdersSize = %d", 0),
+                               evaluatedWith: self,
+                               handler: nil),
+                   expectation(for: NSPredicate(format: "sellOrdersSize = %d", 0),
+                               evaluatedWith: self,
+                               handler: nil)],
              timeout: 5)
         XCTAssertEqual(expectedBuy > 0 ? 1 : 0, changesBuy)
         XCTAssertEqual(expectedSell > 0 ? 1 : 0, changesSell)
     }
 
     func testStressSources() throws {
-        let sources = [OrderSource.ntv!, 
-                       OrderSource.NTV!,
-                       OrderSource.ICE!,
-                       OrderSource.ISE!,
-        ]
-        model = try MarketDepthModel(symbol: symbol, sources: sources, aggregationPeriodMillis: 0, mode: .multiple, feed: feed, listener: self)
+        let sources = Array(try OrderSource.publishable(eventType: Order.self).prefix(12))
+        model = try MarketDepthModel(symbol: symbol,
+                                     sources: sources,
+                                     aggregationPeriodMillis: 0,
+                                     mode: .multiple,
+                                     feed: feed,
+                                     listener: self)
 
-        let bookSize = 100
         var expectedBuy = 0
         var expectedSell = 0
 
-
-        var books = [Int: Array<Order?>]()
+        var books = [Int: [Order?]]()
         sources.forEach { source in
             books[source.identifier] = [Order?](repeatElement(nil,
                                                               count: bookSize))
         }
-        for position in 0..<10000 {
-            var index = Int.random(in: 0..<bookSize)
+        for _ in 0..<10000 {
+            let index = Int.random(in: 0..<bookSize)
             let size = Int.random(in: 1..<10)
             // Note: every 1/10 order will have size == 0 and will "remove"
-            let order = try createOrder(index: Int64(index), side: Bool.random() ? .buy : .sell, price: Double(size * 10), size: Double(size), eventFlags: 0)
+            let order = try createOrder(index: Int64(index),
+                                        side: Bool.random() ? .buy : .sell,
+                                        price: Double(size * 10),
+                                        size: Double(size),
+                                        eventFlags: 0)
             order.scope = .order
             let source = sources[Int.random(in: 0..<sources.count)]
             order.eventSource = source
@@ -288,30 +357,42 @@ final class DXMarketDepthTest: XCTestCase, MarketDepthListener {
             expectedSell += deltaSell
             try publisher.publish(events: [order])
         }
-        wait(for: [expectation(for: NSPredicate(format: "buyOrdersSize = %d", expectedBuy), evaluatedWith: self, handler: nil),
-                   expectation(for: NSPredicate(format: "sellOrdersSize = %d", expectedSell), evaluatedWith: self, handler: nil)],
+        wait(for: [expectation(for: NSPredicate(format: "buyOrdersSize = %d", expectedBuy),
+                               evaluatedWith: self,
+                               handler: nil),
+                   expectation(for: NSPredicate(format: "sellOrdersSize = %d", expectedSell),
+                               evaluatedWith: self,
+                               handler: nil)],
              timeout: 5)
 
         changesBuy = 0
         changesSell = 0
         // Now remove orders from all books in random order
-        var allOrders = books.flatMap { key, value in
+        let allOrders = books.flatMap { _, value in
             value.compactMap { order in
                 order
             }
         }.compactMap { order in
-            let newOrder = try? createOrder(index: order.index, side: .undefined, price: 0, size: 0, eventFlags: Order.removeEvent)
+            let newOrder = try? createOrder(index: order.index,
+                                            side: .undefined,
+                                            price: 0,
+                                            size: 0,
+                                            eventFlags: Order.removeEvent)
             newOrder?.scope = .order
             return newOrder
         }
         try publisher.publish(events: allOrders)
-        wait(for: [expectation(for: NSPredicate(format: "buyOrdersSize = %d", 0), evaluatedWith: self, handler: nil),
-                   expectation(for: NSPredicate(format: "sellOrdersSize = %d", 0), evaluatedWith: self, handler: nil)],
+        wait(for: [expectation(for: NSPredicate(format: "buyOrdersSize = %d", 0),
+                               evaluatedWith: self,
+                               handler: nil),
+                   expectation(for: NSPredicate(format: "sellOrdersSize = %d", 0),
+                               evaluatedWith: self,
+                               handler: nil)],
              timeout: 5)
         XCTAssertEqual(expectedBuy > 0 ? sources.count : 0, changesBuy)
         XCTAssertEqual(expectedSell > 0 ? sources.count : 0, changesSell)
-    }
 
+    }
 
     func oneIfBuy(_ order: Order?) -> Int {
         guard let order = order else {
@@ -365,3 +446,5 @@ extension DXMarketDepthTest {
         }
     }
 }
+// swiftlint:enable type_body_length
+// swiftlint:enable function_body_length
