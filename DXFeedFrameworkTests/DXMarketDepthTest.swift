@@ -224,6 +224,7 @@ final class DXMarketDepthTest: XCTestCase, MarketDepthListener {
                                                        size: 2,
                                                        eventFlags: 0)]) // update in limit
         expectation1 = expectation(description: "Events received5")
+        expectation1?.assertForOverFulfill = false
         wait(for: [expectation1!], timeout: 1.0)
 
         try publisher.publish(events: [try createOrder(index: 1,

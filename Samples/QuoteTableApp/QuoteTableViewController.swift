@@ -164,10 +164,11 @@ extension QuoteTableViewController: UITableViewDelegate {
 
         let alert = UIAlertController(title: symbol, message: "", preferredStyle: .actionSheet)
         let candlesAction = UIAlertAction(title: "Candle Chart", style: .default) { _ in
+            let ipfAddress = "https://demo:demo@tools.dxfeed.com/ipf?SYMBOL="
             let candleChartViewController = MyUIHostingController(rootView: CandleChart(symbol: symbol,
-                                                                                             type: .day,
-                                                                                             endpoint: self.endpoint,
-                                                                                             ipfAddress: "https://demo:demo@tools.dxfeed.com/ipf?SYMBOL="))
+                                                                                        type: .day,
+                                                                                        endpoint: self.endpoint,
+                                                                                        ipfAddress: ipfAddress))
             candleChartViewController.title = symbol
             self.navigationController?.pushViewController(candleChartViewController, animated: true)
         }
