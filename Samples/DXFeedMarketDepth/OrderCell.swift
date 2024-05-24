@@ -70,8 +70,8 @@ class OrderCell: UITableViewCell {
         sizeSellLabel.text = formatter.string(from: NSNumber(value: size))
         sizeSellLabel.textColor = isBuy ? .green : .red
 
-        sizeBuyContentView.backgroundColor = isBuy ?OrderCell.greenBarColor : OrderCell.redBarColor
-        sizeSellContentView.backgroundColor = isBuy ?OrderCell.greenBarColor : OrderCell.redBarColor
+        sizeBuyContentView.backgroundColor = isBuy ? OrderCell.greenBarColor : OrderCell.redBarColor
+        sizeSellContentView.backgroundColor = isBuy ? OrderCell.greenBarColor : OrderCell.redBarColor
 
         var multiplier = min(size/maxSize, 1)
         if !multiplier.isFinite || multiplier.isInfinite {

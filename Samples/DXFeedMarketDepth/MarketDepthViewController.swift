@@ -18,7 +18,7 @@ class MarketDepthViewController: UIViewController {
     var numberOfRows = 0
     private var endpoint: DXEndpoint!
     private var feed: DXFeed!
-    var symbol: String!
+    var symbol = "ETH/USD:GDAX"
 
     var model: MarketDepthModel?
     var orderBook = OrderBook()
@@ -83,11 +83,9 @@ extension MarketDepthViewController: MarketDepthListener {
     func modelChanged(changes: DXFeedFramework.OrderBook) {
         var maxValue: Double = 0
         changes.buyOrders.forEach { order in
-            print(order.eventSource.name)
             maxValue = max(maxValue, order.size)
         }
         changes.sellOrders.forEach { order in
-            print(order.eventSource.name)
             maxValue = max(maxValue, order.size)
         }
 

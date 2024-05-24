@@ -174,7 +174,7 @@ extension QuoteTableViewController: UITableViewDelegate {
         alert.addAction(candlesAction)
 
         let marketDepthAction = UIAlertAction(title: "Depth Of Market", style: .default) { _ in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "MainMarketDepth", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "MarketDepthViewController")
             if let marketDepthViewController = viewController as? MarketDepthViewController {
                 marketDepthViewController.symbol = symbol
