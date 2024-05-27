@@ -92,16 +92,18 @@ struct CandleChart: View {
         GeometryReader { reader in
             List {
                 Section {
-                    chart.frame(height: max(reader.size.height - 150, 300))
-                        .onAppear {
+                    VStack(alignment: .leading) {
+                        chart.onAppear {
                             // just workaround for swiftuicharts + scroll to
                             self.list.fakeLoading()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                 self.selectedPrice = nil
                                 self.list.updateDate(type: self.type)
                             }
-
                         }
+                        Text("NOTICE: only the last \(CandleChartModel.maxCout) candles are displayed")
+                            .font(Font.system(size: 10))
+                    }.frame(height: max(reader.size.height - 150, 300))
                 }
                 .listRowBackground(Color.sectionBackground)
                 Section("Chart parameters") {
@@ -156,7 +158,15 @@ struct CandleChart: View {
                             case .year:
                                 Text(shortDateFormatter.string(from: date))
                             case .minute:
-                                Text(hourDateFormatter.string(from: date))
+                                VStack {
+                                    Text(dateFormatter.string(from: date))
+                                    Text(hourDateFormatter.string(from: date))
+                                }
+                            case .hour:
+                                VStack {
+                                    Text(dateFormatter.string(from: date))
+                                    Text(hourDateFormatter.string(from: date))
+                                }
                             default:
                                 Text(dateFormatter.string(from: date))
                             }
@@ -236,7 +246,11 @@ struct CandleChart: View {
                 return AnyView(view
                     .chartScrollableAxes(.horizontal)
                     .chartXVisibleDomain(length: list.visibleDomains())
-                    .chartScrollPosition(x: $list.xScrollPosition))
+                    .chartScrollPosition(x: $list.xScrollPosition)
+                    .onChange(of: list.xScrollPosition) {
+                        selectedPrice = nil
+                    }
+                )
             }
 #endif
             return view

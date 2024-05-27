@@ -12,6 +12,7 @@ struct DXFeedCandleChartApp: App {
     var body: some Scene {
         WindowGroup {
             CandleChart(symbol: "AAPL",
+                        type: .minute,
                         endpoint: nil,
                         ipfAddress: "https://demo:demo@tools.dxfeed.com/ipf?SYMBOL=")
         }
