@@ -274,6 +274,8 @@
 		6486B9792AD04F4000D8D5FA /* OrderBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9782AD04F4000D8D5FA /* OrderBase.swift */; };
 		6486B97B2AD0517A00D8D5FA /* OrderAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B97A2AD0517A00D8D5FA /* OrderAction.swift */; };
 		6486B97D2AD057F200D8D5FA /* OrderSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B97C2AD057F200D8D5FA /* OrderSource.swift */; };
+		648BC9502C06169A0065C2F7 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
+		648BC9512C06169A0065C2F7 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		648BD5692AC450D6004A3A95 /* ConnectTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD5682AC450D6004A3A95 /* ConnectTool.swift */; };
 		648BD56B2AC4576F004A3A95 /* HelpTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56A2AC4576F004A3A95 /* HelpTool.swift */; };
 		648BD56D2AC56A04004A3A95 /* SubscriptionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */; };
@@ -353,7 +355,6 @@
 		64B6273B2A375C0F00196D07 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6272F2A375C0F00196D07 /* PaddingLabel.swift */; };
 		64B6273E2A375C0F00196D07 /* QuoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B627322A375C0F00196D07 /* QuoteTableViewController.swift */; };
 		64B627402A375C0F00196D07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B627342A375C0F00196D07 /* SceneDelegate.swift */; };
-		64B627442A375CB700196D07 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		64B627742A3761EC00196D07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B627702A3761EC00196D07 /* LaunchScreen.storyboard */; };
 		64B627752A3761EC00196D07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B627722A3761EC00196D07 /* Main.storyboard */; };
 		64B627772A37620D00196D07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64B627762A37620D00196D07 /* Assets.xcassets */; };
@@ -616,6 +617,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				645BE84F2AC3170F0028243D /* DXFeedFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		648BC9522C06169B0065C2F7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				648BC9512C06169A0065C2F7 /* DXFeedFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1089,7 +1101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64B627442A375CB700196D07 /* DXFeedFramework.framework in Frameworks */,
+				648BC9502C06169A0065C2F7 /* DXFeedFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2190,6 +2202,7 @@
 				64B627112A375BBA00196D07 /* Sources */,
 				64B627122A375BBA00196D07 /* Frameworks */,
 				64B627132A375BBA00196D07 /* Resources */,
+				648BC9522C06169B0065C2F7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
