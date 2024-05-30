@@ -201,7 +201,20 @@ extension CandleChartModel: SnapshotDelegate {
                         } else {
                             // insert
                             self.candles.insert(newPrice, at: 0)
+                            let temp = self.candles
+                            self.xAxisLabels = CandleChartModel.calculateXaxisValues(with: self.type, values: temp)
+                            let currentScroll = self.xScrollPosition
+
+                            let xValues = Array(temp.enumerated().map({ index, stock in
+                                if stock.stringtimeStamp == currentScroll {
+                                    self.xScrollPosition = temp[index - 1].stringtimeStamp
+                                }
+                                return stock.stringtimeStamp
+                            }).reversed())
+                            self.xValues = xValues
                         }
+
+
                     }
                 }
             }
