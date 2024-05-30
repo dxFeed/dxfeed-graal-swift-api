@@ -191,6 +191,8 @@ extension CandleChartModel: SnapshotDelegate {
                     }) {
                         self.candles.safeReplace(newPrice, at: index)
                     }
+                    //add remove                    
+                    //add insert
                 }
             }
         }
