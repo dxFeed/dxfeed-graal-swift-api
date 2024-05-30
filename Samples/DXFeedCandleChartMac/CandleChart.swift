@@ -32,8 +32,9 @@ struct CandleModel: Identifiable {
 
     let isPoint: Bool
     let stringtimeStamp: String
+    let index: Long
 
-    init(currency: String, timestamp: Date, open: Decimal, close: Decimal, high: Decimal, low: Decimal) {
+    init(currency: String, timestamp: Date, open: Decimal, close: Decimal, high: Decimal, low: Decimal, index: Long) {
         self.currency = currency
         self.timestamp = timestamp
         self.open = open
@@ -42,6 +43,7 @@ struct CandleModel: Identifiable {
         self.high = high
         self.low = low
         self.stringtimeStamp = "\(timestamp.timeIntervalSince1970)"
+        self.index = index
     }
 
     init(candle: Candle, currency: String) {
@@ -50,7 +52,8 @@ struct CandleModel: Identifiable {
                   open: Decimal(candle.open),
                   close: Decimal(candle.close),
                   high: Decimal(candle.high),
-                  low: Decimal(candle.low))
+                  low: Decimal(candle.low),
+                  index: candle.index)
     }
 
     var isClosingHigher: Bool {

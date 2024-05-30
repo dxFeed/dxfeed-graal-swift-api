@@ -183,16 +183,26 @@ extension CandleChartModel: SnapshotDelegate {
                 self.xScrollPosition = temp[pointsOnScreen - 1].stringtimeStamp
             } else {
                 result.forEach { candle in
-                    self.maxValue = max(self.maxValue, candle.max())
-                    self.minValue = min(self.minValue, candle.min())
                     let newPrice = CandleModel(candle: candle, currency: self.currency)
-                    if let index = self.candles.firstIndex(where: { price in
-                        price.timestamp == newPrice.timestamp
-                    }) {
-                        self.candles.safeReplace(newPrice, at: index)
+                    if candle.isRemove() {
+                        // remove
+                        self.candles.removeAll { price in
+                            price.index == newPrice.index
+                        }
+                    } else {
+                        self.maxValue = max(self.maxValue, candle.max())
+                        self.minValue = min(self.minValue, candle.min())
+
+                        if let index = self.candles.firstIndex(where: { price in
+                            price.timestamp == newPrice.timestamp
+                        }) {
+                            // update
+                            self.candles.safeReplace(newPrice, at: index)
+                        } else {
+                            // insert
+                            self.candles.insert(newPrice, at: 0)
+                        }
                     }
-                    //add remove                    
-                    //add insert
                 }
             }
         }
