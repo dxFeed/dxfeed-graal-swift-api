@@ -213,8 +213,6 @@ extension CandleChartModel: SnapshotDelegate {
                             }).reversed())
                             self.xValues = xValues
                         }
-
-
                     }
                 }
             }
