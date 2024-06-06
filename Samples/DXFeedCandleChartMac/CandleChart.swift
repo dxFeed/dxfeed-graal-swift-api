@@ -104,7 +104,7 @@ struct CandleChart: View {
                                 self.list.updateDate(type: self.type)
                             }
                         }
-                        Text("NOTICE: only the last \(CandleChartModel.maxCout) candles are displayed")
+                        Text("NOTICE: A maximum of \(CandleChartModel.maxCout) candles is displayed.")
                             .font(Font.system(size: 10))
                     }.frame(height: max(reader.size.height - 150, 300))
                 }
