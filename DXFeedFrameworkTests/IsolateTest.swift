@@ -8,15 +8,6 @@ import XCTest
 @testable import DXFeedFramework
 
 final class IsolateTest: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testCleanup() throws {
         // just use it to avoid warnings
         try XCTSkipIf(true, "Just for manual running")
