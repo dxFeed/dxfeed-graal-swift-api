@@ -10,6 +10,6 @@ import Foundation
 class NativeDay: NativeBox<dxfg_day_t> {
     deinit {
         let thread = currentThread()
-        _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(native.pointee.handler)))
+        _ = try? ErrorCheck.nativeCall(thread, dxfg_Day_release(thread, native))
     }
 }
