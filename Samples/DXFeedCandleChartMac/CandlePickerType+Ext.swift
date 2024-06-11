@@ -29,13 +29,13 @@ extension CandlePickerType {
     func calcualteStartDate() -> Date {
         switch self {
         case .minute:
-            return Calendar.current.date(byAdding: .day, value: -30, to: Date())!
+            return Calendar.current.date(byAdding: .day, value: -7, to: Date())!
         case .hour:
-            return Calendar.current.date(byAdding: .day, value: -30, to: Date())!
+            return Calendar.current.date(byAdding: .day, value: -7, to: Date())!
         case .day:
             return Calendar.current.date(byAdding: .year, value: -1, to: Date())!
         case .week:
-            return Calendar.current.date(byAdding: .year, value: -5, to: Date())!
+            return Calendar.current.date(byAdding: .year, value: -4, to: Date())!
         case .month:
             return Calendar.current.date(byAdding: .year, value: -10, to: Date())!
         case .year:
