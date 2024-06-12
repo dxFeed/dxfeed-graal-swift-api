@@ -274,7 +274,7 @@ extension InstrumentProfileField {
             guard let date = dateFormatter.date(from: value) else {
                 return 0
             }
-            parsedDates[value] = Entry(text: value, binary: date.millisecondsSince1970() / TimeUtil.day)
+            parsedDates[value] = Entry(text: value, binary: date.millisecondsSince1970 / TimeUtil.day)
             return parsedDates[value]?.binary ?? 0
         }
     }

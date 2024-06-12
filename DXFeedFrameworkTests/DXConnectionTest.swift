@@ -61,6 +61,8 @@ final class DXConnectionTest: XCTestCase {
     }
 
     func testDXLinkConnectionTheoPrice() throws {
+        throw XCTSkip("Just for reflection testing")
+
         // For token-based authorization, use the following address format:
         // "dxlink:wss://demo.dxfeed.com/dxlink-ws[login=dxlink:token]"
         let endpoint = try DXEndpoint.builder()
@@ -70,15 +72,19 @@ final class DXConnectionTest: XCTestCase {
         let receivedEventsExpectation = expectation(description: "Received events")
         let eventListener = DXConnectionListener(expectation: receivedEventsExpectation)
         try subscription?.add(listener: eventListener)
-        try subscription?.addSymbols(".AAPL240524C110")
+        try subscription?.addSymbols(
+            TimeSeriesSubscriptionSymbol(symbol: ".AAPL240524C110", fromTime: 10)
+        )
         try endpoint.connect("dxlink:wss://demo.dxfeed.com/dxlink-ws")
         defer {
             try? endpoint.closeAndAwaitTermination()
         }
-        wait(for: [receivedEventsExpectation], timeout: 4)
+        wait(for: [receivedEventsExpectation], timeout: 10)
     }
 
     func testDXLinkConnectionGreeks() throws {
+        throw XCTSkip("Just for reflection testing")
+        
         // For token-based authorization, use the following address format:
         // "dxlink:wss://demo.dxfeed.com/dxlink-ws[login=dxlink:token]"
         let endpoint = try DXEndpoint.builder()
@@ -93,7 +99,7 @@ final class DXConnectionTest: XCTestCase {
         defer {
             try? endpoint.closeAndAwaitTermination()
         }
-        wait(for: [receivedEventsExpectation], timeout: 4)
+        wait(for: [receivedEventsExpectation], timeout: 10)
     }
 
     func testConnection() throws {

@@ -75,7 +75,7 @@ class NativeOnDemandService {
         try ErrorCheck.nativeCall(thread,
                                   dxfg_OnDemandService_replay(thread,
                                                               native,
-                                                              date.millisecondsSince1970()))
+                                                              date.millisecondsSince1970))
     }
 
     func replay(date: Date, speed: Double) throws {
@@ -83,7 +83,7 @@ class NativeOnDemandService {
         try ErrorCheck.nativeCall(thread,
                                   dxfg_OnDemandService_replay2(thread,
                                                                native,
-                                                               date.millisecondsSince1970(),
+                                                               date.millisecondsSince1970,
                                                                speed))
     }
 

@@ -72,7 +72,7 @@ public class Candle: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringC
         """
 DXFG_CANDLE_T \
 eventSymbol: \(eventSymbol) \
-eventTime: \(Date(timeIntervalSince1970: TimeInterval(Double(time/1000)))) \
+eventTime: \(Date(millisecondsSince1970: time))) \
 eventSymbol: \(eventSymbol), \
 eventTime: \(eventTime), \
 eventFlags: \(eventFlags), \
