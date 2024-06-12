@@ -138,9 +138,9 @@ extension MarketDepthModel: TxModelListener {
 
     func getOrderSetForOrder(_ order: Order) -> OrderSet {
         if order.orderSide == .buy {
-            buyOrders
+            return buyOrders
         } else {
-            sellOrders
+            return sellOrders
         }
     }
 
