@@ -61,12 +61,12 @@ do {
 
     //// replaying events until end time reached
     while (onDemand.getTime ?? Date.init(timeIntervalSince1970: 0)) < toDate {
-        if let time: Long = onDemand.getTime?.millisecondsSince1970() {
+        if let time: Long = onDemand.getTime?.millisecondsSince1970 {
             let timeStr = (try? defaultTimeFormat.format(value: time)) ?? "empty string"
             let connectedState = (try? onDemand.getEndpoint()?.getState()) ?? .notConnected
             print("Current state is \(connectedState), on-demand time is \(timeStr)")
         }
-        Thread.sleep(forTimeInterval: 1000)
+        Thread.sleep(forTimeInterval: 1)
     }
     // close endpoint completely to release resources
     try onDemand.getEndpoint()?.closeAndAwaitTermination()

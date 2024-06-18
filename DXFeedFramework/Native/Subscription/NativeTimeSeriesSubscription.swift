@@ -29,7 +29,7 @@ class NativeTimeSeriesSubscription {
         _ = try ErrorCheck.nativeCall(thread, dxfg_DXFeedTimeSeriesSubscription_setFromTime(
             thread,
             native,
-            0))
+            fromTime))
     }
 
 }

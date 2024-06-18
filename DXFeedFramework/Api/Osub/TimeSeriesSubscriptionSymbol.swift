@@ -33,7 +33,7 @@ public class TimeSeriesSubscriptionSymbol: GenericIndexedEventSubscriptionSymbol
     ///   - symbol: The event symbol.
     ///   - date: Date. Just for easing initialization with date object
     convenience public init(symbol: AnyHashable, date: Date) {
-        self.init(symbol: symbol, fromTime: Long(date.timeIntervalSince1970) * 1000)
+        self.init(symbol: symbol, fromTime: date.millisecondsSince1970)
     }
 
     /// Initializes a new instance of the ``TimeSeriesSubscriptionSymbol`` class
@@ -43,7 +43,7 @@ public class TimeSeriesSubscriptionSymbol: GenericIndexedEventSubscriptionSymbol
     ///   - symbol: The event ``Symbol``
     ///   - date: Date. Just for easing initialization with date object
     convenience public init(symbol: Symbol, date: Date) {
-        self.init(symbol: symbol.stringValue, fromTime: Long(date.timeIntervalSince1970) * 1000)
+        self.init(symbol: symbol.stringValue, fromTime: date.millisecondsSince1970)
     }
 
     static func == (lhs: TimeSeriesSubscriptionSymbol, rhs: TimeSeriesSubscriptionSymbol) -> Bool {

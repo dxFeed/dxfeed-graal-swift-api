@@ -7,13 +7,12 @@
 import Foundation
 
 public extension Date {
-    func millisecondsSince1970() -> TimeInterval {
-        return timeIntervalSince1970 * 1000
-    }
 
-    func millisecondsSince1970() -> Long {
-        return Int64(timeIntervalSince1970 * 1000)
-    }
+    public var millisecondsSince1970: Long { Long(timeIntervalSince1970 * 1000) }
+
+//    func millisecondsSince1970 -> Long {
+//        return Int64(timeIntervalSince1970 * 1000)
+//    }
 
     init(millisecondsSince1970: Long) {
         self.init(timeIntervalSince1970: Double(millisecondsSince1970) / 1000)

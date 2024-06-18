@@ -64,6 +64,48 @@ final class DXConnectionTest: XCTestCase {
         wait(for: [receivedEventsExpectation], timeout: 20)
     }
 
+    func testDXLinkConnectionTheoPrice() throws {
+        throw XCTSkip("Just for reflection testing")
+
+        // For token-based authorization, use the following address format:
+        // "dxlink:wss://demo.dxfeed.com/dxlink-ws[login=dxlink:token]"
+        let endpoint = try DXEndpoint.builder()
+            .build()
+
+        let subscription = try endpoint.getFeed()?.createSubscription(TheoPrice.self)
+        let receivedEventsExpectation = expectation(description: "Received events")
+        let eventListener = DXConnectionListener(expectation: receivedEventsExpectation)
+        try subscription?.add(listener: eventListener)
+        try subscription?.addSymbols(
+            TimeSeriesSubscriptionSymbol(symbol: ".AAPL240524C110", fromTime: 10)
+        )
+        try endpoint.connect("dxlink:wss://demo.dxfeed.com/dxlink-ws")
+        defer {
+            try? endpoint.closeAndAwaitTermination()
+        }
+        wait(for: [receivedEventsExpectation], timeout: 10)
+    }
+
+    func testDXLinkConnectionGreeks() throws {
+        throw XCTSkip("Just for reflection testing")
+
+        // For token-based authorization, use the following address format:
+        // "dxlink:wss://demo.dxfeed.com/dxlink-ws[login=dxlink:token]"
+        let endpoint = try DXEndpoint.builder()
+            .build()
+
+        let subscription = try endpoint.getFeed()?.createSubscription(Greeks.self)
+        let receivedEventsExpectation = expectation(description: "Received events")
+        let eventListener = DXConnectionListener(expectation: receivedEventsExpectation)
+        try subscription?.add(listener: eventListener)
+        try subscription?.addSymbols(".AAPL240524C110")
+        try endpoint.connect("dxlink:wss://demo.dxfeed.com/dxlink-ws")
+        defer {
+            try? endpoint.closeAndAwaitTermination()
+        }
+        wait(for: [receivedEventsExpectation], timeout: 10)
+    }
+
     func testConnection() throws {
         // For token-based authorization, use the following address format:
         // "demo.dxfeed.com:7300[login=entitle:token]"
