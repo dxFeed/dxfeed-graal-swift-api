@@ -917,6 +917,7 @@
 		64F73BA52B67CD5B0088EC37 /* GraalException+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GraalException+Ext.swift"; sourceTree = "<group>"; };
 		64F9C6C12B4BFD8F003ED014 /* DXFeedconnect.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = DXFeedconnect.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		64FDD7B62C21A09000D4469B /* DxFeedReconnectSample.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = DxFeedReconnectSample.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		64FDD7B72C21AF9D00D4469B /* SimpleAuthSample.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SimpleAuthSample.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DXFeedFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DxFeedSwiftFramework.h; sourceTree = "<group>"; };
 		803BAC1529BFA50700FFAB1C /* DXFeedFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DXFeedFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1117,6 +1118,7 @@
 				64A631CF2BDFAA27002E1002 /* OnDemandSample.playground */,
 				643A329C2BD15F2900F6F790 /* LastEventsConsole.playground */,
 				64FDD7B62C21A09000D4469B /* DxFeedReconnectSample.playground */,
+				64FDD7B72C21AF9D00D4469B /* SimpleAuthSample.playground */,
 			);
 			path = Playgrounds;
 			sourceTree = "<group>";
