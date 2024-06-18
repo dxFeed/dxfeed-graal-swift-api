@@ -150,8 +150,7 @@ struct CandleChart: View {
         .chartYScale(domain: list.yScale())
         .chartYAxis { AxisMarks(preset: .extended) }
         .chartXAxis {
-            if list.loadingInProgress {
-            } else {
+            if !list.loadingInProgress {
                 let xAxisValues = self.list.xAxisLabels
                 AxisMarks(preset: .aligned, values: xAxisValues) { value in
                     if let strDate = value.as(String.self) {
@@ -188,7 +187,7 @@ struct CandleChart: View {
                             .onEnded { value in
                                 let element = findElement(location: value.location, proxy: proxy, geometry: geo)
                                 if selectedPrice?.timestamp == element?.timestamp {
-                                    // If tapping the same element, clear the selection.
+                                    // If tapping the same element, clean the selection.
                                     selectedPrice = nil
                                 } else {
                                     selectedPrice = element
@@ -328,6 +327,7 @@ struct CandlePlot: ChartContent {
     }
 
     static let openCloseWidth: CGFloat = {
+        // iOS16 doesn't support scroll on chart and content will show on the same screen
         if #available(iOS 17, *) {
             return 6
         } else {
@@ -336,6 +336,7 @@ struct CandlePlot: ChartContent {
     }()
 
     static let highLowWidth: CGFloat = {
+        // iOS16 doesn't support scroll on chart and content will show on the same screen
         if #available(iOS 17, *) {
             return 2
         } else {

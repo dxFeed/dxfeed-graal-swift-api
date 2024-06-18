@@ -273,7 +273,7 @@ final class DXMarketDepthTest: XCTestCase, MarketDepthListener {
                                           count: bookSize))
         var expectedBuy = 0
         var expectedSell = 0
-        for position in 0..<10000 {
+        for _ in 0..<10000 {
             let index = Int.random(in: 0..<bookSize)
             let size = Int.random(in: 1..<10)
             // Note: every 1/10 order will have size == 0 and will "remove"
