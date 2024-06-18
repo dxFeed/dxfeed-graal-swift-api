@@ -2,15 +2,13 @@ import PlaygroundSupport
 import UIKit
 import DXFeedFramework
 
-/**
- * This sample demonstrates a way to subscribe to the big world of symbols with dxFeed API, so that the events are
- * updated and cached in memory of this process, and then take snapshots of those events from memory whenever
- * they are needed. This example repeatedly reads symbol name from the console and prints a snapshot of its last
- * quote, trade, summary, and profile events.
- */
+/// This sample demonstrates a way to subscribe to the big world of symbols with dxFeed API, so that the events are
+/// updated and cached in memory of this process, and then take snapshots of those events from memory whenever
+/// they are needed. This example repeatedly reads symbol name from the console and prints a snapshot of its last
+/// quote, trade, summary, and profile events.
 
-// Just UI for symbol input
 class InputViewController: UIViewController {
+    // Just UI for symbol input
     var textField = UITextField()
     var resultLabel = UILabel()
 
@@ -109,15 +107,13 @@ func fetchData(feed: DXFeed, symbol: String) throws -> String {
      * available for any reason and the wait above had timed out. This sample just prints all results.
      * "null" is printed when the event is not available.
      */
-    try promises.forEach { pr in
-        result += (try pr.getResult()?.toString() ?? "Null result for \(pr)") + "\n"
+    try promises.forEach { promise in
+        result += (try promise.getResult()?.toString() ?? "Null result for \(promise)") + "\n"
     }
     print(result)
     print("end fetching for \(symbol)")
     return result
 }
-
-
 
 let viewController = InputViewController()
 viewController.feed = feed

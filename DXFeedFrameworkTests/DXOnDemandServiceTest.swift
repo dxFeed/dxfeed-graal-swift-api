@@ -6,7 +6,7 @@
 //  
 
 import XCTest
-import DXFeedFramework
+@testable import DXFeedFramework
 
 final class DXOnDemandServiceTest: XCTestCase {
     func testCreateService() throws {

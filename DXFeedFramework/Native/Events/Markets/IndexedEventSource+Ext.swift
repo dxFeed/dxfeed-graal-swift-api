@@ -21,4 +21,23 @@ extension IndexedEventSource {
         }
         return nativeSource
     }
+
+    static func fromNative(native: UnsafeMutablePointer<dxfg_indexed_event_source_t>) -> IndexedEventSource {
+        switch native.pointee.type {
+        case ORDER_SOURCE:
+            let identifier = native.pointee.id
+            let sourceName = String(pointee: native.pointee.name)
+            if let source = try? OrderSource.valueOf(identifier: Int(identifier)) {
+                return source
+            } else if let source = try? OrderSource.valueOf(name: sourceName) {
+                return source
+            } else {
+                fatalError("Incorrect value of source \(native.pointee.id) \(sourceName)")
+            }
+        case INDEXED_EVENT_SOURCE:
+            return IndexedEventSource(Int(native.pointee.id), String(pointee: native.pointee.name))
+        default:
+            fatalError("Incorrect value of source \(native.pointee.type)")
+        }
+    }
 }

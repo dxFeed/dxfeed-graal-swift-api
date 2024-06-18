@@ -45,7 +45,7 @@ public class OrderSource: IndexedEventSource {
     /// It is a synthetic source.
     /// The subscription on composite ``Quote`` event is observed when this source is subscribed to.
     public static let compsoiteBid =
-    try? OrderSource(1, "COMPOSITE_BID", pubOrder | pubAnalyticOrder | pubSpreadOrder | fullOrderBook)
+    try? OrderSource(1, "COMPOSITE_BID", 0)
     /// Ask side of a composite ``Quote``.
     /// It is a synthetic source.
     /// The subscription on composite ``Quote`` event is observed when this source is subscribed to.
@@ -95,11 +95,17 @@ public class OrderSource: IndexedEventSource {
     /// Direct-Edge EDGX Exchange.
     public static let DEX = try? OrderSource("DEX", pubOrder)
 
+    /// Direct-Edge EDGX Exchange. Record for price level book.
+    public static let dex = try? OrderSource("dex", pubOrder)
+
     /// Bats BYX Exchange.
     public static let BYX = try? OrderSource("BYX", pubOrder)
 
     /// Bats BZX Exchange.
     public static let BZX = try? OrderSource("BZX", pubOrder)
+
+    /// Bats BZX Exchange. Record for price level book.
+    public static let bzx = try? OrderSource("bzx", pubOrder)
 
     /// Bats Europe BXE Exchange.
     public static let BATE = try? OrderSource("BATE", pubOrder)
@@ -168,6 +174,8 @@ public class OrderSource: IndexedEventSource {
     /// Pink sheets are listings for stocks that trade over-the-counter (OTC).
     public static let pink = try? OrderSource("pink", pubOrder | pubOtcMarketsOrder)
 
+    private static var publishableViews = [[OrderSource]](repeating: [OrderSource](), count: flagsSize)
+
     /// Don't use it. Just for initialization all static variable.
     /// static let - is always lazy initialized
     fileprivate static let allValues = [OrderSource.defaultOrderSource,
@@ -186,8 +194,10 @@ public class OrderSource: IndexedEventSource {
                                         OrderSource.ISE,
                                         OrderSource.DEA,
                                         OrderSource.DEX,
+                                        OrderSource.dex,
                                         OrderSource.BYX,
                                         OrderSource.BZX,
+                                        OrderSource.bzx,
                                         OrderSource.BATE,
                                         OrderSource.CHIX,
                                         OrderSource.CEUX,
@@ -208,6 +218,7 @@ public class OrderSource: IndexedEventSource {
                                         OrderSource.iex,
                                         OrderSource.MEMX,
                                         OrderSource.memx,
+                                        OrderSource.OCEA,
                                         OrderSource.pink]
 
     override init(_ identifier: Int, _ name: String) {
@@ -246,6 +257,10 @@ public class OrderSource: IndexedEventSource {
         }
         if !OrderSource.sourcesByName.tryInsert(key: name, value: self) {
             throw ArgumentException.exception("duplicate name \(name)")
+        }
+
+        for index in 0..<OrderSource.flagsSize where (pubFlags & (1 << index)) != 0 {
+            OrderSource.publishableViews[index].append(self)
         }
     }
 
@@ -304,9 +319,21 @@ public class OrderSource: IndexedEventSource {
         }
         return name
     }
+
     /// Gets a value indicating whether this source supports Full Order Book.
     public func isFullOrderBook() -> Bool {
         return (pubFlags & OrderSource.fullOrderBook) != 0
+    }
+
+    /// Returns a list of publishable order sources for a given event type.
+    ///
+    /// - Parameters:
+    ///   - eventype : Possible values ``Order``, ``AnalyticOrder``, ``SpreadOrder``, ``OtcMarketsOrder``
+    /// - Returns: a list of publishable order sources.
+    /// - Throws: ``ArgumentException/exception(_:)``
+    public static func publishable(eventType: AnyClass) throws -> [OrderSource] {
+        let index = Int32(try OrderSource.getEventTypeMask(eventType)).leadingZeroBitCount
+        return publishableViews[31 - index]
     }
 
     /// Gets a value indicating whether the given event type can be directly published with this source.
@@ -314,7 +341,7 @@ public class OrderSource: IndexedEventSource {
     /// Subscription on such sources can be observed directly via ``DXPublisher``
     /// Subscription on such sources is observed via instances of  ``GenericIndexedEventSubscriptionSymbol``
     /// - Parameters:
-    ///   - eventype : Possible values ``Order``, ``AnalyticOrder``, ``SpreadOrder``
+    ///   - eventype : Possible values ``Order``, ``AnalyticOrder``, ``SpreadOrder``, ``OtcMarketsOrder``
     /// - Returns: true- events can be directly published with this source
     /// - Throws: ``ArgumentException/exception(_:)``
     public func isPublishable(eventType: AnyClass.Type) throws -> Bool {
@@ -345,7 +372,7 @@ public class OrderSource: IndexedEventSource {
     /// Gets type mask by specified event type.
     ///
     /// - Parameters:
-    ///   - eventype : Possible values ``Order``, ``AnalyticOrder``, ``SpreadOrder``
+    ///   - eventype : Possible values ``Order``, ``AnalyticOrder``, ``SpreadOrder``, ``OtcMarketsOrder``
     /// - Returns: The mask for event class.
     /// - Throws: ``ArgumentException/exception(_:)``
     public static func getEventTypeMask(_ eventType: AnyClass) throws -> Int {

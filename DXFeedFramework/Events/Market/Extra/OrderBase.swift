@@ -311,3 +311,20 @@ extension OrderBase {
         }
     }
 }
+
+public extension OrderBase {
+    /// Returns true if this order has some size (sizeAsDouble is neither 0 nor NaN).
+    func hasSize() -> Bool {
+        return size != 0 && !size.isNaN
+    }
+}
+
+extension OrderBase: Hashable {
+    public static func == (lhs: OrderBase, rhs: OrderBase) -> Bool {
+        return lhs.index == rhs.index
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.index)
+    }
+}

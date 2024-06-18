@@ -38,7 +38,8 @@ final class DXSnapshotProcessorTest: XCTestCase, SnapshotDelegate {
         let snapshotProcessor = SnapshotProcessor()
         snapshotProcessor.add(self)
         try subscription?.add(listener: snapshotProcessor)
-        let symbol = TimeSeriesSubscriptionSymbol(symbol: "AAPL{=1d}", date: Date.init(millisecondsSince1970: 0))
+        let date = Calendar.current.date(byAdding: .year, value: -1, to: Date())!
+        let symbol = TimeSeriesSubscriptionSymbol(symbol: "AAPL{=1d}", date: date)
         try subscription?.addSymbols(symbol)
         wait(for: [receivedEventExp], timeout: 4.0)
     }

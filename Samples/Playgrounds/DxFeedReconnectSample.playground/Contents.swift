@@ -36,13 +36,12 @@ class EndpoointStateListener: DXEndpointListener, Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine("\(self):\(stringReference(self))")
     }
-    var callback: (DXEndpointState, DXEndpointState) -> Void = { _,_  in }
+    var callback: (DXEndpointState, DXEndpointState) -> Void = { _, _  in }
 
     init(overrides: (EndpoointStateListener) -> EndpoointStateListener) {
         _ = overrides(self)
     }
 }
-
 
 // Demonstrates how to connect to an endpoint, subscribe to market data events,
 // handle reconnections and re-subscribing.
