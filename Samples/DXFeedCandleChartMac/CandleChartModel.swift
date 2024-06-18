@@ -158,62 +158,70 @@ extension CandleChartModel: SnapshotDelegate {
         let result = events.map { marketEvent in
             marketEvent.candle
         }
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [self] in
             if isSnapshot {
-                self.loadingInProgress = false
-                var maxValue = Double.zero
-                var minValue = Double.greatestFiniteMagnitude
-                let firstNElements = result.prefix(CandleChartModel.maxCout)
-                let temp = firstNElements.map { candle in
-                    maxValue = max(maxValue, candle.max())
-                    minValue = min(minValue, candle.min())
-                    let price = CandleModel(candle: candle, currency: self.currency)
-                    return price
-                }
-                self.maxValue = maxValue
-                self.minValue = minValue
-                self.xAxisLabels = CandleChartModel.calculateXaxisValues(with: self.type, values: temp)
-                self.candles = temp
-                let xValues = Array(temp.map({ stock in
-                    stock.stringtimeStamp
-                }).reversed())
-                self.xValues = xValues
-                // scroll to last page
-                let pointsOnScreen = CandleChartModel.visiblePointsOnScreen(type: self.type, valuesCount: temp.count)
-                self.xScrollPosition = temp[pointsOnScreen - 1].stringtimeStamp
+                receivedSnapshot(events: result)
             } else {
-                result.forEach { candle in
-                    let newPrice = CandleModel(candle: candle, currency: self.currency)
-                    if candle.isRemove() {
-                        // remove
-                        self.candles.removeAll { price in
-                            price.index == newPrice.index
-                        }
-                    } else {
-                        self.maxValue = max(self.maxValue, candle.max())
-                        self.minValue = min(self.minValue, candle.min())
+                receivedUpdate(events: result)
+            }
+        }
+    }
 
-                        if let index = self.candles.firstIndex(where: { price in
-                            price.timestamp == newPrice.timestamp
-                        }) {
-                            // update
-                            self.candles.safeReplace(newPrice, at: index)
-                        } else {
-                            // insert
-                            self.candles.insert(newPrice, at: 0)
-                            let temp = self.candles
-                            self.xAxisLabels = CandleChartModel.calculateXaxisValues(with: self.type, values: temp)
-                            let currentScroll = self.xScrollPosition
+    private func receivedSnapshot(events: [Candle]) {
+        self.loadingInProgress = false
+        var maxValue = Double.zero
+        var minValue = Double.greatestFiniteMagnitude
+        let firstNElements = events.prefix(CandleChartModel.maxCout)
+        let temp = firstNElements.map { candle in
+            maxValue = max(maxValue, candle.max())
+            minValue = min(minValue, candle.min())
+            let price = CandleModel(candle: candle, currency: self.currency)
+            return price
+        }
+        self.maxValue = maxValue
+        self.minValue = minValue
+        self.xAxisLabels = CandleChartModel.calculateXaxisValues(with: self.type, values: temp)
+        self.candles = temp
+        let xValues = Array(temp.map({ stock in
+            stock.stringtimeStamp
+        }).reversed())
+        self.xValues = xValues
+        // scroll to last page
+        let pointsOnScreen = CandleChartModel.visiblePointsOnScreen(type: self.type, valuesCount: temp.count)
+        self.xScrollPosition = temp[pointsOnScreen - 1].stringtimeStamp
+    }
 
-                            let xValues = Array(temp.enumerated().map({ index, stock in
-                                if stock.stringtimeStamp == currentScroll {
-                                    self.xScrollPosition = temp[index - 1].stringtimeStamp
-                                }
-                                return stock.stringtimeStamp
-                            }).reversed())
-                            self.xValues = xValues
+    private func receivedUpdate(events: [Candle]) {
+        events.forEach { candle in
+            let newPrice = CandleModel(candle: candle, currency: self.currency)
+            if candle.isRemove() {
+                // remove
+                self.candles.removeAll { price in
+                    price.index == newPrice.index
+                }
+            } else {
+                self.maxValue = max(self.maxValue, candle.max())
+                self.minValue = min(self.minValue, candle.min())
+
+                if let index = self.candles.firstIndex(where: { price in
+                    price.timestamp == newPrice.timestamp
+                }) {
+                    // update
+                    self.candles.safeReplace(newPrice, at: index)
+                } else {
+                    // insert
+                    self.candles.insert(newPrice, at: 0)
+                    let temp = self.candles
+                    self.xAxisLabels = CandleChartModel.calculateXaxisValues(with: self.type, values: temp)
+                    let currentScroll = self.xScrollPosition
+
+                    let xValues = Array(temp.enumerated().map({ index, stock in
+                        if stock.stringtimeStamp == currentScroll {
+                            self.xScrollPosition = temp[index - 1].stringtimeStamp
                         }
-                    }
+                        return stock.stringtimeStamp
+                    }).reversed())
+                    self.xValues = xValues
                 }
             }
         }

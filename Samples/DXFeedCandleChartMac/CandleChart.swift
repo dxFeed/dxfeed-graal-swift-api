@@ -212,8 +212,9 @@ struct CandleChart: View {
                         let dateInterval = Calendar.current.dateInterval(of: .minute, for: selectedPrice.timestamp)!
                         let startPositionX1 = proxy.position(forX: "\(dateInterval.start.timeIntervalSince1970)") ?? 0
 
-                        let lineX = startPositionX1 + geo[proxy.plotAreaFrame].origin.x
-                        let lineHeight = geo[proxy.plotAreaFrame].maxY
+                        let rect = plotFrameRect(proxy: proxy, in: geo)
+                        let lineX = startPositionX1 + rect.origin.x
+                        let lineHeight = rect.maxY
                         let boxWidth: CGFloat = min(geo.size.width, 400)
                         let boxOffset = max(0, min(geo.size.width - boxWidth, lineX - boxWidth / 2))
 
@@ -260,8 +261,21 @@ struct CandleChart: View {
         }
     }
 
+    private func plotFrameRect(proxy: ChartProxy, in geo: GeometryProxy) -> CGRect {
+        var rect = CGRect.zero
+        if #available(iOS 17, *) {
+            if let plotFrame = proxy.plotFrame {
+                rect = geo[plotFrame]
+            }
+        } else {
+            rect = geo[proxy.plotAreaFrame]
+        }
+        return rect
+    }
+
     private func findElement(location: CGPoint, proxy: ChartProxy, geometry: GeometryProxy) -> CandleModel? {
-        let relativeXPosition = location.x - geometry[proxy.plotAreaFrame].origin.x
+        let rect = plotFrameRect(proxy: proxy, in: geometry)
+        let relativeXPosition = location.x - rect.origin.x
         if let date = proxy.value(atX: relativeXPosition) as String?, let timeInterval = TimeInterval(date) {
             // Find the closest date element.
             let date = Date(timeIntervalSince1970: timeInterval)
