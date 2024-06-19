@@ -180,7 +180,8 @@ class Listener: DXEventListener {
 // The experimental property must be enabled.
 try SystemProperty.setProperty("dxfeed.experimental.dxlink.enable", "true")
 // Set scheme for dxLink.
-try SystemProperty.setProperty("scheme", "ext:resource:dxlink.xml")
+try SystemProperty.setProperty("scheme", "ext:opt:sysprops,resource:dxlink.xml")
+
 // For token-based authorization, use the following address format:
 // "dxlink:wss://demo.dxfeed.com/dxlink-ws[login=dxlink:token]"
 let endpoint = try DXEndpoint.builder().build()
