@@ -118,6 +118,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		64656F542A1B69FE006A0B19 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		64656F552A1B6A07006A0B19 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		803BAC0329BFA50700FFAB1C = {
 			isa = PBXGroup;
 			children = (
@@ -141,9 +155,9 @@
 			isa = PBXGroup;
 			children = (
 				80FC415529C8E2E400E6B611 /* Api */,
-				80FC415629C8E2EC00E6B611 /* Events */,
+				64656F542A1B69FE006A0B19 /* Events */,
 				8088D77A29C5D8AD00F240CB /* Native */,
-				8088D75829C0F52100F240CB /* Utils */,
+				64656F552A1B6A07006A0B19 /* Utils */,
 				8088D77029C3A25D00F240CB /* SystemProperty.swift */,
 				803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */,
 			);
@@ -171,13 +185,6 @@
 				803BAC2629BFA67C00FFAB1C /* libDxFeedGraalNativeApi.dylib */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8088D75829C0F52100F240CB /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		8088D77A29C5D8AD00F240CB /* Native */ = {
@@ -217,13 +224,6 @@
 				80FC415829C8EE8B00E6B611 /* DXFEndpoint.swift */,
 			);
 			path = Api;
-			sourceTree = "<group>";
-		};
-		80FC415629C8E2EC00E6B611 /* Events */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Events;
 			sourceTree = "<group>";
 		};
 		80FC415A29CA2B7100E6B611 /* Endpoint */ = {
