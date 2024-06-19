@@ -24,4 +24,3 @@ extension Quote {
                   askSize: native.ask_size)
     }
 }
-
