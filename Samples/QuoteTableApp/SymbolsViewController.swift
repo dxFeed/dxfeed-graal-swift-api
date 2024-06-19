@@ -30,9 +30,13 @@ class SymbolsViewController: UIViewController {
         symbolsTableView.reloadData()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        dataProvider.changeSymbols(symbols)
+    }
+
     @IBAction func cancelTouchUpInside(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
-        dataProvider.changeSymbols(symbols)
     }
 }
 

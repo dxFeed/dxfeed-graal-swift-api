@@ -12,6 +12,7 @@ import DXFeedFramework
 class AddSymbolsViewController: UIViewController {
     @IBOutlet var symbolsTableView: UITableView!
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
 
     var symbols = [InstrumentInfo]()
     var selectedSymbols = Set<String>()
@@ -22,6 +23,7 @@ class AddSymbolsViewController: UIViewController {
         super.viewDidLoad()
         selectedSymbols = Set(dataProvider.selectedSymbols)
         symbols = dataProvider.allSymbols.sorted()
+        changeActivityIndicator()
 
         titleLabel.textColor = .text
 
@@ -35,6 +37,23 @@ class AddSymbolsViewController: UIViewController {
         super.viewWillAppear(animated)
         DispatchQueue.global(qos: .background).async { [weak self] in
             self?.readIpf()
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        dataProvider.addSymbols(selectedSymbols)
+        dataProvider.allSymbols = symbols
+    }
+
+
+    func changeActivityIndicator() {
+        if symbols.count == 0 {
+            activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.isHidden = true
+            activityIndicator.stopAnimating()
         }
     }
 
@@ -58,18 +77,12 @@ class AddSymbolsViewController: UIViewController {
     }
 
     @IBAction func cancelTouchUpInside(_ sender: UIButton) {
-        dataProvider.allSymbols = symbols
-        self.navigationController?.popViewController(animated: true)
-    }
-
-    @IBAction func addTouchUpInside(_ sender: UIButton) {
-        dataProvider.addSymbols(selectedSymbols)
-        dataProvider.allSymbols = symbols
         self.navigationController?.popViewController(animated: true)
     }
 
     func reloadData(symbols: [InstrumentInfo]) {
         self.symbols = symbols.sorted()
+        changeActivityIndicator()
         symbolsTableView.reloadData()
     }
 }

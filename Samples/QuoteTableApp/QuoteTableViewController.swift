@@ -24,7 +24,7 @@ class QuoteTableViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addButton.tintColor = .text
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         agregationSwitch.isHidden = true
         titleLabel.textColor = .text
         connectionStatusLabel.textColor = .text
@@ -127,5 +127,12 @@ extension QuoteTableViewController: UITableViewDataSource {
 extension QuoteTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
+    }
+}
+
+extension QuoteTableViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
