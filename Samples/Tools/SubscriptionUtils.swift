@@ -22,7 +22,8 @@ class Subscription {
                                source: String? = nil)
     where O: DXEventListener, O: Hashable {
         print("""
-Create subscription to \(address) for \(types):\(symbols) with properties:\(properties) and time \(time ?? "---")
+Create subscription to \(address) for \(types): \
+\(symbols.count > 20 ? Array(symbols[0..<20]) : symbols) with properties:\(properties) and time \(time ?? "---")
 """)
         endpoint = try? DXEndpoint
             .builder()
