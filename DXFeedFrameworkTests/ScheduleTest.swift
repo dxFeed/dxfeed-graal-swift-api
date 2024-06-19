@@ -209,4 +209,29 @@ final class ScheduleTest: XCTestCase {
         let equals = TimeUtil.hour == startTime
         XCTAssert(equals)
     }
+
+    func testEmptyDownloadDefaults() throws {
+        do {
+            try DXSchedule.downloadDefaults("")
+        } catch {
+            XCTAssert(false, "\(error)")
+        }
+    }
+
+    func testCorrectDownloadDefaults() throws {
+        do {
+            try DXSchedule.downloadDefaults("http://downloads.dxfeed.com/schedule/schedule.zip,1d")
+        } catch {
+            XCTAssert(false, "\(error)")
+        }
+    }
+
+    func testAutoDownloadDefaults() throws {
+        do {
+            try DXSchedule.downloadDefaults("auto")
+        } catch {
+            XCTAssert(false, "\(error)")
+        }
+    }
+
 }

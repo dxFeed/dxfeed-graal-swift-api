@@ -128,4 +128,23 @@ public class DXSchedule {
     public func getNearestSessionByTime(time: Long, filter: SessionFilter) throws -> ScheduleSession {
         return try native.getNearestSessionByTime(time: time, filter: filter)
     }
+
+    /// Sets shared defaults that are used by individual schedule instances.
+    /// - Parameters:
+    ///   - data: content of default data
+    /// - Throws: GraalException. Rethrows exception from Java.
+    public static func setDefaults(_ data: Data) throws {
+        try NativeSchedule.setDefaults(data)
+    }
+    /// Downloads defaults using specified download config and optionally start periodic download.
+    ///
+    /// The specified config can be one of the following:
+    /// "" - stop periodic download
+    /// URL   - download once from specified URL and stop periodic download
+    /// URL,period   - start periodic download from specified URL
+    /// "auto"   - start periodic download from default location
+    /// - Throws: GraalException. Rethrows exception from Java.
+    public static func downloadDefaults(_ url: String) throws {
+        try NativeSchedule.downloadDefaults(url)
+    }
 }

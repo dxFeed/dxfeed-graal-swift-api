@@ -216,4 +216,19 @@ class NativeSchedule {
         let session = try createSession(thread, session: nextSession)
         return session
     }
+
+    public static func setDefaults(_ data: Data) throws {
+        let thread = currentThread()
+        _ = try data.withUnsafeBytes({ pointer in
+            let result = try ErrorCheck.nativeCall(thread, dxfg_Schedule_setDefaults(thread,
+                                                                        pointer.baseAddress,
+                                                                        Int32(data.count)))
+        })
+    }
+
+    public static func downloadDefaults(_ url: String) throws {
+        let thread = currentThread()
+        _ = try ErrorCheck.nativeCall(thread, dxfg_Schedule_downloadDefaults(thread,
+                                                                         url.toCStringRef()))
+    }
 }
