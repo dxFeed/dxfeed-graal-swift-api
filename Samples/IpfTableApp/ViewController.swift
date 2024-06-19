@@ -75,13 +75,17 @@ extension ViewController: DXInstrumentProfileUpdateListener {
             }
         }
         DispatchQueue.main.async {
-            self.lastUpdateLabel.text = TimeUtil.toLocalDateString(millis: self.collector?.getLastUpdateTime() ?? 0)
             self.ipfList = self.buffer.map { _, value in
                 value
             }.sorted(by: { ipf1, ipf2 in
                 ipf1.symbol < ipf2.symbol
             })
             self.ipfTableView.reloadData()
+            self.lastUpdateLabel.text =
+"""
+\(self.ipfList.count) profiles: \(TimeUtil.toLocalDateString(millis: self.collector?.getLastUpdateTime() ?? 0))
+"""
+
         }
     }
 }

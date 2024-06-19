@@ -125,13 +125,13 @@ class PerfTestViewController: UIViewController {
                 return
             }
             endpoint = try? DXEndpoint.builder().withRole(.feed).build()
-            endpoint?.add(self)
+            endpoint?.add(observer: self)
             try? endpoint?.connect(address)
 
             subscription = try? endpoint?.getFeed()?.createSubscription(.timeAndSale)
             profileSubscription = try? endpoint?.getFeed()?.createSubscription(.profile)
-            try? subscription?.add(self)
-            try? profileSubscription?.add(self)
+            try? subscription?.add(observer: self)
+            try? profileSubscription?.add(observer: self)
 
             try? subscription?.addSymbols(symbols)
             try? profileSubscription?.addSymbols(symbols)

@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class IpfCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var counterLabel: UILabel!
