@@ -79,9 +79,8 @@ final class DXConnectionTest: XCTestCase {
     }
 
     func testQuote() throws {
-        class Listener: DXEventListener, Hashable {
-
-            static func == (lhs: Listener, rhs: Listener) -> Bool {
+        class DXConnectionTestListener: DXEventListener, Hashable {
+            static func == (lhs: DXConnectionTestListener, rhs: DXConnectionTestListener) -> Bool {
                 lhs === rhs
             }
 
@@ -94,7 +93,7 @@ final class DXConnectionTest: XCTestCase {
                 self.callback(events)
             }
 
-            init(overrides: (Listener) -> Listener) {
+            init(overrides: (DXConnectionTestListener) -> DXConnectionTestListener) {
                 _ = overrides(self)
             }
         }
@@ -107,7 +106,7 @@ final class DXConnectionTest: XCTestCase {
         let subscription = try endpoint
             .getFeed()?
             .createSubscription(EventCode.trade)
-        let listener = Listener { listener in
+        let listener = DXConnectionTestListener { listener in
             listener.callback = { events in
                 print(events)
             }
