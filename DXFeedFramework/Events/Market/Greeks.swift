@@ -35,10 +35,13 @@ public class Greeks: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringC
     public var eventFlags: Int32 = 0
 
     public var index: Long = 0
-
-    public init(_ eventSymbol: String) {
-        self.eventSymbol = eventSymbol
-    }
+    /*
+     * EventFlags property has several significant bits that are packed into an integer in the following way:
+     *    31..7    6    5    4    3    2    1    0
+     * +---------+----+----+----+----+----+----+----+
+     * |         | SM |    | SS | SE | SB | RE | TX |
+     * +---------+----+----+----+----+----+----+----+
+     */
     /// Gets or sets option market price.
     public var price: Double = .nan
     /// Gets or sets Black-Scholes implied volatility of the option.
@@ -58,6 +61,10 @@ public class Greeks: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringC
     /// Gets or sets vega.
     /// Vega is the first derivative of an option price by percentage volatility.
     public var vega: Double = .nan
+
+    public init(_ eventSymbol: String) {
+        self.eventSymbol = eventSymbol
+    }
     
     public var description: String {
         """
