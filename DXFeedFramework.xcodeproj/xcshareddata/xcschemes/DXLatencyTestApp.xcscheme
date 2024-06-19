@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "644BD7592A44726F00A0BF99"
-               BuildableName = "DXARQuoteTableApp.app"
-               BlueprintName = "DXARQuoteTableApp"
-               ReferencedContainer = "container:DxFeedSwiftFramework.xcodeproj">
+               BlueprintIdentifier = "64D8BB3A2A39BB730071BC88"
+               BuildableName = "DXLatencyTestApp.app"
+               BlueprintName = "DXLatencyTestApp"
+               ReferencedContainer = "container:DXFeedFramework.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -43,10 +43,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "644BD7592A44726F00A0BF99"
-            BuildableName = "DXARQuoteTableApp.app"
-            BlueprintName = "DXARQuoteTableApp"
-            ReferencedContainer = "container:DxFeedSwiftFramework.xcodeproj">
+            BlueprintIdentifier = "64D8BB3A2A39BB730071BC88"
+            BuildableName = "DXLatencyTestApp.app"
+            BlueprintName = "DXLatencyTestApp"
+            ReferencedContainer = "container:DXFeedFramework.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -60,10 +60,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "644BD7592A44726F00A0BF99"
-            BuildableName = "DXARQuoteTableApp.app"
-            BlueprintName = "DXARQuoteTableApp"
-            ReferencedContainer = "container:DxFeedSwiftFramework.xcodeproj">
+            BlueprintIdentifier = "64D8BB3A2A39BB730071BC88"
+            BuildableName = "DXLatencyTestApp.app"
+            BlueprintName = "DXLatencyTestApp"
+            ReferencedContainer = "container:DXFeedFramework.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

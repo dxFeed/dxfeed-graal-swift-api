@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1430"
+   LastUpgradeVersion = "1500"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "64B6275B2A3761A000196D07"
-               BuildableName = "DXPertTestApp.app"
-               BlueprintName = "DXPertTestApp"
-               ReferencedContainer = "container:DxFeedSwiftFramework.xcodeproj">
+               BlueprintIdentifier = "64262CC82A4DA64600BA6BA3"
+               BuildableName = "DXVisionQuoteTableApp.app"
+               BlueprintName = "DXVisionQuoteTableApp"
+               ReferencedContainer = "container:DXFeedFramework.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -30,7 +30,7 @@
       shouldAutocreateTestPlan = "YES">
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -43,10 +43,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "64B6275B2A3761A000196D07"
-            BuildableName = "DXPertTestApp.app"
-            BlueprintName = "DXPertTestApp"
-            ReferencedContainer = "container:DxFeedSwiftFramework.xcodeproj">
+            BlueprintIdentifier = "64262CC82A4DA64600BA6BA3"
+            BuildableName = "DXVisionQuoteTableApp.app"
+            BlueprintName = "DXVisionQuoteTableApp"
+            ReferencedContainer = "container:DXFeedFramework.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -60,10 +60,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "64B6275B2A3761A000196D07"
-            BuildableName = "DXPertTestApp.app"
-            BlueprintName = "DXPertTestApp"
-            ReferencedContainer = "container:DxFeedSwiftFramework.xcodeproj">
+            BlueprintIdentifier = "64262CC82A4DA64600BA6BA3"
+            BuildableName = "DXVisionQuoteTableApp.app"
+            BlueprintName = "DXVisionQuoteTableApp"
+            ReferencedContainer = "container:DXFeedFramework.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
