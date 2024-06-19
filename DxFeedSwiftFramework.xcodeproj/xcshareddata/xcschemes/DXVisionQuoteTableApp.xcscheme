@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1430"
+   LastUpgradeVersion = "1500"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "64B627142A375BBA00196D07"
-               BuildableName = "DxFeedSampleApp.app"
-               BlueprintName = "DxFeedSampleApp"
+               BlueprintIdentifier = "64262CC82A4DA64600BA6BA3"
+               BuildableName = "DXVisionQuoteTableApp.app"
+               BlueprintName = "DXVisionQuoteTableApp"
                ReferencedContainer = "container:DxFeedSwiftFramework.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,9 +43,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "64B627142A375BBA00196D07"
-            BuildableName = "DxFeedSampleApp.app"
-            BlueprintName = "DxFeedSampleApp"
+            BlueprintIdentifier = "64262CC82A4DA64600BA6BA3"
+            BuildableName = "DXVisionQuoteTableApp.app"
+            BlueprintName = "DXVisionQuoteTableApp"
             ReferencedContainer = "container:DxFeedSwiftFramework.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -60,9 +60,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "64B627142A375BBA00196D07"
-            BuildableName = "DxFeedSampleApp.app"
-            BlueprintName = "DxFeedSampleApp"
+            BlueprintIdentifier = "64262CC82A4DA64600BA6BA3"
+            BuildableName = "DXVisionQuoteTableApp.app"
+            BlueprintName = "DXVisionQuoteTableApp"
             ReferencedContainer = "container:DxFeedSwiftFramework.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
