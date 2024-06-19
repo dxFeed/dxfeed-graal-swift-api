@@ -8,7 +8,5 @@
 import Foundation
 
 public class Trade: TradeBase {
-    func toString() -> String {
-        return "Trade{\(baseFieldsToString())}"
-    }
+
 }

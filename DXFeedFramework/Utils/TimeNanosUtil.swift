@@ -14,4 +14,12 @@ class TimeNanosUtil {
         return (timeMillis * NanosInMillis) + Long(timeNanoPart)
     }
 
+    static func getMillisFromNanos(_ timeNanos: Long) -> Long {
+        return MathUtil.floorDiv(timeNanos, NanosInMillis)
+    }
+
+    static func getNanoPartFromNanos(_ timeNanos: Long) -> Long {
+        return MathUtil.floorMod(timeNanos, NanosInMillis)
+    }
+
 }
