@@ -18,7 +18,7 @@ class MetricCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.contentView.backgroundColor = .background
+        self.contentView.backgroundColor = .tableBackground
         self.backgroundContentView.backgroundColor = .cellBackground
         self.backgroundContentView.layer.cornerRadius = 10
         self.backgroundContentView.clipsToBounds = true
