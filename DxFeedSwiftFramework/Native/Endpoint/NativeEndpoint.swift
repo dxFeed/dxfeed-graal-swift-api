@@ -45,6 +45,10 @@ class NativeEndpoint {
     deinit {
         if let listener = listener {
             let thread = currentThread()
+            _ = try? ErrorCheck.nativeCall(thread,
+                                           dxfg_DXEndpoint_removeStateChangeListener(thread,
+                                                                                     self.endpoint,
+                                                                                     self.listener))
             _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(listener.pointee.handler)))
         }
         if let endpoint = self.endpoint {
