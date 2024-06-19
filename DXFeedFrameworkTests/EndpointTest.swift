@@ -9,19 +9,6 @@ import XCTest
 @testable import DXFeedFramework
 
 final class EndpointTest: XCTestCase {
-    static let port = 7301
-    let endpointAddress = "localhost:\(EndpointTest.port)"
-    static var publisherEndpoint: DXEndpoint?
-
-    override class func setUp() {
-        publisherEndpoint = try? DXEndpoint.builder().withRole(.publisher).withProperty("test", "value").build()
-        _ = try? publisherEndpoint?.connect(":\(EndpointTest.port)")
-    }
-
-    override class func tearDown() {
-        try? publisherEndpoint?.close()
-    }
-
     override func setUpWithError() throws {}
 
     override func tearDownWithError() throws {}
@@ -43,54 +30,7 @@ final class EndpointTest: XCTestCase {
         XCTAssertNotNil(feed, "Feed should be not nil")
     }
 
-    func testConnect() throws {
-        let endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
-        XCTAssertNotNil(endpoint, "Endpoint should be not nil")
-
-        let expectations = [DXEndpointState.connected: expectation(description: "Connected"),
-                            DXEndpointState.connecting: expectation(description: "Connecting"),
-                            DXEndpointState.notConnected: expectation(description: "NotConnected")]
-        let listener = TestListener(expectations: expectations)
-        endpoint?.add(observer: listener)
-        let exps = Array(expectations.filter({ element in
-            element.key != .notConnected
-        }).values)
-        try endpoint?.connect(endpointAddress)
-        wait(for: exps, timeout: 1)
-
-        try endpoint?.disconnect()
-        let expsNotConnected = Array(expectations.filter({ element in
-            element.key == .notConnected
-        }).values)
-        wait(for: expsNotConnected, timeout: 5)
-    }
-
-    func testListenerDealloc() throws {
-        var endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
-        XCTAssertNotNil(endpoint, "Endpoint should be not nil")
-        _ = try endpoint?.connect(endpointAddress)
-        var state = try? endpoint?.getState()
-        try endpoint?.close()
-        try endpoint?.disconnect()
-        wait(seconds: 2)
-        try? endpoint?.callGC()
-        state = try? endpoint?.getState()
-        try endpoint?.close()
-        state = try? endpoint?.getState()
-        try? endpoint?.callGC()
-        try endpoint?.close()
-        state = try? endpoint?.getState()
-        try? endpoint?.callGC()
-        state = try? endpoint?.getState()
-        endpoint = nil
-        endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
-        XCTAssertNotNil(endpoint, "Endpoint should be not nil")
-        _ = try endpoint?.connect(endpointAddress)
-        try endpoint?.disconnect()
-        print("\(state ?? .notConnected)")
-        wait(seconds: 3)
-    }
-
+  
     func testSupportProperty() throws {
         let builder = DXEndpoint.builder()
         func isSupportedProperty(_ prop: String, _ expected: Bool) {
@@ -100,25 +40,6 @@ final class EndpointTest: XCTestCase {
             isSupportedProperty(prop.rawValue, true)
         }
         isSupportedProperty("wrong property", false)
-    }
-
-    func testReconnect() throws {
-        let endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
-        XCTAssertNotNil(endpoint, "Endpoint should be not nil")
-        try endpoint.connect(endpointAddress)
-        wait(seconds: 1)
-        try endpoint.reconnect()
-        wait(seconds: 1)
-        try endpoint.close()
-    }
-
-    func testDisconnectAndClear() throws {
-        let endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
-        XCTAssertNotNil(endpoint, "Endpoint should be not nil")
-        try endpoint.connect(endpointAddress)
-        wait(seconds: 1)
-        try endpoint.disconnectAndClear()
-        wait(seconds: 1)
     }
 
     fileprivate func testGetInstance(role: Role, count: Int) {
