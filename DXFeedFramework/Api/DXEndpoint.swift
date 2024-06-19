@@ -12,7 +12,6 @@ public typealias Role = DXEndpoint.Role
 ///
 /// Porting a Java class com.dxfeed.api.DXEndpoint.
 ///
-/// For more details see  https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.html
 /// There are ready-to-use singleton instances that are available with ``DXEndpoint/getInstance(_:)`` method as wel as
 /// factory method ``DXEndpoint/create(_:)``, and a number of configuration methods.
 ///
@@ -27,6 +26,7 @@ public typealias Role = DXEndpoint.Role
 ///     let endpoint = try DXEndpoint.create().set(userName: "demo").set(password: "demo")
 ///     .connect("demo.dxfeed.com:7300").getFeed()
 ///
+/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.html)
 public class DXEndpoint {
 
     /// A list of endpoint roles.
@@ -403,8 +403,7 @@ public class DXEndpoint {
 /// Builder class for ``DXEndpoint`` that supports additional configuration properties.
 ///
 /// Porting a Java class com.dxfeed.api.DXEndpoint.Builder.
-/// For more details
-/// see [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Builder.html)
+/// For more details see [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Builder.html)
 ///
 /// The ``build()`` method tries to load the default property file for the ``DXEndpoint/Role-swift.enum/feed``,
 /// ``DXEndpoint/Role-swift.enum/onDemandFeed`` and ``DXEndpoint/Role-swift.enum/publisher`` role.

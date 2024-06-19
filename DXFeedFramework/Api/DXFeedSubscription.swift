@@ -8,7 +8,7 @@ import Foundation
 
 /// Subscription for a set of symbols and event types.
 ///
-/// [Read it first Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html)
+/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html)
 public class DXFeedSubscription {
     /// Subscription native wrapper.
     private let native: NativeSubscription
