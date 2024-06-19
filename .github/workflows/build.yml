@@ -59,12 +59,11 @@ jobs:
       - name: Zip Tools
         run: cd build/tools.xcarchive; zip ../../tools.zip Products -r; cd -
 
-
-      # - name: Build Documentations
-      #   run: xcodebuild docbuild -scheme DXFeedFramework -derivedDataPath documentations/
+      - name: Build Documentations
+        run: xcodebuild docbuild -scheme DXFeedFramework -derivedDataPath documentations/
       
-      # - name: Zip Documentations
-      #   run: cd documentations/Build/Products/Debug; zip ../../../../documentation.zip DXFeedFramework.doccarchive -r; cd -
+      - name: Zip Documentations
+        run: cd documentations/Build/Products/Debug; zip ../../../../documentation.zip DXFeedFramework.doccarchive -r; cd -
 
       - name: Checkl file 
         run: ls -al release_sp.sh        
@@ -99,5 +98,15 @@ jobs:
       #     files: |
       #       build/DXFeedFramework.zip
       #       documentation.zip
+      #       tools.zip
       #     token: ${{ secrets.GITHUB_TOKEN }}
 
+        
+      - name: Upload Archive and Documentations
+        uses: softprops/action-gh-release@v1
+        with:
+          generate_release_notes: true
+          files: |
+            documentation.zip
+            tools.zip
+          token: ${{ secrets.GITHUB_TOKEN }}
