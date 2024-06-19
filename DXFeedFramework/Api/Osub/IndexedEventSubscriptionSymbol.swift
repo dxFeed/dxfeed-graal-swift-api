@@ -7,6 +7,9 @@
 
 import Foundation
 
-class IndexedEventSubscriptionSymbol: Symbol {
-
+class IndexedEventSubscriptionSymbol<T>: Symbol {
+    let symbol: T
+    init(symbol: T) {
+        self.symbol = symbol
+    }
 }

@@ -23,7 +23,7 @@ class SymbolMapper {
             pointer.pointee.supper = dxfg_symbol_t(type: WILDCARD)
             let casted = pointer.withMemoryRebound(to: dxfg_symbol_t.self, capacity: 1) { $0 }
             return casted
-        case _ as TimeSeriesSubscriptionSymbol:
+        case _ as TimeSeriesSubscriptionSymbol<CandleSymbol>:
             break
         default:
             let pointer = UnsafeMutablePointer<dxfg_string_symbol_t>.allocate(capacity: 1)
