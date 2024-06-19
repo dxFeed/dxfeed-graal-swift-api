@@ -71,24 +71,24 @@ jobs:
         run: ./release_sp.sh ${{ github.ref_name }} DXFeedFramework
         shell: sh
      
-      # - name: Commit files
-      #   run: |          
-      #     git config --local user.name "GitHub Action"
-      #     git commit Package.swift -m "Update Package.swift"
+      - name: Commit files
+        run: |          
+          git config --local user.name "GitHub Action"
+          git commit Package.swift -m "Update Package.swift"
 
-      # - name: Push to swift branch. Update swift package.
-      #   uses: ad-m/github-push-action@master
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     branch: swift
+      - name: Push to swift branch. Update swift package.
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: swift
       
-      # - name: Create tag for SPM
-      #   run: |          
-      #     echo ${{ github.ref_name }}
-      #     export TAG_NAME=`echo ${{ github.ref_name }} | sed 's/_build//'`
-      #     echo $TAG_NAME
-      #     git tag ${TAG_NAME}
-      #     git push origin ${TAG_NAME}
+      - name: Create tag for SPM
+        run: |          
+          echo ${{ github.ref_name }}
+          export TAG_NAME=`echo ${{ github.ref_name }} | sed 's/_build//'`
+          echo $TAG_NAME
+          git tag ${TAG_NAME}
+          git push origin ${TAG_NAME}
         
       - name: Upload Archive and Documentations
         uses: softprops/action-gh-release@v1
