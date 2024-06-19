@@ -9,6 +9,7 @@ import Foundation
 
 /// Defines type of a session - what kind of trading activity is allowed (if any),
 /// what rules are used, what impact on daily trading statistics it has, etc..
+/// 
 /// The ``noTrading`` session type is used for non-trading sessions.
 ///
 /// Some exchanges support all session types defined here, others do not.

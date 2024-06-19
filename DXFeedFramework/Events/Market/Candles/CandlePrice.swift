@@ -7,6 +7,7 @@
 
 import Foundation
 /// This ``DXCandlePrice`` structure is created to circumvent the limitation that enums in Swift cannot contain stored properties.
+/// 
 /// The "Enums must not contain stored properties" error occurs when attempting to add a stored property to an enum. Instead, we use this structure to store data that we would like to include in the enum.
 public struct DXCandlePrice: Equatable {
     /// Gets full name this ``CandlePrice`` instance.

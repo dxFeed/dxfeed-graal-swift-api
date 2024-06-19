@@ -24,6 +24,7 @@ public enum EventCode: CaseIterable {
     case theoPrice
     /// See ``Trade``
     case trade
+    /// See ``TradeETH``
     case tradeETH
     case configuration
     case message

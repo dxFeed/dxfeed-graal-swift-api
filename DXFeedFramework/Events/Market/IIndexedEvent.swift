@@ -30,7 +30,7 @@ public protocol IIndexedEvent: IEventType {
     /// while snapshotSnipindicates that some limit on the amount of data was reached
     /// and while there still might be more data available, it will not be provided.
     static var snapshotEnd: Int32 { get }
-    /// snapshotEndor snapshotSnipindicates the end of a snapshot.
+    /// snapshotEnd or snapshotSnipindicates the end of a snapshot.
     /// The difference between snapshotEnd and snapshotSnipis the following:
     /// snapshotEndindicates that the data source sent all the data pertaining to
     /// the subscription for the corresponding indexed event,

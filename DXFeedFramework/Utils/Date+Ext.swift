@@ -12,7 +12,7 @@ extension Date {
         return timeIntervalSince1970 * 1000
     }
 
-    public init(millisecondsSince1970: Long) {
+    init(millisecondsSince1970: Long) {
         self.init(timeIntervalSince1970: Double(millisecondsSince1970) / 1000)
     }
 }

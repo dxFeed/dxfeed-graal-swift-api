@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class ConcurrentDict<Key: Hashable, Value>: CustomStringConvertible {
+class ConcurrentDict<Key: Hashable, Value>: CustomStringConvertible {
     private var set = [Key: Value]()
     private let accessQueue = DispatchQueue(label: "com.dxfeed.set_queue", attributes: .concurrent)
 

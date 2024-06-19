@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 /// Quote event is a snapshot of the best bid and ask prices, and other fields that change with each quote.
 ///
 /// It represents the most recent information that is available about the best quote on the market
