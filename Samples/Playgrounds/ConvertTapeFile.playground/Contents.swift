@@ -23,13 +23,13 @@ class Listener: DXEventListener, Hashable {
 }
 
 
-let paths = Bundle.main.path(forResource: "ConvertTapeFile.in", ofType: nil)
+let inputFilePath = Bundle.main.path(forResource: "ConvertTapeFile.in", ofType: nil)
 let tempDirectory = NSTemporaryDirectory()
-let fullURL = NSURL.fileURL(withPathComponents: [tempDirectory, "ConvertTapeFile.out"])?.path
+let outputFilePath = NSURL.fileURL(withPathComponents: [tempDirectory, "ConvertTapeFile.out"])?.path
 
 // Determine input and output tapes and specify appropriate configuration parameters.
-let inputAddress = "file:\(paths ?? "")[readAs=stream_data,speed=max]"
-let outputAddress = "tape:\(fullURL ?? "" )[saveAs=stream_data,format=text]"
+let inputAddress = "file:\(inputFilePath ?? "")[readAs=stream_data,speed=max]"
+let outputAddress = "tape:\(outputFilePath ?? "" )[saveAs=stream_data,format=text]"
 
 // Create input endpoint configured for tape reading.
 let inputEndpoint = try DXEndpoint.builder()
@@ -93,4 +93,9 @@ try inputEndpoint.closeAndAWaitTermination()
 try outputEndpoint.awaitProcessed()
 try outputEndpoint.closeAndAWaitTermination()
 
-print("ConvertTapeFile: \(inputAddress) has been successfully tapped to  \(outputAddress)")
+print("""
+ConvertTapeFile:
+\(inputAddress)
+has been successfully tapped to
+\(outputAddress)
+""")

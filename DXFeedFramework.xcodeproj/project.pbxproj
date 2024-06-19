@@ -632,6 +632,7 @@
 		644BD7882A4475EF00A0BF99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainAR.storyboard; sourceTree = "<group>"; };
 		644C528D2B1E1CB8002C034C /* ConvertTapeFile.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ConvertTapeFile.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		644C528F2B1E1D73002C034C /* DxFeedFileParser.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = DxFeedFileParser.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		644C52902B1E345E002C034C /* DxFeedSample.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = DxFeedSample.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		644FE5D02AC1F34000580E3A /* LatencyMetricsPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatencyMetricsPrinter.swift; sourceTree = "<group>"; };
 		645A34942A937C7200709F29 /* BinaryInteger+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+Ext.swift"; sourceTree = "<group>"; };
 		645BE8512AC31E7C0028243D /* PerfTestTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfTestTool.swift; sourceTree = "<group>"; };
@@ -1004,6 +1005,7 @@
 			children = (
 				644C528F2B1E1D73002C034C /* DxFeedFileParser.playground */,
 				644C528D2B1E1CB8002C034C /* ConvertTapeFile.playground */,
+				644C52902B1E345E002C034C /* DxFeedSample.playground */,
 			);
 			path = Playgrounds;
 			sourceTree = "<group>";

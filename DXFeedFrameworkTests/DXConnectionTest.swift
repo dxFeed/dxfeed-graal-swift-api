@@ -78,4 +78,45 @@ final class DXConnectionTest: XCTestCase {
         }
     }
 
+    func testQuote() throws {
+        class Listener: DXEventListener, Hashable {
+
+            static func == (lhs: Listener, rhs: Listener) -> Bool {
+                lhs === rhs
+            }
+
+            func hash(into hasher: inout Hasher) {
+                hasher.combine("\(self):\(stringReference(self))")
+            }
+            var callback: ([MarketEvent]) -> Void = { _ in }
+
+            func receiveEvents(_ events: [MarketEvent]) {
+                self.callback(events)
+            }
+
+            init(overrides: (Listener) -> Listener) {
+                _ = overrides(self)
+            }
+        }
+
+
+        let symbol = "AAPL"
+        let endpoint = try DXEndpoint.builder()
+            .withProperty("dxfeed.address", "demo.dxfeed.com:7300")
+            .build()
+        let subscription = try endpoint
+            .getFeed()?
+            .createSubscription(EventCode.trade)
+        let listener = Listener { listener in
+            listener.callback = { events in
+                print(events)
+            }
+            return listener
+        }
+
+        try subscription?.add(listener: listener)
+        try subscription?.addSymbols(symbol)
+        wait(seconds: 10)
+    }
+
 }
