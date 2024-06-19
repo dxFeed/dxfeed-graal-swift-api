@@ -15,7 +15,8 @@ class TimeSeriesSubscriptionSymbol: IndexedEventSubscriptionSymbol<AnyHashable> 
     }
 
     convenience init(symbol: AnyHashable, date: Date) {
-        self.init(symbol: symbol, fromTime: Long(date.timeIntervalSince1970))
+
+        self.init(symbol: symbol, fromTime: Long(date.timeIntervalSince1970) * 1000)
     }
 
     static func == (lhs: TimeSeriesSubscriptionSymbol, rhs: TimeSeriesSubscriptionSymbol) -> Bool {
