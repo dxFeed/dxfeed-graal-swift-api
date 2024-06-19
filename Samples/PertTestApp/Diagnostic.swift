@@ -20,6 +20,8 @@ struct Metrics {
     let numberOfEvents: NSNumber
     let cpuUsage: NSNumber
     let peakCpuUsage: NSNumber
+    let memmoryUsage: NSNumber
+    let peakMemmoryUsage: NSNumber
     let currentTime: TimeInterval
 }
 
@@ -28,6 +30,10 @@ class Diagnostic {
 
     private var cpuUsage: Double = 0
     private var peakCpuUsage: Double = 0
+
+    private var memmoryUsage: Double = 0
+    private var peakMemmoryUsage: Double = 0
+
     private var startTime = Date.now
 
     private var counter = Counter()
@@ -61,6 +67,8 @@ class Diagnostic {
                        numberOfEvents: NSNumber(value: eventsIncall),
                        cpuUsage: NSNumber(value: cpuUsage),
                        peakCpuUsage: NSNumber(value: peakCpuUsage),
+                       memmoryUsage: NSNumber(value: memmoryUsage),
+                       peakMemmoryUsage: NSNumber(value: peakMemmoryUsage),
                        currentTime: startTime.timeIntervalSince(absoluteStartTime ?? startTime))
     }
 
@@ -70,6 +78,8 @@ class Diagnostic {
     }
 
     func updateCpuUsage() {
+        memmoryUsage = calculateMemmoryUsage()
+        peakMemmoryUsage = max(peakMemmoryUsage, memmoryUsage)
         cpuUsage = calculateCpuUsage()
         peakCpuUsage = max(peakCpuUsage, cpuUsage)
     }
@@ -122,6 +132,18 @@ class Diagnostic {
         }
         let result = totCpu / Double(coresCount)
         return result
+    }
+
+    func calculateMemmoryUsage() -> Double {
+        var taskInfo = task_vm_info_data_t()
+        var count = mach_msg_type_number_t(MemoryLayout<task_vm_info>.size) / 4
+        _ = withUnsafeMutablePointer(to: &taskInfo) {
+            $0.withMemoryRebound(to: integer_t.self, capacity: 1) {
+                task_info(mach_task_self_, task_flavor_t(TASK_VM_INFO), $0, &count)
+            }
+        }
+        let usedMb = Double(taskInfo.phys_footprint) / 1048576.0
+        return usedMb
     }
 
     private func convertThreadInfoToThreadBasicInfo(_ threadInfo: [integer_t]) -> thread_basic_info {

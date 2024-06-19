@@ -48,6 +48,8 @@ class PerfTestViewController: UIViewController {
     let soureTitles = ["Rate of events (avg)",
                        "Rate of listener calls",
                        "Number of events in call (avg)",
+                       "Current memory usage",
+                       "Peak memory usage",
                        "Current CPU usage",
                        "Peak CPU usage",
                        "Running time"]
@@ -92,6 +94,8 @@ class PerfTestViewController: UIViewController {
             "Rate of events (avg)": rateOfEventsCounter,
             "Rate of listener calls": rateOfListenersCounter,
             "Number of events in call (avg)": numberOfEventsCounter,
+            "Current memory usage": "\(cpuFormatter.string(from: metrics.memmoryUsage)!) Mbyte",
+            "Peak memory usage": "\(cpuFormatter.string(from: metrics.peakMemmoryUsage)!) Mbyte",
             "Current CPU usage": currentCpuCounter,
             "Peak CPU usage": peakCpuUsageCounter,
             "Running time": "\(metrics.currentTime.stringFromTimeInterval())"
@@ -102,7 +106,6 @@ class PerfTestViewController: UIViewController {
     func updateUI() {
         let metrics = diagnostic.getMetrics()
         diagnostic.updateCpuUsage()
-
         print("---------------------------------------------------")
         print("Event speed      \(numberFormatter.string(from: metrics.rateOfEvent)!) events/s")
         print("Listener Calls   \(numberFormatter.string(from: metrics.rateOfListeners)!) calls/s")
