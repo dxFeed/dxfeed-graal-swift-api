@@ -74,9 +74,12 @@ class MarketEventSymbols {
 
     private static func getLengthWithoutAttributesInternal(_ symbol: String) -> Int {
         let length = symbol.length
-        return hasAttributesInternal(symbol, length) ?
-        symbol.lastIndex(of: Separtors.open.rawValue, start: length) :
-        length
+        if hasAttributesInternal(symbol, length) {
+            let last = symbol.lastIndex(of: Separtors.open.rawValue, start: length)
+            return last
+        } else {
+            return length
+        }
     }
 
     private static func hasAttributesInternal(_ symbol: String,
