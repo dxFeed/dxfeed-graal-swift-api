@@ -40,6 +40,9 @@ Create subscription to \(address) for \(types):\(symbols) with properties:\(prop
                 let timeSubscriptionSymbols = symbols.map { symbol in
                     TimeSeriesSubscriptionSymbol(symbol: symbol, date: date)
                 }
+                print(symbols)
+                print(date)
+                print(timeSubscriptionSymbols)
                 try? subscription?.addSymbols(timeSubscriptionSymbols)
             } else if source != nil {
                 if let source = try? OrderSource.valueOf(name: source!) {

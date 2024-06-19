@@ -75,7 +75,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Connect demo.dxfeed.com:7300 quote AAPL -f 2012-05-26-14:15:00"
+            argument = "Connect demo.dxfeed.com:7300 candle AAPL -f 2012-05-26-14:15:00"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
@@ -92,6 +92,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "DuMp tapeK2.tape[speed=max] -t ios_tapeK2.tape -q"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Connect demo.dxfeed.com:7300 candle AAPL{=2d} -f 0"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
