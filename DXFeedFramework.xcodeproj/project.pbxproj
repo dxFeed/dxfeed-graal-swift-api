@@ -169,6 +169,7 @@
 		646407592AA0CA8D006FF769 /* NativeProfileIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646407582AA0CA8D006FF769 /* NativeProfileIterator.swift */; };
 		6464075B2AA0CEF2006FF769 /* NativeExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6464075A2AA0CEF2006FF769 /* NativeExecutor.swift */; };
 		6464075D2AA1C69E006FF769 /* DXInstrumentProfileUpdateListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6464075C2AA1C69E006FF769 /* DXInstrumentProfileUpdateListener.swift */; };
+		64649B1D2BBAF9F400A33C25 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 64649B1C2BBAF9F400A33C25 /* PrivacyInfo.xcprivacy */; };
 		64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F582A1B864C006A0B19 /* NativeEndpoint.swift */; };
 		64656F5B2A1B9784006A0B19 /* DXFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5A2A1B9784006A0B19 /* DXFeed.swift */; };
 		64656F5E2A1B97F2006A0B19 /* NativeFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5D2A1B97F2006A0B19 /* NativeFeed.swift */; };
@@ -704,6 +705,7 @@
 		646407582AA0CA8D006FF769 /* NativeProfileIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeProfileIterator.swift; sourceTree = "<group>"; };
 		6464075A2AA0CEF2006FF769 /* NativeExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeExecutor.swift; sourceTree = "<group>"; };
 		6464075C2AA1C69E006FF769 /* DXInstrumentProfileUpdateListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileUpdateListener.swift; sourceTree = "<group>"; };
+		64649B1C2BBAF9F400A33C25 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		64656F582A1B864C006A0B19 /* NativeEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeEndpoint.swift; sourceTree = "<group>"; };
 		64656F5A2A1B9784006A0B19 /* DXFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFeed.swift; sourceTree = "<group>"; };
 		64656F5D2A1B97F2006A0B19 /* NativeFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeFeed.swift; sourceTree = "<group>"; };
@@ -1437,6 +1439,7 @@
 				64B627702A3761EC00196D07 /* LaunchScreen.storyboard */,
 				64B627722A3761EC00196D07 /* Main.storyboard */,
 				64B627302A375C0F00196D07 /* Info.plist */,
+				64649B1C2BBAF9F400A33C25 /* PrivacyInfo.xcprivacy */,
 				64B6272D2A375C0E00196D07 /* AppDelegate.swift */,
 				64B6272F2A375C0F00196D07 /* PaddingLabel.swift */,
 				64B627292A375C0E00196D07 /* QuoteModel.swift */,
@@ -2107,6 +2110,7 @@
 				64B627752A3761EC00196D07 /* Main.storyboard in Resources */,
 				646979722A3B5AF60003A9BA /* Colors.xcassets in Resources */,
 				64B627772A37620D00196D07 /* Assets.xcassets in Resources */,
+				64649B1D2BBAF9F400A33C25 /* PrivacyInfo.xcprivacy in Resources */,
 				64B627742A3761EC00196D07 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3075,7 +3079,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 485XM3FRHB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Samples/QuoteTableApp/Info.plist;
@@ -3109,7 +3113,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 485XM3FRHB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Samples/QuoteTableApp/Info.plist;
