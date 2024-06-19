@@ -25,12 +25,19 @@ class DumpTool: ToolsCommand {
     Where:
     <address>  is a URL to Schedule API defaults file
     <types>    is comma-separated list of dxfeed event types ({eventTypeNames}).
+               If <types> is not specified, creates a subscription for all available event types.
     <symbol>   is comma-separated list of symbol names to get events for (e.g. ""IBM,AAPL,MSFT"").
-              for Candle event specify symbol with aggregation like in ""AAPL{{=d}}""
+               for Candle event specify symbol with aggregation like in ""AAPL{{=d}}""
+               If <symbol> is not specified, the wildcard symbol is used.
+    Usage:
+        Dump <address> [<options>]
+        Dump <address> <types> [<options>]
+        Dump <address> <types> <symbols> [<options>]
 
-    sample: Dump demo.dxfeed.com:7300 quote AAPL,IBM,ETH/USD:GDAX -t "tape_test.txt[format=text]"
+    Sample: Dump demo.dxfeed.com:7300 quote AAPL,IBM,ETH/USD:GDAX -t "tape_test.txt[format=text]"
+    Sample: Dump tapeK2.tape[speed=max] all all -q -t ios_tapeK2.tape
+    Sample: Dump tapeK2.tape[speed=max] -q -t ios_tapeK2.tape
 
-    sample: Dump tapeK2.tape[speed=max] all all -q -t ios_tapeK2.tape
     """
     var publisher: DXPublisher?
     var isQuite = false

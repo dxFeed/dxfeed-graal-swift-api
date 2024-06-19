@@ -88,6 +88,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Dump tapeK2.tape[speed=max] all all -t ios_tapeK2.tape -q"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Dump tapeK2.tape[speed=max] -t ios_tapeK2.tape -q"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
