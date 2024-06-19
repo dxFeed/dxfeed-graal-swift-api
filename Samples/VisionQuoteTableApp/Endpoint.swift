@@ -18,8 +18,9 @@ class Endpoint: Hashable, ObservableObject {
     static func == (lhs: Endpoint, rhs: Endpoint) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
+
     func hash(into hasher: inout Hasher) {
-        hasher.combine("\(self)")
+        hasher.combine("\(self):\(stringReference(self))")
     }
 
     func subscribe(address: String, symbols: [String]) {

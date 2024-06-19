@@ -28,7 +28,6 @@ class TimeUtil {
         return "\(dateFormatter.string(from: Date(timeIntervalSince1970: Double(millis / 1000))))"
     }
 
-
     public static func getSecondsFromTime(_ timeMillis: Long) -> Int {
         if timeMillis >= 0 {
             return min(Int(timeMillis / second), Int.max)

@@ -192,6 +192,7 @@
 		64C771FA2A94D692009868C2 /* ShortSaleRestriction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C771F92A94D692009868C2 /* ShortSaleRestriction.swift */; };
 		64C771FC2A94D7E9009868C2 /* TradingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C771FB2A94D7E9009868C2 /* TradingStatus.swift */; };
 		64C771FF2A9504ED009868C2 /* SnapshotProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C771FE2A9504ED009868C2 /* SnapshotProcessor.swift */; };
+		64C772012A975102009868C2 /* Reference+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C772002A975102009868C2 /* Reference+Util.swift */; };
 		64D0DBE82A29FF4B00710605 /* EventsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FCD2A2637EA00D1FC41 /* EventsTest.swift */; };
 		64D8BB342A39A1230071BC88 /* Diagnostic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D8BB332A39A1230071BC88 /* Diagnostic.swift */; };
 		64D8BB3E2A39BB730071BC88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D8BB3D2A39BB730071BC88 /* AppDelegate.swift */; };
@@ -484,6 +485,7 @@
 		64C771F92A94D692009868C2 /* ShortSaleRestriction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortSaleRestriction.swift; sourceTree = "<group>"; };
 		64C771FB2A94D7E9009868C2 /* TradingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingStatus.swift; sourceTree = "<group>"; };
 		64C771FE2A9504ED009868C2 /* SnapshotProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotProcessor.swift; sourceTree = "<group>"; };
+		64C772002A975102009868C2 /* Reference+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reference+Util.swift"; sourceTree = "<group>"; };
 		64D8BB332A39A1230071BC88 /* Diagnostic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diagnostic.swift; sourceTree = "<group>"; };
 		64D8BB3B2A39BB730071BC88 /* DXLatencyTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXLatencyTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D8BB3D2A39BB730071BC88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -722,6 +724,7 @@
 				6447A5F02A8FDD1B00739CCF /* BitUtil.swift */,
 				645A34942A937C7200709F29 /* BinaryInteger+Ext.swift */,
 				64C771F12A94A224009868C2 /* Character+Ext.swift */,
+				64C772002A975102009868C2 /* Reference+Util.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1497,6 +1500,7 @@
 				8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */,
 				64656F732A1D0A84006A0B19 /* EndpointListener.swift in Sources */,
 				64104FCC2A2629D800D1FC41 /* NativeSubscription.swift in Sources */,
+				64C772012A975102009868C2 /* Reference+Util.swift in Sources */,
 				64656F6D2A1CFB10006A0B19 /* DXEndpointState.swift in Sources */,
 				6447A5E32A8F611700739CCF /* IObservableSubscription.swift in Sources */,
 				64104FC92A26298D00D1FC41 /* DXFeedSubcription.swift in Sources */,

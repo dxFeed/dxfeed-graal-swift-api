@@ -9,14 +9,13 @@ import Foundation
 @testable import DXFeedFramework
 
 class AnonymousClass: DXEventListener, Hashable {
-    let name: String = String("\(Int(Date().timeIntervalSince1970 * 1000))")
 
     static func == (lhs: AnonymousClass, rhs: AnonymousClass) -> Bool {
-        lhs.name == rhs.name
+        lhs === rhs
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
+        hasher.combine("\(self):\(stringReference(self))")
     }
     var callback: ([MarketEvent]) -> Void = { _ in }
 
@@ -26,26 +25,5 @@ class AnonymousClass: DXEventListener, Hashable {
 
     init(overrides: (AnonymousClass) -> AnonymousClass) {
         _ = overrides(self)
-    }
-
-}
-
-class TestEventListener: DXEventListener, Hashable {
-    static func == (lhs: TestEventListener, rhs: TestEventListener) -> Bool {
-        lhs.hashValue == rhs.hashValue
-    }
-
-    let name: String
-
-    init(name: String) {
-        self.name = name
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
-    }
-
-    func receiveEvents(_ events: [MarketEvent]) {
-//        print(events)
     }
 }

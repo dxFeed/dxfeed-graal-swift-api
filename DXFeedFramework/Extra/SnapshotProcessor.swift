@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol SnapshotDelegate: AnyObject {
-    func receiveEvents(_ events: [IIndexedEvent], isSnapshot: Bool)
+    func receiveEvents(_ events: [MarketEvent], isSnapshot: Bool)
 }
 
 public class SnapshotProcessor {
@@ -29,7 +29,7 @@ public class SnapshotProcessor {
         self.snapshotDelegate =  nil
     }
 
-    public func processEvents(events: [MarketEvent]) {
+    private func processEvents(events: [MarketEvent]) {
         let isSnapshot = processSnapshotAndTx(events)
         processEventsNow(isSnapshot)
         transactionReceived(isSnapshot)
@@ -55,7 +55,6 @@ public class SnapshotProcessor {
                 continue
             }
             isSnapshot = isSnapshot || snapshotFull
-
             if snapshotFull {
                 snapshotFull = false
                 processEvents.removeAll()
@@ -86,10 +85,11 @@ public class SnapshotProcessor {
         }
         let list = result.values.sorted { event1, event2 in
             event1.index > event2.index
+        }.compactMap { event in
+            event as? MarketEvent
         }
-        print("\(list.count) \(isSnapshot)")
-        snapshotDelegate?.receiveEvents(list, isSnapshot: isSnapshot)
         result.removeAll()
+        snapshotDelegate?.receiveEvents(list, isSnapshot: isSnapshot)
     }
 
 }
@@ -105,7 +105,6 @@ extension SnapshotProcessor: Hashable {
         return lhs === rhs
     }
     public func hash(into hasher: inout Hasher) {
-        hasher.combine("\(self)")
+        hasher.combine("\(self):\(stringReference(self))")
     }
 }
-
