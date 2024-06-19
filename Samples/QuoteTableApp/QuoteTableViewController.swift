@@ -6,6 +6,7 @@
 
 import UIKit
 import DXFeedFramework
+import SwiftUI
 
 class QuoteTableViewController: UIViewController {
     private var endpoint: DXEndpoint?
@@ -27,11 +28,16 @@ class QuoteTableViewController: UIViewController {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.view.backgroundColor = .tableBackground
         self.quoteTableView.backgroundColor = .clear
+        self.quoteTableView.separatorStyle = .none
 
-        quoteTableView.separatorStyle = .none
-        
-        noticeButton.setTitle("Learn more about dxFeed APIs", for: .normal)
-        noticeButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+        var attText = AttributedString.init("Learn more about dxFeed APIs")
+        attText.font = UIFont.systemFont(ofSize: 10, weight: .bold)
+        var configuration = UIButton.Configuration.plain()
+        configuration.imagePadding = 5
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        configuration.attributedTitle = attText
+        configuration.buttonSize = .mini
+        noticeButton.configuration = configuration
 
         NotificationCenter.default.addObserver(forName: .selectedSymbolsChanged,
                                                object: nil,
@@ -103,6 +109,7 @@ class QuoteTableViewController: UIViewController {
             UIApplication.shared.openURL(url)
         }
     }
+
 }
 
 extension QuoteTableViewController: DXEndpointListener {
@@ -141,6 +148,8 @@ extension QuoteTableViewController: UITableViewDataSource {
         let symbol = symbols[indexPath.row]
         let quote = dataSource[symbol]
         cell.update(model: quote, symbol: symbol, description: quote?.descriptionString)
+        cell.selectionStyle = .none
+
         return cell
     }
 }
@@ -149,11 +158,56 @@ extension QuoteTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let symbol = self.symbols[indexPath.row]
+
+        let alert = UIAlertController(title: symbol, message: "", preferredStyle: .actionSheet)
+        let candlesAction = UIAlertAction(title: "Candle Chart", style: .default) { _ in
+            let ipfAddress = "https://demo:demo@tools.dxfeed.com/ipf?SYMBOL="
+            let candleChartViewController = MyUIHostingController(rootView: CandleChart(symbol: symbol,
+                                                                                        type: .day,
+                                                                                        endpoint: self.endpoint,
+                                                                                        ipfAddress: ipfAddress))
+            candleChartViewController.title = symbol
+            self.navigationController?.pushViewController(candleChartViewController, animated: true)
+        }
+        alert.addAction(candlesAction)
+
+        let marketDepthAction = UIAlertAction(title: "Depth Of Market", style: .default) { _ in
+            let storyboard = UIStoryboard(name: "MainMarketDepth", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "MarketDepthViewController")
+            if let marketDepthViewController = viewController as? MarketDepthViewController {
+                marketDepthViewController.symbol = symbol
+                marketDepthViewController.title = symbol
+                self.navigationController?.pushViewController(marketDepthViewController, animated: true)
+            }
+        }
+        alert.addAction(marketDepthAction)
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) {_ in })
+        let cell = tableView.cellForRow(at: indexPath)
+
+        alert.popoverPresentationController?.sourceView = self.quoteTableView
+        alert.popoverPresentationController?.sourceRect = cell?.frame ?? CGRect(x: 0, y: 0, width: 50, height: 50)
+
+        self.present(alert, animated: true, completion: nil)
+
+    }
 }
 
 extension QuoteTableViewController: UIGestureRecognizerDelegate {
+    // swipe to back
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                            shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+}
+
+class MyUIHostingController<Content>: UIHostingController<Content> where Content: View {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // fix for datepicker selected color
+        overrideUserInterfaceStyle = .dark
     }
 }

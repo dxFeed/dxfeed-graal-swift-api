@@ -36,14 +36,14 @@ class EndpoointStateListener: DXEndpointListener, Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine("\(self):\(stringReference(self))")
     }
-    var callback: (DXEndpointState, DXEndpointState) -> Void = { _,_  in }
+    var callback: (DXEndpointState, DXEndpointState) -> Void = { _, _  in }
 
     init(overrides: (EndpoointStateListener) -> EndpoointStateListener) {
         _ = overrides(self)
     }
 }
 
-let address = "demo.dxfeed.com:7300";
+let address = "demo.dxfeed.com:7300"
 
 func updateTokenAndReconnect() {
     try? DXEndpoint.getInstance().connect("\(address)[login=entitle:\(generateToken())]")
@@ -54,7 +54,6 @@ func generateToken() -> String {
     let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     return String((0..<length).map { _ in letters.randomElement()! })
 }
-
 
 // Demonstrates how to connect to endpoint requires authentication token, subscribe to market data events,
 // and handle periodic token updates.
@@ -71,7 +70,7 @@ endpoint.add(listener: stateListener)
 // Set up a timer to periodically update the token and reconnect every 10 seconds.
 // The first connection will be made immediately.
 // After reconnection, all existing subscriptions will be re-subscribed automatically.
-Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { timer in
+Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
     updateTokenAndReconnect()
 }.fire()
 

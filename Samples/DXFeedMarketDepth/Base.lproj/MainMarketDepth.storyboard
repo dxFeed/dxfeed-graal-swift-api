@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vvi-ZA-Ow6">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--MarketDepth-->
+        <scene sceneID="mr6-7i-WBI">
+            <objects>
+                <viewController storyboardIdentifier="MarketDepthViewController" id="Vvi-ZA-Ow6" customClass="MarketDepthViewController" customModule="DXFeedMarketDepth" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="utz-dg-Ncx">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="5Jl-Ov-Xyz">
+                                <rect key="frame" x="0.0" y="59" width="393" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMQ-EC-OM2">
+                                        <rect key="frame" x="0.0" y="0.0" width="131" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <color key="textColor" name="GreenBackground"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVv-Ez-XsA">
+                                        <rect key="frame" x="131" y="0.0" width="131" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <color key="textColor" name="TextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Sell" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8a-Sq-KgN">
+                                        <rect key="frame" x="262" y="0.0" width="131" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <color key="textColor" name="RedBackground"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="MP6-dg-eif"/>
+                                </constraints>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WTp-DG-unr">
+                                <rect key="frame" x="10" y="94" width="373" height="724"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderCell" rowHeight="60" id="ox7-LO-hzk" customClass="OrderCell" customModule="DXFeedMarketDepth" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="373" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ox7-LO-hzk" id="HfH-RJ-d74">
+                                            <rect key="frame" x="0.0" y="0.0" width="373" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="GKv-ng-uXJ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="373" height="60"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95G-A7-mWd">
+                                                            <rect key="frame" x="0.0" y="0.0" width="124.33333333333333" height="60"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ssw-K1-hNr">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="124.33333333333333" height="60"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.34999999403953552" translatesAutoresizingMaskIntoConstraints="NO" id="3qg-fZ-NGN">
+                                                                    <rect key="frame" x="0.0" y="20" width="124.33333333333333" height="20.333333333333329"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstItem="3qg-fZ-NGN" firstAttribute="leading" secondItem="95G-A7-mWd" secondAttribute="leading" id="5Ro-RM-29o"/>
+                                                                <constraint firstItem="Ssw-K1-hNr" firstAttribute="leading" secondItem="95G-A7-mWd" secondAttribute="leading" id="GW9-5W-OP7"/>
+                                                                <constraint firstItem="Ssw-K1-hNr" firstAttribute="width" secondItem="95G-A7-mWd" secondAttribute="width" id="eKa-PF-Y9a"/>
+                                                                <constraint firstItem="Ssw-K1-hNr" firstAttribute="top" secondItem="95G-A7-mWd" secondAttribute="top" id="mz4-kh-SYE"/>
+                                                                <constraint firstItem="3qg-fZ-NGN" firstAttribute="centerY" secondItem="95G-A7-mWd" secondAttribute="centerY" id="o51-vk-o2b"/>
+                                                                <constraint firstAttribute="trailing" secondItem="3qg-fZ-NGN" secondAttribute="trailing" id="pNr-aG-5HE"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Ssw-K1-hNr" secondAttribute="bottom" id="ynh-AU-zz6"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.34999999403953552" translatesAutoresizingMaskIntoConstraints="NO" id="geB-hw-j7Y">
+                                                            <rect key="frame" x="124.33333333333334" y="0.0" width="124.33333333333334" height="60"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSm-4k-Ycq">
+                                                            <rect key="frame" x="248.66666666666666" y="0.0" width="124.33333333333334" height="60"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TMy-2X-OFh">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="124.33333333333333" height="60"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sell" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.34999999403953552" translatesAutoresizingMaskIntoConstraints="NO" id="BiN-5P-wH2">
+                                                                    <rect key="frame" x="0.0" y="20" width="124.33333333333333" height="20.333333333333329"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="TMy-2X-OFh" secondAttribute="trailing" id="601-Qx-d9J"/>
+                                                                <constraint firstAttribute="bottom" secondItem="TMy-2X-OFh" secondAttribute="bottom" id="Dre-5U-YWQ"/>
+                                                                <constraint firstItem="TMy-2X-OFh" firstAttribute="width" secondItem="rSm-4k-Ycq" secondAttribute="width" id="SwQ-as-kGK"/>
+                                                                <constraint firstItem="BiN-5P-wH2" firstAttribute="centerY" secondItem="rSm-4k-Ycq" secondAttribute="centerY" id="W11-ba-DID"/>
+                                                                <constraint firstItem="BiN-5P-wH2" firstAttribute="leading" secondItem="rSm-4k-Ycq" secondAttribute="leading" id="bcI-Jk-f8i"/>
+                                                                <constraint firstItem="TMy-2X-OFh" firstAttribute="top" secondItem="rSm-4k-Ycq" secondAttribute="top" id="eBm-8h-qji"/>
+                                                                <constraint firstAttribute="trailing" secondItem="BiN-5P-wH2" secondAttribute="trailing" id="wvZ-Sl-Z2m"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="GKv-ng-uXJ" secondAttribute="trailing" id="G5h-Lr-Tab"/>
+                                                <constraint firstItem="GKv-ng-uXJ" firstAttribute="top" secondItem="HfH-RJ-d74" secondAttribute="top" id="LOm-dm-2kP"/>
+                                                <constraint firstAttribute="bottom" secondItem="GKv-ng-uXJ" secondAttribute="bottom" id="OOB-Sd-2xh"/>
+                                                <constraint firstItem="GKv-ng-uXJ" firstAttribute="leading" secondItem="HfH-RJ-d74" secondAttribute="leading" id="eXo-1s-uH3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="priceLabel" destination="geB-hw-j7Y" id="GiJ-ax-oUS"/>
+                                            <outlet property="sizeBuyConstraint" destination="eKa-PF-Y9a" id="uhP-S9-Pg4"/>
+                                            <outlet property="sizeBuyContentView" destination="Ssw-K1-hNr" id="PTw-pX-EDP"/>
+                                            <outlet property="sizeBuyLabel" destination="3qg-fZ-NGN" id="0kd-Bx-aI5"/>
+                                            <outlet property="sizeSellConstraint" destination="SwQ-as-kGK" id="2bK-fb-5ie"/>
+                                            <outlet property="sizeSellContentView" destination="TMy-2X-OFh" id="5XF-Dc-U8m"/>
+                                            <outlet property="sizeSellLabel" destination="BiN-5P-wH2" id="QbP-rA-TIc"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Vvi-ZA-Ow6" id="8i8-EX-2kM"/>
+                                    <outlet property="delegate" destination="Vvi-ZA-Ow6" id="qXu-i7-GSu"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="PUE-yf-QF6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5Jl-Ov-Xyz" firstAttribute="leading" secondItem="PUE-yf-QF6" secondAttribute="leading" id="MKb-6o-ChX"/>
+                            <constraint firstItem="WTp-DG-unr" firstAttribute="leading" secondItem="PUE-yf-QF6" secondAttribute="leading" constant="10" id="T1e-T9-wTO"/>
+                            <constraint firstItem="PUE-yf-QF6" firstAttribute="trailing" secondItem="5Jl-Ov-Xyz" secondAttribute="trailing" id="YeK-EG-eeK"/>
+                            <constraint firstItem="PUE-yf-QF6" firstAttribute="trailing" secondItem="WTp-DG-unr" secondAttribute="trailing" constant="10" id="bJc-Ei-OPf"/>
+                            <constraint firstItem="5Jl-Ov-Xyz" firstAttribute="top" secondItem="PUE-yf-QF6" secondAttribute="top" id="g85-5a-giZ"/>
+                            <constraint firstItem="WTp-DG-unr" firstAttribute="top" secondItem="5Jl-Ov-Xyz" secondAttribute="bottom" constant="5" id="k8R-xy-isV"/>
+                            <constraint firstItem="WTp-DG-unr" firstAttribute="bottom" secondItem="PUE-yf-QF6" secondAttribute="bottom" id="wfi-6n-Avs"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="MarketDepth" id="J5f-Xw-qL4"/>
+                    <connections>
+                        <outlet property="headerConstraint" destination="MP6-dg-eif" id="Ljv-2b-e58"/>
+                        <outlet property="headerStackView" destination="5Jl-Ov-Xyz" id="d6Q-8P-p9y"/>
+                        <outlet property="ordersTableView" destination="WTp-DG-unr" id="7AI-HY-IfH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZgW-ge-Uih" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-63" y="5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="GreenBackground">
+            <color red="0.0" green="0.45882352941176469" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="RedBackground">
+            <color red="0.57647058823529407" green="0.0" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextColor">
+            <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

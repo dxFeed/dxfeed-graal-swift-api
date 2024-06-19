@@ -64,10 +64,16 @@ public class IndexedEventSubscriptionSymbol: Symbol {
 
     /// Custom symbol has to return string representation.
     public var stringValue: String {
-        return "\(symbol.stringValue)source=\(source.toString())"
+        return "\(symbol.stringValue){source=\(source.toString())}"
     }
 }
 
+extension IndexedEventSubscriptionSymbol: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.symbol.stringValue)
+        hasher.combine(self.source.toString())
+    }
+}
 extension IndexedEventSubscriptionSymbol: Equatable {
     public static func == (lhs: IndexedEventSubscriptionSymbol,
                            rhs: IndexedEventSubscriptionSymbol) -> Bool {
