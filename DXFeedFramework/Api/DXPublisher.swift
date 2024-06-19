@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DXPublisher {
+public class DXPublisher {
 #warning("TODO: implement it")
 
 }

@@ -120,6 +120,10 @@ class NativeEndpoint {
         let thread = currentThread()
         try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_close(thread, self.endpoint))
     }
+    func closeAndAWaitTermination() throws {
+        let thread = currentThread()
+        try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_closeAndAwaitTermination(thread, self.endpoint))
+    }
     func set(password: String) throws {
         let thread = currentThread()
         try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_password(thread, self.endpoint, password.toCStringRef()))
