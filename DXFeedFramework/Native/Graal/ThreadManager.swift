@@ -18,7 +18,7 @@ func currentThread() -> OpaquePointer! {
 }
 
 class ThreadManager {
-    static let shared = ThreadManager()
+    fileprivate static let shared = ThreadManager()
     private static let kThreadKey = "GraalThread"
     private init() {
 
