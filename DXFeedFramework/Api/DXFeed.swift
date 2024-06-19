@@ -99,6 +99,11 @@ public extension DXFeed {
     /// It just retrieves last received event from the local cache of this feed.
     /// The events are stored in the cache only if there is some
     /// attached ``DXFeedSubscription`` that is subscribed to the corresponding event type and symbol.
+    /// - Parameters:
+    ///    - type: The event type ``IEventType``.
+    ///    - symbol: The ``Symbol``.
+    /// - Returns: The list of ``ILastingEvent``
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     func getLastEventIfSubscribed(type: IEventType.Type, symbol: Symbol) throws -> ILastingEvent? {
         return try native.getLastEventIfSubscribed(type: type, symbol: symbol)
     }
