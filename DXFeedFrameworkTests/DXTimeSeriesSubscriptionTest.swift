@@ -21,7 +21,7 @@ final class DXTimeSeriesSubscriptionTest: XCTestCase {
     func testCreateWithNil() throws {
         XCTAssertThrowsError(try DXFeedTimeSeriesSubscription(native: nil, events: [.candle])) { error in
             XCTAssertTrue(error is ArgumentException)
-        } 
+        }
     }
 
     func createSubscriptionFor(multiple: Bool) throws {

@@ -57,7 +57,7 @@ final class FeedTest: XCTestCase {
         let testString = TimeSeriesSubscriptionSymbol(symbol: symbol1, fromTime: 10).stringValue
         print(testString)
     }
-    
+
     func testCreateSubscriptionWithSymbol() throws {
         try createMultipleSubscriptionWithSymbol(symbols: ["ETH/USD:GDAX"])
     }
