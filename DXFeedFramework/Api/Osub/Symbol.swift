@@ -12,7 +12,7 @@ public protocol Symbol {
 }
 
 extension Symbol {
-    var stringValue: String {
+    public var stringValue: String {
 #warning("TODO: implement it")
         return "empty description for \(type(of: self)). please change"
     }
