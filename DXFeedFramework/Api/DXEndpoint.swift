@@ -1,6 +1,6 @@
 //
 //  DXEndpoint.swift
-//  DxFeedSwiftFramework
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 20.03.2023.
 //

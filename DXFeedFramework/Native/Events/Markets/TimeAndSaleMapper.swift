@@ -1,6 +1,6 @@
 //
 //  TimeAndSaleMapper.swift
-//  DxFeedSwiftFramework
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 06.06.23.
 //

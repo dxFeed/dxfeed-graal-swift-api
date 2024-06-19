@@ -1,6 +1,6 @@
 //
 //  Trade+Ext.swift
-//  DxFeedSwiftFramework
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 07.06.23.
 //

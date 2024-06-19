@@ -1,6 +1,6 @@
 //
 //  SymbolMapper.swift
-//  DxFeedSwiftFramework
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 01.06.23.
 //
@@ -13,7 +13,7 @@ class SymbolMapper {
     static func newNative(_ symbol: Symbol) -> UnsafeMutablePointer<dxfg_symbol_t>? {
         switch symbol {
         case let stringSymbol as String:
-            var pointer = UnsafeMutablePointer<dxfg_string_symbol_t>.allocate(capacity: 1)
+            let pointer = UnsafeMutablePointer<dxfg_string_symbol_t>.allocate(capacity: 1)
             pointer.pointee.supper = dxfg_symbol_t(type: STRING)
             pointer.pointee.symbol = stringSymbol.stringValue.toCStringRef()
             let casted = pointer.withMemoryRebound(to: dxfg_symbol_t.self, capacity: 1) { $0 }
@@ -23,7 +23,7 @@ class SymbolMapper {
             pointer.pointee.supper = dxfg_symbol_t(type: WILDCARD)
             let casted = pointer.withMemoryRebound(to: dxfg_symbol_t.self, capacity: 1) { $0 }
             return casted
-        case let tsSymbol as TimeSeriesSubscriptionSymbol:
+        case _ as TimeSeriesSubscriptionSymbol:
             break
         default:
             let pointer = UnsafeMutablePointer<dxfg_string_symbol_t>.allocate(capacity: 1)

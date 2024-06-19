@@ -1,6 +1,6 @@
 //
 //  GraalException.swift
-//  DxFeedSwiftFramework
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 16.03.2023.
 //

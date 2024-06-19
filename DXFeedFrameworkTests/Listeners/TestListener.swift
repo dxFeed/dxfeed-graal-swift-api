@@ -1,6 +1,6 @@
 //
 //  TestListener.swift
-//  DxFeedSwiftFrameworkTests
+//  DXFeedFrameworkTests
 //
 //  Created by Aleksey Kosylo on 25.05.23.
 //

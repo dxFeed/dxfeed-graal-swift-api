@@ -1,6 +1,6 @@
 //
 //  Mapper.swift
-//  DxFeedSwiftFramework
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 05.06.23.
 //

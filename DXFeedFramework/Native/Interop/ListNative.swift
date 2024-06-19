@@ -1,6 +1,6 @@
 //
 //  ListNative.swift
-//  DxFeedSwiftFramework
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 31.05.23.
 //

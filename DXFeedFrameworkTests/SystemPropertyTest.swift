@@ -1,6 +1,6 @@
 //
 //  SystemPropertyTest.swift
-//  DxFeedSwiftFrameworkTests
+//  DXFeedFrameworkTests
 //
 //  Created by Aleksey Kosylo on 17.03.2023.
 //

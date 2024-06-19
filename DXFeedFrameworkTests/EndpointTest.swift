@@ -1,6 +1,6 @@
 //
 //  EndpointTest.swift
-//  DxFeedSwiftFrameworkTests
+//  DXFeedFrameworkTests
 //
 //  Created by Aleksey Kosylo on 21.03.2023.
 //
