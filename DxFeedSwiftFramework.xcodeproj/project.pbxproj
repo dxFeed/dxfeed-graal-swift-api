@@ -24,6 +24,7 @@
 		64125E342A1F688900FB32BA /* libDxFeedGraalNativeSdk.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 64125E332A1F688900FB32BA /* libDxFeedGraalNativeSdk.o */; platformFilter = ios; };
 		64125E362A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); };
 		64125E372A1F69FD00FB32BA /* libDxFeedGraalNativeSdk.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		641BCBB42A1F8ABA00FE23C2 /* XCTestCase+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBB32A1F8ABA00FE23C2 /* XCTestCase+Utils.swift */; };
 		64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F582A1B864C006A0B19 /* NativeEndpoint.swift */; };
 		64656F5B2A1B9784006A0B19 /* DXFFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5A2A1B9784006A0B19 /* DXFFeed.swift */; };
 		64656F5E2A1B97F2006A0B19 /* NativeFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5D2A1B97F2006A0B19 /* NativeFeed.swift */; };
@@ -87,6 +88,7 @@
 /* Begin PBXFileReference section */
 		64125E332A1F688900FB32BA /* libDxFeedGraalNativeSdk.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = libDxFeedGraalNativeSdk.o; path = graal_builds/ios/libDxFeedGraalNativeSdk.o; sourceTree = "<group>"; };
 		64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDxFeedGraalNativeSdk.dylib; path = graal_builds/osx_universal/libDxFeedGraalNativeSdk.dylib; sourceTree = "<group>"; };
+		641BCBB32A1F8ABA00FE23C2 /* XCTestCase+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Utils.swift"; sourceTree = "<group>"; };
 		64656F582A1B864C006A0B19 /* NativeEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeEndpoint.swift; sourceTree = "<group>"; };
 		64656F5A2A1B9784006A0B19 /* DXFFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFFeed.swift; sourceTree = "<group>"; };
 		64656F5D2A1B97F2006A0B19 /* NativeFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeFeed.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				8088D76C29C101CF00F240CB /* ThreadsTest.swift */,
 				8088D77829C498FA00F240CB /* SystemPropertyTest.swift */,
 				80FC416029CA376E00E6B611 /* EndpointTest.swift */,
+				641BCBB32A1F8ABA00FE23C2 /* XCTestCase+Utils.swift */,
 			);
 			path = DxFeedSwiftFrameworkTests;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8088D76D29C101CF00F240CB /* ThreadsTest.swift in Sources */,
+				641BCBB42A1F8ABA00FE23C2 /* XCTestCase+Utils.swift in Sources */,
 				8088D76B29C0FE1700F240CB /* IsolateTest.swift in Sources */,
 				80FC416129CA376E00E6B611 /* EndpointTest.swift in Sources */,
 				8088D77929C498FA00F240CB /* SystemPropertyTest.swift in Sources */,
