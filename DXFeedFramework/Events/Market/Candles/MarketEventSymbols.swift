@@ -9,98 +9,250 @@ import Foundation
 
 class MarketEventSymbols {
     enum Separtors: String {
-        case exchangeSeparator = "&"
-        case attributesOpen = "{"
-        case attributesClose = "}"
-        case attributesSeparator = ","
-        case attributeValue = "="
+        case exchSeparator = "&"
+        case open = "{"
+        case close = "}"
+        case separator = ","
+        case value = "="
+    }
+
+    static func changeExchangeCode(_ symbol: String?, _ exchangeCode: Character) -> String? {
+        guard let symbol = symbol else {
+            return exchangeCode == "\0" ? nil : "\(Separtors.exchSeparator)\(exchangeCode)"
+        }
+
+        var index = getLengthWithoutAttributesInternal(symbol)
+        var result = exchangeCode == "0" ?
+        getBaseSymbolInternal(symbol, index) :
+        (getBaseSymbolInternal(symbol, index) + "\(Separtors.exchSeparator)\(exchangeCode)")
+
+        return index == symbol.length ?
+        result :
+        result + symbol[index]
     }
 
     static func getBaseSymbol(_ symbol: String?) -> String? {
         guard let symbol = symbol else {
             return nil
         }
-        return symbol
+        return getBaseSymbolInternal(symbol, getLengthWithoutAttributesInternal(symbol))
     }
 
-    private static func hasExchangeCodeInternal(symbol: String, length: Int) -> Bool {
-        return  length >= 2 && symbol[length - 2] == Separtors.exchangeSeparator.rawValue
+    private static func hasExchangeCodeInternal(_ symbol: String, _ length: Int) -> Bool {
+        return  length >= 2 && symbol[length - 2] == Separtors.exchSeparator.rawValue
     }
 
-    private static func getBaseSymbolInternal(symbol: String, length: Int) -> String {
-        return hasExchangeCodeInternal(symbol: symbol, length: length) ? symbol[0..<(length - 2)] : symbol[0..<length]
+    private static func getBaseSymbolInternal(_ symbol: String, _ length: Int) -> String {
+        return hasExchangeCodeInternal(symbol, length) ? symbol[0..<(length - 2)] : symbol[0..<length]
     }
 
     static func getAttributeStringByKey(_ symbol: String?, _ key: String) -> String? {
         guard let symbol = symbol else {
             return nil
         }
-        return getAttributeInternal(symbol, lenght: getLengthWithoutAttributesInternal(symbol: symbol), key: key)
+        return getAttributeInternal(symbol, getLengthWithoutAttributesInternal(symbol), key)
     }
 
-    private  static func getAttributeInternal(_ symbol: String, lenght: Int, key: String) -> String? {
+    private  static func getAttributeInternal(_ symbol: String, _ lenght: Int, _ key: String) -> String? {
         if lenght == symbol.length {
             return nil
         }
         var index = lenght + 1
         while index < symbol.length {
-            let current = getKeyInternal(symbol: symbol, start: index)
+            let current = getKeyInternal(symbol, index)
             if current == nil {
                 break
             }
-            let jindex = getNextKeyInternal(symbol: symbol, index: index)
+            let jindex = getNextKeyInternal(symbol, index)
             if key == current {
-                return getValueInternal(symbol: symbol, index: index, jindex: jindex)
+                return getValueInternal(symbol, index, jindex)
             }
             index = jindex
         }
         return nil
     }
 
-    private static func getLengthWithoutAttributesInternal(symbol: String) -> Int {
+    private static func getLengthWithoutAttributesInternal(_ symbol: String) -> Int {
         var length = symbol.count
-        return hasAttributesInternal(symbol: symbol, length: length) ?
-        symbol.lastIndex(of: Separtors.attributesOpen.rawValue, start: length) :
+        return hasAttributesInternal(symbol, length) ?
+        symbol.lastIndex(of: Separtors.open.rawValue, start: length) :
         length
     }
 
-    private static func hasAttributesInternal(symbol: String, length: Int) -> Bool {
-        if length >= 3 && symbol[length - 1] == Separtors.attributesClose.rawValue {
-            let lastIndex = symbol.lastIndex(of: Separtors.attributesOpen.rawValue, start: length - 2)
+    private static func hasAttributesInternal(_ symbol: String,
+                                              _ length: Int) -> Bool {
+        if length >= 3 && symbol[length - 1] == Separtors.close.rawValue {
+            let lastIndex = symbol.lastIndex(of: Separtors.open.rawValue, start: length - 2)
             return lastIndex >= 0 && lastIndex < length - 1
         }
         return false
     }
 
-    private static func getKeyInternal(symbol: String, start: Int) -> String? {
-        let val = symbol.firstIndex(of: Separtors.attributeValue.rawValue, start: start)
+    private static func getKeyInternal(_ symbol: String,
+                                       _ start: Int) -> String? {
+        let val = symbol.firstIndex(of: Separtors.value.rawValue, start: start)
         return val < 0 ? nil : symbol[start..<val+1]
     }
 
-    private static func getNextKeyInternal(symbol: String, index: Int) -> Int {
-        var val = symbol.firstIndex(of: Separtors.attributeValue.rawValue, start: index) + 1
-        var sep = symbol.firstIndex(of: Separtors.attributesSeparator.rawValue, start: val)
-        return sep < 0 ? symbol.count : sep + 1;
+    private static func getNextKeyInternal(_ symbol: String,
+                                           _ index: Int) -> Int {
+        var val = symbol.firstIndex(of: Separtors.value.rawValue, start: index) + 1
+        var sep = symbol.firstIndex(of: Separtors.separator.rawValue, start: val)
+        return sep < 0 ? symbol.count : sep + 1
     }
 
-    private static func getValueInternal(symbol: String, index: Int, jindex: Int) -> String {
-        var startPos = symbol.firstIndex(of: Separtors.attributeValue.rawValue, start: index) + 1
+    private static func getValueInternal(_ symbol: String,
+                                         _ index: Int,
+                                         _ jindex: Int) -> String {
+        var startPos = symbol.firstIndex(of: Separtors.value.rawValue, start: index) + 1
         var endPos = jindex - 1
         return symbol[startPos..<endPos]
     }
 
-
-    public static func RemoveAttributeStringByKey(string? symbol, string? key) -> String? {        
-            if (key == null)
-            {
-                throw new ArgumentNullException(nameof(key));
-            }
-
-            if (symbol == null)
-            {
-                return null;
-            }
-
-            return RemoveAttributeInternal(symbol, GetLengthWithoutAttributesInternal(symbol), key);
+    static func removeAttributeStringByKey(_ symbol: String?,
+                                           _ key: String) -> String? {
+        guard let symbol = symbol else {
+            return nil
         }
+        return removeAttributeInternal(symbol,
+                                       getLengthWithoutAttributesInternal(symbol),
+                                       key)
+    }
+
+    private static func removeAttributeInternal(_ symbol: String,
+                                                _ length: Int,
+                                                _ key: String) -> String {
+        var symbol = symbol
+        if length == symbol.length {
+            return symbol
+        }
+        var index = length + 1
+        while index < symbol.length {
+            var current = getKeyInternal(symbol, index)
+            if current == nil {
+                break
+            }
+
+            var jindex = getNextKeyInternal(symbol, index)
+            if key == current {
+                symbol = dropKeyAndValueInternal(symbol, length, index, jindex)
+            } else {
+                index = jindex
+            }
+        }
+
+        return symbol
+    }
+
+    private static func dropKeyAndValueInternal(_ symbol: String,
+                                                _ length: Int,
+                                                _ index: Int,
+                                                _ jindex: Int) -> String {
+        var result = ""
+        if jindex == symbol.length {
+            result = index == length + 1
+            ? symbol[0..<length]
+            : symbol[0..<index-1] + symbol[jindex - 1..<symbol.length]
+        } else {
+            result = symbol[0..<index] + symbol[jindex..<symbol.length]
+        }
+
+        return result
+    }
+
+    static func changeAttributeStringByKey(_ symbol: String?,
+                                                  _ key: String?,
+                                                  _ value: String?) throws -> String? {
+        guard let key = key else {
+            throw ArgumentException.argumentNil
+        }
+        guard let symbol = symbol else {
+            if let value = value {
+                return "\(Separtors.open)\(key)\(Separtors.value)\(value)\(Separtors.close)"
+            } else {
+                return nil
+            }
+        }
+        let index = getLengthWithoutAttributesInternal(symbol)
+        if index == symbol.length {
+            if let value = value {
+                return "\(symbol)\(Separtors.open)\(key)\(Separtors.value)\(value)\(Separtors.close)"
+            } else {
+                return symbol
+            }
+        }
+        if let value = value {
+            return addAttributeInternal(symbol, index, key, value)
+
+        } else {
+            return removeAttributeInternal(symbol, index, key)
+        }
+    }
+
+    private static func addAttributeInternal(_ symbol: String,
+                                             _ length: Int,
+                                             _ key: String,
+                                             _ value: String) -> String {
+        var symbol = symbol
+        if length == symbol.length {
+            return "\(symbol)\(Separtors.open)\(key)\(Separtors.value)\(value)\(Separtors.close)"
+        }
+        var index = length + 1
+        var added = false
+        while index < symbol.length {
+            let current = getKeyInternal(symbol, index)
+            if let current = current {
+                let jindex = getNextKeyInternal(symbol, index)
+                var cmp = current == key
+                if cmp == true {
+                    if added {
+                        symbol = dropKeyAndValueInternal(symbol, length, index, jindex)
+                    } else {
+                        symbol =
+                        symbol[0..<index] +
+                        "\(key)\(Separtors.value)\(value)" +
+                        symbol[jindex-1..<symbol.length]
+                    }
+                } else {
+                    if current > key {
+                        symbol =
+                        symbol[0..<index] +
+                        "\(key)\(Separtors.value)\(value)\(Separtors.separator)" +
+                        symbol[index..<symbol.length]
+                        added = true
+                        index += key.length + value.length + 2
+                    } else {
+                        index = jindex
+                    }
+                }
+            }
+        }
+        return added ? symbol : (symbol[0..<index-1] +
+                                 "\(Separtors.separator)\(key)\(Separtors.value)\(value)" +
+                                 symbol[index-1..<symbol.length])
+    }
+
+    static func getExchangeCode(_ symbol: String?) -> Character {
+        let emptyChar: Character = "\0"
+        if hasExchangeCode(symbol), let symbol = symbol {
+            let str = symbol[getLengthWithoutAttributesInternal(symbol) - 1]
+            guard let char = str.first else {
+                return emptyChar
+            }
+            return char
+        } else {
+            return emptyChar
+        }
+    }
+
+    public static func hasExchangeCode(_ symbol: String?) -> Bool {
+        guard let symbol = symbol else {
+            return false
+        }
+        return hasExchangeCodeInternal(symbol, getLengthWithoutAttributesInternal(symbol))
+    }
+
+    private static func hasExchangeCodeInternal(symbol: String, length: Int) -> Bool {
+        return length >= 2 && symbol[length - 2] == Separtors.exchSeparator.rawValue
+    }
 }

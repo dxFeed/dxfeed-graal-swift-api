@@ -9,5 +9,10 @@ import Foundation
 
 enum ArgumentException: Error {
     case missingCandleType
+    case missingCandlePrice
     case unknowCandleType
+    case unknowCandlePrice
+    case argumentNil
+    case invalidOperationException(_ message: String)
 }
+

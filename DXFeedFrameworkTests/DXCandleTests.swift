@@ -61,4 +61,30 @@ final class DXCandleTests: XCTestCase {
         print(string[lastIndex1])
     }
 
+    func testDict() throws {
+        let dict = ConcurrentDict<String, String>()
+        dict["1"] = "cde"
+        dict["2"] = "abc"
+        let val = dict.first { key, value in
+            value == "cde1"
+        }
+        print(dict["2"])
+        print(dict["1"])
+        XCTAssert(dict["2"] == "abc", "Not equal")
+
+    }
+
+    func testChar() throws {
+        let char123: Character = 0
+        let char: Character = "\0"
+        let char2: Character = "\u{003A}"
+        print("as")
+        print(char123)
+        print(char123 == char)
+        print("as0")
+        print(char)
+        print("as2")
+        print(char2)
+        print("as3")
+    }
 }
