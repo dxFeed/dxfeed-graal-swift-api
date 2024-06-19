@@ -56,6 +56,10 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = " qds nettest p :6666  -w -S 10"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "Dump"
             isEnabled = "NO">
          </CommandLineArgument>
@@ -69,7 +73,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "qds &quot;connect &quot;dxlink:wss://demo.dxfeed.com/dxlink-ws&quot; Quote AAPL&quot; -p dxfeed.experimental.dxlink.enable=true,scheme=ext:resource:dxlink.xml "
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Connect demo.dxfeed.com:7300 candle AAPL -f 2012-05-26-14:15:00"
