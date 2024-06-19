@@ -10,9 +10,6 @@ import Foundation
 class NativeQdsUtils {
     static func execute(_ parameters: [String]) throws {
         let thread = currentThread()
-        let cStrings = parameters.map { str in
-            str.toCStringRef() as UnsafePointer<CChar>
-        }
         let classes = UnsafeMutablePointer<UnsafePointer<CChar>?>
             .allocate(capacity: parameters.count)
         var iterator = classes

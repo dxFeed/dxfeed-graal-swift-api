@@ -53,11 +53,11 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "PerfTest  localhost:7777 TimeAndSale YQKNT"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = " qds post :6666"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Dump"

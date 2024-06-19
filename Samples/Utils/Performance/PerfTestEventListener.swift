@@ -13,7 +13,7 @@ class PerfTestEventListener: AbstractEventListener {
 
     override func handleEvents(_ events: [MarketEvent]) {
         events.forEach {
-            //use logical OR to avoid overflow
+            // use logical OR to avoid overflow
             blackHoleHashCode = blackHoleHashCode | $0.hashCode
         }
         let count = events.count

@@ -587,7 +587,6 @@
 		641BDD5C2ACD67A000236B78 /* LatencyListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatencyListener.swift; sourceTree = "<group>"; };
 		641BDD602ACD697B00236B78 /* AbstractEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractEventListener.swift; sourceTree = "<group>"; };
 		641E45F82B1DE51700649363 /* EventsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListener.swift; sourceTree = "<group>"; };
-		64262CCC2A4DA64700BA6BA3 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		64278C6B2A602CA20074B5AA /* CandleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleTests.swift; sourceTree = "<group>"; };
 		64278C6D2A602D2B0074B5AA /* Candle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candle.swift; sourceTree = "<group>"; };
 		64278C6F2A602FA00074B5AA /* Candle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Candle+Ext.swift"; sourceTree = "<group>"; };
@@ -1020,7 +1019,6 @@
 		64262CCB2A4DA64700BA6BA3 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				64262CCC2A4DA64700BA6BA3 /* RealityKitContent */,
 			);
 			path = Packages;
 			sourceTree = "<group>";

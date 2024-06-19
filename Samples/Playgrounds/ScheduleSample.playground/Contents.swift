@@ -77,9 +77,8 @@ guard let profile = profiles[symbol.stringValue] else {
 }
 print("Found profile for \(symbol): \(profile.descriptionStr)")
 let format = DateFormatter()
-var timeArgument: Double = 0
 format.dateFormat = "yyyy-MM-dd-HH:mm:ss"
-timeArgument = format.date(from: time)?.timeIntervalSince1970 ?? 0
+var timeArgument = format.date(from: time)?.timeIntervalSince1970 ?? 0
 
 let timeInt = Long(timeArgument * 1000)
 format.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
