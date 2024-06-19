@@ -120,7 +120,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EH9-zJ-QLZ">
-                                <rect key="frame" x="10" y="113.33333333333331" width="373" height="663.66666666666674"/>
+                                <rect key="frame" x="10" y="113.66666666666669" width="373" height="663.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuoteCellId" rowHeight="100" id="Soc-px-Ac2" customClass="QuoteCell" customModule="DXARQuoteTableApp" customModuleProvider="target">
@@ -224,12 +224,14 @@
                                     <action selector="changeAggregationPeriod:" destination="KHT-AB-3Dx" eventType="valueChanged" id="hyl-Gp-36u"/>
                                 </connections>
                             </switch>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="er8-zz-YEu">
-                                <rect key="frame" x="328" y="59" width="55" height="34.333333333333343"/>
+                            <button opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="er8-zz-YEu">
+                                <rect key="frame" x="343" y="58.666666666666657" width="40" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="4Pc-Oc-hIj"/>
+                                    <constraint firstAttribute="height" constant="35" id="jDE-l3-0g0"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Edit">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleHeadline"/>
-                                </buttonConfiguration>
+                                <buttonConfiguration key="configuration" style="plain" image="pencil" catalog="system"/>
                                 <connections>
                                     <action selector="editTouchUpInside:" destination="KHT-AB-3Dx" eventType="touchUpInside" id="k5P-ev-yCp"/>
                                 </connections>
@@ -262,6 +264,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="KgC-Ti-xjh"/>
                     <connections>
+                        <outlet property="addButton" destination="er8-zz-YEu" id="ATo-3f-ZJp"/>
                         <outlet property="agregationSwitch" destination="Dcb-73-MCr" id="Nbt-BE-u5b"/>
                         <outlet property="connectionStatusLabel" destination="gdj-9e-TIL" id="Zjq-vs-f66"/>
                         <outlet property="quoteTableView" destination="EH9-zJ-QLZ" id="Ud1-e6-WxZ"/>
@@ -512,6 +515,7 @@
         </designable>
     </designables>
     <resources>
+        <image name="pencil" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
