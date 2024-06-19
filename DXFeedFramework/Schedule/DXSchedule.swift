@@ -96,6 +96,23 @@ public class DXSchedule {
         return day
     }
 
+    /// Returns day for specified year, month and day numbers.
+    ///
+    /// Year, month, and day numbers shall be decimally packed in the following way:
+    /// YearMonthDay = year * 10000 + month * 100 + day
+    /// For example, September 28, 1977 has value 19770928.
+    /// If specified day does not exist then this method returns day with
+    /// the lowest valid YearMonthDay that is greater than specified one.
+    /// This method will throw {@link IllegalArgumentException} if specified year, month and day numbers
+    /// fall outside of valid date range from 0001-01-02 to 9999-12-30.
+    /// - Parameters:
+    ///    - yearMonthDay: year, month and day numbers to search for
+    /// - Throws: GraalException. Rethrows exception from Java.recore
+    public func getDayByYearMonthDay(yearMonthDay: Int32) throws -> ScheduleDay {
+        let day = try native.getDayByYearMonthDay(yearMonthDay: yearMonthDay)
+        return day
+    }
+
     /// Returns session that contains specified time.
     ///
     /// This method will throw exception

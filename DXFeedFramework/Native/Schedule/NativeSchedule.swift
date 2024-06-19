@@ -85,6 +85,12 @@ class NativeSchedule {
         return try createDay(thread, day)
     }
 
+    public func getDayByYearMonthDay(yearMonthDay: Int32) throws -> ScheduleDay {
+        let thread = currentThread()
+        let day = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getDayByYearMonthDay(thread, schedule, yearMonthDay))
+        return try createDay(thread, day)
+    }
+
     private func createDay(_ thread: OpaquePointer?,
                            _ day: UnsafeMutablePointer<dxfg_day_t>) throws -> ScheduleDay {
         let scheduleDay = ScheduleDay()
