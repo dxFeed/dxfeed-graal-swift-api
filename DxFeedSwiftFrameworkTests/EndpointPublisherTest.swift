@@ -11,8 +11,8 @@ import XCTest
 final class EndpointPublisherTest: XCTestCase {
     func testCreation() throws {
         var endpoint: DXFEndpoint? = try DXFEndpoint.builder().withRole(.publisher).build()
-        let expectations = [EndpointState.connected: expectation(description: "Connected"),
-                            EndpointState.connecting: expectation(description: "Connecting")]
+        let expectations = [DXFEndpointState.connected: expectation(description: "Connected"),
+                            DXFEndpointState.connecting: expectation(description: "Connecting")]
         let listener = TestListener(expectations: expectations)
         endpoint?.add(listener)
         try endpoint?.connect(":4700")

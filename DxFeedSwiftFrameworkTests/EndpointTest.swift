@@ -47,9 +47,9 @@ final class EndpointTest: XCTestCase {
         let endpoint: DXFEndpoint? = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint should be not nil")
 
-        let expectations = [EndpointState.connected: expectation(description: "Connected"),
-                            EndpointState.connecting: expectation(description: "Connecting"),
-                            EndpointState.notConnected: expectation(description: "NotConnected")]
+        let expectations = [DXFEndpointState.connected: expectation(description: "Connected"),
+                            DXFEndpointState.connecting: expectation(description: "Connecting"),
+                            DXFEndpointState.notConnected: expectation(description: "NotConnected")]
         let listener = TestListener(expectations: expectations)
         endpoint?.add(listener)
         try endpoint?.connect(endpointAddress)

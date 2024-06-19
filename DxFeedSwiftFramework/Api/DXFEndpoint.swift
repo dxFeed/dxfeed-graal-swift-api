@@ -114,7 +114,7 @@ class DXFEndpoint {
         try endpointNative.awaitNotConnected()
     }
 
-    public func getState() throws -> EndpointState {
+    public func getState() throws -> DXFEndpointState {
         return try endpointNative.getState()
     }
 
@@ -171,7 +171,7 @@ class Builder {
 }
 
 extension DXFEndpoint: EndpointListener {
-    func changeState(old: EndpointState, new: EndpointState) {
+    func changeState(old: DXFEndpointState, new: DXFEndpointState) {
         print("\(self) change state \(old) to \(new)")
         observers.forEach { $0.endpointDidChangeState(old: old, new: new) }
     }

@@ -8,7 +8,7 @@
 import Foundation
 
 class WeakListener: WeakBox<EndpointListener>, EndpointListener {
-    func changeState(old: EndpointState, new: EndpointState) {
+    func changeState(old: DXFEndpointState, new: DXFEndpointState) {
         guard let endpoint = self.value else {
             return
         }

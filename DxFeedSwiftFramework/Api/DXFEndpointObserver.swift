@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol DXFEndpointObserver {
-    func endpointDidChangeState(old: EndpointState, new: EndpointState)
+    func endpointDidChangeState(old: DXFEndpointState, new: DXFEndpointState)
 }
