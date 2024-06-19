@@ -18,7 +18,7 @@ class NativeBuilder {
     init() throws {
         let thread = currentThread()
 
-        try self.builder = ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_newBuilder(thread))
+        self.builder = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_newBuilder(thread))
     }
 
     func isSupporProperty(_ key: String) throws -> Bool {
@@ -45,8 +45,8 @@ class NativeBuilder {
 
     func withProperty(_ key: String, _ value: String) throws {
         let thread =  currentThread()
-        try _ = ErrorCheck.nativeCall(thread,
-                                      dxfg_DXEndpoint_Builder_withProperty(thread,
+         _ = try ErrorCheck.nativeCall(thread,
+                                       dxfg_DXEndpoint_Builder_withProperty(thread,
                                                                            self.builder,
                                                                            key.cString(using: .utf8),
                                                                            value.cString(using: .utf8)))
@@ -54,7 +54,7 @@ class NativeBuilder {
 
     func build() throws -> NativeEndpoint {
         let thread =  currentThread()
-//        ErrorCheck.nativeCall(thread, )
-       return NativeEndpoint()
+        let value = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_Builder_build(thread, builder))
+        return NativeEndpoint(value)
     }
 }

@@ -40,16 +40,17 @@ class ErrorCheck {
     private static func fetchException(_ thread: OpaquePointer!) -> GraalException {
         let exception = dxfg_get_and_clear_thread_exception_t(thread)
         if let pointee = exception?.pointee {
-            let gException =  GraalException.fail(message: String(utf8String: pointee.message)
-                                                  ?? "Empty graall exception",
-                                                  className: String(utf8String: pointee.className) ?? "",
-                                                  stack: String(utf8String: pointee.stackTrace) ?? "")
+            let message = String(pointee: pointee.message, default: "Graall Exception")
+            let className = String(pointee: pointee.className, default: "")
+            let stackTrace = String(pointee: pointee.stackTrace, default: "")
+            let gException =  GraalException.fail(message: message,
+                                                  className: className,
+                                                  stack: stackTrace)
             dxfg_Exception_release(thread, exception)
             return gException
         } else {
             return GraalException.fail(message: "Something went wrong. Graal exception is empty",
-                                       className: "",
-                                       stack: "")
+                                       className: "", stack: "")
         }
 
     }
