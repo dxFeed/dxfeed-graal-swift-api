@@ -23,23 +23,23 @@ public protocol IIndexedEvent: IEventType {
     static var removeEvent: Int32 { get }
     /// Indicates when the loading of a snapshot starts.
     static var snapshotBegin: Int32 { get }
-    /// ``snapshotEnd-5csc3`` or ``snapshotSnip-le44``indicates the end of a snapshot.
-    /// The difference between ``snapshotEnd-3emwu`` and ``snapshotSnip-7nvc9`` is the following:
-    /// ``snapshotEnd-5csc3``indicates that the data source sent all the data pertaining to
+    /// snapshotEnd or snapshotSnipindicates the end of a snapshot.
+    /// The difference between snapshotEnd and snapshotSnip is the following:
+    /// snapshotEndindicates that the data source sent all the data pertaining to
     /// the subscription for the corresponding indexed event,
-    /// while ``snapshotSnip-le44``indicates that some limit on the amount of data was reached
+    /// while snapshotSnipindicates that some limit on the amount of data was reached
     /// and while there still might be more data available, it will not be provided.
     static var snapshotEnd: Int32 { get }
-    /// ``snapshotEnd-5csc3``or ``snapshotSnip-7nvc9``indicates the end of a snapshot.
-    /// The difference between ``snapshotEnd-5csc3`` and ``snapshotSnip-7nvc9``is the following:
-    /// ``snapshotEnd-3emwu``indicates that the data source sent all the data pertaining to
+    /// snapshotEndor snapshotSnipindicates the end of a snapshot.
+    /// The difference between snapshotEnd and snapshotSnipis the following:
+    /// snapshotEndindicates that the data source sent all the data pertaining to
     /// the subscription for the corresponding indexed event,
-    /// while ``snapshotSnip-7nvc9``indicates that some limit on the amount of data was reached
+    /// while snapshotSnipindicates that some limit on the amount of data was reached
     /// and while there still might be more data available, it will not be provided.
     static var snapshotSnip: Int32 { get }
     /// Is used to instruct dxFeed to use snapshot mode.
     /// It is intended to be used only for publishing to activate (if not yet activated) snapshot mode.
-    /// The difference from ``snapshotBegin-8p34e`` flag is that ``snapShotMode-8tvrw``
+    /// The difference from snapshotBegin flag is that snapShotMode
     /// only switches on snapshot mode without starting snapshot synchronization protocol.
     static var snapShotMode: Int32 { get }
 
