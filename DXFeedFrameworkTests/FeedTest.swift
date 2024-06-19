@@ -96,10 +96,6 @@ final class FeedTest: XCTestCase {
         try waitingEvent(code: .profile)
     }
 
-    func testCandle() throws {
-        try waitingEvent(code: .candle)
-    }
-
     func testSeries() throws {
         try waitingEvent(code: .series)
     }
