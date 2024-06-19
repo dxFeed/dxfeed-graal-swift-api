@@ -26,7 +26,7 @@ class NativeTimeSeriesSubscription {
 
     func set(fromTime: Long) throws {
         let thread = currentThread()
-        let result = try ErrorCheck.nativeCall(thread, dxfg_DXFeedTimeSeriesSubscription_setFromTime(
+        _ = try ErrorCheck.nativeCall(thread, dxfg_DXFeedTimeSeriesSubscription_setFromTime(
             thread,
             native,
             0))

@@ -18,6 +18,20 @@ final class DXTimeSeriesSubscriptionTest: XCTestCase {
         try createSubscriptionFor(multiple: true)
     }
 
+    func testCreateSubscriptionWithUnsupportedEvents() throws {
+        let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
+        let feed = endpoint.getFeed()
+        try EventCode.allCases.forEach { eventCode in
+            if !eventCode.isTimeSeriesEvent() {
+                XCTAssertThrowsError(try feed?.createTimeSeriesSubscription(eventCode)) { error in
+                    guard case ArgumentException.invalidOperationException(_) = error else {
+                        return XCTFail("Unsupported exception \(error)")
+                    }
+                }
+            }
+        }
+    }
+
     func testCreateWithNil() throws {
         XCTAssertThrowsError(try DXFeedTimeSeriesSubscription(native: nil, events: [.candle])) { error in
             XCTAssertTrue(error is ArgumentException)
@@ -43,4 +57,6 @@ final class DXTimeSeriesSubscriptionTest: XCTestCase {
         try subscription?.addSymbols(["ETH/USD:GDAX", "IBM"])
         wait(for: [receivedEventsExpectation], timeout: 2.0)
     }
+
+    
 }
