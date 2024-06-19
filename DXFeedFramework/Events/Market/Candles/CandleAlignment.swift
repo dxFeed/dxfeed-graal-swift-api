@@ -48,10 +48,12 @@ class CandleAlignment {
         }
         let other = try parse(attribute)
         if other === defaultAlignment {
-            MarketEventSymbols.removeAttributeStringByKey(symbol, attributeKey)
+            _ = MarketEventSymbols.removeAttributeStringByKey(symbol, attributeKey)
         }
         if attribute != other.toString() {
-            if let changedSymbol =  try MarketEventSymbols.changeAttributeStringByKey(symbol, attributeKey, other.toString()) {
+            if let changedSymbol =  try MarketEventSymbols.changeAttributeStringByKey(symbol,
+                                                                                      attributeKey,
+                                                                                      other.toString()) {
                 return changedSymbol
             }
         }
@@ -98,7 +100,7 @@ extension CandleAlignment: ICandleSymbolProperty {
         MarketEventSymbols.removeAttributeStringByKey(symbol, CandleAlignment.attributeKey) :
         try? MarketEventSymbols.changeAttributeStringByKey(symbol, CandleAlignment.attributeKey, self.toString())
     }
-    
+
     func checkInAttribute(candleSymbol: CandleSymbol) throws {
         if candleSymbol.alignment != nil {
             throw ArgumentException.invalidOperationException("Already initialized")

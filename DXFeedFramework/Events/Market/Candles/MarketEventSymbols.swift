@@ -21,8 +21,8 @@ class MarketEventSymbols {
             return exchangeCode == "\0" ? nil : "\(Separtors.exchSeparator)\(exchangeCode)"
         }
 
-        var index = getLengthWithoutAttributesInternal(symbol)
-        var result = exchangeCode == "0" ?
+        let index = getLengthWithoutAttributesInternal(symbol)
+        let result = exchangeCode == "0" ?
         getBaseSymbolInternal(symbol, index) :
         (getBaseSymbolInternal(symbol, index) + "\(Separtors.exchSeparator)\(exchangeCode)")
 
@@ -73,7 +73,7 @@ class MarketEventSymbols {
     }
 
     private static func getLengthWithoutAttributesInternal(_ symbol: String) -> Int {
-        var length = symbol.count
+        let length = symbol.length
         return hasAttributesInternal(symbol, length) ?
         symbol.lastIndex(of: Separtors.open.rawValue, start: length) :
         length
@@ -96,16 +96,16 @@ class MarketEventSymbols {
 
     private static func getNextKeyInternal(_ symbol: String,
                                            _ index: Int) -> Int {
-        var val = symbol.firstIndex(of: Separtors.value.rawValue, start: index) + 1
-        var sep = symbol.firstIndex(of: Separtors.separator.rawValue, start: val)
-        return sep < 0 ? symbol.count : sep + 1
+        let val = symbol.firstIndex(of: Separtors.value.rawValue, start: index) + 1
+        let sep = symbol.firstIndex(of: Separtors.separator.rawValue, start: val)
+        return sep < 0 ? symbol.length : sep + 1
     }
 
     private static func getValueInternal(_ symbol: String,
                                          _ index: Int,
                                          _ jindex: Int) -> String {
-        var startPos = symbol.firstIndex(of: Separtors.value.rawValue, start: index) + 1
-        var endPos = jindex - 1
+        let startPos = symbol.firstIndex(of: Separtors.value.rawValue, start: index) + 1
+        let endPos = jindex - 1
         return symbol[startPos..<endPos]
     }
 
@@ -128,12 +128,12 @@ class MarketEventSymbols {
         }
         var index = length + 1
         while index < symbol.length {
-            var current = getKeyInternal(symbol, index)
+            let current = getKeyInternal(symbol, index)
             if current == nil {
                 break
             }
 
-            var jindex = getNextKeyInternal(symbol, index)
+            let jindex = getNextKeyInternal(symbol, index)
             if key == current {
                 symbol = dropKeyAndValueInternal(symbol, length, index, jindex)
             } else {
@@ -203,8 +203,7 @@ class MarketEventSymbols {
             let current = getKeyInternal(symbol, index)
             if let current = current {
                 let jindex = getNextKeyInternal(symbol, index)
-                var cmp = current == key
-                if cmp == true {
+                if current == key {
                     if added {
                         symbol = dropKeyAndValueInternal(symbol, length, index, jindex)
                     } else {

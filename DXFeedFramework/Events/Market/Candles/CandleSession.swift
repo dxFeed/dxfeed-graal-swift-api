@@ -17,6 +17,9 @@ class CandleSession {
     static let regular = CandleSession(value: "true", identifier: CandleSessionId.regular)
     static let defaultSession = any
 
+    private static let sessionsByValue = ConcurrentDict<String, CandleSession>()
+    private static let sessionsById = ConcurrentDict<CandleSessionId, CandleSession>()
+
     let value: String
     let name: String
     let identifier: CandleSessionId
@@ -25,6 +28,17 @@ class CandleSession {
         self.value = value
         self.name = identifier.rawValue
         self.identifier = identifier
+        CandleSession.sessionsByValue.writer { dict in
+            if dict[value] == nil {
+                dict[value] = self
+            }
+        }
+
+        CandleSession.sessionsById.writer { dict in
+            if dict[identifier] == nil {
+                dict[identifier] = self
+            }
+        }
     }
 
     static func normalizeAttributeForSymbol(_ symbol: String) -> String {
@@ -52,6 +66,21 @@ class CandleSession {
         }
         let res = Bool(attribute) ?? false
         return res ? regular : defaultSession
+    }
+
+    static func parse(_ symbol: String) throws -> CandleSession {
+        let length = symbol.length
+        if length == 0 {
+            throw ArgumentException.missingCandleSession
+        }
+        let sValue = sessionsByValue.first { _, session in
+            let sString = session.toString()
+            return sString.length >= length && sString[0..<length] == symbol
+        }?.value
+        guard let sValue = sValue else {
+            throw ArgumentException.unknowCandleSession
+        }
+        return sValue
     }
 
     func toString() -> String {

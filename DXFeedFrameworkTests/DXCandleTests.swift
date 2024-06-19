@@ -27,13 +27,12 @@ final class DXCandleTests: XCTestCase {
             }
             return anonymCl
         })
-        try subscription?.addSymbols(TimeSeriesSubscriptionSymbol(symbol: "AAPL{=2d}", fromTime: 0))
+        try subscription?.addSymbols(TimeSeriesSubscriptionSymbol(symbol: "AAPL{=2d}", fromTime: 1660125159))
         wait(for: [receivedEventExp], timeout: 10)
         try? endpoint?.disconnect()
         endpoint = nil
         let sec = 5
         _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
-
     }
 
 }

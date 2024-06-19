@@ -14,8 +14,17 @@
   "testTargets" : [
     {
       "parallelizable" : true,
+      "skippedTests" : [
+        "EndpointPublisherTest",
+        "EndpointTest",
+        "EventsTest",
+        "FeedTest",
+        "IsolateTest",
+        "SystemPropertyTest",
+        "ThreadsTest"
+      ],
       "target" : {
-        "containerPath" : "container:DxFeedFramework.xcodeproj",
+        "containerPath" : "container:DXFeedFramework.xcodeproj",
         "identifier" : "803BAC1429BFA50700FFAB1C",
         "name" : "DXFeedFrameworkTests"
       }

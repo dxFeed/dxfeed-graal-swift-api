@@ -10,9 +10,11 @@ import Foundation
 enum ArgumentException: Error {
     case missingCandleType
     case missingCandlePrice
+    case missingCandleSession
     case unknowCandleType
     case unknowCandlePrice
     case unknowCandleAlignment
+    case unknowCandleSession
     case argumentNil
     case invalidOperationException(_ message: String)
     case duplicateValue
