@@ -235,10 +235,10 @@ public class OrderSource: IndexedEventSource {
         }
 
         if !OrderSource.sourcesById.tryInsert(key: identifier, value: self) {
-            throw ArgumentException.exception("duplicate id")
+            throw ArgumentException.exception("duplicate id \(identifier)")
         }
         if !OrderSource.sourcesByName.tryInsert(key: name, value: self) {
-            throw ArgumentException.exception("duplicate name")
+            throw ArgumentException.exception("duplicate name \(name)")
         }
     }
 

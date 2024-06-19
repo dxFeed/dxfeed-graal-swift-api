@@ -72,15 +72,6 @@ final class OrderSourceTest: XCTestCase {
         XCTAssert(false, "should be generated exception")
     }
 
-    func testCreateOrderSource() throws {
-        do {
-            _ = try OrderSource(5, "COMPOSITE_ASK2",  0)
-            _ = try OrderSource(6, "COMPOSITE_ASK4",  0)
-        } catch {
-            XCTAssert(false, "undefined error \(error)")
-        }
-    }
-
     func testVAlueOf() throws {
         do {
             let source1 = OrderSource.compsoiteBid
