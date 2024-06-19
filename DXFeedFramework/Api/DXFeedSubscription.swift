@@ -12,6 +12,10 @@ import Foundation
 public class DXFeedSubscription {
     /// Subscription native wrapper.
     private let native: NativeSubscription
+    
+    internal var nativeSubscription: NativeSubscription {
+        return native
+    }
     /// List of event types associated with this ``DXFeedSubscription``
     fileprivate let types: [IEventType.Type]
     /// A set listeners of events
@@ -154,5 +158,25 @@ extension DXFeedSubscription: IObservableSubscription {
 
     public func removeChangeListener(_ listener: ObservableSubscriptionChangeListener) throws {
         try native.removeChangeListener(listener)
+    }
+}
+
+public extension DXFeedSubscription {
+    /// Attaches subscription to the specified feed.
+    ///
+    /// - Parameters:
+    ///   - feed: The  ``DXFeed`` to attach to.
+    /// - Throws: GraalException. Rethrows exception from Java.
+    func attach(feed: DXFeed) throws {
+        try native.attach(feed: feed.nativeFeed)
+    }
+
+    /// Detaches subscription from the specified feed.
+    ///
+    /// - Parameters:
+    ///   - feed: The  ``DXFeed`` to detach from.
+    /// - Throws: GraalException. Rethrows exception from Java.
+    func detach(feed: DXFeed) throws {
+        try native.detach(feed: feed.nativeFeed) 
     }
 }
