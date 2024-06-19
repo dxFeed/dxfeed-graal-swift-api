@@ -13,6 +13,7 @@ let commands: [ToolsCommand] = [PerfTestCommand(),
                                 LiveIpfCommand(),
                                 ScheduleCommand(),
                                 IpfConnectCommand(),
+                                DumpCommand(),
                                 HelpCommand()]
 
 func getCommand(_ cmd: String) -> ToolsCommand? {

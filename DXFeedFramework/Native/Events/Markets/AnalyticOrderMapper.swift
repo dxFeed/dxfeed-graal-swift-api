@@ -20,33 +20,32 @@ class AnalyticOrderMapper: Mapper {
 
     func toNative(event: MarketEvent) -> UnsafeMutablePointer<dxfg_event_type_t>? {
         let pointer = UnsafeMutablePointer<TypeAlias>.allocate(capacity: 1)
-        var pointee = pointer.pointee
-        pointee.order_base.order_base.market_event.event_symbol = event.eventSymbol.toCStringRef()
-        pointee.order_base.order_base.market_event.event_time = event.eventTime
+        pointer.pointee.order_base.order_base.market_event.event_symbol = event.eventSymbol.toCStringRef()
+        pointer.pointee.order_base.order_base.market_event.event_time = event.eventTime
 
         let order = event.analyticOrder
 
-        pointee.order_base.order_base.market_event.event_time = order.eventTime
-        pointee.order_base.order_base.event_flags = order.eventFlags
-        pointee.order_base.order_base.index = order.index
-        pointee.order_base.order_base.time_sequence = order.timeSequence
-        pointee.order_base.order_base.time_nano_part = order.timeNanoPart
-        pointee.order_base.order_base.action_time = order.actionTime
-        pointee.order_base.order_base.order_id = order.orderId
-        pointee.order_base.order_base.aux_order_id = order.auxOrderId
-        pointee.order_base.order_base.price = order.price
-        pointee.order_base.order_base.size = order.size
-        pointee.order_base.order_base.executed_size = order.executedSize
-        pointee.order_base.order_base.count = order.count
-        pointee.order_base.order_base.flags = order.flags
-        pointee.order_base.order_base.trade_id = order.tradeId
-        pointee.order_base.order_base.trade_price = order.tradePrice
-        pointee.order_base.order_base.trade_size = order.tradeSize
+        pointer.pointee.order_base.order_base.market_event.event_time = order.eventTime
+        pointer.pointee.order_base.order_base.event_flags = order.eventFlags
+        pointer.pointee.order_base.order_base.index = order.index
+        pointer.pointee.order_base.order_base.time_sequence = order.timeSequence
+        pointer.pointee.order_base.order_base.time_nano_part = order.timeNanoPart
+        pointer.pointee.order_base.order_base.action_time = order.actionTime
+        pointer.pointee.order_base.order_base.order_id = order.orderId
+        pointer.pointee.order_base.order_base.aux_order_id = order.auxOrderId
+        pointer.pointee.order_base.order_base.price = order.price
+        pointer.pointee.order_base.order_base.size = order.size
+        pointer.pointee.order_base.order_base.executed_size = order.executedSize
+        pointer.pointee.order_base.order_base.count = order.count
+        pointer.pointee.order_base.order_base.flags = order.flags
+        pointer.pointee.order_base.order_base.trade_id = order.tradeId
+        pointer.pointee.order_base.order_base.trade_price = order.tradePrice
+        pointer.pointee.order_base.order_base.trade_size = order.tradeSize
 
-        pointee.iceberg_peak_size = order.icebergPeakSize
-        pointee.iceberg_hidden_size = order.icebergHiddenSize
-        pointee.iceberg_executed_size = order.icebergExecutedSize
-        pointee.iceberg_flags = order.icebergFlags
+        pointer.pointee.iceberg_peak_size = order.icebergPeakSize
+        pointer.pointee.iceberg_hidden_size = order.icebergHiddenSize
+        pointer.pointee.iceberg_executed_size = order.icebergExecutedSize
+        pointer.pointee.iceberg_flags = order.icebergFlags
 
         let eventType = pointer.withMemoryRebound(to: dxfg_event_type_t.self, capacity: 1) { pointer in
             pointer.pointee.clazz = DXFG_EVENT_ANALYTIC_ORDER
