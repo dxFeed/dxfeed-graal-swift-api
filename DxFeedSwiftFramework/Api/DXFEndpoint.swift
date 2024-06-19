@@ -21,7 +21,7 @@ class DXFEndpoint {
 
     }
 
-    enum Property: String {
+    enum Property: String, CaseIterable {
         case name                          = "name"
         case properties                    = "dxfeed.properties"
         case address                       = "dxfeed.address"
@@ -35,7 +35,7 @@ class DXFEndpoint {
         case eventTime                     = "dxendpoint.eventTime"
         case storeEverything               = "dxendpoint.storeEverything"
         case schemeNanoTime                = "dxscheme.nanoTime"
-        case schemeEnabledPropertyPrefix   = "dxscheme.enabled"
+        case schemeEnabledPropertyPrefix   = "dxscheme.enabled."
     }
     private let endpointNative: NativeEndpoint
     private let role: Role
@@ -72,7 +72,7 @@ class DXFEndpoint {
     public func appendListener(_ listener: EndpointListener) {
         listeners.append(listener)
     }
-//only for testing
+// only for testing
     func callGC() throws {
         try endpointNative.callGC()
     }
@@ -99,6 +99,10 @@ class Builder {
         self.role = role
         _ = try nativeBuilder?.withRole(role)
         return self
+    }
+
+    func isSupported(property: String) throws -> Bool {
+        return try nativeBuilder?.isSuppored(property: property) ?? false
     }
 
     func withProperty(_ key: String, _ value: String) throws -> Self {

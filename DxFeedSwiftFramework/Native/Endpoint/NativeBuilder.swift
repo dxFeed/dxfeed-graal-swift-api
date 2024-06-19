@@ -24,12 +24,12 @@ class NativeBuilder {
         self.builder = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_newBuilder(thread))
     }
 
-    func isSupporProperty(_ key: String) throws -> Bool {
+    func isSuppored(property: String) throws -> Bool {
         let thread = currentThread()
         let res = try ErrorCheck.nativeCall(thread,
                                             dxfg_DXEndpoint_Builder_supportsProperty(thread,
                                                                                      self.builder,
-                                                                                     key.cString(using: .utf8)))
+                                                                                     property.cString(using: .utf8)))
         return res != 0
     }
 

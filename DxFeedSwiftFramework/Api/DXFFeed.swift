@@ -9,7 +9,7 @@ import Foundation
 
 class DXFFeed {
     private let native: NativeFeed
-    deinit {    
+    deinit {
 #warning("TODO: implement it")
     }
 
