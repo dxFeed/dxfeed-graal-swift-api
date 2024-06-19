@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum EndpointState {
+public enum EndpointState {
     case notConnected
     case connecting
     case connected

@@ -47,7 +47,11 @@ class DXFEndpoint {
     private lazy var publisher = {
         DXFPublisher()
     }()
-    private var listeners = [EndpointListener]()
+
+    private var observersSet: Set<AnyHashable> = []
+    private var observers: [DXFEndpointObserver] {
+        return observersSet.compactMap { $0 as? DXFEndpointObserver }
+    }
 
     fileprivate init(native: NativeEndpoint, role: Role, name: String) throws {
         self.endpointNative = native
@@ -55,6 +59,17 @@ class DXFEndpoint {
         self.name = name
         try native.addListener(self)
     }
+
+    func add<O>(_ observer: O) where O: DXFEndpointObserver,
+                                     O: Hashable {
+        _ = observersSet.insert(observer)
+    }
+
+    func remove<O>(_ observer: O) where O: DXFEndpointObserver,
+                                        O: Hashable {
+        observersSet.remove(observer)
+    }
+
     public static func builder() -> Builder {
         Builder()
     }
@@ -79,12 +94,6 @@ class DXFEndpoint {
 
     public func close() throws {
         try self.endpointNative.close()
-    }
-    public func appendListener(_ listener: EndpointListener) {
-        listeners.append(listener)
-    }
-    public func removeListener(_ listener: EndpointListener) {
-        listeners.removeAll { $0 === listener }
     }
 
     public func set(password: String) throws -> Self {
@@ -164,6 +173,6 @@ class Builder {
 extension DXFEndpoint: EndpointListener {
     func changeState(old: EndpointState, new: EndpointState) {
         print("\(self) change state \(old) to \(new)")
-        listeners.forEach { $0.changeState(old: old, new: new) }
+        observers.forEach { $0.endpointDidChangeState(old: old, new: new) }
     }
 }

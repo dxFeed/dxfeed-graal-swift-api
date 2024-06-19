@@ -51,7 +51,7 @@ final class EndpointTest: XCTestCase {
                             EndpointState.connecting: expectation(description: "Connecting"),
                             EndpointState.notConnected: expectation(description: "NotConnected")]
         let listener = TestListener(expectations: expectations)
-        endpoint?.appendListener(listener)
+        endpoint?.add(listener)
         try endpoint?.connect(endpointAddress)
         let exps = Array(expectations.filter({ element in
             element.key != .notConnected
