@@ -170,7 +170,19 @@ Quote{AAPL, eventTime=0, time=20231130-123206.000, timeNanoPart=0, sequence=0, b
 
 ### How to connect to dxLink
 ```swift
+class Listener: DXEventListener {
+    func receiveEvents(_ events: [MarketEvent]) {
+        events.forEach {
+            print($0.toString())
+        }
+    }
+}
+
+// The experimental property must be enabled.
 try SystemProperty.setProperty("dxfeed.experimental.dxlink.enable", "true")
+
+// For token-based authorization, use the following address format:
+// "dxlink:wss://demo.dxfeed.com/dxlink-ws[login=dxlink:token]"
 let endpoint = try DXEndpoint.builder()
     .withProperty("dxfeed.address", "dxlink:wss://demo.dxfeed.com/dxlink-ws")
     .build()
