@@ -154,12 +154,15 @@ tradePrice: \(tradePrice), \
 tradeSize: \(tradeSize)
 """
         }
-
+    /// Returns string representation of this candle event.
+    func toString() -> String {
+        return "OrderBase{\(baseFieldsToString())}"
+    }
 }
 
 extension OrderBase {
     /// Gets a value indicating whether this order has some size
-    func hsaSize() -> Bool {
+    public func hsaSize() -> Bool {
         return size != 0 && !size.isNaN
     }
     /// Gets exchange code of this order.
@@ -271,11 +274,6 @@ extension OrderBase {
                                           shift: OrderBase.scopeShift,
                                           bits: newValue.rawValue))
         }
-    }
-
-    /// Returns string representation of this candle event.
-    func toString() -> String {
-        return "OrderBase{\(baseFieldsToString())}"
     }
 
     /// Returns string representation of this candle fields.
