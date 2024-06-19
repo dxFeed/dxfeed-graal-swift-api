@@ -19,38 +19,51 @@ final class SystemPropertyTest: XCTestCase {
     }
 
     func testWrite() throws {
-        let status = try SystemProperty.setProperty("a", "val1")
-        XCTAssert(status, "Couldn't write value")
+        do {
+            try SystemProperty.setProperty("a", "val1")
+        } catch {
+            XCTAssert(false, "Couldn't write value")
+        }
+        
     }
     
     func testRead() throws {
         let key = UUID().uuidString
         let value = UUID().uuidString
-        let status = try SystemProperty.setProperty(key, value)
-        XCTAssert(status == true, "Couldn't write value")
+        do {
+            try SystemProperty.setProperty(key, value)
+        } catch {
+            XCTAssert(false, "Couldn't write value")
+        }
         XCTAssert(value == SystemProperty.getProperty(key), "Couldn't read value")
     }
 
     func testCyrilicRead() throws {
         let key = UUID().uuidString
         let value = "Привет это кирилица" + UUID().uuidString
-        let status = try SystemProperty.setProperty(key, value)
-        XCTAssert(status == true, "Couldn't write value")
+        do {
+            try SystemProperty.setProperty(key, value)
+        } catch {
+            XCTAssert(false, "Couldn't write value")
+        }
         XCTAssert(value == SystemProperty.getProperty(key), "Couldn't read value")
     }
 
     func testEmojiRead() throws {
         let key = UUID().uuidString
         let value = "😀Привет это кирилица👨‍👨‍👦" + UUID().uuidString
-        let status = try SystemProperty.setProperty(key, value)
-        XCTAssert(status == true, "Couldn't write value")
+        do {
+            try SystemProperty.setProperty(key, value)
+        } catch {
+            XCTAssert(false, "Couldn't write value")
+        }
         XCTAssert(value == SystemProperty.getProperty(key), "Couldn't read value")
     }
     func testException() {
         do {
             try SystemProperty.test()
         } catch {
-            print("User creation failed with error: \(error)")
+            print("Just test exception: \(error)")
         }
     }
 }
