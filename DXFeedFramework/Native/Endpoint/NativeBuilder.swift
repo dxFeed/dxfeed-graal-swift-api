@@ -38,7 +38,7 @@ class NativeBuilder {
         let res = try ErrorCheck.nativeCall(thread,
                                             dxfg_DXEndpoint_Builder_withRole(thread,
                                                                              builder,
-                                                                             dxfg_endpoint_role_t(role.rawValue)
+                                                                             role.toNatie()
                                                                             )
         )
         return res != 0

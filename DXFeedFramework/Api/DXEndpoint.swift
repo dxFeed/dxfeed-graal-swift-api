@@ -171,6 +171,11 @@ public class DXEndpoint {
     }
     /// Endpoint native wrapper.
     private let endpointNative: NativeEndpoint
+
+    internal var nativeEndpoint: NativeEndpoint {
+        return endpointNative
+    }
+
     /// The endpoint role.
     /// public let = public getter for constant value
     public let role: Role
@@ -194,7 +199,7 @@ public class DXEndpoint {
         try? close()
     }
 
-    fileprivate init(native: NativeEndpoint, role: Role, name: String) throws {
+    init(native: NativeEndpoint, role: Role, name: String) throws {
         self.endpointNative = native
         self.role = role
         self.name = name

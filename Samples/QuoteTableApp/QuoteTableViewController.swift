@@ -20,6 +20,7 @@ class QuoteTableViewController: UIViewController {
     @IBOutlet var agregationSwitch: UISwitch!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var addButton: UIButton!
+    @IBOutlet var noticeButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,9 @@ class QuoteTableViewController: UIViewController {
         self.quoteTableView.backgroundColor = .clear
 
         quoteTableView.separatorStyle = .none
+        
+        noticeButton.setTitle("Learn more about dxFeed APIs", for: .normal)
+        noticeButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
 
         NotificationCenter.default.addObserver(forName: .selectedSymbolsChanged,
                                                object: nil,
@@ -88,6 +92,16 @@ class QuoteTableViewController: UIViewController {
 
     @IBAction func changeAggregationPeriod(_ sender: UISwitch) {
         subscribe(agregationSwitch.isOn)
+    }
+
+    @IBAction func openNews(_ sender: UIButton) {
+        let url = URL(string: "https://dxfeed.com/dxfeed-news/")!
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            // Fallback on earlier versions
+            UIApplication.shared.openURL(url)
+        }
     }
 }
 

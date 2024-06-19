@@ -9,6 +9,53 @@ import DXFeedFramework
  * quote, trade, summary, and profile events.
  */
 
+// Just UI for symbol input
+class InputViewController: UIViewController {
+    var textField = UITextField()
+    var resultLabel = UILabel()
+
+    var feed: DXFeed!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.addSubview(textField)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+
+        textField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0).isActive = true
+        textField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 15).isActive = true
+        textField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15).isActive = true
+        textField.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.2).isActive = true
+        textField.placeholder = "Type symbols to get their quote, trade, summary, and profile event snapshots"
+        textField.delegate = self
+
+        view.addSubview(resultLabel)
+        resultLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        resultLabel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
+        resultLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
+        resultLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
+        resultLabel.topAnchor.constraint(equalTo: self.textField.bottomAnchor, constant: 0).isActive = true
+
+        resultLabel.numberOfLines = 0
+        resultLabel.adjustsFontSizeToFitWidth = true
+        resultLabel.minimumScaleFactor = 0.1
+
+    }
+}
+
+extension InputViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        do {
+            resultLabel.text = ""
+            resultLabel.text = try fetchData(feed: feed, symbol: textField.text ?? "")
+        } catch {
+            print("Error during fetching: \(error)")
+        }
+        textField.text = ""
+        return true
+    }
+}
+
 let records = "Quote,Trade,Summary,Profile"
 let symbols = "http://dxfeed.s3.amazonaws.com/masterdata/ipf/demo/mux-demo.ipf.zip"
 
@@ -20,7 +67,7 @@ guard let feed = endpoint.getFeed() else {
     exit(-1)
 }
 
-func fetchData(feed: DXFeed, symbol: String) throws {
+func fetchData(feed: DXFeed, symbol: String) throws -> String {
     print("begin fetching for \(symbol)")
 
     /*
@@ -51,8 +98,10 @@ func fetchData(feed: DXFeed, symbol: String) throws {
      * have to specially process a case of timeout, so "awaitWithoutException" is used to continue
      * normal execution even on timeout. This sample prints a special message in the case of timeout.
      */
+    var result = ""
+
     if try Promise.allOf(promises: promises)?.awaitWithoutException(millis: 1000) == false {
-        print("Request timed out")
+        result += "Request timed out" + "\n"
     }
     /*
      * The combination above is used only to ensure a common wait of 1 second. Promises to individual events
@@ -61,49 +110,18 @@ func fetchData(feed: DXFeed, symbol: String) throws {
      * "null" is printed when the event is not available.
      */
     try promises.forEach { pr in
-        print(try pr.getResult()?.toString() ?? "Null result for \(pr)")
+        result += (try pr.getResult()?.toString() ?? "Null result for \(pr)") + "\n"
     }
+    print(result)
     print("end fetching for \(symbol)")
+    return result
 }
 
-// Just UI for symbol input
-class V: UIViewController {
-    var textField = UITextField()
-    var feed: DXFeed!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.addSubview(textField)
-        textField.translatesAutoresizingMaskIntoConstraints = false
-
-        textField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0).isActive = true
-        textField.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
-        textField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 15).isActive = true
-        textField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15).isActive = true
-        textField.placeholder = "Type symbols to get their quote, trade, summary, and profile event snapshots"
-        textField.delegate = self
-    }
-}
-
-extension V: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        do {
-            try fetchData(feed: feed, symbol: textField.text ?? "")
-        } catch {
-            print("Error during fetching: \(error)")
-        }
-        textField.text = ""
-        return true
-    }
-}
-
-let view = V()
-view.feed = feed
-view.view.frame = CGRect(x: 0, y: 0, width: 400, height: 150)
 
 
-PlaygroundPage.current.liveView = view.view
+let viewController = InputViewController()
+viewController.feed = feed
+viewController.view.frame = CGRect(x: 0, y: 0, width: 400, height: 300)
+
+PlaygroundPage.current.liveView = viewController.view
 PlaygroundPage.current.needsIndefiniteExecution = true
-
-
-
