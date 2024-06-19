@@ -12,8 +12,9 @@ and [dxFeed Java API](https://docs.dxfeed.com/dxfeed/api/overview-summary.html) 
 :warning: It’s an **beta** version and still under active development.
 
 ![Build](https://github.com/dxFeed/dxfeed-graal-swift-api/actions/workflows/build.yml/badge.svg)
-![Language](https://img.shields.io/badge/language-swift-blueviolet)
 ![Platform](https://img.shields.io/badge/platform-ios--arm64%20%7C%20ios--simulator--x64%20%7C%20ios--simulator--arm64%20%7C%20osx--x64%20%7C%20osx--arm64-lightgrey)
+![Language](https://img.shields.io/badge/language-swift-blueviolet)
+[![Release](https://img.shields.io/github/v/release/dxFeed/dxfeed-graal-swift-api)](https://github.com/dxFeed/dxfeed-graal-swift-api/releases/latest)
 [![License](https://img.shields.io/badge/license-MPL--2.0-orange)](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/LICENSE)
 
 
