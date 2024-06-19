@@ -212,6 +212,11 @@ class NativeFeed {
                               toTime: Long) throws -> NativePromise {
         let thread = currentThread()
         let converted = SymbolMapper.newNative(symbol)
+        defer {
+            if let converted = converted {
+                SymbolMapper.clearNative(symbol: converted)
+            }
+        }
         let native = try ErrorCheck.nativeCall(thread,
                                                dxfg_DXFeed_getTimeSeriesPromise(thread,
                                                                                 feed,

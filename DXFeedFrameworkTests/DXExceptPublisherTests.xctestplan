@@ -24,7 +24,6 @@
         "CandleTests\/testCandleTypeEnum()",
         "CandleTests\/testCreationSymbol()",
         "CandleTests\/testEventFlags()",
-        "CandleTests\/testFetchingCandlesByAttrbuteSymbol()",
         "CandleTests\/testFetchingCandlesByLongSymbol()",
         "CandleTests\/testFetchingCandlesByString()",
         "CandleTests\/testFetchingCandlesBySymbol()",

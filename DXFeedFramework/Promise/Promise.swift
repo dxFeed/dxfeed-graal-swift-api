@@ -59,7 +59,7 @@ public class Promise {
     /// then this method returns ``nil``. If computation has completed exceptionally or was cancelled, then
     /// the result of this method is not ``nil``.
     /// If computation was ``isCancelled()`` cancelled, then this method returns an
-    // instance of GraalException.
+    /// instance of GraalException.
     /// - Returns: GraalException. Rethrows exception from Java.
     public func getException() -> GraalException? {
         return native.getException()
@@ -69,21 +69,16 @@ public class Promise {
     /// This method waits forever.
     /// - Returns: result of computation.
     /// - Throws : GraalException. Rethrows exception from Java
-    public func await() throws -> MarketEvent? {
+    public func await() throws {
         _ = try native.await()
-        return try getResult()
-
     }
 
     /// Wait for computation to complete and return its result or throw an exception in case of exceptional completion.
     /// If the wait times out, then the computation is ``cancel()`` cancelled and exception is thrown.
     /// - Returns: result of computation.
     /// - Throws : GraalException. Rethrows exception from Java
-    public func await(millis timeOut: Int32) throws -> MarketEvent? {
-        if try native.await(millis: timeOut) {
-            return try getResult()
-        }
-        return nil
+    public func await(millis timeOut: Int32) throws {
+        try native.await(millis: timeOut)
     }
     /// Wait for computation to complete and return its result or throw an exception in case of exceptional completion.
     /// If the wait times out, then the computation is ``cancel()`` cancelled and exception is thrown.
