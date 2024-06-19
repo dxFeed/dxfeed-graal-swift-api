@@ -41,12 +41,10 @@ class LatencyViewController: UIViewController {
 
     @IBOutlet var resultTableView: UITableView!
 
-    let colors = Colors()
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = colors.background
-        resultTableView.backgroundColor = colors.background
+        self.view.backgroundColor = .background
+        resultTableView.backgroundColor = .background
 
         resultTableView.separatorStyle = .none
 
@@ -143,13 +141,27 @@ extension LatencyViewController: DXEndpointObserver {
 extension LatencyViewController: DXEventListener {
     func receiveEvents(_ events: [MarketEvent]) {
         let currentTime = Int64(Date().timeIntervalSince1970 * 1_000)
-
+        var deltas = [Int64]()
         events.forEach { tsEvent in
-            var deltas = [Int64]()
-            let delta = currentTime - tsEvent.time
-            deltas.append(delta)
-            diagnostic.addSymbol(tsEvent.eventSymbol)
-            diagnostic.addDeltas(deltas)
+            switch tsEvent.type {
+            case .quote:
+                let quote = tsEvent.quote
+                let delta = currentTime - quote.time
+                diagnostic.addSymbol(tsEvent.eventSymbol)
+                diagnostic.addDeltas(delta)
+            case .timeAndSale:
+                let timeAndSale = tsEvent.timeAndSale
+                let delta = currentTime - timeAndSale.time
+                diagnostic.addSymbol(tsEvent.eventSymbol)
+                diagnostic.addDeltas(delta)
+            case .trade:
+                let trade = tsEvent.trade
+                let delta = currentTime - trade.time
+                diagnostic.addSymbol(tsEvent.eventSymbol)
+                diagnostic.addDeltas(delta)
+            default: break
+            }
+
         }
     }
 }

@@ -19,12 +19,11 @@ class QuoteTableViewController: UIViewController {
     @IBOutlet var quoteTableView: UITableView!
     @IBOutlet var connectionStatusLabel: UILabel!
 
-    let colors = Colors()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = colors.background
-        self.quoteTableView.backgroundColor = colors.background
+        self.view.backgroundColor = .background
+        self.quoteTableView.backgroundColor = .background
 
         quoteTableView.separatorStyle = .none
         self.connectionStatusLabel.text = DXEndpointState.notConnected.convetToString()

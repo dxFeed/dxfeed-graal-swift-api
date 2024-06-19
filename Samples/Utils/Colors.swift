@@ -7,11 +7,11 @@
 
 import UIKit
 
-struct Colors {
-    let background = UIColor(named: "Background")
-    let cellBackground = UIColor(named: "CellBackground")
+extension UIColor {
+    public static let background = UIColor(named: "Background")
+    public static let cellBackground = UIColor(named: "CellBackground")
 
-    let priceBackground = UIColor(named: "PriceBackground")
-    let green = UIColor(named: "Green")
-    let red = UIColor(named: "Red")
+    public static let priceBackground = UIColor(named: "PriceBackground")
+    public static let green = UIColor(named: "Green")
+    public static let red = UIColor(named: "Red")
 }

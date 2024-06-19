@@ -35,8 +35,8 @@ class Diagnostic {
     private var deltas = ConcurrentArray<Int64>()
     private var symbols = ConcurrentSet<String>()
 
-    func addDeltas(_ deltas: [Int64]) {
-        self.deltas.append(newElements: deltas)
+    func addDeltas(_ delta: Int64) {
+        self.deltas.append(newElement: delta)
     }
 
     func addSymbol(_ symbol: String) {
