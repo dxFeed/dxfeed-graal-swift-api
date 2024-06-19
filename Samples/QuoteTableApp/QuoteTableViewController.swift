@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DxFeedSwiftFramework
+import DXFeedFramework
 
 class QuoteTableViewController: UIViewController {
     private var endpoint: DXEndpoint?
@@ -67,7 +67,7 @@ class QuoteTableViewController: UIViewController {
 }
 
 extension QuoteTableViewController: DXEndpointObserver {
-    func endpointDidChangeState(old: DxFeedSwiftFramework.DXEndpointState, new: DxFeedSwiftFramework.DXEndpointState) {
+    func endpointDidChangeState(old: DXEndpointState, new: DXEndpointState) {
         DispatchQueue.main.async {
             self.connectionStatusLabel.text = new.convetToString()
         }
@@ -75,7 +75,7 @@ extension QuoteTableViewController: DXEndpointObserver {
 }
 
 extension QuoteTableViewController: DXEventListener {
-    func receiveEvents(_ events: [DxFeedSwiftFramework.MarketEvent]) {
+    func receiveEvents(_ events: [MarketEvent]) {
 
         events.forEach { event in
             switch event.type {

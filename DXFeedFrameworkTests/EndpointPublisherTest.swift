@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import DxFeedSwiftFramework
+@testable import DXFeedFramework
 
 final class EndpointPublisherTest: XCTestCase {
     func testCreation() throws {

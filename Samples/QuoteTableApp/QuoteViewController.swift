@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DxFeedSwiftFramework
+import DXFeedFramework
 
 class QuoteViewController: UIViewController {
     private var endpoint: DXEndpoint?
@@ -73,14 +73,14 @@ class QuoteViewController: UIViewController {
 }
 
 extension QuoteViewController: DXEndpointObserver {
-    func endpointDidChangeState(old: DxFeedSwiftFramework.DXEndpointState, new: DxFeedSwiftFramework.DXEndpointState) {
+    func endpointDidChangeState(old: DXEndpointState, new: DXEndpointState) {
         isConnected = new == .connected
         updateConnectButton()
     }
 }
 
 extension QuoteViewController: DXEventListener {
-    func receiveEvents(_ events: [DxFeedSwiftFramework.MarketEvent]) {
+    func receiveEvents(_ events: [MarketEvent]) {
         DispatchQueue.main.async {
             self.eventsTextView.text = events.description
         }

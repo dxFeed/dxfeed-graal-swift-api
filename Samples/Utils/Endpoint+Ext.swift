@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import DxFeedSwiftFramework
+import DXFeedFramework
 
 extension DXEndpointState {
     func convetToString() -> String {

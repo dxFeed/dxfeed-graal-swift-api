@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import DxFeedSwiftFramework
+import DXFeedFramework
 
 class Endpoint: Hashable, ObservableObject {
     @Published var state = DXEndpointState.notConnected
@@ -66,7 +66,7 @@ extension Endpoint: DXEventListener {
 }
 
 extension Endpoint: DXEndpointObserver {
-    func endpointDidChangeState(old: DxFeedSwiftFramework.DXEndpointState, new: DxFeedSwiftFramework.DXEndpointState) {
+    func endpointDidChangeState(oldDXEndpointState, newDXEndpointState) {
         DispatchQueue.main.async {
             self.state = new
         }

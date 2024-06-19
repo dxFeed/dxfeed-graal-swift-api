@@ -30,8 +30,8 @@
 		64125E342A1F688900FB32BA /* libDxFeedGraalNativeSdk.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 64125E332A1F688900FB32BA /* libDxFeedGraalNativeSdk.o */; platformFilters = (ios, xros, ); };
 		64125E362A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); };
 		64125E372A1F69FD00FB32BA /* libDxFeedGraalNativeSdk.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		6417DD192A39C22C008912D6 /* DxFeedSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; };
-		6417DD1A2A39C22C008912D6 /* DxFeedSwiftFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6417DD192A39C22C008912D6 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
+		6417DD1A2A39C22C008912D6 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6417DD232A39CAB2008912D6 /* Diagnostic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6417DD1E2A39C9A7008912D6 /* Diagnostic.swift */; };
 		641BCBBC2A20ED8100FE23C2 /* DXEndpointObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBBB2A20ED8100FE23C2 /* DXEndpointObserver.swift */; };
 		641BCBC12A21077800FE23C2 /* EventCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBC02A21077800FE23C2 /* EventCode.swift */; };
@@ -41,8 +41,8 @@
 		64262CD02A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CCF2A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift */; };
 		64262CD22A4DA64700BA6BA3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CD12A4DA64700BA6BA3 /* ContentView.swift */; };
 		64262CD72A4DA64800BA6BA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64262CD62A4DA64800BA6BA3 /* Preview Assets.xcassets */; };
-		64262CDB2A4DA66100BA6BA3 /* DxFeedSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; };
-		64262CDC2A4DA66100BA6BA3 /* DxFeedSwiftFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		64262CDB2A4DA66100BA6BA3 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
+		64262CDC2A4DA66100BA6BA3 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		64262CE12A4DADCF00BA6BA3 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CE02A4DADCF00BA6BA3 /* Endpoint.swift */; };
 		64262CE22A4DB68B00BA6BA3 /* Endpoint+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6277C2A3762D000196D07 /* Endpoint+Ext.swift */; };
 		64262CE42A4DC16F00BA6BA3 /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CE32A4DC16F00BA6BA3 /* QuoteViewModel.swift */; };
@@ -50,6 +50,11 @@
 		64262CEA2A4DC71600BA6BA3 /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
 		64262CEB2A4DC77600BA6BA3 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646979712A3B5AF60003A9BA /* Colors.xcassets */; };
 		64262CED2A4DC8BC00BA6BA3 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CEC2A4DC8BC00BA6BA3 /* DataSource.swift */; };
+		6426C8912A531AAE00236784 /* EndpointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC416029CA376E00E6B611 /* EndpointTest.swift */; };
+		6426C8922A531AB300236784 /* IsolateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76A29C0FE1700F240CB /* IsolateTest.swift */; };
+		6426C8932A531AB500236784 /* ThreadsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76C29C101CF00F240CB /* ThreadsTest.swift */; };
+		6426C8942A531AB900236784 /* SystemPropertyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77829C498FA00F240CB /* SystemPropertyTest.swift */; };
+		6426C8952A531ABB00236784 /* EndpointPublisherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBB72A1FA72000FE23C2 /* EndpointPublisherTest.swift */; };
 		642BE4C42A2E1AFF0052340A /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4C32A2E1AFF0052340A /* Quote.swift */; };
 		642BE4C82A2E1BD40052340A /* QuoteMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4C72A2E1BD40052340A /* QuoteMapper.swift */; };
 		642BE4CA2A2E1C640052340A /* MarketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4C92A2E1C640052340A /* MarketEvent.swift */; };
@@ -76,8 +81,8 @@
 		644BD77D2A44746C00A0BF99 /* MetricCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CB2A3B2F1200846831 /* MetricCell.swift */; };
 		644BD77E2A44746C00A0BF99 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646979712A3B5AF60003A9BA /* Colors.xcassets */; };
 		644BD77F2A44747500A0BF99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B627722A3761EC00196D07 /* Main.storyboard */; };
-		644BD7822A4474B900A0BF99 /* DxFeedSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; };
-		644BD7832A4474B900A0BF99 /* DxFeedSwiftFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		644BD7822A4474B900A0BF99 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
+		644BD7832A4474B900A0BF99 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		644BD7892A4475EF00A0BF99 /* MainAR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644BD7872A4475EF00A0BF99 /* MainAR.storyboard */; };
 		645FBB3F2A39D931004B1A49 /* TimeAndSale+Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645FBB3E2A39D931004B1A49 /* TimeAndSale+Access.swift */; };
 		646228512A376B0A0029DC97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462284D2A376B0A0029DC97 /* Main.storyboard */; };
@@ -136,8 +141,8 @@
 		64B6273B2A375C0F00196D07 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6272F2A375C0F00196D07 /* PaddingLabel.swift */; };
 		64B6273E2A375C0F00196D07 /* QuoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B627322A375C0F00196D07 /* QuoteTableViewController.swift */; };
 		64B627402A375C0F00196D07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B627342A375C0F00196D07 /* SceneDelegate.swift */; };
-		64B627442A375CB700196D07 /* DxFeedSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; };
-		64B627452A375CB700196D07 /* DxFeedSwiftFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		64B627442A375CB700196D07 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
+		64B627452A375CB700196D07 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		64B627742A3761EC00196D07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B627702A3761EC00196D07 /* LaunchScreen.storyboard */; };
 		64B627752A3761EC00196D07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B627722A3761EC00196D07 /* Main.storyboard */; };
 		64B627772A37620D00196D07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64B627762A37620D00196D07 /* Assets.xcassets */; };
@@ -161,9 +166,9 @@
 		64D8BB452A39BB730071BC88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D8BB432A39BB730071BC88 /* Main.storyboard */; };
 		64D8BB472A39BB740071BC88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D8BB462A39BB740071BC88 /* Assets.xcassets */; };
 		64D8BB4A2A39BB740071BC88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D8BB482A39BB740071BC88 /* LaunchScreen.storyboard */; };
-		64DB79342A376E1B00229597 /* DxFeedSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; };
-		64DB79352A376E1B00229597 /* DxFeedSwiftFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		803BAC1629BFA50700FFAB1C /* DxFeedSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; };
+		64DB79342A376E1B00229597 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
+		64DB79352A376E1B00229597 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		803BAC1629BFA50700FFAB1C /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		803BAC1C29BFA50700FFAB1C /* DxFeedSwiftFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		803BAC2B29BFA69A00FFAB1C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2A29BFA69400FFAB1C /* libc++.tbd */; };
 		803BAC3029BFA6FA00FFAB1C /* jdk-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2C29BFA6EE00FFAB1C /* jdk-arm64-ios-r.a */; platformFilters = (ios, xros, ); };
@@ -239,7 +244,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6417DD1A2A39C22C008912D6 /* DxFeedSwiftFramework.framework in Embed Frameworks */,
+				6417DD1A2A39C22C008912D6 /* DXFeedFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,7 +255,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				64262CDC2A4DA66100BA6BA3 /* DxFeedSwiftFramework.framework in Embed Frameworks */,
+				64262CDC2A4DA66100BA6BA3 /* DXFeedFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,7 +266,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				644BD7832A4474B900A0BF99 /* DxFeedSwiftFramework.framework in Embed Frameworks */,
+				644BD7832A4474B900A0BF99 /* DXFeedFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,7 +277,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				64B627452A375CB700196D07 /* DxFeedSwiftFramework.framework in Embed Frameworks */,
+				64B627452A375CB700196D07 /* DXFeedFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,7 +288,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				64DB79352A376E1B00229597 /* DxFeedSwiftFramework.framework in Embed Frameworks */,
+				64DB79352A376E1B00229597 /* DXFeedFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,9 +421,9 @@
 		64D8BB462A39BB740071BC88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64D8BB492A39BB740071BC88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64D8BB4B2A39BB740071BC88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DxFeedSwiftFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DXFeedFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DxFeedSwiftFramework.h; sourceTree = "<group>"; };
-		803BAC1529BFA50700FFAB1C /* DxFeedSwiftFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DxFeedSwiftFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		803BAC1529BFA50700FFAB1C /* DXFeedFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DXFeedFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		803BAC2A29BFA69400FFAB1C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.2.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
 		803BAC2C29BFA6EE00FFAB1C /* jdk-arm64-ios-r.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "jdk-arm64-ios-r.a"; path = "graal_builds/ios/jdk-arm64-ios-r.a"; sourceTree = "<group>"; };
 		803BAC2D29BFA6EE00FFAB1C /* graal-svm-arm64-ios-r.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "graal-svm-arm64-ios-r.a"; path = "graal_builds/ios/graal-svm-arm64-ios-r.a"; sourceTree = "<group>"; };
@@ -444,7 +449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64262CCE2A4DA64700BA6BA3 /* RealityKitContent in Frameworks */,
-				64262CDB2A4DA66100BA6BA3 /* DxFeedSwiftFramework.framework in Frameworks */,
+				64262CDB2A4DA66100BA6BA3 /* DXFeedFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,7 +457,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				644BD7822A4474B900A0BF99 /* DxFeedSwiftFramework.framework in Frameworks */,
+				644BD7822A4474B900A0BF99 /* DXFeedFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,7 +465,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64B627442A375CB700196D07 /* DxFeedSwiftFramework.framework in Frameworks */,
+				64B627442A375CB700196D07 /* DXFeedFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,7 +473,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64DB79342A376E1B00229597 /* DxFeedSwiftFramework.framework in Frameworks */,
+				64DB79342A376E1B00229597 /* DXFeedFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,7 +481,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6417DD192A39C22C008912D6 /* DxFeedSwiftFramework.framework in Frameworks */,
+				6417DD192A39C22C008912D6 /* DXFeedFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,7 +501,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				803BAC1629BFA50700FFAB1C /* DxFeedSwiftFramework.framework in Frameworks */,
+				803BAC1629BFA50700FFAB1C /* DXFeedFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,8 +759,8 @@
 		803BAC0329BFA50700FFAB1C = {
 			isa = PBXGroup;
 			children = (
-				803BAC0F29BFA50700FFAB1C /* DxFeedSwiftFramework */,
-				803BAC1929BFA50700FFAB1C /* DxFeedSwiftFrameworkTests */,
+				803BAC0F29BFA50700FFAB1C /* DXFeedFramework */,
+				803BAC1929BFA50700FFAB1C /* DXFeedFrameworkTests */,
 				64D8BB362A39B0DE0071BC88 /* Samples */,
 				64262CCB2A4DA64700BA6BA3 /* Packages */,
 				803BAC0E29BFA50700FFAB1C /* Products */,
@@ -766,8 +771,8 @@
 		803BAC0E29BFA50700FFAB1C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */,
-				803BAC1529BFA50700FFAB1C /* DxFeedSwiftFrameworkTests.xctest */,
+				803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */,
+				803BAC1529BFA50700FFAB1C /* DXFeedFrameworkTests.xctest */,
 				64B627152A375BBA00196D07 /* DXQuoteTableApp.app */,
 				64B6275C2A3761A000196D07 /* DXPertTestApp.app */,
 				64D8BB3B2A39BB730071BC88 /* DXLatencyTestApp.app */,
@@ -777,7 +782,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		803BAC0F29BFA50700FFAB1C /* DxFeedSwiftFramework */ = {
+		803BAC0F29BFA50700FFAB1C /* DXFeedFramework */ = {
 			isa = PBXGroup;
 			children = (
 				80FC415529C8E2E400E6B611 /* Api */,
@@ -787,10 +792,10 @@
 				8088D77029C3A25D00F240CB /* SystemProperty.swift */,
 				803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */,
 			);
-			path = DxFeedSwiftFramework;
+			path = DXFeedFramework;
 			sourceTree = "<group>";
 		};
-		803BAC1929BFA50700FFAB1C /* DxFeedSwiftFrameworkTests */ = {
+		803BAC1929BFA50700FFAB1C /* DXFeedFrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
 				64ACBCEB2A28DDE300032C53 /* Listeners */,
@@ -803,7 +808,7 @@
 				64104FC02A210DDD00D1FC41 /* FeedTest.swift */,
 				64104FCD2A2637EA00D1FC41 /* EventsTest.swift */,
 			);
-			path = DxFeedSwiftFrameworkTests;
+			path = DXFeedFrameworkTests;
 			sourceTree = "<group>";
 		};
 		803BAC2529BFA67C00FFAB1C /* Frameworks */ = {
@@ -1004,9 +1009,9 @@
 			productReference = 64D8BB3B2A39BB730071BC88 /* DXLatencyTestApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */ = {
+		803BAC0C29BFA50700FFAB1C /* DXFeedFramework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 803BAC1F29BFA50700FFAB1C /* Build configuration list for PBXNativeTarget "DxFeedSwiftFramework" */;
+			buildConfigurationList = 803BAC1F29BFA50700FFAB1C /* Build configuration list for PBXNativeTarget "DXFeedFramework" */;
 			buildPhases = (
 				803BAC3229BFA9AD00FFAB1C /* Check graal libraries */,
 				803BAC0829BFA50700FFAB1C /* Headers */,
@@ -1020,14 +1025,14 @@
 			);
 			dependencies = (
 			);
-			name = DxFeedSwiftFramework;
+			name = DXFeedFramework;
 			productName = DxFeedSwiftFramework;
-			productReference = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */;
+			productReference = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		803BAC1429BFA50700FFAB1C /* DxFeedSwiftFrameworkTests */ = {
+		803BAC1429BFA50700FFAB1C /* DXFeedFrameworkTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 803BAC2229BFA50700FFAB1C /* Build configuration list for PBXNativeTarget "DxFeedSwiftFrameworkTests" */;
+			buildConfigurationList = 803BAC2229BFA50700FFAB1C /* Build configuration list for PBXNativeTarget "DXFeedFrameworkTests" */;
 			buildPhases = (
 				803BAC1129BFA50700FFAB1C /* Sources */,
 				803BAC1229BFA50700FFAB1C /* Frameworks */,
@@ -1038,9 +1043,9 @@
 			dependencies = (
 				803BAC1829BFA50700FFAB1C /* PBXTargetDependency */,
 			);
-			name = DxFeedSwiftFrameworkTests;
+			name = DXFeedFrameworkTests;
 			productName = DxFeedSwiftFrameworkTests;
-			productReference = 803BAC1529BFA50700FFAB1C /* DxFeedSwiftFrameworkTests.xctest */;
+			productReference = 803BAC1529BFA50700FFAB1C /* DXFeedFrameworkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1095,8 +1100,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */,
-				803BAC1429BFA50700FFAB1C /* DxFeedSwiftFrameworkTests */,
+				803BAC0C29BFA50700FFAB1C /* DXFeedFramework */,
+				803BAC1429BFA50700FFAB1C /* DXFeedFrameworkTests */,
 				803BAC3329BFAAE300FFAB1C /* XCFramework */,
 				64B627142A375BBA00196D07 /* DXQuoteTableApp */,
 				64B6275B2A3761A000196D07 /* DXPertTestApp */,
@@ -1232,7 +1237,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nrm -rf build\nxcodebuild archive \\\n-scheme DxFeedSwiftFramework \\\n-configuration Release \\\n-destination 'generic/platform=iOS' \\\n-archivePath './build/DxFeedSwiftFramework.framework-ios.xcarchive' \\\nSKIP_INSTALL=NO \\\nBUILD_LIBRARY_FOR_DISTRIBUTION=YES\n\n\nxcodebuild archive \\\n-scheme DxFeedSwiftFramework \\\n-configuration Release \\\n-destination 'platform=macOS,arch=arm64' \\\n-archivePath './build/DxFeedSwiftFramework.framework-mac.xcarchive' \\\nSKIP_INSTALL=NO \\\nBUILD_LIBRARY_FOR_DISTRIBUTION=YES\n\nxcodebuild -create-xcframework \\\n-framework './build/DxFeedSwiftFramework.framework-ios.xcarchive/Products/Library/Frameworks/DxFeedSwiftFramework.framework' \\\n-framework './build/DxFeedSwiftFramework.framework-mac.xcarchive/Products/Library/Frameworks/DxFeedSwiftFramework.framework' \\\n-output './build/DxFeedSwiftFramework.xcframework'\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nrm -rf build\nxcodebuild archive \\\n-scheme DxFeedFramework \\\n-configuration Release \\\n-destination 'generic/platform=iOS' \\\n-archivePath './build/DxFeedFramework.framework-ios.xcarchive' \\\nSKIP_INSTALL=NO \\\nBUILD_LIBRARY_FOR_DISTRIBUTION=YES\n\n\nxcodebuild archive \\\n-scheme DxFeedFramework \\\n-configuration Release \\\n-destination 'platform=macOS,arch=arm64' \\\n-archivePath './build/DxFeedFramework.framework-mac.xcarchive' \\\nSKIP_INSTALL=NO \\\nBUILD_LIBRARY_FOR_DISTRIBUTION=YES\n\nxcodebuild -create-xcframework \\\n-framework './build/DxFeedFramework.framework-ios.xcarchive/Products/Library/Frameworks/DxFeedFramework.framework' \\\n-framework './build/DxFeedFramework.framework-mac.xcarchive/Products/Library/Frameworks/DxFeedFramework.framework' \\\n-output './build/DxFeedFramework.xcframework'\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1396,11 +1401,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6426C8922A531AB300236784 /* IsolateTest.swift in Sources */,
+				6426C8912A531AAE00236784 /* EndpointTest.swift in Sources */,
 				64D0DBE82A29FF4B00710605 /* EventsTest.swift in Sources */,
+				6426C8952A531ABB00236784 /* EndpointPublisherTest.swift in Sources */,
+				6426C8942A531AB900236784 /* SystemPropertyTest.swift in Sources */,
 				64ACBCEC2A29FE2300032C53 /* XCTestCase+Utils.swift in Sources */,
 				64ACBCD52A2789EF00032C53 /* TestListener.swift in Sources */,
 				64ACBCEA2A28DDDA00032C53 /* TestEventListener.swift in Sources */,
 				64ACBCCF2A27851C00032C53 /* FeedTest.swift in Sources */,
+				6426C8932A531AB500236784 /* ThreadsTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1409,37 +1419,37 @@
 /* Begin PBXTargetDependency section */
 		6417DD182A39C1BE008912D6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */;
+			target = 803BAC0C29BFA50700FFAB1C /* DXFeedFramework */;
 			targetProxy = 6417DD172A39C1BE008912D6 /* PBXContainerItemProxy */;
 		};
 		6417DD1C2A39C22C008912D6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */;
+			target = 803BAC0C29BFA50700FFAB1C /* DXFeedFramework */;
 			targetProxy = 6417DD1B2A39C22C008912D6 /* PBXContainerItemProxy */;
 		};
 		64262CDE2A4DA66100BA6BA3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */;
+			target = 803BAC0C29BFA50700FFAB1C /* DXFeedFramework */;
 			targetProxy = 64262CDD2A4DA66100BA6BA3 /* PBXContainerItemProxy */;
 		};
 		644BD7852A4474B900A0BF99 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */;
+			target = 803BAC0C29BFA50700FFAB1C /* DXFeedFramework */;
 			targetProxy = 644BD7842A4474B900A0BF99 /* PBXContainerItemProxy */;
 		};
 		64B627432A375CAA00196D07 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */;
+			target = 803BAC0C29BFA50700FFAB1C /* DXFeedFramework */;
 			targetProxy = 64B627422A375CAA00196D07 /* PBXContainerItemProxy */;
 		};
 		64DB79322A376DE100229597 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */;
+			target = 803BAC0C29BFA50700FFAB1C /* DXFeedFramework */;
 			targetProxy = 64DB79312A376DE100229597 /* PBXContainerItemProxy */;
 		};
 		803BAC1829BFA50700FFAB1C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */;
+			target = 803BAC0C29BFA50700FFAB1C /* DXFeedFramework */;
 			targetProxy = 803BAC1729BFA50700FFAB1C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2172,7 +2182,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		803BAC1F29BFA50700FFAB1C /* Build configuration list for PBXNativeTarget "DxFeedSwiftFramework" */ = {
+		803BAC1F29BFA50700FFAB1C /* Build configuration list for PBXNativeTarget "DXFeedFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				803BAC2029BFA50700FFAB1C /* Debug */,
@@ -2181,7 +2191,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		803BAC2229BFA50700FFAB1C /* Build configuration list for PBXNativeTarget "DxFeedSwiftFrameworkTests" */ = {
+		803BAC2229BFA50700FFAB1C /* Build configuration list for PBXNativeTarget "DXFeedFrameworkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				803BAC2329BFA50700FFAB1C /* Debug */,

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@testable import DxFeedSwiftFramework
+@testable import DXFeedFramework
 
 class AnonymousClass: DXEventListener, Hashable {
     let name: String = String("\(Int(Date().timeIntervalSince1970 * 1000))")

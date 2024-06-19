@@ -8,7 +8,7 @@
 import SwiftUI
 import RealityKit
 import RealityKitContent
-import DxFeedSwiftFramework
+import DXFeedFramework
 
 struct ContentView: View {
     @ObservedObject var endpoint = Endpoint()

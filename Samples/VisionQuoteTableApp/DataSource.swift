@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import DxFeedSwiftFramework
+import DXFeedFramework
 
 class DataSource: ObservableObject {
     @Published var quotes: [QuoteViewModel] = []
