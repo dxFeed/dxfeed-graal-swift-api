@@ -7,15 +7,34 @@
 
 import Foundation
 
+/// Represents subscription to a specific source of indexed events.
+///
+/// Instances of this class can be used with ``DXFeedSubcription``
+/// to specify subscription to a particular source of indexed events.
+/// By default, when subscribing to indexed events by their event symbol object,
+/// the subscription is performed to all supported sources.
+///
+/// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/IndexedEventSubscriptionSymbol.html)
+///
+/// `T`: The type of event symbol
 public class IndexedEventSubscriptionSymbol<T: Equatable>: Symbol {
+    /// Gets event symbol.
     let symbol: T
+    /// Gets indexed event source. ``IndexedEventSource``
     let source: IndexedEventSource
-    init(symbol: T, source: IndexedEventSource) {
+    /// Initializes a new instance of the ``IndexedEventSubscriptionSymbol`` class
+    /// with a specified event symbol and source.
+    ///
+    /// - Parameters:
+    ///   - symbol: The event symbol.
+    ///   - source: The event source.
+    public init(symbol: T, source: IndexedEventSource) {
         self.symbol = symbol
         self.source = source
     }
 
-    func toString() -> String {
+    /// Custom symbol has to return string representation.
+    public var stringValue: String {
         return "\(symbol)source=\(source.toString())"
     }
 }

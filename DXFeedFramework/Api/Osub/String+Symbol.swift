@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// String extends Symbol protocol for using inside ``DXFeedSubcription``
 extension String: Symbol {
     public var stringValue: String {
         return description

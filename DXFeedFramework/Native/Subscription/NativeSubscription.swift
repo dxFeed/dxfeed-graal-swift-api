@@ -104,6 +104,24 @@ class NativeSubscription {
                                                                          self.subscription,
                                                                          listPointer))
     }
+
+    func removeSymbols(_ symbols: [Symbol]) throws {
+        let nativeSymbols = symbols.compactMap { SymbolMapper.newNative($0) }
+        let elements = ListNative(pointers: nativeSymbols)
+        let listPointer = elements.newList()
+        defer {
+            listPointer.deinitialize(count: 1)
+            listPointer.deallocate()
+            nativeSymbols.forEach { SymbolMapper.clearNative(symbol: $0) }
+        }
+        let thread = currentThread()
+        _ = try ErrorCheck.nativeCall(thread,
+                                      dxfg_DXFeedSubscription_removeSymbols(thread,
+                                                                            self.subscription,
+                                                                            listPointer))
+
+    }
+
     func isClosed() -> Bool {
         let thread = currentThread()
         let success = try? ErrorCheck.nativeCall(thread, dxfg_DXFeedSubscription_isClosed(thread, self.subscription))
