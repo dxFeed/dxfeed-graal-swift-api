@@ -3118,7 +3118,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
@@ -3132,7 +3132,7 @@
 					"$(PROJECT_DIR)/graal_builds/osx_universal",
 					"$(PROJECT_DIR)/graal_builds/ios",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
@@ -3180,7 +3180,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
@@ -3194,7 +3194,7 @@
 					"$(PROJECT_DIR)/graal_builds/osx_universal",
 					"$(PROJECT_DIR)/graal_builds/ios",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 1.0;
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
 					"-lc++",

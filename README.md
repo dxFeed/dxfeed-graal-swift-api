@@ -24,7 +24,9 @@ and [dxFeed Java API](https://docs.dxfeed.com/dxfeed/api/overview-summary.html) 
     * [Future Development](#future-development)
     * [Implementation Details](#implementation-details)
 - [Documentation](#documentation)
+- [Requirements](#requirements)
 - [Usage](#usage)
+- [Tools](#tools)
 - [Current State](#current-state)
 
 ## Overview
@@ -98,19 +100,45 @@ Find useful information in our self-service dxFeed Knowledge Base or Swift API d
     * [Order Book reconstruction](https://kb.dxfeed.com/en/data-model/dxfeed-order-book/order-book-reconstruction.html)
     * [Symbology Guide](https://kb.dxfeed.com/en/data-model/symbology-guide.html)
 
+## Requirements
+
+### macOS
+
+| OS                  | Version | Architectures |
+|---------------------|---------|---------------|
+| [macOS][macOS]      | 10.13+  | x64           |
+| [macOS][macOS]      | 11+     | Arm64         |
+
+Is supported in the Rosetta 2 x64 emulator.
+
+[macOS]: https://support.apple.com/macos
+
+### iOS
+
+| OS                  | Version | Architectures |
+|---------------------|---------|---------------|
+| [iOS][iOS]          | 12+     | Arm64         |
+| iOS Simulator       | 12+     | x64, Arm64    |
+
+[iOS]: https://support.apple.com/ios
 
 ## Usage
 
-```csharp
+```swift
+class Listener: DXEventListener {
+    func receiveEvents(_ events: [MarketEvent]) {
+        events.forEach {
+            print($0.toString())
+        }
+    }
+}
+
 let endpoint = DXEndpoint.builder()
     .withPropery("dxfeed.address", "demo.dxfeed.com:7300")
     .build()
-let subscription = endpoint.getFeed().createSubscription(EventType.Quote)
-subscription.addListener { events in
-     for e in events {
-         print(e)
-     }
-}
+let subscription = endpoint.getFeed().createSubscription(EventCode.quote)
+let eventListener = Listener()
+subscription.add(observer: eventListener}
 subscription.addSymbols("AAPL")
 ```
 
@@ -133,6 +161,30 @@ Quote{AAPL, eventTime=0, time=20221219-223312.000, timeNanoPart=0, sequence=0, b
 ```
 
 </details>
+
+## Tools
+
+[Tools](https://github.com/dxFeed/dxfeed-graal-swift-api/tree/swift/Samples/PerfTestCL/)
+is a collection of tools that allow you to subscribe to various market events for the specified symbols. The tools can
+be
+downloaded
+from [Release](https://github.com/dxFeed/dxfeed-graal-swift-api/releases) (tools.zip includes self-contained versions)
+
+* [Connect](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/PerfTestCL/ConnectTool.swift)
+  connects to the specified address(es) and subscribes to the specified events with the specified symbol
+* [Dump](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/PerfTestCL/DumpTool.swift)
+  dumps all events received from address. This was designed to retrieve data from a file
+* [PerfTest](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/PerfTestCL/PerfTestTool.swift)
+  connects to the specified address(es) and calculates performance counters (events per second, memory usage, CPU usage,
+  etc.)
+* [LatencyTest](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/PerfTestCL/LatencyTestTool.swift)
+  connects to the specified address(es) and calculates latency.
+
+To run tools on macOs, it may be necessary to unquarantine them:
+
+```
+sudo /usr/bin/xattr -r -d com.apple.quarantine <directory_with_tools>
+```
 
 ## Current State
 
