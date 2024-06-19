@@ -114,7 +114,7 @@ public class CandlePriceLevel {
     public func toString() -> String {
         return stringDescription
     }
-
+   
     /// Returns full string representation of this candle price level attribute.
     ///
     /// It is contains attribute key and its value.

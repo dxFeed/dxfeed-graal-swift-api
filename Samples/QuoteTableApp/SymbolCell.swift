@@ -33,5 +33,4 @@ class SymbolCell: UITableViewCell {
         enabledSwitch?.isOn = check
     }
 
-    
 }

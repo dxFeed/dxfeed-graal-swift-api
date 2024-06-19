@@ -29,7 +29,7 @@ class QuoteTableViewController: UIViewController {
 
         quoteTableView.separatorStyle = .none
 
-        NotificationCenter.default.addObserver(forName: .selectedSymbolsChanged, object: nil, queue: nil) { [weak self] (notification) in
+        NotificationCenter.default.addObserver(forName: .selectedSymbolsChanged, object: nil, queue: nil) { [weak self] (_) in
             guard let strongSelf = self else {
                 return
             }
@@ -55,7 +55,7 @@ class QuoteTableViewController: UIViewController {
             self.subscribe(false)
         }
     }
-    
+
     func subscribe(_ unlimited: Bool) {
         if endpoint == nil {
             try? SystemProperty.setProperty(DXEndpoint.ExtraPropery.heartBeatTimeout.rawValue, "15s")
@@ -99,7 +99,7 @@ extension QuoteTableViewController: DXEventListener {
     func receiveEvents(_ events: [MarketEvent]) {
         events.forEach { event in
             switch event.type {
-            case .quote:
+            case .quote:                
                 dataSource[event.eventSymbol]?.update(event.quote)
             case .profile:
                 dataSource[event.eventSymbol]?.update(event.profile.descriptionStr ?? "")
