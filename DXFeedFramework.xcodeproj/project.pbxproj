@@ -383,7 +383,6 @@
 		641BCBB92A1FB42500FE23C2 /* TestListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListener.swift; sourceTree = "<group>"; };
 		641BCBBB2A20ED8100FE23C2 /* DXEndpointObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXEndpointObserver.swift; sourceTree = "<group>"; };
 		641BCBC02A21077800FE23C2 /* EventCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCode.swift; sourceTree = "<group>"; };
-		642046C02A572708003923FD /* DXFeedSDK */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DXFeedSDK; path = Package/DXFeedSDK; sourceTree = "<group>"; };
 		64262CC92A4DA64600BA6BA3 /* DXVisionQuoteTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXVisionQuoteTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64262CCC2A4DA64700BA6BA3 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		64262CCF2A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionQuoteTableAppApp.swift; sourceTree = "<group>"; };
@@ -1017,7 +1016,6 @@
 		803BAC2529BFA67C00FFAB1C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				642046C02A572708003923FD /* DXFeedSDK */,
 				64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */,
 			);
 			name = Frameworks;
