@@ -72,11 +72,11 @@ class LatencyViewController: UIViewController {
                 return
             }
             endpoint = try? DXEndpoint.builder().withRole(.feed).build()
-            endpoint?.add(observer: self)
+            endpoint?.add(listener: self)
             _ = try? endpoint?.connect(address)
 
             subscription = try? endpoint?.getFeed()?.createSubscription(.timeAndSale)
-            try? subscription?.add(observer: listener)
+            try? subscription?.add(listener: listener)
 
             try? subscription?.addSymbols(symbols)
             listener.cleanTime()
@@ -109,7 +109,7 @@ class LatencyViewController: UIViewController {
     }
 }
 
-extension LatencyViewController: DXEndpointObserver {
+extension LatencyViewController: DXEndpointListener {
     func endpointDidChangeState(old: DXEndpointState, new: DXEndpointState) {
         DispatchQueue.main.async {
             self.isConnected = new == .connected

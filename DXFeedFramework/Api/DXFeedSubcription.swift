@@ -16,7 +16,7 @@ public class DXFeedSubcription {
     /// List of event types associated with this ``DXFeedSubscription``
     fileprivate let events: Set<EventCode>
     /// A set listeners of events
-    /// observers - typed list wrapper.
+    /// listeners - typed list wrapper.
     private let listeners = ConcurrentWeakHashTable<AnyObject>()
 
     /// - Throws: ``GraalException`` Rethrows exception from Java, ``ArgumentException/argumentNil``
@@ -36,7 +36,7 @@ public class DXFeedSubcription {
     ///
     /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html#addEventListener-com.dxfeed.api.DXFeedEventListener)
     /// - Throws: ``GraalException`` Rethrows exception from Java, ``ArgumentException/argumentNil``
-    public func add<O>(observer: O) throws
+    public func add<O>(listener: O) throws
     where O: DXEventListener,
           O: Hashable {
               try listeners.reader { [weak self] in
@@ -44,15 +44,15 @@ public class DXFeedSubcription {
                       try self?.native.addListener(self)
                   }
               }
-              listeners.insert(observer)
+              listeners.insert(listener)
           }
     /// Removes listener for events.
     ///
     /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html#addEventListener-com.dxfeed.api.DXFeedEventListener-)
-    public func remove<O>(observer: O)
+    public func remove<O>(listener: O)
     where O: DXEventListener,
           O: Hashable {
-              listeners.remove(observer)
+              listeners.remove(listener)
           }
 
     /// Adds the specified  symbol to the set of subscribed symbols.
@@ -97,8 +97,8 @@ extension DXFeedSubcription: DXEventListener {
     public func receiveEvents(_ events: [MarketEvent]) {
         listeners.reader { items in
             let enumerator = items.objectEnumerator()
-            while let observer = enumerator.nextObject() as? DXEventListener {
-                observer.receiveEvents(events)
+            while let listener = enumerator.nextObject() as? DXEventListener {
+                listener.receiveEvents(events)
             }
         }
     }

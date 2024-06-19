@@ -25,7 +25,7 @@ public class DXInstrumentProfileConnection {
     private let native: NativeInstrumentProfileConnection
     private let collector: DXInstrumentProfileCollector
 
-    private var observersSet = ConcurrentWeakHashTable<AnyObject>()
+    private var listenersSet = ConcurrentWeakHashTable<AnyObject>()
 
     /// Creates instrument profile connection with a specified address and collector.
     ///
@@ -111,32 +111,32 @@ public class DXInstrumentProfileConnection {
         native.waitUntilCompleted(timeInMs)
     }
 
-    /// Adds observer that is notified about changes in ``getState()`` property.
-    /// Installed observer can be removed with
-    /// ``remove(observer:)`` method.
-    public func add<O>(observer: O)
-    where O: DXInstrumentProfileConnectionObserver,
+    /// Adds listener that is notified about changes in ``getState()`` property.
+    /// Installed listener can be removed with
+    /// ``remove(listener:)`` method.
+    public func add<O>(listener: O)
+    where O: DXInstrumentProfileConnectionListener,
           O: Hashable {
-        observersSet.insert(observer)
+              listenersSet.insert(listener)
     }
 
-    /// Removes observer that is notified about changes in ``getState()`` property.
-    /// It removes the observer that was previously installed with
-    /// ``add(observer:)`` method.
-    public func remove<O>(observer: O)
-    where O: DXInstrumentProfileConnectionObserver,
+    /// Removes listener that is notified about changes in ``getState()`` property.
+    /// It removes the listener that was previously installed with
+    /// ``add(listener:)`` method.
+    public func remove<O>(listener: O)
+    where O: DXInstrumentProfileConnectionListener,
           O: Hashable {
-        observersSet.remove(observer)
+              listenersSet.remove(listener)
     }
 
 }
 
 extension DXInstrumentProfileConnection: NativeIPFConnectionListener {
     func connectionDidChangeState(old: DXInstrumentProfileConnectionState, new: DXInstrumentProfileConnectionState) {
-        observersSet.reader { items in
+        listenersSet.reader { items in
             let enumerator = items.objectEnumerator()
-            while let observer = enumerator.nextObject() as? DXInstrumentProfileConnectionObserver {
-                observer.connectionDidChangeState(old: old, new: new)
+            while let listener = enumerator.nextObject() as? DXInstrumentProfileConnectionListener {
+                listener.connectionDidChangeState(old: old, new: new)
             }
         }
     }

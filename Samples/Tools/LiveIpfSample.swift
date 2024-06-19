@@ -55,12 +55,12 @@ class LiveIpfSample: ToolsCommand {
             connection = try DXInstrumentProfileConnection(arguments.count > 1 ? arguments[1] : LiveIpfSample.defaultIpfUrl, collector!)
             // Update period can be used to re-read IPF files, not needed for services supporting IPF "live-update"
             try connection?.setUpdatePeriod(60000)
-            connection?.add(observer: self)
+            connection?.add(listener: self)
             try connection?.start()
             // We can wait until we get first full snapshot of instrument profiles
             connection?.waitUntilCompleted(10000)
             // It is possible to add listener after connection is started - updates will not be missed in this case
-            try collector?.add(observer: self)
+            try collector?.add(listener: self)
         } catch {
             print("Error: \(error)")
         }
@@ -69,7 +69,7 @@ class LiveIpfSample: ToolsCommand {
     }
 }
 
-extension LiveIpfSample: DXInstrumentProfileConnectionObserver {
+extension LiveIpfSample: DXInstrumentProfileConnectionListener {
     func connectionDidChangeState(old: DXInstrumentProfileConnectionState, new: DXInstrumentProfileConnectionState) {
         print("Connection state: \(new)")
     }

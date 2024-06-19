@@ -1,5 +1,5 @@
 //
-//  DXEndpointObserver.swift
+//  DXEndpointListener.swift
 //  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 26.05.23.
@@ -8,7 +8,7 @@
 import Foundation
 
 /// Notifies a change in the state of this endpoint.
-public protocol DXEndpointObserver: AnyObject {
+public protocol DXEndpointListener: AnyObject {
     /// Fired when state changed
     /// 
     /// - Parameters:

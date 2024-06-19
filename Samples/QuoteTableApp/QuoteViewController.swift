@@ -47,7 +47,7 @@ class QuoteViewController: UIViewController {
         }
         if endpoint == nil {
             endpoint = try? DXEndpoint.builder().withRole(.feed).build()
-            endpoint?.add(observer: self)
+            endpoint?.add(listener: self)
         }
         _ = try? endpoint?.connect(address)
     }
@@ -67,12 +67,12 @@ class QuoteViewController: UIViewController {
         symbolTextField.resignFirstResponder()
 
         subscription = try? endpoint?.getFeed()?.createSubscription(.timeAndSale)
-        try? subscription?.add(observer: self)
+        try? subscription?.add(listener: self)
         try? subscription?.addSymbols(symbol)
     }
 }
 
-extension QuoteViewController: DXEndpointObserver {
+extension QuoteViewController: DXEndpointListener {
     func endpointDidChangeState(old: DXEndpointState, new: DXEndpointState) {
         isConnected = new == .connected
         updateConnectButton()

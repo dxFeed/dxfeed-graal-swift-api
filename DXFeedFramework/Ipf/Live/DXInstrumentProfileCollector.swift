@@ -15,7 +15,7 @@ import Foundation
 ///
 /// As set of instrument profiles stored in this collector can be accessed with ``view()`` method.
 /// A snapshot plus a live stream of updates can be accessed with
-/// ``add(observer:)`` method.
+/// ``add(listener:)`` method.
 ///
 /// Removal of instrument profile is represented by an ``InstrumentProfile`` instance with a
 /// ``InstrumentProfile/type`` equal to ``InstrumentProfileType/removed``
@@ -34,20 +34,20 @@ public class DXInstrumentProfileCollector {
     /// If a set of instrument profiles is not empty, then this listener will be immediately
     /// ``DXInstrumentProfileUpdateListener/instrumentProfilesUpdated(_:)``.
     /// - Throws: GraalException. Rethrows exception from Java.
-    public func add<O>(observer: O) throws
+    public func add<O>(listener: O) throws
     where O: DXInstrumentProfileUpdateListener,
           O: Hashable {
-              try native.addListener(observer)
-              listeners.insert(observer)
+              try native.addListener(listener)
+              listeners.insert(listener)
           }
 
     /// Removes listener that is notified about any updates in the set of instrument profiles.
     /// - Throws: GraalException. Rethrows exception from Java.
-    public func remove<O>(observer: O)
+    public func remove<O>(listener: O)
     where O: DXInstrumentProfileUpdateListener,
           O: Hashable {
-              native.removeListener(observer)
-              listeners.remove(observer)
+              native.removeListener(listener)
+              listeners.remove(listener)
           }
 
     /// Returns last modification time (in milliseconds) of instrument profiles or zero if it is unknown.

@@ -1,5 +1,5 @@
 //
-//  DXInstrumentProfileConnectionObserver.swift
+//  DXInstrumentProfileConnectionListener.swift
 //  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 01.09.23.
@@ -8,7 +8,7 @@
 import Foundation
 
 /// Notifies a change in the state of this connection.
-public protocol DXInstrumentProfileConnectionObserver: AnyObject {
+public protocol DXInstrumentProfileConnectionListener: AnyObject {
     /// Fired when state changed
     ///
     /// - Parameters:

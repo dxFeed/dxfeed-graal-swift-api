@@ -52,12 +52,12 @@ class ViewController: UIViewController {
             connection = try DXInstrumentProfileConnection(addressTextField.text ?? "", collector!)
             // Update period can be used to re-read IPF files, not needed for services supporting IPF "live-update"
             try connection?.setUpdatePeriod(60000)
-            connection?.add(observer: self)
+            connection?.add(listener: self)
             try connection?.start()
             // We can wait until we get first full snapshot of instrument profiles
             connection?.waitUntilCompleted(5000)
             // It is possible to add listener after connection is started - updates will not be missed in this case
-            try collector?.add(observer: self)
+            try collector?.add(listener: self)
         } catch {
             print("Error during creation IPF data source: \(error)")
         }
@@ -71,7 +71,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: DXInstrumentProfileConnectionObserver {
+extension ViewController: DXInstrumentProfileConnectionListener {
     func connectionDidChangeState(old: DXFeedFramework.DXInstrumentProfileConnectionState,
                                   new: DXFeedFramework.DXInstrumentProfileConnectionState) {
         DispatchQueue.main.async {
