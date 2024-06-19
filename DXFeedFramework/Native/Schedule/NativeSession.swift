@@ -10,6 +10,6 @@ import Foundation
 class NativeSession: NativeBox<dxfg_session_t> {
     deinit {
         let thread = currentThread()
-        _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(native.pointee.handler)))
+        _ = try? ErrorCheck.nativeCall(thread, dxfg_Session_release(thread, native))
     }
 }

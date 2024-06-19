@@ -23,8 +23,8 @@ class NativeTimeUtil {
         let result = try ErrorCheck.nativeCall(thread,
                                                dxfg_TimeFormat_format(thread,
                                                                       timeFormat.native,
-                                                                      value))
-        return String(pointee: result)
+                                                                      value))        
+        return try String(nullable: result).value()
     }
 
 }
