@@ -56,6 +56,7 @@ class ViewController: UIViewController {
             try connection?.start()
             // We can wait until we get first full snapshot of instrument profiles
             connection?.waitUntilCompleted(5000)
+            // It is possible to add listener after connection is started - updates will not be missed in this case
             try collector?.add(observer: self)
         } catch {
             print("Error during creation IPF data source: \(error)")

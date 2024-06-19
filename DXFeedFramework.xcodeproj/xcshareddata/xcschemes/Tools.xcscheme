@@ -53,6 +53,10 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "PerfTest  localhost:6666 TimeAndSale YQKNT"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "DXFeedLiveIpfSample https://demo:demo@tools.dxfeed.com/ipf"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
