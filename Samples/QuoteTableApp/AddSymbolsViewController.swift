@@ -10,7 +10,6 @@ import UIKit
 import DXFeedFramework
 
 class AddSymbolsViewController: UIViewController {
-    @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var symbolsTableView: UITableView!
     @IBOutlet var titleLabel: UILabel!
 
@@ -18,7 +17,9 @@ class AddSymbolsViewController: UIViewController {
     var selectedSymbols = Set<String>()
     var dataProvider = SymbolsDataProvider()
 
+
     override func viewDidLoad() {
+        super.viewDidLoad()
         selectedSymbols = Set(dataProvider.selectedSymbols)
         symbols = dataProvider.allSymbols.sorted()
 
@@ -27,13 +28,6 @@ class AddSymbolsViewController: UIViewController {
         symbolsTableView.backgroundColor = .tableBackground
         symbolsTableView.separatorStyle = .none
 
-//        searchBar.searchTextField.textColor = .text
-//        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(
-//            string: "Search symbol",
-//            attributes: [.foregroundColor: UIColor.text!.withAlphaComponent(0.5)]
-//        )
-//        searchBar.barTintColor = .tableBackground
-        super.viewDidLoad()
         view.backgroundColor = .tableBackground
     }
 
@@ -47,7 +41,8 @@ class AddSymbolsViewController: UIViewController {
     func readIpf() {
         let reader = DXInstrumentProfileReader()
         do {
-            let result = try reader.readFromFile(address: "https://demo:demo@tools.dxfeed.com/ipf?TYPE=FOREX,STOCK&compression=zip")
+            let result =
+            try reader.readFromFile(address: "https://demo:demo@tools.dxfeed.com/ipf?TYPE=FOREX,STOCK&compression=zip")
             guard let result = result  else {
                 return
             }
@@ -83,17 +78,18 @@ extension AddSymbolsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return symbols.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SymbolCellId", for: indexPath)
                 as? SymbolCell else {
             return UITableViewCell()
         }
         let symbol = symbols[indexPath.row]
-        cell.update(symbol: symbol.symbol + "\n" + symbol.descriptionStr, check: selectedSymbols.contains(symbol.symbol))
+        cell.update(symbol: symbol.symbol + "\n" + symbol.descriptionStr,
+                    check: selectedSymbols.contains(symbol.symbol))
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }

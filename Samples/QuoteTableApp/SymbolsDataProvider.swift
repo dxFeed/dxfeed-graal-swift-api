@@ -61,7 +61,6 @@ class SymbolsDataProvider {
         UserDefaults.standard.synchronize()
 
         let currentSymbols1 = selectedSymbols
-        print(currentSymbols1)
     }
 
     func changeSymbols(_ symbols: [String]) {

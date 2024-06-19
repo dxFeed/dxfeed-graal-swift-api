@@ -100,7 +100,6 @@ public class OtcMarketsOrder: Order {
             otcMarketsFlags & ~Int32(OtcMarketsOrder.saturated)
         }
     }
-
     /// Gets or sets a value indicating whether this event is in 'AutoEx' mode.
     /// If this event is in 'AutoEx' mode then a response to an OTC Link trade message will be immediate.
     public var isAutoExecution: Bool {

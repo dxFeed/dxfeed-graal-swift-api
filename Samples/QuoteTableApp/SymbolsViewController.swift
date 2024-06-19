@@ -34,12 +34,6 @@ class SymbolsViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
         dataProvider.changeSymbols(symbols)
     }
-
-    @IBAction func addSymbols(_ sender: UIButton) {
-        if let newView = self.storyboard?.instantiateViewController(withIdentifier: "AddSymbolsViewController") as? AddSymbolsViewController {
-            self.navigationController?.pushViewController(newView, animated: true)
-        }
-    }
 }
 
 extension SymbolsViewController: UITableViewDelegate, UITableViewDataSource {

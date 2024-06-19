@@ -34,7 +34,6 @@ class Isolate {
     let waiter = DispatchGroup()
     lazy var osThread = {
         let thread = Thread {
-            print("DXFeedFramework.Isolate:init \(Thread.isMainThread) \(Thread.current) \(Thread.current.threadName) \(pthread_mach_thread_np(pthread_self()))")
             do {
                 try ErrorCheck.graalCall(graal_create_isolate(self.params, self.isolate, self.thread))
             } catch GraalException.fail(let message, let className, let stack) {
@@ -58,13 +57,13 @@ class Isolate {
         thread.qualityOfService = .userInteractive
         return thread
     }()
-    
+
     deinit {
         self.isolate.deallocate()
         self.params.deallocate()
         self.thread.deallocate()
     }
-   
+
     /// Internal cleanup function.
     /// Just for testing purposes
     func cleanup() {
@@ -87,7 +86,7 @@ class Isolate {
 #else
     print("FEED SDK: Release")
 #endif
-        osThread.qualityOfService = .userInteractive;
+        osThread.qualityOfService = .userInteractive
         waiter.enter()
         osThread.start()
         waiter.wait()

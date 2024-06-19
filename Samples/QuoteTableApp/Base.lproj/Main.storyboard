@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fbd-3S-cKV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fbd-3S-cKV">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -109,7 +109,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w5E-am-7c3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-763" y="701"/>
+            <point key="canvasLocation" x="-766" y="662"/>
         </scene>
         <!--Quote Table View Controller-->
         <scene sceneID="r7T-41-CNF">
@@ -232,7 +232,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="pencil" catalog="system"/>
                                 <connections>
-                                    <action selector="editTouchUpInside:" destination="KHT-AB-3Dx" eventType="touchUpInside" id="k5P-ev-yCp"/>
+                                    <segue destination="ZBb-dg-Ea1" kind="show" id="6dN-ag-cjp"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quotes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kK3-Yq-zxb">
@@ -295,7 +295,7 @@
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleHeadline"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="addSymbols:" destination="ZBb-dg-Ea1" eventType="touchUpInside" id="cgJ-il-wFe"/>
+                                    <segue destination="79B-Xp-7rI" kind="show" id="Evl-CY-GwK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tMq-LB-hEm">
@@ -507,16 +507,16 @@
     </scenes>
     <designables>
         <designable name="OfZ-3h-hz9">
-            <size key="intrinsicContentSize" width="24.666666666666668" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="41.666666666666671" height="30.333333333333332"/>
         </designable>
         <designable name="my2-SE-epx">
-            <size key="intrinsicContentSize" width="28.333333333333332" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="45.333333333333329" height="30.333333333333332"/>
         </designable>
     </designables>
     <resources>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -50,8 +50,6 @@ class QuoteTableViewController: UIViewController {
     }
 
     func subscribe(_ unlimited: Bool) {
-        print("UI Current thread \(Thread.current)")
-
         if endpoint == nil {
             try? SystemProperty.setProperty(DXEndpoint.ExtraPropery.heartBeatTimeout.rawValue, "15s")
 
@@ -82,12 +80,6 @@ class QuoteTableViewController: UIViewController {
     @IBAction func changeAggregationPeriod(_ sender: UISwitch) {
         subscribe(agregationSwitch.isOn)
     }
-
-    @IBAction func editTouchUpInside(_ sender: UIButton) {
-        if let newView = self.storyboard?.instantiateViewController(withIdentifier: "SymbolsViewController") as? SymbolsViewController {
-            self.navigationController?.pushViewController(newView, animated: true)
-        }
-    }
 }
 
 extension QuoteTableViewController: DXEndpointListener {
@@ -106,8 +98,7 @@ extension QuoteTableViewController: DXEventListener {
                 dataSource[event.eventSymbol]?.update(event.quote)
             case .profile:
                 dataSource[event.eventSymbol]?.update(event.profile.descriptionStr ?? "")
-            default:
-                print(event)
+            default: break
             }
         }
         DispatchQueue.main.async {
