@@ -22,7 +22,7 @@ final class DXObservableSubscriptionTest: XCTestCase {
             symbols.forEach { symbol in
                 if let sSymbol = symbol as? Symbol {
                     if sSymbol.stringValue.hasSuffix(":TEST") {
-                        var profile = Profile(sSymbol.stringValue)
+                        let profile = Profile(sSymbol.stringValue)
                         profile.descriptionStr = DXObservableSubscriptionTest.profileDescription
                         events.append(profile)
                     }

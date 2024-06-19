@@ -18,6 +18,12 @@ final class DXTimeSeriesSubscriptionTest: XCTestCase {
         try createSubscriptionFor(multiple: true)
     }
 
+    func testCreateWithNil() throws {
+        XCTAssertThrowsError(try DXFeedTimeSeriesSubscription(native: nil, events: [.candle])) { error in
+            XCTAssertTrue(error is ArgumentException)
+        } 
+    }
+
     func createSubscriptionFor(multiple: Bool) throws {
         let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
         let feed = endpoint.getFeed()
