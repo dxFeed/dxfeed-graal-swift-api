@@ -91,6 +91,50 @@ final class FeedTest: XCTestCase {
         try waitingEvent(code: .profile)
     }
 
+    fileprivate static func checkType(_ code: EventCode, _ event: MarketEvent?) -> Bool {
+        switch code {
+        case .timeAndSale:
+            return event is TimeAndSale
+        case .quote:
+            return event is Quote
+        case .profile:
+            return event is Profile
+        case .summary:
+            break
+        case .greeks:
+            break
+        case .candle:
+            break
+        case .dailyCandle:
+            break
+        case .underlying:
+            break
+        case .theoPrice:
+            break
+        case .trade:
+            return event is Trade
+        case .tradeETH:
+            break
+        case .configuration:
+            break
+        case .message:
+            break
+        case .orderBase:
+            break
+        case .order:
+            break
+        case .analyticOrder:
+            break
+        case .spreadOrder:
+            break
+        case .series:
+            break
+        case .optionSale:
+            break
+        }
+        return false
+    }
+
     func waitingEvent(code: EventCode) throws {
 
         let endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
@@ -100,49 +144,8 @@ final class FeedTest: XCTestCase {
         subscription?.add(AnonymousClass { anonymCl in
             anonymCl.printFunc = { events in
                 if events.count > 0 {
-                    var correctType = false
                     let event = events.first
-                    switch code {
-                    case .timeAndSale:
-                        correctType = event is TimeAndSale
-                    case .quote:
-                        correctType = event is Quote
-                    case .profile:
-                        correctType = event is Profile
-                    case .summary:
-                        break
-                    case .greeks:
-                        break
-                    case .candle:
-                        break
-                    case .dailyCandle:
-                        break
-                    case .underlying:
-                        break
-                    case .theoPrice:
-                        break
-                    case .trade:
-                        correctType = event is Trade
-                    case .tradeETH:
-                        break
-                    case .configuration:
-                        break
-                    case .message:
-                        break
-                    case .orderBase:
-                        break
-                    case .order:
-                        break
-                    case .analyticOrder:
-                        break
-                    case .spreadOrder:
-                        break
-                    case .series:
-                        break
-                    case .optionSale:
-                        break
-                    }
-                    if correctType {
+                    if FeedTest.checkType(code, event) {
                         receivedEventExp.fulfill()
                     }
                 }
