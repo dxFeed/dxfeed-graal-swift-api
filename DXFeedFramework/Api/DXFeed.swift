@@ -102,6 +102,7 @@ public extension DXFeed {
         return Promise(native: nativePromise)
     }
 
+    @available(iOS 13.0, *)
     @available(macOS 10.15, *)
     func getTimeSeries(type: IEventType.Type, symbol: Symbol, fromTime: Long, toTime: Long) -> Task<[MarketEvent]?, Error> {
         let task = Task {
