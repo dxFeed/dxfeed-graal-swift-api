@@ -17,9 +17,9 @@ class CandleSymbol {
     public internal(set) var alignment: CandleAlignment?
     public internal(set) var priceLevel: CandlePriceLevel?
 
-    private init(_ symbol: String) {
+    private init(_ symbol: String) throws {
         self.symbol = CandleSymbol.normalize(symbol)
-        initInternal()
+        try initInternal()
     }
 
     private init(_ symbol: String, _ properties: [ICandleSymbolProperty]) {
@@ -37,14 +37,14 @@ class CandleSymbol {
         return symbol
     }
 
-    private func initInternal() {
+    private func initInternal() throws {
         self.baseSymbol = MarketEventSymbols.getBaseSymbol(self.symbol)
         self.exchange = CandleExchange.getAttribute(self.symbol)
-        self.price = try? CandlePrice.getAttribute(self.symbol)
+        self.price = try CandlePrice.getAttribute(self.symbol)
         self.session = CandleSession.getAttribute(self.symbol)
-        self.period = try? CandlePeriod.getAttribute(self.symbol)
-        self.alignment = try? CandleAlignment.getAttribute(self.symbol)
-        self.priceLevel = try? CandlePriceLevel.getAttribute(self.symbol)
+        self.period = try CandlePeriod.getAttribute(self.symbol)
+        self.alignment = try CandleAlignment.getAttribute(self.symbol)
+        self.priceLevel = try CandlePriceLevel.getAttribute(self.symbol)
     }
 
     private static func normalize(_ symbol: String?) -> String? {
@@ -57,16 +57,16 @@ class CandleSymbol {
         return symbol
     }
 
-    public convenience init(symbol: String) {
-        self.init(symbol)
+    public convenience init(symbol: String) throws {
+        try self.init(symbol)
     }
 
     func toString() -> String {
         return symbol ?? "null"
     }
 
-    static func valueOf(_ symbol: String) -> CandleSymbol {
-        return CandleSymbol(symbol: symbol)
+    static func valueOf(_ symbol: String) throws -> CandleSymbol {
+        return try CandleSymbol(symbol: symbol)
     }
 
     static func valueOf(_ symbol: String, properties: [ICandleSymbolProperty]) -> CandleSymbol {

@@ -44,7 +44,7 @@ enum CandleAlignment: DXCandleAlignment, CaseIterable {
     }()
 
     static func normalizeAttributeForSymbol(_ symbol: String?) -> String? {
-        let attribute = MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
+        let attribute = try? MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
         guard let attribute = attribute else {
             return symbol
         }
@@ -80,7 +80,7 @@ enum CandleAlignment: DXCandleAlignment, CaseIterable {
     }
 
     static func getAttribute(_ symbol: String?) throws -> CandleAlignment {
-        let attribute = MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
+        let attribute = try MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
         guard let attribute = attribute else {
             return defaultAlignment
         }

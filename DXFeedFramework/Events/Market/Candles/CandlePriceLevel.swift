@@ -26,7 +26,7 @@ class CandlePriceLevel {
     }
 
     static func normalizeAttributeForSymbol(_ symbol: String?) -> String? {
-        let attribute = MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
+        let attribute = try? MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
         guard let attribute = attribute else {
             return symbol
         }
@@ -58,7 +58,7 @@ class CandlePriceLevel {
     }
 
     static func getAttribute(_ symbol: String?) throws -> CandlePriceLevel {
-        var attribute = MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
+        var attribute = try MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
         guard let attribute = attribute else {
             return defaultCandlePriceLevel!
         }

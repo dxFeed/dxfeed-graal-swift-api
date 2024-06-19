@@ -43,10 +43,12 @@ final class FeedTest: XCTestCase {
         print("asd".description)
         XCTAssertNotNil((WildcardSymbol() as Any) as? Symbol, "String is not a symbol")
         print(WildcardSymbol().stringValue)
-        XCTAssertNotNil((TimeSeriesSubscriptionSymbol(symbol:
-                                                        CandleSymbol(symbol: "test"),
+        let symbol = try CandleSymbol(symbol: "test")
+        XCTAssertNotNil((TimeSeriesSubscriptionSymbol(symbol: symbol,
                                                       fromTime: 0) as Any) as? Symbol, "String is not a symbol")
-        print(TimeSeriesSubscriptionSymbol(symbol: CandleSymbol(symbol: "test"), fromTime: 0).stringValue)
+
+        let symbol1 = try CandleSymbol(symbol: "test")
+        print(TimeSeriesSubscriptionSymbol(symbol: symbol1, fromTime: 0).stringValue)
     }
 
 //    func testFeedCreateSingleSubscriptionWithSymbol() throws {
