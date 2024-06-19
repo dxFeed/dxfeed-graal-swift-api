@@ -87,4 +87,12 @@ class NativeEndpoint {
         let thread = currentThread()
         try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_disconnect(thread, self.endpoint))
     }
+    func close() throws {
+        let thread = currentThread()
+        try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_close(thread, self.endpoint))
+    }
+    func callGC() throws {
+        let thread = currentThread()
+        try ErrorCheck.nativeCall(thread, dxfg_gc(thread))
+    }
 }

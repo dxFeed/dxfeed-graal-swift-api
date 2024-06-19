@@ -32,7 +32,7 @@
 		64656F6B2A1CFAC2006A0B19 /* BridgeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6A2A1CFAC2006A0B19 /* BridgeUtil.swift */; };
 		64656F6D2A1CFB10006A0B19 /* EndpointState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6C2A1CFB10006A0B19 /* EndpointState.swift */; };
 		64656F6F2A1CFC12006A0B19 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6E2A1CFC12006A0B19 /* WeakBox.swift */; };
-		64656F712A1CFEF8006A0B19 /* ListenerStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F702A1CFEF8006A0B19 /* ListenerStorage.swift */; };
+		64656F712A1CFEF8006A0B19 /* AtomicStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F702A1CFEF8006A0B19 /* AtomicStorage.swift */; };
 		64656F732A1D0A84006A0B19 /* EndpointListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F722A1D0A84006A0B19 /* EndpointListener.swift */; };
 		64656F752A1D0C91006A0B19 /* WeakListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F742A1D0C91006A0B19 /* WeakListener.swift */; };
 		64656F772A1DFED9006A0B19 /* EndpointState+Native.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F762A1DFED9006A0B19 /* EndpointState+Native.swift */; };
@@ -96,7 +96,7 @@
 		64656F6A2A1CFAC2006A0B19 /* BridgeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeUtil.swift; sourceTree = "<group>"; };
 		64656F6C2A1CFB10006A0B19 /* EndpointState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointState.swift; sourceTree = "<group>"; };
 		64656F6E2A1CFC12006A0B19 /* WeakBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakBox.swift; sourceTree = "<group>"; };
-		64656F702A1CFEF8006A0B19 /* ListenerStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenerStorage.swift; sourceTree = "<group>"; };
+		64656F702A1CFEF8006A0B19 /* AtomicStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicStorage.swift; sourceTree = "<group>"; };
 		64656F722A1D0A84006A0B19 /* EndpointListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointListener.swift; sourceTree = "<group>"; };
 		64656F742A1D0C91006A0B19 /* WeakListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakListener.swift; sourceTree = "<group>"; };
 		64656F762A1DFED9006A0B19 /* EndpointState+Native.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EndpointState+Native.swift"; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 				64656F642A1CAFC5006A0B19 /* String+Pointee.swift */,
 				64656F6A2A1CFAC2006A0B19 /* BridgeUtil.swift */,
 				64656F6E2A1CFC12006A0B19 /* WeakBox.swift */,
-				64656F702A1CFEF8006A0B19 /* ListenerStorage.swift */,
+				64656F702A1CFEF8006A0B19 /* AtomicStorage.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -487,7 +487,7 @@
 				8088D77D29C8DAF800F240CB /* GraalErrorCode.swift in Sources */,
 				8088D76929C0FC5C00F240CB /* Isolate.swift in Sources */,
 				64656F6B2A1CFAC2006A0B19 /* BridgeUtil.swift in Sources */,
-				64656F712A1CFEF8006A0B19 /* ListenerStorage.swift in Sources */,
+				64656F712A1CFEF8006A0B19 /* AtomicStorage.swift in Sources */,
 				8088D77329C3A2F400F240CB /* GraalException.swift in Sources */,
 				64656F602A1B9EC2006A0B19 /* EnumUtil.swift in Sources */,
 				8088D76629C0FBCE00F240CB /* IsolateThread.swift in Sources */,
