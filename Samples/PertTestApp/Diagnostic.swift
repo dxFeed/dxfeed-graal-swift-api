@@ -20,9 +20,12 @@ struct Metrics {
     let numberOfEvents: NSNumber
     let cpuUsage: NSNumber
     let peakCpuUsage: NSNumber
+    let currentTime: TimeInterval
 }
 
 class Diagnostic {
+    private var absoluteStartTime: Date?
+
     private var cpuUsage: Double = 0
     private var peakCpuUsage: Double = 0
     private var startTime = Date.now
@@ -34,6 +37,9 @@ class Diagnostic {
     private var lastListenerValue: Int64 = 0
 
     func getMetrics() -> Metrics {
+        if absoluteStartTime == nil {
+            absoluteStartTime = Date.now
+        }
         let lastStart = self.startTime
         let currentValue = self.counter.value
         let currentListenerValue = self.counterListener.value
@@ -47,11 +53,13 @@ class Diagnostic {
 
         self.lastValue = currentValue
         self.lastListenerValue = currentListenerValue
+
         return Metrics(rateOfEvent: NSNumber(value: speed),
                        rateOfListeners: NSNumber(value: speedListener),
                        numberOfEvents: NSNumber(value: eventsIncall),
                        cpuUsage: NSNumber(value: cpuUsage),
-                       peakCpuUsage: NSNumber(value: peakCpuUsage))
+                       peakCpuUsage: NSNumber(value: peakCpuUsage),
+                       currentTime: startTime.timeIntervalSince(absoluteStartTime ?? startTime))
     }
 
     func updateCounters(_ count: Int64) {
@@ -129,4 +137,7 @@ class Diagnostic {
         return result
     }
 
+    func cleanTime() {
+        absoluteStartTime = nil
+    }
 }

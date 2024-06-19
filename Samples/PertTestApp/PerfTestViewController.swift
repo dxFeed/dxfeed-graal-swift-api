@@ -48,7 +48,8 @@ class PerfTestViewController: UIViewController {
                        "Rate of listener calls",
                        "Number of events in call (avg)",
                        "Current CPU usage",
-                       "Peak CPU usage"]
+                       "Peak CPU usage",
+                       "Running time"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,7 +89,8 @@ class PerfTestViewController: UIViewController {
             "Rate of listener calls": rateOfListenersCounter,
             "Number of events in call (avg)": numberOfEventsCounter,
             "Current CPU usage": currentCpuCounter,
-            "Peak CPU usage": peakCpuUsageCounter
+            "Peak CPU usage": peakCpuUsageCounter,
+            "Running time": "\(metrics.currentTime.stringFromTimeInterval())"
         ]
         resultTableView.reloadData()
     }
@@ -128,6 +130,7 @@ class PerfTestViewController: UIViewController {
 
             try? subscription?.addSymbols(symbols)
             try? profileSubscription?.addSymbols(symbols)
+            diagnostic.cleanTime()
         }
     }
 }

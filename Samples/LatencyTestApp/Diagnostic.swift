@@ -131,4 +131,8 @@ class Diagnostic {
         let count = Double(deltas.count)
         return stdDev / sqrt(count)
     }
+
+    func cleanTime() {
+        absoluteStartTime = nil
+    }
 }

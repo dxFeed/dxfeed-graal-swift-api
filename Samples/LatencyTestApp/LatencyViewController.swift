@@ -84,6 +84,7 @@ class LatencyViewController: UIViewController {
 
             try? subscription?.addSymbols(symbols)
             try? profileSubscription?.addSymbols(symbols)
+            diagnostic.cleanTime()
         }
     }
 
