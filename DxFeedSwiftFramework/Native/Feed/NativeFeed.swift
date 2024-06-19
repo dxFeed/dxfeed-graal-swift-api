@@ -10,7 +10,6 @@ import Foundation
 
 class NativeFeed {
     let feed: UnsafeMutablePointer<dxfg_feed_t>?
-#warning("TODO: implement it")
     deinit {
         if let feed = feed {
             let thread = currentThread()
@@ -19,5 +18,31 @@ class NativeFeed {
     }
     init(feed: UnsafeMutablePointer<dxfg_feed_t>) {
         self.feed = feed
+    }
+
+    public func createSubscription(_ events: [EventCode]) throws -> NativeSubscription? {
+        let nativeCodes = events.map { $0.nativeCode() }
+        let elements = ListNative(elements: nativeCodes)
+        let listPointer = elements.newList()
+        defer {
+            listPointer.deinitialize(count: 1)
+            listPointer.deallocate()
+        }
+
+        let thread = currentThread()
+        let subscription = try ErrorCheck.nativeCall(thread,
+                                                     dxfg_DXFeed_createSubscription2(thread,
+                                                                                     self.feed,
+                                                                                     listPointer))
+        return NativeSubscription(subscription: subscription)
+    }
+
+    public func createSubscription(_ event: EventCode) throws -> NativeSubscription? {
+        let thread = currentThread()
+        let subscription = try ErrorCheck.nativeCall(thread,
+                                                     dxfg_DXFeed_createSubscription(thread,
+                                                                                    self.feed,
+                                                                                    event.nativeCode()))
+        return NativeSubscription(subscription: subscription)
     }
 }
