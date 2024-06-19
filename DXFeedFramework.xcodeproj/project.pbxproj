@@ -38,6 +38,8 @@
 		64104FCC2A2629D800D1FC41 /* NativeSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FCB2A2629D800D1FC41 /* NativeSubscription.swift */; };
 		64104FD32A277B2D00D1FC41 /* ListNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FD22A277B2D00D1FC41 /* ListNative.swift */; };
 		64125E362A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (Required, ); }; };
+		64148B6F2ABC2F790063110E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646979712A3B5AF60003A9BA /* Colors.xcassets */; };
+		64148B702ABC2F7C0063110E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8D22A3B401700846831 /* Colors.swift */; };
 		6417DD192A39C22C008912D6 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		6417DD1A2A39C22C008912D6 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6417DD232A39CAB2008912D6 /* Diagnostic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6417DD1E2A39C9A7008912D6 /* Diagnostic.swift */; };
@@ -1576,6 +1578,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64B4365A2AB9D3470003919E /* LaunchScreen.storyboard in Resources */,
+				64148B6F2ABC2F790063110E /* Colors.xcassets in Resources */,
 				64B436572AB9D3470003919E /* Assets.xcassets in Resources */,
 				64B436552AB9D3410003919E /* Main.storyboard in Resources */,
 			);
@@ -1741,6 +1744,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64B436522AB9D3410003919E /* ViewController.swift in Sources */,
+				64148B702ABC2F7C0063110E /* Colors.swift in Sources */,
 				64B4364E2AB9D3410003919E /* AppDelegate.swift in Sources */,
 				64B436502AB9D3410003919E /* SceneDelegate.swift in Sources */,
 			);

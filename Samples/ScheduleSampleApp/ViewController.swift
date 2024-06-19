@@ -25,6 +25,23 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        activityIndicator.color = .white
+
+        view.backgroundColor = .tableBackground
+        resultTextView.backgroundColor = .tableBackground
+
+        func changeAppereance(_ textField: UITextField) {
+            textField.backgroundColor = .priceBackground
+            textField.textColor = .white
+            textField.layer.cornerRadius = 10
+            textField.clipsToBounds = true
+        }
+
+        changeAppereance(timeTextField)
+        changeAppereance(symbolTextField)
+        resultTextView.textColor = .white
+
         activityIndicator.isHidden = true
         timeTextField.text = dateFormater.string(from: Date.now)
         // Do any additional setup after loading the view.
@@ -43,7 +60,7 @@ class ViewController: UIViewController {
         }
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
-
+        resultTextView.text = ""
         DispatchQueue.global(qos: .background).async {
             do {
                 let profile = DXInstrumentProfileReader()
@@ -97,7 +114,7 @@ class ViewController: UIViewController {
         let schedule = try DXSchedule(instrumentProfile: profile)
         let session = try schedule.getSessionByTime(time: time)
         let nextTradingSession = session.isTrading ? session : try session.getNext(filter: .trading)
-        let nearestSession = try schedule.getNearestSessionByTime(time: getCurrentTime(), filter: .trading)
+        let nearestSession = try schedule.getNearestSessionByTime(time: time, filter: .trading)
 
         func sessionDescription(_ session: ScheduleSession?) -> String {
             guard let session = session else {
