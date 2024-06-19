@@ -54,7 +54,9 @@ final class DXConnectionTest: XCTestCase {
         try subscription?.add(listener: eventListener)
         try subscription?.addSymbols("AAPL")
         try endpoint.connect("dxlink:wss://demo.dxfeed.com/dxlink-ws")
-
+        defer {
+            try? endpoint.closeAndAwaitTermination()
+        }
         wait(for: [receivedEventsExpectation], timeout: 2)
     }
 
@@ -69,8 +71,9 @@ final class DXConnectionTest: XCTestCase {
         try subscription?.add(listener: eventListener)
         try subscription?.addSymbols("AAPL")
         try endpoint.connect("demo.dxfeed.com:7300")
-
+        defer {
+            try? endpoint.closeAndAwaitTermination()
+        }
         wait(for: [receivedEventsExpectation], timeout: 2)
-        try endpoint.closeAndAwaitTermination()
     }
 }
