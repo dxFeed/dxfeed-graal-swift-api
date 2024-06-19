@@ -56,6 +56,7 @@ class IpfConnect: ToolsCommand {
         let profiles = try? DXInstrumentProfileReader().readFromFile(address: fileName)
         print("Selected symbols are:")
         let result =  profiles?.compactMap({ profile in
+            // This is just a sample, any arbitrary filtering may go here.
             if profile.type == "STOCK" {
                 print("\(profile.symbol) (\(profile.descriptionStr))")
                 return profile.symbol
