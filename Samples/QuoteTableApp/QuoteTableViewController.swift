@@ -52,8 +52,8 @@ class QuoteTableViewController: UIViewController {
 
         subscription = try? endpoint?.getFeed()?.createSubscription(.quote)
         profileSubscription = try? endpoint?.getFeed()?.createSubscription(.profile)
-        subscription?.add(self)
-        profileSubscription?.add(self)
+        try? subscription?.add(self)
+        try? profileSubscription?.add(self)
         symbols.forEach {
             dataSource[$0] = QuoteModel()
         }
@@ -82,7 +82,7 @@ extension QuoteTableViewController: DXEventListener {
             case .quote:
                 dataSource[event.eventSymbol]?.update(event.quote)
             case .profile:
-                dataSource[event.eventSymbol]?.update(event.profile.descriptionStr)
+                dataSource[event.eventSymbol]?.update(event.profile.descriptionStr ?? "")
             default:
                 print(event)
             }

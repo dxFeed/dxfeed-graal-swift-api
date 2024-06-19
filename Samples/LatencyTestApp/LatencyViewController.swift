@@ -76,7 +76,7 @@ class LatencyViewController: UIViewController {
             try? endpoint?.connect(address)
 
             subscription = try? endpoint?.getFeed()?.createSubscription(.timeAndSale)
-            subscription?.add(self)
+            try? subscription?.add(self)
 
             try? subscription?.addSymbols(symbols)
             diagnostic.cleanTime()
