@@ -51,6 +51,9 @@ jobs:
 
       - name: Build Documentations
         run: xcodebuild docbuild -scheme DXFeedFramework -derivedDataPath documentations/
+      
+      - name: Zip Documentations
+        run: zip documentation.zip documentations/Build/Products/Debug/DXFeedFramework.doccarchive -r
 
       - name: Checkl file 
         run: ls -al release_sp.sh        
@@ -84,6 +87,6 @@ jobs:
           generate_release_notes: true
           files: |
             build/DXFeedFramework.zip
-            documentations/Build/Products/Debug/DXFeedFramework.doccarchive
+            documentation.zip
           token: ${{ secrets.GITHUB_TOKEN }}
 
