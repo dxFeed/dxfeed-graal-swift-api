@@ -91,7 +91,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Dump tapeK2.tape[speed=max] -t ios_tapeK2.tape -q"
+            argument = "DuMp tapeK2.tape[speed=max] -t ios_tapeK2.tape -q"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
