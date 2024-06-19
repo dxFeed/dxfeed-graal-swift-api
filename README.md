@@ -149,11 +149,11 @@ Quote{AAPL, eventTime=0, time=20221219-223312.000, timeNanoPart=0, sequence=0, b
 - [x] [Publisher](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Role.html#PUBLISHER)
   connects to the remote publisher hub (also known as multiplexor) or creates a publisher on the local host
 
-- [ ] [StreamPublisher](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Role.html#STREAM_PUBLISHER)
+- [x] [StreamPublisher](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Role.html#STREAM_PUBLISHER)
   is similar to `Publisher` and also connects to the remote publisher hub, but is designed for bulk data publishing
 
 
-- [ ] [LocalHub](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Role.html#LOCAL_HUB)
+- [x] [LocalHub](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Role.html#LOCAL_HUB)
   is a local hub without the ability to establish network connections. Events published via `Publisher` are delivered to
   local `Feed` only
 
