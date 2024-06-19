@@ -12,7 +12,6 @@ class MetricCell: UITableViewCell {
     @IBOutlet var counterLabel: UILabel!
     @IBOutlet var backgroundContentView: UIView!
 
-
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }

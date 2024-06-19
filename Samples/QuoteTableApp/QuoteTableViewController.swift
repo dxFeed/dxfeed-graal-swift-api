@@ -19,7 +19,6 @@ class QuoteTableViewController: UIViewController {
     @IBOutlet var quoteTableView: UITableView!
     @IBOutlet var connectionStatusLabel: UILabel!
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .background
