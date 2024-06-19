@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Symbol {
+public protocol Symbol {
     var stringValue: String { get }
 }
 

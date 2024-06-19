@@ -8,7 +8,7 @@
 import Foundation
 
 extension String: Symbol {
-    var stringValue: String {
+    public var stringValue: String {
         return description
     }
 }

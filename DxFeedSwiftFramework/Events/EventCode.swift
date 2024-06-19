@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum EventCode: CaseIterable {
+public enum EventCode: CaseIterable {
     case quote
     case profile
     case summary

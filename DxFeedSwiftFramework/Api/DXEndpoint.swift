@@ -7,11 +7,11 @@
 
 import Foundation
 
-typealias Role = DXEndpoint.Role
+public typealias Role = DXEndpoint.Role
 
-class DXEndpoint {
+public class DXEndpoint {
 
-    enum Role: UInt32 {
+   public  enum Role: UInt32 {
         case feed = 0
         case onDemandFeed
         case streamFeed
@@ -146,7 +146,7 @@ class DXEndpoint {
     }
 }
 
-class Builder {
+public class Builder {
     var role = Role.feed
     var props = [String: String]()
 
@@ -163,23 +163,23 @@ class Builder {
 
     }
 
-    func withRole(_ role: Role) throws -> Self {
+    public func withRole(_ role: Role) throws -> Self {
         self.role = role
         _ = try nativeBuilder?.withRole(role)
         return self
     }
 
-    func isSupported(property: String) throws -> Bool {
+    public func isSupported(property: String) throws -> Bool {
         return try nativeBuilder?.isSuppored(property: property) ?? false
     }
 
-    func withProperty(_ key: String, _ value: String) throws -> Self {
+    public func withProperty(_ key: String, _ value: String) throws -> Self {
         props[key] = value
         try nativeBuilder?.withProperty(key, value)
         return self
     }
 
-    func build() throws -> DXEndpoint {
+    public func build() throws -> DXEndpoint {
         return try DXEndpoint(native: try nativeBuilder!.build(), role: role, name: getOrCreateEndpointName())
     }
 

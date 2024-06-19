@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DXFeed {
+public class DXFeed {
     private let native: NativeFeed
     private var attachedSubscriptions = ConcurrentSet<DXFeedSubcription>()
 
