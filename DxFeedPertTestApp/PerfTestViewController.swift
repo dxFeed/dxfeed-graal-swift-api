@@ -68,10 +68,11 @@ class PerfTestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.updateUI()
-        
+        self.addressTextField.text = "Alekseys-MacBook-Pro.local:6666"
         self.connectionStatusLabel.text = DXEndpointState.notConnected.convetToString()        
         numberFormatter.numberStyle = .decimal
-
+        numberFormatter.maximumFractionDigits = 0
+        
         self.view.backgroundColor = colors.background
 
         try? SystemProperty.setProperty("com.devexperts.connector.proto.heartbeatTimeout", "10s")
@@ -118,9 +119,13 @@ class PerfTestViewController: UIViewController {
                 } else {
                     self.numberOfEventsCounter.text = " "
                 }
-
-                self.currentCpuCounter.text = cpuUsage > 1.0 ? "\(self.numberFormatter.string(from: NSNumber(value:cpuUsage))!) %" : "0 %"
-                self.peakCpuUsageCounter.text = self.maxCpuUsage > 1.0 ? "\(self.numberFormatter.string(from: NSNumber(value:self.maxCpuUsage))!) %" : "0 %"
+                if speed.intValue > 0 {
+                    self.currentCpuCounter.text = cpuUsage > 1.0 ? "\(self.numberFormatter.string(from: NSNumber(value:cpuUsage))!) %" : "0 %"
+                    self.peakCpuUsageCounter.text = self.maxCpuUsage > 1.0 ? "\(self.numberFormatter.string(from: NSNumber(value:self.maxCpuUsage))!) %" : "0 %"
+                } else {
+                    self.currentCpuCounter.text = " "
+                    self.peakCpuUsageCounter.text = " "
+                }
 
             }
         }
