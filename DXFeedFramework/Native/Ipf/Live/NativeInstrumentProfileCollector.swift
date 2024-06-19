@@ -10,13 +10,12 @@ import Foundation
 
 class NativeInstrumentProfileCollector {
     let collector: UnsafeMutablePointer<dxfg_ipf_collector_t>?
-    var nativeListener: UnsafeMutablePointer<dxfg_ipf_update_listener_t>?
+    private var nativeListener: UnsafeMutablePointer<dxfg_ipf_update_listener_t>?
 
-    weak var listener: InstrumentProfileUpdateListener?
-    static let mapper = InstrumentProfileMapper()
+    private weak var listener: InstrumentProfileUpdateListener?
+    private static let mapper = InstrumentProfileMapper()
 
     static let listenerCallback: dxfg_ipf_update_listener_function = {_, nativeProfiles, context in
-
         guard let nativeProfiles = nativeProfiles else {
             return
         }
