@@ -7,7 +7,7 @@
 import Foundation
 /// Represents [wildcard] subscription to all events of the specific event type.
 ///
-/// The ``all`` constant can be added to any ``DXFeedSubscription`` instance with ``DXFeedSubscription/addSymbols(_:)-32ill`` method
+/// The ``all`` constant can be added to any ``DXFeedSubscription`` instance with ``DXFeedSubscription/addSymbols(_:)-5yspy`` method
 /// to the effect of subscribing to all possible event symbols. The corresponding subscription will start
 /// receiving all published events of the corresponding types.
 ///

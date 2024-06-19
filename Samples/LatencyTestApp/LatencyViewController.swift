@@ -74,7 +74,7 @@ class LatencyViewController: UIViewController {
             endpoint?.add(listener: self)
             _ = try? endpoint?.connect(address)
 
-            subscription = try? endpoint?.getFeed()?.createSubscription(.timeAndSale)
+            subscription = try? endpoint?.getFeed()?.createSubscription(TimeAndSale.self)
             try? subscription?.add(listener: listener)
 
             try? subscription?.addSymbols(symbols)

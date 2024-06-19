@@ -21,8 +21,8 @@ class NativeFeed {
         self.feed = feed
     }
 
-    func createSubscription(_ events: [EventCode]) throws -> NativeSubscription? {
-        let nativeCodes = events.map { $0.nativeCode() }
+    func createSubscription(_ types: [IEventType.Type]) throws -> NativeSubscription? {
+        let nativeCodes = types.map { $0.type.nativeCode() }
         let elements = ListNative(elements: nativeCodes)
         let listPointer = elements.newList()
         defer {
@@ -38,17 +38,17 @@ class NativeFeed {
         return NativeSubscription(subscription: subscription)
     }
 
-    func createSubscription(_ event: EventCode) throws -> NativeSubscription? {
+    func createSubscription(_ type: IEventType.Type) throws -> NativeSubscription? {
         let thread = currentThread()
         let subscription = try ErrorCheck.nativeCall(thread,
                                                      dxfg_DXFeed_createSubscription(thread,
                                                                                     self.feed,
-                                                                                    event.nativeCode()))
+                                                                                    type.type.nativeCode()))
         return NativeSubscription(subscription: subscription)
     }
 
-    func createTimeSeriesSubscription(_ events: [EventCode]) throws -> NativeTimeSeriesSubscription? {
-        let nativeCodes = events.map { $0.nativeCode() }
+    func createTimeSeriesSubscription(_ type: [IEventType.Type]) throws -> NativeTimeSeriesSubscription? {
+        let nativeCodes = type.map { $0.type.nativeCode() }
         let elements = ListNative(elements: nativeCodes)
         let listPointer = elements.newList()
         defer {
@@ -65,12 +65,13 @@ class NativeFeed {
         return NativeTimeSeriesSubscription(native: subscription)
     }
 
-    func createTimeSeriesSubscription(_ event: EventCode) throws -> NativeTimeSeriesSubscription? {
+    func createTimeSeriesSubscription(_ event: IEventType.Type) throws -> NativeTimeSeriesSubscription? {
         let thread = currentThread()
         let subscription = try ErrorCheck.nativeCall(thread,
-                                                     dxfg_DXFeed_createTimeSeriesSubscription(thread,
-                                                                                    self.feed,
-                                                                                    event.nativeCode()))
+                                                     dxfg_DXFeed_createTimeSeriesSubscription(
+                                                        thread,
+                                                        self.feed,
+                                                        event.type.nativeCode()))
         return NativeTimeSeriesSubscription(native: subscription)
     }
 }

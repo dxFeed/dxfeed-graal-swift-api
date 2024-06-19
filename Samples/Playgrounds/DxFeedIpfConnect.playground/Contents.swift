@@ -27,7 +27,7 @@ class Listener: DXEventListener, Hashable {
 // Use default DXFeed instance for that data feed address is defined by "dxfeed.properties" file.
 // The properties file is copied to the build output directory from the project directory.
 
-var type = EventCode.timeAndSale
+var type = TimeAndSale.self
 // You can use local ipf file
 var ipfFile = "https://demo:demo@tools.dxfeed.com/ipf"
 

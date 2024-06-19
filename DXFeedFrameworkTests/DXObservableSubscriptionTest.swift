@@ -50,7 +50,7 @@ final class DXObservableSubscriptionTest: XCTestCase {
     }
 
     func testCreateSubscription() throws {
-        let events = EventCode.profile
+        let events = Profile.self
         let port = Int.random(in: 7800..<7900)
         let address = ":\(port)"
 
@@ -83,9 +83,6 @@ final class DXObservableSubscriptionTest: XCTestCase {
         XCTAssert(subscription?.isClosed() == false)
         XCTAssert(feedSubscription?.isClosed() == false)
 
-        XCTAssert(subscription?.eventTypes == Set([events]))
-        XCTAssert(feedSubscription?.eventTypes == Set([events]))
-
         XCTAssert(subscription?.isContains(events) == true)
         XCTAssert(feedSubscription?.isContains(events) == true)
 
@@ -97,7 +94,7 @@ final class DXObservableSubscriptionTest: XCTestCase {
     }
 
     func testInitializationWithNilNativeSubscription() {
-        XCTAssertThrowsError(try DXObservableSubscription(native: nil, events: [.quote])) { error in
+        XCTAssertThrowsError(try DXObservableSubscription(native: nil, events: [Quote.self])) { error in
             // Assert
             XCTAssertTrue(error is ArgumentException)
         }

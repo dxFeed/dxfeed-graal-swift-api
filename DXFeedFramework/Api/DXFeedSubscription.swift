@@ -13,19 +13,19 @@ public class DXFeedSubscription {
     /// Subscription native wrapper.
     private let native: NativeSubscription
     /// List of event types associated with this ``DXFeedSubscription``
-    fileprivate let events: Set<EventCode>
+    fileprivate let types: [IEventType.Type]
     /// A set listeners of events
     /// listeners - typed list wrapper.
     private let listeners = ConcurrentWeakHashTable<AnyObject>()
 
     /// - Throws: ``GraalException`` Rethrows exception from Java, ``ArgumentException/argumentNil``
-    internal init(native: NativeSubscription?, events: [EventCode]) throws {
+    internal init(native: NativeSubscription?, types: [IEventType.Type]) throws {
         if let native = native {
             self.native = native
         } else {
             throw ArgumentException.argumentNil
         }
-        self.events = Set(events)
+        self.types = types
     }
     /// Adds listener for events.
     /// Event lister can be added only when subscription is not producing any events.
@@ -104,11 +104,11 @@ extension DXFeedSubscription: DXEventListener {
 
 extension DXFeedSubscription: Hashable {
     public static func == (lhs: DXFeedSubscription, rhs: DXFeedSubscription) -> Bool {
-        return lhs.hashValue == rhs.hashValue
+        return lhs === rhs
     }
 
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(self.events)
+        hasher.combine(self.types.map { $0.type })
     }
 }
 
@@ -117,12 +117,14 @@ extension DXFeedSubscription: IObservableSubscription {
         return native.isClosed()
     }
 
-    public var eventTypes: Set<EventCode> {
-        return events
+    public var eventTypes: [IEventType.Type] {
+        return types
     }
 
-    public func isContains(_ eventType: EventCode) -> Bool {
-        return events.contains(eventType)
+    public func isContains(_ eventType: IEventType.Type) -> Bool {
+        return types.contains { type in
+            type == eventType
+        }
     }
 
     public func addChangeListener(_ listener: ObservableSubscriptionChangeListener) throws {

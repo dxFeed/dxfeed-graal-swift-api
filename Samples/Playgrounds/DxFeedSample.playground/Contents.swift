@@ -33,7 +33,7 @@ try SystemProperty.setProperty(DXEndpoint.Property.properties.rawValue, properti
 
 let subscriptionQuote = try DXEndpoint.getInstance()
     .getFeed()?
-    .createSubscription(EventCode.quote)
+    .createSubscription(Quote.self)
 // Listener must be attached before symbols are added.
 let listener = Listener { listener in
     listener.callback = { events in
@@ -48,7 +48,7 @@ try subscriptionQuote?.addSymbols(symbol)
 
 let subscriptionTrade = try DXEndpoint.getInstance()
     .getFeed()?
-    .createSubscription([EventCode.trade, EventCode.quote])
+    .createSubscription([Trade.self, Quote.self])
 let listenerTrade = Listener { listener in
     listener.callback = { events in
         events.forEach { event in

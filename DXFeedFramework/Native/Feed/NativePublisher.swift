@@ -45,12 +45,12 @@ class NativePublisher {
         }
     }
 
-    func createSubscription(_ event: EventCode) throws -> NativeObservableSubscription? {
+    func createSubscription(_ type: IEventType.Type) throws -> NativeObservableSubscription? {
         let thread = currentThread()
         let subscription = try ErrorCheck.nativeCall(thread,
                                                      dxfg_DXPublisher_getSubscription(thread,
-                                                                                    self.publisher,
-                                                                                    event.nativeCode()))
+                                                                                      self.publisher,
+                                                                                      type.type.nativeCode()))
         return NativeObservableSubscription(subscription: subscription)
     }
 }

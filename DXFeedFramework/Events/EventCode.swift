@@ -49,10 +49,3 @@ public enum EventCode: CaseIterable {
     /// See ``OptionSale``
     case optionSale
 }
-
-public extension EventCode {
-    static func unsupported() -> [EventCode] {
-        return [.dailyCandle, .configuration, .message, .orderBase]
-    }
-}
-

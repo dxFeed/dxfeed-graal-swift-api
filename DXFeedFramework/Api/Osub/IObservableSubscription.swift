@@ -18,7 +18,7 @@ public protocol IObservableSubscription {
     ///
     /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/ObservableSubscription.html#getEventTypes--)
     /// - Returns: a set of subscribed event types.
-    var eventTypes: Set<EventCode> { get }
+    var eventTypes: [IEventType.Type] { get }
     /// Gets a value indicating whether if this subscription contains the corresponding event type.
     ///
     /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/ObservableSubscription.html#containsEventType-java.lang.Class-)
@@ -26,7 +26,7 @@ public protocol IObservableSubscription {
     /// - Parameters:
     ///   - eventType: The event type.
     /// - Returns: **true** if this subscription contains the corresponding event type
-    func isContains(_ eventType: EventCode) -> Bool
+    func isContains(_ eventType: IEventType.Type) -> Bool
 
     /// Adds subscription change listener. This method does nothing if the given listener is already
     /// installed as subscription change listener for this subscription or if subscription is closed.

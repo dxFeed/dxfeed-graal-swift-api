@@ -48,7 +48,7 @@ final class DXConnectionTest: XCTestCase {
         let endpoint = try DXEndpoint.builder()
             .build()
 
-        let subscription = try endpoint.getFeed()?.createSubscription(EventCode.quote)
+        let subscription = try endpoint.getFeed()?.createSubscription(Quote.self)
         let receivedEventsExpectation = expectation(description: "Received events")
         let eventListener = DXConnectionListener(expectation: receivedEventsExpectation)
         try subscription?.add(listener: eventListener)
@@ -63,7 +63,7 @@ final class DXConnectionTest: XCTestCase {
         // "demo.dxfeed.com:7300[login=entitle:token]"
         let endpoint = try DXEndpoint.builder()
             .build()
-        let subscription = try endpoint.getFeed()?.createSubscription(EventCode.quote)
+        let subscription = try endpoint.getFeed()?.createSubscription(Quote.self)
         let receivedEventsExpectation = expectation(description: "Received events")
         let eventListener = DXConnectionListener(expectation: receivedEventsExpectation)
         try subscription?.add(listener: eventListener)
