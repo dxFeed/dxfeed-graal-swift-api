@@ -195,6 +195,7 @@
 		6486B95D2AD0287E00D8D5FA /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B95C2AD0287E00D8D5FA /* DateTests.swift */; };
 		6486B95F2AD02C0C00D8D5FA /* Summary+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B95E2AD02C0C00D8D5FA /* Summary+Ext.swift */; };
 		6486B9612AD02D3900D8D5FA /* SummaryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9602AD02D3900D8D5FA /* SummaryMapper.swift */; };
+		6486B9632AD0333B00D8D5FA /* Greeks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9622AD0333B00D8D5FA /* Greeks.swift */; };
 		648BD5692AC450D6004A3A95 /* ConnectCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD5682AC450D6004A3A95 /* ConnectCommand.swift */; };
 		648BD56B2AC4576F004A3A95 /* HelpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56A2AC4576F004A3A95 /* HelpCommand.swift */; };
 		648BD56D2AC56A04004A3A95 /* SubscriptionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */; };
@@ -624,6 +625,7 @@
 		6486B95C2AD0287E00D8D5FA /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 		6486B95E2AD02C0C00D8D5FA /* Summary+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Summary+Ext.swift"; sourceTree = "<group>"; };
 		6486B9602AD02D3900D8D5FA /* SummaryMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryMapper.swift; sourceTree = "<group>"; };
+		6486B9622AD0333B00D8D5FA /* Greeks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Greeks.swift; sourceTree = "<group>"; };
 		648BD5682AC450D6004A3A95 /* ConnectCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCommand.swift; sourceTree = "<group>"; };
 		648BD56A2AC4576F004A3A95 /* HelpCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCommand.swift; sourceTree = "<group>"; };
 		648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionUtils.swift; sourceTree = "<group>"; };
@@ -891,6 +893,7 @@
 				642BE4D12A2F5D230052340A /* TimeAndSale.swift */,
 				64BA925E2A306B9600BE26A0 /* Profile.swift */,
 				6486B9572AD00BDC00D8D5FA /* Summary.swift */,
+				6486B9622AD0333B00D8D5FA /* Greeks.swift */,
 			);
 			path = Market;
 			sourceTree = "<group>";
@@ -2088,6 +2091,7 @@
 				64C772012A975102009868C2 /* Reference+Util.swift in Sources */,
 				64656F6D2A1CFB10006A0B19 /* DXEndpointState.swift in Sources */,
 				6464074D2A9E352E006FF769 /* InstrumentProfileField.swift in Sources */,
+				6486B9632AD0333B00D8D5FA /* Greeks.swift in Sources */,
 				64E342522AAB29CF00457994 /* InstrumentProfileType.swift in Sources */,
 				648E98AA2AAF625800BFD219 /* IIndexedEvent+Ext.swift in Sources */,
 				6447A5E32A8F611700739CCF /* IObservableSubscription.swift in Sources */,
