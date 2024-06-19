@@ -17,4 +17,7 @@ extension MarketEvent {
     public var trade: Trade {
         return (self as? Trade)!
     }
+    public var profile: Profile {
+        return (self as? Profile)!
+    }
 }

@@ -67,13 +67,9 @@ extension QuoteTableViewController: DXEventListener {
         events.forEach { event in
             switch event.type {
             case .quote:
-                if let quote = event as? Quote {
-                    dataSource[event.eventSymbol]?.update(quote)
-                }
+                dataSource[event.eventSymbol]?.update(event.quote)
             case .profile:
-                if let profile = event as? Profile {
-                    dataSource[event.eventSymbol]?.update(profile.descriptionStr)
-                }
+                dataSource[event.eventSymbol]?.update(event.profile.descriptionStr)
             default:
                 print(event)
             }
