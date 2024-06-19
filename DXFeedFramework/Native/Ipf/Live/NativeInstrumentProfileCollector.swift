@@ -45,6 +45,7 @@ public class NativeInstrumentProfileCollector {
                         profiles.append(profile)
                     } catch { }
                 }
+                ThreadManager.insertPthread()
                 listener.value?.instrumentProfilesUpdated(profiles)
             }
         }

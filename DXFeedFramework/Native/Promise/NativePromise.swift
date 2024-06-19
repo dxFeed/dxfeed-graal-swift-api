@@ -29,6 +29,7 @@ class NativePromise {
 
     static let listenerCallback: dxfg_promise_handler_function = { _, promise, context in
         if let context = context {
+            ThreadManager.insertPthread()
 
             let listener: AnyObject = bridge(ptr: context)
             if let weakListener =  listener as? WeakListener {

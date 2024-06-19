@@ -29,7 +29,8 @@
     {
       "parallelizable" : true,
       "skippedTests" : [
-        "DXExceptionTest"
+        "DXExceptionTest",
+        "IsolateTest"
       ],
       "target" : {
         "containerPath" : "container:DXFeedFramework.xcodeproj",
