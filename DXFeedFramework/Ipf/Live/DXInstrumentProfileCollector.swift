@@ -37,11 +37,7 @@ public class DXInstrumentProfileCollector {
     public func add<O>(observer: O) throws
     where O: DXInstrumentProfileUpdateListener,
           O: Hashable {
-              try listeners.reader { [weak self] in
-                  if $0.count == 0 {
-                      try self?.native.addListener(self)
-                  }
-              }
+              try native.addListener(observer)
               listeners.insert(observer)
           }
 
@@ -50,6 +46,7 @@ public class DXInstrumentProfileCollector {
     public func remove<O>(observer: O)
     where O: DXInstrumentProfileUpdateListener,
           O: Hashable {
+              native.removeListener(observer)
               listeners.remove(observer)
           }
 
@@ -125,13 +122,3 @@ public class DXInstrumentProfileCollector {
     }
 }
 
-extension DXInstrumentProfileCollector: DXInstrumentProfileUpdateListener {
-    public func instrumentProfilesUpdated(_ instruments: [InstrumentProfile]) {
-        listeners.reader { items in
-            let enumerator = items.objectEnumerator()
-            while let observer = enumerator.nextObject() as? DXInstrumentProfileUpdateListener {
-                observer.instrumentProfilesUpdated(instruments)
-            }
-        }
-    }
-}
