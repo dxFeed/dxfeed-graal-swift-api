@@ -80,6 +80,9 @@
 		6469F8D72A3B408900846831 /* Endpoint+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6277C2A3762D000196D07 /* Endpoint+Ext.swift */; };
 		6469F8D82A3B4AA400846831 /* MetricCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CB2A3B2F1200846831 /* MetricCell.swift */; };
 		6469F8D92A3B4AA400846831 /* MetricCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CB2A3B2F1200846831 /* MetricCell.swift */; };
+		646D19E12A3C970700C82315 /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
+		646D19E22A3C994000C82315 /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
+		646D19E32A3C994100C82315 /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
 		64ACBCCF2A27851C00032C53 /* FeedTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC02A210DDD00D1FC41 /* FeedTest.swift */; };
 		64ACBCD52A2789EF00032C53 /* TestListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBB92A1FB42500FE23C2 /* TestListener.swift */; };
 		64ACBCD72A27981900032C53 /* ListNative+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ACBCD62A27981900032C53 /* ListNative+Ext.swift */; };
@@ -280,6 +283,7 @@
 		6469F8CB2A3B2F1200846831 /* MetricCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricCell.swift; sourceTree = "<group>"; };
 		6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Ext.swift"; sourceTree = "<group>"; };
 		6469F8D22A3B401700846831 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		646D19E02A3C970700C82315 /* DXFTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFTimer.swift; sourceTree = "<group>"; };
 		64ACBCD62A27981900032C53 /* ListNative+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListNative+Ext.swift"; sourceTree = "<group>"; };
 		64ACBCD82A279F7900032C53 /* DXEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXEventListener.swift; sourceTree = "<group>"; };
 		64ACBCDC2A28978600032C53 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
@@ -503,6 +507,7 @@
 				64B6277C2A3762D000196D07 /* Endpoint+Ext.swift */,
 				6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */,
 				6469F8CB2A3B2F1200846831 /* MetricCell.swift */,
+				646D19E02A3C970700C82315 /* DXFTimer.swift */,
 				646979712A3B5AF60003A9BA /* Colors.xcassets */,
 			);
 			path = Utils;
@@ -1021,6 +1026,7 @@
 				64B6273B2A375C0F00196D07 /* PaddingLabel.swift in Sources */,
 				64B627402A375C0F00196D07 /* SceneDelegate.swift in Sources */,
 				6469F8D82A3B4AA400846831 /* MetricCell.swift in Sources */,
+				646D19E22A3C994000C82315 /* DXFTimer.swift in Sources */,
 				64B6273E2A375C0F00196D07 /* QuoteTableViewController.swift in Sources */,
 				64B627392A375C0F00196D07 /* AppDelegate.swift in Sources */,
 				64B627352A375C0F00196D07 /* QuoteModel.swift in Sources */,
@@ -1036,6 +1042,7 @@
 				642528D02A3C534D00A04E41 /* TimeInterval+Ext.swift in Sources */,
 				6469F8D42A3B401700846831 /* Colors.swift in Sources */,
 				6469F8D92A3B4AA400846831 /* MetricCell.swift in Sources */,
+				646D19E12A3C970700C82315 /* DXFTimer.swift in Sources */,
 				64D8BB342A39A1230071BC88 /* Diagnostic.swift in Sources */,
 				64B627962A3762D000196D07 /* SceneDelegate.swift in Sources */,
 				64B6278C2A3762D000196D07 /* Endpoint+Ext.swift in Sources */,
@@ -1051,6 +1058,7 @@
 				6469F8D72A3B408900846831 /* Endpoint+Ext.swift in Sources */,
 				6469F8D52A3B401700846831 /* Colors.swift in Sources */,
 				6469F8CF2A3B300A00846831 /* MetricCell.swift in Sources */,
+				646D19E32A3C994100C82315 /* DXFTimer.swift in Sources */,
 				6417DD232A39CAB2008912D6 /* Diagnostic.swift in Sources */,
 				64D8BB3E2A39BB730071BC88 /* AppDelegate.swift in Sources */,
 				6469F8D02A3B301C00846831 /* TimeInterval+Ext.swift in Sources */,

@@ -22,6 +22,7 @@ class PerfTestViewController: UIViewController {
     var blackHoleInt: Int64 = 0
 
     var isConnected = false
+    var timer = DXFTimer(timeInterval: 2)
 
     @IBOutlet var connectionStatusLabel: UILabel!
     @IBOutlet var connectButton: UIButton!
@@ -71,13 +72,10 @@ class PerfTestViewController: UIViewController {
         self.view.backgroundColor = .background
 
         try? SystemProperty.setProperty("com.devexperts.connector.proto.heartbeatTimeout", "10s")
-
-        DispatchQueue.global(qos: .background).async {
-                Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
-                    self.updateUI()
-                }
-                RunLoop.current.run()
+        timer.eventHandler = {
+            self.updateUI()
         }
+        timer.resume()
     }
 
     fileprivate func updateText(_ metrics: Metrics) {
@@ -106,9 +104,9 @@ class PerfTestViewController: UIViewController {
     func updateUI() {
         let metrics = diagnostic.getMetrics()
         diagnostic.updateCpuUsage()
-        print("---------------------------------------------------")
-        print("Event speed      \(numberFormatter.string(from: metrics.rateOfEvent)!) events/s")
-        print("Listener Calls   \(numberFormatter.string(from: metrics.rateOfListeners)!) calls/s")
+//        print("---------------------------------------------------")
+//        print("Event speed      \(numberFormatter.string(from: metrics.rateOfEvent)!) events/s")
+//        print("Listener Calls   \(numberFormatter.string(from: metrics.rateOfListeners)!) calls/s")
         DispatchQueue.main.async {
             self.updateText(metrics)
         }
