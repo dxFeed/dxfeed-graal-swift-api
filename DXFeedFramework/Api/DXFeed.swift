@@ -50,11 +50,12 @@ public class DXFeed {
     /// This method creates new ``DXFeedTimeSeriesSubscription`` and invokes ``attachSubscription``.
     ///
     /// - Parameters:
-    ///     - events: The list of event codes.
+    ///     - events: The list of ITimeSeriesEvent.
     /// - Returns: ``DXFeedSubscription``
-    /// - Throws: ``GraalException``. Rethrows exception from Java, ``ArgumentException/invalidOperationException(_:)``
-    public func createTimeSeriesSubscription(_ events: [EventCode]) throws -> DXFeedTimeSeriesSubscription {
-        return try DXFeedTimeSeriesSubscription(native: native.createTimeSeriesSubscription(events), events: events)
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
+    public func createTimeSeriesSubscription(_ types: [ITimeSeriesEvent.Type]) throws -> DXFeedTimeSeriesSubscription {
+        return try DXFeedTimeSeriesSubscription(native: native.createTimeSeriesSubscription(types.map { $0.type}),
+                                                events: types.map { $0.type})
     }
 
     /// Creates new time series subscription for a single event type that is <i>attached</i> to this feed.
@@ -63,10 +64,12 @@ public class DXFeed {
     /// This method creates new ``DXFeedTimeSeriesSubscription`` and invokes ``attachSubscription``.
     ///
     /// - Parameters:
-    ///     - event:  event code.
+    ///     - type:  type of ITimeSeriesEvent.
     /// - Returns: ``DXFeedSubscription``
-    /// - Throws: ``GraalException``. Rethrows exception from Java, ``ArgumentException/invalidOperationException(_:)``
-    public func createTimeSeriesSubscription(_ event: EventCode) throws -> DXFeedTimeSeriesSubscription {
-        return try DXFeedTimeSeriesSubscription(native: native.createTimeSeriesSubscription(event), events: [event])
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
+    public func createTimeSeriesSubscription(_ type: ITimeSeriesEvent.Type) throws -> DXFeedTimeSeriesSubscription {
+        return try DXFeedTimeSeriesSubscription(
+            native: native.createTimeSeriesSubscription(type.type),
+            events: [type.type])
     }
 }

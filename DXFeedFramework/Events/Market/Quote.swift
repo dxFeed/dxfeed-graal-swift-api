@@ -13,6 +13,8 @@ import Foundation
 /// 
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/Quote.html)
 public class Quote: MarketEvent, ILastingEvent, CustomStringConvertible {
+    public class override var type: EventCode { .quote }
+
     /// Gets or sets time millis sequence.
     /// Do not sets this value directly.
     /// Change ``setSequence(_:)`` and/or ``time``.
@@ -60,7 +62,7 @@ public class Quote: MarketEvent, ILastingEvent, CustomStringConvertible {
 
     /// Initializes a new instance of the ``Quote`` class.
     public required init(_ symbol: String) {
-        super.init(type: .quote)
+        super.init()
         self.eventSymbol = symbol
     }
     public var description: String {

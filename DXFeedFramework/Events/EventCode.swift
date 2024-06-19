@@ -56,12 +56,3 @@ public extension EventCode {
     }
 }
 
-public extension EventCode {
-    func isTimeSeriesEvent() -> Bool {
-        return self == .candle ||
-            self == .timeAndSale ||
-            self == .greeks ||
-            self == .underlying ||
-            self == .theoPrice
-    }
-}

@@ -49,7 +49,7 @@ public class TradeBase: MarketEvent, ILastingEvent {
     var flags: Int32 = 0
 
     public init(symbol: String, type: EventCode) {
-        super.init(type: type)
+        super.init()
         self.eventSymbol = symbol
     }
 

@@ -11,6 +11,8 @@ import Foundation
 /// with a data taken from the specified ``CandleExchange`` from the specified ``CandleSession``
 /// with further details of aggregation provided by ``CandleAlignment``.
 public class Candle: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringConvertible {
+    public class override var type: EventCode { .candle }
+
     /// Gets or sets candle symbol object.
     public override var eventSymbol: String {
         get {
@@ -62,7 +64,7 @@ public class Candle: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringC
 
     /// Initializes a new instance of the ``Candle`` class with the specified event symbol.
     public convenience init(_ symbol: CandleSymbol) {
-        self.init(type: .candle)
+        self.init()
         self.candleSymbol = symbol
     }
 

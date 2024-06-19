@@ -14,6 +14,8 @@ import Foundation
 ///
 /// (For more details see)[https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/option/Series.html]
 public class Series: MarketEvent, IIndexedEvent {
+    public class override var type: EventCode { .series }
+
     public var eventSource: IndexedEventSource = .defaultSource
 
     public var eventFlags: Int32 = 0
@@ -53,7 +55,7 @@ public class Series: MarketEvent, IIndexedEvent {
     public var interest: Double = .nan
 
     public init(_ eventSymbol: String) {
-        super.init(type: .series)
+        super.init()
         self.eventSymbol = eventSymbol
     }
 

@@ -18,6 +18,7 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/option/TheoPrice.html)
 public class TheoPrice: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringConvertible {
+    public class override var type: EventCode { .theoPrice }
 
     public var eventSource: IndexedEventSource = .defaultSource
 
@@ -49,7 +50,7 @@ public class TheoPrice: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStri
     public var interest: Double = .nan
 
     public init(_ eventSymbol: String) {
-        super.init(type: .theoPrice)
+        super.init()
         self.eventSymbol = eventSymbol
     }
 

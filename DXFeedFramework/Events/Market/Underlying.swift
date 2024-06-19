@@ -14,6 +14,8 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/option/Underlying.html)
 public class Underlying: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringConvertible {
+    public class override var type: EventCode { .underlying }
+
     public var eventSource: IndexedEventSource = .defaultSource
 
     public var eventFlags: Int32 = 0
@@ -42,7 +44,7 @@ public class Underlying: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStr
     public var putCallRatio: Double = .nan
 
     public init(_ eventSymbol: String) {
-        super.init(type: .underlying)
+        super.init()
         self.eventSymbol = eventSymbol
     }
 

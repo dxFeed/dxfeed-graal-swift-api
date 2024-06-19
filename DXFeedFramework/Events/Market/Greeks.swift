@@ -23,6 +23,8 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/option/Greeks.html)
 public class Greeks: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringConvertible {
+    public class override var type: EventCode { .greeks }
+
     public var eventSource: IndexedEventSource = .defaultSource
 
     public var eventFlags: Int32 = 0
@@ -56,7 +58,7 @@ public class Greeks: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringC
     public var vega: Double = .nan
 
     public init(_ eventSymbol: String) {
-        super.init(type: .greeks)
+        super.init()
         self.eventSymbol = eventSymbol
     }
 

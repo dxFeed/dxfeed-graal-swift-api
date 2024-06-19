@@ -12,6 +12,8 @@ import Foundation
 /// 
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/Profile.html)
 public class Profile: MarketEvent, ILastingEvent, CustomStringConvertible {
+    public class override var type: EventCode { .profile }
+
     /*
      * Flags property has several significant bits that are packed into an integer in the following way:
      *   31..4     3    2    1    0
@@ -67,7 +69,7 @@ public class Profile: MarketEvent, ILastingEvent, CustomStringConvertible {
 
     /// Initializes a new instance of the ``Profile`` class.
     public init(_ symbol: String) {
-        super.init(type: .profile)
+        super.init()
         self.eventSymbol = symbol
     }
 

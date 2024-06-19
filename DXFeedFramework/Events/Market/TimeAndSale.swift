@@ -14,6 +14,8 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/TimeAndSale.html)
 public class TimeAndSale: MarketEvent, ITimeSeriesEvent, CustomStringConvertible {
+    public class override var type: EventCode { .timeAndSale }
+
     /*
      * Flags property has several significant bits that are packed into an integer in the following way:
      *   31..16   15...8    7    6    5    4    3    2    1    0
@@ -69,7 +71,7 @@ public class TimeAndSale: MarketEvent, ITimeSeriesEvent, CustomStringConvertible
     public var index: Long = 0
 
     init(_ symbol: String) {
-        super.init(type: .timeAndSale)
+        super.init()
         self.eventSymbol = symbol
     }
 
