@@ -62,7 +62,7 @@ class NativeEndpoint {
         let weakListener = WeakListener(value: listener)
         NativeEndpoint.storage.append(weakListener)
         
-        let voidPtr = bridge(obj: listener)
+        let voidPtr = bridge(obj: weakListener)
 
         let thread = currentThread()
         self.listener = try ErrorCheck.nativeCall(thread,
