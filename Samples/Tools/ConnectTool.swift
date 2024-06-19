@@ -75,7 +75,8 @@ Where:
                                         types: arguments.parseTypes(at: 2),
                                         listener: self,
                                         properties: arguments.properties,
-                                        time: arguments.time)
+                                        time: arguments.time,
+                                        source: arguments.source)
 
         // Print till input new line
         _ = readLine()

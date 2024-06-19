@@ -15,7 +15,7 @@ import Foundation
 /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/TimeSeriesSubscriptionSymbol.html)
 ///
 /// `T`: The type of event symbol.
-public class TimeSeriesSubscriptionSymbol: IndexedEventSubscriptionSymbol<AnyHashable> {
+public class TimeSeriesSubscriptionSymbol: GenericIndexedEventSubscriptionSymbol<AnyHashable> {
     let fromTime: Long
     /// Initializes a new instance of the ``TimeSeriesSubscriptionSymbol`` class
     /// with a specified event symbol and from time in milliseconds since Unix epoch.

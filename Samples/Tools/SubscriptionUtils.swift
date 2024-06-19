@@ -17,7 +17,8 @@ class Subscription {
                                types: [EventCode],
                                listener: O,
                                properties: [String: String],
-                               time: String?)
+                               time: String?,
+                               source: String? = nil)
     where O: DXEventListener, O: Hashable {
         print("""
 Create subscription to \(address) for \(types):\(symbols) with properties:\(properties) and time \(time ?? "---")
@@ -40,6 +41,13 @@ Create subscription to \(address) for \(types):\(symbols) with properties:\(prop
                     TimeSeriesSubscriptionSymbol(symbol: symbol, date: date)
                 }
                 try? subscription?.addSymbols(timeSubscriptionSymbols)
+            } else if source != nil {
+                if let source = try? OrderSource.valueOf(name: source!) {
+                        let indexedEventSubscriptionSymbols = symbols.map { symbol in
+                            IndexedEventSubscriptionSymbol(symbol: symbol, source: source)
+                    }
+                    try? subscription?.addSymbols(indexedEventSubscriptionSymbols)
+                }
             } else {
                 try? subscription?.addSymbols(symbols)
             }
@@ -49,3 +57,4 @@ Create subscription to \(address) for \(types):\(symbols) with properties:\(prop
         }
     }
 }
+

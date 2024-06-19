@@ -52,7 +52,9 @@ class LiveIpfSample: ToolsCommand {
     func execute() {
         do {
             collector = try DXInstrumentProfileCollector()
-            connection = try DXInstrumentProfileConnection(arguments.count > 1 ? arguments[1] : LiveIpfSample.defaultIpfUrl, collector!)
+            connection = try DXInstrumentProfileConnection(arguments.count > 1 ?
+                                                           arguments[1] :
+                                                            LiveIpfSample.defaultIpfUrl, collector!)
             // Update period can be used to re-read IPF files, not needed for services supporting IPF "live-update"
             try connection?.setUpdatePeriod(60000)
             connection?.add(listener: self)
