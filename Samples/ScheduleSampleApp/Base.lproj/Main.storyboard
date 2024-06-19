@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="isd-kp-ktd">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="iAp-Tn-kEh">
+            <objects>
+                <viewController id="isd-kp-ktd" customClass="ViewController" customModule="ScheduleSampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MKG-B7-OzF">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="740" verticalCompressionResistancePriority="740" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="yyyy-MM-dd-HH:mm:ss" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1o3-Td-0Qg">
+                                <rect key="frame" x="15" y="79" width="228" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ixf-TU-5Kd">
+                                <rect key="frame" x="258" y="79" width="125" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="FpV-1y-x6n"/>
+                                    <constraint firstAttribute="height" constant="35" id="qHG-Q3-Ex3"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Get schedule"/>
+                                <connections>
+                                    <action selector="getScheduleTapped:" destination="isd-kp-ktd" eventType="touchUpInside" id="xCF-CF-0lm"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="AAPL" borderStyle="roundedRect" placeholder="Stock symbol" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pEg-ZG-Tb9">
+                                <rect key="frame" x="15" y="133" width="227" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="7gF-NI-fs9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="U05-Zt-ufP">
+                                <rect key="frame" x="0.0" y="187" width="393" height="237"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="237" id="Y7C-Gh-sZz"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qAL-SM-nWU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="U05-Zt-ufP" firstAttribute="trailing" secondItem="qAL-SM-nWU" secondAttribute="trailing" id="2L6-wB-4Of"/>
+                            <constraint firstItem="1o3-Td-0Qg" firstAttribute="leading" secondItem="qAL-SM-nWU" secondAttribute="leading" constant="15" id="FUf-Qg-QgD"/>
+                            <constraint firstItem="U05-Zt-ufP" firstAttribute="leading" secondItem="qAL-SM-nWU" secondAttribute="leading" id="I9z-MP-8Lx"/>
+                            <constraint firstItem="Ixf-TU-5Kd" firstAttribute="leading" secondItem="1o3-Td-0Qg" secondAttribute="trailing" constant="15" id="V0i-88-6TP"/>
+                            <constraint firstItem="qAL-SM-nWU" firstAttribute="trailing" secondItem="Ixf-TU-5Kd" secondAttribute="trailing" constant="10" id="c6O-Um-0nr"/>
+                            <constraint firstItem="pEg-ZG-Tb9" firstAttribute="leading" secondItem="qAL-SM-nWU" secondAttribute="leading" constant="15" id="dUo-Y3-Yv9"/>
+                            <constraint firstItem="Ixf-TU-5Kd" firstAttribute="top" secondItem="qAL-SM-nWU" secondAttribute="top" constant="20" id="h2g-lU-4zX"/>
+                            <constraint firstItem="pEg-ZG-Tb9" firstAttribute="width" secondItem="1o3-Td-0Qg" secondAttribute="width" multiplier="0.994956" id="kVz-w3-i5H"/>
+                            <constraint firstItem="U05-Zt-ufP" firstAttribute="top" secondItem="pEg-ZG-Tb9" secondAttribute="bottom" constant="20" id="rbU-sx-93T"/>
+                            <constraint firstItem="pEg-ZG-Tb9" firstAttribute="top" secondItem="1o3-Td-0Qg" secondAttribute="bottom" constant="20" id="w1d-gE-3D4"/>
+                            <constraint firstItem="1o3-Td-0Qg" firstAttribute="top" secondItem="qAL-SM-nWU" secondAttribute="top" constant="20" id="wLN-ty-Bj9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="getScheduleButton" destination="Ixf-TU-5Kd" id="wsw-80-bfA"/>
+                        <outlet property="resultTextView" destination="U05-Zt-ufP" id="Gfz-mg-jcP"/>
+                        <outlet property="symbolTextField" destination="pEg-ZG-Tb9" id="76c-dL-558"/>
+                        <outlet property="timeTextField" destination="1o3-Td-0Qg" id="9od-uK-KVI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6bS-FN-VYK" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139.69465648854961" y="4.9295774647887329"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

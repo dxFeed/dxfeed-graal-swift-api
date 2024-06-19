@@ -119,12 +119,15 @@ class NativeSchedule {
         let start = try ErrorCheck.nativeCall(thread, dxfg_Session_getStartTime(thread, session))
         let end = try ErrorCheck.nativeCall(thread, dxfg_Session_getEndTime(thread, session))
         let nativeType = try ErrorCheck.nativeCall(thread, dxfg_Session_getType(thread, session))
+        let isTraiding = try ErrorCheck.nativeCall(thread, dxfg_Session_isTrading(thread, session))
+
         let type = dxfg_session_type_t(UInt32(nativeType))
         let session = ScheduleSession(native: NativeSession(native: session),
                                       nativeSchedule: self,
                                       startTime: start,
                                       endTime: end,
-                                      type: ScheduleSessionType.getValueFromNative(type))
+                                      type: ScheduleSessionType.getValueFromNative(type),
+                                      isTrading: isTraiding == 1)
         return session
     }
 
