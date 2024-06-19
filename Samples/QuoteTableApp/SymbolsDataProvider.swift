@@ -45,7 +45,7 @@ class SymbolsDataProvider {
         if existingSymbols != nil {
             return existingSymbols as? [String] ?? [String]()
         } else {
-            return ["AAPL", "IBM", "ETH/USD:GDAX"]
+            return ["AAPL", "IBM", "MSFT", "CSCO", "GOOG", "PFE"]
         }
     }
 
