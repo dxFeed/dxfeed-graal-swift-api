@@ -23,13 +23,13 @@ class CandleSymbol {
     }
 
     private func initInternal() {
-        self.baseSymbol = MarketEventSymbols.createBaseSymbol(self.symbol)
-        self.exchange = CandleExchange.createAttribute(self.symbol)
-        self.price = CandlePrice.createAttribute(self.symbol)
-        self.session = CandleSession.createAttribute(self.symbol)
-        self.period = CandlePeriod.createAttribute(self.symbol)
-        self.alignment = CandleAlignment.createAttribute(self.symbol)
-        self.priceLevel = CandlePriceLevel.createAttribute(self.symbol)
+        self.baseSymbol = MarketEventSymbols.getBaseSymbol(self.symbol)
+        self.exchange = CandleExchange.getAttribute(self.symbol)
+        self.price = CandlePrice.getAttribute(self.symbol)
+        self.session = CandleSession.getAttribute(self.symbol)
+        self.period = CandlePeriod.getAttribute(self.symbol)
+        self.alignment = CandleAlignment.getAttribute(self.symbol)
+        self.priceLevel = CandlePriceLevel.getAttribute(self.symbol)
     }
 
     private func normalize(_ symbol: String) -> String {
