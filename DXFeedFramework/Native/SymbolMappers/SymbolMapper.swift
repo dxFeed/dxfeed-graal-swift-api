@@ -20,7 +20,7 @@ class SymbolMapper {
             return casted
         case let symbol as WildcardSymbol:
             let pointer = UnsafeMutablePointer<dxfg_wildcard_symbol_t>.allocate(capacity: 1)
-            pointer.pointee.supper = dxfg_symbol_t(type: WILDCARD)            
+            pointer.pointee.supper = dxfg_symbol_t(type: WILDCARD)
             let casted = pointer.withMemoryRebound(to: dxfg_symbol_t.self, capacity: 1) { $0 }
             return casted
         case let symbol as TimeSeriesSubscriptionSymbol:

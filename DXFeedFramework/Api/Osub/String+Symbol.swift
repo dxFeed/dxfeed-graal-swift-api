@@ -12,4 +12,3 @@ extension String: Symbol {
         return description
     }
 }
-
