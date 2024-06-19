@@ -14,17 +14,17 @@ public class DXSchedule {
         self.native = native
     }
 
-    convenience init(scheduleDefinition: String) throws {
+    public convenience init(scheduleDefinition: String) throws {
         let native = try NativeSchedule(scheduleDefinition: scheduleDefinition)
         self.init(native: native)
     }
 
-    convenience init(instrumentProfile: InstrumentProfile) throws {
+    public convenience init(instrumentProfile: InstrumentProfile) throws {
         let native = try NativeSchedule(instrumentProfile: instrumentProfile)
         self.init(native: native)
     }
 
-    convenience init(instrumentProfile: InstrumentProfile, venue: String) throws {
+    public convenience init(instrumentProfile: InstrumentProfile, venue: String) throws {
         let native = try NativeSchedule(instrumentProfile: instrumentProfile, venue: venue)
         self.init(native: native)
     }

@@ -54,16 +54,24 @@ final class DXScheduleTest: XCTestCase {
 
     func testFetchDays() throws {
         let start = Long(1682072564670)
-        let end = Long(Date.now.timeIntervalSince1970 * 1000)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        let end = Long(formatter.date(from: "2023/09/13 14:00")!.timeIntervalSince1970 * 1000)
+
         let schedule = try DXSchedule(scheduleDefinition: "NewYorkETH()")
-
-
         let startDay = try schedule.getDayByTime(time: start)
         let endDay = try schedule.getDayByTime(time: end)
+        var sessionBreaks = [ScheduleSession]()
+        var extendedHours = [ScheduleSession]()
 
         for index in startDay.dayId...endDay.dayId {
             let day = try schedule.getDayById(day: index)
-
+            for session in day.sessions where [.noTrading].contains(session.type) {
+                sessionBreaks.append(session)
+            }
+            for session in day.sessions where [.afterMarket, .preMarket, .regular].contains(session.type) {
+                extendedHours.append(session)
+            }
             let date = String(format: "%d-%02d-%02d", arguments: [day.year, day.monthOfYear, day.dayOfMonth])
             var sessions = "\n"
             day.sessions.forEach { sch in
@@ -72,7 +80,8 @@ final class DXScheduleTest: XCTestCase {
             print("\(date) \(day.holiday) \(day.shortDay) \(sessions)")
 
         }
-
+        XCTAssert(sessionBreaks.count == 246)
+        XCTAssert(extendedHours.count == 300)
         XCTAssert(try schedule.getName() == "US ETH")
         XCTAssert(try schedule.getTimeZone() == "America/New_York")
     }
