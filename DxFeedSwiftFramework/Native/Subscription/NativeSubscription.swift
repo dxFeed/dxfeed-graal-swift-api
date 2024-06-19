@@ -12,8 +12,6 @@ class NativeSubscription {
     let subscription: UnsafeMutablePointer<dxfg_subscription_t>?
     var nativeListener: UnsafeMutablePointer<dxfg_feed_event_listener_t>?
     weak var listener: DXEventListener?
-    fileprivate
-    //    dxfg_DXFeedEventListener_new
     static let listenerCallback: dxfg_feed_event_listener_function = {_, events, context in
         if let context = context {
             let listener: AnyObject = bridge(ptr: context)
@@ -80,65 +78,14 @@ class NativeSubscription {
 
     func addSymbols(_ symbols: [Symbol]) throws {
         let nativeSymbols = symbols.compactMap { SymbolMapper.newNative($0) }
-
-        let classes = UnsafeMutablePointer<UnsafeMutablePointer<dxfg_symbol_t>?>
-            .allocate(capacity: nativeSymbols.count)
-        var iterator = classes
-        for code in nativeSymbols {
-            iterator.initialize(to: code)
-            iterator = iterator.successor()
-        }
-        let listPointer = UnsafeMutablePointer<dxfg_symbol_list>.allocate(capacity: 1)
-        listPointer.pointee.size = Int32(nativeSymbols.count)
-        listPointer.pointee.elements = classes
+        let elements = ListNative(pointers: nativeSymbols)
+        let listPointer = elements.newList()
         defer {
-            var iterator = classes
-            for _ in 0..<nativeSymbols.count {
-                iterator.deinitialize(count: 1)
-                iterator = iterator.successor()
-            }
-            classes.deinitialize(count: nativeSymbols.count)
-            classes.deallocate()
             listPointer.deinitialize(count: 1)
             listPointer.deallocate()
-
             nativeSymbols.forEach { SymbolMapper.clearNative(symbol: $0) }
         }
-
-//        var testStruct = dxfg_string_symbol_t(supper: dxfg_symbol_t(type: STRING), symbol: "ETH/USD:GDAX".stringValue.toCStringRef())
-//
-//        let pointe = withUnsafeMutablePointer(to: &testStruct) {
-//            $0
-//        }
-//        let pointe2 = withUnsafeMutablePointer(to: &testStruct) {
-//            $0
-//        }
-//        var pointer = UnsafeMutablePointer<dxfg_string_symbol_t>.allocate(capacity: 1)
-//        pointer.pointee.supper = dxfg_symbol_t(type: STRING)
-//        pointer.pointee.symbol = "ETH/USD:GDAX".stringValue.toCStringRef()
-//        let classes = UnsafeMutablePointer<UnsafeMutablePointer<dxfg_symbol_t>?>
-//            .allocate(capacity: 1)
-//        var iterator = classes
-//        var castedPointer = pointer.withMemoryRebound(to: dxfg_symbol_t.self, capacity: 1) { $0 }
-//        for code in [castedPointer] {
-//            let value: UnsafeMutablePointer<Any>? =
-//            UnsafeMutablePointer<Any>.allocate(capacity: 1)
-//            let casted = code.withMemoryRebound(to: dxfg_string_symbol_t.self, capacity: 1) { $0 }
-//            value?.initialize(to: casted.pointee)
-//            let lastCated = value?.withMemoryRebound(to: dxfg_symbol_t.self, capacity: 1) { $0 }
-//
-//            iterator.initialize(to: castedPointer)
-//            iterator = iterator.successor()
-//        }
-//
-//
-//        let listPointer = UnsafeMutablePointer<dxfg_symbol_list>.allocate(capacity: 1)
-//        listPointer.pointee.size = 1
-//        listPointer.pointee.elements = classes
-
         let thread = currentThread()
-        let res = try ErrorCheck.nativeCall(thread, dxfg_DXFeedSubscription_addSymbols(thread, self.subscription, listPointer))
-//        
-        print(res)
+        _ = try ErrorCheck.nativeCall(thread, dxfg_DXFeedSubscription_addSymbols(thread, self.subscription, listPointer))
     }
 }
