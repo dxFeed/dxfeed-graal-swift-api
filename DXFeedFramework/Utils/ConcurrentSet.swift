@@ -1,3 +1,4 @@
+
 //
 //  Copyright (C) 2023 Devexperts LLC. All rights reserved.
 //  This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
@@ -6,7 +7,7 @@
 
 import Foundation
 
-public class ConcurrentSet<T>: CustomStringConvertible where T: Hashable {
+class ConcurrentSet<T>: CustomStringConvertible where T: Hashable {
     private var set = Set<T>()
     private let accessQueue = DispatchQueue(label: "com.dxfeed.set_queue", attributes: .concurrent)
 
