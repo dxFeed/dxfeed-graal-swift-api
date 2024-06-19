@@ -7,10 +7,10 @@
 
 import Foundation
 
-public enum OrderAction {
+public enum OrderAction: Int, CaseIterable {
     /// Default enum value for orders that do not support "Full Order Book" and for backward compatibility -
     /// action must be derived from other ``Order``
-    case undefined
+    case undefined = 0
     /// New Order is added to Order Book.
     case new
     /// Order is modified and price-time-priority is not maintained (i.e. order has re-entered Order Book).
@@ -27,4 +27,13 @@ public enum OrderAction {
     case trade
     /// Prior Trade/Order Execution bust
     case bust
+}
+
+internal class OrderActionExt {
+    private static let values: [OrderAction] =
+    EnumUtil.createEnumBitMaskArrayByValue(defaultValue: .undefined, allCases: OrderAction.allCases)
+
+    public static func valueOf(value: Int) -> OrderAction {
+        return values[value]
+    }
 }

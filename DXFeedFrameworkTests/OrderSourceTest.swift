@@ -48,8 +48,8 @@ final class OrderSourceTest: XCTestCase {
 
     func testCreateOrderSourceWithDuplicateName() throws {
         do {
-            _ = try OrderSource(identifier: 44, name: "COMPOSITE_ASK", pubFlags: 0)
-            _ = try OrderSource(identifier: 33, name: "COMPOSITE_ASK", pubFlags: 0)
+            _ = try OrderSource( 44, "COMPOSITE_ASK",  0)
+            _ = try OrderSource( 33, "COMPOSITE_ASK",  0)
         } catch ArgumentException.exception(let message) {
             XCTAssert(message.contains("name"), "Wrong message \(message)")
             return
@@ -61,8 +61,8 @@ final class OrderSourceTest: XCTestCase {
 
     func testCreateOrderSourceWithDuplicateId() throws {
         do {
-            _ = try OrderSource(identifier: 3, name: "COMPOSITE_ASK1", pubFlags: 0)
-            _ = try OrderSource(identifier: 3, name: "COMPOSITE_ASK3", pubFlags: 0)
+            _ = try OrderSource(3, "COMPOSITE_ASK1",  0)
+            _ = try OrderSource(3, "COMPOSITE_ASK3",  0)
         } catch ArgumentException.exception(let message) {
             XCTAssert(message.contains("id"), "Wrong message \(message)")
             return
@@ -74,8 +74,8 @@ final class OrderSourceTest: XCTestCase {
 
     func testCreateOrderSource() throws {
         do {
-            _ = try OrderSource(identifier: 5, name: "COMPOSITE_ASK2", pubFlags: 0)
-            _ = try OrderSource(identifier: 6, name: "COMPOSITE_ASK4", pubFlags: 0)
+            _ = try OrderSource(5, "COMPOSITE_ASK2",  0)
+            _ = try OrderSource(6, "COMPOSITE_ASK4",  0)
         } catch {
             XCTAssert(false, "undefined error \(error)")
         }

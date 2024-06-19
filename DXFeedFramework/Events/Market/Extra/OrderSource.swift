@@ -37,16 +37,143 @@ public class OrderSource: IndexedEventSource {
     static private let sourcesByName = ConcurrentDict<String, OrderSource>()
     private let sourcesByIdCache = NSCache<AnyObject, OrderSource>()
 
-    override init(identifier: Int, name: String) {
+    /// The default source with zero identifier for all events that do not support multiple sources.
+    public static let defaultOrderSource = try? OrderSource(0, "DEFAULT", pubOrder | pubAnalyticOrder | pubSpreadOrder | fullOrderBook)
+
+    /// Bid side of a composite ``Quote``
+    ///
+    /// It is a synthetic source.
+    /// The subscription on composite ``Quote`` event is observed when this source is subscribed to.
+    public static let compsoiteBid = try? OrderSource(1, "DEFAULT", pubOrder | pubAnalyticOrder | pubSpreadOrder | fullOrderBook)
+    /// Ask side of a composite ``Quote``.
+    /// It is a synthetic source.
+    /// The subscription on composite ``Quote`` event is observed when this source is subscribed to.
+    public static let compsoiteAsk = try? OrderSource(2, "COMPOSITE_ASK", 0)
+    /// Bid side of a regional ``Quote``.
+    /// It is a synthetic source.
+    /// The subscription on regional ``Quote`` event is observed when this source is subscribed to.
+
+    public static let regionalBid = try? OrderSource(3, "REGIONAL_BID", 0)
+    /// Ask side of a regional ``Quote``.
+    /// It is a synthetic source.
+    /// The subscription on regional ``Quote`` event is observed when this source is subscribed to.
+
+    public static let regionalAsk = try? OrderSource(4, "REGIONAL_ASK", 0)
+    /// Bid side of an aggregate order book (futures depth and NASDAQ Level II).
+    /// This source cannot be directly published via dxFeed API, but otherwise it is fully operational.
+    public static let agregateBid = try? OrderSource(5, "AGGREGATE_BID", 0)
+
+    /// Ask side of an aggregate order book (futures depth and NASDAQ Level II).
+    /// This source cannot be directly published via dxFeed API, but otherwise it is fully operational.
+    public static let agregateAsk = try? OrderSource(6, "AGGREGATE_ASK", 0)
+
+    /// NASDAQ Total View.
+    public static let NTV = try? OrderSource("NTV", pubOrder | fullOrderBook)
+
+    /// NASDAQ Total View. Record for price level book.
+    public static let ntv = try? OrderSource("ntv", pubOrder)
+
+    /// NASDAQ Futures Exchange.
+    public static let NFX = try? OrderSource("NFX", pubOrder)
+
+    /// NASDAQ eSpeed.
+    public static let ESPD = try? OrderSource("ESPD", pubOrder)
+
+    /// NASDAQ Fixed Income.
+    public static let XNFI = try? OrderSource("XNFI", pubOrder)
+
+    /// Intercontinental Exchange.
+    public static let ICE = try? OrderSource("ICE", pubOrder)
+
+    /// International Securities Exchange.
+    public static let ISE = try? OrderSource("ISE", pubOrder | pubSpreadOrder)
+
+    /// Direct-Edge EDGA Exchange.
+    public static let DEA = try? OrderSource("DEA", pubOrder)
+
+    /// Direct-Edge EDGX Exchange.
+    public static let DEX = try? OrderSource("DEX", pubOrder)
+
+    /// Bats BYX Exchange.
+    public static let BYX = try? OrderSource("BYX", pubOrder)
+
+    /// Bats BZX Exchange.
+    public static let BZX = try? OrderSource("BZX", pubOrder)
+
+    /// Bats Europe BXE Exchange.
+    public static let BATE = try? OrderSource("BATE", pubOrder)
+
+    /// Bats Europe CXE Exchange.
+    public static let CHIX = try? OrderSource("CHIX", pubOrder)
+
+    /// Bats Europe DXE Exchange.
+    public static let CEUX = try? OrderSource("CEUX", pubOrder)
+
+    /// Bats Europe TRF.
+    public static let BXTR = try? OrderSource("BXTR", pubOrder)
+
+    /// Borsa Istanbul Exchange.
+    public static let IST = try? OrderSource("IST", pubOrder)
+
+    /// Borsa Istanbul Exchange. Record for particular top 20 order book.
+    public static let BI20 = try? OrderSource("BI20", pubOrder)
+
+    /// ABE (abe.io) exchange.
+    public static let ABE = try? OrderSource("ABE", pubOrder)
+
+    /// FAIR (FairX) exchange.
+    public static let FAIR = try? OrderSource("FAIR", pubOrder)
+
+    /// CME Globex.
+    public static let GLBX = try? OrderSource("GLBX", pubOrder | pubAnalyticOrder)
+
+    /// CME Globex. Record for price level book.
+    public static let glbx = try? OrderSource("glbx", pubOrder)
+
+    /// Eris Exchange group of companies.
+    public static let ERIS = try? OrderSource("ERIS", pubOrder)
+
+    /// Eurex Exchange.
+    public static let XEUR = try? OrderSource("XEUR", pubOrder)
+
+    /// Eurex Exchange. Record for price level book.
+    public static let xeur = try? OrderSource("xeur", pubOrder)
+
+    /// CBOE Futures Exchange.
+    public static let CFE = try? OrderSource("CFE", pubOrder)
+
+    /// CBOE Options C2 Exchange.
+    public static let C2OX = try? OrderSource("C2OX", pubOrder)
+
+    /// Small Exchange.
+    public static let SMFE = try? OrderSource("SMFE", pubOrder)
+
+    /// Small Exchange. Record for price level book.
+    public static let smfe = try? OrderSource("smfe", pubOrder)
+
+    /// Investors exchange. Record for price level book.
+    public static let iex = try? OrderSource("iex", pubOrder)
+
+    /// Members Exchange.
+    public static let MEMX = try? OrderSource("MEMX", pubOrder)
+
+    /// Members Exchange. Record for price level book.
+    public static let memx = try? OrderSource("memx", pubOrder)
+
+    override init(_ identifier: Int, _ name: String) {
         self.pubFlags = 0
         self.isBuiltin = false
-        super.init(identifier: identifier, name: name)
+        super.init(identifier, name)
     }
 
-    init(identifier: Int, name: String, pubFlags: Int) throws {
+    convenience init(_ name: String, _ pubFlags: Int) throws {
+        try self.init(OrderSource.composeId(name: name), name, pubFlags)
+    }
+
+    init(_ identifier: Int, _ name: String, _ pubFlags: Int) throws {
         self.pubFlags = pubFlags
         self.isBuiltin = true
-        super.init(identifier: identifier, name: name)
+        super.init(identifier, name)
         switch identifier {
         case _ where identifier < 0:
             throw ArgumentException.exception("id is negative")
@@ -61,7 +188,8 @@ public class OrderSource: IndexedEventSource {
             print("")
         }
         // Flag FullOrderBook requires that source must be publishable.
-        if (pubFlags & OrderSource.fullOrderBook) != 0 && (pubFlags & (OrderSource.pubOrder | OrderSource.pubAnalyticOrder | OrderSource.pubSpreadOrder)) == 0 {
+        if (pubFlags & OrderSource.fullOrderBook) != 0 &&
+            (pubFlags & (OrderSource.pubOrder | OrderSource.pubAnalyticOrder | OrderSource.pubSpreadOrder)) == 0 {
             throw ArgumentException.exception("Unpublishable full order book order")
         }
 
@@ -110,7 +238,7 @@ public class OrderSource: IndexedEventSource {
             if identifier >> index == 0 { // Skip highest contiguous zeros.
                 continue
             }
-            var char = Character(((identifier >> index) & 0xff))
+            let char = Character(((identifier >> index) & 0xff))
             try check(char: String(char))
             name.append(char)
         }
@@ -121,25 +249,59 @@ public class OrderSource: IndexedEventSource {
         return (pubFlags & OrderSource.fullOrderBook) != 0
     }
 
+    /// Gets a value indicating whether the given event type can be directly published with this source.
+    ///
+    /// Subscription on such sources can be observed directly via ``DXPublisher``
+    /// Subscription on such sources is observed via instances of  ``IndexedEventSubscriptionSymbol``
+    /// - Parameters:
+    ///   - eventype : Possible values ``Order``, ``AnalyticOrder``, ``SpreadOrder``
+    /// - Returns: true- events can be directly published with this source
+    /// - Throws: ``ArgumentException/exception(_:)``
+    public func isPublishable(eventType: AnyClass.Type) throws  -> Bool {
+        return pubFlags & (try OrderSource.getEventTypeMask(eventType)) != 0
+    }
+
+
     /// Returns order source for the specified source identifier.
-    /// - Throws: ``ArgumentException/exception(_:)``. Rethrows exception from Java.
+    /// - Throws: ``ArgumentException/exception(_:)``
     public static func valueOf(identifier: Int) throws -> OrderSource {
         return try OrderSource.sourcesById.tryGetValue(key: identifier) {
             let name = try decodeName(identifier: identifier)
-            let source = OrderSource(identifier: identifier, name: name)
+            let source = OrderSource(identifier, name)
             return source
         }
     }
     /// Returns order source for the specified source name.
     /// 
     /// The name must be either predefined, or contain at most 4 alphanumeric characters.
-    /// - Throws: ``ArgumentException/exception(_:)``. Rethrows exception from Java.
+    /// - Throws: ``ArgumentException/exception(_:)``
     public static func valueOf(name: String) throws -> OrderSource {
         return try OrderSource.sourcesByName.tryGetValue(key: name) {
             let identifier = try composeId(name: name)
-            let source = OrderSource(identifier: identifier, name: name)
+            let source = OrderSource(identifier, name)
             return source
         }
+    }
+
+    /// Gets type mask by specified event type.
+    ///
+    /// - Parameters:
+    ///   - eventype : Possible values ``Order``, ``AnalyticOrder``, ``SpreadOrder``
+    /// - Returns: The mask for event class.
+    /// - Throws: ``ArgumentException/exception(_:)``
+    public static func getEventTypeMask(_ eventType: AnyClass) throws -> Int {
+        if eventType == Order.self {
+            return pubOrder
+        }
+
+        if eventType == AnalyticOrder.self {
+            return pubAnalyticOrder
+        }
+
+        if eventType == SpreadOrder.self {
+            return pubSpreadOrder
+        }
+        throw ArgumentException.exception("Invalid order event type: \(eventType)")
     }
 
 }
