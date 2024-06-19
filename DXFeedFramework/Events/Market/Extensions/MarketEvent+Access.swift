@@ -38,9 +38,12 @@ extension MarketEvent {
     public var summary: Summary {
         return (self as? Summary)!
     }
-
     /// Use only for event.type is ``EventCode/greeks``
     public var greeks: Greeks {
         return (self as? Greeks)!
+    }
+    /// Use only for event.type is ``EventCode/underlying``
+    public var underlying: Underlying {
+        return (self as? Underlying)!
     }
 }

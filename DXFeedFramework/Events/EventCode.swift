@@ -16,9 +16,11 @@ public enum EventCode: CaseIterable {
     /// See ``Profile``
     case profile
     case summary
+    /// See ``Greeks``
     case greeks
     /// See ``Candle``
     case candle
+    /// **Deprecated. Doesn't need to be implemented**
     case dailyCandle
     case underlying
     case theoPrice
