@@ -201,6 +201,9 @@
 		6486B96B2AD03DC900D8D5FA /* Underlying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B96A2AD03DC900D8D5FA /* Underlying.swift */; };
 		6486B96F2AD0445400D8D5FA /* Underlying+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B96E2AD0445400D8D5FA /* Underlying+Ext.swift */; };
 		6486B9712AD0445E00D8D5FA /* UnderlyingMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9702AD0445E00D8D5FA /* UnderlyingMapper.swift */; };
+		6486B9732AD045C800D8D5FA /* TheoPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9722AD045C800D8D5FA /* TheoPrice.swift */; };
+		6486B9752AD0493F00D8D5FA /* TheoPrice+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9742AD0493F00D8D5FA /* TheoPrice+Ext.swift */; };
+		6486B9772AD04C5800D8D5FA /* TheoPriceMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486B9762AD04C5800D8D5FA /* TheoPriceMapper.swift */; };
 		648BD5692AC450D6004A3A95 /* ConnectCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD5682AC450D6004A3A95 /* ConnectCommand.swift */; };
 		648BD56B2AC4576F004A3A95 /* HelpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56A2AC4576F004A3A95 /* HelpCommand.swift */; };
 		648BD56D2AC56A04004A3A95 /* SubscriptionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */; };
@@ -636,6 +639,9 @@
 		6486B96A2AD03DC900D8D5FA /* Underlying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Underlying.swift; sourceTree = "<group>"; };
 		6486B96E2AD0445400D8D5FA /* Underlying+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Underlying+Ext.swift"; sourceTree = "<group>"; };
 		6486B9702AD0445E00D8D5FA /* UnderlyingMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlyingMapper.swift; sourceTree = "<group>"; };
+		6486B9722AD045C800D8D5FA /* TheoPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheoPrice.swift; sourceTree = "<group>"; };
+		6486B9742AD0493F00D8D5FA /* TheoPrice+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TheoPrice+Ext.swift"; sourceTree = "<group>"; };
+		6486B9762AD04C5800D8D5FA /* TheoPriceMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheoPriceMapper.swift; sourceTree = "<group>"; };
 		648BD5682AC450D6004A3A95 /* ConnectCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCommand.swift; sourceTree = "<group>"; };
 		648BD56A2AC4576F004A3A95 /* HelpCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCommand.swift; sourceTree = "<group>"; };
 		648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionUtils.swift; sourceTree = "<group>"; };
@@ -905,6 +911,7 @@
 				6486B9572AD00BDC00D8D5FA /* Summary.swift */,
 				6486B9622AD0333B00D8D5FA /* Greeks.swift */,
 				6486B96A2AD03DC900D8D5FA /* Underlying.swift */,
+				6486B9722AD045C800D8D5FA /* TheoPrice.swift */,
 			);
 			path = Market;
 			sourceTree = "<group>";
@@ -969,6 +976,8 @@
 				6486B9662AD0390800D8D5FA /* GreeksMapper.swift */,
 				6486B96E2AD0445400D8D5FA /* Underlying+Ext.swift */,
 				6486B9702AD0445E00D8D5FA /* UnderlyingMapper.swift */,
+				6486B9742AD0493F00D8D5FA /* TheoPrice+Ext.swift */,
+				6486B9762AD04C5800D8D5FA /* TheoPriceMapper.swift */,
 			);
 			path = Markets;
 			sourceTree = "<group>";
@@ -2045,6 +2054,7 @@
 				64ACBCE32A289A0700032C53 /* TimeSeriesSubscriptionSymbol.swift in Sources */,
 				645A34952A937C7200709F29 /* BinaryInteger+Ext.swift in Sources */,
 				64BA92652A306E0200BE26A0 /* Trade.swift in Sources */,
+				6486B9752AD0493F00D8D5FA /* TheoPrice+Ext.swift in Sources */,
 				6464074B2A9DFAF7006FF769 /* InstrumentProfile+Ext.swift in Sources */,
 				64C771F22A94A224009868C2 /* Character+Ext.swift in Sources */,
 				8088D77129C3A25D00F240CB /* SystemProperty.swift in Sources */,
@@ -2077,9 +2087,11 @@
 				64104FC72A2613BC00D1FC41 /* ConcurrentArray.swift in Sources */,
 				6498E6B22AB1D41A0093A065 /* DXSchedule.swift in Sources */,
 				646407572AA0C44D006FF769 /* NativeInstrumentProfileCollector.swift in Sources */,
+				6486B9732AD045C800D8D5FA /* TheoPrice.swift in Sources */,
 				64ACBCDF2A2897EA00032C53 /* String+Symbol.swift in Sources */,
 				64B4363A2AB86D1A0003919E /* DayFilter.swift in Sources */,
 				64ECD6872A9DDFBE00B36935 /* DXInstrumentProfileConnection.swift in Sources */,
+				6486B9772AD04C5800D8D5FA /* TheoPriceMapper.swift in Sources */,
 				64278C702A602FA00074B5AA /* Candle+Ext.swift in Sources */,
 				64B4363C2AB86F3C0003919E /* DayFilter+Ext.swift in Sources */,
 				6464075B2AA0CEF2006FF769 /* NativeExecutor.swift in Sources */,

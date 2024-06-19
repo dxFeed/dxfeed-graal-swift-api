@@ -22,7 +22,9 @@ public enum EventCode: CaseIterable {
     case candle
     /// **Deprecated. Doesn't need to be implemented**
     case dailyCandle
+    /// See ``Underlying``
     case underlying
+    /// See ``TheoPrice``
     case theoPrice
     /// See ``Trade``
     case trade
