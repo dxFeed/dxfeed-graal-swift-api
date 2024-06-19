@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     var collector: DXInstrumentProfileCollector?
     var connection: DXInstrumentProfileConnection?
 
-    var finished = false
     private var buffer = [String: InstrumentProfile]()
     private var ipfList = [InstrumentProfile]()
 
@@ -28,6 +27,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addressTextField.text = "https://demo:demo@tools.dxfeed.com/ipf"
         view.backgroundColor = .tableBackground
         ipfTableView.backgroundColor = .tableBackground
         addressTextField.backgroundColor = .priceBackground
@@ -45,9 +45,13 @@ class ViewController: UIViewController {
         do {
             collector = try DXInstrumentProfileCollector()
             connection = try DXInstrumentProfileConnection(addressTextField.text ?? "", collector!)
+            // Update period can be used to re-read IPF files, not needed for services supporting IPF "live-update"
+            try connection?.setUpdatePeriod(60000)
             connection?.add(observer: self)
             try collector?.add(observer: self)
             try connection?.start()
+            // We can wait until we get first full snapshot of instrument profiles
+            connection?.waitUntilCompleted(3000)
         } catch {
             print("Error during creation IPF data source: \(error)")
         }
@@ -57,19 +61,18 @@ class ViewController: UIViewController {
 extension ViewController: DXInstrumentProfileConnectionObserver {
     func connectionDidChangeState(old: DXFeedFramework.DXInstrumentProfileConnectionState,
                                   new: DXFeedFramework.DXInstrumentProfileConnectionState) {
-        if new == .completed {
-            finished = true
-
-        }
         print("\(CACurrentMediaTime()) connectionDidChangeState: \(new)")
     }
 }
 
 extension ViewController: DXInstrumentProfileUpdateListener {
     func instrumentProfilesUpdated(_ instruments: [DXFeedFramework.InstrumentProfile]) {
-        print("\(CACurrentMediaTime()) \(instruments.count)")
         instruments.forEach { ipf in
-            self.buffer[ipf.symbol] = ipf
+            if ipf.ipfType == .removed {
+                self.buffer.removeValue(forKey: ipf.symbol)
+            } else {
+                self.buffer[ipf.symbol] = ipf
+            }
         }
         DispatchQueue.main.async {
             self.lastUpdateLabel.text = TimeUtil.toLocalDateString(millis: self.collector?.getLastUpdateTime() ?? 0)
@@ -99,4 +102,3 @@ extension ViewController: UITableViewDataSource, UITabBarDelegate {
         return cell
     }
 }
-
