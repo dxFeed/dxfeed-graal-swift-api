@@ -342,7 +342,6 @@
 		64ECD6852A9DDF6200B36935 /* DXInstrumentProfileCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD6842A9DDF6200B36935 /* DXInstrumentProfileCollector.swift */; };
 		64ECD6872A9DDFBE00B36935 /* DXInstrumentProfileConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ECD6862A9DDFBE00B36935 /* DXInstrumentProfileConnection.swift */; };
 		64FCAF902A572D4600971F4E /* libDxFeedGraalNativeSdk.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		64FFE59F2AD430E4003D3353 /* ScheduleSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FFE59E2AD430E4003D3353 /* ScheduleSample.swift */; };
 		803BAC1629BFA50700FFAB1C /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		803BAC1C29BFA50700FFAB1C /* DxFeedSwiftFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76329C0FBCE00F240CB /* ThreadManager.swift */; };
@@ -542,6 +541,7 @@
 		6406F25A2AD987EB00B58C42 /* PublisherTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherTest.swift; sourceTree = "<group>"; };
 		640885C42B1F477A00E6CF88 /* DxFeedIpfConnect.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = DxFeedIpfConnect.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		640885C52B1F553C00E6CF88 /* DXFeedLiveIpfSample.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = DXFeedLiveIpfSample.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		640885C62B1F657300E6CF88 /* ScheduleSample.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ScheduleSample.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6408BB712B1F2D14005D7797 /* WriteTapeFile.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = WriteTapeFile.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		64098F492ACD6AF20020D741 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		64098F4C2ACD73820020D741 /* PerfTestEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfTestEventListener.swift; sourceTree = "<group>"; };
@@ -820,7 +820,6 @@
 		64ECD6812A9DDC2800B36935 /* DXInstrumentProfileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileReader.swift; sourceTree = "<group>"; };
 		64ECD6842A9DDF6200B36935 /* DXInstrumentProfileCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileCollector.swift; sourceTree = "<group>"; };
 		64ECD6862A9DDFBE00B36935 /* DXInstrumentProfileConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileConnection.swift; sourceTree = "<group>"; };
-		64FFE59E2AD430E4003D3353 /* ScheduleSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSample.swift; sourceTree = "<group>"; };
 		803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DXFeedFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DxFeedSwiftFramework.h; sourceTree = "<group>"; };
 		803BAC1529BFA50700FFAB1C /* DXFeedFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DXFeedFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -965,7 +964,6 @@
 				641BDD572AC71CCE00236B78 /* LatencyTestTool.swift */,
 				645BE8512AC31E7C0028243D /* PerfTestTool.swift */,
 				648BD5682AC450D6004A3A95 /* ConnectTool.swift */,
-				64FFE59E2AD430E4003D3353 /* ScheduleSample.swift */,
 				645CD0032AE145E600F99FCF /* DumpTool.swift */,
 				648BD56A2AC4576F004A3A95 /* HelpTool.swift */,
 				648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */,
@@ -1008,6 +1006,7 @@
 				6408BB712B1F2D14005D7797 /* WriteTapeFile.playground */,
 				640885C42B1F477A00E6CF88 /* DxFeedIpfConnect.playground */,
 				640885C52B1F553C00E6CF88 /* DXFeedLiveIpfSample.playground */,
+				640885C62B1F657300E6CF88 /* ScheduleSample.playground */,
 			);
 			path = Playgrounds;
 			sourceTree = "<group>";
@@ -2128,7 +2127,6 @@
 				641BDD582AC71CCE00236B78 /* LatencyTestTool.swift in Sources */,
 				644FE5CD2AC1E9E200580E3A /* PerfDiagnostic.swift in Sources */,
 				644FE5CF2AC1F25900580E3A /* DXFTimer.swift in Sources */,
-				64FFE59F2AD430E4003D3353 /* ScheduleSample.swift in Sources */,
 				644FE5CE2AC1EC1500580E3A /* TimeInterval+Ext.swift in Sources */,
 				64148B672ABB5C320063110E /* main.swift in Sources */,
 				647426AD2ABC85F20012F793 /* Arguments.swift in Sources */,

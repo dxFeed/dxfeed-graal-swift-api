@@ -10,7 +10,6 @@ import Foundation
 let commands: [ToolsCommand] = [PerfTestTool(),
                                 ConnectTool(),
                                 LatencyTestTool(),
-                                ScheduleSample(),
                                 DumpTool(),
                                 HelpTool()]
 
