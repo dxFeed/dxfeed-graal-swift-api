@@ -20,13 +20,13 @@ class Subscription {
     where O: DXEventListener,
           O: Hashable {
               endpoint = try? DXEndpoint.builder().withRole(.feed).build()
-              _ = try? endpoint?.connect(address)              
+              _ = try? endpoint?.connect(address)
               types.split(separator: ",").forEach { str in
                   let subscription = try? endpoint?.getFeed()?.createSubscription(EventCode(string: String(str)))
                   try? subscription?.add(observer: listener)
                   if time != nil {
                       guard let date = TimeUtil.parse(time!) else {
-                          fatalError("Couldn't parse string \(time ?? "") to Date object")                          
+                          fatalError("Couldn't parse string \(time ?? "") to Date object")
                       }
                       let timeSubscriptionSymbols = symbols.map { symbol in
                           TimeSeriesSubscriptionSymbol(symbol: symbol, date: date)

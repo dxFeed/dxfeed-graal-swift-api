@@ -21,7 +21,7 @@ final class DateTimeParserTest: XCTestCase {
     func testZero() {
         XCTAssert(TimeUtil.parse(" 0    ") == Date(millisecondsSince1970: 0))
     }
-    
+
     private func checkDate(_ date: Date?, components: DateComponents) {
         guard let date = date else {
             XCTAssert(false, "Date should not be null")
