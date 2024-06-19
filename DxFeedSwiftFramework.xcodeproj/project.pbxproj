@@ -27,7 +27,7 @@
 		64104FC92A26298D00D1FC41 /* DXFeedSubcription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC82A26298D00D1FC41 /* DXFeedSubcription.swift */; };
 		64104FCC2A2629D800D1FC41 /* NativeSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FCB2A2629D800D1FC41 /* NativeSubscription.swift */; };
 		64104FD32A277B2D00D1FC41 /* ListNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FD22A277B2D00D1FC41 /* ListNative.swift */; };
-		64125E342A1F688900FB32BA /* libDxFeedGraalNativeSdk.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 64125E332A1F688900FB32BA /* libDxFeedGraalNativeSdk.o */; platformFilter = ios; };
+		64125E342A1F688900FB32BA /* libDxFeedGraalNativeSdk.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 64125E332A1F688900FB32BA /* libDxFeedGraalNativeSdk.o */; platformFilters = (ios, xros, ); };
 		64125E362A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); };
 		64125E372A1F69FD00FB32BA /* libDxFeedGraalNativeSdk.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		6417DD192A39C22C008912D6 /* DxFeedSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; };
@@ -37,6 +37,19 @@
 		641BCBC12A21077800FE23C2 /* EventCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBC02A21077800FE23C2 /* EventCode.swift */; };
 		642528D02A3C534D00A04E41 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
 		642528D12A3C534D00A04E41 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
+		64262CCE2A4DA64700BA6BA3 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 64262CCD2A4DA64700BA6BA3 /* RealityKitContent */; };
+		64262CD02A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CCF2A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift */; };
+		64262CD22A4DA64700BA6BA3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CD12A4DA64700BA6BA3 /* ContentView.swift */; };
+		64262CD72A4DA64800BA6BA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64262CD62A4DA64800BA6BA3 /* Preview Assets.xcassets */; };
+		64262CDB2A4DA66100BA6BA3 /* DxFeedSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; };
+		64262CDC2A4DA66100BA6BA3 /* DxFeedSwiftFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		64262CE12A4DADCF00BA6BA3 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CE02A4DADCF00BA6BA3 /* Endpoint.swift */; };
+		64262CE22A4DB68B00BA6BA3 /* Endpoint+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B6277C2A3762D000196D07 /* Endpoint+Ext.swift */; };
+		64262CE42A4DC16F00BA6BA3 /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CE32A4DC16F00BA6BA3 /* QuoteViewModel.swift */; };
+		64262CE92A4DC70C00BA6BA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64262CD32A4DA64800BA6BA3 /* Assets.xcassets */; };
+		64262CEA2A4DC71600BA6BA3 /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
+		64262CEB2A4DC77600BA6BA3 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646979712A3B5AF60003A9BA /* Colors.xcassets */; };
+		64262CED2A4DC8BC00BA6BA3 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64262CEC2A4DC8BC00BA6BA3 /* DataSource.swift */; };
 		642BE4C42A2E1AFF0052340A /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4C32A2E1AFF0052340A /* Quote.swift */; };
 		642BE4C82A2E1BD40052340A /* QuoteMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4C72A2E1BD40052340A /* QuoteMapper.swift */; };
 		642BE4CA2A2E1C640052340A /* MarketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4C92A2E1C640052340A /* MarketEvent.swift */; };
@@ -152,8 +165,8 @@
 		803BAC1629BFA50700FFAB1C /* DxFeedSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; };
 		803BAC1C29BFA50700FFAB1C /* DxFeedSwiftFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		803BAC2B29BFA69A00FFAB1C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2A29BFA69400FFAB1C /* libc++.tbd */; };
-		803BAC3029BFA6FA00FFAB1C /* jdk-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2C29BFA6EE00FFAB1C /* jdk-arm64-ios-r.a */; platformFilter = ios; };
-		803BAC3129BFA6FA00FFAB1C /* graal-svm-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2D29BFA6EE00FFAB1C /* graal-svm-arm64-ios-r.a */; platformFilter = ios; };
+		803BAC3029BFA6FA00FFAB1C /* jdk-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2C29BFA6EE00FFAB1C /* jdk-arm64-ios-r.a */; platformFilters = (ios, xros, ); };
+		803BAC3129BFA6FA00FFAB1C /* graal-svm-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2D29BFA6EE00FFAB1C /* graal-svm-arm64-ios-r.a */; platformFilters = (ios, xros, ); };
 		8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76329C0FBCE00F240CB /* ThreadManager.swift */; };
 		8088D76629C0FBCE00F240CB /* IsolateThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76429C0FBCE00F240CB /* IsolateThread.swift */; };
 		8088D76929C0FC5C00F240CB /* Isolate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76829C0FC5C00F240CB /* Isolate.swift */; };
@@ -175,6 +188,13 @@
 			remoteInfo = DxFeedSwiftFramework;
 		};
 		6417DD1B2A39C22C008912D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 803BAC0429BFA50700FFAB1C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 803BAC0C29BFA50700FFAB1C;
+			remoteInfo = DxFeedSwiftFramework;
+		};
+		64262CDD2A4DA66100BA6BA3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 803BAC0429BFA50700FFAB1C /* Project object */;
 			proxyType = 1;
@@ -219,6 +239,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				6417DD1A2A39C22C008912D6 /* DxFeedSwiftFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64262CDF2A4DA66100BA6BA3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				64262CDC2A4DA66100BA6BA3 /* DxFeedSwiftFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,6 +317,15 @@
 		641BCBB92A1FB42500FE23C2 /* TestListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListener.swift; sourceTree = "<group>"; };
 		641BCBBB2A20ED8100FE23C2 /* DXEndpointObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXEndpointObserver.swift; sourceTree = "<group>"; };
 		641BCBC02A21077800FE23C2 /* EventCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCode.swift; sourceTree = "<group>"; };
+		64262CC92A4DA64600BA6BA3 /* VisionQuoteTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisionQuoteTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64262CCC2A4DA64700BA6BA3 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
+		64262CCF2A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionQuoteTableAppApp.swift; sourceTree = "<group>"; };
+		64262CD12A4DA64700BA6BA3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		64262CD32A4DA64800BA6BA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		64262CD62A4DA64800BA6BA3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		64262CE02A4DADCF00BA6BA3 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		64262CE32A4DC16F00BA6BA3 /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
+		64262CEC2A4DC8BC00BA6BA3 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		642BE4C32A2E1AFF0052340A /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		642BE4C72A2E1BD40052340A /* QuoteMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteMapper.swift; sourceTree = "<group>"; };
 		642BE4C92A2E1C640052340A /* MarketEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketEvent.swift; sourceTree = "<group>"; };
@@ -397,6 +437,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		64262CC62A4DA64600BA6BA3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64262CCE2A4DA64700BA6BA3 /* RealityKitContent in Frameworks */,
+				64262CDB2A4DA66100BA6BA3 /* DxFeedSwiftFramework.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		644BD7572A44726F00A0BF99 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -481,6 +530,36 @@
 				64BA92642A306E0200BE26A0 /* Trade.swift */,
 			);
 			path = Market;
+			sourceTree = "<group>";
+		};
+		64262CCA2A4DA64700BA6BA3 /* VisionQuoteTableApp */ = {
+			isa = PBXGroup;
+			children = (
+				64262CCF2A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift */,
+				64262CD12A4DA64700BA6BA3 /* ContentView.swift */,
+				64262CEC2A4DC8BC00BA6BA3 /* DataSource.swift */,
+				64262CE02A4DADCF00BA6BA3 /* Endpoint.swift */,
+				64262CE32A4DC16F00BA6BA3 /* QuoteViewModel.swift */,
+				64262CD32A4DA64800BA6BA3 /* Assets.xcassets */,
+				64262CD52A4DA64800BA6BA3 /* Preview Content */,
+			);
+			path = VisionQuoteTableApp;
+			sourceTree = "<group>";
+		};
+		64262CCB2A4DA64700BA6BA3 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				64262CCC2A4DA64700BA6BA3 /* RealityKitContent */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		64262CD52A4DA64800BA6BA3 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				64262CD62A4DA64800BA6BA3 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		642BE4C52A2E1B550052340A /* Events */ = {
@@ -645,6 +724,7 @@
 			isa = PBXGroup;
 			children = (
 				6469F8D12A3B400100846831 /* Utils */,
+				64262CCA2A4DA64700BA6BA3 /* VisionQuoteTableApp */,
 				644BD75B2A44726F00A0BF99 /* ARQuoteTableApp */,
 				64D8BB3C2A39BB730071BC88 /* LatencyTestApp */,
 				64B6275D2A3761A000196D07 /* PertTestApp */,
@@ -674,6 +754,7 @@
 				803BAC0F29BFA50700FFAB1C /* DxFeedSwiftFramework */,
 				803BAC1929BFA50700FFAB1C /* DxFeedSwiftFrameworkTests */,
 				64D8BB362A39B0DE0071BC88 /* Samples */,
+				64262CCB2A4DA64700BA6BA3 /* Packages */,
 				803BAC0E29BFA50700FFAB1C /* Products */,
 				803BAC2529BFA67C00FFAB1C /* Frameworks */,
 			);
@@ -688,6 +769,7 @@
 				64B6275C2A3761A000196D07 /* DxFeedPertTestApp.app */,
 				64D8BB3B2A39BB730071BC88 /* LatencyTest.app */,
 				644BD75A2A44726F00A0BF99 /* ARQuoteTableApp.app */,
+				64262CC92A4DA64600BA6BA3 /* VisionQuoteTableApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -820,6 +902,28 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		64262CC82A4DA64600BA6BA3 /* VisionQuoteTableApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64262CDA2A4DA64800BA6BA3 /* Build configuration list for PBXNativeTarget "VisionQuoteTableApp" */;
+			buildPhases = (
+				64262CC52A4DA64600BA6BA3 /* Sources */,
+				64262CC62A4DA64600BA6BA3 /* Frameworks */,
+				64262CC72A4DA64600BA6BA3 /* Resources */,
+				64262CDF2A4DA66100BA6BA3 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				64262CDE2A4DA66100BA6BA3 /* PBXTargetDependency */,
+			);
+			name = VisionQuoteTableApp;
+			packageProductDependencies = (
+				64262CCD2A4DA64700BA6BA3 /* RealityKitContent */,
+			);
+			productName = VisionQuoteTableApp;
+			productReference = 64262CC92A4DA64600BA6BA3 /* VisionQuoteTableApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 		644BD7592A44726F00A0BF99 /* ARQuoteTableApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 644BD76C2A44727000A0BF99 /* Build configuration list for PBXNativeTarget "ARQuoteTableApp" */;
@@ -944,9 +1048,12 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				CLASSPREFIX = DX;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					64262CC82A4DA64600BA6BA3 = {
+						CreatedOnToolsVersion = 15.0;
+					};
 					644BD7592A44726F00A0BF99 = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -992,11 +1099,22 @@
 				64B6275B2A3761A000196D07 /* DxFeedPertTestApp */,
 				64D8BB3A2A39BB730071BC88 /* LatencyTest */,
 				644BD7592A44726F00A0BF99 /* ARQuoteTableApp */,
+				64262CC82A4DA64600BA6BA3 /* VisionQuoteTableApp */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		64262CC72A4DA64600BA6BA3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64262CEB2A4DC77600BA6BA3 /* Colors.xcassets in Resources */,
+				64262CE92A4DC70C00BA6BA3 /* Assets.xcassets in Resources */,
+				64262CD72A4DA64800BA6BA3 /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		644BD7582A44726F00A0BF99 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1116,6 +1234,20 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		64262CC52A4DA64600BA6BA3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64262CED2A4DC8BC00BA6BA3 /* DataSource.swift in Sources */,
+				64262CEA2A4DC71600BA6BA3 /* DXFTimer.swift in Sources */,
+				64262CD22A4DA64700BA6BA3 /* ContentView.swift in Sources */,
+				64262CE12A4DADCF00BA6BA3 /* Endpoint.swift in Sources */,
+				64262CE22A4DB68B00BA6BA3 /* Endpoint+Ext.swift in Sources */,
+				64262CE42A4DC16F00BA6BA3 /* QuoteViewModel.swift in Sources */,
+				64262CD02A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		644BD7562A44726F00A0BF99 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1281,6 +1413,11 @@
 			target = 803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */;
 			targetProxy = 6417DD1B2A39C22C008912D6 /* PBXContainerItemProxy */;
 		};
+		64262CDE2A4DA66100BA6BA3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */;
+			targetProxy = 64262CDD2A4DA66100BA6BA3 /* PBXContainerItemProxy */;
+		};
 		644BD7852A4474B900A0BF99 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 803BAC0C29BFA50700FFAB1C /* DxFeedSwiftFramework */;
@@ -1371,6 +1508,72 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		64262CD82A4DA64800BA6BA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Samples/VisionQuoteTableApp/Preview Content\"";
+				DEVELOPMENT_TEAM = NU75WFM6U6;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.VisionQuoteTableApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Debug;
+		};
+		64262CD92A4DA64800BA6BA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Samples/VisionQuoteTableApp/Preview Content\"";
+				DEVELOPMENT_TEAM = NU75WFM6U6;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.VisionQuoteTableApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				VALIDATE_PRODUCT = YES;
+				XROS_DEPLOYMENT_TARGET = 1.0;
+			};
+			name = Release;
+		};
 		644BD76A2A44727000A0BF99 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1781,12 +1984,15 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = auto;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Debug;
 		};
@@ -1826,11 +2032,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = auto;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Release;
 		};
@@ -1897,6 +2106,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		64262CDA2A4DA64800BA6BA3 /* Build configuration list for PBXNativeTarget "VisionQuoteTableApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64262CD82A4DA64800BA6BA3 /* Debug */,
+				64262CD92A4DA64800BA6BA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		644BD76C2A44727000A0BF99 /* Build configuration list for PBXNativeTarget "ARQuoteTableApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1970,6 +2188,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		64262CCD2A4DA64700BA6BA3 /* RealityKitContent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RealityKitContent;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 803BAC0429BFA50700FFAB1C /* Project object */;
 }
