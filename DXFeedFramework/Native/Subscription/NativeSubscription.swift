@@ -231,12 +231,9 @@ class NativeSubscription {
             _ = try? ErrorCheck.nativeCall(thread, dxfg_CList_symbol_release(thread, nativeResult))
         }
 
-        var result = [Symbol]()
-        SymbolMapper.newSymbols(symbols: nativeResult).forEach { obj in
-            if let symbol = obj as? Symbol {
-                result.append(symbol)
-            }
-        }
+        var result: [Symbol] = SymbolMapper.newSymbols(symbols: nativeResult).compactMap({ obj in
+            obj as? Symbol
+        })
         return result
     }
 

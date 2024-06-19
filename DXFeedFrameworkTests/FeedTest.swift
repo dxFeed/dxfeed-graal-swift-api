@@ -217,12 +217,14 @@ final class FeedTest: XCTestCase {
         let feed = try endpoint.getFeed()?.createSubscription([Candle.self])
         try feed?.setSymbols(symbols)
         if let resultSymbols = try feed?.getSymbols() {
-            // Sorted arrays use for comparing.
-            let equals = symbols.map { symbol in
-                SymbolEquatable(value: symbol)
-            }.sorted { $0.value.stringValue > $1.value.stringValue } == resultSymbols.map({ symbol in
-                SymbolEquatable(value: symbol)
-            }).sorted { $0.value.stringValue > $1.value.stringValue }
+            // Using sets for comparing.
+            let inputSymbols = symbols.reduce(into: Set<String>(), { (values, object) in
+                values.insert(object.stringValue)
+            })
+            XCTAssert(inputSymbols.count == symbols.count)
+            let equals = inputSymbols == resultSymbols.reduce(into: Set<String>(), { (values, object) in
+                values.insert(object.stringValue)
+            })
             XCTAssert(equals)
         } else {
             XCTAssert(false, "Subscription returned null")
@@ -230,10 +232,4 @@ final class FeedTest: XCTestCase {
     }
 }
 
-// Symbol is protocol. Protocol doesn't support equatable. It is workaround for checking unique symbols.
-struct SymbolEquatable: Equatable {
-    let value: Symbol
-    static func == (lhs: SymbolEquatable, rhs: SymbolEquatable) -> Bool {
-        return lhs.value.stringValue == rhs.value.stringValue
-    }
-}
+
