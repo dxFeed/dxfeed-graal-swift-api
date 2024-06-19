@@ -35,6 +35,7 @@
 		64656F712A1CFEF8006A0B19 /* ListenerStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F702A1CFEF8006A0B19 /* ListenerStorage.swift */; };
 		64656F732A1D0A84006A0B19 /* EndpointListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F722A1D0A84006A0B19 /* EndpointListener.swift */; };
 		64656F752A1D0C91006A0B19 /* WeakListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F742A1D0C91006A0B19 /* WeakListener.swift */; };
+		64656F772A1DFED9006A0B19 /* EndpointState+Native.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F762A1DFED9006A0B19 /* EndpointState+Native.swift */; };
 		803BAC1629BFA50700FFAB1C /* DxFeedSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; };
 		803BAC1C29BFA50700FFAB1C /* DxFeedSwiftFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		803BAC2729BFA67C00FFAB1C /* libDxFeedGraalNativeApi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2629BFA67C00FFAB1C /* libDxFeedGraalNativeApi.dylib */; platformFilters = (macos, ); };
@@ -98,6 +99,7 @@
 		64656F702A1CFEF8006A0B19 /* ListenerStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenerStorage.swift; sourceTree = "<group>"; };
 		64656F722A1D0A84006A0B19 /* EndpointListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointListener.swift; sourceTree = "<group>"; };
 		64656F742A1D0C91006A0B19 /* WeakListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakListener.swift; sourceTree = "<group>"; };
+		64656F762A1DFED9006A0B19 /* EndpointState+Native.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EndpointState+Native.swift"; sourceTree = "<group>"; };
 		803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DxFeedSwiftFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DxFeedSwiftFramework.h; sourceTree = "<group>"; };
 		803BAC1529BFA50700FFAB1C /* DxFeedSwiftFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DxFeedSwiftFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -280,6 +282,7 @@
 				64656F582A1B864C006A0B19 /* NativeEndpoint.swift */,
 				64656F722A1D0A84006A0B19 /* EndpointListener.swift */,
 				64656F742A1D0C91006A0B19 /* WeakListener.swift */,
+				64656F762A1DFED9006A0B19 /* EndpointState+Native.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				64656F732A1D0A84006A0B19 /* EndpointListener.swift in Sources */,
 				64656F6D2A1CFB10006A0B19 /* EndpointState.swift in Sources */,
 				64656F672A1CCFC2006A0B19 /* DXFPublisher.swift in Sources */,
+				64656F772A1DFED9006A0B19 /* EndpointState+Native.swift in Sources */,
 				64656F752A1D0C91006A0B19 /* WeakListener.swift in Sources */,
 				80FC415F29CA2C5100E6B611 /* NativeProperty.swift in Sources */,
 				64656F622A1B9FF7006A0B19 /* EnumException.swift in Sources */,

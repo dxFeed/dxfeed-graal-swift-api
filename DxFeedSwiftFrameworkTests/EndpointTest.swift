@@ -30,8 +30,40 @@ final class EndpointTest: XCTestCase {
     }
     func testFeed() throws {
         let endpoint: DXFEndpoint? = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
-        XCTAssertNotNil(endpoint, "Feed should be not nil")
+        XCTAssertNotNil(endpoint, "Endpoint should be not nil")
         let feed = endpoint?.getFeed()
         XCTAssertNotNil(feed, "Feed should be not nil")
+    }
+    func testConnect() throws {
+        let endpoint: DXFEndpoint? = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        XCTAssertNotNil(endpoint, "Endpoint should be not nil")
+
+        class Listener: EndpointListener {
+            var state = EndpointState.notConnected
+            var expectations: [EndpointState: XCTestExpectation]
+            init(expectations: [EndpointState: XCTestExpectation]) {
+                self.expectations = expectations
+            }
+            func changeState(old: DxFeedSwiftFramework.EndpointState, new: DxFeedSwiftFramework.EndpointState) {
+                if let expectation = expectations[new] {
+                    expectation.fulfill()
+                }
+            }
+        }
+        let expectations = [EndpointState.connected: expectation(description: "Connected"),
+                            EndpointState.connecting: expectation(description: "Connecting"),
+                            EndpointState.notConnected: expectation(description: "NotConnected")]
+        let listener = Listener(expectations: expectations)
+        endpoint?.appendListener(listener)
+        try endpoint?.connect("demo.dxfeed.com:7300")
+        let exps = Array(expectations.filter({ element in
+            element.key != .notConnected
+        }).values)
+        wait(for: exps, timeout: 5)
+        try endpoint?.disconnect()
+        let expsNotConnected = Array(expectations.filter({ element in
+            element.key == .notConnected
+        }).values)
+        wait(for: expsNotConnected, timeout: 5)
     }
 }
