@@ -20,7 +20,7 @@ class NativeEndpoint {
             }
         }
     }
-    
+
     static let listenerCallback: dxfg_endpoint_state_change_listener_func = {_, oldState, newState, context in
         if let context = context {
             let endpoint: AnyObject = bridge(ptr: context)
@@ -40,7 +40,7 @@ class NativeEndpoint {
             print(error)
             return nil
         }
-    }()    
+    }()
     deinit {
         if let listener = listener {
             let thread = currentThread()
@@ -50,7 +50,7 @@ class NativeEndpoint {
             let thread = currentThread()
             _ = try? ErrorCheck.nativeCall(thread,
                                            dxfg_JavaObjectHandler_release(thread, &(endpoint.pointee.handler)))
-        }        
+        }
     }
     internal init(_ native: UnsafeMutablePointer<dxfg_endpoint_t>) {
         self.endpoint = native
