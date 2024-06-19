@@ -200,9 +200,12 @@ class PerfTestViewController: UIViewController {
             try? endpoint?.disconnect()
             subscription = nil
         } else {
+            guard let address = addressTextField.text else {
+                return
+            }
             endpoint = try? DXEndpoint.builder().withRole(.feed).build()
             endpoint?.add(self)
-            try? endpoint?.connect("localhost:6666")
+            try? endpoint?.connect(address)
 
             subscription = try? endpoint?.getFeed()?.createSubscription(.timeAndSale)
             profileSubscription = try? endpoint?.getFeed()?.createSubscription(.profile)
