@@ -22,5 +22,16 @@ final class EndpointTest: XCTestCase {
         let endpoint = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint shouldn't be nil")
     }
-
+    func testDealloc() throws {
+        var endpoint: DXFEndpoint? = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        endpoint = nil
+        let sec = 5
+        _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
+    }
+    func testFeed() throws {
+        let endpoint: DXFEndpoint? = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        XCTAssertNotNil(endpoint, "Feed should be not nil")
+        let feed = endpoint?.getFeed()
+        XCTAssertNotNil(feed, "Feed should be not nil")
+    }
 }

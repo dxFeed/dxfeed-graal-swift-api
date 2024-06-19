@@ -12,6 +12,6 @@ class EnumUtil {
         if let value = value {
             return value
         }
-        throw EnumException.undefined
+        throw EnumException.undefinedEnumValue
     }
 }

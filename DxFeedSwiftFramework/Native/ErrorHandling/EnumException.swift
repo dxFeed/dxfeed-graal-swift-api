@@ -8,5 +8,5 @@
 import Foundation
 
 enum EnumException: Error {
-    case undefined
+    case undefinedEnumValue
 }
