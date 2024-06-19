@@ -63,7 +63,9 @@ extension SymbolsViewController: UITableViewDelegate, UITableViewDataSource {
         return 70
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             symbols.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
