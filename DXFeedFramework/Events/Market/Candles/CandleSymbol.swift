@@ -6,8 +6,8 @@
 
 import Foundation
 
-/// Symbol that should be used with``DXFeedSubcription`` class
-/// to subscribe for``Candle`` events.``DXFeedSubcription`` also accepts a string
+/// Symbol that should be used with``DXFeedSubscription`` class
+/// to subscribe for``Candle`` events.``DXFeedSubscription`` also accepts a string
 /// representation of the candle symbol for subscription.
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/candle/CandleSymbol.html)

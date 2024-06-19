@@ -9,7 +9,7 @@ import XCTest
 
 final class FeedTest: XCTestCase {
     func testInitializationWithNilNativeSubscription() {
-        XCTAssertThrowsError(try DXFeedSubcription(native: nil, events: [.quote])) { error in
+        XCTAssertThrowsError(try DXFeedSubscription(native: nil, events: [.quote])) { error in
             // Assert
             XCTAssertTrue(error is ArgumentException)
         }

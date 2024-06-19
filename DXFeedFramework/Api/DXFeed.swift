@@ -28,20 +28,20 @@ public class DXFeed {
     /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeed.html#createSubscription-java.lang.Class)
     /// - Parameters:
     ///     - events: The list of event codes.
-    /// - Returns: ``DXFeedSubcription``
+    /// - Returns: ``DXFeedSubscription``
     /// - Throws: ``GraalException``. Rethrows exception from Java., ``ArgumentException/argumentNil``
-    public func createSubscription(_ events: [EventCode]) throws -> DXFeedSubcription {
-        return try DXFeedSubcription(native: native.createSubscription(events), events: events)
+    public func createSubscription(_ events: [EventCode]) throws -> DXFeedSubscription {
+        return try DXFeedSubscription(native: native.createSubscription(events), events: events)
     }
     /// Creates new subscription for a one event type that is attached to this feed.
     ///
     /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeed.html#createSubscription-java.lang.Class)
     /// - Parameters:
     ///     - event: event code
-    /// - Returns: ``DXFeedSubcription``
+    /// - Returns: ``DXFeedSubscription``
     /// - Throws: GraalException. Rethrows exception from Java.
-    public func createSubscription(_ event: EventCode) throws -> DXFeedSubcription {
-        return try DXFeedSubcription(native: native.createSubscription(event), events: [event])
+    public func createSubscription(_ event: EventCode) throws -> DXFeedSubscription {
+        return try DXFeedSubscription(native: native.createSubscription(event), events: [event])
     }
 
     public func createTimeSeriesSubscription(_ events: [EventCode]) throws -> DXFeedTimeSeriesSubscription {

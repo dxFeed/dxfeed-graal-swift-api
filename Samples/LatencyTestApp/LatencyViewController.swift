@@ -13,7 +13,7 @@ class LatencyViewController: UIViewController {
     let numberFormatter = NumberFormatter()
 
     private var endpoint: DXEndpoint?
-    private var subscription: DXFeedSubcription?
+    private var subscription: DXFeedSubscription?
 
     var symbols = ["ETH/USD:GDAX"]
     var blackHoleInt: Int64 = 0

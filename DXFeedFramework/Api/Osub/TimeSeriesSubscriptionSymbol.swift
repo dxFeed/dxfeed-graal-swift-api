@@ -7,7 +7,7 @@
 import Foundation
 /// Represents subscription to time-series of events.
 ///
-/// Instances of this class can be used with ``DXFeedSubcription`` to specify subscription
+/// Instances of this class can be used with ``DXFeedSubscription`` to specify subscription
 /// for time series events from a specific time. By default, subscribing to time-series events by
 /// their event symbol object, the subscription is performed to a stream of new events as they happen only.
 ///

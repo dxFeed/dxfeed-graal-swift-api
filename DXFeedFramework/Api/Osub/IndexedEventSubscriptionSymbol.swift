@@ -8,7 +8,7 @@ import Foundation
 
 /// Represents subscription to a specific source of indexed events.
 ///
-/// Instances of this class can be used with ``DXFeedSubcription``
+/// Instances of this class can be used with ``DXFeedSubscription``
 /// to specify subscription to a particular source of indexed events.
 /// By default, when subscribing to indexed events by their event symbol object,
 /// the subscription is performed to all supported sources.

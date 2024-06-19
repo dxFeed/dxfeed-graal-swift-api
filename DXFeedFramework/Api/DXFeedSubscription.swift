@@ -9,7 +9,7 @@ import Foundation
 /// Subscription for a set of symbols and event types.
 ///
 /// [Read it first Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html)
-public class DXFeedSubcription {
+public class DXFeedSubscription {
     /// Subscription native wrapper.
     private let native: NativeSubscription
     /// List of event types associated with this ``DXFeedSubscription``
@@ -91,7 +91,7 @@ public class DXFeedSubcription {
     }
 }
 
-extension DXFeedSubcription: DXEventListener {
+extension DXFeedSubscription: DXEventListener {
     public func receiveEvents(_ events: [MarketEvent]) {
         listeners.reader { items in
             let enumerator = items.objectEnumerator()
@@ -102,8 +102,8 @@ extension DXFeedSubcription: DXEventListener {
     }
 }
 
-extension DXFeedSubcription: Hashable {
-    public static func == (lhs: DXFeedSubcription, rhs: DXFeedSubcription) -> Bool {
+extension DXFeedSubscription: Hashable {
+    public static func == (lhs: DXFeedSubscription, rhs: DXFeedSubscription) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
 
@@ -112,7 +112,7 @@ extension DXFeedSubcription: Hashable {
     }
 }
 
-extension DXFeedSubcription: IObservableSubscription {
+extension DXFeedSubscription: IObservableSubscription {
     public func isClosed() -> Bool {
         return native.isClosed()
     }

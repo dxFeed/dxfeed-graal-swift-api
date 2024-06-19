@@ -9,7 +9,7 @@ import DXFeedFramework
 
 class Subscription {
     var endpoint: DXEndpoint?
-    var subscriptions = [DXFeedSubcription]()
+    var subscriptions = [DXFeedSubscription]()
 
     // swiftlint:disable function_parameter_count
     func createSubscription<O>(address: String,
