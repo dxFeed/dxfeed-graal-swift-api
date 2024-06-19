@@ -35,7 +35,8 @@ struct ContentView: View {
             GeometryReader { metrics in
                 ScrollView {
                     LazyVStack(spacing: 10) {
-                        ForEach(datasource.quotes) { item in
+                        Spacer().frame(height: 20)
+                        ForEach(datasource.quotes, id: \.self) { item in
                             HStack(spacing: 10) {
                                 Text(item.title)
                                     .padding(.leading, 10)
@@ -60,11 +61,10 @@ struct ContentView: View {
                             .background(
                                 RoundedRectangle(cornerRadius: 10).foregroundColor(.cellBackground)
                             )
-
                             .frame(height: cellHeight)
                         }
                     }
-                }.padding(.top, 20)
+                }
                 .padding(.leading, 20)
                 .padding(.trailing, 20)
             }
