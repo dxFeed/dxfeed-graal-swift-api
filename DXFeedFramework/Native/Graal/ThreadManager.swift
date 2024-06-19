@@ -23,19 +23,27 @@ class ThreadManager {
     private static let kThreadKey = "GraalThread"
     private static let key = UnsafeMutablePointer<pthread_key_t>.allocate(capacity: 1)
     static var str1: String = ""
+    private static var graalThreads = Set<String>()
 
     private init() {
         pthread_key_create(ThreadManager.key) { pointer in
             pointer.withMemoryRebound(to: OpaquePointer.self, capacity: 1) { pointer1 in
                 print("deinit thread \(Thread.isMainThread) \(Thread.current) \(Thread.current.threadName) \(pthread_mach_thread_np(pthread_self())) \(pointer1)")
 
+                let currentThread = graal_get_current_thread(Isolate.shared.isolate.pointee)
                 // The call to this method has been removed.
                 // In some cases: an attachment to a java thread crashes when you try to use this thread (deinit in this java thread)
-                graal_detach_thread(pointer1.pointee)
+                print("pthread_key_create")
+                if !ThreadManager.containsPthread() {
+                    graal_detach_thread(pointer1.pointee)
+                }
+                print("pthread_key_create1")
                 pointer.deallocate()
+                print("pthread_key_create2")
             }
         }
     }
+    
     fileprivate func currentThread() -> OpaquePointer!{
         defer {
             objc_sync_exit(self)
@@ -59,6 +67,14 @@ class ThreadManager {
         _ = graal_attach_thread(Isolate.shared.isolate.pointee, threadPointer)
         _ = pthread_setspecific(ThreadManager.key.pointee, threadPointer)
         return threadPointer
+    }
+
+    static func insertPthread() {
+        graalThreads.insert("\(pthread_mach_thread_np(pthread_self()))")
+    }
+
+    static func containsPthread() -> Bool {
+        ThreadManager.graalThreads.contains("\(pthread_mach_thread_np(pthread_self()))")
     }
 
 }
