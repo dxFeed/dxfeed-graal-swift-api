@@ -213,7 +213,6 @@
 		648BD56B2AC4576F004A3A95 /* HelpTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56A2AC4576F004A3A95 /* HelpTool.swift */; };
 		648BD56D2AC56A04004A3A95 /* SubscriptionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */; };
 		648BD56F2AC582AB004A3A95 /* DateTimeParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56E2AC582AB004A3A95 /* DateTimeParserTest.swift */; };
-		648BD5712AC583AC004A3A95 /* TimeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD5702AC583AC004A3A95 /* TimeFormat.swift */; };
 		648E98AA2AAF625800BFD219 /* IIndexedEvent+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */; };
 		649282E72AD54919008F0F04 /* ScheduleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282E62AD54919008F0F04 /* ScheduleUtils.swift */; };
 		649282E82AD54919008F0F04 /* ScheduleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282E62AD54919008F0F04 /* ScheduleUtils.swift */; };
@@ -685,7 +684,6 @@
 		648BD56A2AC4576F004A3A95 /* HelpTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTool.swift; sourceTree = "<group>"; };
 		648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionUtils.swift; sourceTree = "<group>"; };
 		648BD56E2AC582AB004A3A95 /* DateTimeParserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeParserTest.swift; sourceTree = "<group>"; };
-		648BD5702AC583AC004A3A95 /* TimeFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormat.swift; sourceTree = "<group>"; };
 		648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IIndexedEvent+Ext.swift"; sourceTree = "<group>"; };
 		649282E62AD54919008F0F04 /* ScheduleUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleUtils.swift; sourceTree = "<group>"; };
 		649282E92AD55323008F0F04 /* IpfConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IpfConnect.swift; sourceTree = "<group>"; };
@@ -1154,7 +1152,6 @@
 				64C771F12A94A224009868C2 /* Character+Ext.swift */,
 				64C772002A975102009868C2 /* Reference+Util.swift */,
 				6464074E2A9F62D4006FF769 /* Date+Ext.swift */,
-				648BD5702AC583AC004A3A95 /* TimeFormat.swift */,
 				64A42F3A2B07A7A3001C3ACC /* SymbolParser.swift */,
 			);
 			path = Utils;
@@ -2327,7 +2324,6 @@
 				640C3FD62A6179E300555161 /* CandleAlignment.swift in Sources */,
 				640C3FCC2A616B6200555161 /* ArgumentException.swift in Sources */,
 				64B436442AB88EA40003919E /* NativeDay.swift in Sources */,
-				648BD5712AC583AC004A3A95 /* TimeFormat.swift in Sources */,
 				642BE4C42A2E1AFF0052340A /* Quote.swift in Sources */,
 				64656F602A1B9EC2006A0B19 /* EnumUtil.swift in Sources */,
 				64A42F492B0B9683001C3ACC /* NativeTimeFormat.swift in Sources */,

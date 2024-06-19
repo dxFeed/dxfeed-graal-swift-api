@@ -43,4 +43,22 @@ class NativeTimePeriod: NativeBox<dxfg_time_period_t> {
         let timePeriod = try ErrorCheck.nativeCall(thread, dxfg_TimePeriod_valueOf2(thread, value.toCStringRef()))
         self.init(native: timePeriod)
     }
+
+    func getTime() throws -> Long {
+        let thread = currentThread()
+        let result = try ErrorCheck.nativeCall(thread, dxfg_TimePeriod_getTime(thread, native))
+        return result
+    }
+
+    func getSeconds() throws -> Int32 {
+        let thread = currentThread()
+        let result = try ErrorCheck.nativeCall(thread, dxfg_TimePeriod_getSeconds(thread, native))
+        return result
+    }
+
+    func getNanos() throws -> Long {
+        let thread = currentThread()
+        let result = try ErrorCheck.nativeCall(thread, dxfg_TimePeriod_getNanos(thread, native))
+        return result
+    }
 }

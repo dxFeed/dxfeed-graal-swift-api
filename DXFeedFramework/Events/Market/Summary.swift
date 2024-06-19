@@ -119,7 +119,7 @@ extension Summary {
         return
 """
 Summary{\(eventSymbol), \
-eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
+eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
 day=\(DayUtil.getYearMonthDayByDayId(dayId)), \
 dayOpen=\(dayOpenPrice), \
 dayHigh=\(dayHighPrice), \

@@ -129,15 +129,15 @@ extension Quote {
     func baseFieldsToString() -> String {
         return """
 \(eventSymbol), \
-eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
-time=\(TimeUtil.toLocalDateString(millis: time)), \
+eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
+time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
 timeNanoPart=\(timeNanoPart), \
 sequence=\(getSequence()), \
-bidTime=\(TimeUtil.toLocalDateStringWithoutMillis(millis: bidTime)), \
+bidTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: bidTime)) ?? ""), \
 bidExchange=\(StringUtil.encodeChar(char: bidExchangeCode)), \
 bidPrice=\(bidPrice), \
 bidSize=\(bidSize), \
-askTime=\(TimeUtil.toLocalDateStringWithoutMillis(millis: askTime)), \
+askTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: askTime)) ?? ""), \
 askExchange=\(StringUtil.encodeChar(char: askExchangeCode)), \
 askPrice=\(askPrice), \
 askSize=\(askSize)

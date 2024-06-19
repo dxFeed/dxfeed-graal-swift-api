@@ -99,7 +99,7 @@ extension ViewController: DXInstrumentProfileUpdateListener {
             self.ipfTableView.reloadData()
             self.lastUpdateLabel.text =
 """
-\(self.ipfList.count) profiles: \(TimeUtil.toLocalDateString(millis: self.collector?.getLastUpdateTime() ?? 0))
+\(self.ipfList.count) profiles: \(try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: self.collector?.getLastUpdateTime() ?? 0))
 """
 
         }
