@@ -40,6 +40,7 @@ public class DXEndpoint {
         case feed = 0
         /// ``onDemandFeed`` endpoint is similar to ``feed``, but it is designed to be used with
         /// OnDemandService for historical data replay only.
+        /// It is configured with default properties, but is not connected automatically to the data provider until ``OnDemandService/replay(date:speed:)``or ``OnDemandService/replay(date:)`` method is invoked.
         case onDemandFeed
         /// ``streamFeed`` endpoint is similar to ``feed``
         /// and also connects to the remote data feed provider, is designed for bulk parsing of data from files.
