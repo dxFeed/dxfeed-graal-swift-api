@@ -17,7 +17,7 @@
                BlueprintIdentifier = "803BAC0C29BFA50700FFAB1C"
                BuildableName = "DXFeedFramework.framework"
                BlueprintName = "DXFeedFramework"
-               ReferencedContainer = "container:DxFeedFramework.xcodeproj">
+               ReferencedContainer = "container:DXFeedFramework.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,7 +42,7 @@
                BlueprintIdentifier = "803BAC1429BFA50700FFAB1C"
                BuildableName = "DXFeedFrameworkTests.xctest"
                BlueprintName = "DXFeedFrameworkTests"
-               ReferencedContainer = "container:DxFeedFramework.xcodeproj">
+               ReferencedContainer = "container:DXFeedFramework.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -70,7 +70,7 @@
             BlueprintIdentifier = "803BAC0C29BFA50700FFAB1C"
             BuildableName = "DXFeedFramework.framework"
             BlueprintName = "DXFeedFramework"
-            ReferencedContainer = "container:DxFeedFramework.xcodeproj">
+            ReferencedContainer = "container:DXFeedFramework.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
