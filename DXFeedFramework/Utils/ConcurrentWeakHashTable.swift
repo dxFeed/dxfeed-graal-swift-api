@@ -29,6 +29,12 @@ public class ConcurrentWeakHashTable<T> {
         writer { $0.removeAllObjects() }
     }
 
+    public func member(_ newMember: T) -> Bool {
+        return reader {
+            return $0.member(newMember as AnyObject) != nil
+        }
+    }
+
     public func reader<U>(_ block: (NSHashTable<AnyObject>) throws -> U) rethrows -> U {
         try accessQueue.sync { try block(set) }
     }

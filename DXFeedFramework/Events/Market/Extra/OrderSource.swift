@@ -17,7 +17,7 @@ import Foundation
 /// Aggregate sources ``agregateBid`` and ``agregateAsk`` provide
 ///     futures depth (aggregated by price level) and NASDAQ Level II (top of book for each market maker).
 ///     These source cannot be directly published to via dxFeed API.
-/// ``isPublishable(eventType:)`` sources ``defaultOrderSource``, ``NTV``, and ``ISE``
+/// ``isPublishable(eventType:)`` sources ``defaultOrderSource``, ``NTV-773uf``, and ``ISE``
 ///     support full range of dxFeed API features.
 ///
 ///

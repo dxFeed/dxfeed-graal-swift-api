@@ -11,7 +11,7 @@ import Foundation
 /// The collection of order events of a symbol represents the most recent information
 /// that is available about orders on the market at any given moment of time.
 /// Order events give information on several levels of details, called scopes - see ``Scope``.
-/// Scope of an order is available via ``OrderBase.Scope``property.
+/// Scope of an order is available via ``OrderBase/scope``property.
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/Order.html)
 public class Order: OrderBase {

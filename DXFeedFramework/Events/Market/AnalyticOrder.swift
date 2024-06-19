@@ -7,7 +7,7 @@
 
 import Foundation
 /// Represents an extension of ``Order`` introducing analytics information,
-/// e.g. adding to this order iceberg related information ``icebergPeakSize``, ``IcebergHiddenSize``, ``IcebergExecutedSize``
+/// e.g. adding to this order iceberg related information ``icebergPeakSize``, ``icebergHiddenSize``, ``icebergExecutedSize``
 ///
 /// The collection of analytic order events of a symbol represents the most recent analytic information
 /// that is available about orders on the market at any given moment of time.

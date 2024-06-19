@@ -16,7 +16,7 @@ import Foundation
 /// The logic behind this property is detailed in ``IIndexedEvent`` class documentation
 ///
 /// Multiple event sources for the same symbol are not supported for greeks, thus
-/// ``source`` property is always ``IndexedEventSource/defaultSource``.
+/// ``eventSource`` property is always ``IndexedEventSource/defaultSource``.
 ///
 /// Publishing Greeks
 /// Publishing of greeks events follows the general rules explained in ``ITimeSeriesEvent`` class

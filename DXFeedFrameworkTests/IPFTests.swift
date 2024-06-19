@@ -220,6 +220,8 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
         wait(seconds: 1)
         try collector.add(listener: listener)
         try collector.add(listener: listener2)
+        try collector.add(listener: listener)
+
         wait(for: [expectation1, expectation2], timeout: 2.0)
         collector.remove(listener: listener2)
         try collector.updateInstrumentProfile(profile: firstListnerProfile)

@@ -73,36 +73,36 @@ public class DXEndpoint {
         /// Use ``Builder/withProperty(_:_:)`` method.
         /// This property is also changed by ``Builder/withName(_:)`` method.
         case name                          = "name"
-        /// Defines path to a file with properties for an endpoint with role  ``Role-swift.enum/feed``
-        ///  or ``Role-swift.enum/onDemandFeed``
+        /// Defines path to a file with properties for an endpoint with role  ``DXEndpoint/Role-swift.enum/feed``
+        ///  or ``DXEndpoint/Role-swift.enum/onDemandFeed``
         /// This file must be in the [Java properties file format](https://en.wikipedia.org/wiki/.properties) .
         /// This property can also be set using  ``SystemProperty/setProperty(_:_:)``,
-        /// as the default property for all instances ``DXEndpoint`` with ``Role-swift.enum/feed`` or
-        /// ``Role-swift.enum/onDemandFeed`` role.
+        /// as the default property for all instances ``DXEndpoint`` with ``DXEndpoint/Role-swift.enum/feed`` or
+        /// ``DXEndpoint/Role-swift.enum/onDemandFeed`` role.
         /// When the path to this properties file not provided ``SystemProperty/setProperty(_:_:)``
         /// and ``Builder/withProperty(_:_:)``,
         /// the file "dxfeed.properties" loaded from current runtime directory.
         /// It means that the corresponding file can be placed into the current directory with any need
         /// to specify additional properties.
         case properties                    = "dxfeed.properties"
-        /// Defines default connection address for an endpoint with role ``Role-swift.enum/feed``
-        /// or ``Role-swift.enum/onDemandFeed``.
-        /// Connection is established to this address by role ``Role-swift.enum/feed``
+        /// Defines default connection address for an endpoint with role ``DXEndpoint/Role-swift.enum/feed``
+        /// or ``DXEndpoint/Role-swift.enum/onDemandFeed``.
+        /// Connection is established to this address by role ``DXEndpoint/Role-swift.enum/feed``
         /// as soon as endpoint is created.
         /// By default, without this property, connection is not established until ``DXEndpoint/connect(_:)``
         ///  is invoked.
         /// Credentials for access to premium services may be configured with ``user`` and ``password``
         case address                       = "dxfeed.address"
-        /// Defines default user name for an endpoint with role  ``Role-swift.enum/feed``
-        /// or ``Role-swift.enum/onDemandFeed``
+        /// Defines default user name for an endpoint with role  ``DXEndpoint/Role-swift.enum/feed``
+        /// or ``DXEndpoint/Role-swift.enum/onDemandFeed``
         case user                          = "dxfeed.user"
         /// Defines default password for an endpoint with role
-        /// ``Role-swift.enum/feed`` or ``Role-swift.enum/onDemandFeed``
+        /// ``DXEndpoint/Role-swift.enum/feed`` or ``DXEndpoint/Role-swift.enum/onDemandFeed``
         case password                      = "dxfeed.password"
-        /// Defines thread pool size for an endpoint with role ``Role-swift.enum/feed``
+        /// Defines thread pool size for an endpoint with role ``DXEndpoint/Role-swift.enum/feed``
         /// By default, the thread pool size is equal to the number of available processors.
         case threadPoolSize                = "dxfeed.threadPoolSize"
-        /// Defines data aggregation period an endpoint with role ``Role-swift.enum/feed`` that
+        /// Defines data aggregation period an endpoint with role ``DXEndpoint/Role-swift.enum/feed`` that
         /// limits the rate of data notifications. For example, setting the value of this property
         /// to "0.1s" limits notification to once every 100ms (at most 10 per second).
         case aggregationPeriod             = "dxfeed.aggregationPeriod"
@@ -110,21 +110,21 @@ public class DXEndpoint {
         /// By default, the endpoint does not support wildcards. This property is needed for ``WildcardSymbol``
         /// support and for the use of "tape:..." address in ``DXPublisher``.
         case wildcardEnable                = "dxfeed.wildcard.enable"
-        /// Defines path to a file with properties for an endpoint with role ``Role-swift.enum/feed``
+        /// Defines path to a file with properties for an endpoint with role ``DXEndpoint/Role-swift.enum/feed``
         /// This file must be in the [Java properties file format](https://en.wikipedia.org/wiki/.properties)
         /// This property can also be set using ``SystemProperty/setProperty(_:_:)``
-        /// as the default property for all instances ``DXEndpoint`` with ``Role-swift.enum/publisher``
+        /// as the default property for all instances ``DXEndpoint`` with ``DXEndpoint/Role-swift.enum/publisher``
         /// When the path to this properties file not provided ``SystemProperty/setProperty(_:_:)``
         /// and  ``Builder/withProperty(_:_:)``
         /// the file "dxpublisher.properties" loaded from current runtime directory.
         /// It means that the corresponding file can be placed into the current directory with any need
         /// to specify additional properties.
         case publisherProperties           = "dxpublisher.properties"
-        /// Defines default connection address for an endpoint with role ``Role-swift.enum/publisher``
+        /// Defines default connection address for an endpoint with role ``DXEndpoint/Role-swift.enum/publisher``
         /// Connection is established to this address as soon as endpoint is created.
         /// By default, connection is not established until ``DXEndpoint/connect(_:)`` is invoked.
         case publisherAddressProperty      = "dxpublisher.address"
-        /// Defines thread pool size for an endpoint with role ``Role-swift.enum/publisher``
+        /// Defines thread pool size for an endpoint with role ``DXEndpoint/Role-swift.enum/publisher``
         /// By default, the thread pool size is equal to the number of available processors.
         case publisherThreadPoolSize       = "dxpublisher.threadPoolSize"
         /// Set this property to **true** to enable ``IEventType/eventTime``support.
@@ -305,7 +305,7 @@ public class DXEndpoint {
     /// Closes this endpoint and wait until all pending data processing tasks are completed.
     /// This  method performs the same actions as close ``close()``, but also awaits
     /// termination of all outstanding data processing tasks. It is designed to be used
-    /// with ``Role-swift.enum/streamFeed`` role after ``awaitNotConnected()`` method returns
+    /// with ``DXEndpoint/Role-swift.enum/streamFeed`` role after ``awaitNotConnected()`` method returns
     /// to make sure that file was completely processed.
     ///
     /// This method is blocking.
@@ -366,14 +366,14 @@ public class DXEndpoint {
     }
     /// Creates an endpoint with a role.
     /// - Parameters:
-    ///     - role: Role for endpoint. Default: ``Role-swift.enum/feed``
+    ///     - role: Role for endpoint. Default: ``DXEndpoint/Role-swift.enum/feed``
     /// - Returns: The created ``DXEndpoint`` instance.
     /// - Throws: GraalException. Rethrows exception from Java.
     public static func create(_ role: Role = .feed) throws -> DXEndpoint {
         return try Builder().withRole(role).build()
     }
 
-    /// Gets a default application-wide singleton instance of DXEndpoint with a ``Role-swift.enum/feed`` role.
+    /// Gets a default application-wide singleton instance of DXEndpoint with a ``DXEndpoint/Role-swift.enum/feed`` role.
     /// Most applications use only a single data-source and should rely on this method to get one.
     /// - Returns: Returns singleton instance of ``DXEndpoint``
     /// - Throws: GraalException. Rethrows exception from Java.
