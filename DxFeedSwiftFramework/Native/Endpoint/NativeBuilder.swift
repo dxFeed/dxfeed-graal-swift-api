@@ -12,7 +12,7 @@ class NativeBuilder {
     let builder: UnsafeMutablePointer<dxfg_endpoint_builder_t>?
     var role = Role.feed
     deinit {
-
+#warning("TODO: implement it")
     }
 
     init() throws {

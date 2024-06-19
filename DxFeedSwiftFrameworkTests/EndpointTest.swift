@@ -20,8 +20,7 @@ final class EndpointTest: XCTestCase {
 
     func testBuilder() throws {
         let endpoint = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
-
-        XCTAssert(endpoint != nil, "Endpoint shouldn't be nil")
+        XCTAssertNotNil(endpoint, "Endpoint shouldn't be nil")
     }
 
 }
