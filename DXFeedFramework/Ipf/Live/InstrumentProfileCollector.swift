@@ -10,7 +10,7 @@ import Foundation
 public class InstrumentProfileCollector {
     private let listeners = ConcurrentSet<AnyHashable>()
 
-    private let native: NativeInstrumentProfileCollector
+    internal let native: NativeInstrumentProfileCollector
 
     public init() throws {
         self.native = try NativeInstrumentProfileCollector()
