@@ -11,7 +11,7 @@ import UIKit
 class QuoteViewModel: Identifiable, Hashable {
     var id: String = ""
     @Published var title = ""
-    @Published var askPrice = "111"
+    @Published var askPrice = ""
     @Published var askColor = UIColor.priceBackground
     @Published var bidPrice = ""
     @Published var bidColor = UIColor.priceBackground
