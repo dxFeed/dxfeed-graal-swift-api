@@ -12,7 +12,7 @@
         <!--Quote View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="QuoteViewController" customModule="TestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="QuoteViewController" customModule="DxFeedSampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -98,7 +98,7 @@
         <!--Quote Table View Controller-->
         <scene sceneID="r7T-41-CNF">
             <objects>
-                <viewController id="KHT-AB-3Dx" customClass="QuoteTableViewController" customModule="TestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="KHT-AB-3Dx" customClass="QuoteTableViewController" customModule="DxFeedSampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bnX-km-PdS">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -107,7 +107,7 @@
                                 <rect key="frame" x="10" y="59" width="373" height="728"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuoteCellId" rowHeight="100" id="Soc-px-Ac2" customClass="QuoteCell" customModule="TestApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuoteCellId" rowHeight="100" id="Soc-px-Ac2" customClass="QuoteCell" customModule="DxFeedSampleApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="373" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Soc-px-Ac2" id="AM4-po-jFo">
@@ -126,7 +126,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bpL-FX-1nC">
                                                             <rect key="frame" x="150.66666666666663" y="5" width="217.33333333333337" height="80"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfZ-3h-hz9" customClass="PaddingLabel" customModule="TestApp" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfZ-3h-hz9" customClass="PaddingLabel" customModule="DxFeedSampleApp" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="107" height="80"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -137,7 +137,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="my2-SE-epx" customClass="PaddingLabel" customModule="TestApp" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="my2-SE-epx" customClass="PaddingLabel" customModule="DxFeedSampleApp" customModuleProvider="target">
                                                                     <rect key="frame" x="110.00000000000003" y="0.0" width="107.33333333333334" height="80"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -211,7 +211,7 @@
                             <constraint firstItem="EH9-zJ-QLZ" firstAttribute="top" secondItem="25G-gY-cKV" secondAttribute="top" id="B9Y-3w-tWF"/>
                             <constraint firstItem="gdj-9e-TIL" firstAttribute="leading" secondItem="25G-gY-cKV" secondAttribute="leading" constant="20" id="HVJ-dF-7MI"/>
                             <constraint firstItem="gdj-9e-TIL" firstAttribute="top" secondItem="EH9-zJ-QLZ" secondAttribute="bottom" id="THC-Vm-yzK"/>
-                            <constraint firstItem="EH9-zJ-QLZ" firstAttribute="trailing" secondItem="25G-gY-cKV" secondAttribute="trailing" constant="-10" id="hbm-ry-4YV"/>
+                            <constraint firstItem="25G-gY-cKV" firstAttribute="trailing" secondItem="EH9-zJ-QLZ" secondAttribute="trailing" constant="10" id="hMT-0Z-bdv"/>
                             <constraint firstItem="25G-gY-cKV" firstAttribute="trailing" secondItem="gdj-9e-TIL" secondAttribute="trailing" constant="15" id="xFH-HS-NCS"/>
                         </constraints>
                     </view>
