@@ -203,14 +203,6 @@ final class FeedTest: XCTestCase {
     }
 
     func testSetGetSymbols() throws {
-        // Symbol is protocol. Protocol doesn't support equatable. It is workaround for checking unique symbols.
-        struct SymbolEquatable: Equatable {
-            let value: Symbol
-            static func == (lhs: SymbolEquatable, rhs: SymbolEquatable) -> Bool {
-                return lhs.value.stringValue == rhs.value.stringValue
-            }
-        }
-
         let symbols: [Symbol] = [
             "AAPL_TEST",
             "AAPL_TEST{=d}",
@@ -235,5 +227,13 @@ final class FeedTest: XCTestCase {
         } else {
             XCTAssert(false, "Subscription returned null")
         }
+    }
+}
+
+// Symbol is protocol. Protocol doesn't support equatable. It is workaround for checking unique symbols.
+struct SymbolEquatable: Equatable {
+    let value: Symbol
+    static func == (lhs: SymbolEquatable, rhs: SymbolEquatable) -> Bool {
+        return lhs.value.stringValue == rhs.value.stringValue
     }
 }
