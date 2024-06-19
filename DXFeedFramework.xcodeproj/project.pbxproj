@@ -130,6 +130,8 @@
 		645A34952A937C7200709F29 /* BinaryInteger+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645A34942A937C7200709F29 /* BinaryInteger+Ext.swift */; };
 		645BE84E2AC3170F0028243D /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		645BE84F2AC3170F0028243D /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		645BE8522AC31E7C0028243D /* PerfTestCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645BE8512AC31E7C0028243D /* PerfTestCommand.swift */; };
+		645BE8542AC3229D0028243D /* ToolsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645BE8532AC3229D0028243D /* ToolsCommand.swift */; };
 		646228512A376B0A0029DC97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462284D2A376B0A0029DC97 /* Main.storyboard */; };
 		646228522A376B0A0029DC97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462284F2A376B0A0029DC97 /* LaunchScreen.storyboard */; };
 		646407492A9DF984006FF769 /* InstrumentProfileMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646407482A9DF984006FF769 /* InstrumentProfileMapper.swift */; };
@@ -173,6 +175,8 @@
 		647426AD2ABC85F20012F793 /* ArgumentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426AC2ABC85F20012F793 /* ArgumentParser.swift */; };
 		647426AF2ABC93900012F793 /* EventCode+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647426AE2ABC93900012F793 /* EventCode+String.swift */; };
 		6479BC2B2A4F35A300A3D404 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6479BC2A2A4F35A300A3D404 /* QuoteView.swift */; };
+		648BD5692AC450D6004A3A95 /* ConnectCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD5682AC450D6004A3A95 /* ConnectCommand.swift */; };
+		648BD56B2AC4576F004A3A95 /* HelpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56A2AC4576F004A3A95 /* HelpCommand.swift */; };
 		648E98AA2AAF625800BFD219 /* IIndexedEvent+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */; };
 		64963B6A2A8E545C001E40F7 /* IEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64963B692A8E545C001E40F7 /* IEventType.swift */; };
 		6498E6B22AB1D41A0093A065 /* DXSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498E6B12AB1D41A0093A065 /* DXSchedule.swift */; };
@@ -481,7 +485,7 @@
 		64104FCD2A2637EA00D1FC41 /* EventsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTest.swift; sourceTree = "<group>"; };
 		64104FD22A277B2D00D1FC41 /* ListNative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNative.swift; sourceTree = "<group>"; };
 		64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDxFeedGraalNativeSdk.dylib; path = graal_builds/osx_universal/libDxFeedGraalNativeSdk.dylib; sourceTree = "<group>"; };
-		64148B642ABB5C320063110E /* PerfTestCL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PerfTestCL; sourceTree = BUILT_PRODUCTS_DIR; };
+		64148B642ABB5C320063110E /* Tools */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tools; sourceTree = BUILT_PRODUCTS_DIR; };
 		64148B662ABB5C320063110E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		64148B6E2ABB5C4A0063110E /* PerfTestCL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PerfTestCL.entitlements; sourceTree = "<group>"; };
 		6417DD1E2A39C9A7008912D6 /* Diagnostic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnostic.swift; sourceTree = "<group>"; };
@@ -545,6 +549,8 @@
 		644BD7882A4475EF00A0BF99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainAR.storyboard; sourceTree = "<group>"; };
 		644FE5D02AC1F34000580E3A /* ResultPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPrinter.swift; sourceTree = "<group>"; };
 		645A34942A937C7200709F29 /* BinaryInteger+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+Ext.swift"; sourceTree = "<group>"; };
+		645BE8512AC31E7C0028243D /* PerfTestCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfTestCommand.swift; sourceTree = "<group>"; };
+		645BE8532AC3229D0028243D /* ToolsCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCommand.swift; sourceTree = "<group>"; };
 		6462284E2A376B0A0029DC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		646228502A376B0A0029DC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		646407482A9DF984006FF769 /* InstrumentProfileMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileMapper.swift; sourceTree = "<group>"; };
@@ -578,6 +584,8 @@
 		647426AC2ABC85F20012F793 /* ArgumentParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentParser.swift; sourceTree = "<group>"; };
 		647426AE2ABC93900012F793 /* EventCode+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventCode+String.swift"; sourceTree = "<group>"; };
 		6479BC2A2A4F35A300A3D404 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
+		648BD5682AC450D6004A3A95 /* ConnectCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCommand.swift; sourceTree = "<group>"; };
+		648BD56A2AC4576F004A3A95 /* HelpCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCommand.swift; sourceTree = "<group>"; };
 		648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IIndexedEvent+Ext.swift"; sourceTree = "<group>"; };
 		64963B692A8E545C001E40F7 /* IEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEventType.swift; sourceTree = "<group>"; };
 		6498E6B12AB1D41A0093A065 /* DXSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXSchedule.swift; sourceTree = "<group>"; };
@@ -800,6 +808,10 @@
 				64148B662ABB5C320063110E /* main.swift */,
 				647426A62ABC7F080012F793 /* EventListener.swift */,
 				644FE5D02AC1F34000580E3A /* ResultPrinter.swift */,
+				645BE8532AC3229D0028243D /* ToolsCommand.swift */,
+				645BE8512AC31E7C0028243D /* PerfTestCommand.swift */,
+				648BD5682AC450D6004A3A95 /* ConnectCommand.swift */,
+				648BD56A2AC4576F004A3A95 /* HelpCommand.swift */,
 			);
 			path = PerfTestCL;
 			sourceTree = "<group>";
@@ -1220,7 +1232,7 @@
 				64262CC92A4DA64600BA6BA3 /* DXVisionQuoteTableApp.app */,
 				642DC9252AAA21C000974F5C /* DXIpfTableApp.app */,
 				64B4364B2AB9D3410003919E /* ScheduleSampleApp.app */,
-				64148B642ABB5C320063110E /* PerfTestCL */,
+				64148B642ABB5C320063110E /* Tools */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1358,9 +1370,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		64148B632ABB5C320063110E /* PerfTestCL */ = {
+		64148B632ABB5C320063110E /* Tools */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 64148B6A2ABB5C320063110E /* Build configuration list for PBXNativeTarget "PerfTestCL" */;
+			buildConfigurationList = 64148B6A2ABB5C320063110E /* Build configuration list for PBXNativeTarget "Tools" */;
 			buildPhases = (
 				64148B602ABB5C320063110E /* Sources */,
 				64148B612ABB5C320063110E /* Frameworks */,
@@ -1372,9 +1384,9 @@
 			dependencies = (
 				64148B6C2ABB5C3C0063110E /* PBXTargetDependency */,
 			);
-			name = PerfTestCL;
+			name = Tools;
 			productName = PerfTestCL;
-			productReference = 64148B642ABB5C320063110E /* PerfTestCL */;
+			productReference = 64148B642ABB5C320063110E /* Tools */;
 			productType = "com.apple.product-type.tool";
 		};
 		64262CC82A4DA64600BA6BA3 /* DXVisionQuoteTableApp */ = {
@@ -1624,7 +1636,7 @@
 				64262CC82A4DA64600BA6BA3 /* DXVisionQuoteTableApp */,
 				642DC9242AAA21C000974F5C /* DXIpfTableApp */,
 				64B4364A2AB9D3410003919E /* ScheduleSampleApp */,
-				64148B632ABB5C320063110E /* PerfTestCL */,
+				64148B632ABB5C320063110E /* Tools */,
 			);
 		};
 /* End PBXProject section */
@@ -1786,14 +1798,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				648BD56B2AC4576F004A3A95 /* HelpCommand.swift in Sources */,
 				647426AF2ABC93900012F793 /* EventCode+String.swift in Sources */,
+				645BE8542AC3229D0028243D /* ToolsCommand.swift in Sources */,
 				644FE5D12AC1F34000580E3A /* ResultPrinter.swift in Sources */,
+				645BE8522AC31E7C0028243D /* PerfTestCommand.swift in Sources */,
 				644FE5CD2AC1E9E200580E3A /* Diagnostic.swift in Sources */,
 				644FE5CF2AC1F25900580E3A /* DXFTimer.swift in Sources */,
 				647426A82ABC7F5E0012F793 /* EventListener.swift in Sources */,
 				644FE5CE2AC1EC1500580E3A /* TimeInterval+Ext.swift in Sources */,
 				64148B672ABB5C320063110E /* main.swift in Sources */,
 				647426AD2ABC85F20012F793 /* ArgumentParser.swift in Sources */,
+				648BD5692AC450D6004A3A95 /* ConnectCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3021,7 +3037,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		64148B6A2ABB5C320063110E /* Build configuration list for PBXNativeTarget "PerfTestCL" */ = {
+		64148B6A2ABB5C320063110E /* Build configuration list for PBXNativeTarget "Tools" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64148B682ABB5C320063110E /* Debug */,

@@ -7,6 +7,6 @@
 
 import Foundation
 
-func stringReference(_ obj: AnyObject) -> String {
+public func stringReference(_ obj: AnyObject) -> String {
     return "\(Unmanaged.passUnretained(obj).toOpaque())"
 }

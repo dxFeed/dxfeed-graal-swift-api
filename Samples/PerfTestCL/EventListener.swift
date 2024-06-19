@@ -8,22 +8,40 @@
 import Foundation
 import DXFeedFramework
 
-class EventListener: DXEventListener, Hashable {
-    let diagnostic = Diagnostic()
+class ConnectEventListener: EventListener {
+    override func handleEvents(_ events: [MarketEvent]) {
+        events.forEach { event in
+            print(event)
+        }
+    }
+}
 
-    let name: String
-    func receiveEvents(_ events: [DXFeedFramework.MarketEvent]) {
+class PerfTestEventListener: EventListener {
+    let diagnostic = Diagnostic()
+    override func handleEvents(_ events: [MarketEvent]) {
         let count = events.count
         diagnostic.updateCounters(Int64(count))
     }
+}
 
-    init(name: String) {
-        self.name = name
+class EventListener: DXEventListener, Hashable {
+    lazy var name = {
+        stringReference(self)
+    }()
+
+    func receiveEvents(_ events: [DXFeedFramework.MarketEvent]) {
+        handleEvents(events)
     }
+
     static func == (lhs: EventListener, rhs: EventListener) -> Bool {
         return lhs === rhs || lhs.name == rhs.name
     }
+
     func hash(into hasher: inout Hasher) {
         hasher.combine(name)
+    }
+
+    func handleEvents(_ events: [DXFeedFramework.MarketEvent]) {
+        fatalError("Please, override this method")
     }
 }
