@@ -8,17 +8,17 @@
 import Foundation
 
 class CandleSymbol {
-    public private(set) var symbol: String?
+    public private(set) var symbol: String
     public private(set) var baseSymbol: String?
     public internal(set) var exchange: CandleExchange?
     public internal(set) var price: CandlePrice?
-    public private(set) var session: CandleSession?
-    public private(set) var period: CandlePeriod?
-    public private(set) var alignment: CandleAlignment?
-    public private(set) var priceLevel: CandlePriceLevel?
+    public internal(set) var session: CandleSession?
+    public internal(set) var period: CandlePeriod?
+    public internal(set) var alignment: CandleAlignment?
+    public internal(set) var priceLevel: CandlePriceLevel?
 
     private init(_ symbol: String) {
-        self.symbol = normalize(symbol)
+        self.symbol = CandleSymbol.normalize(symbol)
         initInternal()
     }
 
@@ -27,22 +27,28 @@ class CandleSymbol {
         self.exchange = CandleExchange.getAttribute(self.symbol)
         self.price = try? CandlePrice.getAttribute(self.symbol)
         self.session = CandleSession.getAttribute(self.symbol)
-        self.period = CandlePeriod.getAttribute(self.symbol)
-        self.alignment = CandleAlignment.getAttribute(self.symbol)
-        self.priceLevel = CandlePriceLevel.getAttribute(self.symbol)
+        self.period = try? CandlePeriod.getAttribute(self.symbol)
+        self.alignment = try? CandleAlignment.getAttribute(self.symbol)
+        self.priceLevel = try? CandlePriceLevel.getAttribute(self.symbol)
     }
 
-    private func normalize(_ symbol: String) -> String {
+    private static func normalize(_ symbol: String) -> String {
         var symbol = symbol
         symbol = (try? CandlePrice.normalizeAttributeForSymbol(symbol)) ?? symbol
         symbol = CandleSession.normalizeAttributeForSymbol(symbol)
-        symbol = CandlePeriod.normalizeAttributeForSymbol(symbol)
-        symbol = CandleAlignment.normalizeAttributeForSymbol(symbol)
-        symbol = CandlePriceLevel.normalizeAttributeForSymbol(symbol)
+        symbol = (try? CandlePeriod.normalizeAttributeForSymbol(symbol)) ?? symbol
+        symbol = (try? CandleAlignment.normalizeAttributeForSymbol(symbol)) ?? symbol
+        symbol = (try? CandlePriceLevel.normalizeAttributeForSymbol(symbol)) ?? symbol
         return symbol
     }
 
     public convenience init(symbol: String) {
         self.init(symbol)
     }
+
+    func toString() -> String {
+        return symbol
+    }
+
+
 }

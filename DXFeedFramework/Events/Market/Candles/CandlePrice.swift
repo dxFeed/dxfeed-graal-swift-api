@@ -13,11 +13,11 @@ final class CandlePrice: Equatable {
     }
 
     enum CandlePriceId: String {
-        case last
-        case bid
-        case ask
-        case mark
-        case settlement
+        case last = "Last"
+        case bid = "Bid"
+        case ask = "Ask"
+        case mark = "Mark"
+        case settlement = "Settlement"
     }
 
     static let attributeKey = "price"
@@ -26,21 +26,36 @@ final class CandlePrice: Equatable {
     private let value: String
     private let name: String
 
-    static let last = CandlePrice(identifier: .last, value: "last")
-    static let bid = CandlePrice(identifier: .bid, value: "bid")
-    static let ask = CandlePrice(identifier: .ask, value: "ask")
-    static let mark = CandlePrice(identifier: .mark, value: "mark")
-    static let settlement = CandlePrice(identifier: .settlement, value: "s")
+    static let last = try? CandlePrice(identifier: .last, value: "last")
+    static let bid = try? CandlePrice(identifier: .bid, value: "bid")
+    static let ask = try? CandlePrice(identifier: .ask, value: "ask")
+    static let mark = try? CandlePrice(identifier: .mark, value: "mark")
+    static let settlement = try?  CandlePrice(identifier: .settlement, value: "s")
 
     static let defaultPrice = last
 
     private static let pricesByValue = ConcurrentDict<String, CandlePrice>()
     private static let pricesById = ConcurrentDict<CandlePriceId, CandlePrice>()
 
-    private init(identifier: CandlePriceId, value: String) {
+    private init(identifier: CandlePriceId, value: String) throws {
         self.identifier = identifier
         self.value = value
         self.name = identifier.rawValue
+        CandlePrice.pricesByValue.writer { dict in
+            if dict[value] == nil {
+                dict[value] = self
+            }
+        }
+
+        CandlePrice.pricesById.writer { dict in
+            if dict[identifier] == nil {
+                dict[identifier] = self
+            }
+        }
+    }
+
+    static func getById(identifier: CandlePriceId) -> CandlePrice? {
+        return pricesById[identifier]
     }
 
     static func normalizeAttributeForSymbol(_ symbol: String) throws -> String {
@@ -48,7 +63,7 @@ final class CandlePrice: Equatable {
         guard let value = attribute else {
             return symbol
         }
-        let other = try parse(symbol)
+        let other = try parse(value)
         if other == defaultPrice {
             _ = MarketEventSymbols.removeAttributeStringByKey(symbol, attributeKey)
         }
@@ -61,7 +76,7 @@ final class CandlePrice: Equatable {
     static func getAttribute(_ symbol: String?) throws -> CandlePrice {
         let attribute = MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
         guard let value = attribute else {
-            return defaultPrice
+            return defaultPrice!
         }
         return try parse(value)
     }

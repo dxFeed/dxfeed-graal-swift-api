@@ -12,6 +12,11 @@ enum ArgumentException: Error {
     case missingCandlePrice
     case unknowCandleType
     case unknowCandlePrice
+    case unknowCandleAlignment
     case argumentNil
     case invalidOperationException(_ message: String)
+    case duplicateValue
+    case duplicateId
+    case incorrectCandlePrice
+    case unknowCandlePriceLevel
 }
