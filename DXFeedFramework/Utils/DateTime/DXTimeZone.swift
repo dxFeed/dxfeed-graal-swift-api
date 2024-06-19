@@ -30,7 +30,7 @@ public class DXTimeZone {
     private init(timeZone: NativeTimeZone) {
         self.timeZone = timeZone
     }
-    
+
     public convenience init(timeZoneID: String) throws {
         self.init(timeZone: try NativeTimeZone(timeZoneID: timeZoneID))
     }
@@ -63,13 +63,8 @@ public class DXTimeZone {
         return try self.timeZone.getOffset(date: date)
     }
 
-    public func getOffset2(era: Int32, year: Int32, month: Int32, day: Int32, dayOfWeek: Int32,  milliseconds: Int32) throws -> Int32 {
-        return try self.timeZone.getOffset2(era: era,
-                                            year: year,
-                                            month: month,
-                                            day: day,
-                                            dayOfWeek: dayOfWeek,
-                                            milliseconds: milliseconds)
+    public func getOffset2(offset: DXDateOffset) throws -> Int32 {
+        return try self.timeZone.getOffset2(offset: offset)
     }
 
     public func getRawOffset() throws -> Int32 {

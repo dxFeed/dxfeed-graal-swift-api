@@ -259,7 +259,7 @@ type=\(optionSaleType), \
 underlyingPrice=\(underlyingPrice), \
 volatility=\(volatility), \
 delta=\(delta), \
-optionSymbol='\(optionSymbol)'\
+optionSymbol='\(optionSymbol ?? "null")'\
 }
 """
     }

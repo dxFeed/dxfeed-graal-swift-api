@@ -12,6 +12,7 @@ class Subscription {
     var endpoint: DXEndpoint?
     var subscriptions = [DXFeedSubcription]()
 
+    // swiftlint:disable function_parameter_count
     func createSubscription<O>(address: String,
                                symbols: [Symbol],
                                types: [EventCode],
@@ -59,5 +60,6 @@ Create subscription to \(address) for \(types):\(symbols) with properties:\(prop
             }
         }
     }
-}
+    // swiftlint:enable function_parameter_count
 
+}

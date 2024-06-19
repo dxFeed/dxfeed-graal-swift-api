@@ -96,7 +96,9 @@ extension LiveIpfSample: DXInstrumentProfileUpdateListener {
 
 Instrument Profiles:
 Total number of profiles (1): \(self.ipfList.count)
-Last modified: \(try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: collector?.getLastUpdateTime() ?? 0))
+Last modified: \(
+(try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: collector?.getLastUpdateTime() ?? 0)) ?? ""
+)
 """
 )
     }
