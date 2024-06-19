@@ -3079,7 +3079,7 @@
 				DEVELOPMENT_TEAM = 485XM3FRHB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Samples/QuoteTableApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "dxFeed Quotes";
+				INFOPLIST_KEY_CFBundleDisplayName = "Watch List";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -3113,7 +3113,7 @@
 				DEVELOPMENT_TEAM = 485XM3FRHB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Samples/QuoteTableApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "dxFeed Quotes";
+				INFOPLIST_KEY_CFBundleDisplayName = "Watch List";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

@@ -51,7 +51,7 @@ class QuoteCell: UITableViewCell {
     }
 
     func update(model: QuoteModel?, symbol: String, description: String?) {
-        symbolNameLabel.text = (symbol.components(separatedBy: ":").first ?? "") + "\n" + (description ?? "")
+        symbolNameLabel.text = symbol + "\n" + (description ?? "")
         askLabel.text = model?.ask
         updateAsk(value: model?.increaseAsk)
         updateBid(value: model?.increaseBid)
