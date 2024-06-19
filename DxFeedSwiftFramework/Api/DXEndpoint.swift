@@ -193,7 +193,7 @@ public class Builder {
 }
 
 extension DXEndpoint: EndpointListener {
-    func changeState(old: DXEndpointState, new: DXEndpointState) {        
+    func changeState(old: DXEndpointState, new: DXEndpointState) {
         observers.forEach { $0.endpointDidChangeState(old: old, new: new) }
     }
 }

@@ -37,6 +37,10 @@
 		642BE4CA2A2E1C640052340A /* MarketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4C92A2E1C640052340A /* MarketEvent.swift */; };
 		642BE4CC2A2E1DB70052340A /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4CB2A2E1DB70052340A /* Mapper.swift */; };
 		642BE4CE2A2E29270052340A /* EventMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4CD2A2E29270052340A /* EventMapper.swift */; };
+		642BE4D02A2F1D3C0052340A /* Quote+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4CF2A2F1D3C0052340A /* Quote+Ext.swift */; };
+		642BE4D22A2F5D230052340A /* TimeAndSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4D12A2F5D230052340A /* TimeAndSale.swift */; };
+		642BE4D42A2F5D730052340A /* TimeAndSale+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4D32A2F5D730052340A /* TimeAndSale+Ext.swift */; };
+		642BE4D62A2F5E7C0052340A /* TimeAndSaleMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4D52A2F5E7C0052340A /* TimeAndSaleMapper.swift */; };
 		64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F582A1B864C006A0B19 /* NativeEndpoint.swift */; };
 		64656F5B2A1B9784006A0B19 /* DXFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5A2A1B9784006A0B19 /* DXFeed.swift */; };
 		64656F5E2A1B97F2006A0B19 /* NativeFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5D2A1B97F2006A0B19 /* NativeFeed.swift */; };
@@ -126,6 +130,10 @@
 		642BE4C92A2E1C640052340A /* MarketEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketEvent.swift; sourceTree = "<group>"; };
 		642BE4CB2A2E1DB70052340A /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		642BE4CD2A2E29270052340A /* EventMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMapper.swift; sourceTree = "<group>"; };
+		642BE4CF2A2F1D3C0052340A /* Quote+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quote+Ext.swift"; sourceTree = "<group>"; };
+		642BE4D12A2F5D230052340A /* TimeAndSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndSale.swift; sourceTree = "<group>"; };
+		642BE4D32A2F5D730052340A /* TimeAndSale+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeAndSale+Ext.swift"; sourceTree = "<group>"; };
+		642BE4D52A2F5E7C0052340A /* TimeAndSaleMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndSaleMapper.swift; sourceTree = "<group>"; };
 		64656F582A1B864C006A0B19 /* NativeEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeEndpoint.swift; sourceTree = "<group>"; };
 		64656F5A2A1B9784006A0B19 /* DXFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFeed.swift; sourceTree = "<group>"; };
 		64656F5D2A1B97F2006A0B19 /* NativeFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeFeed.swift; sourceTree = "<group>"; };
@@ -215,8 +223,9 @@
 		641BCBBF2A21051A00FE23C2 /* Market */ = {
 			isa = PBXGroup;
 			children = (
-				642BE4C32A2E1AFF0052340A /* Quote.swift */,
 				642BE4C92A2E1C640052340A /* MarketEvent.swift */,
+				642BE4C32A2E1AFF0052340A /* Quote.swift */,
+				642BE4D12A2F5D230052340A /* TimeAndSale.swift */,
 			);
 			path = Market;
 			sourceTree = "<group>";
@@ -235,6 +244,9 @@
 			isa = PBXGroup;
 			children = (
 				642BE4C72A2E1BD40052340A /* QuoteMapper.swift */,
+				642BE4CF2A2F1D3C0052340A /* Quote+Ext.swift */,
+				642BE4D52A2F5E7C0052340A /* TimeAndSaleMapper.swift */,
+				642BE4D32A2F5D730052340A /* TimeAndSale+Ext.swift */,
 			);
 			path = Markets;
 			sourceTree = "<group>";
@@ -610,6 +622,7 @@
 				64ACBCE32A289A0700032C53 /* TimeSeriesSubscriptionSymbol.swift in Sources */,
 				8088D77129C3A25D00F240CB /* SystemProperty.swift in Sources */,
 				80FC415929C8EE8B00E6B611 /* DXEndpoint.swift in Sources */,
+				642BE4D42A2F5D730052340A /* TimeAndSale+Ext.swift in Sources */,
 				64ACBCD92A279F7900032C53 /* DXEventListener.swift in Sources */,
 				64656F5B2A1B9784006A0B19 /* DXFeed.swift in Sources */,
 				64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */,
@@ -619,6 +632,7 @@
 				64ACBCDF2A2897EA00032C53 /* String+Symbol.swift in Sources */,
 				64104FC32A210F2400D1FC41 /* EventCode+Native.swift in Sources */,
 				80FC415C29CA2B8800E6B611 /* NativeBuilder.swift in Sources */,
+				642BE4D62A2F5E7C0052340A /* TimeAndSaleMapper.swift in Sources */,
 				64656F652A1CAFC5006A0B19 /* String+Pointee.swift in Sources */,
 				64ACBCD72A27981900032C53 /* ListNative+Ext.swift in Sources */,
 				642BE4CE2A2E29270052340A /* EventMapper.swift in Sources */,
@@ -640,6 +654,7 @@
 				64656F622A1B9FF7006A0B19 /* EnumException.swift in Sources */,
 				641BCBC12A21077800FE23C2 /* EventCode.swift in Sources */,
 				64ACBCE82A28CF9700032C53 /* IndexedEventSubscriptionSymbol.swift in Sources */,
+				642BE4D22A2F5D230052340A /* TimeAndSale.swift in Sources */,
 				8088D77D29C8DAF800F240CB /* GraalErrorCode.swift in Sources */,
 				8088D76929C0FC5C00F240CB /* Isolate.swift in Sources */,
 				64656F6B2A1CFAC2006A0B19 /* BridgeUtil.swift in Sources */,
@@ -649,6 +664,7 @@
 				64656F602A1B9EC2006A0B19 /* EnumUtil.swift in Sources */,
 				642BE4CA2A2E1C640052340A /* MarketEvent.swift in Sources */,
 				8088D76629C0FBCE00F240CB /* IsolateThread.swift in Sources */,
+				642BE4D02A2F1D3C0052340A /* Quote+Ext.swift in Sources */,
 				8088D77529C3A61000F240CB /* ErrorCheck.swift in Sources */,
 				64656F5E2A1B97F2006A0B19 /* NativeFeed.swift in Sources */,
 				64656F6F2A1CFC12006A0B19 /* WeakBox.swift in Sources */,
