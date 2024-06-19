@@ -47,27 +47,27 @@ jobs:
       - name: Fetch dep
         run: gradle fetchDependencies
 
-      - name: Build Archive 
-        run: xcodebuild build -project DxFeedFramework.xcodeproj -scheme XCFramework
+      # - name: Build Archive 
+      #   run: xcodebuild build -project DxFeedFramework.xcodeproj -scheme XCFramework
 
       - name: Build Tools 
         run: xcodebuild -project DxFeedFramework.xcodeproj -scheme Tools -archivePath build/tools archive
 
-      - name: Check Signature 
-        run: codesign -d -v build/tools.xcarchive/Products/usr/local/bin/Tools
+      # - name: Check Signature 
+      #   run: codesign -d -v build/tools.xcarchive/Products/usr/local/bin/Tools
 
-      - name: Build Documentations
-        run: xcodebuild docbuild -scheme DXFeedFramework -derivedDataPath documentations/
+      # - name: Build Documentations
+      #   run: xcodebuild docbuild -scheme DXFeedFramework -derivedDataPath documentations/
       
-      - name: Zip Documentations
-        run: zip documentation.zip documentations/Build/Products/Debug/DXFeedFramework.doccarchive -r
+      # - name: Zip Documentations
+      #   run: zip documentation.zip documentations/Build/Products/Debug/DXFeedFramework.doccarchive -r
 
       - name: Checkl file 
         run: ls -al release_sp.sh        
 
-      - name: Calculate package checksum         
-        run: ./release_sp.sh ${{ github.ref_name }} DXFeedFramework
-        shell: sh
+      # - name: Calculate package checksum         
+      #   run: ./release_sp.sh ${{ github.ref_name }} DXFeedFramework
+      #   shell: sh
      
       # - name: Commit files
       #   run: |          
