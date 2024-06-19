@@ -405,6 +405,7 @@ public class DXEndpoint {
             return instance
         }
     }
+}
 
 /// Builder class for ``DXEndpoint`` that supports additional configuration properties.
 ///
@@ -430,7 +431,7 @@ public class DXEndpoint {
 /// **Threads and locks**
 ///
 /// This class is thread-safe and can be used concurrently from multiple threads without external synchronization.
-/// 
+///
 public class Builder {
     var role = Role.feed
     var props = [String: String]()
@@ -477,7 +478,7 @@ public class Builder {
     ///   - proeprty: Property name
     /// - Returns: Returns Bool
     /// - Throws: ``GraalException``. Rethrows exception from Java.
-    public func isSupported(property: String) throws -> Bool {
+    public func isSupported(_ property: String) throws -> Bool {
         return try nativeBuilder?.isSuppored(property: property) ?? false
     }
 
@@ -509,23 +510,20 @@ public class Builder {
     /// This method tries to load default properties file.
     /// - Returns: Returns this ``DXEndpoint``
     /// - Throws: ``GraalException``. Rethrows exception from Java.
-        }
-        public func build() throws -> DXEndpoint {
-            return try DXEndpoint(native: try nativeBuilder!.build(), role: role, name: getOrCreateEndpointName())
-        }
+    public func build() throws -> DXEndpoint {
+        return try DXEndpoint(native: try nativeBuilder!.build(), role: role, name: getOrCreateEndpointName())
+    }
     /// Gets or creates an endpoint name.
     /// If there is no ``DXEndpoint/Property/name`` in the user-defined properties,
     /// it returns a default name that includes a counter that increments each time an endpoint is created.
     /// - Returns: New string name
-        private func getOrCreateEndpointName() -> String {
-            if let name = props[DXEndpoint.Property.name.rawValue] {
-                return name
-            }
-            let value = OSAtomicIncrement64(&instancesNumerator)
-            return "qdnet_\(value == 0 ? "" : "-\(value)")"
+    private func getOrCreateEndpointName() -> String {
+        if let name = props[DXEndpoint.Property.name.rawValue] {
+            return name
         }
+        let value = OSAtomicIncrement64(&instancesNumerator)
+        return "qdnet_\(value == 0 ? "" : "-\(value)")"
     }
-
 }
 
 extension DXEndpoint: EndpointListener {

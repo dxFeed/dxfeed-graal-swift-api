@@ -120,21 +120,4 @@ extension TheoPrice {
         }
         index = Long(index & ~Long(MarketEventConst.maxSequence)) | Long(sequence)
     }
-    /// Returns string representation of this order fields.
-    public func toString() -> String {
-        return """
-TheoPrice{\(eventSymbol) \
-eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
-eventFlags=\(eventFlags.toHexString()), \
-time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time)) ?? ""), \
-sequence=\(self.getSequence()), \
-price=\(price) \
-underlyingPrice=\(underlyingPrice), \
-delta=\(delta), \
-gamma=\(gamma), \
-dividend=\(dividend), \
-interest=\(interest), \
-}
-"""
-    }
 }

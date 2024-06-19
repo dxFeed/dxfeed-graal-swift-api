@@ -41,7 +41,7 @@ public class AnalyticOrder: Order {
     }
 
     /// Returns string representation of this candle event.
-    override func toString() -> String {
+    public override func toString() -> String {
         return
 """
 AnalyticOrder{\(baseFieldsToString()), \
