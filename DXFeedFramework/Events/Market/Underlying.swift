@@ -110,13 +110,13 @@ extension Underlying {
     /// Returns string representation of this underlying fields.
     public func toString() -> String {
         return """
-Underlying{"\(eventSymbol) +
+Underlying{"\(eventSymbol) \
 eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
 eventFlags=0x\(String(format: "%02X", eventFlags)), \
 time=\(TimeUtil.toLocalDateString(millis: time)), \
-sequence=\(self.getSequence()), +
+sequence=\(self.getSequence()), \
 volatility=\(volatility), \
-frontVolatility=\(frontVolatility), +
+frontVolatility=\(frontVolatility), \
 backVolatility=\(backVolatility), \
 callVolume=\(callVolume), \
 putVolume=\(putVolume), \

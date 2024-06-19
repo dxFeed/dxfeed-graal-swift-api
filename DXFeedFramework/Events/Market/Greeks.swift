@@ -118,18 +118,18 @@ extension Greeks {
     /// Returns string representation of this greeks fields.
     public func toString() -> String {
         return """
-Greeks{"\(eventSymbol) +
-"eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
-"eventFlags=0x\(String(format: "%02X", eventFlags)), \
-"time=\(TimeUtil.toLocalDateString(millis: time)), \
-"sequence=\(self.getSequence()), +
-"price=\(price), \
-"volatility=\(volatility), \
-"delta=\(delta), +
-"gamma=\(gamma), \
-"theta=\(theta), \
-"rho=\(rho), \
-"vega=\(vega)}
+Greeks{\(eventSymbol), \
+eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
+eventFlags=0x\(String(format: "%02X", eventFlags)), \
+time=\(TimeUtil.toLocalDateString(millis: time)), \
+sequence=\(self.getSequence()), \
+price=\(price), \
+volatility=\(volatility), \
+delta=\(delta), \
+gamma=\(gamma), \
+theta=\(theta), \
+rho=\(rho), \
+vega=\(vega)}
 """
     }
 }
