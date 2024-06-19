@@ -26,11 +26,13 @@
         "DXObservableSubscriptionTest",
         "DXSnapshotProcessorTest",
         "EndpointTest\/testGetInstance()",
+        "IPFTests",
         "IPFTests\/testResolveSourceURL()",
         "IsolateTest",
         "IsolateTest\/test123()",
         "PublisherTest",
-        "ScheduleTest"
+        "ScheduleTest",
+        "ScheduleTest\/testSetDefaults()"
       ],
       "target" : {
         "containerPath" : "container:DXFeedFramework.xcodeproj",
