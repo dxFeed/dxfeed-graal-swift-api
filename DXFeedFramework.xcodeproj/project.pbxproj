@@ -630,6 +630,8 @@
 		644BD7652A44727000A0BF99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		644BD7682A44727000A0BF99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		644BD7882A4475EF00A0BF99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainAR.storyboard; sourceTree = "<group>"; };
+		644C528D2B1E1CB8002C034C /* ConvertTapeFile.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ConvertTapeFile.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		644C528F2B1E1D73002C034C /* DxFeedFileParser.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = DxFeedFileParser.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		644FE5D02AC1F34000580E3A /* LatencyMetricsPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatencyMetricsPrinter.swift; sourceTree = "<group>"; };
 		645A34942A937C7200709F29 /* BinaryInteger+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+Ext.swift"; sourceTree = "<group>"; };
 		645BE8512AC31E7C0028243D /* PerfTestTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfTestTool.swift; sourceTree = "<group>"; };
@@ -995,6 +997,15 @@
 				64ABC0FE2AD91E6500904D78 /* OptionSale.swift */,
 			);
 			path = Market;
+			sourceTree = "<group>";
+		};
+		641E45FD2B1DF67E00649363 /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				644C528F2B1E1D73002C034C /* DxFeedFileParser.playground */,
+				644C528D2B1E1CB8002C034C /* ConvertTapeFile.playground */,
+			);
+			path = Playgrounds;
 			sourceTree = "<group>";
 		};
 		64262CCA2A4DA64700BA6BA3 /* VisionQuoteTableApp */ = {
@@ -1390,6 +1401,7 @@
 		64D8BB362A39B0DE0071BC88 /* Samples */ = {
 			isa = PBXGroup;
 			children = (
+				641E45FD2B1DF67E00649363 /* Playgrounds */,
 				6469F8D12A3B400100846831 /* Utils */,
 				64262CCA2A4DA64700BA6BA3 /* VisionQuoteTableApp */,
 				644BD75B2A44726F00A0BF99 /* ARQuoteTableApp */,
