@@ -51,9 +51,7 @@ class ErrorCheck {
             if let exception = fetchException(thread) {
                 throw exception
             } else {
-                throw GraalException.fail(message: "Something went wrong. Graal exception is empty",
-                                          className: "",
-                                          stack: "")
+                throw GraalException.nullException
             }
         }
     }
