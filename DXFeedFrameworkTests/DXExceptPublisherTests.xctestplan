@@ -25,7 +25,7 @@
         "DXExceptionTest",
         "DXObservableSubscriptionTest",
         "DXSnapshotProcessorTest",
-        "EndpointTest\/testGetEventTypes()",
+        "EndpointTest\/testGetInstance()",
         "IPFTests\/testResolveSourceURL()",
         "IsolateTest",
         "IsolateTest\/test123()",
