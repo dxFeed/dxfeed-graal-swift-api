@@ -254,7 +254,7 @@ sudo /usr/bin/xattr -r -d com.apple.quarantine <directory_with_tools>
 - [x] [DxFeedIpfConnect](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/DxFeedIpfConnect.playground/Contents.swift) is a simple demonstration of how to get Instrument Profiles
 - [x] [DXFeedLiveIpfSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/DXFeedLiveIpfSample.playground/Contents.swift)
 is a simple demonstration of how to get live updates for Instrument Profiles
-- [ ] DxFeedPublishProfiles is a simple demonstration of how to publish market events
+- [ ] [PublishProfiles](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/PublishProfiles.playground/Contents.swift) is a simple demonstration of how to publish market events
 - [x] [ScheduleSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/ScheduleSample.playground/Contents.swift)
   is a simple demonstration of how to get various scheduling information for instruments
 - [x] [FetchDailyCandles](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/FetchDailyCandles.playground/Contents.swift) is a simple demonstration of how to fetch last N-days of candles for a specified symbol
