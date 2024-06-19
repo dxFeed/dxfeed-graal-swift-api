@@ -1,4 +1,4 @@
-import UIKit
+import Cocoa
 import PlaygroundSupport
 import DXFeedFramework
 
