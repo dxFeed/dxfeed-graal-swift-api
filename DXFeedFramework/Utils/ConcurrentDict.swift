@@ -60,7 +60,11 @@ class ConcurrentDict<Key: Hashable, Value>: CustomStringConvertible {
 
     public func tryInsert(key: Key, value: Value) -> Bool {
         return accessQueue.sync {
-            return set.updateValue(value, forKey: key) == nil
+            if set[key] == nil {
+                set[key] = value
+                return true
+            }
+            return false
         }
     }
 

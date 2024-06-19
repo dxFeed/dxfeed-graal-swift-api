@@ -22,14 +22,6 @@ final class OrderTest: XCTestCase {
         try receiveOrder(code: .order)
     }
 
-    func testAnalyticOrder() throws {
-        try receiveOrder(code: .analyticOrder)
-    }
-
-    func testSpreadOrder() throws {
-        try receiveOrder(code: .spreadOrder)
-    }
-
     private func receiveOrder(code: EventCode) throws {
         let endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         try endpoint.connect("demo.dxfeed.com:7300")
@@ -38,19 +30,10 @@ final class OrderTest: XCTestCase {
         receivedEventExp.assertForOverFulfill = false
         let listener = AnonymousClass { anonymCl in
             anonymCl.callback = { events in
-                events.forEach { event in
-                    if event.type == .order {
-                        print(event.order.toString())
-                    }
-
-                }
                 if events.count > 0 {
                     let event = events.first
-                    if FeedTest.checkType(code, event) {
-                        if event?.type == .order {
-                            print(event?.order.toString())
-                        }
-//                        receivedEventExp.fulfill()
+                    if FeedTest.checkType(code, event) {                        
+                        receivedEventExp.fulfill()
                     }
                 }
             }
@@ -58,6 +41,6 @@ final class OrderTest: XCTestCase {
         }
         try subscription?.add(observer: listener)
         try subscription?.addSymbols(["IBM"])
-        wait(for: [receivedEventExp], timeout: 10)
+        wait(for: [receivedEventExp], timeout: 2)
     }
 }

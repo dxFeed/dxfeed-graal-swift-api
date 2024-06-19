@@ -282,7 +282,7 @@ extension OrderBase {
 """
 \(eventSymbol), \
 eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
-source=\(eventSource), \
+source=\(eventSource.name), \
 eventFlags=0x\(String(format: "%02X", eventFlags)), \
 index=0x\(String(format: "%02X", index)), \
 time=\(TimeUtil.toLocalDateString(millis: time)), \

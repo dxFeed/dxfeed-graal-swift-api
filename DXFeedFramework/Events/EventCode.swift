@@ -39,6 +39,7 @@ public enum EventCode: CaseIterable {
     case timeAndSale
     /// **Doesn't need to be implemented. Abstract class**
     case orderBase
+    /// See ``AnalyticOrder``
     case order
     /// See ``AnalyticOrder``
     case analyticOrder
