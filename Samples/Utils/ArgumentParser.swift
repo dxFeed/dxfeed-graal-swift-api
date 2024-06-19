@@ -23,6 +23,6 @@ Cmd \(cmd) contains not enough \(cmd.count - 1) arguments. Expected \(requiredNu
 """)
         }
 
-        return Array(cmd[1...cmd.count - 1])
+        return Array(cmd[1..<cmd.count])
     }
 }

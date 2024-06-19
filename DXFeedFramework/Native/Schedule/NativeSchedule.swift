@@ -55,6 +55,23 @@ class NativeSchedule {
         }
     }
 
+    public static func getTradingVenues(profile: InstrumentProfile ) throws -> [String] {
+        let thread = currentThread()
+        let mapper = InstrumentProfileMapper()
+        let native = mapper.toNative(instrumentProfile: profile)
+        var resultVenues = [String]()
+        if let result = try? ErrorCheck.nativeCall(thread, dxfg_Schedule_getTradingVenues(thread, native)) {
+            for index in 0..<result.pointee.size {
+                let venue = result.pointee.elements[Int(index)]
+                resultVenues.append(String(pointee: venue))
+            }
+            _ = try? ErrorCheck.nativeCall(thread,
+                                           dxfg_CList_String_release(thread,
+                                                                     result))
+        }
+        return resultVenues
+    }
+
     public func getName() throws -> String {
         let thread = currentThread()
         let name = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getName(thread, schedule))

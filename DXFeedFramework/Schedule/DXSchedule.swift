@@ -50,6 +50,14 @@ public class DXSchedule {
         let native = try NativeSchedule(instrumentProfile: instrumentProfile, venue: venue)
         self.init(native: native)
     }
+    /// Returns trading venues for specified instrument profile.
+    /// - Parameters:
+    ///    - profile: instrument profile those schedule is requested
+    /// - Returns: trading venue those schedule is requested
+    /// - Throws: GraalException. Rethrows exception from Java.recore
+    public static func getTradingVenues(profile: InstrumentProfile ) throws -> [String] {
+        return try NativeSchedule.getTradingVenues(profile: profile)
+    }
 
     /// Returns day that contains specified time.
     ///

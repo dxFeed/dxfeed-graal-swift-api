@@ -56,8 +56,12 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "DXFeedLiveIpfSample https://demo:demo@tools.dxfeed.com/ipf"
+            argument = "ScheduleSample  /Users/akosylo/Downloads/schedule.zip  /Users/akosylo/Downloads/sample.ipf.zip  IBM  2011-05-26-14:15:00"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "DXFeedLiveIpfSample https://demo:demo@tools.dxfeed.com/ipf"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Connect mddqa.in.devexperts.com:7400 Candle AAPL{=d} 20230201Z"
