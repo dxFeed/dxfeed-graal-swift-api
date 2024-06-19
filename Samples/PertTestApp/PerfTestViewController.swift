@@ -9,7 +9,8 @@ import UIKit
 import DXFeedFramework
 
 class PerfTestViewController: UIViewController {
-    let diagnostic = PerfDiagnostic()
+    let listener = PerfTestEventListener()
+    let printer = PerformanceMetricsPrinter()
 
     let numberFormatter = {
         let formatter = NumberFormatter()
@@ -92,12 +93,10 @@ class PerfTestViewController: UIViewController {
     }
 
     func updateUI() {
-        let metrics = diagnostic.getMetrics()
-        diagnostic.updateCpuUsage()
-//        print("---------------------------------------------------")
-//        print("Event speed      \(numberFormatter.string(from: metrics.rateOfEvent)!) events/s")
-//        print("Listener Calls   \(numberFormatter.string(from: metrics.rateOfListeners)!) calls/s")
+        let metrics = listener.metrics()
+        listener.updateCpuUsage()
         DispatchQueue.main.async {
+            self.printer.update(metrics)
             self.updateText(metrics)
         }
     }
@@ -119,9 +118,9 @@ class PerfTestViewController: UIViewController {
             _ = try? endpoint?.connect(address)
 
             subscription = try? endpoint?.getFeed()?.createSubscription(.timeAndSale)
-            try? subscription?.add(observer: self)
+            try? subscription?.add(observer: listener)
             try? subscription?.addSymbols(symbolsTextField.text ?? "")
-            diagnostic.cleanTime()
+            listener.cleanTime()
         }
     }
 }
@@ -133,17 +132,6 @@ extension PerfTestViewController: DXEndpointObserver {
             self.updateConnectButton()
 
             self.connectionStatusLabel.text = new.convetToString()
-        }
-    }
-}
-
-extension PerfTestViewController: DXEventListener {
-    func receiveEvents(_ events: [MarketEvent]) {
-        let count = events.count
-        diagnostic.updateCounters(Int64(count))
-
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
-            events.forEach { self.blackHoleInt ^= $0.eventTime }
         }
     }
 }
