@@ -33,5 +33,7 @@ extension AnalyticOrder {
         self.icebergHiddenSize = native.iceberg_hidden_size
         self.icebergExecutedSize = native.iceberg_executed_size
         self.icebergFlags = native.iceberg_flags
+
+        self.marketMaker = native.order_base.market_maker != nil ? String(pointee: native.order_base.market_maker) : nil
     }
 }
