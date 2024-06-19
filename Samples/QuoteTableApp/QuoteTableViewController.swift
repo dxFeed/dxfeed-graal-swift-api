@@ -13,16 +13,20 @@ class QuoteTableViewController: UIViewController {
     private var profileSubscription: DXFeedSubscription?
 
     var dataSource = [String: QuoteModel]()
-    var symbols = ["AAPL", "IBM", "MSFT", "EUR/CAD", "ETH/USD:GDAX", "GOOG", "BAC", "CSCO", "ABCE", "INTC", "PFE"]
+    var symbols = [String]()
+    let dataProvider = SymbolsDataProvider()
 
     @IBOutlet var quoteTableView: UITableView!
     @IBOutlet var connectionStatusLabel: UILabel!
     @IBOutlet var agregationSwitch: UISwitch!
+    @IBOutlet var titleLabel: UILabel!
 
     override func viewDidLoad() {
+
         print("viewDidLoad posix2 \(pthread_main_np()) \(pthread_mach_thread_np(pthread_self()))")
 
         super.viewDidLoad()
+        titleLabel.textColor = .text
         connectionStatusLabel.textColor = .text
         self.view.backgroundColor = .tableBackground
         self.quoteTableView.backgroundColor = .tableBackground
@@ -33,10 +37,15 @@ class QuoteTableViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        for index in 0..<1 {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
-                self.subscribe(self.agregationSwitch.isOn)
-//            })
+        let newSymbols = dataProvider.selectedSymbols
+        if symbols != newSymbols {
+            symbols = newSymbols
+            dataSource.removeAll()
+            symbols.forEach {
+                dataSource[$0] = QuoteModel()
+            }
+            quoteTableView.reloadData()
+            self.subscribe(self.agregationSwitch.isOn)
         }
     }
 
