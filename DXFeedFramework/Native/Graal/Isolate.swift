@@ -48,6 +48,13 @@ class Isolate {
     }
 
     /// Isolate should be initialized in main thread to avoid problem with overcommited queues.
+    ///
+    /// Problem with overcommited:
+    ///
+    /// It's important to note that if a user starts working with the SDK from the default queue,
+    /// their tasks may be transferred to the overcommitted queue.
+    /// Within the context of GraalVM, this transfer can result in the creation of a new thread, which might have already been attached to other tasks.
+    /// This could lead to a fatalError, so it's crucial to carefully manage these processes and consider potential issues when working with the SDK."
     init() {
         print("DXFeedFramework.Isolate:init \(Thread.isMainThread) \(Thread.current) \(Thread.current.threadName)")
         if Thread.isMainThread {
