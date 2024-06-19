@@ -12,7 +12,7 @@
         <!--Quote View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="QuoteViewController" customModule="DxFeedSampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="QuoteViewController" customModule="ARQuoteTableApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -98,7 +98,7 @@
         <!--Quote Table View Controller-->
         <scene sceneID="r7T-41-CNF">
             <objects>
-                <viewController id="KHT-AB-3Dx" customClass="QuoteTableViewController" customModule="DxFeedSampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuoteTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KHT-AB-3Dx" customClass="QuoteTableViewController" customModule="ARQuoteTableApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bnX-km-PdS">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -107,7 +107,7 @@
                                 <rect key="frame" x="10" y="59" width="373" height="718"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuoteCellId" rowHeight="100" id="Soc-px-Ac2" customClass="QuoteCell" customModule="DxFeedSampleApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuoteCellId" rowHeight="100" id="Soc-px-Ac2" customClass="QuoteCell" customModule="ARQuoteTableApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="373" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Soc-px-Ac2" id="AM4-po-jFo">
@@ -126,7 +126,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bpL-FX-1nC">
                                                             <rect key="frame" x="196.66666666666663" y="5" width="176.33333333333337" height="80"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfZ-3h-hz9" customClass="PaddingLabel" customModule="DxFeedSampleApp" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfZ-3h-hz9" customClass="PaddingLabel" customModule="ARQuoteTableApp" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="86.666666666666671" height="80"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -137,7 +137,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="my2-SE-epx" customClass="PaddingLabel" customModule="DxFeedSampleApp" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="my2-SE-epx" customClass="PaddingLabel" customModule="ARQuoteTableApp" customModuleProvider="target">
                                                                     <rect key="frame" x="89.666666666666657" y="0.0" width="86.666666666666657" height="80"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -197,25 +197,34 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connection status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdj-9e-TIL">
-                                <rect key="frame" x="20" y="787" width="358" height="21"/>
+                                <rect key="frame" x="20" y="787" width="304" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Dcb-73-MCr">
+                                <rect key="frame" x="334" y="782" width="51" height="31"/>
+                                <connections>
+                                    <action selector="changeAggregationPeriod:" destination="KHT-AB-3Dx" eventType="valueChanged" id="hyl-Gp-36u"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="25G-gY-cKV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="EH9-zJ-QLZ" firstAttribute="leading" secondItem="25G-gY-cKV" secondAttribute="leading" constant="10" id="40x-hA-kHB"/>
                             <constraint firstItem="25G-gY-cKV" firstAttribute="bottom" secondItem="gdj-9e-TIL" secondAttribute="bottom" constant="10" id="8B1-6Y-YFi"/>
+                            <constraint firstItem="Dcb-73-MCr" firstAttribute="centerY" secondItem="gdj-9e-TIL" secondAttribute="centerY" id="9Q9-fi-d1i"/>
+                            <constraint firstItem="25G-gY-cKV" firstAttribute="trailing" secondItem="Dcb-73-MCr" secondAttribute="trailing" constant="10" id="B5t-de-jSZ"/>
                             <constraint firstItem="EH9-zJ-QLZ" firstAttribute="top" secondItem="25G-gY-cKV" secondAttribute="top" id="B9Y-3w-tWF"/>
                             <constraint firstItem="gdj-9e-TIL" firstAttribute="leading" secondItem="25G-gY-cKV" secondAttribute="leading" constant="20" id="HVJ-dF-7MI"/>
+                            <constraint firstItem="Dcb-73-MCr" firstAttribute="leading" secondItem="gdj-9e-TIL" secondAttribute="trailing" constant="10" id="M8N-Os-LWo"/>
                             <constraint firstItem="gdj-9e-TIL" firstAttribute="top" secondItem="EH9-zJ-QLZ" secondAttribute="bottom" constant="10" id="THC-Vm-yzK"/>
                             <constraint firstItem="25G-gY-cKV" firstAttribute="trailing" secondItem="EH9-zJ-QLZ" secondAttribute="trailing" constant="10" id="hMT-0Z-bdv"/>
-                            <constraint firstItem="25G-gY-cKV" firstAttribute="trailing" secondItem="gdj-9e-TIL" secondAttribute="trailing" constant="15" id="xFH-HS-NCS"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="agregationSwitch" destination="Dcb-73-MCr" id="Nbt-BE-u5b"/>
                         <outlet property="connectionStatusLabel" destination="gdj-9e-TIL" id="Zjq-vs-f66"/>
                         <outlet property="quoteTableView" destination="EH9-zJ-QLZ" id="Ud1-e6-WxZ"/>
                     </connections>
