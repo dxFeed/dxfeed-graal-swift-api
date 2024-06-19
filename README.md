@@ -358,13 +358,18 @@ sudo /usr/bin/xattr -r -d com.apple.quarantine <directory_with_tools>
   represents basic profile information about a market instrument
   ([Java API sample](https://github.com/devexperts/QD/blob/master/dxfeed-samples/src/main/java/com/dxfeed/sample/ipf/DXFeedIpfConnect.java))
 
+- [x] [InstrumentProfileReader](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/ipf/InstrumentProfileReader.html) reads 
+  instrument profiles from the stream using Instrument Profile Format (IPF)
+  
+- [x] [InstrumentProfileConnection](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/ipf/live/InstrumentProfileConnection.html) 
+  connects to an instrument profile URL and reads instrument profiles with support of streaming live updates
+  
 - [x] [InstrumentProfileCollector](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/ipf/live/InstrumentProfileCollector.html)
   collects instrument profile updates and provides the live instrument profiles list
   ([Java API sample](https://github.com/devexperts/QD/blob/master/dxfeed-samples/src/main/java/com/dxfeed/sample/ipf/DXFeedLiveIpfSample.java))
   
-- [x] [Schedule](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/schedule/Schedule.html)
-  provides an API to retrieving and exploring the trading schedules of various exchanges and different financial
-  instrument classes
+- [x] [Schedule](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/schedule/Schedule.html) 
+  provides API to retrieve and explore various exchanges’ trading schedules and different financial instrument classes
   ([Java API sample](https://github.com/devexperts/QD/blob/master/dxfeed-samples/src/main/java/com/dxfeed/sample/schedule/ScheduleSample.java))
 
 ### Services
