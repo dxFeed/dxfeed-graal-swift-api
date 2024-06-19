@@ -56,6 +56,11 @@ class Isolate {
     /// Within the context of GraalVM, this transfer can result in the creation of a new thread, which might have already been attached to other tasks.
     /// This could lead to a fatalError, so it's crucial to carefully manage these processes and consider potential issues when working with the SDK."
     init() {
+#if DEBUG
+    print("FEED SDK: Debug")
+#else
+    print("FEED SDK: Release")
+#endif
         print("DXFeedFramework.Isolate:init \(Thread.isMainThread) \(Thread.current) \(Thread.current.threadName)")
         do {
             if Thread.isMainThread {
