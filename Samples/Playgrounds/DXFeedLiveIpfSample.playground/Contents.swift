@@ -13,7 +13,6 @@ class Listener: DXInstrumentProfileUpdateListener, Hashable {
 
     func instrumentProfilesUpdated(_ instruments: [DXFeedFramework.InstrumentProfile]) {
         // We can observe REMOVED elements - need to add necessary filtering
-        // See javadoc for InstrumentProfileCollector for more details
 
         // (1) We can either process instrument profile updates manually
         instruments.forEach { ipf in

@@ -56,8 +56,8 @@ public class Promise {
     }
 
     /// Returns exceptional outcome of computation. If computation has no  ``hasException()`` exception,
-    /// then this method returns ``nil``. If computation has completed exceptionally or was cancelled, then
-    /// the result of this method is not ``nil``.
+    /// then this method returns nil. If computation has completed exceptionally or was cancelled, then
+    /// the result of this method is not nil.
     /// If computation was ``isCancelled()`` cancelled, then this method returns an
     /// instance of GraalException.
     /// - Returns: GraalException. Rethrows exception from Java.

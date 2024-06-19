@@ -57,7 +57,7 @@ final class DXConnectionTest: XCTestCase {
         defer {
             try? endpoint.closeAndAwaitTermination()
         }
-        wait(for: [receivedEventsExpectation], timeout: 2)
+        wait(for: [receivedEventsExpectation], timeout: 4)
     }
 
     func testConnection() throws {

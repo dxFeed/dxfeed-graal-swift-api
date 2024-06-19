@@ -13,7 +13,7 @@ import Foundation
 /// By default, when subscribing to indexed events by their event symbol object,
 /// the subscription is performed to all supported sources.
 ///
-/// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/IndexedEventSubscriptionSymbol.html)
+/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/IndexedEventSubscriptionSymbol.html)
 ///
 /// `T`: The type of event symbol
 public class GenericIndexedEventSubscriptionSymbol<T: Equatable>: Symbol {

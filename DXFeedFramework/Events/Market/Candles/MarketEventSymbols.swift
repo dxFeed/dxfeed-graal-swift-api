@@ -292,6 +292,8 @@ public class MarketEventSymbols {
                         symbol[0..<index] +
                         "\(key)\(Separtors.value.rawValue)\(value)" +
                         symbol[jindex-1..<symbol.length]
+                        added = true
+                        index += key.length + value.length + 2
                     }
                 } else {
                     if current > key && !added {
@@ -306,6 +308,8 @@ public class MarketEventSymbols {
                         index = jindex
                     }
                 }
+            } else {
+                print("NULLL")
             }
         }
         return added ? symbol : (symbol[0..<index-1] +

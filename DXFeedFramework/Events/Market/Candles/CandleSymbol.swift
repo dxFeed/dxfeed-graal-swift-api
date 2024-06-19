@@ -105,6 +105,16 @@ public class CandleSymbol: CustomStringConvertible {
     public static func valueOf(_ symbol: String, _ properties: [ICandleSymbolProperty]) -> CandleSymbol {
         return CandleSymbol(symbol, properties)
     }
+
+    /// Converts the given string symbol into the candle symbol object with the specified attribute set.
+    ///
+    /// - Parameters:
+    ///  - symbol:The string symbol.
+    ///  - attributes: The attributes variadic.
+    /// - Throws: ArgumentException/invalidOperationException(_:)
+    public static func valueOf(_ symbol: String, _ properties: ICandleSymbolProperty...) -> CandleSymbol {
+        return CandleSymbol(symbol, properties)
+    }
 }
 
 extension CandleSymbol: Equatable {

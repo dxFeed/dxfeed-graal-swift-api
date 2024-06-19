@@ -34,7 +34,7 @@ public class DXPublisher {
     /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXPublisher.html#publishEvents-java.util.Collection-)
     /// - Parameters:
     ///   - events: The collection of events to publish.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func publish(events: [MarketEvent]) throws {
         try native.publishEvents(events: events)
     }
@@ -58,7 +58,7 @@ public class DXPublisher {
     /// - Parameters:
     ///    - event: eventType the class of event.
     /// - Returns: Observable subscription for the specified event type.
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func getSubscription(_ event: IEventType.Type) throws -> IObservableSubscription {
         if let subscription = subscriptionsByClass[event.type] {
             return subscription

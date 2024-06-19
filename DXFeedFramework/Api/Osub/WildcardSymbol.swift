@@ -11,7 +11,7 @@ import Foundation
 /// to the effect of subscribing to all possible event symbols. The corresponding subscription will start
 /// receiving all published events of the corresponding types.
 ///
-/// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/WildcardSymbol.html)
+/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/osub/WildcardSymbol.html)
 public class WildcardSymbol: Symbol {
     /// Symbol prefix that is reserved for wildcard subscriptions.
     /// Any subscription starting with "*" is ignored with the exception of  ``WildcardSymbol`` subscription.
