@@ -20,7 +20,6 @@ final class FeedTest: XCTestCase {
         }
     }
 
-
     func testCreateSymbol() throws {
         // "as Any" to avoid compile time warnings
         XCTAssertNotNil(("AAPL" as Any) as? Symbol, "String is not a symbol")

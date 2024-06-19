@@ -33,8 +33,8 @@
 		64098F4F2ACD73930020D741 /* PerfTestEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64098F4C2ACD73820020D741 /* PerfTestEventListener.swift */; };
 		64098F502ACD73D00020D741 /* AbstractEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BDD602ACD697B00236B78 /* AbstractEventListener.swift */; };
 		64098F532ACD7D0D0020D741 /* LatencyMetricsPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FE5D02AC1F34000580E3A /* LatencyMetricsPrinter.swift */; };
-		64098F552ACD7E940020D741 /* PerformanceMetricsPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64098F542ACD7E940020D741 /* PerformanceMetricsPrinter.swift */; };
-		64098F562ACD7E940020D741 /* PerformanceMetricsPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64098F542ACD7E940020D741 /* PerformanceMetricsPrinter.swift */; };
+		64098F552ACD7E940020D741 /* SamplePerformancePrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64098F542ACD7E940020D741 /* SamplePerformancePrinter.swift */; };
+		64098F562ACD7E940020D741 /* SamplePerformancePrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64098F542ACD7E940020D741 /* SamplePerformancePrinter.swift */; };
 		64098F672ACEB6F70020D741 /* DXConnectionStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64098F662ACEB6F70020D741 /* DXConnectionStateTests.swift */; };
 		640C3FCC2A616B6200555161 /* ArgumentException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640C3FCB2A616B6200555161 /* ArgumentException.swift */; };
 		640C3FCE2A61788500555161 /* CandleExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640C3FCD2A61788500555161 /* CandleExchange.swift */; };
@@ -170,6 +170,7 @@
 		6464075B2AA0CEF2006FF769 /* NativeExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6464075A2AA0CEF2006FF769 /* NativeExecutor.swift */; };
 		6464075D2AA1C69E006FF769 /* DXInstrumentProfileUpdateListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6464075C2AA1C69E006FF769 /* DXInstrumentProfileUpdateListener.swift */; };
 		64649B1D2BBAF9F400A33C25 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 64649B1C2BBAF9F400A33C25 /* PrivacyInfo.xcprivacy */; };
+		64649B212BBC304C00A33C25 /* MonitoringStatsPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64649B1E2BBC302800A33C25 /* MonitoringStatsPrinter.swift */; };
 		64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F582A1B864C006A0B19 /* NativeEndpoint.swift */; };
 		64656F5B2A1B9784006A0B19 /* DXFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5A2A1B9784006A0B19 /* DXFeed.swift */; };
 		64656F5E2A1B97F2006A0B19 /* NativeFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F5D2A1B97F2006A0B19 /* NativeFeed.swift */; };
@@ -590,7 +591,7 @@
 		6408BB712B1F2D14005D7797 /* WriteTapeFile.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = WriteTapeFile.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		64098F492ACD6AF20020D741 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		64098F4C2ACD73820020D741 /* PerfTestEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfTestEventListener.swift; sourceTree = "<group>"; };
-		64098F542ACD7E940020D741 /* PerformanceMetricsPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceMetricsPrinter.swift; sourceTree = "<group>"; };
+		64098F542ACD7E940020D741 /* SamplePerformancePrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePerformancePrinter.swift; sourceTree = "<group>"; };
 		64098F652ACEB3DF0020D741 /* DXExceptPublisherTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = DXExceptPublisherTests.xctestplan; sourceTree = "<group>"; };
 		64098F662ACEB6F70020D741 /* DXConnectionStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXConnectionStateTests.swift; sourceTree = "<group>"; };
 		640C3FCB2A616B6200555161 /* ArgumentException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentException.swift; sourceTree = "<group>"; };
@@ -706,6 +707,7 @@
 		6464075A2AA0CEF2006FF769 /* NativeExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeExecutor.swift; sourceTree = "<group>"; };
 		6464075C2AA1C69E006FF769 /* DXInstrumentProfileUpdateListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileUpdateListener.swift; sourceTree = "<group>"; };
 		64649B1C2BBAF9F400A33C25 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		64649B1E2BBC302800A33C25 /* MonitoringStatsPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoringStatsPrinter.swift; sourceTree = "<group>"; };
 		64656F582A1B864C006A0B19 /* NativeEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeEndpoint.swift; sourceTree = "<group>"; };
 		64656F5A2A1B9784006A0B19 /* DXFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXFeed.swift; sourceTree = "<group>"; };
 		64656F5D2A1B97F2006A0B19 /* NativeFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeFeed.swift; sourceTree = "<group>"; };
@@ -1000,7 +1002,8 @@
 				641BDD602ACD697B00236B78 /* AbstractEventListener.swift */,
 				64098F4C2ACD73820020D741 /* PerfTestEventListener.swift */,
 				644FE5D02AC1F34000580E3A /* LatencyMetricsPrinter.swift */,
-				64098F542ACD7E940020D741 /* PerformanceMetricsPrinter.swift */,
+				64098F542ACD7E940020D741 /* SamplePerformancePrinter.swift */,
+				64649B1E2BBC302800A33C25 /* MonitoringStatsPrinter.swift */,
 			);
 			path = Performance;
 			sourceTree = "<group>";
@@ -2233,11 +2236,12 @@
 				644FE5CF2AC1F25900580E3A /* DXFTimer.swift in Sources */,
 				644FE5CE2AC1EC1500580E3A /* TimeInterval+Ext.swift in Sources */,
 				64148B672ABB5C320063110E /* main.swift in Sources */,
+				64649B212BBC304C00A33C25 /* MonitoringStatsPrinter.swift in Sources */,
 				647426AD2ABC85F20012F793 /* Arguments.swift in Sources */,
 				64098F4E2ACD73920020D741 /* PerfTestEventListener.swift in Sources */,
 				641BDD592AC7215200236B78 /* LatencyDiagnostic.swift in Sources */,
 				648BD5692AC450D6004A3A95 /* ConnectTool.swift in Sources */,
-				64098F562ACD7E940020D741 /* PerformanceMetricsPrinter.swift in Sources */,
+				64098F562ACD7E940020D741 /* SamplePerformancePrinter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2333,7 +2337,7 @@
 				64B627962A3762D000196D07 /* SceneDelegate.swift in Sources */,
 				64B6278C2A3762D000196D07 /* Endpoint+Ext.swift in Sources */,
 				64B627882A3762D000196D07 /* PerfTestViewController.swift in Sources */,
-				64098F552ACD7E940020D741 /* PerformanceMetricsPrinter.swift in Sources */,
+				64098F552ACD7E940020D741 /* SamplePerformancePrinter.swift in Sources */,
 				64098F4F2ACD73930020D741 /* PerfTestEventListener.swift in Sources */,
 				64098F502ACD73D00020D741 /* AbstractEventListener.swift in Sources */,
 			);

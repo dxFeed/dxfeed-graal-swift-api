@@ -50,9 +50,10 @@ class LatencyTestTool: ToolsCommand {
             try? SystemProperty.setProperty(key, value)
         }
         let listener = LatencyEventListener()
+        let symbols = arguments.parseSymbols()
 
         subscription.createSubscription(address: address,
-                                        symbols: arguments.parseSymbols(),
+                                        symbols: symbols,
                                         types: types,
                                         role: arguments.isForceStream ? .streamFeed : .feed,
                                         listeners: [listener],
@@ -60,10 +61,15 @@ class LatencyTestTool: ToolsCommand {
                                         time: nil)
 
         let timer = DXFTimer(timeInterval: 2)
-        let printer = LatencyMetricsPrinter()
+        let printers: [LatencyPrinter] = [LatencyMetricsPrinter(),
+                                          MonitoringStatsPrinter(numberOfSubscription: symbols.count * types.count,
+                                                                 address: address)]
         timer.eventHandler = {
             let metrics = listener.metrics()
-            printer.update(metrics)
+            listener.updateCpuUsage()
+            printers.forEach({ printer in
+                printer.update(metrics)
+            })
         }
         timer.resume()
         // Calculate till input new line

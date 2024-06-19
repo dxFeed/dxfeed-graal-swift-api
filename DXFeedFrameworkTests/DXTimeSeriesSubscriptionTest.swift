@@ -50,7 +50,7 @@ final class DXTimeSeriesSubscriptionTest: XCTestCase {
         let feed = endpoint.getFeed()
         _ = try feed?.createTimeSeriesSubscription(Candle.self)
         _ = try feed?.createTimeSeriesSubscription(TimeAndSale.self)
-        _ = try feed?.createTimeSeriesSubscription(Greeks.self)        
+        _ = try feed?.createTimeSeriesSubscription(Greeks.self)
     }
 
 }

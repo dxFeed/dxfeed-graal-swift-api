@@ -10,7 +10,7 @@ import XCTest
 final class DXConnectionStateTests: XCTestCase {
     static let port = Int.random(in: 7800..<7900)
     static let endpointAddress = "localhost:\(port)"
-   
+
     static var publisherEndpoint: DXEndpoint?
 
     override class func setUp() {

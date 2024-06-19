@@ -82,7 +82,7 @@ final class EndpointTest: XCTestCase {
             try? endpoint.closeAndAwaitTermination()
         }
         let connectedExpectation = expectation(description: "Connected")
-        
+
         let stateListener: TestEndpoointStateListener? = TestEndpoointStateListener { listener in
             listener.callback = { state in
                 if state == .connected {
