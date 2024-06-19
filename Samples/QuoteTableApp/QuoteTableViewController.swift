@@ -20,7 +20,10 @@ class QuoteTableViewController: UIViewController {
     @IBOutlet var agregationSwitch: UISwitch!
 
     override func viewDidLoad() {
+        print("viewDidLoad posix2 \(pthread_main_np()) \(pthread_mach_thread_np(pthread_self()))")
+
         super.viewDidLoad()
+        connectionStatusLabel.textColor = .text
         self.view.backgroundColor = .tableBackground
         self.quoteTableView.backgroundColor = .tableBackground
 
@@ -30,12 +33,20 @@ class QuoteTableViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        subscribe(agregationSwitch.isOn)
+        for index in 0..<1 {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
+                self.subscribe(self.agregationSwitch.isOn)
+//            })
+        }
     }
 
     func subscribe(_ unlimited: Bool) {
+        print("UI Current thread \(Thread.current)")
+
         if endpoint != nil {
             try? endpoint?.disconnect()
+//            try? endpoint?.disconnectAndClear()
+//            try? endpoint?.close()
             subscription = nil
             profileSubscription = nil
         }
@@ -58,10 +69,18 @@ class QuoteTableViewController: UIViewController {
         }
         try? subscription?.addSymbols(symbols)
         try? profileSubscription?.addSymbols(symbols)
+
     }
 
     @IBAction func changeAggregationPeriod(_ sender: UISwitch) {
         subscribe(agregationSwitch.isOn)
+    }
+
+    @IBAction func editTouchUpInside(_ sender: UIButton) {
+        if let newView = self.storyboard?.instantiateViewController(withIdentifier: "SymbolsViewController") as? SymbolsViewController {
+            self.navigationController?.pushViewController(newView, animated: true)
+        }
+
     }
 }
 
@@ -75,7 +94,7 @@ extension QuoteTableViewController: DXEndpointListener {
 
 extension QuoteTableViewController: DXEventListener {
     func receiveEvents(_ events: [MarketEvent]) {
-
+        
         events.forEach { event in
             switch event.type {
             case .quote:

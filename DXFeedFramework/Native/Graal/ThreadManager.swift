@@ -13,12 +13,7 @@ import Foundation
 /// It checks whether the current Graal thread is available; if it is, the function returns a reference to it.
 /// If not, it creates a new thread and returns a reference to the newly created thread. This function is commonly used in the context of multi-threaded programming to manage and work with threads in GraalVM.
 func currentThread() -> OpaquePointer! {
-    let currentThread = graal_get_current_thread(Isolate.shared.isolate.pointee)
-    if currentThread == nil {
-        return ThreadManager.shared.attachThread().pointee
-    } else {
-        return currentThread
-    }
+    ThreadManager.shared.currentThread()
 }
 
 /// This is a utility class that implements a thread-local variable using Thread.current.threadDictionary.
@@ -31,20 +26,35 @@ class ThreadManager {
 
     private init() {
         pthread_key_create(ThreadManager.key) { pointer in
-            pointer.withMemoryRebound(to: OpaquePointer.self, capacity: 1) { _ in
+            pointer.withMemoryRebound(to: OpaquePointer.self, capacity: 1) { pointer1 in
+                print("deinit thread \(Thread.isMainThread) \(Thread.current) \(Thread.current.threadName) \(pthread_mach_thread_np(pthread_self())) \(pointer1)")
+
                 // The call to this method has been removed.
-                // In some cases: an attachment to a java stream crashes when you try to use this stream (deinit in this java stream)
-//                graal_detach_thread(pointer1.pointee)
+                // In some cases: an attachment to a java thread crashes when you try to use this thread (deinit in this java thread)
+                graal_detach_thread(pointer1.pointee)
                 pointer.deallocate()
             }
         }
     }
-
-    fileprivate func attachThread() -> UnsafeMutablePointer<OpaquePointer?> {
+    fileprivate func currentThread() -> OpaquePointer!{
         defer {
             objc_sync_exit(self)
         }
         objc_sync_enter(self)
+        let currentThread = graal_get_current_thread(Isolate.shared.isolate.pointee)
+        print("currentThread \(currentThread) \(Thread.isMainThread) \(Thread.current) \(Thread.current.threadName) \(pthread_mach_thread_np(pthread_self()))")
+        if currentThread == nil {
+            let result =  ThreadManager.shared.attachThread().pointee
+            print("currentThread attachThread0 \(result)")
+            return result
+        } else {
+            print("currentThread attachThread1 \(currentThread)")
+            return currentThread
+        }
+    }
+
+    fileprivate func attachThread() -> UnsafeMutablePointer<OpaquePointer?> {
+
         let threadPointer = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: 1)
         _ = graal_attach_thread(Isolate.shared.isolate.pointee, threadPointer)
         _ = pthread_setspecific(ThreadManager.key.pointee, threadPointer)

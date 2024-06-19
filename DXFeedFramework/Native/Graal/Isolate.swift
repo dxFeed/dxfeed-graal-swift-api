@@ -31,13 +31,40 @@ class Isolate {
     internal let isolate = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: 1)
     private let params = UnsafeMutablePointer<graal_create_isolate_params_t>.allocate(capacity: 1)
     private let thread = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: 1)
+    let waiter = DispatchGroup()
+    lazy var osThread = {
+        let thread = Thread {
+            print("DXFeedFramework.Isolate:init \(Thread.isMainThread) \(Thread.current) \(Thread.current.threadName) \(pthread_mach_thread_np(pthread_self()))")
+            do {
+                try ErrorCheck.graalCall(graal_create_isolate(self.params, self.isolate, self.thread))
+            } catch GraalException.fail(let message, let className, let stack) {
+                let errorMessage = "!!!Isolate init failed: \(message) in \(className) with \(stack)"
+                fatalError(errorMessage)
+            } catch GraalException.isolateFail(let message) {
+                let errorMessage = "!!!Isolate init failed: \(message)"
+                fatalError(errorMessage)
+            } catch GraalException.undefined {
+                let errorMessage = "!!!Isolate init failed: undefined"
+                fatalError(errorMessage)
+            } catch {
+                let errorMessage = "!!!Isolate init failed: Unexpected error \(error)"
+                fatalError(errorMessage)
+            }
+            OrderSource.initAllValues()
 
+            self.waiter.leave()
+            Thread.sleep(forTimeInterval: .infinity)
+        }
+        thread.qualityOfService = .userInteractive
+        return thread
+    }()
+    
     deinit {
         self.isolate.deallocate()
         self.params.deallocate()
         self.thread.deallocate()
     }
-
+   
     /// Internal cleanup function.
     /// Just for testing purposes
     func cleanup() {
@@ -60,30 +87,10 @@ class Isolate {
 #else
     print("FEED SDK: Release")
 #endif
-        print("DXFeedFramework.Isolate:init \(Thread.isMainThread) \(Thread.current) \(Thread.current.threadName)")
-        do {
-            if Thread.isMainThread {
-                try ErrorCheck.graalCall(graal_create_isolate(self.params, self.isolate, self.thread))
-            } else {
-                try DispatchQueue.main.sync {
-                    try ErrorCheck.graalCall(graal_create_isolate(self.params, self.isolate, self.thread))
-                }
-            }
-        } catch GraalException.fail(let message, let className, let stack) {
-            let errorMessage = "!!!Isolate init failed: \(message) in \(className) with \(stack)"
-            fatalError(errorMessage)
-        } catch GraalException.isolateFail(let message) {
-            let errorMessage = "!!!Isolate init failed: \(message)"
-            fatalError(errorMessage)
-        } catch GraalException.undefined {
-            let errorMessage = "!!!Isolate init failed: undefined"
-            fatalError(errorMessage)
-        } catch {
-            let errorMessage = "!!!Isolate init failed: Unexpected error \(error)"
-            fatalError(errorMessage)
-        }
-
-        OrderSource.initAllValues()
+        osThread.qualityOfService = .userInteractive;
+        waiter.enter()
+        osThread.start()
+        waiter.wait()
     }
 
     // only for testing
