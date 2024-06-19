@@ -13,7 +13,6 @@ public protocol Symbol {
 
 extension Symbol {
     public var stringValue: String {
-#warning("TODO: implement it")
-        return "empty description for \(type(of: self)). please change"
+        fatalError("Symbol.stringValue has not been implemented")
     }
 }

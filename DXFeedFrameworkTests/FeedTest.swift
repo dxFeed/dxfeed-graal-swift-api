@@ -48,7 +48,8 @@ final class FeedTest: XCTestCase {
                                                       fromTime: 0) as Any) as? Symbol, "String is not a symbol")
 
         let symbol1 = try CandleSymbol(symbol: "test")
-        print(TimeSeriesSubscriptionSymbol(symbol: symbol1, fromTime: 0).stringValue)
+        let testString = TimeSeriesSubscriptionSymbol(symbol: symbol1, fromTime: 10).stringValue
+        print(testString)
     }
 
     func testFeedCreateMultipleSubscriptionWithSymbol() throws {

@@ -8,8 +8,8 @@
 import Foundation
 @_implementationOnly import graal_api
 
-extension InstrumentProfileConnectionState {
-    static func convert(_ state: dxfg_ipf_connection_state_t) -> InstrumentProfileConnectionState? {
+extension DXInstrumentProfileConnectionState {
+    static func convert(_ state: dxfg_ipf_connection_state_t) -> DXInstrumentProfileConnectionState? {
         switch state {
         case DXFG_IPF_CONNECTION_STATE_NOT_CONNECTED:
             return .notConnected

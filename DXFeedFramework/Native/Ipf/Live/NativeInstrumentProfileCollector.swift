@@ -12,7 +12,7 @@ class NativeInstrumentProfileCollector {
     let collector: UnsafeMutablePointer<dxfg_ipf_collector_t>?
     private var nativeListener: UnsafeMutablePointer<dxfg_ipf_update_listener_t>?
 
-    private weak var listener: InstrumentProfileUpdateListener?
+    private weak var listener: DXInstrumentProfileUpdateListener?
     private static let mapper = InstrumentProfileMapper()
 
     static let listenerCallback: dxfg_ipf_update_listener_function = {_, nativeProfiles, context in
@@ -110,7 +110,7 @@ class NativeInstrumentProfileCollector {
         return NativeExecutor(executor: native)
     }
 
-    func addListener(_ listener: InstrumentProfileUpdateListener?) throws {
+    func addListener(_ listener: DXInstrumentProfileUpdateListener?) throws {
         removeListener()
         let thread = currentThread()
         self.listener = listener

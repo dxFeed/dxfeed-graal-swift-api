@@ -1,5 +1,5 @@
 //
-//  NativeInstrumentProfileConnectionListener.swift
+//  DXInstrumentProfileConnectionObserver.swift
 //  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 01.09.23.
@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol NativeIPFConnectionListener: AnyObject {
+public protocol DXInstrumentProfileConnectionObserver {
     func connectionDidChangeState(old: DXInstrumentProfileConnectionState, new: DXInstrumentProfileConnectionState)
 }

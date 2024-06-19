@@ -1,5 +1,5 @@
 //
-//  ProfileIterator.swift
+//  DXProfileIterator.swift
 //  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 01.09.23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class ProfileIterator {
+public class DXProfileIterator {
     private let native: NativeProfileIterator
 
     init(_ native: NativeProfileIterator) {

@@ -1,5 +1,5 @@
 //
-//  InstrumentProfileCollector.swift
+//  DXInstrumentProfileCollector.swift
 //  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 29.08.23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class InstrumentProfileCollector {
+public class DXInstrumentProfileCollector {
     private let listeners = ConcurrentSet<AnyHashable>()
     let native: NativeInstrumentProfileCollector
 
@@ -16,7 +16,7 @@ public class InstrumentProfileCollector {
     }
 
     public func add<O>(_ observer: O) throws
-    where O: InstrumentProfileUpdateListener,
+    where O: DXInstrumentProfileUpdateListener,
           O: Hashable {
               try listeners.reader { [weak self] in
                   if $0.isEmpty {
@@ -27,7 +27,7 @@ public class InstrumentProfileCollector {
           }
 
     public func remove<O>(_ observer: O)
-    where O: InstrumentProfileUpdateListener,
+    where O: DXInstrumentProfileUpdateListener,
           O: Hashable {
               listeners.remove(observer)
           }
@@ -40,9 +40,9 @@ public class InstrumentProfileCollector {
         try native.updateInstrumentProfile(profile: profile)
     }
 
-    public func view() throws -> ProfileIterator {
+    public func view() throws -> DXProfileIterator {
         let iterator = try native.view()
-        return ProfileIterator(iterator)
+        return DXProfileIterator(iterator)
     }
 
     public func createOnConcurrentLinkedQueue() throws -> Bool {
@@ -65,11 +65,11 @@ public class InstrumentProfileCollector {
     }
 }
 
-extension InstrumentProfileCollector: InstrumentProfileUpdateListener {
+extension DXInstrumentProfileCollector: DXInstrumentProfileUpdateListener {
     public func instrumentProfilesUpdated(_ instruments: [InstrumentProfile]) {
         listeners.reader { items in
             items.compactMap {
-                $0 as? InstrumentProfileUpdateListener
+                $0 as? DXInstrumentProfileUpdateListener
             }.forEach { $0.instrumentProfilesUpdated(instruments) }
         }
     }

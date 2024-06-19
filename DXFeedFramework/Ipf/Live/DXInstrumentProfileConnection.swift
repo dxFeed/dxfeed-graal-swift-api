@@ -1,5 +1,5 @@
 //
-//  InstrumentProfileConnection.swift
+//  DXInstrumentProfileConnection.swift
 //  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 29.08.23.
@@ -7,16 +7,16 @@
 
 import Foundation
 
-public class InstrumentProfileConnection {
+public class DXInstrumentProfileConnection {
     private let native: NativeInstrumentProfileConnection
-    private let collector: InstrumentProfileCollector
+    private let collector: DXInstrumentProfileCollector
 
     private var observersSet = ConcurrentSet<AnyHashable>()
-    private var observers: [InstrumentProfileConnectionObserver] {
-        return observersSet.reader { $0.compactMap { value in value as? InstrumentProfileConnectionObserver } }
+    private var observers: [DXInstrumentProfileConnectionObserver] {
+        return observersSet.reader { $0.compactMap { value in value as? DXInstrumentProfileConnectionObserver } }
     }
 
-    public init(_ address: String, _ collector: InstrumentProfileCollector) throws {
+    public init(_ address: String, _ collector: DXInstrumentProfileCollector) throws {
         self.collector = collector
         native = try NativeInstrumentProfileConnection(collector.native, address)
         try native.addListener(self)
@@ -47,21 +47,21 @@ public class InstrumentProfileConnection {
     }
 
     public func add<O>(_ observer: O)
-    where O: InstrumentProfileConnectionObserver,
+    where O: DXInstrumentProfileConnectionObserver,
           O: Hashable {
         observersSet.insert(observer)
     }
 
     public func remove<O>(_ observer: O)
-    where O: InstrumentProfileConnectionObserver,
+    where O: DXInstrumentProfileConnectionObserver,
           O: Hashable {
         observersSet.remove(observer)
     }
 
 }
 
-extension InstrumentProfileConnection: NativeIPFConnectionListener {
-    func connectionDidChangeState(old: InstrumentProfileConnectionState, new: InstrumentProfileConnectionState) {
+extension DXInstrumentProfileConnection: NativeIPFConnectionListener {
+    func connectionDidChangeState(old: DXInstrumentProfileConnectionState, new: DXInstrumentProfileConnectionState) {
         observers.forEach { $0.connectionDidChangeState(old: old, new: new) }
     }
 }

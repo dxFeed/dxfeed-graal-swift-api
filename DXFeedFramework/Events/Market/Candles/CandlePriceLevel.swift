@@ -58,7 +58,7 @@ public class CandlePriceLevel {
     }
 
     static func getAttribute(_ symbol: String?) throws -> CandlePriceLevel {
-        var attribute = try MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
+        let attribute = try MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
         guard let attribute = attribute else {
             return defaultCandlePriceLevel!
         }
