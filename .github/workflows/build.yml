@@ -22,7 +22,7 @@ jobs:
 
        - name: Test
          run: xcodebuild test -project DxFeedFramework.xcodeproj -scheme DXFeedFramework -testPlan DXExceptPublisherTests
-  
+
   release:
     if: (startsWith(github.event.ref, 'refs/tags/') && endsWith(github.event.ref, 'build'))    
     name: Release
