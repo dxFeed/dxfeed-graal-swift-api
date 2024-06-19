@@ -204,17 +204,36 @@ final class DXCandleTests: XCTestCase {
         var endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         try endpoint?.connect("demo.dxfeed.com:7300")
         let subscription = try endpoint?.getFeed()?.createSubscription(code)
-        let beginEventsExp = expectation(description: "Begin events \(code)")
-        let endEventsExp = expectation(description: "End events \(code)")
+        let snapshotExpect = expectation(description: "Snapshot \(code)")
+        let updateExpect = expectation(description: "Incremental update \(code)")
         let snapshotProcessor = SnapshotProcessor()
-
+        let testDelegate = TestSnapshotDelegate()
+        testDelegate.wasSnapshotExpect = snapshotExpect
+        testDelegate.wasUpdateExpect = updateExpect
+        snapshotProcessor.add(testDelegate)
         subscription?.add(snapshotProcessor)
         try subscription?.addSymbols(symbol)
-        wait(for: [beginEventsExp, endEventsExp], timeout: 10)
+        wait(for: [snapshotExpect, updateExpect], timeout: 10)
         try? endpoint?.disconnect()
         endpoint = nil
         let sec = 5
         _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
+    }
+}
+
+private class TestSnapshotDelegate: SnapshotDelegate {
+    var wasSnapshotExpect: XCTestExpectation? = nil
+    var wasUpdateExpect: XCTestExpectation? = nil
+    var wasSnapshot = false
+    func receiveEvents(_ events: [DXFeedFramework.IIndexedEvent], isSnapshot: Bool) {
+
+        if isSnapshot {
+            wasSnapshotExpect?.fulfill()
+            wasSnapshot = true
+        }
+        if !isSnapshot && wasSnapshot {
+            wasUpdateExpect?.fulfill()
+        }
     }
 }
 // swiftlint:enable function_parameter_count

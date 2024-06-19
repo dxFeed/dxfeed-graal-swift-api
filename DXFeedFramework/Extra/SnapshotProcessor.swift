@@ -7,74 +7,96 @@
 
 import Foundation
 
-public protocol SnapshotDelegate {
-    func receiveEvents(_ events: [MarketEvent], isSnapshot: Bool)
+public protocol SnapshotDelegate: AnyObject {
+    func receiveEvents(_ events: [IIndexedEvent], isSnapshot: Bool)
 }
 
 public class SnapshotProcessor {
 
     private var snapshotPart = false
     private var snapshotFull = false
-    private var txState = false
-    private var snapshotDelegate: SnapshotDelegate?
-    private var pendingEvents = [IIndexedEvent]()
 
-    public func add(snapshotDelegate: SnapshotDelegate) {
+    private weak var snapshotDelegate: SnapshotDelegate?
+    private var pending = [IIndexedEvent]()
+    private var processEvents = [IIndexedEvent]()
+    private var result = [Long: IIndexedEvent]()
+
+    public func add(_ snapshotDelegate: SnapshotDelegate) {
         self.snapshotDelegate = snapshotDelegate
     }
 
-    private func processSnapshotAndTx(event: MarketEvent) -> Bool {
-        guard let event = event as? IIndexedEvent else {
-            return false
-        }
-        let eventFlags = event.eventFlags
-        let tx = (eventFlags & Candle.txPending) != 0 // txPending
-        if (eventFlags & Candle.snapshotBegin) != 0 { // snapshotBegin
-            snapshotPart = true
-            snapshotFull = false
-            pendingEvents.removeAll() // remove any unprocessed leftovers on new snapshot
-        }
-        // Process snapshot end after snapshot begin was received
-        if (snapshotPart && isSnapshotEnd(event)) {
-            snapshotPart = false
-            snapshotFull = true
-        }
-        if (tx || snapshotPart) {
-            // defer processing of this event while snapshot in progress or tx pending
-            pendingEvents.append(event)
-            return false // return -- do not process event right now
-        }
-        // will need to trim temp data structures to size when finished processing snapshot
-        let trimToSize = snapshotFull
-        // process deferred "snapshot end" by removing previous events from this source
-        if (snapshotFull) {
-            //            clearImpl();
-            snapshotFull = false
-        }
-        // process deferred orders (before processing this event)
-        if !pendingEvents.isEmpty {
-            //            processEventsNow.addAll(pendingEvents);
-            pendingEvents.removeAll()
-//            if trimToSize {
-//                pendingEvents.trimToSize() // Don't need memory we held for snapshot -- let GC do its work
-//            }
-        }
-        // add to process this event right now
-        //        processEventsNow.add(event)
-        return trimToSize
-
+    public func removeDelegate() {
+        self.snapshotDelegate =  nil
     }
 
-    func isSnapshotEnd(_ event: IIndexedEvent) -> Bool {
-        return (event.eventFlags & (Candle.snapshotEnd | Candle.snapshotSnip)) != 0
+    public func processEvents(events: [MarketEvent]) {
+        let isSnapshot = processSnapshotAndTx(events)
+        processEventsNow(isSnapshot)
+        transactionReceived(isSnapshot)
     }
+
+    private func processSnapshotAndTx(_ events: [MarketEvent]) -> Bool {
+        var isSnapshot = false
+        for event in events {
+            guard let event = event as? IIndexedEvent else {
+                continue
+            }
+            if event.snapshotBegin() {
+                snapshotPart = true
+                snapshotFull = false
+                pending.removeAll()
+            }
+            if snapshotPart && event.endOrSnap() {
+                snapshotPart = false
+                snapshotFull = true
+            }
+            if snapshotPart || event.pending() {
+                pending.append(event)
+                continue
+            }
+            isSnapshot = isSnapshot || snapshotFull
+
+            if snapshotFull {
+                snapshotFull = false
+                processEvents.removeAll()
+            }
+            if !pending.isEmpty {
+                processEvents.append(contentsOf: pending)
+                pending.removeAll()
+            }
+            processEvents.append(event)
+        }
+        return isSnapshot
+    }
+
+    private func processEventsNow(_ isSnapshot: Bool) {
+        processEvents.forEach { event in
+            if isSnapshot && event.isRemove() {
+                result.removeValue(forKey: event.index)
+            } else {
+                result[event.index] = event
+            }
+        }
+        processEvents.removeAll()
+    }
+
+    private func transactionReceived(_ isSnapshot: Bool) {
+        if result.isEmpty {
+            return
+        }
+        let list = result.values.sorted { event1, event2 in
+            event1.index > event2.index
+        }
+        print("\(list.count) \(isSnapshot)")
+        snapshotDelegate?.receiveEvents(list, isSnapshot: isSnapshot)
+        result.removeAll()
+    }
+
 }
 
 extension SnapshotProcessor: DXEventListener {
     public func receiveEvents(_ events: [MarketEvent]) {
-        events.forEach { mEvent in
-            _ = processSnapshotAndTx(event: mEvent)
-        }
+        processEvents(events: events)
     }
 }
 
