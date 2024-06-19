@@ -62,6 +62,7 @@ extension InstrumentProfile {
     }
 
     func copy(to pointer: UnsafeMutablePointer<dxfg_instrument_profile_t>) {
+        pointer.pointee.type = type.toCStringRef()
         pointer.pointee.symbol = symbol.toCStringRef()
         pointer.pointee.description = descriptionStr.toCStringRef()
         pointer.pointee.localSymbol = localSymbol.toCStringRef()
@@ -92,5 +93,9 @@ extension InstrumentProfile {
         pointer.pointee.settlementStyle = settlementStyle.toCStringRef()
         pointer.pointee.priceIncrements = priceIncrements.toCStringRef()
         pointer.pointee.tradingHours = tradingHours.toCStringRef()
+        let list = UnsafeMutablePointer<dxfg_string_list>.allocate(capacity: 1)
+        list.pointee.size = 0
+        list.pointee.elements = nil
+        pointer.pointee.customFields = list
     }
 }

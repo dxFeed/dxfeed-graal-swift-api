@@ -9,7 +9,13 @@
     }
   ],
   "defaultOptions" : {
-    "testTimeoutsEnabled" : true
+    "addressSanitizer" : {
+      "enabled" : true
+    },
+    "maximumTestRepetitions" : 10,
+    "testRepetitionMode" : "retryOnFailure",
+    "testTimeoutsEnabled" : true,
+    "undefinedBehaviorSanitizerEnabled" : true
   },
   "testTargets" : [
     {

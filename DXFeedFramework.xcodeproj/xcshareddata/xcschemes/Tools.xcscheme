@@ -53,11 +53,11 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "PerfTest  localhost:6666 TimeAndSale YQKNT"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Connect mddqa.in.devexperts.com:7400 Candle AAPL{=d} 20230201Z"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Connect mddqa.in.devexperts.com:7400 Quote AAPL"

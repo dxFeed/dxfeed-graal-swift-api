@@ -16,6 +16,11 @@ final class CandleTests: XCTestCase {
         try fetchCandles(symbol)
     }
 
+    func testFetchingCandlesByString1() throws {
+        let symbol = TimeSeriesSubscriptionSymbol(symbol: "AAPL{=10d}", fromTime: 1660125159)
+        try fetchCandles(symbol)
+    }
+
     func testFetchingSymbolWithDate() throws {
         let string = "01/01/2023"
         let dateFormatter = DateFormatter()
