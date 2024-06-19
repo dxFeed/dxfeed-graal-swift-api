@@ -143,13 +143,18 @@ class NativeSchedule {
         let end = try ErrorCheck.nativeCall(thread, dxfg_Session_getEndTime(thread, session))
         let nativeType = try ErrorCheck.nativeCall(thread, dxfg_Session_getType(thread, session))
         let isTraiding = try ErrorCheck.nativeCall(thread, dxfg_Session_isTrading(thread, session))
-
+        let day = try ErrorCheck.nativeCall(thread, dxfg_Session_getDay(thread, session))
+        defer {
+            _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(day.pointee.handler)))
+        }
+        let yearMonthDay = try ErrorCheck.nativeCall(thread, dxfg_Day_getYearMonthDay(thread, day))
         let type = dxfg_session_type_t(UInt32(nativeType))
         let session = ScheduleSession(native: NativeSession(native: session),
                                       nativeSchedule: self,
                                       startTime: start,
                                       endTime: end,
                                       type: ScheduleSessionType.getValueFromNative(type),
+                                      yearMonthDay: yearMonthDay,
                                       isTrading: isTraiding == 1)
         return session
     }
