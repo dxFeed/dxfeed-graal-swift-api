@@ -66,7 +66,7 @@ do {
             let connectedState = (try? onDemand.getEndpoint()?.getState()) ?? .notConnected
             print("Current state is \(connectedState), on-demand time is \(timeStr)")
         }
-        Thread.sleep(forTimeInterval: 1000)
+        Thread.sleep(forTimeInterval: 1)
     }
     // close endpoint completely to release resources
     try onDemand.getEndpoint()?.closeAndAwaitTermination()
