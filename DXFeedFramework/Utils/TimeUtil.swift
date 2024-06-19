@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TimeUtil {
+public class TimeUtil {
     public static let second =  Long(1000)
     public static let minute =  60 * Long(1000)
     public static let day = Long(24 * 60 * 60 * 1000)
