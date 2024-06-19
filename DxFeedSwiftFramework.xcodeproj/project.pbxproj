@@ -22,7 +22,6 @@
 
 /* Begin PBXBuildFile section */
 		803BAC1629BFA50700FFAB1C /* DxFeedSwiftFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */; };
-		803BAC1B29BFA50700FFAB1C /* DxFeedSwiftFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803BAC1A29BFA50700FFAB1C /* DxFeedSwiftFrameworkTests.swift */; };
 		803BAC1C29BFA50700FFAB1C /* DxFeedSwiftFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		803BAC2729BFA67C00FFAB1C /* libDxFeedGraalNativeApi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2629BFA67C00FFAB1C /* libDxFeedGraalNativeApi.dylib */; platformFilters = (macos, ); };
 		803BAC2829BFA67C00FFAB1C /* libDxFeedGraalNativeApi.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 803BAC2629BFA67C00FFAB1C /* libDxFeedGraalNativeApi.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -31,15 +30,16 @@
 		803BAC3029BFA6FA00FFAB1C /* jdk-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2C29BFA6EE00FFAB1C /* jdk-arm64-ios-r.a */; platformFilter = ios; };
 		803BAC3129BFA6FA00FFAB1C /* graal-svm-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2D29BFA6EE00FFAB1C /* graal-svm-arm64-ios-r.a */; platformFilter = ios; };
 		8088D75529BFB7FB00F240CB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803BAC3C29BFAF4400FFAB1C /* String+Extension.swift */; };
-		8088D76529C0FBCE00F240CB /* GraalThreadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76329C0FBCE00F240CB /* GraalThreadManager.swift */; };
-		8088D76629C0FBCE00F240CB /* GraalThreadKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76429C0FBCE00F240CB /* GraalThreadKeeper.swift */; };
-		8088D76929C0FC5C00F240CB /* GraalIsolate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76829C0FC5C00F240CB /* GraalIsolate.swift */; };
-		8088D76B29C0FE1700F240CB /* GraalIsolateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76A29C0FE1700F240CB /* GraalIsolateTest.swift */; };
-		8088D76D29C101CF00F240CB /* GraalThreadsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76C29C101CF00F240CB /* GraalThreadsTest.swift */; };
-		8088D77129C3A25D00F240CB /* GSystemProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77029C3A25D00F240CB /* GSystemProperty.swift */; };
-		8088D77329C3A2F400F240CB /* GStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77229C3A2F400F240CB /* GStatusCode.swift */; };
-		8088D77529C3A61000F240CB /* GNativeExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77429C3A61000F240CB /* GNativeExecutor.swift */; };
-		8088D77929C498FA00F240CB /* DxFSystemPropertyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77829C498FA00F240CB /* DxFSystemPropertyTest.swift */; };
+		8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76329C0FBCE00F240CB /* ThreadManager.swift */; };
+		8088D76629C0FBCE00F240CB /* IsolateThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76429C0FBCE00F240CB /* IsolateThread.swift */; };
+		8088D76929C0FC5C00F240CB /* Isolate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76829C0FC5C00F240CB /* Isolate.swift */; };
+		8088D76B29C0FE1700F240CB /* IsolateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76A29C0FE1700F240CB /* IsolateTest.swift */; };
+		8088D76D29C101CF00F240CB /* ThreadsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76C29C101CF00F240CB /* ThreadsTest.swift */; };
+		8088D77129C3A25D00F240CB /* SystemProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77029C3A25D00F240CB /* SystemProperty.swift */; };
+		8088D77329C3A2F400F240CB /* GraalException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77229C3A2F400F240CB /* GraalException.swift */; };
+		8088D77529C3A61000F240CB /* ErrorCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77429C3A61000F240CB /* ErrorCheck.swift */; };
+		8088D77929C498FA00F240CB /* SystemPropertyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77829C498FA00F240CB /* SystemPropertyTest.swift */; };
+		8088D77D29C8DAF800F240CB /* GraalErrorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D77C29C8DAF800F240CB /* GraalErrorCode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,22 +70,22 @@
 		803BAC0D29BFA50700FFAB1C /* DxFeedSwiftFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DxFeedSwiftFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DxFeedSwiftFramework.h; sourceTree = "<group>"; };
 		803BAC1529BFA50700FFAB1C /* DxFeedSwiftFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DxFeedSwiftFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		803BAC1A29BFA50700FFAB1C /* DxFeedSwiftFrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DxFeedSwiftFrameworkTests.swift; sourceTree = "<group>"; };
 		803BAC2629BFA67C00FFAB1C /* libDxFeedGraalNativeApi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libDxFeedGraalNativeApi.dylib; path = graal_builds/osx_universal/libDxFeedGraalNativeApi.dylib; sourceTree = "<group>"; };
 		803BAC2A29BFA69400FFAB1C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.2.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
 		803BAC2C29BFA6EE00FFAB1C /* jdk-arm64-ios-r.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "jdk-arm64-ios-r.a"; path = "graal_builds/ios/jdk-arm64-ios-r.a"; sourceTree = "<group>"; };
 		803BAC2D29BFA6EE00FFAB1C /* graal-svm-arm64-ios-r.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "graal-svm-arm64-ios-r.a"; path = "graal_builds/ios/graal-svm-arm64-ios-r.a"; sourceTree = "<group>"; };
 		803BAC2E29BFA6EE00FFAB1C /* libDxFeedGraalNativeApi.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = libDxFeedGraalNativeApi.o; path = graal_builds/ios/libDxFeedGraalNativeApi.o; sourceTree = "<group>"; };
 		803BAC3C29BFAF4400FFAB1C /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		8088D76329C0FBCE00F240CB /* GraalThreadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraalThreadManager.swift; sourceTree = "<group>"; };
-		8088D76429C0FBCE00F240CB /* GraalThreadKeeper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraalThreadKeeper.swift; sourceTree = "<group>"; };
-		8088D76829C0FC5C00F240CB /* GraalIsolate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraalIsolate.swift; sourceTree = "<group>"; };
-		8088D76A29C0FE1700F240CB /* GraalIsolateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraalIsolateTest.swift; sourceTree = "<group>"; };
-		8088D76C29C101CF00F240CB /* GraalThreadsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraalThreadsTest.swift; sourceTree = "<group>"; };
-		8088D77029C3A25D00F240CB /* GSystemProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSystemProperty.swift; sourceTree = "<group>"; };
-		8088D77229C3A2F400F240CB /* GStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GStatusCode.swift; sourceTree = "<group>"; };
-		8088D77429C3A61000F240CB /* GNativeExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GNativeExecutor.swift; sourceTree = "<group>"; };
-		8088D77829C498FA00F240CB /* DxFSystemPropertyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DxFSystemPropertyTest.swift; sourceTree = "<group>"; };
+		8088D76329C0FBCE00F240CB /* ThreadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadManager.swift; sourceTree = "<group>"; };
+		8088D76429C0FBCE00F240CB /* IsolateThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsolateThread.swift; sourceTree = "<group>"; };
+		8088D76829C0FC5C00F240CB /* Isolate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Isolate.swift; sourceTree = "<group>"; };
+		8088D76A29C0FE1700F240CB /* IsolateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsolateTest.swift; sourceTree = "<group>"; };
+		8088D76C29C101CF00F240CB /* ThreadsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsTest.swift; sourceTree = "<group>"; };
+		8088D77029C3A25D00F240CB /* SystemProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemProperty.swift; sourceTree = "<group>"; };
+		8088D77229C3A2F400F240CB /* GraalException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraalException.swift; sourceTree = "<group>"; };
+		8088D77429C3A61000F240CB /* ErrorCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCheck.swift; sourceTree = "<group>"; };
+		8088D77829C498FA00F240CB /* SystemPropertyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemPropertyTest.swift; sourceTree = "<group>"; };
+		8088D77C29C8DAF800F240CB /* GraalErrorCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraalErrorCode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,9 +134,11 @@
 		803BAC0F29BFA50700FFAB1C /* DxFeedSwiftFramework */ = {
 			isa = PBXGroup;
 			children = (
-				8088D76729C0FBDD00F240CB /* GraalApi */,
-				8088D76229C0FBCE00F240CB /* Interop */,
+				80FC415529C8E2E400E6B611 /* Api */,
+				80FC415629C8E2EC00E6B611 /* Events */,
+				8088D77A29C5D8AD00F240CB /* Native */,
 				8088D75829C0F52100F240CB /* Utils */,
+				8088D77029C3A25D00F240CB /* SystemProperty.swift */,
 				803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */,
 			);
 			path = DxFeedSwiftFramework;
@@ -145,10 +147,9 @@
 		803BAC1929BFA50700FFAB1C /* DxFeedSwiftFrameworkTests */ = {
 			isa = PBXGroup;
 			children = (
-				803BAC1A29BFA50700FFAB1C /* DxFeedSwiftFrameworkTests.swift */,
-				8088D76A29C0FE1700F240CB /* GraalIsolateTest.swift */,
-				8088D76C29C101CF00F240CB /* GraalThreadsTest.swift */,
-				8088D77829C498FA00F240CB /* DxFSystemPropertyTest.swift */,
+				8088D76A29C0FE1700F240CB /* IsolateTest.swift */,
+				8088D76C29C101CF00F240CB /* ThreadsTest.swift */,
+				8088D77829C498FA00F240CB /* SystemPropertyTest.swift */,
 			);
 			path = DxFeedSwiftFrameworkTests;
 			sourceTree = "<group>";
@@ -173,24 +174,47 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		8088D76229C0FBCE00F240CB /* Interop */ = {
+		8088D77A29C5D8AD00F240CB /* Native */ = {
 			isa = PBXGroup;
 			children = (
-				8088D76329C0FBCE00F240CB /* GraalThreadManager.swift */,
-				8088D76429C0FBCE00F240CB /* GraalThreadKeeper.swift */,
+				8088D77E29C8DDAE00F240CB /* Graal */,
+				8088D77B29C8D96600F240CB /* ErrorHandling */,
 			);
-			path = Interop;
+			path = Native;
 			sourceTree = "<group>";
 		};
-		8088D76729C0FBDD00F240CB /* GraalApi */ = {
+		8088D77B29C8D96600F240CB /* ErrorHandling */ = {
 			isa = PBXGroup;
 			children = (
-				8088D76829C0FC5C00F240CB /* GraalIsolate.swift */,
-				8088D77029C3A25D00F240CB /* GSystemProperty.swift */,
-				8088D77229C3A2F400F240CB /* GStatusCode.swift */,
-				8088D77429C3A61000F240CB /* GNativeExecutor.swift */,
+				8088D77429C3A61000F240CB /* ErrorCheck.swift */,
+				8088D77229C3A2F400F240CB /* GraalException.swift */,
+				8088D77C29C8DAF800F240CB /* GraalErrorCode.swift */,
 			);
-			path = GraalApi;
+			path = ErrorHandling;
+			sourceTree = "<group>";
+		};
+		8088D77E29C8DDAE00F240CB /* Graal */ = {
+			isa = PBXGroup;
+			children = (
+				8088D76829C0FC5C00F240CB /* Isolate.swift */,
+				8088D76329C0FBCE00F240CB /* ThreadManager.swift */,
+				8088D76429C0FBCE00F240CB /* IsolateThread.swift */,
+			);
+			path = Graal;
+			sourceTree = "<group>";
+		};
+		80FC415529C8E2E400E6B611 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		80FC415629C8E2EC00E6B611 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Events;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,13 +373,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8088D77129C3A25D00F240CB /* GSystemProperty.swift in Sources */,
+				8088D77129C3A25D00F240CB /* SystemProperty.swift in Sources */,
 				8088D75529BFB7FB00F240CB /* String+Extension.swift in Sources */,
-				8088D76529C0FBCE00F240CB /* GraalThreadManager.swift in Sources */,
-				8088D76929C0FC5C00F240CB /* GraalIsolate.swift in Sources */,
-				8088D77329C3A2F400F240CB /* GStatusCode.swift in Sources */,
-				8088D76629C0FBCE00F240CB /* GraalThreadKeeper.swift in Sources */,
-				8088D77529C3A61000F240CB /* GNativeExecutor.swift in Sources */,
+				8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */,
+				8088D77D29C8DAF800F240CB /* GraalErrorCode.swift in Sources */,
+				8088D76929C0FC5C00F240CB /* Isolate.swift in Sources */,
+				8088D77329C3A2F400F240CB /* GraalException.swift in Sources */,
+				8088D76629C0FBCE00F240CB /* IsolateThread.swift in Sources */,
+				8088D77529C3A61000F240CB /* ErrorCheck.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,10 +388,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8088D76D29C101CF00F240CB /* GraalThreadsTest.swift in Sources */,
-				8088D76B29C0FE1700F240CB /* GraalIsolateTest.swift in Sources */,
-				8088D77929C498FA00F240CB /* DxFSystemPropertyTest.swift in Sources */,
-				803BAC1B29BFA50700FFAB1C /* DxFeedSwiftFrameworkTests.swift in Sources */,
+				8088D76D29C101CF00F240CB /* ThreadsTest.swift in Sources */,
+				8088D76B29C0FE1700F240CB /* IsolateTest.swift in Sources */,
+				8088D77929C498FA00F240CB /* SystemPropertyTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
