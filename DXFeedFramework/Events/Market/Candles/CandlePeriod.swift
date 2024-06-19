@@ -73,7 +73,7 @@ public class CandlePeriod {
     ///    - symbol: The candle symbol string.
     /// - Returns: The candle period of the given candle symbol string.
     /// - Throws: ``ArgumentException/argumentNil``
-    static func getAttribute(_ symbol: String?) throws -> CandlePeriod {
+    public static func getAttribute(_ symbol: String?) throws -> CandlePeriod {
         let attribute = try MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
         guard let attribute = attribute else {
             return defaultPeriod
@@ -89,7 +89,7 @@ public class CandlePeriod {
     ///    - symbol: The string representation of candle period
     /// - Returns: The candle period.
     /// - Throws: ``ArgumentException/missingCandleType``
-    static func parse(_ symbol: String) throws -> CandlePeriod {
+    public static func parse(_ symbol: String) throws -> CandlePeriod {
         if symbol == CandleType.day.toString() {
             return day
         } else if symbol == CandleType.tick.toString() {
