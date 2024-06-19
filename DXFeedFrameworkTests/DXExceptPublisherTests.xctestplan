@@ -29,7 +29,8 @@
         "IPFTests\/testResolveSourceURL()",
         "IsolateTest",
         "IsolateTest\/test123()",
-        "PublisherTest"
+        "PublisherTest",
+        "ScheduleTest"
       ],
       "target" : {
         "containerPath" : "container:DXFeedFramework.xcodeproj",
