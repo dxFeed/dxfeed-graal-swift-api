@@ -57,23 +57,14 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "DXFeedIpfConnect Quote https://demo:demo@tools.dxfeed.com/ipf"
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Connect mddqa.in.devexperts.com:7400 candle AAPL{=d} 20230201Z"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Connect mddqa.in.devexperts.com:7400 OrDer AAPL"
             isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "ScheduleSample  /Users/akosylo/test_ipf/schedule.zip  /Users/akosylo/test_ipf/sample.ipf.zip  AAPL  2012-05-26-14:15:00"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "DXFeedLiveIpfSample https://demo:demo@tools.dxfeed.com/ipf"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "Connect mddqa.in.devexperts.com:7400 Candle AAPL{=d} 20230201Z"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "Connect mddqa.in.devexperts.com:7400 Quote AAPL"
-            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "LatencyTest mddqa.in.devexperts.com:7400 TimeAndSale ETH/USD:GDAX"
