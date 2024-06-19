@@ -17,6 +17,7 @@ class ViewController: UIViewController {
 
     @IBOutlet var ipfTableView: UITableView!
     @IBOutlet var lastUpdateLabel: UILabel!
+    @IBOutlet var connectionStateLbel: UILabel!
 
     @IBOutlet var addressTextField: UITextField!
 
@@ -27,6 +28,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        resetConnectionState()
+
+        connectionStateLbel.textColor = .white
         addressTextField.text = "https://demo:demo@tools.dxfeed.com/ipf"
         view.backgroundColor = .tableBackground
         ipfTableView.backgroundColor = .tableBackground
@@ -40,6 +44,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func connectTapped(_ sender: Any) {
+        resetConnectionState()
         collector = nil
         connection = nil
         do {
@@ -51,17 +56,27 @@ class ViewController: UIViewController {
             try collector?.add(observer: self)
             try connection?.start()
             // We can wait until we get first full snapshot of instrument profiles
-            connection?.waitUntilCompleted(3000)
+//            connection?.waitUntilCompleted(3000)
         } catch {
             print("Error during creation IPF data source: \(error)")
         }
+    }
+    func resetConnectionState() {
+        buffer.removeAll()
+        ipfList = [InstrumentProfile]()
+        ipfTableView.reloadData()
+        lastUpdateLabel.text = ""
+        connectionStateLbel.text = DXInstrumentProfileConnectionState.notConnected.convetToString()
     }
 }
 
 extension ViewController: DXInstrumentProfileConnectionObserver {
     func connectionDidChangeState(old: DXFeedFramework.DXInstrumentProfileConnectionState,
                                   new: DXFeedFramework.DXInstrumentProfileConnectionState) {
-        print("\(CACurrentMediaTime()) connectionDidChangeState: \(new)")
+        DispatchQueue.main.async {
+            self.connectionStateLbel.text = new.convetToString()
+            print("\(CACurrentMediaTime()) connectionDidChangeState: \(new)")
+        }
     }
 }
 

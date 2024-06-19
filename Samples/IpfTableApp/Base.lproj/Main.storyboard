@@ -12,16 +12,16 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="IpfTableApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DXIpfTableApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZCr-Nz-ChJ">
-                                <rect key="frame" x="10" y="159" width="373" height="609"/>
+                                <rect key="frame" x="10" y="159" width="373" height="589"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IpfCellId" id="3O0-l5-3RR" customClass="IpfCell" customModule="IpfTableApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IpfCellId" id="3O0-l5-3RR" customClass="IpfCell" customModule="DXIpfTableApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="373" height="76.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3O0-l5-3RR" id="w1E-ah-zfn">
@@ -92,9 +92,18 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtK-Uq-c7X">
-                                <rect key="frame" x="15" y="778" width="363" height="30"/>
+                                <rect key="frame" x="15" y="758" width="363" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="G0X-0Q-cB1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMX-jC-dLE">
+                                <rect key="frame" x="15" y="798" width="363" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="vOX-iT-Yhy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -104,6 +113,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="gMX-jC-dLE" firstAttribute="top" secondItem="KtK-Uq-c7X" secondAttribute="bottom" constant="10" id="4Xm-eX-KRM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gMX-jC-dLE" secondAttribute="trailing" constant="15" id="7n9-EU-425"/>
                             <constraint firstItem="KtK-Uq-c7X" firstAttribute="top" secondItem="ZCr-Nz-ChJ" secondAttribute="bottom" constant="10" id="9C6-L9-Amu"/>
                             <constraint firstItem="y2L-8f-MGd" firstAttribute="centerY" secondItem="DvD-IW-DUO" secondAttribute="centerY" id="ItQ-dR-I08"/>
                             <constraint firstItem="ZCr-Nz-ChJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="KeM-bn-WZJ"/>
@@ -113,14 +124,16 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DvD-IW-DUO" secondAttribute="trailing" constant="10" id="LzD-eG-epw"/>
                             <constraint firstItem="y2L-8f-MGd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="Rk3-h6-j4f"/>
                             <constraint firstItem="DvD-IW-DUO" firstAttribute="leading" secondItem="y2L-8f-MGd" secondAttribute="trailing" constant="15" id="Xug-oV-hv4"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="KtK-Uq-c7X" secondAttribute="bottom" constant="10" id="ZWs-AJ-IRv"/>
+                            <constraint firstItem="gMX-jC-dLE" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="10" id="eMb-Jh-aFT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KtK-Uq-c7X" secondAttribute="trailing" constant="15" id="esu-8p-kPl"/>
+                            <constraint firstItem="gMX-jC-dLE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="rDA-Aj-1gU"/>
                             <constraint firstItem="ZCr-Nz-ChJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="sT1-Rd-2fW"/>
                             <constraint firstItem="y2L-8f-MGd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="zGd-j6-8rA"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="addressTextField" destination="y2L-8f-MGd" id="yTg-Wd-R32"/>
+                        <outlet property="connectionStateLbel" destination="gMX-jC-dLE" id="SSl-Mi-EAM"/>
                         <outlet property="ipfTableView" destination="ZCr-Nz-ChJ" id="5vo-Qq-0Sc"/>
                         <outlet property="lastUpdateLabel" destination="KtK-Uq-c7X" id="gUw-cH-k2u"/>
                     </connections>
