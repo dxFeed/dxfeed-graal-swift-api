@@ -21,7 +21,7 @@ public class DXEndpoint {
 
     }
 
-    enum Property: String, CaseIterable {
+    public enum Property: String, CaseIterable {
         case name                          = "name"
         case properties                    = "dxfeed.properties"
         case address                       = "dxfeed.address"
