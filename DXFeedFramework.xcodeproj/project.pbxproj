@@ -670,6 +670,7 @@
 		6433B1312BCFC01F004EFED7 /* DXLastEventsSubscribedTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXLastEventsSubscribedTest.swift; sourceTree = "<group>"; };
 		6435EE3C2B1F1E9200E8496C /* PrintQuoteEvents.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = PrintQuoteEvents.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		643A329A2BD0137000F6F790 /* Optional+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Ext.swift"; sourceTree = "<group>"; };
+		643A329C2BD15F2900F6F790 /* LastEventsConsole.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = LastEventsConsole.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		64437A8E2A9DEE6F005929B2 /* InstrumentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfile.swift; sourceTree = "<group>"; };
 		64437A912A9DF1DE005929B2 /* NativeInstrumentProfileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInstrumentProfileReader.swift; sourceTree = "<group>"; };
 		644551C92B973A0D0069E3A2 /* FetchDailyCandles.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = FetchDailyCandles.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -1103,6 +1104,7 @@
 				64F9C6C12B4BFD8F003ED014 /* DXFeedconnect.playground */,
 				644551C92B973A0D0069E3A2 /* FetchDailyCandles.playground */,
 				6433B1302BCE87D4004EFED7 /* RequestProfile.playground */,
+				643A329C2BD15F2900F6F790 /* LastEventsConsole.playground */,
 			);
 			path = Playgrounds;
 			sourceTree = "<group>";
