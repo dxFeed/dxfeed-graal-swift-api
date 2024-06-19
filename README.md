@@ -84,7 +84,7 @@ Below is a scheme of this process:
 
 Find useful information in our self-service dxFeed Knowledge Base or Swift API documentation:
 
-- [dxFeed Graal Swift API documentation]()
+- [dxFeed Graal Swift API documentation](https://dxfeed.github.io/dxfeed-graal-swift-api/documentation/dxfeedframework/)
 - [dxFeed Knowledge Base](https://kb.dxfeed.com/index.html?lang=en)
     * [Getting Started](https://kb.dxfeed.com/en/getting-started.html)
     * [Troubleshooting](https://kb.dxfeed.com/en/troubleshooting-guidelines.html)
