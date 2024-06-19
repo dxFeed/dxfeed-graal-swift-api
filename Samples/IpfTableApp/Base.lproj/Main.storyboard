@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZCr-Nz-ChJ">
-                                <rect key="frame" x="10" y="159" width="373" height="589"/>
+                                <rect key="frame" x="10" y="159" width="373" height="569"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IpfCellId" id="3O0-l5-3RR" customClass="IpfCell" customModule="DXIpfTableApp" customModuleProvider="target">
@@ -92,7 +92,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtK-Uq-c7X">
-                                <rect key="frame" x="15" y="758" width="363" height="30"/>
+                                <rect key="frame" x="15" y="738" width="363" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="G0X-0Q-cB1"/>
                                 </constraints>
@@ -101,7 +101,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMX-jC-dLE">
-                                <rect key="frame" x="15" y="798" width="363" height="30"/>
+                                <rect key="frame" x="15" y="778" width="363" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="vOX-iT-Yhy"/>
                                 </constraints>
@@ -124,7 +124,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DvD-IW-DUO" secondAttribute="trailing" constant="10" id="LzD-eG-epw"/>
                             <constraint firstItem="y2L-8f-MGd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="Rk3-h6-j4f"/>
                             <constraint firstItem="DvD-IW-DUO" firstAttribute="leading" secondItem="y2L-8f-MGd" secondAttribute="trailing" constant="15" id="Xug-oV-hv4"/>
-                            <constraint firstItem="gMX-jC-dLE" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="10" id="eMb-Jh-aFT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gMX-jC-dLE" secondAttribute="bottom" constant="10" id="Yt9-Ic-ZTy"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KtK-Uq-c7X" secondAttribute="trailing" constant="15" id="esu-8p-kPl"/>
                             <constraint firstItem="gMX-jC-dLE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="rDA-Aj-1gU"/>
                             <constraint firstItem="ZCr-Nz-ChJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="sT1-Rd-2fW"/>
