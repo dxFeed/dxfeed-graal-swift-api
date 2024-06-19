@@ -109,6 +109,10 @@ final class FeedTest: XCTestCase {
         try waitingEvent(code: .order)
     }
 
+//    func testOptionSale() throws {
+//        try waitingEvent(code: .optionSale)
+//    }
+
     static func checkType(_ code: EventCode, _ event: MarketEvent?) -> Bool {
         switch code {
         case .timeAndSale:
@@ -148,7 +152,7 @@ final class FeedTest: XCTestCase {
         case .series:
             return event is Series
         case .optionSale:
-            break
+            return event is OptionSale
         }
         return false
     }
