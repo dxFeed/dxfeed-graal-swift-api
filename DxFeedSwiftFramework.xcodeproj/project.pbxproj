@@ -1577,6 +1577,7 @@
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Samples/LatencyTestApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = dxLatencyTest;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1607,6 +1608,7 @@
 				DEVELOPMENT_TEAM = NU75WFM6U6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Samples/LatencyTestApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = dxLatencyTest;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
