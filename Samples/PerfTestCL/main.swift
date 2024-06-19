@@ -49,26 +49,18 @@ Where:
 """
     )
 }
-
-var arguments: [String]
-do {
-    arguments = try ArgumentParser().parse(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 1)
-} catch {
-    printGlobalHelp()
-    print(error)
-
-    exit(1)
-}
-
-let command = arguments[0]
-
-switch command {
-case "Help":
-    printGlobalHelp()
-default:
-    if let toolsCmd = getCommand(command) {
-        toolsCmd.execute()
-    } else {
+if ProcessInfo.processInfo.arguments.count > 1 {
+    let command = ProcessInfo.processInfo.arguments[1]
+    switch command {
+    case "Help":
         printGlobalHelp()
+    default:
+        if let toolsCmd = getCommand(command) {
+            toolsCmd.execute()
+        } else {
+            printGlobalHelp()
+        }
     }
+} else {
+    printGlobalHelp()
 }

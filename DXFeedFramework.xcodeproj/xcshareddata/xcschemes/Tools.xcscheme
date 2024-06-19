@@ -30,7 +30,7 @@
       shouldAutocreateTestPlan = "YES">
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -71,15 +71,11 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Connect mddqa.in.devexperts.com:7400 Candle AAPL{=d} 20230201Z"
+            argument = "Connect demo.dxfeed.com:7300 quote AAPL,IBM"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Connect mddqa.in.devexperts.com:7400 OptionSale AAPL"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = " Dump demo.dxfeed.com:7300 timeandsale  AAPL,IBM,ETH/USD:GDAX -t test_tape_ios.txt[format=text] -p dxfeed.wildcard.enable=true,one_more_prop=abc"
+            argument = " Dump localhost:6666 timeandsale,candle YQKNT -p dxfeed.wildcard.enable=true,one_more_prop=abc -t test_tape_ios.txt[format=text] -q"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

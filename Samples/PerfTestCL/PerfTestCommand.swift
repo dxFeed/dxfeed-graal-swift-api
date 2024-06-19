@@ -26,25 +26,28 @@ class PerfTestCommand: ToolsCommand {
     symbols (pos. 2)  Required. Comma-separated list of symbol names to get events for (e.g. "IBM, AAPL, MSFT").
     """
 
-    var subscription = Subscription()
-    func execute() {
-        var arguments: [String]!
-
+    private lazy var arguments: Arguments = {
         do {
-            arguments = try ArgumentParser().parse(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 4)
+            let arguments = try Arguments(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 4)
+            return arguments
         } catch {
             print(fullDescription)
+            fatalError()
         }
+    }()
 
+    var subscription = Subscription()
+    func execute() {
         let address = arguments[1]
         let types = arguments[2]
-        let symbols = arguments[3].components(separatedBy: ",")
 
         let listener = PerfTestEventListener()
+
         subscription.createSubscription(address: address,
-                                        symbols: symbols,
+                                        symbols: arguments.parseSymbols(at: 3),
                                         types: types,
                                         listener: listener,
+                                        properties: arguments.properties,
                                         time: nil)
 
         let timer = DXFTimer(timeInterval: 2)

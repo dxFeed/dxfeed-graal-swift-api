@@ -17,8 +17,6 @@ class ConnectCommand: ToolsCommand {
 Connect
 =======
 
-  "address" argument parsing error. Insufficient parameters.
-
 Usage:
   Connect <address> <types> <symbols> [<time>]
 
@@ -43,28 +41,24 @@ Where:
 
     var subscription = Subscription()
 
-    func execute() {
-        var arguments: [String]!
+    private lazy var arguments: Arguments = {
         do {
-            arguments = try ArgumentParser().parse(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 4)
+            let arguments = try Arguments(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 4)
+            return arguments
         } catch {
             print(fullDescription)
+            fatalError()
         }
-        let address = arguments[1]
-        let types = arguments[2]
+    }()
 
-        var time: String?
-        if arguments.count > 4 {
-            time = arguments[4]
-        }
-        let argumentsObj = Arguments(arguments: arguments, symbolPosition: 3)
-        let symbolsList = argumentsObj.parseSymbols()
+    func execute() {
         let listener = ConnectEventListener()
-        subscription.createSubscription(address: address,
-                                        symbols: symbolsList,
-                                        types: types,
+        subscription.createSubscription(address: arguments[1],
+                                        symbols: arguments.parseSymbols(at: 3),
+                                        types: arguments[2],
                                         listener: listener,
-                                        time: time)
+                                        properties: arguments.properties,
+                                        time: arguments.time)
 
         // Print till input new line
         _ = readLine()

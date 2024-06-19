@@ -85,7 +85,7 @@ class NativeEndpoint {
     internal init(_ native: UnsafeMutablePointer<dxfg_endpoint_t>) {
         self.endpoint = native
     }
-    
+
     func getNativeFeed() -> NativeFeed? {
         return self.feed
     }
