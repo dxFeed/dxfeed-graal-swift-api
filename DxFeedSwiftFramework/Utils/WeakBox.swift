@@ -7,9 +7,12 @@
 
 import Foundation
 
-class WeakBox<T: AnyObject> {
-    weak var value: T?
-    init (value: T) {
-        self.value = value
+class WeakBox<T> {
+    private weak var _value: AnyObject?
+    var value: T? {
+        return _value as? T
+    }
+    init(value: T) {
+        self._value = value as AnyObject
     }
 }

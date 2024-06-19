@@ -11,7 +11,7 @@ import Foundation
 class NativeEndpoint {
     let endpoint: UnsafeMutablePointer<dxfg_endpoint_t>!
     var listener: UnsafeMutablePointer<dxfg_endpoint_state_change_listener_t>?
-    static let storage = AtomicStorage<WeakBox<AnyObject>>()
+    static let storage = AtomicStorage<WeakBox<EndpointListener>>()
     static let finalizeCallback: dxfg_finalize_function = { _, context in
         if let context = context {
             let endpoint: AnyObject = bridge(ptr: context)
@@ -58,12 +58,10 @@ class NativeEndpoint {
     func getNativeFeed() -> NativeFeed? {
         return self.feed
     }
-    func addListener(_ listener: AnyObject) throws {
+    func addListener(_ listener: EndpointListener) throws {
         let weakListener = WeakListener(value: listener)
         NativeEndpoint.storage.append(weakListener)
-        
         let voidPtr = bridge(obj: weakListener)
-
         let thread = currentThread()
         self.listener = try ErrorCheck.nativeCall(thread,
                                                   dxfg_PropertyChangeListener_new(thread,
