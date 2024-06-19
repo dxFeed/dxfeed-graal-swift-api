@@ -24,6 +24,7 @@ public class ConcurrentSet<T>: CustomStringConvertible where T: Hashable {
     }
 
     public func insert(_ newMember: T) {
+        let weakValue = WeakBox(value: newMember)
         writer { $0.insert(newMember) }
     }
 

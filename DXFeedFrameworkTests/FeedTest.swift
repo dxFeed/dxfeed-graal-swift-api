@@ -64,8 +64,7 @@ final class FeedTest: XCTestCase {
         let subscription = try feed?.createSubscription(code)
         let receivedEventExp = expectation(description: "Received events \(code)")
         receivedEventExp.assertForOverFulfill = false
-
-        try subscription?.add(observer: AnonymousClass { anonymCl in
+        let listener = AnonymousClass { anonymCl in
             anonymCl.callback = { events in
                 events.forEach { event in
                     differentSymbols.insert(event.quote.eventSymbol)
@@ -75,7 +74,8 @@ final class FeedTest: XCTestCase {
                 }
             }
             return anonymCl
-        })
+        }
+        try subscription?.add(observer: listener)
         XCTAssertNotNil(subscription, "Subscription shouldn't be nil")
         try subscription?.addSymbols(symbols)
         wait(for: [receivedEventExp], timeout: 5)
@@ -151,7 +151,7 @@ final class FeedTest: XCTestCase {
         let subscription = try endpoint.getFeed()?.createSubscription(code)
         let receivedEventExp = expectation(description: "Received events \(code)")
         receivedEventExp.assertForOverFulfill = false
-        try subscription?.add(observer: AnonymousClass { anonymCl in
+        let listener = AnonymousClass { anonymCl in
             anonymCl.callback = { events in
                 if events.count > 0 {
                     let event = events.first
@@ -161,7 +161,8 @@ final class FeedTest: XCTestCase {
                 }
             }
             return anonymCl
-        })
+        }
+        try subscription?.add(observer: listener)
         try subscription?.addSymbols(["ETH/USD:GDAX"])
         wait(for: [receivedEventExp], timeout: 10)
     }

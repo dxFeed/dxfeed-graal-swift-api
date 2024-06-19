@@ -81,7 +81,7 @@ class NativeEndpoint {
     func getNativeFeed() -> NativeFeed? {
         return self.feed
     }
-    func addListener(_ listener: EndpointListener) throws {
+    func addListener(_ listener: any EndpointListener) throws {
         removeListener()
         let weakListener = WeakListener(value: listener)
         NativeEndpoint.listeners.append(newElement: weakListener)

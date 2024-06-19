@@ -8,7 +8,7 @@
 import Foundation
 
 /// Notifies a change in the state of this endpoint.
-public protocol DXEndpointObserver {
+public protocol DXEndpointObserver: AnyObject {
     /// Fired when state changed
     /// 
     /// - Parameters:

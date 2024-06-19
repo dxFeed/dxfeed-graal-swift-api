@@ -20,7 +20,7 @@ import Foundation
 /// Removal of instrument profile is represented by an ``InstrumentProfile`` instance with a
 /// ``InstrumentProfile/type`` equal to ``InstrumentProfileType/removed``
 public class DXInstrumentProfileCollector {
-    private let listeners = ConcurrentSet<AnyHashable>()
+    private let listeners = ConcurrentWeakSet<AnyObject>()
     let native: NativeInstrumentProfileCollector
 
     /// Creates instrument profile connection.
@@ -38,7 +38,7 @@ public class DXInstrumentProfileCollector {
     where O: DXInstrumentProfileUpdateListener,
           O: Hashable {
               try listeners.reader { [weak self] in
-                  if $0.isEmpty {
+                  if $0.count == 0 {
                       try self?.native.addListener(self)
                   }
               }
@@ -128,7 +128,7 @@ public class DXInstrumentProfileCollector {
 extension DXInstrumentProfileCollector: DXInstrumentProfileUpdateListener {
     public func instrumentProfilesUpdated(_ instruments: [InstrumentProfile]) {
         listeners.reader { items in
-            items.compactMap {
+            items.allObjects.compactMap {
                 $0 as? DXInstrumentProfileUpdateListener
             }.forEach { $0.instrumentProfilesUpdated(instruments) }
         }

@@ -55,7 +55,7 @@ final class CandleTests: XCTestCase {
         let subscription = try endpoint?.getFeed()?.createSubscription(code)
         let receivedEventExp = expectation(description: "Received events \(code)")
         receivedEventExp.assertForOverFulfill = false
-        try subscription?.add(observer: AnonymousClass { anonymCl in
+        let listener = AnonymousClass { anonymCl in
             anonymCl.callback = { events in
                 if events.count > 0 {
                     events.forEach { event in
@@ -65,7 +65,8 @@ final class CandleTests: XCTestCase {
                 }
             }
             return anonymCl
-        })
+        }
+        try subscription?.add(observer: listener)
         try subscription?.addSymbols(symbol)
         wait(for: [receivedEventExp], timeout: 10)
         try? endpoint?.disconnect()
@@ -166,7 +167,7 @@ final class CandleTests: XCTestCase {
         let subscription = try endpoint?.getFeed()?.createSubscription(code)
         let beginEventsExp = expectation(description: "Begin events \(code)")
         let endEventsExp = expectation(description: "End events \(code)")
-        try subscription?.add(observer: AnonymousClass { anonymCl in
+        let listener = AnonymousClass { anonymCl in
             anonymCl.callback = { events in
                 if events.count > 0 {
                     events.forEach { event in
@@ -186,7 +187,8 @@ final class CandleTests: XCTestCase {
                 }
             }
             return anonymCl
-        })
+        }
+        try subscription?.add(observer: listener)
         try subscription?.addSymbols(symbol)
         wait(for: [beginEventsExp, endEventsExp], timeout: 10)
         try? endpoint?.disconnect()
