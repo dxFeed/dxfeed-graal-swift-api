@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ArgumentException: Error {
+public enum ArgumentException: Error {
     case missingCandleType
     case missingCandlePrice
     case missingCandleSession

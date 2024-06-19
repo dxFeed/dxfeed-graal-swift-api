@@ -37,11 +37,11 @@ public class CandleExchange {
 }
 
 extension CandleExchange: ICandleSymbolProperty {
-    func changeAttributeForSymbol(symbol: String?) -> String? {
+    public func changeAttributeForSymbol(symbol: String?) -> String? {
         return MarketEventSymbols.changeExchangeCode(symbol, exchangeCode)
     }
 
-    func checkInAttribute(candleSymbol: CandleSymbol) throws {
+    public func checkInAttribute(candleSymbol: CandleSymbol) throws {
         if candleSymbol.exchange != nil {
             throw ArgumentException.invalidOperationException("Already initialized")
         }

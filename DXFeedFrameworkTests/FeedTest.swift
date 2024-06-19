@@ -43,11 +43,11 @@ final class FeedTest: XCTestCase {
         print("asd".description)
         XCTAssertNotNil((WildcardSymbol.all as Any) as? Symbol, "String is not a symbol")
         print(WildcardSymbol.all.stringValue)
-        let symbol = try CandleSymbol(symbol: "test")
+        let symbol = try CandleSymbol.valueOf("test")
         XCTAssertNotNil((TimeSeriesSubscriptionSymbol(symbol: symbol,
                                                       fromTime: 0) as Any) as? Symbol, "String is not a symbol")
 
-        let symbol1 = try CandleSymbol(symbol: "test")
+        let symbol1 = try CandleSymbol.valueOf("test")
         let testString = TimeSeriesSubscriptionSymbol(symbol: symbol1, fromTime: 10).stringValue
         print(testString)
     }

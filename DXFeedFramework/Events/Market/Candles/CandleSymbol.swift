@@ -7,14 +7,27 @@
 
 import Foundation
 
+/// Symbol that should be used with``DXFeedSubcription`` class
+/// to subscribe for``Candle`` events.``DXFeedSubcription`` also accepts a string
+/// representation of the candle symbol for subscription.
+///
+/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/candle/CandleSymbol.html)
 public class CandleSymbol {
+    /// Returns string representation of this symbol.
     public private(set) var symbol: String?
+    /// Gets base market symbol without attributes.
     public private(set) var baseSymbol: String?
+    /// Gets exchange attribute of this symbol.
     public internal(set) var exchange: CandleExchange?
+    /// Gets price type attribute of this symbol.
     public internal(set) var price: CandlePrice?
+    /// Gets session attribute of this symbol.
     public internal(set) var session: CandleSession?
+    /// Gets aggregation period of this symbol.
     public internal(set) var period: CandlePeriod?
+    /// Gets alignment attribute of this symbol.
     public internal(set) var alignment: CandleAlignment?
+    /// Gets price level attribute of this symbol.
     public internal(set) var priceLevel: CandlePriceLevel?
 
     private init(_ symbol: String) throws {
@@ -70,18 +83,21 @@ public class CandleSymbol {
         return symbol
     }
 
-    public convenience init(symbol: String) throws {
-        try self.init(symbol)
-    }
-
     func toString() -> String {
         return symbol ?? "null"
     }
-
+    /// Converts the given string symbol into the candle symbol object.
+    ///
+    /// - Throws: ArgumentException/invalidOperationException(_:)
     static func valueOf(_ symbol: String) throws -> CandleSymbol {
-        return try CandleSymbol(symbol: symbol)
+        return try CandleSymbol(symbol)
     }
-
+    /// Converts the given string symbol into the candle symbol object with the specified attribute set.
+    ///
+    /// - Parameters:
+    ///  - symbol:The string symbol.
+    ///  - attributes: The attributes to set.
+    /// - Throws: ArgumentException/invalidOperationException(_:)
     static func valueOf(_ symbol: String, _ properties: [ICandleSymbolProperty]) -> CandleSymbol {
         return CandleSymbol(symbol, properties)
     }
