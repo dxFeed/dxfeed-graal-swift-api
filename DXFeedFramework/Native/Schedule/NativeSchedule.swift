@@ -8,6 +8,7 @@
 import Foundation
 @_implementationOnly import graal_api
 
+/// Native wrapper over the Java com.dxfeed.schedule.Schedule class.
 class NativeSchedule {
     let schedule: UnsafeMutablePointer<dxfg_schedule_t>?
 
