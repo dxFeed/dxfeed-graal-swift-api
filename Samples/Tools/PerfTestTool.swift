@@ -46,7 +46,7 @@ class PerfTestTool: ToolsCommand {
         let listener = PerfTestEventListener()
 
         subscription.createSubscription(address: address,
-                                        symbols: arguments.parseSymbols(at: 3),
+                                        symbols: arguments.parseSymbols(),
                                         types: arguments.parseTypes(at: 2),
                                         role: arguments.isForceStream ? .streamFeed : .feed,
                                         listeners: [listener],

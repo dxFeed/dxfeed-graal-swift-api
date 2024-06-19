@@ -93,7 +93,7 @@ Sample: connect demo.dxfeed.com:7300 Quote AAPL
         }
 
         subscription.createSubscription(address: arguments[1],
-                                        symbols: arguments.parseSymbols(at: 3),
+                                        symbols: arguments.parseSymbols(),
                                         types: arguments.parseTypes(at: 2),
                                         role: arguments.isForceStream ? .streamFeed : .feed,
                                         listeners: listeners,
