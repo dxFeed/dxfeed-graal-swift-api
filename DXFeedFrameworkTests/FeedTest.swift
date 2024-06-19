@@ -32,10 +32,12 @@ final class FeedTest: XCTestCase {
 
         let symbol1 = try CandleSymbol.valueOf("test123")
         let testString = TimeSeriesSubscriptionSymbol(symbol: symbol1, fromTime: 30).stringValue
+        // here is workaround for different tz on local/gh
+        // setting tz setenv doesnt work, because graal already intialized tz on first start(from other/previous test)
         XCTAssertEqual("test123{fromTime",
-                       testString.substring(to: testString.index(of: "=")!))
+                       testString.substring(toIndex: testString.firstIndex(of: "=", start: 0)))
         XCTAssertEqual(".030}",
-                       testString.substring(from: testString.index(of: ".")!))
+                       testString.substring(fromIndex: testString.firstIndex(of: ".", start: 0)))
     }
 
     func testSetGetSymbols() throws {
