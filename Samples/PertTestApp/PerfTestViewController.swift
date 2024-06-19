@@ -41,12 +41,24 @@ class PerfTestViewController: UIViewController {
     @IBOutlet var peakCpuUsageLabel: UILabel!
     @IBOutlet var peakCpuUsageCounter: UILabel!
 
+    @IBOutlet var resultTableView: UITableView!
+
     let colors = Colors()
+    var dataSource = [String: String]()
+    let soureTitles = ["Rate of events (avg)",
+                       "Rate of listener calls",
+                       "Number of events in call (avg)",
+                       "Current CPU usage",
+                       "Peak CPU usage"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        resultTableView.backgroundColor = colors.background
+
+        resultTableView.separatorStyle = .none
+
         self.updateUI()
-        self.addressTextField.text = "localhost:6666"
+        self.addressTextField.text = "akosylo-mac.local:6666"
         self.connectionStatusLabel.text = DXEndpointState.notConnected.convetToString()
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = 0
@@ -71,27 +83,32 @@ class PerfTestViewController: UIViewController {
         print("Event speed      \(numberFormatter.string(from: metrics.rateOfEvent)!) events/s")
         print("Listener Calls   \(numberFormatter.string(from: metrics.rateOfListeners)!) calls/s")
         DispatchQueue.main.async {
-            self.rateOfEventsCounter.text = metrics.rateOfEvent.intValue > 1 ?
-            "\(self.numberFormatter.string(from: metrics.rateOfEvent)!) events/s" : " "
-            self.rateOfListenersCounter.text = metrics.rateOfListeners.intValue > 1 ?
-            "\(self.numberFormatter.string(from: metrics.rateOfListeners)!) calls/s" : " "
 
+            let rateOfEventsCounter = "\(self.numberFormatter.string(from: metrics.rateOfEvent)!) events/s"
+            let rateOfListenersCounter = metrics.rateOfListeners.intValue > 1 ?
+            "\(self.numberFormatter.string(from: metrics.rateOfListeners)!) calls/s" : " "
+            var numberOfEventsCounter = ""
             if metrics.rateOfEvent.intValue > 0 && metrics.rateOfListeners.intValue > 0 {
                 let eventsIncall = metrics.rateOfEvent.doubleValue / metrics.rateOfListeners.doubleValue
-                self.numberOfEventsCounter.text = eventsIncall > 1 ?
+                numberOfEventsCounter = eventsIncall > 1 ?
                 "\(self.numberFormatter.string(from: NSNumber(value: eventsIncall))!) events" : " "
-            } else {
-                self.numberOfEventsCounter.text = " "
             }
+            var currentCpuCounter = " "
+            var peakCpuUsageCounter = " "
             if metrics.rateOfEvent.intValue > 0 {
-                self.currentCpuCounter.text = metrics.cpuUsage.intValue > 1 ?
+                currentCpuCounter = metrics.cpuUsage.intValue > 1 ?
                 "\(self.numberFormatter.string(from: metrics.cpuUsage)!) %" : "0 %"
-                self.peakCpuUsageCounter.text = metrics.peakCpuUsage.intValue > 1 ?
+                peakCpuUsageCounter = metrics.peakCpuUsage.intValue > 1 ?
                 "\(self.numberFormatter.string(from: metrics.peakCpuUsage)!) %" : "0 %"
-            } else {
-                self.currentCpuCounter.text = " "
-                self.peakCpuUsageCounter.text = " "
             }
+            self.dataSource = [
+                "Rate of events (avg)": rateOfEventsCounter,
+                "Rate of listener calls": rateOfListenersCounter,
+                "Number of events in call (avg)": numberOfEventsCounter,
+                "Current CPU usage": currentCpuCounter,
+                "Peak CPU usage": peakCpuUsageCounter
+                ]
+            self.resultTableView.reloadData()
         }
     }
 
@@ -141,5 +158,29 @@ extension PerfTestViewController: DXEventListener {
         DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
             events.forEach { self.blackHoleInt ^= $0.eventTime }
         }
+    }
+}
+
+extension PerfTestViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return soureTitles.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MetricCellId", for: indexPath)
+                as? MetricCell else {
+            return UITableViewCell()
+        }
+        let title = soureTitles[indexPath.row]
+        let value = dataSource[title]
+        cell.update(title: title, value: value ?? "")
+
+        return cell
+    }
+}
+
+extension PerfTestViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
 }

@@ -12,9 +12,8 @@ class MetricCell: UITableViewCell {
     @IBOutlet var counterLabel: UILabel!
     @IBOutlet var backgroundContentView: UIView!
 
-
     let colors = Colors()
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -27,7 +26,6 @@ class MetricCell: UITableViewCell {
         self.backgroundContentView.layer.cornerRadius = 10
         self.backgroundContentView.clipsToBounds = true
     }
-
 
     func update(title: String, value: String) {
         titleLabel.text = title

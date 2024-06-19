@@ -23,7 +23,7 @@ class LatencyViewController: UIViewController {
     var isConnected = false
 
     var dataSource = [String: String]()
-    var soureTitles = ["Rate of events (avg)",
+    let soureTitles = ["Rate of events (avg)",
                       "Rate of unique symbols",
                       "Min",
                       "Max",
@@ -88,12 +88,14 @@ class LatencyViewController: UIViewController {
             try? profileSubscription?.addSymbols(symbols)
         }
     }
+
     func updateUI() {
         let metrics = diagnostic.getMetrics()
         DispatchQueue.main.async {
             self.updateText(metrics)
         }
     }
+
     func updateText(_ metrics: Metrics) {
         let result = """
   Rate of events (avg)     : \(numberFormatter.string(from: metrics.rateOfEvent)!) (events/s)
