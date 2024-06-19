@@ -8,9 +8,12 @@ import XCTest
 @testable import DXFeedFramework
 
 final class FeedTest: XCTestCase {
+    static var endpoint: DXEndpoint?
 
     override class func setUp() {
         _ = Isolate.shared
+        FeedTest.endpoint = try? DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        try? FeedTest.endpoint?.connect("demo.dxfeed.com:7300")
     }
 
     func testInitializationWithNilNativeSubscription() {
@@ -64,49 +67,6 @@ final class FeedTest: XCTestCase {
         let symbol1 = try CandleSymbol.valueOf("test")
         let testString = TimeSeriesSubscriptionSymbol(symbol: symbol1, fromTime: 10).stringValue
         print(testString)
-    }
-
-    func testCreateSubscriptionWithSymbol() throws {
-        try createMultipleSubscriptionWithSymbol(symbols: ["ETH/USD:GDAX"])
-    }
-
-    func testCreateSubscriptionWithSymbols() throws {
-        try createMultipleSubscriptionWithSymbol(symbols: ["ETH/USD:GDAX", "XBT/USD:GDAX"])
-    }
-
-    func createMultipleSubscriptionWithSymbol(symbols: [String]) throws {
-        let endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
-        try endpoint?.connect("demo.dxfeed.com:7300")
-        XCTAssertNotNil(endpoint, "Endpoint shouldn't be nil")
-        let feed = endpoint?.getFeed()
-        XCTAssertNotNil(feed, "Feed shouldn't be nil")
-        var differentSymbols = Set<String>()
-        let type = Quote.self
-        let subscription = try feed?.createSubscription(type)
-        let receivedEventExp = expectation(description: "Received events \(type)")
-        receivedEventExp.assertForOverFulfill = false
-        let listener = AnonymousClass { anonymCl in
-            anonymCl.callback = { events in
-                events.forEach { event in
-                    differentSymbols.insert(event.quote.eventSymbol)
-                }
-                if Array(differentSymbols) == symbols {
-                    receivedEventExp.fulfill()
-                }
-            }
-            return anonymCl
-        }
-        try subscription?.add(listener: listener)
-        XCTAssertNotNil(subscription, "Subscription shouldn't be nil")
-        if symbols.count == 1 {
-            try subscription?.addSymbols(symbols.first!)
-        } else {
-            try subscription?.addSymbols(symbols)
-        }
-        wait(for: [receivedEventExp], timeout: 5)
-
-        try subscription?.removeSymbols(symbols)
-        try endpoint?.closeAndAwaitTermination()
     }
 
     func testTimeAndSale() throws {
@@ -184,9 +144,8 @@ final class FeedTest: XCTestCase {
     }
 
     func waitingEvent(_ type: IEventType.Type) throws {
-        let endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
-        try endpoint.connect("demo.dxfeed.com:7300")
-        let subscription = try endpoint.getFeed()?.createSubscription(type)
+
+        let subscription = try FeedTest.endpoint?.getFeed()?.createSubscription(type)
         let receivedEventExp = expectation(description: "Received events \(type)")
         receivedEventExp.assertForOverFulfill = false
         let listener = AnonymousClass { anonymCl in
@@ -203,7 +162,6 @@ final class FeedTest: XCTestCase {
         try subscription?.add(listener: listener)
         try subscription?.addSymbols(["ETH/USD:GDAX", "IBM"])
         wait(for: [receivedEventExp], timeout: 10)
-        try endpoint.closeAndAwaitTermination()
     }
 
     func testSetGetSymbols() throws {

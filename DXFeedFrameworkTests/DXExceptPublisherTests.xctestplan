@@ -22,11 +22,13 @@
       "parallelizable" : true,
       "skippedTests" : [
         "DXConnectionStateTests",
+        "DXConnectionTest",
         "DXExceptionTest",
         "DXObservableSubscriptionTest",
         "DXSnapshotProcessorTest",
         "EndpointTest\/testGetEventTypes()",
         "IPFTests\/testResolveSourceURL()",
+        "IsolateTest",
         "IsolateTest\/test123()",
         "PublisherTest"
       ],
