@@ -88,9 +88,9 @@ public enum CandleSession: DXCandleSession, CaseIterable {
 extension CandleSession: ICandleSymbolProperty {
     func changeAttributeForSymbol(symbol: String?) -> String? {
         if self == CandleSession.defaultSession {
-            MarketEventSymbols.removeAttributeStringByKey(symbol, CandleSession.attributeKey)
+            return MarketEventSymbols.removeAttributeStringByKey(symbol, CandleSession.attributeKey)
         } else {
-            try? MarketEventSymbols.changeAttributeStringByKey(symbol, CandleSession.attributeKey, toString())
+            return try? MarketEventSymbols.changeAttributeStringByKey(symbol, CandleSession.attributeKey, toString())
         }
     }
 

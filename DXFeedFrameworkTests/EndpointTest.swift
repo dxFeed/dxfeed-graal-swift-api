@@ -42,8 +42,8 @@ final class EndpointTest: XCTestCase {
         let feed = endpoint?.getFeed()
         XCTAssertNotNil(feed, "Feed should be not nil")
     }
-    func testConnect() throws {
 
+    func testConnect() throws {
         let endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint should be not nil")
 
@@ -74,6 +74,10 @@ final class EndpointTest: XCTestCase {
         try endpoint?.close()
         try? endpoint?.callGC()
         endpoint = nil
+        endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        XCTAssertNotNil(endpoint, "Endpoint should be not nil")
+        try endpoint?.connect(endpointAddress)
+        try endpoint?.disconnect()
         wait(seconds: 3)
     }
 

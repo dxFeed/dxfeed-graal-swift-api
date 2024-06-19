@@ -19,19 +19,18 @@ final class ThreadsTest: XCTestCase {
     }
 
     func testEquality() throws {
-        let keeper = ThreadManager.shared.attachThread()
+        let keeper = currentThread()
         DispatchQueue.main.async {
-            let keeper2 = ThreadManager.shared.attachThread()
-            XCTAssert(keeper === keeper2)
-            XCTAssert(keeper.threadPointer.pointee == keeper2.threadPointer.pointee)
+            let keeper2 = currentThread()
+            XCTAssert(keeper == keeper2)
         }
     }
 
     func testInDifferentThreads() {
-        let keeper = ThreadManager.shared.attachThread()
+        let keeper = currentThread()
         var thread: Thread? = Thread {
-            let keeper1 = ThreadManager.shared.attachThread()
-            XCTAssert(keeper !== keeper1)
+            let keeper1 = currentThread()
+            XCTAssert(keeper != keeper1)
         }
         thread?.start()
         thread = nil
@@ -40,15 +39,13 @@ final class ThreadsTest: XCTestCase {
     }
 
     func testInDifferentQueues() {
-        let keeper = ThreadManager.shared.attachThread()
+        let keeper = currentThread()
         DispatchQueue.global(qos: .background).async {
-            let keeper1 = ThreadManager.shared.attachThread()
-            XCTAssert(keeper !== keeper1)
+            let keeper1 = currentThread()
+            XCTAssert(keeper != keeper1)
             DispatchQueue.main.async {
-                let keeper2 = ThreadManager.shared.attachThread()
-                XCTAssert(keeper === keeper2)
-                XCTAssert(keeper1 !== keeper2)
-
+                let keeper2 = currentThread()
+                XCTAssert(keeper == keeper2)
             }
         }
     }

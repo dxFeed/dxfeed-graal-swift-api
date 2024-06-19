@@ -6,9 +6,15 @@
 //
 
 import Foundation
+@_implementationOnly import graal_api
 
 func currentThread() -> OpaquePointer! {
-    ThreadManager.shared.attachThread().threadPointer.pointee
+    let currentThread = graal_get_current_thread(Isolate.shared.isolate.pointee)
+    if currentThread == nil {
+        return ThreadManager.shared.attachThread().threadPointer.pointee
+    } else {
+        return currentThread
+    }
 }
 
 class ThreadManager {
@@ -17,7 +23,7 @@ class ThreadManager {
     private init() {
 
     }
-    func attachThread() -> IsolateThread {
+    fileprivate func attachThread() -> IsolateThread {
         defer {
             objc_sync_exit(self)
         }

@@ -23,11 +23,12 @@ class NativeProperty {
     }
 
     static func getProperty(_ key: String) -> String? {
-        let property = dxfg_system_get_property(ThreadManager.shared.attachThread().threadPointer.pointee,
+        let thread = currentThread()
+        let property = dxfg_system_get_property(thread,
                                                 key.cString(using: .utf8))
         if let property = property {
             let result = String(utf8String: property)
-            dxfg_system_release_property(ThreadManager.shared.attachThread().threadPointer.pointee, property)
+            dxfg_system_release_property(thread, property)
             return result
         } else {
             return nil
