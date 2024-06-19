@@ -21,8 +21,13 @@ class TimeUtil {
     }
 
     public static func toLocalDateString(millis: Int64) -> String {
-        return dateFormatter.string(from: Date(timeIntervalSince1970: Double(millis / 1000)))
+        return "\(dateFormatter.string(from: Date(timeIntervalSince1970: Double(millis / 1000)))) \(millis % 1000)"
     }
+
+    public static func toLocalDateStringWithoutMillis(millis: Int64) -> String {
+        return "\(dateFormatter.string(from: Date(timeIntervalSince1970: Double(millis / 1000))))"
+    }
+
 
     public static func getSecondsFromTime(_ timeMillis: Long) -> Int {
         if timeMillis >= 0 {

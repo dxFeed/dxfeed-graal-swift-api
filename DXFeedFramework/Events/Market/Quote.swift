@@ -77,4 +77,26 @@ extension Quote {
     public var timeNanos: Int64 {
         return TimeNanosUtil.getNanosFromMillisAndNanoPart(time, timeNanoPart)
     }
+
+    func toString() -> String {
+        return "Quote{\(baseFieldsToString())}"
+    }
+
+    func baseFieldsToString() -> String {
+        return """
+\(eventSymbol), \
+eventTime=" + \(TimeUtil.toLocalDateString(millis: eventTime)), \
+time=\(TimeUtil.toLocalDateString(millis: time)), \
+timeNanoPart=\(timeNanoPart), \
+sequence=\(getSequence()), \
+bidTime=\(TimeUtil.toLocalDateStringWithoutMillis(millis: bidTime)), \
+bidExchange=\(StringUtil.encodeChar(char: bidExchangeCode)), \
+bidPrice=\(bidPrice), \
+bidSize=\(bidSize), \
+askTime=\(TimeUtil.toLocalDateStringWithoutMillis(millis: askTime)), \
+askExchange=\(StringUtil.encodeChar(char: askExchangeCode)), \
+askPrice=\(askPrice), \
+askSize=\(askSize)
+"""
+    }
 }
