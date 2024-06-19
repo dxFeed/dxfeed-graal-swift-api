@@ -30,7 +30,6 @@ final class EndpointTest: XCTestCase {
         XCTAssertNotNil(feed, "Feed should be not nil")
     }
 
-  
     func testSupportProperty() throws {
         let builder = DXEndpoint.builder()
         func isSupportedProperty(_ prop: String, _ expected: Bool) {
