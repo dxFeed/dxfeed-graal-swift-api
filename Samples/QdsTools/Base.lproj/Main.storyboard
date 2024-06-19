@@ -19,71 +19,90 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MTw-fb-gik">
-                                <rect key="frame" x="0.0" y="212" width="393" height="606"/>
+                                <rect key="frame" x="0.0" y="256" width="393" height="521"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="nettest p :6666 -S 1 -c stream" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RYO-aA-319">
-                                <rect key="frame" x="10" y="69" width="309.33333333333331" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="neo-x0-b0T">
-                                <rect key="frame" x="329.33333333333331" y="68.666666666666671" width="53.666666666666686" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Run"/>
-                                <connections>
-                                    <action selector="runCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T7e-41-GN6"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TimeAndSale" borderStyle="roundedRect" placeholder="Records" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eca-2i-C1B">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Arguments" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RYO-aA-319">
                                 <rect key="frame" x="10" y="113" width="309.33333333333331" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="dxscheme.wide=false,monitoring.stat=10s" borderStyle="roundedRect" placeholder="Properties" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gwh-pe-8Au">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="neo-x0-b0T">
+                                <rect key="frame" x="329.33333333333331" y="112.66666666666669" width="53.666666666666686" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Run"/>
+                                <connections>
+                                    <action selector="runCommand" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xqc-1m-oj1"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="dxscheme.wide=false,monitoring.stat=10s" borderStyle="roundedRect" placeholder="VM Options" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gwh-pe-8Au">
                                 <rect key="frame" x="10" y="157" width="309.33333333333331" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="STDIN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nYs-ZA-cWE">
+                                <rect key="frame" x="10" y="201" width="373" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hjz-xS-Op9">
-                                <rect key="frame" x="2" y="201" width="389" height="1"/>
+                                <rect key="frame" x="2" y="245" width="389" height="1"/>
                                 <color key="backgroundColor" name="AccentColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="pyA-eQ-kAQ"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ksy-oT-8Dh">
+                                <rect key="frame" x="10" y="787" width="373" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Command" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5LQ-ip-WNj">
+                                <rect key="frame" x="10" y="69" width="373" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="gwh-pe-8Au" firstAttribute="leading" secondItem="Eca-2i-C1B" secondAttribute="leading" id="0AU-2z-pkB"/>
                             <constraint firstItem="neo-x0-b0T" firstAttribute="centerY" secondItem="RYO-aA-319" secondAttribute="centerY" id="2B7-aw-e94"/>
-                            <constraint firstItem="Hjz-xS-Op9" firstAttribute="top" secondItem="gwh-pe-8Au" secondAttribute="bottom" constant="10" id="4Qb-ab-GiN"/>
-                            <constraint firstItem="gwh-pe-8Au" firstAttribute="top" secondItem="Eca-2i-C1B" secondAttribute="bottom" constant="10" id="IkN-EN-3fi"/>
+                            <constraint firstItem="Ksy-oT-8Dh" firstAttribute="top" secondItem="MTw-fb-gik" secondAttribute="bottom" constant="10" id="BTq-TJ-Xxb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ksy-oT-8Dh" secondAttribute="bottom" constant="10" id="BhP-WL-ALr"/>
+                            <constraint firstItem="gwh-pe-8Au" firstAttribute="trailing" secondItem="RYO-aA-319" secondAttribute="trailing" id="JDe-wx-U36"/>
                             <constraint firstItem="RYO-aA-319" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="Jwe-TL-1OH"/>
+                            <constraint firstItem="Hjz-xS-Op9" firstAttribute="top" secondItem="nYs-ZA-cWE" secondAttribute="bottom" constant="10" id="MaN-uH-ekO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nYs-ZA-cWE" secondAttribute="trailing" constant="10" id="N06-fO-1zd"/>
                             <constraint firstAttribute="trailing" secondItem="Hjz-xS-Op9" secondAttribute="trailing" constant="2" id="PV3-14-xKu"/>
-                            <constraint firstItem="gwh-pe-8Au" firstAttribute="trailing" secondItem="Eca-2i-C1B" secondAttribute="trailing" id="YFG-lT-n9j"/>
+                            <constraint firstItem="Ksy-oT-8Dh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="Rtl-LM-d1n"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5LQ-ip-WNj" secondAttribute="trailing" constant="10" id="TXP-6I-28A"/>
                             <constraint firstItem="neo-x0-b0T" firstAttribute="leading" secondItem="RYO-aA-319" secondAttribute="trailing" constant="10" id="a5Z-ZZ-dM7"/>
+                            <constraint firstItem="5LQ-ip-WNj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="aij-7A-8Pj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="neo-x0-b0T" secondAttribute="trailing" constant="10" id="aqj-fw-bTD"/>
-                            <constraint firstItem="Eca-2i-C1B" firstAttribute="leading" secondItem="RYO-aA-319" secondAttribute="leading" id="hvM-ey-jSp"/>
-                            <constraint firstItem="RYO-aA-319" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="lCY-82-RB1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ksy-oT-8Dh" secondAttribute="trailing" constant="10" id="iLu-cu-JQU"/>
+                            <constraint firstItem="gwh-pe-8Au" firstAttribute="top" secondItem="RYO-aA-319" secondAttribute="bottom" constant="10" id="kmg-hA-AuH"/>
+                            <constraint firstItem="5LQ-ip-WNj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="ksy-dG-1Le"/>
                             <constraint firstItem="MTw-fb-gik" firstAttribute="top" secondItem="Hjz-xS-Op9" secondAttribute="bottom" constant="10" id="mqN-zo-3B5"/>
                             <constraint firstItem="Hjz-xS-Op9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="2" id="p1Z-hK-VD3"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MTw-fb-gik" secondAttribute="bottom" id="pHp-vg-4AA"/>
-                            <constraint firstItem="Eca-2i-C1B" firstAttribute="trailing" secondItem="RYO-aA-319" secondAttribute="trailing" id="tKY-qB-mmE"/>
-                            <constraint firstItem="Eca-2i-C1B" firstAttribute="top" secondItem="RYO-aA-319" secondAttribute="bottom" constant="10" id="uRq-ff-VUE"/>
+                            <constraint firstItem="nYs-ZA-cWE" firstAttribute="top" secondItem="gwh-pe-8Au" secondAttribute="bottom" constant="10" id="pAn-oJ-OWD"/>
+                            <constraint firstItem="gwh-pe-8Au" firstAttribute="leading" secondItem="RYO-aA-319" secondAttribute="leading" id="pgd-a2-TLR"/>
+                            <constraint firstItem="nYs-ZA-cWE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="rwG-Aw-3xQ"/>
+                            <constraint firstItem="RYO-aA-319" firstAttribute="top" secondItem="5LQ-ip-WNj" secondAttribute="bottom" constant="10" id="tFO-s3-lTO"/>
                             <constraint firstItem="MTw-fb-gik" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vd7-6U-9gC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MTw-fb-gik" secondAttribute="trailing" id="ydL-ew-J2I"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="commandTextField" destination="RYO-aA-319" id="NtQ-G7-pBL"/>
+                        <outlet property="argumentsTextField" destination="RYO-aA-319" id="NtQ-G7-pBL"/>
+                        <outlet property="cmdTextField" destination="5LQ-ip-WNj" id="IeA-Vm-zzG"/>
                         <outlet property="consoleTextView" destination="MTw-fb-gik" id="Y1o-zz-Dyp"/>
-                        <outlet property="propertiesTextField" destination="gwh-pe-8Au" id="gG2-fb-s0u"/>
-                        <outlet property="recordTextField" destination="Eca-2i-C1B" id="pqE-Do-GG6"/>
+                        <outlet property="hostnameLabel" destination="Ksy-oT-8Dh" id="ojo-hA-3rb"/>
+                        <outlet property="stdIntextField" destination="nYs-ZA-cWE" id="CmQ-hz-11L"/>
+                        <outlet property="vmOptionsTextField" destination="gwh-pe-8Au" id="gG2-fb-s0u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
