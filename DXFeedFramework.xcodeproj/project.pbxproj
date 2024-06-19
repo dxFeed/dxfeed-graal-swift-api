@@ -930,6 +930,9 @@
 				6486B9622AD0333B00D8D5FA /* Greeks.swift */,
 				6486B96A2AD03DC900D8D5FA /* Underlying.swift */,
 				6486B9722AD045C800D8D5FA /* TheoPrice.swift */,
+				64BDDB1D2AD6CC6A00694210 /* Order.swift */,
+				64BDDB1F2AD6CC8300694210 /* AnalyticOrder.swift */,
+				64BDDB212AD6CC9A00694210 /* SpreadOrder.swift */,
 			);
 			path = Market;
 			sourceTree = "<group>";
@@ -996,9 +999,6 @@
 				6486B9702AD0445E00D8D5FA /* UnderlyingMapper.swift */,
 				6486B9742AD0493F00D8D5FA /* TheoPrice+Ext.swift */,
 				6486B9762AD04C5800D8D5FA /* TheoPriceMapper.swift */,
-				64BDDB1D2AD6CC6A00694210 /* Order.swift */,
-				64BDDB1F2AD6CC8300694210 /* AnalyticOrder.swift */,
-				64BDDB212AD6CC9A00694210 /* SpreadOrder.swift */,
 			);
 			path = Markets;
 			sourceTree = "<group>";
