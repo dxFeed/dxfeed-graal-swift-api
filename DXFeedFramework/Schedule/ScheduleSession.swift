@@ -38,9 +38,12 @@ public enum ScheduleSessionType {
 /// Each session completely fits inside a certain day. Day may contain sessions with zero duration - e.g. indices
 /// that post value once a day. Such sessions can be of any appropriate type, trading or non-trading.
 public class ScheduleSession {
+    /// Returns native ref
     internal let native: NativeSession
+    /// Returns schedule to which this session belongs.
     internal let nativeSchedule: NativeSchedule
     /// Returns start time of this session (inclusive).
+    ///
     /// For normal sessions the start time is less than the end time, for empty sessions they are equal.
     public let startTime: Long
     /// Returns end time of this session (exclusive).
@@ -63,7 +66,6 @@ public class ScheduleSession {
     }
 }
 
-
 extension ScheduleSession {
     public func getPrevious(filter: SessionFilter) throws -> ScheduleSession? {
         return try nativeSchedule.getPrevtSession(before: self, filter: filter)
@@ -79,6 +81,4 @@ extension ScheduleSession: Equatable {
         return lhs === rhs ||
         (lhs.endTime == rhs.endTime && lhs.startTime == rhs.startTime && lhs.type == rhs.type)
     }
-
-
 }

@@ -74,24 +74,58 @@ public class DXSchedule {
 
     /// Returns day that contains specified time.
     ///
-    /// This method will throw {@link IllegalArgumentException} if specified time
+    /// This method will throw exception if specified time
     /// falls outside of valid date range from 0001-01-02 to 9999-12-30.
     /// - Parameters:
     ///    - time: the time to search for
     /// - Throws: GraalException. Rethrows exception from Java.recore
     public func getDayByTime(time: Long) throws -> ScheduleDay {
-        var day = try native.getDayByTime(time: time)
+        let day = try native.getDayByTime(time: time)
         return day
     }
+
     /// Returns day for specified day identifier.
     ///
-    /// This method will throw {@link IllegalArgumentException} if specified day identifier
+    /// This method will throw exception if specified day identifier
     /// falls outside of valid date range from 0001-01-02 to 9999-12-30.
     /// - Parameters:
     ///    - day: identifier to search for
     /// - Throws: GraalException. Rethrows exception from Java.recore
     public func getDayById(day: Int32) throws -> ScheduleDay {
-        var day = try native.getDayById(dayId: day)
+        let day = try native.getDayById(dayId: day)
         return day
+    }
+
+    /// Returns session that contains specified time.
+    ///
+    /// This method will throw exception
+    /// if specified time falls outside of valid date range from 0001-01-02 to 9999-12-30.
+    ///
+    /// - Parameters:
+    ///   - time:  time the time to search for
+    /// - Returns: session that contains specified time
+    /// - Throws: GraalException. Rethrows exception from Java.
+    public func getSessionByTime(time: Long) throws -> ScheduleSession {
+        return try native.getSessionByTime(time: time)
+    }
+
+    /// Returns session that is nearest to the specified time and that is accepted by specified filter.
+    ///
+    /// This method will throw exception  if specified time
+    /// falls outside of valid date range from 0001-01-02 to 9999-12-30.
+    /// If no sessions acceptable by specified filter are found within one year this method will throw exception
+    ///
+    /// To find nearest trading session of any type use this code:
+    /// session = schedule.getNearestSessionByTime(time, SessionFilter.TRADING);
+    /// To find nearest regular trading session use this code:
+    /// session = schedule.getNearestSessionByTime(time, SessionFilter.REGULAR);
+    ///
+    /// - Parameters:
+    ///   - time:  time the time to search for
+    ///   - filter: the filter to test sessions
+    /// - Returns: session that contains specified time
+    /// - Throws: GraalException. Rethrows exception from Java.
+    public func getNearestSessionByTime(time: Long, filter: SessionFilter) throws -> ScheduleSession {
+        return try native.getNearestSessionByTime(time: time, filter: filter)
     }
 }

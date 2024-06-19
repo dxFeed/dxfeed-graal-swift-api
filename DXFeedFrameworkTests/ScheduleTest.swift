@@ -59,7 +59,7 @@ final class ScheduleTest: XCTestCase {
             let timeZone = try schedule.getTimeZone()
             XCTAssert(timeZone == "Greenwich Mean Time")
             let day = try schedule.getDayByTime(time: 0)
-            XCTAssert(day.dayId == 0)        
+            XCTAssert(day.dayId == 0)
         } catch {
             XCTAssert(false, "Error \(error)")
         }
@@ -169,7 +169,8 @@ final class ScheduleTest: XCTestCase {
         var startDay: ScheduleDay? = try schedule?.getDayByTime(time: start)
         schedule = nil
         var nextDay: ScheduleDay? = try startDay?.getNext(filter: .any)
-        var prevDay: ScheduleDay? = try startDay?.getNext(filter: .any)
+        var prevDay: ScheduleDay? = try startDay?.getPrevious(filter: .any)
+        XCTAssert(prevDay != nextDay)
         startDay = nil
         nextDay = nil
         prevDay = nil
@@ -187,14 +188,25 @@ final class ScheduleTest: XCTestCase {
         XCTAssert(startDay?.sessions.count ?? 0 >= 3)
         do {
             let firstSession = startDay?.sessions.first
-
             let nextSession =  try firstSession?.getNext(filter: .any)
             XCTAssert(nextSession == startDay?.sessions[1])
             let lastSession =  startDay?.sessions.last
             let prevSession =  try lastSession?.getPrevious(filter: .any)
+            let index = (startDay?.sessions.count ?? 0) - 2
+            XCTAssert(prevSession == startDay?.sessions[index])
         }
+        startDay = nil
         // waiting here for an explosion in deinit
         let sec = 2
         _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
+    }
+
+    func testNearestSessionByTime() throws {
+        let schedule = try DXSchedule(scheduleDefinition: "(tz=GMT;0=01000200)")
+        let value = try schedule.getNearestSessionByTime(time: Int64(Date.now.timeIntervalSince1970) * 1000,
+                                                         filter: .trading )
+        let startTime = value.startTime % TimeUtil.day
+        let equals = TimeUtil.hour == startTime
+        XCTAssert(equals)
     }
 }

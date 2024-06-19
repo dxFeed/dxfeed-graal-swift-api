@@ -8,13 +8,7 @@
 import Foundation
 @_implementationOnly import graal_api
 
-class NativeSession {
-    let native: UnsafeMutablePointer<dxfg_session_t>
-
-    init(native: UnsafeMutablePointer<dxfg_session_t>) {
-        self.native = native
-    }
-
+class NativeSession: NativeBox<dxfg_session_t> {
     deinit {
         let thread = currentThread()
         _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(native.pointee.handler)))

@@ -9,8 +9,9 @@ import Foundation
 
 class TimeUtil {
     static let second =  Long(1000)
-    static let minute =  60 * Long(1000)
-    static let day = Long(24 * 60 * 60 * 1000)
+    static let minute =  60 * second
+    static let hour = 60 * minute
+    static let day = 24 * hour
 
     static let dateFormatter = {
         let formatter = DateFormatter()
