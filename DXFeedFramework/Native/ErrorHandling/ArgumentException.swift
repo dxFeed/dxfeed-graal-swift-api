@@ -21,4 +21,5 @@ enum ArgumentException: Error {
     case duplicateId
     case incorrectCandlePrice
     case unknowCandlePriceLevel
+    case illegalArgumentException
 }
