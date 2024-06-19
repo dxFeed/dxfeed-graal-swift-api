@@ -10,26 +10,51 @@ import Foundation
 
 class NativeBuilder {
     let builder: UnsafeMutablePointer<dxfg_endpoint_builder_t>?
-    
+    var role = Role.feed
     deinit {
-        
+
     }
-    
+
     init() throws {
-        try self.builder = ErrorCheck.nativeCall(ThreadManager.shared.attachThread(), dxfg_DXEndpoint_newBuilder(ThreadManager.shared.attachThread().thread.pointee))
+        let thread = currentThread()
+
+        try self.builder = ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_newBuilder(thread))
     }
-    
+
     func isSupporProperty(_ key: String) throws -> Bool {
-        let res = try ErrorCheck.nativeCall(ThreadManager.shared.attachThread(), dxfg_DXEndpoint_Builder_supportsProperty(ThreadManager.shared.attachThread().thread.pointee, self.builder, key.cString(using: .utf8)))
-        
+        let thread =  currentThread()
+
+        let res = try ErrorCheck.nativeCall(thread,
+                                            dxfg_DXEndpoint_Builder_supportsProperty(thread,
+                                                                                     self.builder,
+                                                                                     key.cString(using: .utf8)))
         return res != 0
     }
-    
-    func withRole(_ role: DXFEndpoint.Role) throws {
-        //TODO: add set role
+
+    func withRole(_ role: Role) throws -> Bool {
+        let thread =  currentThread()
+
+        let res = try ErrorCheck.nativeCall(thread,
+                                            dxfg_DXEndpoint_Builder_withRole(thread,
+                                                                             builder,
+                                                                             dxfg_endpoint_role_t(role.rawValue)
+                                                                            )
+        )
+        return res != 0
     }
-    
+
     func withProperty(_ key: String, _ value: String) throws {
-        try _ = ErrorCheck.nativeCall(ThreadManager.shared.attachThread(), dxfg_DXEndpoint_Builder_withProperty(ThreadManager.shared.attachThread().thread.pointee, self.builder, key.cString(using: .utf8), value.cString(using: .utf8)))
+        let thread =  currentThread()
+        try _ = ErrorCheck.nativeCall(thread,
+                                      dxfg_DXEndpoint_Builder_withProperty(thread,
+                                                                           self.builder,
+                                                                           key.cString(using: .utf8),
+                                                                           value.cString(using: .utf8)))
+    }
+
+    func build() throws -> NativeEndpoint {
+        let thread =  currentThread()
+//        ErrorCheck.nativeCall(thread, )
+       return NativeEndpoint()
     }
 }

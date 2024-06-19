@@ -24,9 +24,9 @@ final class SystemPropertyTest: XCTestCase {
         } catch {
             XCTAssert(false, "Couldn't write value")
         }
-        
+
     }
-    
+
     func testRead() throws {
         let key = UUID().uuidString
         let value = UUID().uuidString

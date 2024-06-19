@@ -23,22 +23,22 @@ final class ThreadsTest: XCTestCase {
         DispatchQueue.main.async {
             let keeper2 = ThreadManager.shared.attachThread()
             XCTAssert(keeper === keeper2)
-            XCTAssert(keeper.thread.pointee == keeper2.thread.pointee)
+            XCTAssert(keeper.threadPointer.pointee == keeper2.threadPointer.pointee)
         }
     }
-    
+
     func testInDifferentThreads() {
         let keeper = ThreadManager.shared.attachThread()
-        var th: Thread? = Thread {
+        var thread: Thread? = Thread {
             let keeper1 = ThreadManager.shared.attachThread()
             XCTAssert(keeper !== keeper1)
         }
-        th?.start()
-        th = nil
+        thread?.start()
+        thread = nil
         let sec = 2
         _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
     }
-    
+
     func testInDifferentQueues() {
         let keeper = ThreadManager.shared.attachThread()
         DispatchQueue.global(qos: .background).async {
@@ -50,7 +50,7 @@ final class ThreadsTest: XCTestCase {
                 XCTAssert(keeper1 !== keeper2)
 
             }
-        }        
+        }
     }
 
 }
