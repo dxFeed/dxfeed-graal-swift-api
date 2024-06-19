@@ -33,7 +33,7 @@ class PerfTestTool: ToolsCommand {
             return arguments
         } catch {
             print(fullDescription)
-            fatalError()
+            exit(0)
         }
     }()
 

@@ -37,7 +37,7 @@ class LatencyTestTool: ToolsCommand {
             return arguments
         } catch {
             print(fullDescription)
-            fatalError()
+            exit(0)
         }
     }()
 

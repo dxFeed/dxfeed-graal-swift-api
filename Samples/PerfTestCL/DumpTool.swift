@@ -47,7 +47,7 @@ class DumpTool: ToolsCommand {
             return arguments
         } catch {
             print(fullDescription)
-            fatalError()
+            exit(0)
         }
     }()
 

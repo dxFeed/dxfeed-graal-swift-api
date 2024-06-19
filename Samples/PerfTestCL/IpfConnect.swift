@@ -35,7 +35,7 @@ class IpfConnect: ToolsCommand {
             return arguments
         } catch {
             print(fullDescription)
-            fatalError()
+            exit(0)
         }
     }()
 
