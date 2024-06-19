@@ -37,7 +37,6 @@
 		64104FC92A26298D00D1FC41 /* DXFeedSubcription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC82A26298D00D1FC41 /* DXFeedSubcription.swift */; };
 		64104FCC2A2629D800D1FC41 /* NativeSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FCB2A2629D800D1FC41 /* NativeSubscription.swift */; };
 		64104FD32A277B2D00D1FC41 /* ListNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FD22A277B2D00D1FC41 /* ListNative.swift */; };
-		64125E342A1F688900FB32BA /* libDxFeedGraalNativeSdk.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 64125E332A1F688900FB32BA /* libDxFeedGraalNativeSdk.o */; platformFilters = (ios, xros, ); settings = {ATTRIBUTES = (Required, ); }; };
 		64125E362A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64125E352A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib */; platformFilters = (macos, ); settings = {ATTRIBUTES = (Required, ); }; };
 		6417DD192A39C22C008912D6 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		6417DD1A2A39C22C008912D6 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -226,8 +225,6 @@
 		803BAC1629BFA50700FFAB1C /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		803BAC1C29BFA50700FFAB1C /* DxFeedSwiftFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		803BAC2B29BFA69A00FFAB1C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2A29BFA69400FFAB1C /* libc++.tbd */; settings = {ATTRIBUTES = (Required, ); }; };
-		803BAC3029BFA6FA00FFAB1C /* jdk-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2C29BFA6EE00FFAB1C /* jdk-arm64-ios-r.a */; platformFilters = (ios, xros, ); settings = {ATTRIBUTES = (Required, ); }; };
-		803BAC3129BFA6FA00FFAB1C /* graal-svm-arm64-ios-r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC2D29BFA6EE00FFAB1C /* graal-svm-arm64-ios-r.a */; platformFilters = (ios, xros, ); settings = {ATTRIBUTES = (Required, ); }; };
 		8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76329C0FBCE00F240CB /* ThreadManager.swift */; };
 		8088D76629C0FBCE00F240CB /* IsolateThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76429C0FBCE00F240CB /* IsolateThread.swift */; };
 		8088D76929C0FC5C00F240CB /* Isolate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76829C0FC5C00F240CB /* Isolate.swift */; };
@@ -601,11 +598,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64125E342A1F688900FB32BA /* libDxFeedGraalNativeSdk.o in Frameworks */,
 				803BAC2B29BFA69A00FFAB1C /* libc++.tbd in Frameworks */,
-				803BAC3129BFA6FA00FFAB1C /* graal-svm-arm64-ios-r.a in Frameworks */,
 				64125E362A1F689A00FB32BA /* libDxFeedGraalNativeSdk.dylib in Frameworks */,
-				803BAC3029BFA6FA00FFAB1C /* jdk-arm64-ios-r.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2275,6 +2269,12 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
+					"-lc++",
+					"/Users/akosylo/Projects/dxfeed-graal-swift-api/graal_builds/ios/libgraal-svm-x86-64-ios-simulator-r-f.a",
+					"/Users/akosylo/Projects/dxfeed-graal-swift-api/graal_builds/ios/libjdk-arm64-ios-simulator-r.a",
+					"/Users/akosylo/Projects/dxfeed-graal-swift-api/graal_builds/ios/libDxFeedGraalNativeSdk_sim.o",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dxfeed.DXFeedFramework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
