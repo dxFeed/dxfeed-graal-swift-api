@@ -40,11 +40,11 @@ let allTypes = [Candle.self,
                 OptionSale.self]
 
 let argSymbols = ["ETH/USD:GDAX"]
-let argTime: String? = nil 
+let argTime: String? = nil
 
 // To avoid release inside internal {} scope
 let feed = try DXEndpoint.getInstance().connect("demo.dxfeed.com:7300").getFeed()
-var feedSubscription: DXFeedSubscription? = nil
+var feedSubscription: DXFeedSubscription?
 let listener = Listener { listener in
     listener.callback = { events in
         events.forEach { event in

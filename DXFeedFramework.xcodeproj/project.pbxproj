@@ -157,6 +157,7 @@
 		645BE8522AC31E7C0028243D /* PerfTestTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645BE8512AC31E7C0028243D /* PerfTestTool.swift */; };
 		645BE8542AC3229D0028243D /* ToolsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645BE8532AC3229D0028243D /* ToolsCommand.swift */; };
 		645CD0042AE145E600F99FCF /* DumpTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645CD0032AE145E600F99FCF /* DumpTool.swift */; };
+		646064EA2B4D8973009201E2 /* DXLastEventTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646064E92B4D8973009201E2 /* DXLastEventTest.swift */; };
 		646228512A376B0A0029DC97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462284D2A376B0A0029DC97 /* Main.storyboard */; };
 		646228522A376B0A0029DC97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462284F2A376B0A0029DC97 /* LaunchScreen.storyboard */; };
 		646407492A9DF984006FF769 /* InstrumentProfileMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646407482A9DF984006FF769 /* InstrumentProfileMapper.swift */; };
@@ -673,6 +674,7 @@
 		645BE8512AC31E7C0028243D /* PerfTestTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfTestTool.swift; sourceTree = "<group>"; };
 		645BE8532AC3229D0028243D /* ToolsCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCommand.swift; sourceTree = "<group>"; };
 		645CD0032AE145E600F99FCF /* DumpTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DumpTool.swift; sourceTree = "<group>"; };
+		646064E92B4D8973009201E2 /* DXLastEventTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXLastEventTest.swift; sourceTree = "<group>"; };
 		6462284E2A376B0A0029DC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		646228502A376B0A0029DC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		646407482A9DF984006FF769 /* InstrumentProfileMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentProfileMapper.swift; sourceTree = "<group>"; };
@@ -1561,6 +1563,7 @@
 				648C72482B19CA5A00E2FEF3 /* DXExceptionTest.swift */,
 				641C64B32B347C430023CFAD /* DXObservableSubscriptionTest.swift */,
 				6423E4682B457000006B208D /* DXTimeSeriesSubscriptionTest.swift */,
+				646064E92B4D8973009201E2 /* DXLastEventTest.swift */,
 			);
 			path = DXFeedFrameworkTests;
 			sourceTree = "<group>";
@@ -2485,6 +2488,7 @@
 				6423E4692B457000006B208D /* DXTimeSeriesSubscriptionTest.swift in Sources */,
 				64ECD67F2A9CF4CB00B36935 /* IPFTests.swift in Sources */,
 				64ACBCD52A2789EF00032C53 /* TestListener.swift in Sources */,
+				646064EA2B4D8973009201E2 /* DXLastEventTest.swift in Sources */,
 				64098F672ACEB6F70020D741 /* DXConnectionStateTests.swift in Sources */,
 				648BD56F2AC582AB004A3A95 /* DateTimeParserTest.swift in Sources */,
 				64ACBCEA2A28DDDA00032C53 /* TestEventListener.swift in Sources */,

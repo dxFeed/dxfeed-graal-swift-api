@@ -73,3 +73,13 @@ public class DXFeed {
             types: [type])
     }
 }
+
+public extension DXFeed {
+    func getLastEvent(type: MarketEvent) throws -> ILastingEvent? {
+        return try native.getLastEvent(type: type)
+    }
+
+    func getLastEvents(types: [MarketEvent]) throws -> [ILastingEvent] {
+        return try native.getLastEvents(types: types)
+    }
+}

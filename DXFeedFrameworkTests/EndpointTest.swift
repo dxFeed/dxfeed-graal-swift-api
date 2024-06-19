@@ -76,7 +76,6 @@ final class EndpointTest: XCTestCase {
         testGetInstance(role: .publisher, count: 150)
     }
 
-
     func testGetEventTypes() throws {
         let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
         let feed = endpoint.getFeed()
