@@ -29,6 +29,7 @@ class DumpCommand: ToolsCommand {
     sample: Dump demo.dxfeed.com:7300 quote AAPL,IBM,ETH/USD:GDAX -t "tape_test.txt[format=text]"
     """
     var publisher: DXPublisher?
+    var isQuite = false
 
     func execute() {
         var arguments: [String]!
@@ -41,17 +42,32 @@ class DumpCommand: ToolsCommand {
         let types = arguments[2]
         let symbols = arguments[3].components(separatedBy: ",")
 
-        var tapeFile = ""
-        if arguments.count > 4 {
-            if arguments[4] == "-t" {
-                tapeFile = arguments[5]
+        var tapeFile: String?
+        if let tapeIndex = arguments.firstIndex(of: "-t") {
+            tapeFile = arguments[tapeIndex + 1]
+        }
+
+        if let isQuiteIndex = arguments.firstIndex(of: "-q") {
+            isQuite = true
+        }
+        var properties = [String: String]()
+        if let propIndex = arguments.firstIndex(of: "-p") {
+            arguments[propIndex + 1].split(separator: ",").forEach { substring in
+                let prop = substring.split(separator: "=")
+                if prop.count == 2 {
+                    properties[String(prop.first!)] = String(prop.last!)
+                } else {
+                    print("Wrong property \(prop)")
+                }
             }
         }
+
         do {
             let inputEndpoint = try DXEndpoint
                 .builder()
                 .withRole(.streamFeed)
                 .withProperty(DXEndpoint.Property.wildcardEnable.rawValue, "true")
+                .withProperties(properties)
                 .withName("DumpTool")
                 .build()
 
@@ -59,17 +75,19 @@ class DumpCommand: ToolsCommand {
                 return EventCode(string: String(str))
             }
             let subscription = try inputEndpoint.getFeed()?.createSubscription(eventTypes)
+            var outputEndpoint: DXEndpoint?
 
-            let outputEndpoint = try DXEndpoint
-                .builder()
-                .withRole(.publisher)
-                .withProperty(DXEndpoint.Property.wildcardEnable.rawValue, "true")
-                .withName("DumpTool")
-                .build()
-            print("tape:\(tapeFile)")
-            try outputEndpoint.connect("tape:\(tapeFile)")
+            if let tapeFile = tapeFile {
+                outputEndpoint = try DXEndpoint
+                    .builder()
+                    .withRole(.publisher)
+                    .withProperty(DXEndpoint.Property.wildcardEnable.rawValue, "true")
+                    .withName("DumpTool")
+                    .build()
+                try outputEndpoint?.connect("tape:\(tapeFile)")
+                publisher = outputEndpoint?.getPublisher()
+            }
 
-            publisher = outputEndpoint.getPublisher()
             try subscription?.add(observer: self)
 
             try subscription?.addSymbols(symbols)
@@ -79,12 +97,11 @@ class DumpCommand: ToolsCommand {
             try inputEndpoint.awaitNotConnected()
             try inputEndpoint.closeAndAWaitTermination()
 
-            try outputEndpoint.awaitNotConnected()
-            try outputEndpoint.closeAndAWaitTermination()
+            try outputEndpoint?.awaitNotConnected()
+            try outputEndpoint?.closeAndAWaitTermination()
         } catch {
             print("Dump tool error: \(error)")
         }
-        // Print till input new line
     }
 }
 
@@ -101,7 +118,9 @@ extension DumpCommand: Hashable {
 extension DumpCommand: DXEventListener {
     func receiveEvents(_ events: [DXFeedFramework.MarketEvent]) {
         do {
-            print(events)
+            if !isQuite {
+                print(events)
+            }
             try publisher?.publish(events: events)
         } catch {
             print("Dump tool publish error: \(error)")

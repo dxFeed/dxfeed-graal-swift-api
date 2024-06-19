@@ -473,6 +473,19 @@ public class Builder {
     ///   - value: Property value
     /// - Returns: Returns this ``Builder``
     /// - Throws: GraalException. Rethrows exception from Java.
+
+    /// Sets the specified properties from the provided key-value collection. Unsupported properties are ignored.
+    /// - Parameters:
+    ///   - properties: The key-value collection
+    /// - Returns: Returns this ``Builder``
+    /// - Throws: GraalException. Rethrows exception from Java.
+    public func withProperties(_ properties: [String: String]) throws -> Self {
+        try properties.forEach { key, value in
+            _ = try withProperty(key, value)
+        }
+        return self
+    }
+
     /// Builds ``DXEndpoint`` instance.
     /// This method tries to load default properties file.
     /// - Returns: Returns this ``DXEndpoint``
