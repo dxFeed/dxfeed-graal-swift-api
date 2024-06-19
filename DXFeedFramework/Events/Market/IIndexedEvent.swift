@@ -8,31 +8,35 @@
 import Foundation
 
 public protocol IIndexedEvent: IEventType {
-    var txPending: Int64 { get }
-    var removeEvent: Int64 { get }
-    var snapshotBegin: Int64 { get }
-    var snapshotEnd: Int64 { get }
-    var snapshotSnip: Int64 { get }
-    var snapShotMode: Int64 { get }
+    static var txPending: Int32 { get }
+    static var removeEvent: Int32 { get }
+    static var snapshotBegin: Int32 { get }
+    static var snapshotEnd: Int32 { get }
+    static var snapshotSnip: Int32 { get }
+    static var snapShotMode: Int32 { get }
+
+    var eventSource: IndexedEventSource { get }
+    var eventFlags: Int32 { get set }
+    var index: Long { get set }
 }
 
-extension IIndexedEvent {
-    var txPending: Int64 {
+public extension IIndexedEvent {
+    static var txPending: Int32 {
         return 0x01
     }
-    var removeEvent: Int64 {
+    static var removeEvent: Int32 {
         return 0x02
     }
-    var snapshotBegin: Int64 {
+    static var snapshotBegin: Int32 {
         return 0x04
     }
-    var snapshotEnd: Int64 {
+    static var snapshotEnd: Int32 {
         return 0x08
     }
-    var snapshotSnip: Int64 {
+    static var snapshotSnip: Int32 {
         return 0x10
     }
-    var snapShotMode: Int64 {
+    static var snapShotMode: Int32 {
         return 0x40
     }
 }

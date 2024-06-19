@@ -70,8 +70,6 @@ final class DXCandleTests: XCTestCase {
         wait(for: [receivedEventExp], timeout: 10)
         try? endpoint?.disconnect()
         endpoint = nil
-        let sec = 5
-        _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
     }
 
     func testParseShortSymbol() throws {
@@ -157,9 +155,44 @@ final class DXCandleTests: XCTestCase {
         XCTAssert(fvalue == CandleType.day && svalue == CandleType.day, "Should be day enum")
     }
 
-    func testCharacters() {
-        let char = Character(UnicodeScalar(122)!)
-        print(char)
+    func testEventFlags() throws {
+        let string = "01/01/2021"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yy"
+        let symbol = TimeSeriesSubscriptionSymbol(symbol: "AAPL{=1d}", date: dateFormatter.date(from: string)!)
+        let code = EventCode.candle
+        var endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        try endpoint?.connect("demo.dxfeed.com:7300")
+        let subscription = try endpoint?.getFeed()?.createSubscription(code)
+        let beginEventsExp = expectation(description: "Begin events \(code)")
+        let endEventsExp = expectation(description: "End events \(code)")
+        subscription?.add(AnonymousClass { anonymCl in
+            anonymCl.callback = { events in
+                if events.count > 0 {
+                    events.forEach { event in
+
+                        if event.type == .candle {
+                            let candle = event.candle
+                            if candle.eventFlags & Candle.snapshotBegin != 0 {
+                                print(candle.toString())
+                                beginEventsExp.fulfill()
+                            }
+                            if candle.eventFlags & Candle.snapshotEnd != 0 {
+                                print(candle.toString())
+                                endEventsExp.fulfill()
+                            }
+                        }
+                    }
+                }
+            }
+            return anonymCl
+        })
+        try subscription?.addSymbols(symbol)
+        wait(for: [beginEventsExp, endEventsExp], timeout: 10)
+        try? endpoint?.disconnect()
+        endpoint = nil
+        let sec = 5
+        _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
     }
 }
 // swiftlint:enable function_parameter_count

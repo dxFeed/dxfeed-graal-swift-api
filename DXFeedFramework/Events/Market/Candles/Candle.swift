@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class Candle: MarketEvent, CustomStringConvertible {
+public class Candle: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringConvertible {
     public let type: EventCode = .candle
 
     public var eventSymbol: String {
@@ -21,8 +21,6 @@ public class Candle: MarketEvent, CustomStringConvertible {
     public var eventTime: Int64 = 0
     public var candleSymbol: CandleSymbol?
 
-    public var eventFlags: Int32 = 0
-    public var index: Long = 0
     public var count: Long = 0
     public var open: Double = .nan
     public var high: Double = .nan
@@ -36,6 +34,8 @@ public class Candle: MarketEvent, CustomStringConvertible {
     public var openInterest: Double = .nan
 
     public var eventSource = IndexedEventSource.defaultSource
+    public var eventFlags: Int32 = 0
+    public var index: Long = 0
 
     convenience init(_ symbol: CandleSymbol) {
         self.init()
@@ -97,7 +97,7 @@ extension Candle {
 
     func baseFieldsToString() -> String {
         return """
-\(eventSymbol ?? "null"), \
+\(eventSymbol), \
 eventTime=" + \(TimeUtil.toLocalDateString(millis: eventTime)), \
 eventFlags=0x\(String(format: "%02X", eventFlags)), \
 time=\(TimeUtil.toLocalDateString(millis: time)), \
