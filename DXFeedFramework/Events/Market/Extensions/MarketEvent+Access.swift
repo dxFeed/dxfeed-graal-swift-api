@@ -50,4 +50,17 @@ extension MarketEvent {
     public var theoPrice: TheoPrice {
         return (self as? TheoPrice)!
     }
+    /// Use only for event.type is ``EventCode/order``
+    public var order: Order {
+        return (self as? Order)!
+    }
+    /// Use only for event.type is ``EventCode/spreadOrder``
+    public var spreadOrder: SpreadOrder {
+        return (self as? SpreadOrder)!
+    }
+    /// Use only for event.type is ``EventCode/analyticOrder``
+    public var analyticOrder: AnalyticOrder {
+        return (self as? AnalyticOrder)!
+    }
+
 }

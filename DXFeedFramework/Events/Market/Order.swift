@@ -15,6 +15,9 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/Order.html)
 public class Order: OrderBase {
+    public override var type: EventCode {
+        return .order
+    }
     /// Gets or sets market maker or other aggregate identifier of this order.
     /// This value is defined for ``Scope/aggregate`` and ``Scope/order`` orders.
     public var marketMaker: String?

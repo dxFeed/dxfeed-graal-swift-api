@@ -101,7 +101,7 @@ final class FeedTest: XCTestCase {
         try waitingEvent(code: .candle)
     }
 
-    fileprivate static func checkType(_ code: EventCode, _ event: MarketEvent?) -> Bool {
+    static func checkType(_ code: EventCode, _ event: MarketEvent?) -> Bool {
         switch code {
         case .timeAndSale:
             return event is TimeAndSale
@@ -132,10 +132,13 @@ final class FeedTest: XCTestCase {
         case .orderBase:
             break
         case .order:
+            return event is Order
             break
         case .analyticOrder:
+            return event is AnalyticOrder
             break
         case .spreadOrder:
+            return event is SpreadOrder
             break
         case .series:
             break

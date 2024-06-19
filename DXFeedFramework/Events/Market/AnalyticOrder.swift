@@ -14,6 +14,9 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/AnalyticOrder.html)
 public class AnalyticOrder: OrderBase {
+    public override var type: EventCode {
+        return .analyticOrder
+    }
     /*
      * Analytic flags property has several significant bits that are packed into an integer in the following way:
      *      31...2       1    0

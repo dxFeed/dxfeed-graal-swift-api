@@ -9,7 +9,7 @@ import Foundation
 
 public class OrderBase: MarketEvent, IIndexedEvent, CustomStringConvertible {
 
-    public var type: EventCode = .orderBase
+    public private(set) var type: EventCode = .orderBase
 
     public var eventSource: IndexedEventSource {
         get {
@@ -101,7 +101,7 @@ public class OrderBase: MarketEvent, IIndexedEvent, CustomStringConvertible {
     /// Gets or sets order ID if available.
     /// Some actions ``OrderAction/trade``, ``OrderAction/bust``
     /// have no order ID since they are not related to any order in Order book.
-    public let orderId: Int64 = 0
+    public var orderId: Int64 = 0
     /// Gets or sets order ID if available.
     /// Returns auxiliary order ID if available:.
     /// ``OrderAction/new`` ID of the order replaced by this new order.

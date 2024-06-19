@@ -285,6 +285,13 @@
 		64BDDB222AD6CC9A00694210 /* SpreadOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB212AD6CC9A00694210 /* SpreadOrder.swift */; };
 		64BDDB242AD6F10200694210 /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB232AD6F10200694210 /* Scope.swift */; };
 		64BDDB262AD6F6B500694210 /* IcebergType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB252AD6F6B500694210 /* IcebergType.swift */; };
+		64BDDB282AD7D8D300694210 /* Order+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB272AD7D8D300694210 /* Order+Ext.swift */; };
+		64BDDB2A2AD7D9C700694210 /* SpreadOrder+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB292AD7D9C700694210 /* SpreadOrder+Ext.swift */; };
+		64BDDB2C2AD7DB9B00694210 /* AnalyticOrder+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB2B2AD7DB9B00694210 /* AnalyticOrder+Ext.swift */; };
+		64BDDB2E2AD7DC5E00694210 /* OrderMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB2D2AD7DC5E00694210 /* OrderMapper.swift */; };
+		64BDDB312AD7E5A600694210 /* AnalyticOrderMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB2F2AD7E5A500694210 /* AnalyticOrderMapper.swift */; };
+		64BDDB322AD7E5A600694210 /* SpreadOrderMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB302AD7E5A600694210 /* SpreadOrderMapper.swift */; };
+		64BDDB342AD7F1FE00694210 /* OrderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BDDB332AD7F1FE00694210 /* OrderTest.swift */; };
 		64C771F22A94A224009868C2 /* Character+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C771F12A94A224009868C2 /* Character+Ext.swift */; };
 		64C771F42A94A86E009868C2 /* Side.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C771F32A94A86E009868C2 /* Side.swift */; };
 		64C771F62A94ADDA009868C2 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C771F52A94ADDA009868C2 /* Direction.swift */; };
@@ -733,6 +740,13 @@
 		64BDDB212AD6CC9A00694210 /* SpreadOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreadOrder.swift; sourceTree = "<group>"; };
 		64BDDB232AD6F10200694210 /* Scope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scope.swift; sourceTree = "<group>"; };
 		64BDDB252AD6F6B500694210 /* IcebergType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IcebergType.swift; sourceTree = "<group>"; };
+		64BDDB272AD7D8D300694210 /* Order+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+Ext.swift"; sourceTree = "<group>"; };
+		64BDDB292AD7D9C700694210 /* SpreadOrder+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpreadOrder+Ext.swift"; sourceTree = "<group>"; };
+		64BDDB2B2AD7DB9B00694210 /* AnalyticOrder+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnalyticOrder+Ext.swift"; sourceTree = "<group>"; };
+		64BDDB2D2AD7DC5E00694210 /* OrderMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderMapper.swift; sourceTree = "<group>"; };
+		64BDDB2F2AD7E5A500694210 /* AnalyticOrderMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticOrderMapper.swift; sourceTree = "<group>"; };
+		64BDDB302AD7E5A600694210 /* SpreadOrderMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreadOrderMapper.swift; sourceTree = "<group>"; };
+		64BDDB332AD7F1FE00694210 /* OrderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTest.swift; sourceTree = "<group>"; };
 		64C771F12A94A224009868C2 /* Character+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Ext.swift"; sourceTree = "<group>"; };
 		64C771F32A94A86E009868C2 /* Side.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Side.swift; sourceTree = "<group>"; };
 		64C771F52A94ADDA009868C2 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
@@ -999,6 +1013,12 @@
 				6486B9702AD0445E00D8D5FA /* UnderlyingMapper.swift */,
 				6486B9742AD0493F00D8D5FA /* TheoPrice+Ext.swift */,
 				6486B9762AD04C5800D8D5FA /* TheoPriceMapper.swift */,
+				64BDDB272AD7D8D300694210 /* Order+Ext.swift */,
+				64BDDB2D2AD7DC5E00694210 /* OrderMapper.swift */,
+				64BDDB292AD7D9C700694210 /* SpreadOrder+Ext.swift */,
+				64BDDB302AD7E5A600694210 /* SpreadOrderMapper.swift */,
+				64BDDB2B2AD7DB9B00694210 /* AnalyticOrder+Ext.swift */,
+				64BDDB2F2AD7E5A500694210 /* AnalyticOrderMapper.swift */,
 			);
 			path = Markets;
 			sourceTree = "<group>";
@@ -1404,6 +1424,7 @@
 				64098F662ACEB6F70020D741 /* DXConnectionStateTests.swift */,
 				6486B95C2AD0287E00D8D5FA /* DateTests.swift */,
 				649282EC2AD593F3008F0F04 /* OrderSourceTest.swift */,
+				64BDDB332AD7F1FE00694210 /* OrderTest.swift */,
 			);
 			path = DXFeedFrameworkTests;
 			sourceTree = "<group>";
@@ -2078,6 +2099,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64BDDB322AD7E5A600694210 /* SpreadOrderMapper.swift in Sources */,
 				64ACBCE32A289A0700032C53 /* TimeSeriesSubscriptionSymbol.swift in Sources */,
 				645A34952A937C7200709F29 /* BinaryInteger+Ext.swift in Sources */,
 				64BA92652A306E0200BE26A0 /* Trade.swift in Sources */,
@@ -2091,6 +2113,7 @@
 				6469F8C22A3B169A00846831 /* MathUtil.swift in Sources */,
 				80FC415929C8EE8B00E6B611 /* DXEndpoint.swift in Sources */,
 				64C771F62A94ADDA009868C2 /* Direction.swift in Sources */,
+				64BDDB312AD7E5A600694210 /* AnalyticOrderMapper.swift in Sources */,
 				640C3FDC2A618B2000555161 /* MarketEventSymbols.swift in Sources */,
 				642BE4D42A2F5D730052340A /* TimeAndSale+Ext.swift in Sources */,
 				64ACBCD92A279F7900032C53 /* DXEventListener.swift in Sources */,
@@ -2113,6 +2136,7 @@
 				642BE4CC2A2E1DB70052340A /* Mapper.swift in Sources */,
 				64104FC72A2613BC00D1FC41 /* ConcurrentArray.swift in Sources */,
 				6498E6B22AB1D41A0093A065 /* DXSchedule.swift in Sources */,
+				64BDDB2C2AD7DB9B00694210 /* AnalyticOrder+Ext.swift in Sources */,
 				646407572AA0C44D006FF769 /* NativeInstrumentProfileCollector.swift in Sources */,
 				6486B9732AD045C800D8D5FA /* TheoPrice.swift in Sources */,
 				64ACBCDF2A2897EA00032C53 /* String+Symbol.swift in Sources */,
@@ -2145,6 +2169,7 @@
 				8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */,
 				64DA26BE2AA20EDB005B1757 /* DXInstrumentProfileConnectionObserver.swift in Sources */,
 				64656F732A1D0A84006A0B19 /* EndpointListener.swift in Sources */,
+				64BDDB282AD7D8D300694210 /* Order+Ext.swift in Sources */,
 				6486B9582AD00BDC00D8D5FA /* Summary.swift in Sources */,
 				64104FCC2A2629D800D1FC41 /* NativeSubscription.swift in Sources */,
 				64C772012A975102009868C2 /* Reference+Util.swift in Sources */,
@@ -2181,6 +2206,7 @@
 				641BCBC12A21077800FE23C2 /* EventCode.swift in Sources */,
 				64ACBCE82A28CF9700032C53 /* IndexedEventSubscriptionSymbol.swift in Sources */,
 				649F48882A615BED0016FDD1 /* CandleType.swift in Sources */,
+				64BDDB2E2AD7DC5E00694210 /* OrderMapper.swift in Sources */,
 				6447A5E52A8F736E00739CCF /* TimeUtil.swift in Sources */,
 				64C771FC2A94D7E9009868C2 /* TradingStatus.swift in Sources */,
 				642BE4D22A2F5D230052340A /* TimeAndSale.swift in Sources */,
@@ -2220,6 +2246,7 @@
 				641AC1A92A61AE4000EF6D6C /* DXAliases.swift in Sources */,
 				64BA92632A306BBD00BE26A0 /* ProfileMapper.swift in Sources */,
 				64AAF0592A83EA0000E8942B /* Double+Ext.swift in Sources */,
+				64BDDB2A2AD7D9C700694210 /* SpreadOrder+Ext.swift in Sources */,
 				8088D77529C3A61000F240CB /* ErrorCheck.swift in Sources */,
 				6486B9672AD0390800D8D5FA /* GreeksMapper.swift in Sources */,
 				64AAF0572A82A3FC00E8942B /* ICandleSymbolProperty.swift in Sources */,
@@ -2237,6 +2264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64BDDB342AD7F1FE00694210 /* OrderTest.swift in Sources */,
 				6426C8912A531AAE00236784 /* EndpointTest.swift in Sources */,
 				6401A5162A582141009BA686 /* SystemPropertyTest.swift in Sources */,
 				64D0DBE82A29FF4B00710605 /* EventsTest.swift in Sources */,
