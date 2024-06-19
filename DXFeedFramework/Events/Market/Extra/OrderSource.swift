@@ -227,8 +227,7 @@ public class OrderSource: IndexedEventSource {
                 && (name != OrderSource.decodeName(identifier: identifier)) {
                 throw ArgumentException.exception("id does not match name")
             }
-        default:
-            print("")
+        default: break            
         }
         // Flag FullOrderBook requires that source must be publishable.
         if (pubFlags & OrderSource.fullOrderBook) != 0 &&
