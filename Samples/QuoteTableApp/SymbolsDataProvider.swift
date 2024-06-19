@@ -59,8 +59,6 @@ class SymbolsDataProvider {
         })
         UserDefaults.standard.set(currentSymbols + newValues.sorted(), forKey: SymbolsDataProvider.kSelectedSymbolsKey)
         UserDefaults.standard.synchronize()
-
-        let currentSymbols1 = selectedSymbols
     }
 
     func changeSymbols(_ symbols: [String]) {
