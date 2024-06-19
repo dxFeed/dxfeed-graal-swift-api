@@ -37,7 +37,7 @@ extension DXCandlePrice: ExpressibleByStringLiteral {
     }
 }
 
-enum CandlePrice: DXCandlePrice, CaseIterable {
+public enum CandlePrice: DXCandlePrice, CaseIterable {
     case last = "last"
     case bid = "bid"
     case ask = "ask"

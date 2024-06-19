@@ -10,18 +10,19 @@ import Foundation
 
 extension Quote {
     convenience init(native: dxfg_quote_t) {
-        self.init(eventSymbol: String(pointee: native.market_event.event_symbol),
-                  eventTime: native.market_event.event_time,
-                  timeMillisSequence: native.time_millis_sequence,
-                  timeNanoPart: native.time_nano_part,
-                  bidTime: native.bid_time,
-                  bidExchangeCode: native.bid_exchange_code,
-                  bidPrice: native.bid_price,
-                  bidSize: native.bid_size,
-                  askTime: native.ask_time,
-                  askExchangeCode: native.ask_exchange_code,
-                  askPrice: native.ask_price,
-                  askSize: native.ask_size)
+        self.init(String(pointee: native.market_event.event_symbol))
+
+        self.eventTime = native.market_event.event_time
+        self.timeMillisSequence = native.time_millis_sequence
+        self.timeNanoPart = native.time_nano_part
+        self.bidTime = native.bid_time
+        self.bidExchangeCode = native.bid_exchange_code
+        self.bidPrice = native.bid_price
+        self.bidSize = native.bid_size
+        self.askTime = native.ask_time
+        self.askExchangeCode = native.ask_exchange_code
+        self.askPrice = native.ask_price
+        self.askSize = native.ask_size
     }
 
 }

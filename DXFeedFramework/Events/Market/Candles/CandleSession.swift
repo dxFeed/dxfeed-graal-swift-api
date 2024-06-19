@@ -27,7 +27,7 @@ extension DXCandleSession: ExpressibleByStringLiteral {
     }
 }
 
-enum CandleSession: DXCandleSession, CaseIterable {
+public enum CandleSession: DXCandleSession, CaseIterable {
     case any = "Any"
     case regular = "Regular"
 
