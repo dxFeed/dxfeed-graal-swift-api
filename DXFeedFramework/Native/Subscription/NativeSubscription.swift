@@ -13,7 +13,7 @@ import Foundation
 class NativeSubscription {
     private class WeakSubscription: WeakBox<NativeSubscription> { }
     private static let listeners = ConcurrentArray<WeakSubscription>()
-    
+
     let subscription: UnsafeMutablePointer<dxfg_subscription_t>?
     var nativeListener: UnsafeMutablePointer<dxfg_feed_event_listener_t>?
     private let mapper = EventMapper()

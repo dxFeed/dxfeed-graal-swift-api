@@ -13,7 +13,7 @@ import Foundation
 class NativeInstrumentProfileConnection {
     private class WeakListener: WeakBox<NativeInstrumentProfileConnection> { }
     private static let listeners = ConcurrentArray<WeakListener>()
-    
+
     private let connection: UnsafeMutablePointer<dxfg_ipf_connection_t>
     private let address: String
 
