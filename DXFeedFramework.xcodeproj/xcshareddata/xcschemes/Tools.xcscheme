@@ -75,7 +75,11 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = " Dump localhost:6666 timeandsale,candle YQKNT -p dxfeed.wildcard.enable=true,one_more_prop=abc -t test_tape_ios.txt[format=text] -q"
+            argument = " Dump demo.dxfeed.com:7300 timeandsale ETH/USD:GDAX -p dxfeed.wildcard.enable=true,one_more_prop=abc -t test_tape_ios.txt[format=text] -q"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = " Dump localhost:6666 TimeAndSale all -p dxfeed.wildcard.enable=true,one_more_prop=abc -t test_tape_ios.txt[format=text] -q"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

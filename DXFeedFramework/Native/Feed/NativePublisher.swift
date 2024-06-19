@@ -26,21 +26,23 @@ class NativePublisher {
     }
 
     func publishEvents(events: [MarketEvent]) throws {
-        let nativeEvents = events.compactMap { event in
-            try? mapper.toNative(event: event)
-        }
+        try autoreleasepool {
+            let nativeEvents = events.compactMap { event in
+                try? mapper.toNative(event: event)
+            }
 
-        let nativePointers = ListNative(pointers: nativeEvents)
-        let listPointer = nativePointers.newList()
+            let nativePointers = ListNative(pointers: nativeEvents)
+            let listPointer = nativePointers.newList()
 
-        defer {
-            listPointer.deinitialize(count: 1)
-            listPointer.deallocate()
-            nativeEvents.forEach { mapper.releaseNative(native: $0) }
+            defer {
+                listPointer.deinitialize(count: 1)
+                listPointer.deallocate()
+                nativeEvents.forEach { mapper.releaseNative(native: $0) }
+            }
+            let thread = currentThread()
+            _ = try ErrorCheck.nativeCall(thread, dxfg_DXPublisher_publishEvents(thread,
+                                                                                 publisher,
+                                                                                 listPointer))
         }
-        let thread = currentThread()
-        _ = try ErrorCheck.nativeCall(thread, dxfg_DXPublisher_publishEvents(thread,
-                                                                                      publisher,
-                                                                                      listPointer))
     }
 }
