@@ -36,7 +36,7 @@ class SymbolsViewController: UIViewController {
     }
 
     @IBAction func cancelTouchUpInside(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true)        
     }
 }
 

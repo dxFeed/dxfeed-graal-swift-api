@@ -8,7 +8,7 @@ import UIKit
 
 class SymbolCell: UITableViewCell {
     @IBOutlet var symbolNameLabel: UILabel!
-    @IBOutlet var checkLabel: UILabel?
+    @IBOutlet var enabledSwitch: UISwitch?
 
     @IBOutlet var backgroundContentView: UIView!
 
@@ -21,7 +21,6 @@ class SymbolCell: UITableViewCell {
         super.awakeFromNib()
         self.backgroundColor = .tableBackground
         self.symbolNameLabel.textColor = .text
-        self.checkLabel?.textColor = .text
 
         self.backgroundContentView.layer.cornerRadius = 10
         self.backgroundContentView.clipsToBounds = true
@@ -31,6 +30,8 @@ class SymbolCell: UITableViewCell {
 
     func update(symbol: String, check: Bool) {
         symbolNameLabel.text = symbol
-        checkLabel?.isHidden = !check
+        enabledSwitch?.isOn = check
     }
+
+    
 }
