@@ -77,45 +77,4 @@ final class DXConnectionTest: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
-    func testQuote() throws {
-        class DXConnectionTestListener: DXEventListener, Hashable {
-            static func == (lhs: DXConnectionTestListener, rhs: DXConnectionTestListener) -> Bool {
-                lhs === rhs
-            }
-
-            func hash(into hasher: inout Hasher) {
-                hasher.combine("\(self):\(stringReference(self))")
-            }
-            var callback: ([MarketEvent]) -> Void = { _ in }
-
-            func receiveEvents(_ events: [MarketEvent]) {
-                self.callback(events)
-            }
-
-            init(overrides: (DXConnectionTestListener) -> DXConnectionTestListener) {
-                _ = overrides(self)
-            }
-        }
-
-
-        let symbol = "AAPL"
-        let endpoint = try DXEndpoint.builder()
-            .withProperty("dxfeed.address", "demo.dxfeed.com:7300")
-            .build()
-        let subscription = try endpoint
-            .getFeed()?
-            .createSubscription(EventCode.trade)
-        let listener = DXConnectionTestListener { listener in
-            listener.callback = { events in
-                print(events)
-            }
-            return listener
-        }
-
-        try subscription?.add(listener: listener)
-        try subscription?.addSymbols(symbol)
-        wait(seconds: 10)
-    }
-
 }
