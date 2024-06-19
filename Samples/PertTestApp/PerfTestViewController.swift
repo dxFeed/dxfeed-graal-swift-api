@@ -18,7 +18,7 @@ struct Colors {
 }
 
 class PerfTestViewController: UIViewController {
-    var diagnostic = Diagnostic()
+    let diagnostic = Diagnostic()
 
     let numberFormatter = NumberFormatter()
 
