@@ -22,7 +22,7 @@ Usage:
 
 Where:
 
-  value pos. 0        Required.
+  args (pos. 0)       Required. Represents the arguments passed to the qds-tools.
   -p, --properties    Comma-separated list of properties (key-value pair separated by an equals sign).
 """
 

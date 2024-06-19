@@ -235,6 +235,8 @@ from [Release](https://github.com/dxFeed/dxfeed-graal-swift-api/releases) (tools
   etc.)
 * [LatencyTest](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/LatencyTestTool.swift)
   connects to the specified address(es) and calculates latency
+* [Qds](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/QdsTool.swift)
+  collection of tools ported from the Java qds-tools
 
 To run tools on macOS, it may be necessary to unquarantine them:
 
