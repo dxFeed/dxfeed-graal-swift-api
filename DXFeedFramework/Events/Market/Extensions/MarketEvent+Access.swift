@@ -26,6 +26,10 @@ extension MarketEvent {
     public var trade: Trade {
         return (self as? Trade)!
     }
+    /// Use only for event.type is ``EventCode/tradeETH``
+    public var tradeETH: TradeETH {
+        return (self as? TradeETH)!
+    }
     /// Use only for event.type is ``EventCode/profile``
     public var profile: Profile {
         return (self as? Profile)!

@@ -74,6 +74,9 @@ Cmd \(cmd) contains not enough \(cmd.count - 1) arguments. Expected \(requiredNu
     }
 
     public func parseTypes(at index: Int) -> [EventCode] {
+        if arguments[2] == "all" {
+            return EventCode.allCases
+        }
         return arguments[2].split(separator: ",").compactMap { str in
             return EventCode(string: String(str))
         }

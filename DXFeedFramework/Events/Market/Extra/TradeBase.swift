@@ -13,7 +13,10 @@ import Foundation
 ///
 /// [For more details see] (https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/TradeBase.html)
 public class TradeBase: MarketEvent, ILastingEvent {
-    public let type: EventCode = .trade
+    public var type: EventCode {
+        return .trade
+    }
+
     public var eventSymbol: String
     public var eventTime: Int64 = 0
 

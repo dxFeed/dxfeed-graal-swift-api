@@ -52,7 +52,7 @@ public class TimeSeriesSubscriptionSymbol: IndexedEventSubscriptionSymbol<AnyHas
     }
 
     /// Custom symbol has to return string representation.
-    override public var stringValue: String {
+    public override var stringValue: String {
         return "\(symbol){fromTime=\(TimeUtil.toLocalDateString(millis: fromTime))}"
     }
 }
