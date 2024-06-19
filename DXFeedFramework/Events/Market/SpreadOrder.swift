@@ -13,13 +13,14 @@ import Foundation
 /// The collection of spread order events of a symbol
 /// represents the most recent information that is available about spread orders on
 /// the market at any given moment of time.
-/// <para> Spread order is similar to a regular <see cref="Order"/>, but it has a
-/// <see cref="SpreadSymbol"/> property that contains the symbol
+///
+/// Spread order is similar to a regular ``Order``, but it has a
+/// ``SpreadSymbol`` property that contains the symbol
 /// of the actual spread that is being represented by spread order object.
-/// <see cref="MarketEvent.EventSymbol"/> property contains the underlying symbol
+/// ``MarketEvent.EventSymbol`` property contains the underlying symbol
 /// that was used in subscription.
-/// </para>
-/// For more details see <a href="https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/SpreadOrder.html">Javadoc</a>.
+///
+/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/SpreadOrder.html)
 public class SpreadOrder: OrderBase {
 
     /// Gets or sets spread symbol of this event.
