@@ -7,6 +7,30 @@
 
 import Foundation
 
+/// Helper class to compose and parse symbols for market events.
+///
+/// Regional symbols
+///
+/// Regional symbol subscription receives events only from a designated exchange, marketplace, or venue
+/// instead of receiving composite events from all venues (by default). Regional symbol is composed from a
+/// base symbol, ampersand character ('&amp;'), and an exchange code character. For example,
+/// 
+/// "SPY" is the symbol for composite events for SPDR S&amp;P 500 ETF from all exchanges,
+/// "SPY&amp;N" is the symbol for event for SPDR S&amp;P 500 ETF that originate only from NYSE marketplace.
+/// 
+///
+/// Symbol attributes
+///
+/// Market event symbols can have a number of attributes attached to then in curly braces
+/// with "&lt;key&gt;=&lt;value&gt;" paris separated by commas. For example,
+/// 
+/// "SPY{price=bid}" is the market symbol "SPY" with an attribute key "price" set to value "bid".
+/// "SPY(=5m,tho=true}" is the market symbol "SPY" with two attributes. One has an empty key and
+/// value "5m", while the other has key "tho" and value "true".
+/// 
+/// The methods in this class always maintain attribute keys in alphabetic order.
+///
+/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/MarketEventSymbols.html)
 public class MarketEventSymbols {
     enum Separtors: String {
         case exchSeparator = "&"
@@ -15,7 +39,14 @@ public class MarketEventSymbols {
         case separator = ","
         case value = "="
     }
-
+    /// Changes exchange code of the specified symbol or removes it
+    /// if new exchange code is **'\0'**.
+    /// The result is **null** if old symbol is **null**.
+    ///
+    /// - Parameters:
+    ///   - symbol: The old symbol
+    ///   - exchangeCode: The new exchange code
+    /// - Returns: Returns new symbol with the changed exchange code
     public static func changeExchangeCode(_ symbol: String?, _ exchangeCode: Character) -> String? {
         guard let symbol = symbol else {
             return exchangeCode == "\0" ? nil : "\(Separtors.exchSeparator.rawValue)\(exchangeCode)"
@@ -30,7 +61,12 @@ public class MarketEventSymbols {
         result :
         result + symbol[index]
     }
-
+    /// Returns base symbol without exchange code and attributes.
+    /// The result is **null** if symbol is **null**.
+    ///
+    /// - Parameters:
+    ///   - symbol: The specified symbol
+    /// - Returns: Returns base symbol without exchange code and attributes.
     public static func getBaseSymbol(_ symbol: String?) -> String? {
         guard let symbol = symbol else {
             return nil
@@ -46,6 +82,15 @@ public class MarketEventSymbols {
         return hasExchangeCodeInternal(symbol, length) ? symbol[0..<(length - 2)] : symbol[0..<length]
     }
 
+    /// Returns value of the attribute with the specified key.
+    /// The result is **null** if attribute with the specified key is not found.
+    /// The result is **null** if symbol is **null**.
+    ///
+    /// - Parameters:
+    ///   - symbol: The  symbol
+    ///   - key: The attribute key
+    /// - Returns: Returns value of the attribute with the specified key
+    /// - Throws: ``ArgumentException/argumentNil``
     public static func getAttributeStringByKey(_ symbol: String?, _ key: String?) throws -> String? {
         guard let key = key else {
             throw ArgumentException.argumentNil
@@ -114,7 +159,14 @@ public class MarketEventSymbols {
         let endPos = jindex - 1
         return symbol[startPos..<endPos]
     }
-
+    /// Removes one attribute with the specified key while leaving exchange code and other attributes intact.
+    /// The result is **null** if symbol is **null**.
+    ///
+    /// - Parameters:
+    ///   - symbol: The old  symbol
+    ///   - key: The attribute key
+    /// - Returns: Returns new symbol without the specified key and everything else from the old symbol
+    /// - Throws: ``ArgumentException/argumentNil``
     public static func removeAttributeStringByKey(_ symbol: String?,
                                                   _ key: String) -> String? {
         guard let symbol = symbol else {
@@ -166,6 +218,15 @@ public class MarketEventSymbols {
         return result
     }
 
+    /// Changes value of one attribute value while leaving exchange code and other attributes intact.
+    /// The **null** symbol is interpreted as empty one by this method.
+    ///
+    /// - Parameters:
+    ///   - symbol: The old  symbol
+    ///   - key: The attribute key
+    ///   - value: The attribute value
+    /// - Returns: Returns new symbol with key attribute with the specified value and everything else from the old symbol.
+    /// - Throws: ``ArgumentException/argumentNil``
     public static func changeAttributeStringByKey(_ symbol: String?,
                                                   _ key: String?,
                                                   _ value: String?) throws -> String? {
@@ -253,6 +314,12 @@ public class MarketEventSymbols {
                                  symbol[index-1..<symbol.length])
     }
 
+    /// Returns exchange code of the specified symbol or **'\0'** if none is defined.
+    /// The result is **'\0'** if symbol is **null**.
+    ///
+    /// - Parameters:
+    ///   - symbol: The specified  symbol
+    /// - Returns: Returns exchange code of the specified symbol or **'\0'** if none is defined.
     public static func getExchangeCode(_ symbol: String?) -> Character {
         let emptyChar: Character = "\0"
         if hasExchangeCode(symbol), let symbol = symbol {
@@ -265,7 +332,12 @@ public class MarketEventSymbols {
             return emptyChar
         }
     }
-
+    /// Checks if the specified symbol has the exchange code specification.
+    /// The result is **false** if symbol is **null**.
+    ///
+    /// - Parameters:
+    ///   - symbol: The specified  symbol
+    /// - Returns: Returns **true** is the specified symbol has the exchange code specification
     public static func hasExchangeCode(_ symbol: String?) -> Bool {
         guard let symbol = symbol else {
             return false
