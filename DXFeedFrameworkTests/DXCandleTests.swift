@@ -194,5 +194,27 @@ final class DXCandleTests: XCTestCase {
         let sec = 5
         _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
     }
+
+    func testSnapshot() throws {
+        let string = "01/01/2021"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yy"
+        let symbol = TimeSeriesSubscriptionSymbol(symbol: "AAPL{=1d}", date: dateFormatter.date(from: string)!)
+        let code = EventCode.candle
+        var endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        try endpoint?.connect("demo.dxfeed.com:7300")
+        let subscription = try endpoint?.getFeed()?.createSubscription(code)
+        let beginEventsExp = expectation(description: "Begin events \(code)")
+        let endEventsExp = expectation(description: "End events \(code)")
+        let snapshotProcessor = SnapshotProcessor()
+
+        subscription?.add(snapshotProcessor)
+        try subscription?.addSymbols(symbol)
+        wait(for: [beginEventsExp, endEventsExp], timeout: 10)
+        try? endpoint?.disconnect()
+        endpoint = nil
+        let sec = 5
+        _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
+    }
 }
 // swiftlint:enable function_parameter_count
