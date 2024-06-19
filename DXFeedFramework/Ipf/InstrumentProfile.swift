@@ -67,6 +67,14 @@ public class InstrumentProfile {
     var customFields = [String: String]()
 
     var ipfType: IPFType?
+
+    init() {
+        // to activaate didSet methods
+        updateValues()
+    }
+    private func updateValues() {
+        type = ""
+    }
 }
 
 extension InstrumentProfile {
@@ -165,7 +173,7 @@ extension InstrumentProfile: Hashable {
         if lhs === rhs {
             return true
         } else {
-            return lhs.ipfType == rhs.ipfType &&
+            return lhs.type == rhs.type &&
             lhs.symbol == rhs.symbol &&
             lhs.descriptionStr == rhs.descriptionStr &&
             lhs.localSymbol == rhs.localSymbol &&

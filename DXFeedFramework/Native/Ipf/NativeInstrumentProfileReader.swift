@@ -69,7 +69,7 @@ class NativeInstrumentProfileReader {
         for index in 0..<Int(count) {
             if let element = result.pointee.elements[index] {
                 let instrumnetProfile = mapper.fromNative(native: element)
-                instruments.append(instrumnetProfile)                
+                instruments.append(instrumnetProfile)
             }
         }
         return instruments

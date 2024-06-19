@@ -8,6 +8,25 @@
 import XCTest
 @testable import DXFeedFramework
 
+class AnonymousProfileListener: InstrumentProfileUpdateListener, Hashable {
+
+    static func == (lhs: AnonymousProfileListener, rhs: AnonymousProfileListener) -> Bool {
+        lhs === rhs
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine("\(self):\(stringReference(self))")
+    }
+    var callback: ([InstrumentProfile]) -> Void = { _ in }
+
+    func instrumentProfilesUpdated(_ instruments: [InstrumentProfile]) {
+        self.callback(instruments)
+    }
+
+    init(overrides: (AnonymousProfileListener) -> AnonymousProfileListener) {
+        _ = overrides(self)
+    }
+}
 final class DXIPFTest: XCTestCase {
 
     override func setUpWithError() throws {
@@ -106,4 +125,40 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
     }
     // swiftlint:disable line_length
 
+    func testCollector() throws {
+        let collector = try InstrumentProfileCollector()
+        let newProfile = InstrumentProfile()
+        try collector.updateInstrumentProfile(profile: newProfile)
+        let iterator = try collector.view()
+        let expectation = expectation(description: "Received profile")
+        while (try? iterator.hasNext()) ?? false {
+            let profile = try iterator.next()
+            XCTAssert(newProfile == profile, "Should be equal")
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1.0)
+    }
+
+    func testProfileListener() throws {
+        let collector = try InstrumentProfileCollector()
+        let expectation = expectation(description: "Received profile")
+        let newProfile = InstrumentProfile()
+        newProfile.symbol = "TEST_123"
+
+        try collector.add(AnonymousProfileListener { anonymCl in
+            anonymCl.callback = { profiles in
+                if profiles.count == 1 {
+                    let profile = profiles.first
+                    if profile == newProfile {
+                        expectation.fulfill()
+                    }
+                }
+            }
+            return anonymCl
+        })
+
+        try collector.updateInstrumentProfile(profile: newProfile)
+        wait(for: [expectation], timeout: 1.0)
+
+    }
 }
