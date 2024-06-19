@@ -27,6 +27,13 @@ class Isolate {
     }
 
     init() {
-        try? ErrorCheck.graalCall(graal_create_isolate(self.params, self.isolate, thread))
+        print("DXFeedFramework.Isolate:init \(Thread.isMainThread) \(Thread.current) \(Thread.current.threadName)")
+        if Thread.isMainThread {
+            try? ErrorCheck.graalCall(graal_create_isolate(self.params, self.isolate, self.thread))
+        } else {
+            DispatchQueue.main.sync {
+                try? ErrorCheck.graalCall(graal_create_isolate(self.params, self.isolate, self.thread))
+            }
+        }
     }
 }

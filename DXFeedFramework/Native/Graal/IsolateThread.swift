@@ -33,7 +33,7 @@ Required thread:  \(threadName). Current thread: \(Thread.current.threadName)
 
 }
 
-private extension Thread {
+internal extension Thread {
     var threadName: String {
         if let currentOperationQueue = OperationQueue.current?.name {
             return "OperationQueue: \(currentOperationQueue)"
