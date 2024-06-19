@@ -9,7 +9,7 @@ import Foundation
 
 class OrderBase: MarketEvent, IIndexedEvent, CustomStringConvertible {
     var eventSource: IndexedEventSource = .defaultSource
-    
+
     var type: EventCode = .orderBase
 
 //    var eventSource: IndexedEventSource {
@@ -113,7 +113,7 @@ class OrderBase: MarketEvent, IIndexedEvent, CustomStringConvertible {
     public var tradePrice: Double = .nan
     /// Gets or sets trade size for events containing trade-related action.
     public var tradeSize: Double = .nan
-    
+
     init(_ eventSymbol: String) {
         self.eventSymbol = eventSymbol
     }
@@ -140,9 +140,8 @@ tradePrice: \(tradePrice), \
 tradeSize: \(tradeSize)
 """
         }
-    
-}
 
+}
 
 extension OrderBase {
     /// Gets a value indicating whether this order has some size

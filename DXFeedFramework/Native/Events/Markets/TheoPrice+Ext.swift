@@ -15,7 +15,7 @@ extension TheoPrice {
         self.eventTime = native.market_event.event_time
         self.eventFlags = native.event_flags
         self.index = native.index
-        
+
         self.price = native.price
         self.underlyingPrice = native.underlying_price
         self.delta = native.delta

@@ -37,13 +37,13 @@ public class OrderSource: IndexedEventSource {
     static private let sourcesByName = ConcurrentDict<String, OrderSource>()
     private let sourcesByIdCache = NSCache<AnyObject, OrderSource>()
 
-    private override init(identifier: Int, name: String) {
+    override init(identifier: Int, name: String) {
         self.pubFlags = 0
         self.isBuiltin = false
         super.init(identifier: identifier, name: name)
     }
 
-    private init(identifier: Int, name: String, pubFlags: Int) throws {
+    init(identifier: Int, name: String, pubFlags: Int) throws {
         self.pubFlags = pubFlags
         self.isBuiltin = true
         super.init(identifier: identifier, name: name)
@@ -74,7 +74,7 @@ public class OrderSource: IndexedEventSource {
     }
 
     /// Determines whether specified source identifier refers to special order source.
-    ///Special order sources are used for wrapping non-order events into order events.
+    /// Special order sources are used for wrapping non-order events into order events.
     internal static func isSpecialSourceId(sourceId: Int) -> Bool {
         return sourceId >= 1 && sourceId <= 6
     }
@@ -88,7 +88,7 @@ public class OrderSource: IndexedEventSource {
         for index in 0..<count {
             let char = name[index]
             try OrderSource.check(char: char)
-            sourceId = (sourceId << 8) | Int(char.first?.unicodeScalars.first?.value ?? 0)            
+            sourceId = (sourceId << 8) | Int(char.first?.unicodeScalars.first?.value ?? 0)
         }
 
         return sourceId
@@ -124,13 +124,9 @@ public class OrderSource: IndexedEventSource {
     /// Returns order source for the specified source identifier.
     /// - Throws: ``ArgumentException/exception(_:)``. Rethrows exception from Java.
     public static func valueOf(identifier: Int) throws -> OrderSource {
-        var source: OrderSource
-        if let source = sourcesById[identifier] {
-            return source
-        } else {
+        return try OrderSource.sourcesById.tryGetValue(key: identifier) {
             let name = try decodeName(identifier: identifier)
             let source = OrderSource(identifier: identifier, name: name)
-            sourcesById[identifier] = source
             return source
         }
     }
@@ -139,16 +135,11 @@ public class OrderSource: IndexedEventSource {
     /// The name must be either predefined, or contain at most 4 alphanumeric characters.
     /// - Throws: ``ArgumentException/exception(_:)``. Rethrows exception from Java.
     public static func valueOf(name: String) throws -> OrderSource {
-        var source: OrderSource
-        if let source = sourcesByName[name] {
-            return source
-        } else {
+        return try OrderSource.sourcesByName.tryGetValue(key: name) {
             let identifier = try composeId(name: name)
             let source = OrderSource(identifier: identifier, name: name)
-            sourcesByName[name] = source
             return source
         }
-
     }
 
 }
