@@ -51,6 +51,7 @@ class PerfTestViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.connectionStatusLabel.text = DXEndpointState.notConnected.convetToString()        
         numberFormatter.numberStyle = .decimal
 
         self.view.backgroundColor = colors.background
