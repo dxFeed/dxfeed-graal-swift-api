@@ -22,7 +22,6 @@ class Listener: DXEventListener, Hashable {
     }
 }
 
-
 let file: String = ""
 let types: [EventCode] = [.quote]
 let symbols = "AAPL"

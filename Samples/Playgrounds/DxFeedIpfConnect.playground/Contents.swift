@@ -62,7 +62,6 @@ try subscription?.add(listener: listener)
 // Adds specified symbol.
 try subscription?.addSymbols(symbols)
 
-
 // infinity execution
 PlaygroundPage.current.needsIndefiniteExecution = true
 

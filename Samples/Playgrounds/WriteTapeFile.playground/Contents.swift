@@ -38,12 +38,9 @@ try publisher?.publish(events: [quote1, quote2])
 try endpoint.awaitProcessed()
 try endpoint.closeAndAWaitTermination()
 
-
 // Just print content of result file
 let resultTxtFile = try NSString(contentsOf: URL(filePath: outputFilePath), encoding: NSUTF8StringEncoding)
 print("""
 Result content of \(outputFilePath):
 \(resultTxtFile)
 """)
-
-

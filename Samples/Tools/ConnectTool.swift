@@ -61,7 +61,7 @@ Sample: connect demo.dxfeed.com:7300 Quote AAPL
 
     func execute() {
         isQuite = arguments.isQuite
-        print(FileManager.default.currentDirectoryPath)
+
         arguments.properties.forEach { key, value in
             try? SystemProperty.setProperty(key, value)
         }

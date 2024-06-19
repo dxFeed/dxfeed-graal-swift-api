@@ -51,7 +51,6 @@ Checked \(profiles.count) instrument profiles: \(successes) successes, \((profil
 
 }
 
-
 // A sample program that demonstrates different use cases of Schedule API.
 let symbol = "AAPL"
 let time = "2011-05-26-14:15:00"
