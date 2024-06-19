@@ -99,7 +99,7 @@ class ARQuoteTableViewController: UIViewController {
             let material = SCNMaterial()
 
             let viewToAdd = quotesViewController.view
-            viewToAdd?.backgroundColor = .background
+            viewToAdd?.backgroundColor = .tableBackground
 
             material.diffuse.contents = viewToAdd
 

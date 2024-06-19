@@ -22,8 +22,8 @@ class QuoteTableViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .background
-        self.quoteTableView.backgroundColor = .background
+        self.view.backgroundColor = .tableBackground
+        self.quoteTableView.backgroundColor = .tableBackground
 
         quoteTableView.separatorStyle = .none
         self.connectionStatusLabel.text = DXEndpointState.notConnected.convetToString()

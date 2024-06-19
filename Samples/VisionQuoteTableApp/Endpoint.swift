@@ -39,7 +39,7 @@ class Endpoint: Hashable, ObservableObject {
         subscription = try? endpoint?.getFeed()?.createSubscription(.quote)
         profileSubscription = try? endpoint?.getFeed()?.createSubscription(.profile)
         subscription?.add(self)
-        profileSubscription?.add(self)        
+        profileSubscription?.add(self)
         try? subscription?.addSymbols(symbols)
         try? profileSubscription?.addSymbols(symbols)
     }
@@ -51,7 +51,7 @@ class Endpoint: Hashable, ObservableObject {
 
 extension Endpoint: DXEventListener {
     func receiveEvents(_ events: [MarketEvent]) {
-        
+
         events.forEach { event in
             switch event.type {
             case .quote:

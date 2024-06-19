@@ -23,13 +23,21 @@ class DataSource: ObservableObject {
 
     func update(_ value: Quote) {
         let model = quotesDict[value.eventSymbol]
-
+        model?.updatePrice(ask: value.askPrice, bid: value.bidPrice)
+        DispatchQueue.main.async {
+            if let model = model, let row = self.quotes.index(where: {$0 == model}) {
+                self.quotes[row] = model
+            }
+        }
     }
 
     func update(_ value: Profile) {
         let model = quotesDict[value.eventSymbol]
         model?.updateDescription(value.descriptionStr)
-        print(quotesDict)
-        print(quotes)
+        DispatchQueue.main.async {
+            if let model = model, let row = self.quotes.index(where: {$0 == model}) {
+                self.quotes[row] = model
+            }
+        }
     }
 }

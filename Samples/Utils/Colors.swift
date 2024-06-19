@@ -8,10 +8,10 @@
 import UIKit
 
 extension UIColor {
-    public static let background = UIColor(named: "Background")
+    public static let tableBackground = UIColor(named: "TableBackground")
     public static let cellBackground = UIColor(named: "CellBackground")
 
     public static let priceBackground = UIColor(named: "PriceBackground")
-    public static let green = UIColor(named: "Green")
-    public static let red = UIColor(named: "Red")
+    public static let green = UIColor(named: "GreenBackground")
+    public static let red = UIColor(named: "RedBackground")
 }
