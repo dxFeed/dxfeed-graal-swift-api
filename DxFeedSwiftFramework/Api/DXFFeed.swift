@@ -21,4 +21,8 @@ class DXFFeed {
             throw UninitializedNativeException.nilValue
         }
     }
+
+    public func createSubscription() throws {
+
+    }
 }
