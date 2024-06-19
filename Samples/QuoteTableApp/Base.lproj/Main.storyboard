@@ -118,16 +118,16 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="373" height="90"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="--------------" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYJ-iy-MIv">
-                                                            <rect key="frame" x="5" y="0.0" width="186.66666666666666" height="90"/>
+                                                            <rect key="frame" x="10" y="0.0" width="186.66666666666666" height="90"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bpL-FX-1nC">
-                                                            <rect key="frame" x="196.66666666666663" y="5" width="176.33333333333337" height="80"/>
+                                                            <rect key="frame" x="201.66666666666663" y="5" width="171.33333333333337" height="80"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfZ-3h-hz9" customClass="PaddingLabel" customModule="ARQuoteTableApp" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="86.666666666666671" height="80"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="84" height="80"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -138,7 +138,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="my2-SE-epx" customClass="PaddingLabel" customModule="ARQuoteTableApp" customModuleProvider="target">
-                                                                    <rect key="frame" x="89.666666666666657" y="0.0" width="86.666666666666657" height="80"/>
+                                                                    <rect key="frame" x="87.000000000000028" y="0.0" width="84.333333333333343" height="80"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -170,7 +170,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="bpL-FX-1nC" secondAttribute="trailing" id="R4N-1X-2zE"/>
                                                         <constraint firstAttribute="bottom" secondItem="bYJ-iy-MIv" secondAttribute="bottom" id="gR1-hP-QDl"/>
                                                         <constraint firstItem="bpL-FX-1nC" firstAttribute="top" secondItem="BCA-mh-she" secondAttribute="top" constant="5" id="pNN-33-saM"/>
-                                                        <constraint firstItem="bYJ-iy-MIv" firstAttribute="leading" secondItem="BCA-mh-she" secondAttribute="leading" constant="5" id="s9h-d3-uFy"/>
+                                                        <constraint firstItem="bYJ-iy-MIv" firstAttribute="leading" secondItem="BCA-mh-she" secondAttribute="leading" constant="10" id="s9h-d3-uFy"/>
                                                         <constraint firstItem="bpL-FX-1nC" firstAttribute="leading" secondItem="bYJ-iy-MIv" secondAttribute="trailing" constant="5" id="ywR-a8-fOj"/>
                                                     </constraints>
                                                 </view>
