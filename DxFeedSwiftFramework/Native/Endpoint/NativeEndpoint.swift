@@ -30,8 +30,8 @@ class NativeEndpoint {
         if let context = context {
             let endpoint: AnyObject = bridge(ptr: context)
             if let listener =  endpoint as? WeakListener {
-                var old = (try? EnumUtil.valueOf(value: DXFEndpointState.convert(oldState))) ?? .notConnected
-                var new = (try? EnumUtil.valueOf(value: DXFEndpointState.convert(newState))) ?? .notConnected
+                var old = (try? EnumUtil.valueOf(value: DXEndpointState.convert(oldState))) ?? .notConnected
+                var new = (try? EnumUtil.valueOf(value: DXEndpointState.convert(newState))) ?? .notConnected
                 listener.changeState(old: old, new: new)
             }
         }
@@ -128,10 +128,10 @@ class NativeEndpoint {
         try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_awaitNotConnected(thread, self.endpoint))
     }
 
-    public func getState() throws -> DXFEndpointState {
+    public func getState() throws -> DXEndpointState {
         let thread = currentThread()
         let value = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_getState(thread, self.endpoint))
-        return try EnumUtil.valueOf(value: DXFEndpointState.convert(value))
+        return try EnumUtil.valueOf(value: DXEndpointState.convert(value))
     }
 
     func callGC() throws {

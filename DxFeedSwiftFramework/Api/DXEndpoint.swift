@@ -1,5 +1,5 @@
 //
-//  DXFEndpoint.swift
+//  DXEndpoint.swift
 //  DxFeedSwiftFramework
 //
 //  Created by Aleksey Kosylo on 20.03.2023.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-typealias Role = DXFEndpoint.Role
+typealias Role = DXEndpoint.Role
 
-class DXFEndpoint {
+class DXEndpoint {
 
     enum Role: UInt32 {
         case feed = 0
@@ -41,19 +41,19 @@ class DXFEndpoint {
     // public let = private set + public get
     public let role: Role
     private let name: String
-    private lazy var feed: DXFFeed? = {
-        try? DXFFeed(native: endpointNative.getNativeFeed())
+    private lazy var feed: DXFeed? = {
+        try? DXFeed(native: endpointNative.getNativeFeed())
     }()
     private lazy var publisher = {
-        DXFPublisher()
+        DXPublisher()
     }()
 
     private var observersSet = ConcurrentSet<AnyHashable>()
-    private var observers: [DXFEndpointObserver] {
-        return observersSet.reader { $0.compactMap { value in value as? DXFEndpointObserver } }
+    private var observers: [DXEndpointObserver] {
+        return observersSet.reader { $0.compactMap { value in value as? DXEndpointObserver } }
     }
 
-    private static var instances = [Role: DXFEndpoint]()
+    private static var instances = [Role: DXEndpoint]()
 
     fileprivate init(native: NativeEndpoint, role: Role, name: String) throws {
         self.endpointNative = native
@@ -63,13 +63,13 @@ class DXFEndpoint {
     }
 
     func add<O>(_ observer: O)
-    where O: DXFEndpointObserver,
+    where O: DXEndpointObserver,
           O: Hashable {
         observersSet.insert(observer)
     }
 
     func remove<O>(_ observer: O)
-    where O: DXFEndpointObserver,
+    where O: DXEndpointObserver,
           O: Hashable {
         observersSet.remove(observer)
     }
@@ -77,7 +77,7 @@ class DXFEndpoint {
     public static func builder() -> Builder {
         Builder()
     }
-    public func getFeed() -> DXFFeed? {
+    public func getFeed() -> DXFeed? {
         return self.feed
     }
     public func connect(_ address: String) throws {
@@ -118,15 +118,15 @@ class DXFEndpoint {
         try endpointNative.awaitNotConnected()
     }
 
-    public func getState() throws -> DXFEndpointState {
+    public func getState() throws -> DXEndpointState {
         return try endpointNative.getState()
     }
 
-    public static func create(_ role: Role) throws -> DXFEndpoint {
+    public static func create(_ role: Role) throws -> DXEndpoint {
         return try Builder().withRole(role).build()
     }
 
-    public static func getInstance(_ role: Role) throws -> DXFEndpoint {
+    public static func getInstance(_ role: Role) throws -> DXEndpoint {
         defer {
             objc_sync_exit(self)
         }
@@ -179,12 +179,12 @@ class Builder {
         return self
     }
 
-    func build() throws -> DXFEndpoint {
-        return try DXFEndpoint(native: try nativeBuilder!.build(), role: role, name: getOrCreateEndpointName())
+    func build() throws -> DXEndpoint {
+        return try DXEndpoint(native: try nativeBuilder!.build(), role: role, name: getOrCreateEndpointName())
     }
 
     private func getOrCreateEndpointName() -> String {
-        if let name = props[DXFEndpoint.Property.name.rawValue] {
+        if let name = props[DXEndpoint.Property.name.rawValue] {
             return name
         }
         let value = OSAtomicIncrement64(&instancesNumerator)
@@ -192,8 +192,8 @@ class Builder {
     }
 }
 
-extension DXFEndpoint: EndpointListener {
-    func changeState(old: DXFEndpointState, new: DXFEndpointState) {
+extension DXEndpoint: EndpointListener {
+    func changeState(old: DXEndpointState, new: DXEndpointState) {
         print("\(self) change state \(old) to \(new)")
         observers.forEach { $0.endpointDidChangeState(old: old, new: new) }
     }

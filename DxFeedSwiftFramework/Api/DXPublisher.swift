@@ -1,5 +1,5 @@
 //
-//  DXFPublisher.swift
+//  DXPublisher.swift
 //  DxFeedSwiftFramework
 //
 //  Created by Aleksey Kosylo on 23.05.23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DXFPublisher {
+class DXPublisher {
 #warning("TODO: implement it")
 
 }
