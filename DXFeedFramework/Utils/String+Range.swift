@@ -57,6 +57,10 @@ extension StringProtocol {
         let ranges = ranges(of: element, start: start, end: self.length)
         return ranges.first?.lowerBound.distance(in: self) ?? -1
     }
+
+    public func equalsIgnoreCase(_ other: String) -> Bool {
+        return self.lowercased() == other.lowercased()
+    }
 }
 
 extension StringProtocol {
