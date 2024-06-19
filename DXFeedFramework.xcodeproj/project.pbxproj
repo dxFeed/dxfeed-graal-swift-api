@@ -198,6 +198,7 @@
 		648E98AA2AAF625800BFD219 /* IIndexedEvent+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */; };
 		649282E72AD54919008F0F04 /* ScheduleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282E62AD54919008F0F04 /* ScheduleUtils.swift */; };
 		649282E82AD54919008F0F04 /* ScheduleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282E62AD54919008F0F04 /* ScheduleUtils.swift */; };
+		649282EB2AD55323008F0F04 /* IpfConnectCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282E92AD55323008F0F04 /* IpfConnectCommand.swift */; };
 		64963B6A2A8E545C001E40F7 /* IEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64963B692A8E545C001E40F7 /* IEventType.swift */; };
 		6498E6B22AB1D41A0093A065 /* DXSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498E6B12AB1D41A0093A065 /* DXSchedule.swift */; };
 		6498E6B52AB1D4480093A065 /* NativeSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498E6B42AB1D4480093A065 /* NativeSchedule.swift */; };
@@ -620,6 +621,7 @@
 		648BD5702AC583AC004A3A95 /* TimeFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormat.swift; sourceTree = "<group>"; };
 		648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IIndexedEvent+Ext.swift"; sourceTree = "<group>"; };
 		649282E62AD54919008F0F04 /* ScheduleUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleUtils.swift; sourceTree = "<group>"; };
+		649282E92AD55323008F0F04 /* IpfConnectCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IpfConnectCommand.swift; sourceTree = "<group>"; };
 		64963B692A8E545C001E40F7 /* IEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEventType.swift; sourceTree = "<group>"; };
 		6498E6B12AB1D41A0093A065 /* DXSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXSchedule.swift; sourceTree = "<group>"; };
 		6498E6B42AB1D4480093A065 /* NativeSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSchedule.swift; sourceTree = "<group>"; };
@@ -860,6 +862,7 @@
 				648BD5682AC450D6004A3A95 /* ConnectCommand.swift */,
 				6486B97E2AD4167800D8D5FA /* LiveIpfCommand.swift */,
 				64FFE59E2AD430E4003D3353 /* ScheduleCommand.swift */,
+				649282E92AD55323008F0F04 /* IpfConnectCommand.swift */,
 				648BD56A2AC4576F004A3A95 /* HelpCommand.swift */,
 				648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */,
 			);
@@ -1858,6 +1861,7 @@
 				647426AF2ABC93900012F793 /* EventCode+String.swift in Sources */,
 				645BE8542AC3229D0028243D /* ToolsCommand.swift in Sources */,
 				644FE5D12AC1F34000580E3A /* LatencyMetricsPrinter.swift in Sources */,
+				649282EB2AD55323008F0F04 /* IpfConnectCommand.swift in Sources */,
 				6486B97F2AD4167800D8D5FA /* LiveIpfCommand.swift in Sources */,
 				645BE8522AC31E7C0028243D /* PerfTestCommand.swift in Sources */,
 				641BDD5D2ACD67A000236B78 /* LatencyListener.swift in Sources */,

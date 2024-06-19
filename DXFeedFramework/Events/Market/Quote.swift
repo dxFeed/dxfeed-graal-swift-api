@@ -129,7 +129,7 @@ extension Quote {
     func baseFieldsToString() -> String {
         return """
 \(eventSymbol), \
-eventTime=" + \(TimeUtil.toLocalDateString(millis: eventTime)), \
+eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
 time=\(TimeUtil.toLocalDateString(millis: time)), \
 timeNanoPart=\(timeNanoPart), \
 sequence=\(getSequence()), \
