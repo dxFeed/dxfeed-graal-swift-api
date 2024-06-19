@@ -290,8 +290,8 @@ extension OrderBase {
 \(eventSymbol), \
 eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \
 source=\(eventSource.name), \
-eventFlags=0x\(String(format: "%02X", eventFlags)), \
-index=0x\(String(format: "%02X", index)), \
+eventFlags=\(eventFlags.toHexString()), \
+index=\(index.toHexString()), \
 time=\(TimeUtil.toLocalDateString(millis: time)), \
 sequence=\(getSequence()), \
 timeNanoPart=\(timeNanoPart), \
