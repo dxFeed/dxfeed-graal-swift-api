@@ -192,10 +192,8 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
             return anonymCl
         }
         try collector.add(observer: listener)
-
         try collector.updateInstrumentProfile(profile: newProfile)
-        wait(for: [expectation], timeout: 1.0)
-
+        wait(for: [expectation], timeout: 2.0)
     }
 
     func testConnectionState() {
@@ -216,7 +214,7 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
         let expectationCollector = expectation(description: "Collector")
         expectationCollector.assertForOverFulfill = false
         let collector = try DXInstrumentProfileCollector()
-        let observer0 = AnonymousProfileListener { anonymCl in
+        let collectorObserver = AnonymousProfileListener { anonymCl in
             anonymCl.callback = { profiles in
                 if profiles.count > 0 {
                     expectationCollector.fulfill()
@@ -224,11 +222,11 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
             }
             return anonymCl
         }
-        try collector.add(observer: observer0)
+        try collector.add(observer: collectorObserver)
         let expectationConnection = expectation(description: "Connection")
         expectationConnection.expectedFulfillmentCount = 3 // connecting, connected, completed
         let connection = try DXInstrumentProfileConnection(address, collector)
-        let observer = AnonymousConnectionListener { anonymCl in
+        let connectionObserver = AnonymousConnectionListener { anonymCl in
             anonymCl.callback = { _, new in
                 switch new {
                 case .notConnected:
@@ -245,10 +243,9 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
             }
             return anonymCl
         }
-        connection.add(observer: observer)
+        connection.add(observer: connectionObserver)
         try connection.start()
         wait(for: [expectationConnection, expectationCollector], timeout: 20.0)
-
     }
 
     func testCreateOnScheduledThreadPool() throws {

@@ -10,21 +10,35 @@ import Foundation
 
 /// Native wrapper over the Java com.dxfeed.ipf.live.InstrumentProfileCollector class.
 /// The location of the imported functions is in the header files "dxfg_ipf.h".
-class NativeInstrumentProfileCollector {
+public class NativeInstrumentProfileCollector {
+    private class WeakListener: WeakBox<NativeInstrumentProfileCollector> { }
+    private static let listeners = ConcurrentArray<WeakListener>()
+
     let collector: UnsafeMutablePointer<dxfg_ipf_collector_t>?
     private var nativeListener: UnsafeMutablePointer<dxfg_ipf_update_listener_t>?
 
     private weak var listener: DXInstrumentProfileUpdateListener?
     private static let mapper = InstrumentProfileMapper()
 
-    static let listenerCallback: dxfg_ipf_update_listener_function = {_, nativeProfiles, context in
+    private static let finalizeCallback: dxfg_finalize_function = { _, context in
+        if let context = context {
+            let endpoint: AnyObject = bridge(ptr: context)
+            if let listener =  endpoint as? WeakListener {
+                NativeInstrumentProfileCollector.listeners.removeAll(where: {
+                    return $0 === listener
+                })
+            }
+        }
+    }
+
+    private static let listenerCallback: dxfg_ipf_update_listener_function = {_, nativeProfiles, context in
         guard let nativeProfiles = nativeProfiles else {
             return
         }
         if let context = context {
             var profiles = [InstrumentProfile]()
             let listener: AnyObject = bridge(ptr: context)
-            if let listener =  listener as? NativeInstrumentProfileCollector {
+            if let listener =  listener as? WeakListener {
                 let iterator = NativeProfileIterator(nativeProfiles)
 
                 while (try? iterator.hasNext()) ?? false {
@@ -35,8 +49,7 @@ class NativeInstrumentProfileCollector {
                         print("NativeInstrumentProfileCollector: exception \(error)")
                     }
                 }
-                listener.listener?.instrumentProfilesUpdated(profiles)
-
+                listener.value?.listener?.instrumentProfilesUpdated(profiles)
             }
         }
     }
@@ -46,11 +59,12 @@ class NativeInstrumentProfileCollector {
             let thread = currentThread()
             _ = try? ErrorCheck.nativeCall(thread,
                                            dxfg_InstrumentProfileCollector_removeUpdateListener(thread,
-                                                                                                self.collector,
+                                                                                                collector,
                                                                                                 nativeListener))
             _ = try? ErrorCheck.nativeCall(thread,
                                            dxfg_JavaObjectHandler_release(thread,
                                                                           &(nativeListener.pointee.handler)))
+            self.nativeListener = nil
             self.listener = nil
         }
     }
@@ -116,13 +130,23 @@ class NativeInstrumentProfileCollector {
         removeListener()
         let thread = currentThread()
         self.listener = listener
-        let voidPtr = bridge(obj: self)
+
+        let weakListener = WeakListener(value: self)
+        NativeInstrumentProfileCollector.listeners.append(newElement: weakListener)
+        let voidPtr = bridge(obj: weakListener)
+        
         let callback = NativeInstrumentProfileCollector.listenerCallback
-        let listener = try ErrorCheck.nativeCall(thread,
+        let nativeListener = try ErrorCheck.nativeCall(thread,
                                                  dxfg_InstrumentProfileUpdateListener_new(thread,
                                                                                           callback,
                                                                                           voidPtr))
-        self.nativeListener = listener
+        self.nativeListener = nativeListener
+
+        try ErrorCheck.nativeCall(thread, dxfg_Object_finalize(thread,
+                                                               &(nativeListener.pointee.handler),
+                                                               NativeInstrumentProfileCollector.finalizeCallback,
+                                                               voidPtr))
+
         _ = try ErrorCheck.nativeCall(thread,
                                       dxfg_InstrumentProfileCollector_addUpdateListener(thread,
                                                                                         self.collector,

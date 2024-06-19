@@ -55,7 +55,7 @@ class Isolate {
     /// their tasks may be transferred to the overcommitted queue.
     /// Within the context of GraalVM, this transfer can result in the creation of a new thread, which might have already been attached to other tasks.
     /// This could lead to a fatalError, so it's crucial to carefully manage these processes and consider potential issues when working with the SDK."
-    init() {
+    private init() {
 #if DEBUG
     print("FEED SDK: Debug")
 #else
@@ -83,5 +83,11 @@ class Isolate {
             let errorMessage = "!!!Isolate init failed: Unexpected error \(error)"
             fatalError(errorMessage)
         }
+    }
+
+    // only for testing
+    func callGC() {
+        let thread = currentThread()
+        _ = try? ErrorCheck.nativeCall(thread, dxfg_gc(thread))
     }
 }

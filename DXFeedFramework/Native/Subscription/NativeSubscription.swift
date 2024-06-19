@@ -11,9 +11,8 @@ import Foundation
 /// Native wrapper over the Java com.dxfeed.api.DxFeedSubscription class.
 /// The location of the imported functions is in the header files "dxfg_subscription.h".
 class NativeSubscription {
-    class WeakSubscription: WeakBox<NativeSubscription> { }
-
-    static let listeners = ConcurrentArray<WeakSubscription>()
+    private class WeakSubscription: WeakBox<NativeSubscription> { }
+    private static let listeners = ConcurrentArray<WeakSubscription>()
     
     let subscription: UnsafeMutablePointer<dxfg_subscription_t>?
     var nativeListener: UnsafeMutablePointer<dxfg_feed_event_listener_t>?

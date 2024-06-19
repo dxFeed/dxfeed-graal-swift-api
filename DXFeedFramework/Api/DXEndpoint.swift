@@ -391,11 +391,6 @@ public class DXEndpoint {
         }
     }
 
-    // only for testing
-    func callGC() throws {
-        try endpointNative.callGC()
-    }
-
 /// Builder class for ``DXEndpoint`` that supports additional configuration properties.
 ///
 /// Porting a Java class com.dxfeed.api.DXEndpoint.Builder.
@@ -429,11 +424,14 @@ public class Builder {
     /// A counter that is incremented every time an endpoint is created.
     var instancesNumerator = Int64(0)
 
+    private lazy var nativeBuilder: NativeBuilder? = {
+        try? NativeBuilder()
+    }()
 
-        deinit {
-        }
+    deinit {
+    }
 
-        public init() {
+    fileprivate init() {
 
     }
     /// Changes name that is used to distinguish multiple ``DXEndpoint``
