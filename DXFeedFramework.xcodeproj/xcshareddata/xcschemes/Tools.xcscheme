@@ -71,8 +71,8 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Connect demo.dxfeed.com:7300 Quote &quot;ipf[https://demo:demo@tools.dxfeed.com/ipf?TYPE=STOCK&amp;compression=zip],APPL&quot;"
-            isEnabled = "NO">
+            argument = "Connect demo.dxfeed.com:7300 TimeAndSale &quot;ipf[https://demo:demo@tools.dxfeed.com/ipf?TYPE=STOCK&amp;compression=zip],APPL&quot;"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Connect demo.dxfeed.com:7300 quote AAPL -f 2012-05-26-14:15:00"
@@ -92,7 +92,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Dump tapeK2.tape[speed=max] -t ios_tapeK2.tape -q"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "LatencyTest mddqa.in.devexperts.com:7400 TimeAndSale ETH/USD:GDAX"

@@ -37,7 +37,7 @@ public class SpreadOrder: OrderBase {
         return
 """
 SpreadOrder{\(baseFieldsToString()), \
-spreadSymbol=\(spreadSymbol ?? "null")}
+spreadSymbol='\(spreadSymbol ?? "null")'}
 """
     }
 }
