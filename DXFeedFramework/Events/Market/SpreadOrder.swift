@@ -30,13 +30,7 @@ public class SpreadOrder: OrderBase {
     public init(_ eventSymbol: String) {
         super.init(eventSymbol: eventSymbol)
     }
-
-    /// Returns string representation of this candle event.
-    override func toString() -> String {
-        return
-"""
-SpreadOrder{\(baseFieldsToString()), \
-spreadSymbol='\(spreadSymbol ?? "null")'}
-"""
+    override func baseFieldsToString() -> String {
+        super.baseFieldsToString() + ", spreadSymbol='\(spreadSymbol ?? "null")'"
     }
 }

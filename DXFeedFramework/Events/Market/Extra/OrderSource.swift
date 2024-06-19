@@ -38,7 +38,7 @@ public class OrderSource: IndexedEventSource {
 
     /// The default source with zero identifier for all events that do not support multiple sources.
     public static let defaultOrderSource =
-    try? OrderSource(0, "DEFAULT", pubOrder | pubAnalyticOrder | pubSpreadOrder | fullOrderBook)
+    try? OrderSource(0, "DEFAULT", pubOrder | pubAnalyticOrder | pubOtcMarketsOrder | pubSpreadOrder | fullOrderBook)
 
     /// Bid side of a composite ``Quote``
     ///
@@ -161,46 +161,54 @@ public class OrderSource: IndexedEventSource {
     /// Members Exchange. Record for price level book.
     public static let memx = try? OrderSource("memx", pubOrder)
 
+    /// Blue Ocean Technologies Alternative Trading System.
+    public static let OCEA = try? OrderSource("OCEA", pubOrder)
+
+    /// Pink Sheets. Record for price level book.
+    /// Pink sheets are listings for stocks that trade over-the-counter (OTC).
+    public static let pink = try? OrderSource("pink", pubOrder | pubOtcMarketsOrder)
+
     /// Don't use it. Just for initialization all static variable.
     /// static let - is always lazy initialized
     fileprivate static let allValues = [OrderSource.defaultOrderSource,
-                             OrderSource.compsoiteBid,
-                             OrderSource.compsoiteAsk,
-                             OrderSource.regionalBid,
-                             OrderSource.regionalAsk,
-                             OrderSource.agregateBid,
-                             OrderSource.agregateAsk,
-                             OrderSource.NTV,
-                             OrderSource.ntv,
-                             OrderSource.NFX,
-                             OrderSource.ESPD,
-                             OrderSource.XNFI,
-                             OrderSource.ICE,
-                             OrderSource.ISE,
-                             OrderSource.DEA,
-                             OrderSource.DEX,
-                             OrderSource.BYX,
-                             OrderSource.BZX,
-                             OrderSource.BATE,
-                             OrderSource.CHIX,
-                             OrderSource.CEUX,
-                             OrderSource.BXTR,
-                             OrderSource.IST,
-                             OrderSource.BI20,
-                             OrderSource.ABE,
-                             OrderSource.FAIR,
-                             OrderSource.GLBX,
-                             OrderSource.glbx,
-                             OrderSource.ERIS,
-                             OrderSource.XEUR,
-                             OrderSource.xeur,
-                             OrderSource.CFE,
-                             OrderSource.C2OX,
-                             OrderSource.SMFE,
-                             OrderSource.smfe,
-                             OrderSource.iex,
-                             OrderSource.MEMX,
-                             OrderSource.memx]
+                                        OrderSource.compsoiteBid,
+                                        OrderSource.compsoiteAsk,
+                                        OrderSource.regionalBid,
+                                        OrderSource.regionalAsk,
+                                        OrderSource.agregateBid,
+                                        OrderSource.agregateAsk,
+                                        OrderSource.NTV,
+                                        OrderSource.ntv,
+                                        OrderSource.NFX,
+                                        OrderSource.ESPD,
+                                        OrderSource.XNFI,
+                                        OrderSource.ICE,
+                                        OrderSource.ISE,
+                                        OrderSource.DEA,
+                                        OrderSource.DEX,
+                                        OrderSource.BYX,
+                                        OrderSource.BZX,
+                                        OrderSource.BATE,
+                                        OrderSource.CHIX,
+                                        OrderSource.CEUX,
+                                        OrderSource.BXTR,
+                                        OrderSource.IST,
+                                        OrderSource.BI20,
+                                        OrderSource.ABE,
+                                        OrderSource.FAIR,
+                                        OrderSource.GLBX,
+                                        OrderSource.glbx,
+                                        OrderSource.ERIS,
+                                        OrderSource.XEUR,
+                                        OrderSource.xeur,
+                                        OrderSource.CFE,
+                                        OrderSource.C2OX,
+                                        OrderSource.SMFE,
+                                        OrderSource.smfe,
+                                        OrderSource.iex,
+                                        OrderSource.MEMX,
+                                        OrderSource.memx,
+                                        OrderSource.pink]
 
     override init(_ identifier: Int, _ name: String) {
         self.pubFlags = 0
@@ -229,8 +237,7 @@ public class OrderSource: IndexedEventSource {
         default: break
         }
         // Flag FullOrderBook requires that source must be publishable.
-        if (pubFlags & OrderSource.fullOrderBook) != 0 &&
-            (pubFlags & (OrderSource.pubOrder | OrderSource.pubAnalyticOrder | OrderSource.pubSpreadOrder)) == 0 {
+        if OrderSource.isFullOrderBookFlag(pubFlags) && OrderSource.isPublishableFlag(pubFlags) {
             throw ArgumentException.exception("Unpublishable full order book order")
         }
 
@@ -242,7 +249,19 @@ public class OrderSource: IndexedEventSource {
         }
     }
 
-    /// Determines whether specified source identifier refers to special order source.
+    private static func isFullOrderBookFlag(_ pubFlags: Int) -> Bool {
+        return (pubFlags & OrderSource.fullOrderBook) != 0
+    }
+
+    private static func isPublishableFlag(_ pubFlags: Int) -> Bool {
+        let mask = OrderSource.pubOrder |
+        OrderSource.pubAnalyticOrder |
+        OrderSource.pubOtcMarketsOrder |
+        OrderSource.pubSpreadOrder
+        return (pubFlags & mask) == 0
+    }
+
+        /// Determines whether specified source identifier refers to special order source.
     /// Special order sources are used for wrapping non-order events into order events.
     internal static func isSpecialSourceId(sourceId: Int) -> Bool {
         return sourceId >= 1 && sourceId <= 6
@@ -332,6 +351,10 @@ public class OrderSource: IndexedEventSource {
     public static func getEventTypeMask(_ eventType: AnyClass) throws -> Int {
         if eventType == Order.self {
             return pubOrder
+        }
+
+        if eventType == OtcMarketsOrder.self {
+            return pubOtcMarketsOrder
         }
 
         if eventType == AnalyticOrder.self {

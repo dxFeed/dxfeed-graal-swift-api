@@ -205,38 +205,6 @@ class NativeSubscription {
                                                                             listPointer))
     }
 
-    func setSymbols(_ symbols: [Symbol]) throws {
-        let nativeSymbols = symbols.compactMap { SymbolMapper.newNative($0) }
-        let elements = ListNative(pointers: nativeSymbols)
-        let listPointer = elements.newList()
-        defer {
-            listPointer.deinitialize(count: 1)
-            listPointer.deallocate()
-            nativeSymbols.forEach { SymbolMapper.clearNative(symbol: $0) }
-        }
-
-        let thread = currentThread()
-        _ = try ErrorCheck.nativeCall(thread,
-                                      dxfg_DXFeedSubscription_setSymbols(thread,
-                                                                         self.subscription,
-                                                                         listPointer))
-    }
-
-    func getSymbols() throws -> [Symbol] {
-        let thread = currentThread()
-        let nativeResult = try ErrorCheck.nativeCall(thread,
-                                                     dxfg_DXFeedSubscription_getSymbols(thread,
-                                                                         self.subscription))
-        defer {
-            _ = try? ErrorCheck.nativeCall(thread, dxfg_CList_symbol_release(thread, nativeResult))
-        }
-
-        var result: [Symbol] = SymbolMapper.newSymbols(symbols: nativeResult).compactMap({ obj in
-            obj as? Symbol
-        })
-        return result
-    }
-
     func isClosed() -> Bool {
         let thread = currentThread()
         let success = try? ErrorCheck.nativeCall(thread, dxfg_DXFeedSubscription_isClosed(thread, self.subscription))
@@ -291,5 +259,39 @@ class NativeSubscription {
                                                 &(nativeSubscriptionChangeListener.pointee.handler)))
             }
         }
+    }
+}
+
+extension NativeSubscription {
+    func setSymbols(_ symbols: [Symbol]) throws {
+        let nativeSymbols = symbols.compactMap { SymbolMapper.newNative($0) }
+        let elements = ListNative(pointers: nativeSymbols)
+        let listPointer = elements.newList()
+        defer {
+            listPointer.deinitialize(count: 1)
+            listPointer.deallocate()
+            nativeSymbols.forEach { SymbolMapper.clearNative(symbol: $0) }
+        }
+
+        let thread = currentThread()
+        _ = try ErrorCheck.nativeCall(thread,
+                                      dxfg_DXFeedSubscription_setSymbols(thread,
+                                                                         self.subscription,
+                                                                         listPointer))
+    }
+
+    func getSymbols() throws -> [Symbol] {
+        let thread = currentThread()
+        let nativeResult = try ErrorCheck.nativeCall(thread,
+                                                     dxfg_DXFeedSubscription_getSymbols(thread,
+                                                                         self.subscription))
+        defer {
+            _ = try? ErrorCheck.nativeCall(thread, dxfg_CList_symbol_release(thread, nativeResult))
+        }
+
+        var result: [Symbol] = SymbolMapper.newSymbols(symbols: nativeResult).compactMap({ obj in
+            obj as? Symbol
+        })
+        return result
     }
 }
