@@ -23,13 +23,14 @@ class Listener: DXEventListener, Hashable {
 }
 
 
-let inputFilePath = Bundle.main.path(forResource: "ConvertTapeFile.in", ofType: nil)
-let tempDirectory = NSTemporaryDirectory()
-let outputFilePath = NSURL.fileURL(withPathComponents: [tempDirectory, "ConvertTapeFile.out"])?.path
+guard let inputFilePath = Bundle.main.path(forResource: "ConvertTapeFile.in", ofType: nil),
+      let outputFilePath = NSURL.fileURL(withPathComponents: [NSTemporaryDirectory(), "ConvertTapeFile.out"])?.path else {
+    fatalError("Wrong path to output file")
+}
 
 // Determine input and output tapes and specify appropriate configuration parameters.
-let inputAddress = "file:\(inputFilePath ?? "")[readAs=stream_data,speed=max]"
-let outputAddress = "tape:\(outputFilePath ?? "" )[saveAs=stream_data,format=text]"
+let inputAddress = "file:\(inputFilePath)[readAs=stream_data,speed=max]"
+let outputAddress = "tape:\(outputFilePath)[saveAs=stream_data,format=text]"
 
 // Create input endpoint configured for tape reading.
 let inputEndpoint = try DXEndpoint.builder()
@@ -39,7 +40,7 @@ let inputEndpoint = try DXEndpoint.builder()
     .build()
 
 // Create output endpoint configured for tape writing.
-var outputEndpoint = try DXEndpoint.builder()
+let outputEndpoint = try DXEndpoint.builder()
     .withRole(.streamPublisher) // Prevents event conflation and loss due to buffer overflow.
     .withProperty(DXEndpoint.Property.wildcardEnable.rawValue, "true") // Enables wildcard subscription.
     .withProperty(DXEndpoint.Property.eventTime.rawValue, "true") // Use provided event times.
@@ -99,3 +100,4 @@ ConvertTapeFile:
 has been successfully tapped to
 \(outputAddress)
 """)
+
