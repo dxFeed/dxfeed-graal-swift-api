@@ -11,10 +11,8 @@ import Foundation
 /// with a data taken from the specified ``CandleExchange`` from the specified ``CandleSession``
 /// with further details of aggregation provided by ``CandleAlignment``.
 public class Candle: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringConvertible {
-    public let type: EventCode = .candle
-
     /// Gets or sets candle symbol object.
-    public var eventSymbol: String {
+    public override var eventSymbol: String {
         get {
             candleSymbol?.toString() ?? ""
         }
@@ -22,7 +20,6 @@ public class Candle: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringC
             candleSymbol = try? CandleSymbol.valueOf(newValue)
         }
     }
-    public var eventTime: Int64 = 0
 
     /*
      * EventFlags property has several significant bits that are packed into an integer in the following way:
@@ -65,7 +62,7 @@ public class Candle: MarketEvent, ITimeSeriesEvent, ILastingEvent, CustomStringC
 
     /// Initializes a new instance of the ``Candle`` class with the specified event symbol.
     public convenience init(_ symbol: CandleSymbol) {
-        self.init()
+        self.init(type: .candle)
         self.candleSymbol = symbol
     }
 
@@ -90,6 +87,11 @@ askVolume: \(askVolume), \
 impVolatility: \(impVolatility), \
 openInterest: \(openInterest)
 """
+    }
+
+    /// Returns string representation of this candle event.
+    public override func toString() -> String {
+        return "Candle{\(baseFieldsToString())}"
     }
 }
 
@@ -124,11 +126,6 @@ extension Candle {
             index = (Long(TimeUtil.getSecondsFromTime(newValue)) << 32) |
             Long(TimeUtil.getMillisFromTime(newValue) << 22) | Long(getSequence())
         }
-    }
-
-    /// Returns string representation of this candle event.
-    public func toString() -> String {
-        return "Candle{\(baseFieldsToString())}"
     }
 
     /// Returns string representation of this candle fields.

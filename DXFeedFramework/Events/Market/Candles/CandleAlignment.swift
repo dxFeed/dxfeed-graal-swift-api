@@ -117,12 +117,14 @@ public enum CandleAlignment: DXCandleAlignment, CaseIterable {
         }
         return try parse(attribute)
     }
+
     /// Returns string representation of this candle alignment.
     /// The string representation of candle alignment "m" for ``midnight``
     /// and "s" for ``session``.
     public func toString() -> String {
         return self.rawValue.string
     }
+
     /// Returns full string representation of this candle alignment.
     ///
     /// It is contains attribute key and its value.

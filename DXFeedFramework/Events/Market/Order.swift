@@ -14,12 +14,18 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/Order.html)
 public class Order: OrderBase {
-    public override var type: EventCode {
-        return .order
-    }
     /// Gets or sets market maker or other aggregate identifier of this order.
     /// This value is defined for ``Scope/aggregate`` and ``Scope/order`` orders.
     public var marketMaker: String?
+
+    public convenience init(_ eventSymbol: String) {
+        self.init(eventSymbol: eventSymbol, type: .order)
+    }
+
+    /// Initializes a new instance of the ``Order`` class.
+    override init(eventSymbol: String, type: EventCode) {
+        super.init(eventSymbol: eventSymbol, type: type)
+    }
 
     /// Returns string representation of this candle event.
     override func toString() -> String {

@@ -12,10 +12,6 @@ import Foundation
 /// 
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/Profile.html)
 public class Profile: MarketEvent, ILastingEvent, CustomStringConvertible {
-    public let type: EventCode = .profile
-    public var eventSymbol: String
-    public var eventTime: Int64 = 0
-
     /*
      * Flags property has several significant bits that are packed into an integer in the following way:
      *   31..4     3    2    1    0
@@ -71,6 +67,7 @@ public class Profile: MarketEvent, ILastingEvent, CustomStringConvertible {
 
     /// Initializes a new instance of the ``Profile`` class.
     public init(_ symbol: String) {
+        super.init(type: .profile)
         self.eventSymbol = symbol
     }
 
@@ -97,6 +94,12 @@ freeFloat: \(freeFloat), \
 flags: \(flags)
 """
     }
+
+    /// Returns string representation of this profile event.
+    public override func toString() -> String {
+        return "Profile{\(baseFieldsToString())}"
+    }
+
 }
 
 extension Profile {
@@ -131,11 +134,6 @@ extension Profile {
     /// Gets a value indicating whether trading of the security instrument is halted.
     public var isTradingHalted: Bool {
         return tradingStatus == .halted
-    }
-
-    /// Returns string representation of this profile event.
-    public func toString() -> String {
-        return "Profile{\(baseFieldsToString())}"
     }
 
     /// Returns string representation of this order fields.

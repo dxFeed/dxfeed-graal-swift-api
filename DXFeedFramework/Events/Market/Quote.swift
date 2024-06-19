@@ -13,9 +13,6 @@ import Foundation
 /// 
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/Quote.html)
 public class Quote: MarketEvent, ILastingEvent, CustomStringConvertible {
-    public let type: EventCode = .quote
-    public var eventSymbol: String
-    public var eventTime: Int64 = 0
     /// Gets or sets time millis sequence.
     /// Do not sets this value directly.
     /// Change ``setSequence(_:)`` and/or ``time``.
@@ -62,7 +59,8 @@ public class Quote: MarketEvent, ILastingEvent, CustomStringConvertible {
     public var askSize: Double = .nan
 
     /// Initializes a new instance of the ``Quote`` class.
-    public init(_ symbol: String) {
+    public required init(_ symbol: String) {
+        super.init(type: .quote)
         self.eventSymbol = symbol
     }
     public var description: String {
@@ -82,6 +80,12 @@ askPrice: \(askPrice), \
 askSize: \(askSize)
 """
     }
+
+    /// Returns string representation of this quote event.
+    public override func toString() -> String {
+        return "Quote{\(baseFieldsToString())}"
+    }
+
 }
 
 extension Quote {
@@ -119,10 +123,6 @@ extension Quote {
     /// Time is measured in nanoseconds between the current time and midnight, January 1, 1970 UTC.
     public var timeNanos: Int64 {
         return TimeNanosUtil.getNanosFromMillisAndNanoPart(time, timeNanoPart)
-    }
-    /// Returns string representation of this quote event.
-    public func toString() -> String {
-        return "Quote{\(baseFieldsToString())}"
     }
 
     func baseFieldsToString() -> String {

@@ -7,9 +7,6 @@
 import Foundation
 
 public class OrderBase: MarketEvent, IIndexedEvent, CustomStringConvertible {
-
-    public private(set) var type: EventCode = .orderBase
-
     public var eventSource: IndexedEventSource {
         get {
             var sourceId = index >> 48
@@ -32,9 +29,6 @@ public class OrderBase: MarketEvent, IIndexedEvent, CustomStringConvertible {
 
     public private(set) var index: Long = 0
 
-    public var eventSymbol: String
-
-    public var eventTime: Int64 = 0
     /*
      * Flags property has several significant bits that are packed into an integer in the following way:
      *   31..15   14..11    10..4    3    2    1    0
@@ -123,7 +117,8 @@ public class OrderBase: MarketEvent, IIndexedEvent, CustomStringConvertible {
     /// Gets or sets trade size for events containing trade-related action.
     public var tradeSize: Double = .nan
 
-    init(_ eventSymbol: String) {
+    init(eventSymbol: String, type: EventCode) {
+        super.init(type: type)
         self.eventSymbol = eventSymbol
     }
 
@@ -148,9 +143,10 @@ tradeId: \(tradeId), \
 tradePrice: \(tradePrice), \
 tradeSize: \(tradeSize)
 """
-        }
+    }
+
     /// Returns string representation of this candle event.
-    func toString() -> String {
+    public override func toString() -> String {
         return "OrderBase{\(baseFieldsToString())}"
     }
 }
@@ -164,7 +160,7 @@ extension OrderBase {
         }
         self.index = value
     }
-    
+
     /// Gets a value indicating whether this order has some size
     public func hsaSize() -> Bool {
         return size != 0 && !size.isNaN

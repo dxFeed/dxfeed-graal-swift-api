@@ -14,10 +14,6 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/TimeAndSale.html)
 public class TimeAndSale: MarketEvent, ITimeSeriesEvent, CustomStringConvertible {
-    public let type: EventCode = .timeAndSale
-    public var eventSymbol: String
-    public var eventTime: Int64 = 0
-
     /*
      * Flags property has several significant bits that are packed into an integer in the following way:
      *   31..16   15...8    7    6    5    4    3    2    1    0
@@ -73,6 +69,7 @@ public class TimeAndSale: MarketEvent, ITimeSeriesEvent, CustomStringConvertible
     public var index: Long = 0
 
     init(_ symbol: String) {
+        super.init(type: .timeAndSale)
         self.eventSymbol = symbol
     }
 
@@ -93,6 +90,33 @@ exchangeSaleConditions: \(exchangeSaleConditions ?? "null"), \
 flags: \(flags), \
 buyer: \(buyer ?? "null"), \
 seller: \(seller ?? "null")
+"""
+    }
+
+    /// Returns string representation of this time and sale event.
+    public override func toString() -> String {
+        return """
+TimeAndSale{\(eventSymbol), \
+eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
+eventFlags=\(eventFlags.toHexString()), \
+time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time))  ?? ""), \
+timeNanoPart=\(timeNanoPart), \
+sequence=\(getSequence()), \
+exchange=\(StringUtil.encodeChar(char: exchangeCode)), \
+price=\(price), \
+size=\(size), \
+bid=\(bidPrice), \
+ask=\(askPrice), \
+ESC='\(exchangeSaleConditions ?? "null")', \
+TTE=\(StringUtil.encodeChar(char: Int16(getTradeThroughExempt().unicodeScalars.first?.value ?? 0))), \
+side=\(aggressorSide), \
+spread=\(isSpreadLeg), \
+ETH=\(isExtendedTradingHours), \
+validTick=\(isValidTick), \
+type=\(timeAndSaleType)\
+\(buyer == nil ? "" : ", buyer='\(buyer ?? "null")'")\
+\(seller == nil ? "" : ", seller='\(seller ?? "null")'")\
+}
 """
     }
 }
@@ -250,30 +274,4 @@ extension TimeAndSale {
         timeAndSaleType == .cancel
     }
 
-    /// Returns string representation of this time and sale event.
-    public func toString() -> String {
-        return """
-TimeAndSale{\(eventSymbol), \
-eventTime=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: eventTime)) ?? ""), \
-eventFlags=\(eventFlags.toHexString()), \
-time=\((try? DXTimeFormat.defaultTimeFormat?.withMillis?.format(value: time))  ?? ""), \
-timeNanoPart=\(timeNanoPart), \
-sequence=\(getSequence()), \
-exchange=\(StringUtil.encodeChar(char: exchangeCode)), \
-price=\(price), \
-size=\(size), \
-bid=\(bidPrice), \
-ask=\(askPrice), \
-ESC='\(exchangeSaleConditions ?? "null")', \
-TTE=\(StringUtil.encodeChar(char: Int16(getTradeThroughExempt().unicodeScalars.first?.value ?? 0))), \
-side=\(aggressorSide), \
-spread=\(isSpreadLeg), \
-ETH=\(isExtendedTradingHours), \
-validTick=\(isValidTick), \
-type=\(timeAndSaleType)\
-\(buyer == nil ? "" : ", buyer='\(buyer ?? "null")'")\
-\(seller == nil ? "" : ", seller='\(seller ?? "null")'")\
-}
-"""
-    }
 }
