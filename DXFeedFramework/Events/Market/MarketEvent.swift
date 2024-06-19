@@ -13,6 +13,7 @@ import Foundation
 /// property that is defined by this class.
 public protocol MarketEvent: IEventType {
     var type: EventCode { get }
+    func toString() -> String
 }
 
 public struct MarketEventConst {
