@@ -32,7 +32,7 @@ class TimeFormat {
     /// Sortable date/time format string.
     /// Example:
     /// 2009-06-15T13:45:30.
-    static let sortableFormat = "yyyy-MM-ddTHH:mm:ss"
+    static let sortableFormat = "yyyy-MM-dd'T'HH:mm:ss"
     
     /// Universal format string.
     /// Example:

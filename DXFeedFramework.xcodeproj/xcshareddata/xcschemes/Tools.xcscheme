@@ -52,7 +52,15 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "PerfTest  demo.dxfeed.com:7300 Quote AAPL,IBM 20070101-123456"
+            argument = "PerfTest  localhost:6666 TimeAndSale YQKNT"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Connect mddqa.in.devexperts.com:7400 Candle AAPL{=d} 20230201Z"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "Connect mddqa.in.devexperts.com:7400 Quote AAPL"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
