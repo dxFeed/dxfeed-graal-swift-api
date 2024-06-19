@@ -57,7 +57,7 @@ class PerfTestViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        resultTableView.backgroundColor = .background
+        resultTableView.backgroundColor = .tableBackground
         resultTableView.separatorStyle = .none
 
         self.updateUI()
@@ -69,9 +69,9 @@ class PerfTestViewController: UIViewController {
         cpuFormatter.numberStyle = .decimal
         cpuFormatter.maximumFractionDigits = 2
 
-        self.view.backgroundColor = .background
+        self.view.backgroundColor = .tableBackground
 
-        try? SystemProperty.setProperty("com.devexperts.connector.proto.heartbeatTimeout", "10s")
+        try? SystemProperty.setProperty(DXEndpoint.Property.heartBeatTimeout.rawValue, "10s")
         timer.eventHandler = {
             self.updateUI()
         }

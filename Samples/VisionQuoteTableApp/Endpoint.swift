@@ -28,13 +28,13 @@ class Endpoint: Hashable, ObservableObject {
             subscription = nil
             profileSubscription = nil
         }
-        try? SystemProperty.setProperty("com.devexperts.connector.proto.heartbeatTimeout", "10s")
+        try? SystemProperty.setProperty(DXEndpoint.Property.heartBeatTimeout.rawValue, "10s")
 
         let builder = try? DXEndpoint.builder().withRole(.feed)
         _ = try? builder?.withProperty(DXEndpoint.Property.aggregationPeriod.rawValue, "1")
         endpoint = try? builder?.build()
         endpoint?.add(self)
-        try? endpoint?.connect("demo.dxfeed.com:7300")
+        try? endpoint?.connect(address)
 
         subscription = try? endpoint?.getFeed()?.createSubscription(.quote)
         profileSubscription = try? endpoint?.getFeed()?.createSubscription(.profile)
@@ -44,8 +44,8 @@ class Endpoint: Hashable, ObservableObject {
         try? profileSubscription?.addSymbols(symbols)
     }
 
-    func addDataSource(_ ds: DataSource) {
-        self.dataSource = ds
+    func addDataSource(_ dataSource: DataSource) {
+        self.dataSource = dataSource
     }
 }
 

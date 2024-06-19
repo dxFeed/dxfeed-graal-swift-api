@@ -36,6 +36,7 @@ public class DXEndpoint {
         case storeEverything               = "dxendpoint.storeEverything"
         case schemeNanoTime                = "dxscheme.nanoTime"
         case schemeEnabledPropertyPrefix   = "dxscheme.enabled."
+        case heartBeatTimeout              = "com.devexperts.connector.proto.heartbeatTimeout"
     }
     private let endpointNative: NativeEndpoint
     // public let = private set + public get

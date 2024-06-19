@@ -43,8 +43,8 @@ class LatencyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .background
-        resultTableView.backgroundColor = .background
+        self.view.backgroundColor = .tableBackground
+        resultTableView.backgroundColor = .tableBackground
 
         resultTableView.separatorStyle = .none
 
