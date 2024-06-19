@@ -7,6 +7,9 @@
 
 import Foundation
 
+/// Defines standard fields of ``InstrumentProfile`` and provides data access methods.
+///
+/// Please see Instrument Profile Format documentation for complete description.
 public enum InstrumentProfileField: String, CaseIterable {
     case type  = "TYPE"
     case symbol = "SYMBOL"
@@ -78,11 +81,13 @@ public enum InstrumentProfileField: String, CaseIterable {
         return Dictionary(uniqueKeysWithValues: InstrumentProfileField.allCases.map { ($0.rawValue, $0) })
     }()
 
+    /// Returns field for specified name or null if field is not found.
     public static func find(_ name: String) -> InstrumentProfileField? {
         return map[name]
     }
 
     // swiftlint:disable function_body_length
+    /// Returns value of this field for specified profile in textual representation.
     public func getField(instrumentProfile: InstrumentProfile) -> String {
         switch self {
         case .type:
@@ -150,6 +155,7 @@ public enum InstrumentProfileField: String, CaseIterable {
         }
     }
 
+    /// Sets value of this field (in textual representation) to specified profile.
     public func setField(instrumentProfile: InstrumentProfile, value: String) {
         switch self {
         case .type:
@@ -218,10 +224,14 @@ public enum InstrumentProfileField: String, CaseIterable {
     }
     // swiftlint:enable function_body_length
 
+    /// Returns "true" if this field supports numeric representation of a value.
     public func isNumericField() -> Bool {
         return InstrumentProfileField.numericFields.contains(self)
     }
 
+    /// Returns value of this field for specified profile in numeric representation.
+    ///
+    /// - Throws: ``ArgumentException/illegalArgumentException``
     public func getNumericField(instrumentProfile: InstrumentProfile) throws -> Double {
         switch self {
         case .icb: return  Double(instrumentProfile.icb)
@@ -236,6 +246,9 @@ public enum InstrumentProfileField: String, CaseIterable {
         }
     }
 
+    /// Sets value of this field (in numeric representation) to specified profile.
+    ///
+    /// - Throws: ``ArgumentException/illegalArgumentException``
     public func setNumericField(instrumentProfile: InstrumentProfile, value: Double) throws {
         switch self {
         case .icb: return  instrumentProfile.icb = Int32(value)

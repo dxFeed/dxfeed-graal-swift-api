@@ -21,7 +21,7 @@ public class DXFeed {
         if let native = native {
             self.native = native
         } else {
-            throw NativeException.nilValue
+            throw ArgumentException.argumentNil
         }
     }
     /// Creates new subscription for a list of event types that is attached to this feed.
@@ -30,7 +30,7 @@ public class DXFeed {
     /// - Parameters:
     ///     - events: The list of event codes.
     /// - Returns: ``DXFeedSubcription``
-    /// - Throws: ``GraalException``. Rethrows exception from Java., ``NativeException/nilValue``
+    /// - Throws: ``GraalException``. Rethrows exception from Java., ``ArgumentException/argumentNil``
     public func createSubscription(_ events: [EventCode]) throws -> DXFeedSubcription {
         return try DXFeedSubcription(native: native.createSubscription(events), events: events)
     }

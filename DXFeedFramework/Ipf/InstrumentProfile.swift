@@ -15,16 +15,10 @@ public class InstrumentProfile {
     /// It takes precedence in conflict cases with other fields.
     /// It is a mandatory field. It may not be empty.
     /// Example: "STOCK", "FUTURE", "OPTION".
-    var type = "" {
+    public var type = "" {
         didSet {
-            do {
-                if type != "" {
-                    ipfType = try InstrumentProfileType.find(type)
-                }
-            } catch ArgumentException.unknowValue(let value, let supportedValues) {
-                print("InstrumentProfile: not found \(value) in \(supportedValues ?? "")")
-            } catch {
-                print("InstrumentProfile: set type \(error)")
+            if type != "" {
+                ipfType = InstrumentProfileType.find(type)
             }
         }
     }
@@ -200,6 +194,7 @@ public class InstrumentProfile {
     /// Creates an instrument profile with default values.
     public init() {
         // to activaate didSet methods
+        // willSet and didSet will never get called on setting the initial value of the property
         updateValues()
     }
     private func updateValues() {

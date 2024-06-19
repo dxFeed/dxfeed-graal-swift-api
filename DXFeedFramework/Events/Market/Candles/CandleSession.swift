@@ -39,7 +39,9 @@ extension DXCandleSession: ExpressibleByStringLiteral {
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/candle/CandleSession.html)
 public enum CandleSession: DXCandleSession, CaseIterable {
+    /// All trading sessions are used to build candles.
     case any = "Any"
+    /// Only regular trading session data is used to build candles.
     case regular = "Regular"
 
     /// The attribute key that is used to store the value of ``CandleSession`` in
@@ -50,6 +52,7 @@ public enum CandleSession: DXCandleSession, CaseIterable {
     /// the corresponding ``toString()``
     public static let attributeKey = "tho"
 
+    /// Default trading session is ``any``
     public static let defaultSession = CandleSession.any
 
     /// Normalizes candle symbol string with representation of the candle session attribute.

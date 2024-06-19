@@ -7,6 +7,11 @@
 
 import Foundation
 
+/// Defines standard types of ``InstrumentProfile``.
+///
+/// Note that other (unknown) types
+/// can be used without listing in this class - use it for convenience only.
+/// Please see Instrument Profile Format documentation for complete description.
 public enum InstrumentProfileType: String, CaseIterable {
     case currency = "CURRENCY"
     case forex = "FOREX"
@@ -32,9 +37,10 @@ public enum InstrumentProfileType: String, CaseIterable {
         return myDict
     }()
 
-    public static func find(_ name: String) throws -> Self {
+    /// Returns field for specified name or null if field is not found.
+    public static func find(_ name: String) -> Self? {
         guard let value = byString[name] else {
-            throw ArgumentException.unknowValue(name, byString.keys.joined(separator: ","))
+            return nil
         }
         return value
     }

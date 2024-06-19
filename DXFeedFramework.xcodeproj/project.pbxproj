@@ -137,7 +137,6 @@
 		64656F622A1B9FF7006A0B19 /* EnumException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F612A1B9FF7006A0B19 /* EnumException.swift */; };
 		64656F652A1CAFC5006A0B19 /* String+Pointee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F642A1CAFC5006A0B19 /* String+Pointee.swift */; };
 		64656F672A1CCFC2006A0B19 /* DXPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F662A1CCFC2006A0B19 /* DXPublisher.swift */; };
-		64656F692A1CF083006A0B19 /* NativeException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F682A1CF083006A0B19 /* NativeException.swift */; };
 		64656F6B2A1CFAC2006A0B19 /* BridgeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6A2A1CFAC2006A0B19 /* BridgeUtil.swift */; };
 		64656F6D2A1CFB10006A0B19 /* DXEndpointState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6C2A1CFB10006A0B19 /* DXEndpointState.swift */; };
 		64656F6F2A1CFC12006A0B19 /* WeakBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F6E2A1CFC12006A0B19 /* WeakBox.swift */; };
@@ -497,7 +496,6 @@
 		64656F612A1B9FF7006A0B19 /* EnumException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumException.swift; sourceTree = "<group>"; };
 		64656F642A1CAFC5006A0B19 /* String+Pointee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Pointee.swift"; sourceTree = "<group>"; };
 		64656F662A1CCFC2006A0B19 /* DXPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXPublisher.swift; sourceTree = "<group>"; };
-		64656F682A1CF083006A0B19 /* NativeException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeException.swift; sourceTree = "<group>"; };
 		64656F6A2A1CFAC2006A0B19 /* BridgeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeUtil.swift; sourceTree = "<group>"; };
 		64656F6C2A1CFB10006A0B19 /* DXEndpointState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXEndpointState.swift; sourceTree = "<group>"; };
 		64656F6E2A1CFC12006A0B19 /* WeakBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakBox.swift; sourceTree = "<group>"; };
@@ -1158,7 +1156,6 @@
 				8088D77229C3A2F400F240CB /* GraalException.swift */,
 				8088D77C29C8DAF800F240CB /* GraalErrorCode.swift */,
 				64656F612A1B9FF7006A0B19 /* EnumException.swift */,
-				64656F682A1CF083006A0B19 /* NativeException.swift */,
 				640C3FCB2A616B6200555161 /* ArgumentException.swift */,
 			);
 			path = ErrorHandling;
@@ -1735,7 +1732,6 @@
 				64656F652A1CAFC5006A0B19 /* String+Pointee.swift in Sources */,
 				64ACBCD72A27981900032C53 /* ListNative+Ext.swift in Sources */,
 				642BE4CE2A2E29270052340A /* EventMapper.swift in Sources */,
-				64656F692A1CF083006A0B19 /* NativeException.swift in Sources */,
 				6447A5DB2A8E559000739CCF /* ILastingEvent.swift in Sources */,
 				64ACBCDD2A28978600032C53 /* Symbol.swift in Sources */,
 				646407592AA0CA8D006FF769 /* NativeProfileIterator.swift in Sources */,

@@ -66,8 +66,11 @@ public class TimeAndSale: MarketEvent, ITimeSeriesEvent, CustomStringConvertible
     internal let typeMask = 3
     internal let typeShift = 0
 
+    /// Override var from ``IIndexedEvent``
     public var eventSource = IndexedEventSource.defaultSource
+    /// Override var from ``IIndexedEvent``
     public var eventFlags: Int32 = 0
+    /// Override var from ``IIndexedEvent``
     public var index: Long = 0
 
     init(_ symbol: String) {

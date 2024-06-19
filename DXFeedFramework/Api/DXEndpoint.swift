@@ -405,21 +405,24 @@ public class DXEndpoint {
 /// Porting a Java class com.dxfeed.api.DXEndpoint.Builder.
 /// For more details
 /// see [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXEndpoint.Builder.html)
+///
 /// The ``build()`` method tries to load the default property file for the ``DXEndpoint/Role-swift.enum/feed``,
 /// ``DXEndpoint/Role-swift.enum/onDemandFeed`` and ``DXEndpoint/Role-swift.enum/publisher`` role.
+///
 /// The default properties file is loaded only if there are no system properties (``SystemProperty``)
 /// or user properties (``withProperty(_:_:)``) set with the same key
 /// (``DXEndpoint/Property/properties``, ``DXEndpoint/Property/publisherProperties``)
 /// and the file exists and is readable.
+///
 /// This file must be in the [Java properties file format](https://en.wikipedia.org/wiki/.properties)
 ///
-/// Endpoint name
+/// **Endpoint name**
 ///
 /// If no endpoint name has been specified (``withName(_:)``), the default name will be used.
 /// The default name includes a counter that increments each time an endpoint is created ("qdnet", "qdnet-1", etc.).
 /// To get the name of the created endpoint, call the ``DXEndpoint/name``.
 ///
-/// Threads and locks
+/// **Threads and locks**
 ///
 /// This class is thread-safe and can be used concurrently from multiple threads without external synchronization.
 /// 

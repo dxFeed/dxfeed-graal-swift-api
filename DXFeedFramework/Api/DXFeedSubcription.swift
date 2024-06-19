@@ -19,11 +19,12 @@ public class DXFeedSubcription {
     /// observers - typed list wrapper.
     private let listeners = ConcurrentSet<AnyHashable>()
 
+    /// - Throws: ``GraalException`` Rethrows exception from Java, ``ArgumentException/argumentNil``
     internal init(native: NativeSubscription?, events: [EventCode]) throws {
         if let native = native {
             self.native = native
         } else {
-            throw NativeException.nilValue
+            throw ArgumentException.argumentNil
         }
         self.events = Set(events)
     }
@@ -34,7 +35,7 @@ public class DXFeedSubcription {
     /// This method does nothing if this subscription is closed.
     ///
     /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html#addEventListener-com.dxfeed.api.DXFeedEventListener)
-    /// - Throws: ``GraalException`` Rethrows exception from Java, ``NativeException.nilValue``
+    /// - Throws: ``GraalException`` Rethrows exception from Java, ``ArgumentException/argumentNil``
     public func add<O>(observer: O) throws
     where O: DXEventListener,
           O: Hashable {
