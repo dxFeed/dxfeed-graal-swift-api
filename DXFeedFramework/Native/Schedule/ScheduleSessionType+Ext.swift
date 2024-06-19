@@ -20,7 +20,7 @@ extension ScheduleSessionType {
         case DXFG_SESSION_TYPE_AFTER_MARKET:
             return .afterMarket
         default:
-            return .undefined
+            fatalError()
         }
     }
 }
