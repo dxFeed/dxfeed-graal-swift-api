@@ -182,10 +182,10 @@ Quote{AAPL, eventTime=0, time=20221219-223312.000, timeNanoPart=0, sequence=0, b
   is a snapshot of the price and size of the last trade during extended trading hours and the extended trading hours day
   volume and day turnover
 
-- [ ] [Candle](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/candle/Candle.html)
+- [x] [Candle](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/candle/Candle.html)
   event with open, high, low, and close prices and other information for a specific period
 
-- [ ] [Quote](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/Quote.html)
+- [x] [Quote](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/Quote.html)
   is a snapshot of the best bid and ask prices and other fields that change with each quote
 
 - [ ] [Profile](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/Profile.html)
