@@ -10,7 +10,6 @@ import Foundation
 
 /// A collection of classes for mapping unmanaged native events dxfg_event_type_t
 class EventMapper: Mapper {
-    var count: Int = 0
     typealias TypeAlias = dxfg_event_type_t
     var type: dxfg_event_type_t.Type
 
@@ -38,9 +37,6 @@ class EventMapper: Mapper {
         let code = try EnumUtil.valueOf(value: EventCode.convert(native.pointee.clazz))
         if let mapper = mappers[code] {
             return try mapper.fromNative(native: native)
-        } else {
-            count += 1
-            print("Not found mapper \(native.pointee.clazz) \(count)")
         }
         return nil
     }
