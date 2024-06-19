@@ -22,14 +22,12 @@ class QuoteTableViewController: UIViewController {
     @IBOutlet var titleLabel: UILabel!
 
     override func viewDidLoad() {
-
-        print("viewDidLoad posix2 \(pthread_main_np()) \(pthread_mach_thread_np(pthread_self()))")
-
         super.viewDidLoad()
+        agregationSwitch.isHidden = true
         titleLabel.textColor = .text
         connectionStatusLabel.textColor = .text
         self.view.backgroundColor = .tableBackground
-        self.quoteTableView.backgroundColor = .tableBackground
+        self.quoteTableView.backgroundColor = .clear
 
         quoteTableView.separatorStyle = .none
         self.connectionStatusLabel.text = DXEndpointState.notConnected.convetToString()
@@ -59,7 +57,7 @@ class QuoteTableViewController: UIViewController {
             subscription = nil
             profileSubscription = nil
         }
-        try? SystemProperty.setProperty(DXEndpoint.ExtraPropery.heartBeatTimeout.rawValue, "10s")
+        try? SystemProperty.setProperty(DXEndpoint.ExtraPropery.heartBeatTimeout.rawValue, "15s")
 
         let builder = try? DXEndpoint.builder().withRole(.feed)
         if !unlimited {
@@ -103,7 +101,6 @@ extension QuoteTableViewController: DXEndpointListener {
 
 extension QuoteTableViewController: DXEventListener {
     func receiveEvents(_ events: [MarketEvent]) {
-        
         events.forEach { event in
             switch event.type {
             case .quote:

@@ -14,7 +14,7 @@ class AddSymbolsViewController: UIViewController {
     @IBOutlet var symbolsTableView: UITableView!
     @IBOutlet var titleLabel: UILabel!
 
-    var symbols = [String]()
+    var symbols = [InstrumentInfo]()
     var selectedSymbols = Set<String>()
     var dataProvider = SymbolsDataProvider()
 
@@ -52,7 +52,8 @@ class AddSymbolsViewController: UIViewController {
                 return
             }
             let stocksData = result.map { ipf in
-                return ipf.symbol
+                let info = InstrumentInfo(symbol: ipf.symbol, descriptionStr: ipf.descriptionStr)
+                return info
             }
             DispatchQueue.main.async {
                 self.reloadData(symbols: stocksData)
@@ -62,6 +63,7 @@ class AddSymbolsViewController: UIViewController {
     }
 
     @IBAction func cancelTouchUpInside(_ sender: UIButton) {
+        dataProvider.allSymbols = symbols
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -71,7 +73,7 @@ class AddSymbolsViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
-    func reloadData(symbols: [String]) {
+    func reloadData(symbols: [InstrumentInfo]) {
         self.symbols = symbols.sorted()
         symbolsTableView.reloadData()
     }
@@ -88,7 +90,7 @@ extension AddSymbolsViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         let symbol = symbols[indexPath.row]
-        cell.update(symbol: symbol, check: selectedSymbols.contains(symbol))
+        cell.update(symbol: symbol.symbol + "\n" + symbol.descriptionStr, check: selectedSymbols.contains(symbol.symbol))
         return cell
     }
     
@@ -98,11 +100,11 @@ extension AddSymbolsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         let symbol = symbols[indexPath.row]
-        let checked = selectedSymbols.contains(symbol)
+        let checked = selectedSymbols.contains(symbol.symbol)
         if checked {
-            selectedSymbols.remove(symbol)
+            selectedSymbols.remove(symbol.symbol)
         } else {
-            selectedSymbols.insert(symbol)
+            selectedSymbols.insert(symbol.symbol)
         }
         tableView.reloadRows(at: [indexPath], with: .none)
         return indexPath
