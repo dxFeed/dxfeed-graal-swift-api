@@ -9,8 +9,8 @@ import Foundation
 
 public class TimeAndSale: MarketEvent, CustomStringConvertible {
     public let type: EventCode = .timeAndSale
-    public let eventSymbol: String
-    public let eventTime: Int64
+    public var eventSymbol: String
+    public var eventTime: Int64
 
     public let eventFlags: Int32
     public let index: Int64

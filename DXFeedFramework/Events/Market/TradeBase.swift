@@ -7,9 +7,11 @@
 
 import Foundation
 
-public class TradeBase: CustomStringConvertible {
-    public let eventSymbol: String
-    public let eventTime: Int64
+public class TradeBase: MarketEvent, ILastingEvent {
+    public let type: EventCode
+
+    public var eventSymbol: String
+    public var eventTime: Int64
 
     public let timeSequence: Int64
     public let timeNanoPart: Int32
@@ -21,7 +23,8 @@ public class TradeBase: CustomStringConvertible {
     public let dayVolume: Double
     public let dayTurnover: Double
     public let flags: Int32
-    init(eventSymbol: String,
+    init(type: EventCode,
+         eventSymbol: String,
          eventTime: Int64,
          timeSequence: Int64,
          timeNanoPart: Int32,
@@ -33,6 +36,7 @@ public class TradeBase: CustomStringConvertible {
          dayVolume: Double,
          dayTurnover: Double,
          flags: Int32) {
+        self.type = type
         self.eventSymbol = eventSymbol
         self.eventTime = eventTime
         self.timeSequence = timeSequence
