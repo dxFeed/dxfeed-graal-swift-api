@@ -18,10 +18,10 @@ class AnonymousClass: DXEventListener, Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(name)
     }
-    var printFunc: ([MarketEvent]) -> Void = { _ in }
+    var callback: ([MarketEvent]) -> Void = { _ in }
 
     func receiveEvents(_ events: [MarketEvent]) {
-        self.printFunc(events)
+        self.callback(events)
     }
 
     init(overrides: (AnonymousClass) -> AnonymousClass) {

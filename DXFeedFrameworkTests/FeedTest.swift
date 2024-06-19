@@ -91,6 +91,10 @@ final class FeedTest: XCTestCase {
         try waitingEvent(code: .profile)
     }
 
+    func testCandle() throws {
+        try waitingEvent(code: .candle)
+    }
+
     fileprivate static func checkType(_ code: EventCode, _ event: MarketEvent?) -> Bool {
         switch code {
         case .timeAndSale:
@@ -104,7 +108,7 @@ final class FeedTest: XCTestCase {
         case .greeks:
             break
         case .candle:
-            break
+            return event is Candle
         case .dailyCandle:
             break
         case .underlying:
@@ -136,13 +140,12 @@ final class FeedTest: XCTestCase {
     }
 
     func waitingEvent(code: EventCode) throws {
-
         let endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         try endpoint.connect("demo.dxfeed.com:7300")
         let subscription = try endpoint.getFeed()?.createSubscription(code)
         let receivedEventExp = expectation(description: "Received events \(code)")
         subscription?.add(AnonymousClass { anonymCl in
-            anonymCl.printFunc = { events in
+            anonymCl.callback = { events in
                 if events.count > 0 {
                     let event = events.first
                     if FeedTest.checkType(code, event) {
@@ -153,6 +156,6 @@ final class FeedTest: XCTestCase {
             return anonymCl
         })
         try subscription?.addSymbols(["ETH/USD:GDAX"])
-        wait(for: [receivedEventExp], timeout: 5)
+        wait(for: [receivedEventExp], timeout: 10)
     }
 }

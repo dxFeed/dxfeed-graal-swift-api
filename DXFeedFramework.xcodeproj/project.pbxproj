@@ -54,6 +54,10 @@
 		6426C8912A531AAE00236784 /* EndpointTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC416029CA376E00E6B611 /* EndpointTest.swift */; };
 		6426C8932A531AB500236784 /* ThreadsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8088D76C29C101CF00F240CB /* ThreadsTest.swift */; };
 		6426C8952A531ABB00236784 /* EndpointPublisherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBB72A1FA72000FE23C2 /* EndpointPublisherTest.swift */; };
+		64278C6C2A602CA20074B5AA /* DXCandleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64278C6B2A602CA20074B5AA /* DXCandleTests.swift */; };
+		64278C6E2A602D2B0074B5AA /* Candle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64278C6D2A602D2B0074B5AA /* Candle.swift */; };
+		64278C702A602FA00074B5AA /* Candle+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64278C6F2A602FA00074B5AA /* Candle+Ext.swift */; };
+		64278C722A6030290074B5AA /* CandleMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64278C712A6030290074B5AA /* CandleMapper.swift */; };
 		642BE4C42A2E1AFF0052340A /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4C32A2E1AFF0052340A /* Quote.swift */; };
 		642BE4C82A2E1BD40052340A /* QuoteMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4C72A2E1BD40052340A /* QuoteMapper.swift */; };
 		642BE4CA2A2E1C640052340A /* MarketEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642BE4C92A2E1C640052340A /* MarketEvent.swift */; };
@@ -334,6 +338,10 @@
 		64262CE02A4DADCF00BA6BA3 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		64262CE32A4DC16F00BA6BA3 /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
 		64262CEC2A4DC8BC00BA6BA3 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		64278C6B2A602CA20074B5AA /* DXCandleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXCandleTests.swift; sourceTree = "<group>"; };
+		64278C6D2A602D2B0074B5AA /* Candle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candle.swift; sourceTree = "<group>"; };
+		64278C6F2A602FA00074B5AA /* Candle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Candle+Ext.swift"; sourceTree = "<group>"; };
+		64278C712A6030290074B5AA /* CandleMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleMapper.swift; sourceTree = "<group>"; };
 		642BE4C32A2E1AFF0052340A /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		642BE4C72A2E1BD40052340A /* QuoteMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteMapper.swift; sourceTree = "<group>"; };
 		642BE4C92A2E1C640052340A /* MarketEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketEvent.swift; sourceTree = "<group>"; };
@@ -537,6 +545,7 @@
 				64BA925E2A306B9600BE26A0 /* Profile.swift */,
 				64BA92682A306E6000BE26A0 /* TradeBase.swift */,
 				64BA92642A306E0200BE26A0 /* Trade.swift */,
+				64278C6D2A602D2B0074B5AA /* Candle.swift */,
 			);
 			path = Market;
 			sourceTree = "<group>";
@@ -593,6 +602,8 @@
 				64BA92622A306BBD00BE26A0 /* ProfileMapper.swift */,
 				64BA92662A306E3100BE26A0 /* Trade+Ext.swift */,
 				64BA926A2A3072CA00BE26A0 /* TradeMapper.swift */,
+				64278C6F2A602FA00074B5AA /* Candle+Ext.swift */,
+				64278C712A6030290074B5AA /* CandleMapper.swift */,
 			);
 			path = Markets;
 			sourceTree = "<group>";
@@ -810,6 +821,7 @@
 				641BCBB72A1FA72000FE23C2 /* EndpointPublisherTest.swift */,
 				64104FC02A210DDD00D1FC41 /* FeedTest.swift */,
 				64104FCD2A2637EA00D1FC41 /* EventsTest.swift */,
+				64278C6B2A602CA20074B5AA /* DXCandleTests.swift */,
 			);
 			path = DXFeedFrameworkTests;
 			sourceTree = "<group>";
@@ -1091,7 +1103,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 803BAC0729BFA50700FFAB1C /* Build configuration list for PBXProject "DxFeedFramework" */;
+			buildConfigurationList = 803BAC0729BFA50700FFAB1C /* Build configuration list for PBXProject "DXFeedFramework" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1346,10 +1358,12 @@
 				64ACBCD92A279F7900032C53 /* DXEventListener.swift in Sources */,
 				64656F5B2A1B9784006A0B19 /* DXFeed.swift in Sources */,
 				64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */,
+				64278C6E2A602D2B0074B5AA /* Candle.swift in Sources */,
 				64ACBCE62A28BA7D00032C53 /* SymbolMapper.swift in Sources */,
 				642BE4CC2A2E1DB70052340A /* Mapper.swift in Sources */,
 				64104FC72A2613BC00D1FC41 /* ConcurrentArray.swift in Sources */,
 				64ACBCDF2A2897EA00032C53 /* String+Symbol.swift in Sources */,
+				64278C702A602FA00074B5AA /* Candle+Ext.swift in Sources */,
 				64104FC32A210F2400D1FC41 /* EventCode+Native.swift in Sources */,
 				80FC415C29CA2B8800E6B611 /* NativeBuilder.swift in Sources */,
 				642BE4D62A2F5E7C0052340A /* TimeAndSaleMapper.swift in Sources */,
@@ -1384,6 +1398,7 @@
 				64BA92692A306E6000BE26A0 /* TradeBase.swift in Sources */,
 				8088D77D29C8DAF800F240CB /* GraalErrorCode.swift in Sources */,
 				8088D76929C0FC5C00F240CB /* Isolate.swift in Sources */,
+				64278C722A6030290074B5AA /* CandleMapper.swift in Sources */,
 				64656F6B2A1CFAC2006A0B19 /* BridgeUtil.swift in Sources */,
 				8088D77329C3A2F400F240CB /* GraalException.swift in Sources */,
 				64104FC52A26059B00D1FC41 /* ConcurrentSet.swift in Sources */,
@@ -1415,6 +1430,7 @@
 				64ACBCEA2A28DDDA00032C53 /* TestEventListener.swift in Sources */,
 				6401A5152A582134009BA686 /* IsolateTest.swift in Sources */,
 				64ACBCCF2A27851C00032C53 /* FeedTest.swift in Sources */,
+				64278C6C2A602CA20074B5AA /* DXCandleTests.swift in Sources */,
 				6426C8932A531AB500236784 /* ThreadsTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2180,7 +2196,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		803BAC0729BFA50700FFAB1C /* Build configuration list for PBXProject "DxFeedFramework" */ = {
+		803BAC0729BFA50700FFAB1C /* Build configuration list for PBXProject "DXFeedFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				803BAC1D29BFA50700FFAB1C /* Debug */,
