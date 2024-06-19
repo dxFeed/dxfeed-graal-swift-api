@@ -16,8 +16,8 @@ public class InstrumentProfileConnection {
         return observersSet.reader { $0.compactMap { value in value as? InstrumentProfileConnectionObserver } }
     }
 
-    init(_ address: String) throws {
-        collector = try InstrumentProfileCollector()
+    public init(_ address: String, _ collector: InstrumentProfileCollector) throws {
+        self.collector = collector
         native = try NativeInstrumentProfileConnection(collector.native, address)
         try native.addListener(self)
     }
@@ -30,8 +30,8 @@ public class InstrumentProfileConnection {
         return native.getUpdatePeriod()
     }
 
-    public func setUpdatePeriod(_ value: Long) {
-        native.setUpdatePeriod(value)
+    public func setUpdatePeriod(_ value: Long) throws {
+        try native.setUpdatePeriod(value)
     }
 
     public func getLastModified() -> Long {

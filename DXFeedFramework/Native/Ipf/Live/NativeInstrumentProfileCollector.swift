@@ -24,6 +24,7 @@ class NativeInstrumentProfileCollector {
             let listener: AnyObject = bridge(ptr: context)
             if let listener =  listener as? NativeInstrumentProfileCollector {
                 let iterator = NativeProfileIterator(nativeProfiles)
+
                 while (try? iterator.hasNext()) ?? false {
                     do {
                         let profile = try iterator.next()
@@ -31,15 +32,16 @@ class NativeInstrumentProfileCollector {
                     } catch {
                         print("NativeInstrumentProfileCollector: excpetion \(error)")
                     }
-                    listener.listener?.instrumentProfilesUpdated(profiles)
                 }
+                listener.listener?.instrumentProfilesUpdated(profiles)
+
             }
         }
     }
 
-    deinit {
-        let thread = currentThread()
+    private func removeListener() {
         if let nativeListener = nativeListener {
+            let thread = currentThread()
             _ = try? ErrorCheck.nativeCall(thread,
                                            dxfg_InstrumentProfileCollector_removeUpdateListener(thread,
                                                                                                 self.collector,
@@ -47,7 +49,13 @@ class NativeInstrumentProfileCollector {
             _ = try? ErrorCheck.nativeCall(thread,
                                            dxfg_JavaObjectHandler_release(thread,
                                                                           &(nativeListener.pointee.handler)))
+            self.listener = nil
         }
+    }
+
+    deinit {
+        removeListener()
+        let thread = currentThread()
         if let collector = collector {
             _ = try? ErrorCheck.nativeCall(thread,
                                            dxfg_JavaObjectHandler_release(thread,
@@ -93,7 +101,7 @@ class NativeInstrumentProfileCollector {
         let result = try ErrorCheck.nativeCall(thread, dxfg_InstrumentProfileCollector_setExecutor(thread,
                                                                                           collector,
                                                                                           executor.executor))
-        return result != 0
+        return result == 0
     }
 
     func getExecutor() throws -> NativeExecutor {
@@ -103,18 +111,8 @@ class NativeInstrumentProfileCollector {
     }
 
     func addListener(_ listener: InstrumentProfileUpdateListener?) throws {
+        removeListener()
         let thread = currentThread()
-
-        if let nativeListener = nativeListener {
-            _ = try? ErrorCheck.nativeCall(thread,
-                                           dxfg_InstrumentProfileCollector_removeUpdateListener(thread,
-                                                                                                self.collector,
-                                                                                                nativeListener))
-            _ = try? ErrorCheck.nativeCall(thread,
-                                           dxfg_JavaObjectHandler_release(thread,
-                                                                          &(nativeListener.pointee.handler)))
-        }
-
         self.listener = listener
         let voidPtr = bridge(obj: self)
         let callback = NativeInstrumentProfileCollector.listenerCallback

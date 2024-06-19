@@ -13,10 +13,6 @@ class NativeProfileIterator {
     let mapper = InstrumentProfileMapper()
 
     deinit {
-        let thread = currentThread()
-        _ = try? ErrorCheck.nativeCall(thread,
-                                       dxfg_JavaObjectHandler_release(thread,
-                                                                      &(iterator.pointee.handler)))
     }
 
     init(_ iterator: UnsafeMutablePointer<dxfg_iterable_ip_t>) {

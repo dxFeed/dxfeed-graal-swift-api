@@ -12,15 +12,15 @@ extension InstrumentProfileConnectionState {
     static func convert(_ state: dxfg_ipf_connection_state_t) -> InstrumentProfileConnectionState? {
         switch state {
         case DXFG_IPF_CONNECTION_STATE_NOT_CONNECTED:
-            return .closed
+            return .notConnected
         case DXFG_IPF_CONNECTION_STATE_CONNECTING:
-            return .connected
-        case DXFG_IPF_CONNECTION_STATE_CONNECTED:
             return .connecting
+        case DXFG_IPF_CONNECTION_STATE_CONNECTED:
+            return .connected
         case DXFG_IPF_CONNECTION_STATE_COMPLETED:
-            return .notConnected
+            return .completed
         case DXFG_IPF_CONNECTION_STATE_CLOSED:
-            return .notConnected
+            return .closed
         default:
             return nil
         }

@@ -59,11 +59,16 @@ final class SystemPropertyTest: XCTestCase {
         }
         XCTAssert(value == SystemProperty.getProperty(key), "Couldn't read value")
     }
+
     func testException() {
         do {
             try SystemProperty.test()
         } catch {
             print("Just test exception: \(error)")
         }
+    }
+
+    func testSupportedProperties() {
+
     }
 }

@@ -1,5 +1,5 @@
 //
-//  DXCandleTests.swift
+//  CandleTests.swift
 //  DXFeedFrameworkTests
 //
 //  Created by Aleksey Kosylo on 13.07.23.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import DXFeedFramework
 
-final class DXCandleTests: XCTestCase {
+final class CandleTests: XCTestCase {
 
     func testFetchingCandlesByString() throws {
         let symbol = TimeSeriesSubscriptionSymbol(symbol: "AAPL{=15d}", fromTime: 1660125159)

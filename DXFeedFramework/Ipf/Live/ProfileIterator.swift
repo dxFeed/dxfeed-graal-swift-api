@@ -7,18 +7,18 @@
 
 import Foundation
 
-class ProfileIterator {
+public class ProfileIterator {
     private let native: NativeProfileIterator
 
     init(_ native: NativeProfileIterator) {
         self.native = native
     }
 
-    func hasNext() throws -> Bool {
+    public func hasNext() throws -> Bool {
         try self.native.hasNext()
     }
 
-    func next() throws -> InstrumentProfile {
+    public func next() throws -> InstrumentProfile {
         return try self.native.next()
     }
 }

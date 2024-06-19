@@ -15,7 +15,7 @@ class NativeInstrumentProfileConnection {
     private static let defaultUpdatePeriod = Long(1 * 60 * 1000) // 1 minute
 
     var nativeListener: UnsafeMutablePointer<dxfg_ipf_connection_state_change_listener_t>?
-    weak var listener: NativeIPFConnectionListener?
+    private weak var listener: NativeIPFConnectionListener?
 
     static let listenerCallback: dxfg_ipf_connection_state_change_listener_func = {_, oldState, newState, context in
         if let context = context {
@@ -37,6 +37,7 @@ class NativeInstrumentProfileConnection {
                                                                                                       connection,
                                                                                                       listener))
             _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(listener.pointee.handler)))
+            self.listener = nil
         }
     }
 
@@ -76,9 +77,9 @@ class NativeInstrumentProfileConnection {
         return result ?? NativeInstrumentProfileConnection.defaultUpdatePeriod
     }
 
-    func setUpdatePeriod(_ value: Long) {
+    func setUpdatePeriod(_ value: Long) throws {
         let thread = currentThread()
-        _ = try? ErrorCheck.nativeCall(thread,
+        _ = try ErrorCheck.nativeCall(thread,
                                        dxfg_InstrumentProfileConnection_setUpdatePeriod(
                                         thread,
                                         connection,
@@ -126,6 +127,7 @@ class NativeInstrumentProfileConnection {
 
     func addListener(_ listener: NativeIPFConnectionListener) throws {
         removeListener()
+        self.listener = listener
         let voidPtr = bridge(obj: self)
         let thread = currentThread()
         let listener = try ErrorCheck.nativeCall(thread,
