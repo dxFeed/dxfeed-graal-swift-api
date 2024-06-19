@@ -48,11 +48,10 @@ our [customer portal](https://jira.in.devexperts.com/servicedesk/customer/portal
 
 Features planned with **high priority**:
 
-* add all market events
-* add FEED Endpoint role
-* provide tools and samples
-* provide Swift packages
-* generate documentation
+* Add necessary entities for more convenient API
+  usage ([IPF](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/ipf/InstrumentProfile.html), [TimeSeriesEventModel](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/model/TimeSeriesEventModel.html), [OrderBookModel](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/model/market/OrderBookModel.html), [GetTimeSeriesPromise](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeed.html#getTimeSeriesPromise-java.lang.Class-java.lang.Object-long-long-),
+  etc.)
+* Provide more samples
 
 ---
 Features planned for the **next stage**:
