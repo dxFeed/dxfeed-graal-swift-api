@@ -13,7 +13,7 @@ class StringUtil {
             return String(UnicodeScalar(UInt8(char)))
         }
         let value = (String(format: "%02X", Int(char) + 65536).substring(fromIndex: 1))
-        let res = char == 0 ? "\\0" : "\\u" + value        
+        let res = char == 0 ? "\\0" : "\\u" + value
         return res
     }
 

@@ -91,7 +91,7 @@ class ScheduleCommand: ToolsCommand {
             }
         }
 
-        print("Checked \(profiles.count)  instrument profiles: \(successes) successes, \((profiles.count - successes)) failures");
+        print("Checked \(profiles.count)  instrument profiles: \(successes) successes, \((profiles.count - successes)) failures")
 
     }
 }

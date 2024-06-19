@@ -40,7 +40,7 @@ class OptionSaleMapper: Mapper {
         pointee.underlying_price = optionSale.underlyingPrice
         pointee.volatility = optionSale.volatility
         pointee.delta = optionSale.delta
-        pointee.option_symbol = optionSale.optionSymbol.toCStringRef()        
+        pointee.option_symbol = optionSale.optionSymbol.toCStringRef()
 
         let eventType = pointer.withMemoryRebound(to: dxfg_event_type_t.self, capacity: 1) { pointer in
             pointer.pointee.clazz = DXFG_EVENT_OPTION_SALE

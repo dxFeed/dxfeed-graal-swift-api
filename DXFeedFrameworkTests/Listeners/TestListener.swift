@@ -15,6 +15,7 @@ class TestListener: DXEndpointObserver {
         self.expectations = expectations
 
     }
+
     func endpointDidChangeState(old: DXEndpointState,
                                 new: DXEndpointState) {
         if let expectation = expectations[new] {

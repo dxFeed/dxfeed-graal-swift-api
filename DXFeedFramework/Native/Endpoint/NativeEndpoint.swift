@@ -49,6 +49,17 @@ class NativeEndpoint {
         }
     }()
 
+    private lazy var publisher: NativePublisher? = {
+        let thread = currentThread()
+        do {
+            let nativeFeed = try ErrorCheck.nativeCall(thread, dxfg_DXEndpoint_getPublisher(thread, self.endpoint))
+            return NativePublisher(publisher: nativeFeed)
+        } catch {
+            print(error)
+            return nil
+        }
+    }()
+
     fileprivate func removeListener() {
         if let listener = listener {
             let thread = currentThread()
@@ -62,6 +73,7 @@ class NativeEndpoint {
     }
 
     deinit {
+        try? close()
         removeListener()
         if let endpoint = self.endpoint {
             let thread = currentThread()
@@ -69,12 +81,19 @@ class NativeEndpoint {
                                            dxfg_JavaObjectHandler_release(thread, &(endpoint.pointee.handler)))
         }
     }
+
     internal init(_ native: UnsafeMutablePointer<dxfg_endpoint_t>) {
         self.endpoint = native
     }
+    
     func getNativeFeed() -> NativeFeed? {
         return self.feed
     }
+
+    func getNativePublisher() -> NativePublisher? {
+        return self.publisher
+    }
+
     func addListener(_ listener: EndpointListener) throws {
         removeListener()
         let weakListener = WeakListener(value: listener)
