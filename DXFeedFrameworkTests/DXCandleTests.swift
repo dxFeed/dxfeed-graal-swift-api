@@ -38,4 +38,27 @@ final class DXCandleTests: XCTestCase {
 
     }
 
+    func testTest123() throws {
+        let string = "Hello, world sad lo ! lo"
+        let range = 0...10
+        print(range.first!) // 0
+        print(range.last!) // 9
+
+
+        print(string[0..<1])
+        let secondIndex = string.index(after: string.startIndex)
+        let thirdIndex = string.index(string.startIndex, offsetBy: 2)
+        let lastIndex = string.index(before: string.endIndex)
+
+        
+        let abc = string.index(of: "lo", options: String.CompareOptions.backwards)
+        let allInd = string.indices(of: "lo")
+        allInd.forEach { ind in
+            print(ind.distance(in: string))
+        }
+        let lastIndex1 = string.index(before: string.endIndex)
+        print(lastIndex1)
+        print(string[lastIndex1])
+    }
+
 }
