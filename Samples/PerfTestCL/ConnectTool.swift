@@ -8,7 +8,7 @@
 import Foundation
 import DXFeedFramework
 
-class ConnectCommand: ToolsCommand {
+class ConnectTool: ToolsCommand {
     var isTools: Bool = true
     var cmd = "Connect"
     var shortDescription = "Connects to specified address(es)."

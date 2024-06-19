@@ -44,7 +44,7 @@ class ScheduleCommand: ToolsCommand {
         do {
             let defaultFile = arguments[1]
             let profileFile = arguments[2]
-            let symbol = arguments[3]
+            let symbol = arguments.parseSymbols(at: 3).first!
 
             let fileManager = FileManager.default
             if !fileManager.fileExists(atPath: defaultFile) {
@@ -60,14 +60,13 @@ class ScheduleCommand: ToolsCommand {
             }
             print("Loaded \(profiles.count) instrument profiles")
             checkAllSchedules(Array(profiles.values))
-            guard let profile = profiles[symbol] else {
+            guard let profile = profiles[symbol.stringValue] else {
                 fatalError("Could not find profile for \(symbol)")
             }
             print("Found profile for \(symbol): \(profile.descriptionStr)")
             let format = DateFormatter()
             var timeArgument: Double = 0
-            if arguments.count == 5 {
-                let time = arguments[4]
+            if let time = arguments.time {
                 format.dateFormat = "yyyy-MM-dd-HH:mm:ss"
                 timeArgument = format.date(from: time)?.timeIntervalSince1970 ?? 0
             } else {

@@ -1,5 +1,5 @@
 //
-//  DumpCommand.swift
+//  DumpTool.swift
 //  Tools
 //
 //  Created by Aleksey Kosylo on 19.10.23.
@@ -8,7 +8,7 @@
 import Foundation
 import DXFeedFramework
 
-class DumpCommand: ToolsCommand {
+class DumpTool: ToolsCommand {
     var isTools: Bool = true
     var cmd: String = "Dump"
 
@@ -88,8 +88,8 @@ class DumpCommand: ToolsCommand {
     }
 }
 
-extension DumpCommand: Hashable {
-    static func == (lhs: DumpCommand, rhs: DumpCommand) -> Bool {
+extension DumpTool: Hashable {
+    static func == (lhs: DumpTool, rhs: DumpTool) -> Bool {
         return lhs === rhs
     }
 
@@ -98,7 +98,7 @@ extension DumpCommand: Hashable {
     }
 }
 
-extension DumpCommand: DXEventListener {
+extension DumpTool: DXEventListener {
     func receiveEvents(_ events: [DXFeedFramework.MarketEvent]) {
         do {
             if !isQuite {

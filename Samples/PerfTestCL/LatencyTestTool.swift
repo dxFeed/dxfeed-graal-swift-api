@@ -1,5 +1,5 @@
 //
-//  LatencyTestCommand.swift
+//  LatencyTestTool.swift
 //  Tools
 //
 //  Created by Aleksey Kosylo on 29.09.23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LatencyTestCommand: ToolsCommand {
+class LatencyTestTool: ToolsCommand {
     var isTools: Bool = true
     var cmd = "LatencyTest"
 
