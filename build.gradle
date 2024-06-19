@@ -6,13 +6,13 @@ repositories {
     }
 }
 
-def native_version = '1.0.0'
+def native_version = '1.0.3'
 def name = 'graal-native-sdk'
 dependencies {
     implementation(group: 'com.dxfeed', name: "${name}", version: "${native_version}", classifier: 'aarch64-osx', ext: 'zip')
     implementation(group: 'com.dxfeed', name: "${name}", version: "${native_version}", classifier: 'x86_64-osx', ext: 'zip')
     implementation(group: 'com.dxfeed', name: "${name}", version: "${native_version}", classifier: 'aarch64-ios', ext: 'zip')
-    // implementation(group: 'com.dxfeed', name: "${name}", version: "${native_version}", classifier: 'aarch64-ios-sim', ext: 'zip')
+    implementation(group: 'com.dxfeed', name: "${name}", version: "${native_version}", classifier: 'ios-simulator', ext: 'zip')
 }
 
 task fetchDependencies(type: Copy) {
@@ -42,7 +42,7 @@ task fetchDependencies(type: Copy) {
                 case ~/.*aarch64-ios.*/:
                     return 'graal_builds/ios'
                     break
-                case ~/.*aarch64-ios-sim.*/:
+                case ~/.*ios-simulator.zip.*/:
                     return 'graal_builds/ios_simulator'
                     break
                 default:

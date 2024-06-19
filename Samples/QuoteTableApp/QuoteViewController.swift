@@ -47,7 +47,7 @@ class QuoteViewController: UIViewController {
         }
         if endpoint == nil {
             endpoint = try? DXEndpoint.builder().withRole(.feed).build()
-            endpoint?.add(self)
+            endpoint?.add(observer: self)
         }
         try? endpoint?.connect(address)
     }
@@ -67,7 +67,7 @@ class QuoteViewController: UIViewController {
         symbolTextField.resignFirstResponder()
 
         subscription = try? endpoint?.getFeed()?.createSubscription(.timeAndSale)
-        try? subscription?.add(self)
+        try? subscription?.add(observer: self)
         try? subscription?.addSymbols(symbol)
     }
 }
