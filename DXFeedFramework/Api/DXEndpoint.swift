@@ -221,6 +221,14 @@ public class DXEndpoint {
     public static func builder() -> Builder {
         Builder()
     }
+
+    /// Returns a set of all event types supported by this endpoint. The resulting set cannot be modified.
+    ///
+    /// - Throws: GraalException. Rethrows exception from Java.
+    public func getEventTypes() throws -> [EventCode] {
+        return try endpointNative.getEventTypes()
+    }
+
     /// Gets ``DXFeed`` that is associated with this endpoint.
     /// - Returns: ``DXFeed``
     public func getFeed() -> DXFeed? {

@@ -852,6 +852,7 @@
 		64ECD6812A9DDC2800B36935 /* DXInstrumentProfileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileReader.swift; sourceTree = "<group>"; };
 		64ECD6842A9DDF6200B36935 /* DXInstrumentProfileCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileCollector.swift; sourceTree = "<group>"; };
 		64ECD6862A9DDFBE00B36935 /* DXInstrumentProfileConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXInstrumentProfileConnection.swift; sourceTree = "<group>"; };
+		64F9C6C12B4BFD8F003ED014 /* DXFeedconnect.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = DXFeedconnect.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DXFeedFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DxFeedSwiftFramework.h; sourceTree = "<group>"; };
 		803BAC1529BFA50700FFAB1C /* DXFeedFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DXFeedFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1043,6 +1044,7 @@
 				640885C52B1F553C00E6CF88 /* DXFeedLiveIpfSample.playground */,
 				640885C62B1F657300E6CF88 /* ScheduleSample.playground */,
 				641C64AE2B344E770023CFAD /* PublishProfiles.playground */,
+				64F9C6C12B4BFD8F003ED014 /* DXFeedconnect.playground */,
 			);
 			path = Playgrounds;
 			sourceTree = "<group>";

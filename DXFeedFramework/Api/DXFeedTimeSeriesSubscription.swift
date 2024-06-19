@@ -37,7 +37,7 @@ public class DXFeedTimeSeriesSubscription: DXFeedSubscription {
     /// - Parameters:
     ///   - fromTime: fromTime the timestamp
     /// - Throws: ``GraalException`` Rethrows exception from Java, ``ArgumentException/argumentNil``
-    func set(fromTime: Long) throws {
+    public func set(fromTime: Long) throws {
         try native?.set(fromTime: fromTime)
     }
 }
