@@ -163,6 +163,12 @@
 		6479BC2B2A4F35A300A3D404 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6479BC2A2A4F35A300A3D404 /* QuoteView.swift */; };
 		648E98AA2AAF625800BFD219 /* IIndexedEvent+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */; };
 		64963B6A2A8E545C001E40F7 /* IEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64963B692A8E545C001E40F7 /* IEventType.swift */; };
+		6498E6B22AB1D41A0093A065 /* DXSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498E6B12AB1D41A0093A065 /* DXSchedule.swift */; };
+		6498E6B52AB1D4480093A065 /* NativeSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498E6B42AB1D4480093A065 /* NativeSchedule.swift */; };
+		6498E6B72AB1DACE0093A065 /* DXScheduleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498E6B62AB1DACE0093A065 /* DXScheduleTest.swift */; };
+		6498E6B92AB1DFDB0093A065 /* ScheduleDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498E6B82AB1DFDB0093A065 /* ScheduleDay.swift */; };
+		6498E6BD2AB1E0510093A065 /* ScheduleSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498E6BC2AB1E0510093A065 /* ScheduleSession.swift */; };
+		6498E6C42AB20B860093A065 /* ScheduleSessionType+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498E6C32AB20B860093A065 /* ScheduleSessionType+Ext.swift */; };
 		649F48862A615BC90016FDD1 /* CandleSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F48852A615BC90016FDD1 /* CandleSymbol.swift */; };
 		649F48882A615BED0016FDD1 /* CandleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F48872A615BED0016FDD1 /* CandleType.swift */; };
 		64AAF0532A8113E800E8942B /* String+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AAF0522A8113E800E8942B /* String+Range.swift */; };
@@ -507,6 +513,12 @@
 		6479BC2A2A4F35A300A3D404 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IIndexedEvent+Ext.swift"; sourceTree = "<group>"; };
 		64963B692A8E545C001E40F7 /* IEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEventType.swift; sourceTree = "<group>"; };
+		6498E6B12AB1D41A0093A065 /* DXSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXSchedule.swift; sourceTree = "<group>"; };
+		6498E6B42AB1D4480093A065 /* NativeSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeSchedule.swift; sourceTree = "<group>"; };
+		6498E6B62AB1DACE0093A065 /* DXScheduleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXScheduleTest.swift; sourceTree = "<group>"; };
+		6498E6B82AB1DFDB0093A065 /* ScheduleDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDay.swift; sourceTree = "<group>"; };
+		6498E6BC2AB1E0510093A065 /* ScheduleSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSession.swift; sourceTree = "<group>"; };
+		6498E6C32AB20B860093A065 /* ScheduleSessionType+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleSessionType+Ext.swift"; sourceTree = "<group>"; };
 		649F48852A615BC90016FDD1 /* CandleSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleSymbol.swift; sourceTree = "<group>"; };
 		649F48872A615BED0016FDD1 /* CandleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleType.swift; sourceTree = "<group>"; };
 		64AAF0522A8113E800E8942B /* String+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Range.swift"; sourceTree = "<group>"; };
@@ -885,6 +897,25 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		6498E6B02AB1D40C0093A065 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				6498E6B12AB1D41A0093A065 /* DXSchedule.swift */,
+				6498E6B82AB1DFDB0093A065 /* ScheduleDay.swift */,
+				6498E6BC2AB1E0510093A065 /* ScheduleSession.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		6498E6B32AB1D43A0093A065 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				6498E6B42AB1D4480093A065 /* NativeSchedule.swift */,
+				6498E6C32AB20B860093A065 /* ScheduleSessionType+Ext.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
 		649F48842A615BA90016FDD1 /* Candles */ = {
 			isa = PBXGroup;
 			children = (
@@ -1066,6 +1097,7 @@
 				64656F552A1B6A07006A0B19 /* Utils */,
 				64ECD6802A9DD80000B36935 /* Ipf */,
 				64C771FD2A9504D7009868C2 /* Extra */,
+				6498E6B02AB1D40C0093A065 /* Schedule */,
 				8088D77029C3A25D00F240CB /* SystemProperty.swift */,
 				803BAC1029BFA50700FFAB1C /* DxFeedSwiftFramework.h */,
 			);
@@ -1088,6 +1120,7 @@
 				64278C6B2A602CA20074B5AA /* CandleTests.swift */,
 				6447A5EC2A8FCC2200739CCF /* UtilsTest.swift */,
 				64ECD67E2A9CF4CB00B36935 /* IPFTests.swift */,
+				6498E6B62AB1DACE0093A065 /* DXScheduleTest.swift */,
 			);
 			path = DXFeedFrameworkTests;
 			sourceTree = "<group>";
@@ -1112,6 +1145,7 @@
 				64104FD12A277B1A00D1FC41 /* Interop */,
 				64104FCA2A2629C400D1FC41 /* Subscription */,
 				64437A902A9DF1C4005929B2 /* Ipf */,
+				6498E6B32AB1D43A0093A065 /* Schedule */,
 				64ACBCE42A28AEE200032C53 /* SymbolMappers */,
 			);
 			path = Native;
@@ -1665,6 +1699,7 @@
 				64C771F22A94A224009868C2 /* Character+Ext.swift in Sources */,
 				8088D77129C3A25D00F240CB /* SystemProperty.swift in Sources */,
 				640C3FD42A6179AB00555161 /* CandlePeriod.swift in Sources */,
+				6498E6B92AB1DFDB0093A065 /* ScheduleDay.swift in Sources */,
 				6469F8C22A3B169A00846831 /* MathUtil.swift in Sources */,
 				80FC415929C8EE8B00E6B611 /* DXEndpoint.swift in Sources */,
 				64C771F62A94ADDA009868C2 /* Direction.swift in Sources */,
@@ -1676,6 +1711,7 @@
 				6447A5EF2A8FD1CD00739CCF /* DayUtil.swift in Sources */,
 				6447A5E92A8F9E0B00739CCF /* TimeNanosUtil.swift in Sources */,
 				640C3FD82A617D4900555161 /* CandlePriceLevel.swift in Sources */,
+				6498E6C42AB20B860093A065 /* ScheduleSessionType+Ext.swift in Sources */,
 				64656F592A1B864C006A0B19 /* NativeEndpoint.swift in Sources */,
 				6447A5DD2A8E56CF00739CCF /* ITimeSeriesEvent.swift in Sources */,
 				64DA26BA2AA20AAA005B1757 /* DXInstrumentProfileConnectionState.swift in Sources */,
@@ -1684,6 +1720,7 @@
 				64ECD6822A9DDC2800B36935 /* DXInstrumentProfileReader.swift in Sources */,
 				642BE4CC2A2E1DB70052340A /* Mapper.swift in Sources */,
 				64104FC72A2613BC00D1FC41 /* ConcurrentArray.swift in Sources */,
+				6498E6B22AB1D41A0093A065 /* DXSchedule.swift in Sources */,
 				646407572AA0C44D006FF769 /* NativeInstrumentProfileCollector.swift in Sources */,
 				64ACBCDF2A2897EA00032C53 /* String+Symbol.swift in Sources */,
 				64ECD6872A9DDFBE00B36935 /* DXInstrumentProfileConnection.swift in Sources */,
@@ -1704,6 +1741,7 @@
 				646407592AA0CA8D006FF769 /* NativeProfileIterator.swift in Sources */,
 				6469F8C82A3B25C900846831 /* MarketEvent+Access.swift in Sources */,
 				640C3FD22A6178D200555161 /* CandleSession.swift in Sources */,
+				6498E6BD2AB1E0510093A065 /* ScheduleSession.swift in Sources */,
 				8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */,
 				64DA26BE2AA20EDB005B1757 /* DXInstrumentProfileConnectionObserver.swift in Sources */,
 				64656F732A1D0A84006A0B19 /* EndpointListener.swift in Sources */,
@@ -1728,6 +1766,7 @@
 				640C3FCE2A61788500555161 /* CandleExchange.swift in Sources */,
 				641BCBBC2A20ED8100FE23C2 /* DXEndpointObserver.swift in Sources */,
 				64656F772A1DFED9006A0B19 /* EndpointState+Native.swift in Sources */,
+				6498E6B52AB1D4480093A065 /* NativeSchedule.swift in Sources */,
 				64DA26BC2AA20B66005B1757 /* InstrumentProfileConnectionState+ext.swift in Sources */,
 				64BA92612A306BA900BE26A0 /* Profile+Ext.swift in Sources */,
 				64BA926B2A3072CA00BE26A0 /* TradeMapper.swift in Sources */,
@@ -1794,6 +1833,7 @@
 				64ACBCCF2A27851C00032C53 /* FeedTest.swift in Sources */,
 				6447A5ED2A8FCC2200739CCF /* UtilsTest.swift in Sources */,
 				64278C6C2A602CA20074B5AA /* CandleTests.swift in Sources */,
+				6498E6B72AB1DACE0093A065 /* DXScheduleTest.swift in Sources */,
 				6426C8932A531AB500236784 /* ThreadsTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

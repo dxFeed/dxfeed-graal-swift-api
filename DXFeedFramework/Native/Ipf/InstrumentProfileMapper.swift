@@ -26,5 +26,4 @@ class InstrumentProfileMapper {
         native.deinitialize(count: 1)
         native.deallocate()
     }
-
 }
