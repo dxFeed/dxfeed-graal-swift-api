@@ -15,7 +15,7 @@ public class DXInstrumentProfileCollector {
         self.native = try NativeInstrumentProfileCollector()
     }
 
-    public func add<O>(_ observer: O) throws
+    public func add<O>(observer: O) throws
     where O: DXInstrumentProfileUpdateListener,
           O: Hashable {
               try listeners.reader { [weak self] in
@@ -26,7 +26,7 @@ public class DXInstrumentProfileCollector {
               listeners.insert(observer)
           }
 
-    public func remove<O>(_ observer: O)
+    public func remove<O>(observer: O)
     where O: DXInstrumentProfileUpdateListener,
           O: Hashable {
               listeners.remove(observer)

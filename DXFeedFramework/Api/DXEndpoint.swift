@@ -11,7 +11,7 @@ public typealias Role = DXEndpoint.Role
 
 public class DXEndpoint {
 
-   public  enum Role: UInt32 {
+    public enum Role: UInt32 {
         case feed = 0
         case onDemandFeed
         case streamFeed
@@ -66,17 +66,17 @@ public class DXEndpoint {
         try native.addListener(self)
     }
 
-    public func add<O>(_ observer: O)
+    public func add<O>(observer: O)
     where O: DXEndpointObserver,
           O: Hashable {
-        observersSet.insert(observer)
-    }
+              observersSet.insert(observer)
+          }
 
-    public func remove<O>(_ observer: O)
+    public func remove<O>(observer: O)
     where O: DXEndpointObserver,
           O: Hashable {
-        observersSet.remove(observer)
-    }
+              observersSet.remove(observer)
+          }
 
     public static func builder() -> Builder {
         Builder()
@@ -144,56 +144,57 @@ public class DXEndpoint {
         }
     }
 
-// only for testing
+    // only for testing
     func callGC() throws {
         try endpointNative.callGC()
     }
-}
 
-public class Builder {
-    var role = Role.feed
-    var props = [String: String]()
+    public class Builder {
+        var role = Role.feed
+        var props = [String: String]()
 
-    var instancesNumerator = Int64(0)
+        var instancesNumerator = Int64(0)
 
-    private lazy var nativeBuilder: NativeBuilder? = {
-        try? NativeBuilder()
-    }()
+        private lazy var nativeBuilder: NativeBuilder? = {
+            try? NativeBuilder()
+        }()
 
-    deinit {
-    }
-
-    fileprivate init() {
-
-    }
-
-    public func withRole(_ role: Role) throws -> Self {
-        self.role = role
-        _ = try nativeBuilder?.withRole(role)
-        return self
-    }
-
-    public func isSupported(property: String) throws -> Bool {
-        return try nativeBuilder?.isSuppored(property: property) ?? false
-    }
-
-    public func withProperty(_ key: String, _ value: String) throws -> Self {
-        props[key] = value
-        try nativeBuilder?.withProperty(key, value)
-        return self
-    }
-
-    public func build() throws -> DXEndpoint {
-        return try DXEndpoint(native: try nativeBuilder!.build(), role: role, name: getOrCreateEndpointName())
-    }
-
-    private func getOrCreateEndpointName() -> String {
-        if let name = props[DXEndpoint.Property.name.rawValue] {
-            return name
+        deinit {
         }
-        let value = OSAtomicIncrement64(&instancesNumerator)
-        return "qdnet_\(value == 0 ? "" : "-\(value)")"
+
+        public init() {
+
+        }
+
+        public func withRole(_ role: Role) throws -> Self {
+            self.role = role
+            _ = try nativeBuilder?.withRole(role)
+            return self
+        }
+
+        public func isSupported(_ property: String) throws -> Bool {
+            return try nativeBuilder?.isSuppored(property: property) ?? false
+        }
+
+        public func withProperty(_ key: String, _ value: String) throws -> Self {
+            props[key] = value
+            try nativeBuilder?.withProperty(key, value)
+            return self
+        }
+
+        public func build() throws -> DXEndpoint {
+            return try DXEndpoint(native: try nativeBuilder!.build(), role: role, name: getOrCreateEndpointName())
+        }
+
+        private func getOrCreateEndpointName() -> String {
+            if let name = props[DXEndpoint.Property.name.rawValue] {
+                return name
+            }
+            let value = OSAtomicIncrement64(&instancesNumerator)
+            return "qdnet_\(value == 0 ? "" : "-\(value)")"
+        }
     }
+
 }
 
 extension DXEndpoint: EndpointListener {
