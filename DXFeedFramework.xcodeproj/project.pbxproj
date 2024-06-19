@@ -214,6 +214,7 @@
 		648BD56B2AC4576F004A3A95 /* HelpTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56A2AC4576F004A3A95 /* HelpTool.swift */; };
 		648BD56D2AC56A04004A3A95 /* SubscriptionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */; };
 		648BD56F2AC582AB004A3A95 /* DateTimeParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56E2AC582AB004A3A95 /* DateTimeParserTest.swift */; };
+		648C72472B18ABFC00E2FEF3 /* DXConnectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648C72462B18ABFC00E2FEF3 /* DXConnectionTest.swift */; };
 		648E98AA2AAF625800BFD219 /* IIndexedEvent+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */; };
 		649282E72AD54919008F0F04 /* ScheduleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282E62AD54919008F0F04 /* ScheduleUtils.swift */; };
 		649282E82AD54919008F0F04 /* ScheduleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282E62AD54919008F0F04 /* ScheduleUtils.swift */; };
@@ -686,6 +687,7 @@
 		648BD56A2AC4576F004A3A95 /* HelpTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTool.swift; sourceTree = "<group>"; };
 		648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionUtils.swift; sourceTree = "<group>"; };
 		648BD56E2AC582AB004A3A95 /* DateTimeParserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeParserTest.swift; sourceTree = "<group>"; };
+		648C72462B18ABFC00E2FEF3 /* DXConnectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXConnectionTest.swift; sourceTree = "<group>"; };
 		648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IIndexedEvent+Ext.swift"; sourceTree = "<group>"; };
 		649282E62AD54919008F0F04 /* ScheduleUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleUtils.swift; sourceTree = "<group>"; };
 		649282E92AD55323008F0F04 /* IpfConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IpfConnect.swift; sourceTree = "<group>"; };
@@ -1502,6 +1504,7 @@
 				6486B95C2AD0287E00D8D5FA /* DateTests.swift */,
 				649282EC2AD593F3008F0F04 /* OrderSourceTest.swift */,
 				6406F25A2AD987EB00B58C42 /* PublisherTest.swift */,
+				648C72462B18ABFC00E2FEF3 /* DXConnectionTest.swift */,
 			);
 			path = DXFeedFrameworkTests;
 			sourceTree = "<group>";
@@ -2372,6 +2375,7 @@
 				6401A5152A582134009BA686 /* IsolateTest.swift in Sources */,
 				6406F25B2AD987EB00B58C42 /* PublisherTest.swift in Sources */,
 				64ACBCCF2A27851C00032C53 /* FeedTest.swift in Sources */,
+				648C72472B18ABFC00E2FEF3 /* DXConnectionTest.swift in Sources */,
 				6486B95D2AD0287E00D8D5FA /* DateTests.swift in Sources */,
 				6447A5ED2A8FCC2200739CCF /* UtilsTest.swift in Sources */,
 				64278C6C2A602CA20074B5AA /* CandleTests.swift in Sources */,
