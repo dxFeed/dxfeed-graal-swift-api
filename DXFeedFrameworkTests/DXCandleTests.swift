@@ -230,7 +230,6 @@ private class TestSnapshotDelegate: SnapshotDelegate {
     var wasSnapshot = false
     var numberOfWeeks: Int?
     func receiveEvents(_ events: [MarketEvent], isSnapshot: Bool) {
-        
         if isSnapshot {
             if events.count < (numberOfWeeks ?? 0) - 1 || events.count > (numberOfWeeks ?? 0) + 1 {
                 XCTAssert(false, "Snapshot size is incorrect")
