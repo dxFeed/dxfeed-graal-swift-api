@@ -114,7 +114,7 @@ public class OnDemandService {
     ///  Changes on-demand historical data replay speed while continuing replay at current ``getTime``.
     ///  Speed is measured with respect to the real-time playback speed.
     /// - Parameters:
-    ///   - speed: on-demand historical data replay speed.
+    ///   - speed: on-demand historical data replay speed. Should be > 0.
     /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func setSpeed(_ speed: Double) throws {
         try native.setSpeed(speed)
