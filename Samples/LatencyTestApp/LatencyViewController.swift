@@ -188,3 +188,10 @@ extension LatencyViewController: UITableViewDelegate {
         return 60
     }
 }
+
+extension LatencyViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField!) -> Bool {
+        textField.endEditing(true)
+        return true
+    }
+}
