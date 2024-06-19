@@ -71,8 +71,8 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Connect demo.dxfeed.com:7300 TimeAndSale &quot;ipf[https://demo:demo@tools.dxfeed.com/ipf?TYPE=STOCK&amp;compression=zip],APPL&quot;"
-            isEnabled = "NO">
+            argument = "Connect demo.dxfeed.com:7300 TimeAndSale &quot;ipf[https://demo:demo@tools.dxfeed.com/ipf?TYPE=STOCK&amp;compression=zip],APPL&quot; -p monitoring.stat=1s"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Connect demo.dxfeed.com:7300 candle AAPL -f 2012-05-26-14:15:00"
@@ -96,7 +96,11 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Connect demo.dxfeed.com:7300 candle AAPL{=2d} -f 0"
-            isEnabled = "YES">
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "connect &quot;dxlink:wss://demo.dxfeed.com/dxlink-ws&quot; Quote AAPL -p dxfeed.experimental.dxlink.enable=true"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "LatencyTest mddqa.in.devexperts.com:7400 TimeAndSale ETH/USD:GDAX"

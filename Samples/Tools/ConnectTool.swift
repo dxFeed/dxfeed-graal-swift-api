@@ -59,6 +59,10 @@ Where:
     func execute() {
         isQuite = arguments.isQuite
 
+        try? arguments.properties.forEach { key, value in
+            try? SystemProperty.setProperty(key, value)
+        }
+
         if let tapeFile = arguments.tape {
             outputEndpoint = try? DXEndpoint
                 .builder()
