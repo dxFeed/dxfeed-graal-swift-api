@@ -125,7 +125,6 @@ class NativeSubscription {
     }
 
     init(subscription: UnsafeMutablePointer<dxfg_subscription_t>?) {
-        
         self.subscription = subscription
     }
 
@@ -182,6 +181,7 @@ class NativeSubscription {
             listPointer.deallocate()
             nativeSymbols.forEach { SymbolMapper.clearNative(symbol: $0) }
         }
+
         let thread = currentThread()
         _ = try ErrorCheck.nativeCall(thread,
                                       dxfg_DXFeedSubscription_addSymbols(thread,

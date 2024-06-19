@@ -11,28 +11,25 @@ import Foundation
 /// Native wrapper over the Java com.dxfeed.api.DXFeedTimeSeriesSubscription class.
 /// The location of the imported functions is in the header files "dxfg_subscription.h".
 class NativeTimeSeriesSubscription {
-    var native: UnsafeMutablePointer<dxfg_time_series_subscription_t>?
+    let native: UnsafeMutablePointer<dxfg_time_series_subscription_t>?
+    let subscription: NativeSubscription
 
     deinit {
-        if let native = native {
-            let thread = currentThread()
-            _ = try? ErrorCheck.nativeCall(thread,
-                                           dxfg_JavaObjectHandler_release(thread,
-                                                                          &(native.pointee.sub.handler)))
-        }
     }
 
     init(native: UnsafeMutablePointer<dxfg_time_series_subscription_t>?) {
         self.native = native
-        var subscription = self.native?.pointee.sub
+        let pointer = UnsafeMutablePointer<dxfg_subscription_t>.allocate(capacity: 1)
+        pointer.pointee = self.native!.pointee.sub
+        self.subscription = NativeSubscription(subscription: pointer)
     }
 
-    lazy var subscription: NativeSubscription? = {
-        if var subscr = native?.pointee.sub {
-            return NativeSubscription(subscription: &subscr)
-        } else {
-            return nil
-        }
-    }()
+    func set(fromTime: Long) throws {
+        let thread = currentThread()
+        let result = try ErrorCheck.nativeCall(thread, dxfg_DXFeedTimeSeriesSubscription_setFromTime(
+            thread,
+            native,
+            0))
+    }
 
 }
