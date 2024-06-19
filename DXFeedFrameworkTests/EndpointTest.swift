@@ -97,5 +97,6 @@ final class EndpointTest: XCTestCase {
         }
         endpoint.add(listener: stateListener!)
         wait(for: [connectedExpectation], timeout: 1)
+        try endpoint.closeAndAwaitTermination()
     }
 }

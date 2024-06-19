@@ -10,12 +10,9 @@ import XCTest
 
 final class DXTimeSeriesSubscriptionTest: XCTestCase {
 
-    func testCreateSubscriptionForEvent() throws {
-        try createSubscriptionFor(multiple: false)
-    }
-
     func testCreateSubscriptionForMultipleEvents() throws {
         try createSubscriptionFor(multiple: true)
+        try createSubscriptionFor(multiple: false)
     }
 
     func testCreateWithNil() throws {
@@ -42,6 +39,7 @@ final class DXTimeSeriesSubscriptionTest: XCTestCase {
         try subscription?.set(fromTime: 10000)
         try subscription?.addSymbols(["ETH/USD:GDAX", "IBM"])
         wait(for: [receivedEventsExpectation], timeout: 2.0)
+        try endpoint.closeAndAwaitTermination()
     }
 
     func testGeneric() throws {
