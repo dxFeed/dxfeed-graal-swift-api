@@ -11,8 +11,19 @@ import DXFeedFramework
 class PerfTestViewController: UIViewController {
     let diagnostic = Diagnostic()
 
-    let numberFormatter = NumberFormatter()
-    let cpuFormatter = NumberFormatter()
+    let numberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 0
+        return formatter
+    }()
+
+    let cpuFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        return formatter
+    }()
 
     private var endpoint: DXEndpoint?
     private var subscription: DXFeedSubcription?
@@ -47,11 +58,6 @@ class PerfTestViewController: UIViewController {
         self.updateUI()
         self.addressTextField.text = "akosylo-mac.local:6666"
         self.connectionStatusLabel.text = DXEndpointState.notConnected.convetToString()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = 0
-
-        cpuFormatter.numberStyle = .decimal
-        cpuFormatter.maximumFractionDigits = 2
 
         self.view.backgroundColor = .tableBackground
 

@@ -123,6 +123,10 @@
 		644BD7822A4474B900A0BF99 /* DXFeedFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; };
 		644BD7832A4474B900A0BF99 /* DXFeedFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803BAC0D29BFA50700FFAB1C /* DXFeedFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		644BD7892A4475EF00A0BF99 /* MainAR.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644BD7872A4475EF00A0BF99 /* MainAR.storyboard */; };
+		644FE5CD2AC1E9E200580E3A /* Diagnostic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D8BB332A39A1230071BC88 /* Diagnostic.swift */; };
+		644FE5CE2AC1EC1500580E3A /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
+		644FE5CF2AC1F25900580E3A /* DXFTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646D19E02A3C970700C82315 /* DXFTimer.swift */; };
+		644FE5D12AC1F34000580E3A /* ResultPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FE5D02AC1F34000580E3A /* ResultPrinter.swift */; };
 		645A34952A937C7200709F29 /* BinaryInteger+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645A34942A937C7200709F29 /* BinaryInteger+Ext.swift */; };
 		646228512A376B0A0029DC97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462284D2A376B0A0029DC97 /* Main.storyboard */; };
 		646228522A376B0A0029DC97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6462284F2A376B0A0029DC97 /* LaunchScreen.storyboard */; };
@@ -527,6 +531,7 @@
 		644BD7652A44727000A0BF99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		644BD7682A44727000A0BF99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		644BD7882A4475EF00A0BF99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainAR.storyboard; sourceTree = "<group>"; };
+		644FE5D02AC1F34000580E3A /* ResultPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPrinter.swift; sourceTree = "<group>"; };
 		645A34942A937C7200709F29 /* BinaryInteger+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+Ext.swift"; sourceTree = "<group>"; };
 		6462284E2A376B0A0029DC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		646228502A376B0A0029DC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -782,6 +787,7 @@
 				64148B6E2ABB5C4A0063110E /* PerfTestCL.entitlements */,
 				64148B662ABB5C320063110E /* main.swift */,
 				647426A62ABC7F080012F793 /* EventListener.swift */,
+				644FE5D02AC1F34000580E3A /* ResultPrinter.swift */,
 			);
 			path = PerfTestCL;
 			sourceTree = "<group>";
@@ -1768,7 +1774,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				647426AF2ABC93900012F793 /* EventCode+String.swift in Sources */,
+				644FE5D12AC1F34000580E3A /* ResultPrinter.swift in Sources */,
+				644FE5CD2AC1E9E200580E3A /* Diagnostic.swift in Sources */,
+				644FE5CF2AC1F25900580E3A /* DXFTimer.swift in Sources */,
 				647426A82ABC7F5E0012F793 /* EventListener.swift in Sources */,
+				644FE5CE2AC1EC1500580E3A /* TimeInterval+Ext.swift in Sources */,
 				64148B672ABB5C320063110E /* main.swift in Sources */,
 				647426AD2ABC85F20012F793 /* ArgumentParser.swift in Sources */,
 			);
