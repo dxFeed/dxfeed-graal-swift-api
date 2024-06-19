@@ -18,7 +18,7 @@ class DXFeed {
         if let native = native {
             self.native = native
         } else {
-            throw UninitializedNativeException.nilValue
+            throw NativeException.nilValue
         }
     }
 

@@ -20,7 +20,7 @@ class NativeFeed {
         self.feed = feed
     }
 
-    public func createSubscription(_ events: [EventCode]) throws -> NativeSubscription? {
+    func createSubscription(_ events: [EventCode]) throws -> NativeSubscription? {
         let nativeCodes = events.map { $0.nativeCode() }
         let elements = ListNative(elements: nativeCodes)
         let listPointer = elements.newList()
@@ -37,7 +37,7 @@ class NativeFeed {
         return NativeSubscription(subscription: subscription)
     }
 
-    public func createSubscription(_ event: EventCode) throws -> NativeSubscription? {
+    func createSubscription(_ event: EventCode) throws -> NativeSubscription? {
         let thread = currentThread()
         let subscription = try ErrorCheck.nativeCall(thread,
                                                      dxfg_DXFeed_createSubscription(thread,
