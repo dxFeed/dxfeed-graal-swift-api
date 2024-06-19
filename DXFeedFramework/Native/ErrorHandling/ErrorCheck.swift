@@ -44,16 +44,11 @@ class ErrorCheck {
         }
     }
 
-    static func nativeCall<T>(_ thread: OpaquePointer!, _ result: T?) throws -> T {
-        if let result = result {
-            return result
-        } else {
-            if let exception = fetchException(thread) {
-                throw exception
-            } else {
-                throw GraalException.nullException
-            }
+    static func nativeCall<T>(_ thread: OpaquePointer!, _ result: T) throws -> T {
+        if let exception = fetchException(thread) {
+            throw exception
         }
+        return result
     }
 
     static func graalCall(_ result: Int32) throws {

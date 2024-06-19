@@ -10,7 +10,7 @@ import Foundation
 class NativeSymbolParser {
     func parse(_ symbols: String) throws -> [String] {
         let thread = currentThread()
-        let symbols = try ErrorCheck.nativeCall(thread, dxfg_Tools_parseSymbols(thread, symbols.toCStringRef()))
+        let symbols = try ErrorCheck.nativeCall(thread, dxfg_Tools_parseSymbols(thread, symbols.toCStringRef())).value()
         var result = [String]()
         for index in 0..<Int(symbols.pointee.size) {
             result.append(String(pointee: symbols.pointee.elements[index]))

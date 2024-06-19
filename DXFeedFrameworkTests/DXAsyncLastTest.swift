@@ -93,10 +93,10 @@ final class DXAsyncLastTest: XCTestCase {
     }
 
     func testIndexedEventTask() async throws {
-        throw XCTSkip("""
+        // just use it to avoid warnings
+        try XCTSkipIf(true, """
                      Skiped
 """)
-        let date = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
         guard let task = feed?.getIndexedEvents(type: Series.self,
                                                 symbol: "ETH/USD:GDAX",
                                                 source: OrderSource.agregateAsk!) else {

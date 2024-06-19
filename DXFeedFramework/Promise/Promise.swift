@@ -69,16 +69,18 @@ public class Promise {
     /// This method waits forever.
     /// - Returns: result of computation.
     /// - Throws : GraalException. Rethrows exception from Java
-    public func await() throws {
+    @discardableResult public func await() throws -> Promise {
         _ = try native.await()
+        return self
     }
 
     /// Wait for computation to complete and return its result or throw an exception in case of exceptional completion.
     /// If the wait times out, then the computation is ``cancel()`` cancelled and exception is thrown.
     /// - Returns: result of computation.
     /// - Throws : GraalException. Rethrows exception from Java
-    public func await(millis timeOut: Int32) throws {
+    @discardableResult public func await(millis timeOut: Int32) throws -> Promise {
         _ = try native.await(millis: timeOut)
+        return self
     }
     /// Wait for computation to complete and return its result or throw an exception in case of exceptional completion.
     /// If the wait times out, then the computation is ``cancel()`` cancelled and exception is thrown.

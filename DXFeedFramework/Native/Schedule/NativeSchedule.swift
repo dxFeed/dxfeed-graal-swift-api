@@ -91,19 +91,22 @@ class NativeSchedule {
 
     public func getDayByTime(time: Long) throws -> ScheduleDay {
         let thread = currentThread()
-        let day = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getDayByTime(thread, schedule, time))
+        let day = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getDayByTime(thread, schedule, time)).value()
         return try createDay(thread, day)
     }
 
     public func getDayById(dayId: Int32) throws -> ScheduleDay {
         let thread = currentThread()
-        let day = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getDayById(thread, schedule, dayId))
+        let day = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getDayById(thread, schedule, dayId)).value()
         return try createDay(thread, day)
     }
 
     public func getDayByYearMonthDay(yearMonthDay: Int32) throws -> ScheduleDay {
         let thread = currentThread()
-        let day = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getDayByYearMonthDay(thread, schedule, yearMonthDay))
+        let day = try ErrorCheck.nativeCall(thread,
+                                            dxfg_Schedule_getDayByYearMonthDay(thread,
+                                                                               schedule,
+                                                                               yearMonthDay)).value()
         return try createDay(thread, day)
     }
 
@@ -124,7 +127,7 @@ class NativeSchedule {
         scheduleDay.trading = try ErrorCheck.nativeCall(thread, dxfg_Day_isTrading(thread, day))
         scheduleDay.startTime = try ErrorCheck.nativeCall(thread, dxfg_Day_getStartTime(thread, day))
         scheduleDay.endTime = try ErrorCheck.nativeCall(thread, dxfg_Day_getEndTime(thread, day))
-        let sessions = try ErrorCheck.nativeCall(thread, dxfg_Day_getSessions(thread, day))
+        let sessions = try ErrorCheck.nativeCall(thread, dxfg_Day_getSessions(thread, day)).value()
         let count = sessions.pointee.size
         for index in 0..<Int(count) {
             if let element = sessions.pointee.elements[index] {
@@ -142,7 +145,7 @@ class NativeSchedule {
         let end = try ErrorCheck.nativeCall(thread, dxfg_Session_getEndTime(thread, session))
         let nativeType = try ErrorCheck.nativeCall(thread, dxfg_Session_getType(thread, session))
         let isTraiding = try ErrorCheck.nativeCall(thread, dxfg_Session_isTrading(thread, session))
-        let day = try ErrorCheck.nativeCall(thread, dxfg_Session_getDay(thread, session))
+        let day = try ErrorCheck.nativeCall(thread, dxfg_Session_getDay(thread, session)).value()
         defer {
             _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(day.pointee.handler)))
         }
@@ -180,7 +183,7 @@ class NativeSchedule {
                         executor: GetDayExecutor) throws -> ScheduleDay? {
         let qdValue = filter.toQDValue()
         let thread = currentThread()
-        let filter = try ErrorCheck.nativeCall(thread, dxfg_DayFilter_getInstance(thread, qdValue))
+        let filter = try ErrorCheck.nativeCall(thread, dxfg_DayFilter_getInstance(thread, qdValue)).value()
         defer {
             _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(filter.pointee.handler)))
         }
@@ -212,7 +215,7 @@ class NativeSchedule {
                             executor: GetSessionyExecutor) throws -> ScheduleSession? {
         let qdValue = filter.toQDValue()
         let thread = currentThread()
-        let filter = try ErrorCheck.nativeCall(thread, dxfg_SessionFilter_getInstance(thread, qdValue))
+        let filter = try ErrorCheck.nativeCall(thread, dxfg_SessionFilter_getInstance(thread, qdValue)).value()
         defer {
             _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(filter.pointee.handler)))
         }
@@ -223,7 +226,10 @@ class NativeSchedule {
 
     public func getSessionByTime(time: Long) throws -> ScheduleSession {
         let thread = currentThread()
-        let nextSession = try ErrorCheck.nativeCall(thread, dxfg_Schedule_getSessionByTime(thread, schedule, time))
+        let nextSession = try ErrorCheck.nativeCall(thread,
+                                                    dxfg_Schedule_getSessionByTime(thread,
+                                                                                   schedule,
+                                                                                   time)).value()
         let session = try createSession(thread, session: nextSession)
         return session
     }
@@ -231,7 +237,7 @@ class NativeSchedule {
     public func getNearestSessionByTime(time: Long, filter: SessionFilter) throws -> ScheduleSession {
         let qdValue = filter.toQDValue()
         let thread = currentThread()
-        let filter = try ErrorCheck.nativeCall(thread, dxfg_SessionFilter_getInstance(thread, qdValue))
+        let filter = try ErrorCheck.nativeCall(thread, dxfg_SessionFilter_getInstance(thread, qdValue)).value()
         defer {
             _ = try? ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread, &(filter.pointee.handler)))
         }
@@ -239,7 +245,7 @@ class NativeSchedule {
                                                     dxfg_Schedule_getNearestSessionByTime(thread,
                                                                                           schedule,
                                                                                           time,
-                                                                                          filter))
+                                                                                          filter)).value()
         let session = try createSession(thread, session: nextSession)
         return session
     }

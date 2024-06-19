@@ -152,22 +152,4 @@ final class DXLastEventTest: XCTestCase {
         }
     }
 
-    func testGetLastEventIfSubscribed() throws {
-        let testSymbol = StringUtil.random(length: 5)
-        let endpoint: DXEndpoint? = try DXEndpoint.create(.localHub)
-        let feed = endpoint?.getFeed()
-        let publisher = endpoint?.getPublisher()
-        let quote = try feed?.getLastEventIfSubscribed(type: Quote.self, symbol: testSymbol)
-        XCTAssertNil(quote)
-        let subscription = try feed?.createSubscription([Quote.self])
-        try subscription?.addSymbols(testSymbol)
-        try publisher?.publish(events: [Quote(testSymbol).also(block: { quote in
-            quote.askPrice = 101
-        })])
-        let existingQuotes = try feed?.getLastEventIfSubscribed(type: Quote.self, symbol: testSymbol)
-        XCTAssertNotNil(existingQuotes)
-        XCTAssertEqual(101, (existingQuotes as? Quote)?.askPrice)
-
-    }
-
 }

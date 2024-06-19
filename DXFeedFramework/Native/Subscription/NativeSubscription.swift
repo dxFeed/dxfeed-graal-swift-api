@@ -149,7 +149,7 @@ class NativeSubscription {
         let listener = try ErrorCheck.nativeCall(thread,
                                                  dxfg_DXFeedEventListener_new(thread,
                                                                               NativeSubscription.listenerCallback,
-                                                                              voidPtr))
+                                                                              voidPtr)).value()
 
         try ErrorCheck.nativeCall(thread, dxfg_Object_finalize(thread,
                                                                &(listener.pointee.handler),
@@ -285,7 +285,7 @@ extension NativeSubscription {
         let thread = currentThread()
         let nativeResult = try ErrorCheck.nativeCall(thread,
                                                      dxfg_DXFeedSubscription_getSymbols(thread,
-                                                                         self.subscription))
+                                                                                        self.subscription)).value()
         defer {
             _ = try? ErrorCheck.nativeCall(thread, dxfg_CList_symbol_release(thread, nativeResult))
         }

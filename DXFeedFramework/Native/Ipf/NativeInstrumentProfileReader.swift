@@ -42,9 +42,10 @@ class NativeInstrumentProfileReader {
     func readFromFile(address: String) throws -> [InstrumentProfile] {
         let thread = currentThread()
         let result = try ErrorCheck.nativeCall(thread,
-                                               dxfg_InstrumentProfileReader_readFromFile(thread,
-                                                                                         reader,
-                                                                                         address.toCStringRef()))
+                                               dxfg_InstrumentProfileReader_readFromFile(
+                                                thread,
+                                                reader,
+                                                address.toCStringRef())).value()
         let instruments = convertFromNativeList(result)
         _ = try ErrorCheck.nativeCall(thread, dxfg_CList_InstrumentProfile_release(thread, result))
         return instruments
@@ -53,11 +54,12 @@ class NativeInstrumentProfileReader {
     func readFromFile(address: String, user: String, password: String) throws -> [InstrumentProfile] {
         let thread = currentThread()
         let result = try ErrorCheck.nativeCall(thread,
-                                               dxfg_InstrumentProfileReader_readFromFile2(thread,
-                                                                                          reader,
-                                                                                          address.toCStringRef(),
-                                                                                          user.toCStringRef(),
-                                                                                          password.toCStringRef()))
+                                               dxfg_InstrumentProfileReader_readFromFile2(
+                                                thread,
+                                                reader,
+                                                address.toCStringRef(),
+                                                user.toCStringRef(),
+                                                password.toCStringRef())).value()
         let instruments = convertFromNativeList(result)
         _ = try ErrorCheck.nativeCall(thread, dxfg_CList_InstrumentProfile_release(thread, result))
         return instruments
@@ -96,14 +98,14 @@ class NativeInstrumentProfileReader {
             let inputStream = try ErrorCheck.nativeCall(thread,
                                                         dxfg_ByteArrayInputStream_new(thread,
                                                                                       pointer.baseAddress,
-                                                                                      Int32(data.count)))
+                                                                                      Int32(data.count))).value()
             return inputStream
         })
         let result = try ErrorCheck.nativeCall(thread,
                                                dxfg_InstrumentProfileReader_read2(thread,
                                                                                   reader,
                                                                                   inputStream,
-                                                                                  address.toCStringRef()))
+                                                                                  address.toCStringRef())).value()
         let instruments = convertFromNativeList(result)
         _ = try ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread,
                                                                              &(inputStream.pointee.handler)))
@@ -117,7 +119,7 @@ class NativeInstrumentProfileReader {
             let inputStream = try ErrorCheck.nativeCall(thread,
                                                         dxfg_ByteArrayInputStream_new(thread,
                                                                                       pointer.baseAddress,
-                                                                                      Int32(data.count)))
+                                                                                      Int32(data.count))).value()
 
             return inputStream
         })
@@ -125,7 +127,7 @@ class NativeInstrumentProfileReader {
         let result = try ErrorCheck.nativeCall(thread,
                                                dxfg_InstrumentProfileReader_readCompressed(thread,
                                                                                            reader,
-                                                                                           inputStream))
+                                                                                           inputStream)).value()
         let instruments = convertFromNativeList(result)
         _ = try ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread,
                                                                              &(inputStream.pointee.handler)))
@@ -140,14 +142,14 @@ class NativeInstrumentProfileReader {
             let inputStream = try ErrorCheck.nativeCall(thread,
                                                         dxfg_ByteArrayInputStream_new(thread,
                                                                                       pointer.baseAddress,
-                                                                                      Int32(data.count)))
+                                                                                      Int32(data.count))).value()
 
             return inputStream
         })
         let result = try ErrorCheck.nativeCall(thread,
                                                dxfg_InstrumentProfileReader_read(thread,
                                                                                  reader,
-                                                                                 inputStream))
+                                                                                 inputStream)).value()
         let instruments = convertFromNativeList(result)
         _ = try ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread,
                                                                              &(inputStream.pointee.handler)))
