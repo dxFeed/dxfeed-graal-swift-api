@@ -216,14 +216,12 @@ final class DXCandleTests: XCTestCase {
         wait(for: [snapshotExpect, updateExpect], timeout: 10)
         try? endpoint?.disconnect()
         endpoint = nil
-        let sec = 5
-        _ = XCTWaiter.wait(for: [expectation(description: "\(sec) seconds waiting")], timeout: TimeInterval(sec))
     }
 }
 
 private class TestSnapshotDelegate: SnapshotDelegate {
-    var wasSnapshotExpect: XCTestExpectation? = nil
-    var wasUpdateExpect: XCTestExpectation? = nil
+    var wasSnapshotExpect: XCTestExpectation?
+    var wasUpdateExpect: XCTestExpectation?
     var wasSnapshot = false
     func receiveEvents(_ events: [DXFeedFramework.IIndexedEvent], isSnapshot: Bool) {
 
