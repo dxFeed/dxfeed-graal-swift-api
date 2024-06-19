@@ -19,13 +19,13 @@ class ScheduleSample: ToolsCommand {
     A sample program that demonstrates different use cases of Schedule API.
 
     Usage:
-      usage: ScheduleSample  <defaults>  <profiles>  <symbol>  [time]
+      usage: ScheduleSample  <defaults>  <profiles>  <symbol>  [-f time]
 
     Where:
     <defaults>  is a URL to Schedule API defaults file
     <profiles>  is a URL to IPF file
     <symbol>    is a ticker symbol used for sample
-    [time]      is a time used for sample in a format yyyy-MM-dd-HH:mm:ss
+    [-f time]      is a time used for sample in a format yyyy-MM-dd-HH:mm:ss
 
     sample: ScheduleSample  schedule.properties.zip  sample.ipf.zip  IBM  2011-05-26-14:15:00
 

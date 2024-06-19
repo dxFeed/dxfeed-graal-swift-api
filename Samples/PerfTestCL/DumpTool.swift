@@ -30,7 +30,7 @@ class DumpTool: ToolsCommand {
 
     sample: Dump demo.dxfeed.com:7300 quote AAPL,IBM,ETH/USD:GDAX -t "tape_test.txt[format=text]"
 
-    sampe: Dump tapeK2.tape[speed=max] all all -q -t ios_tapeK2.tape
+    sample: Dump tapeK2.tape[speed=max] all all -q -t ios_tapeK2.tape
     """
     var publisher: DXPublisher?
     var isQuite = false

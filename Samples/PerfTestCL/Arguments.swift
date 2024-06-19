@@ -13,12 +13,12 @@ enum ArgumentParserException: Error {
 }
 
 class Arguments {
-    private let arguments: [String]
+    private let allParameters: [String]
 
     public lazy var properties: [String: String] = {
         var properties = [String: String]()
-        if let propIndex = arguments.firstIndex(of: "-p") {
-            arguments[propIndex + 1].split(separator: ",").forEach { substring in
+        if let propIndex = allParameters.firstIndex(of: "-p") {
+            allParameters[propIndex + 1].split(separator: ",").forEach { substring in
                 let prop = substring.split(separator: "=")
                 if prop.count == 2 {
                     properties[String(prop.first!)] = String(prop.last!)
@@ -31,25 +31,24 @@ class Arguments {
     }()
 
     public lazy var isQuite: Bool = {
-        if let isQuiteIndex = arguments.firstIndex(of: "-q") {
+        if let isQuiteIndex = allParameters.firstIndex(of: "-q") {
             return true
         }
         return false
     }()
 
     public lazy var tape: String? = {
-        if let tapeIndex = arguments.firstIndex(of: "-t") {
-            return arguments[tapeIndex + 1]
+        if let tapeIndex = allParameters.firstIndex(of: "-t") {
+            return allParameters[tapeIndex + 1]
         }
         return nil
     }()
 
     public lazy var time: String? = {
-        if arguments.count > 4 {
-            return arguments[4]
-        } else {
-            return nil
+        if let tapeIndex = allParameters.firstIndex(of: "-f") {
+            return allParameters[tapeIndex + 1]
         }
+        return nil
     }()
 
     init(_ cmd: [String], requiredNumberOfArguments: Int) throws {
@@ -62,28 +61,28 @@ Cmd \(cmd) contains not enough \(cmd.count - 1) arguments. Expected \(requiredNu
 """)
         }
         // 0 Arg is path to executed app
-        self.arguments =  Array(cmd[1..<cmd.count])
+        self.allParameters =  Array(cmd[1..<cmd.count])
     }
 
     public subscript(index: Int) -> String {
-        arguments[index]
+        allParameters[index]
     }
 
     public var count: Int {
-        arguments.count
+        allParameters.count
     }
 
     public func parseTypes(at index: Int) -> [EventCode] {
-        if arguments[2] == "all" {
+        if allParameters[2] == "all" {
             return EventCode.allCases
         }
-        return arguments[2].split(separator: ",").compactMap { str in
+        return allParameters[2].split(separator: ",").compactMap { str in
             return EventCode(string: String(str))
         }
     }
 
     public func parseSymbols(at index: Int) -> [Symbol] {
-        let symbols = arguments[index]
+        let symbols = allParameters[index]
         if symbols.lowercased() == "all" {
             return [WildcardSymbol.all]
         }
