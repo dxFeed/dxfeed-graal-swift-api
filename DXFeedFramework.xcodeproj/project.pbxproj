@@ -220,7 +220,6 @@
 		648E98AA2AAF625800BFD219 /* IIndexedEvent+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */; };
 		649282E72AD54919008F0F04 /* ScheduleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282E62AD54919008F0F04 /* ScheduleUtils.swift */; };
 		649282E82AD54919008F0F04 /* ScheduleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282E62AD54919008F0F04 /* ScheduleUtils.swift */; };
-		649282EB2AD55323008F0F04 /* IpfConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282E92AD55323008F0F04 /* IpfConnect.swift */; };
 		649282ED2AD593F3008F0F04 /* OrderSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282EC2AD593F3008F0F04 /* OrderSourceTest.swift */; };
 		64963B6A2A8E545C001E40F7 /* IEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64963B692A8E545C001E40F7 /* IEventType.swift */; };
 		649706842AD82B070068FF88 /* Series.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649706832AD82B070068FF88 /* Series.swift */; };
@@ -542,6 +541,7 @@
 		6401A5142A5820C9009BA686 /* DXFeedAllTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = DXFeedAllTests.xctestplan; sourceTree = "<group>"; };
 		6406F2562AD9820700B58C42 /* NativePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativePublisher.swift; sourceTree = "<group>"; };
 		6406F25A2AD987EB00B58C42 /* PublisherTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherTest.swift; sourceTree = "<group>"; };
+		640885C42B1F477A00E6CF88 /* DxFeedIpfConnect.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = DxFeedIpfConnect.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6408BB712B1F2D14005D7797 /* WriteTapeFile.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = WriteTapeFile.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		64098F492ACD6AF20020D741 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		64098F4C2ACD73820020D741 /* PerfTestEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfTestEventListener.swift; sourceTree = "<group>"; };
@@ -699,7 +699,6 @@
 		648C72482B19CA5A00E2FEF3 /* DXExceptionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXExceptionTest.swift; sourceTree = "<group>"; };
 		648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IIndexedEvent+Ext.swift"; sourceTree = "<group>"; };
 		649282E62AD54919008F0F04 /* ScheduleUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleUtils.swift; sourceTree = "<group>"; };
-		649282E92AD55323008F0F04 /* IpfConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IpfConnect.swift; sourceTree = "<group>"; };
 		649282EC2AD593F3008F0F04 /* OrderSourceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSourceTest.swift; sourceTree = "<group>"; };
 		64963B692A8E545C001E40F7 /* IEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEventType.swift; sourceTree = "<group>"; };
 		649706832AD82B070068FF88 /* Series.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
@@ -969,7 +968,6 @@
 				648BD5682AC450D6004A3A95 /* ConnectTool.swift */,
 				6486B97E2AD4167800D8D5FA /* LiveIpfSample.swift */,
 				64FFE59E2AD430E4003D3353 /* ScheduleSample.swift */,
-				649282E92AD55323008F0F04 /* IpfConnect.swift */,
 				645CD0032AE145E600F99FCF /* DumpTool.swift */,
 				648BD56A2AC4576F004A3A95 /* HelpTool.swift */,
 				648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */,
@@ -1010,6 +1008,7 @@
 				644C52902B1E345E002C034C /* DxFeedSample.playground */,
 				6435EE3C2B1F1E9200E8496C /* PrintQuoteEvents.playground */,
 				6408BB712B1F2D14005D7797 /* WriteTapeFile.playground */,
+				640885C42B1F477A00E6CF88 /* DxFeedIpfConnect.playground */,
 			);
 			path = Playgrounds;
 			sourceTree = "<group>";
@@ -2122,7 +2121,6 @@
 				647426AF2ABC93900012F793 /* EventCode+String.swift in Sources */,
 				645BE8542AC3229D0028243D /* ToolsCommand.swift in Sources */,
 				644FE5D12AC1F34000580E3A /* LatencyMetricsPrinter.swift in Sources */,
-				649282EB2AD55323008F0F04 /* IpfConnect.swift in Sources */,
 				6486B97F2AD4167800D8D5FA /* LiveIpfSample.swift in Sources */,
 				645BE8522AC31E7C0028243D /* PerfTestTool.swift in Sources */,
 				645CD0042AE145E600F99FCF /* DumpTool.swift in Sources */,
