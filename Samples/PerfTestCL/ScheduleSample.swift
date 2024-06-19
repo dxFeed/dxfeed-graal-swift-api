@@ -1,5 +1,5 @@
 //
-//  ScheduleCommand.swift
+//  ScheduleSample.swift
 //  Tools
 //
 //  Created by Aleksey Kosylo on 09.10.23.
@@ -8,7 +8,7 @@
 import Foundation
 import DXFeedFramework
 
-class ScheduleCommand: ToolsCommand {
+class ScheduleSample: ToolsCommand {
     var isTools: Bool = false
     var cmd = "ScheduleSample"
 
