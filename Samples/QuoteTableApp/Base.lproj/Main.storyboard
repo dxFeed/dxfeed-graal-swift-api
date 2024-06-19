@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fbd-3S-cKV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fbd-3S-cKV">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -56,10 +56,10 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bpL-FX-1nC">
-                                                            <rect key="frame" x="201.66666666666663" y="5" width="171.33333333333337" height="80"/>
+                                                            <rect key="frame" x="201.66666666666663" y="5" width="166.33333333333337" height="80"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OfZ-3h-hz9" customClass="PaddingLabel" customModule="DXARQuoteTableApp" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="84" height="80"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="81.666666666666671" height="80"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -70,7 +70,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="my2-SE-epx" customClass="PaddingLabel" customModule="DXARQuoteTableApp" customModuleProvider="target">
-                                                                    <rect key="frame" x="87.000000000000028" y="0.0" width="84.333333333333343" height="80"/>
+                                                                    <rect key="frame" x="84.666666666666657" y="0.0" width="81.666666666666657" height="80"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -99,7 +99,7 @@
                                                         <constraint firstItem="bYJ-iy-MIv" firstAttribute="top" secondItem="BCA-mh-she" secondAttribute="top" id="84X-a3-aBY"/>
                                                         <constraint firstItem="bYJ-iy-MIv" firstAttribute="width" secondItem="BCA-mh-she" secondAttribute="width" multiplier="0.5" id="AR7-l1-plJ"/>
                                                         <constraint firstAttribute="bottom" secondItem="bpL-FX-1nC" secondAttribute="bottom" constant="5" id="BA6-8C-zmf"/>
-                                                        <constraint firstAttribute="trailing" secondItem="bpL-FX-1nC" secondAttribute="trailing" id="R4N-1X-2zE"/>
+                                                        <constraint firstAttribute="trailing" secondItem="bpL-FX-1nC" secondAttribute="trailing" constant="5" id="R4N-1X-2zE"/>
                                                         <constraint firstAttribute="bottom" secondItem="bYJ-iy-MIv" secondAttribute="bottom" id="gR1-hP-QDl"/>
                                                         <constraint firstItem="bpL-FX-1nC" firstAttribute="top" secondItem="BCA-mh-she" secondAttribute="top" constant="5" id="pNN-33-saM"/>
                                                         <constraint firstItem="bYJ-iy-MIv" firstAttribute="leading" secondItem="BCA-mh-she" secondAttribute="leading" constant="10" id="s9h-d3-uFy"/>
@@ -353,10 +353,10 @@
     </scenes>
     <designables>
         <designable name="OfZ-3h-hz9">
-            <size key="intrinsicContentSize" width="24.666666666666668" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="41.666666666666671" height="30.333333333333332"/>
         </designable>
         <designable name="my2-SE-epx">
-            <size key="intrinsicContentSize" width="28.333333333333332" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="45.333333333333329" height="30.333333333333332"/>
         </designable>
     </designables>
     <resources>
