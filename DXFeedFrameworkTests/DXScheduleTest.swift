@@ -72,13 +72,6 @@ final class DXScheduleTest: XCTestCase {
             for session in day.sessions where [.afterMarket, .preMarket, .regular].contains(session.type) {
                 extendedHours.append(session)
             }
-            let date = String(format: "%d-%02d-%02d", arguments: [day.year, day.monthOfYear, day.dayOfMonth])
-            var sessions = "\n"
-            day.sessions.forEach { sch in
-                sessions += "\(sch.startTime) \(sch.endTime) \(sch.type) \n"
-            }
-            print("\(date) \(day.holiday) \(day.shortDay) \(sessions)")
-
         }
         XCTAssert(sessionBreaks.count == 246)
         XCTAssert(extendedHours.count == 300)
@@ -94,7 +87,5 @@ final class DXScheduleTest: XCTestCase {
 //            print("Error \(error)")
 //        }
 //    }
-
-    
 
 }
