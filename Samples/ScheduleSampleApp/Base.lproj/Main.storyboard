@@ -17,12 +17,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="740" verticalCompressionResistancePriority="740" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="yyyy-MM-dd-HH:mm:ss" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1o3-Td-0Qg">
-                                <rect key="frame" x="15" y="79" width="228" height="34"/>
+                                <rect key="frame" x="15" y="79" width="203" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ixf-TU-5Kd">
-                                <rect key="frame" x="258" y="79" width="125" height="35"/>
+                                <rect key="frame" x="233" y="79" width="125" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="FpV-1y-x6n"/>
                                     <constraint firstAttribute="height" constant="35" id="qHG-Q3-Ex3"/>
@@ -33,8 +33,11 @@
                                     <action selector="getScheduleTapped:" destination="isd-kp-ktd" eventType="touchUpInside" id="xCF-CF-0lm"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="SgM-Zy-lav">
+                                <rect key="frame" x="363" y="86.666666666666671" width="20" height="20"/>
+                            </activityIndicatorView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="AAPL" borderStyle="roundedRect" placeholder="Stock symbol" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pEg-ZG-Tb9">
-                                <rect key="frame" x="15" y="133" width="227" height="34"/>
+                                <rect key="frame" x="15" y="133" width="203" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="7gF-NI-fs9"/>
                                 </constraints>
@@ -58,17 +61,20 @@
                             <constraint firstItem="U05-Zt-ufP" firstAttribute="trailing" secondItem="qAL-SM-nWU" secondAttribute="trailing" id="2L6-wB-4Of"/>
                             <constraint firstItem="1o3-Td-0Qg" firstAttribute="leading" secondItem="qAL-SM-nWU" secondAttribute="leading" constant="15" id="FUf-Qg-QgD"/>
                             <constraint firstItem="U05-Zt-ufP" firstAttribute="leading" secondItem="qAL-SM-nWU" secondAttribute="leading" id="I9z-MP-8Lx"/>
+                            <constraint firstItem="qAL-SM-nWU" firstAttribute="trailing" secondItem="SgM-Zy-lav" secondAttribute="trailing" constant="10" id="Rvb-FH-ZAj"/>
                             <constraint firstItem="Ixf-TU-5Kd" firstAttribute="leading" secondItem="1o3-Td-0Qg" secondAttribute="trailing" constant="15" id="V0i-88-6TP"/>
-                            <constraint firstItem="qAL-SM-nWU" firstAttribute="trailing" secondItem="Ixf-TU-5Kd" secondAttribute="trailing" constant="10" id="c6O-Um-0nr"/>
                             <constraint firstItem="pEg-ZG-Tb9" firstAttribute="leading" secondItem="qAL-SM-nWU" secondAttribute="leading" constant="15" id="dUo-Y3-Yv9"/>
                             <constraint firstItem="Ixf-TU-5Kd" firstAttribute="top" secondItem="qAL-SM-nWU" secondAttribute="top" constant="20" id="h2g-lU-4zX"/>
-                            <constraint firstItem="pEg-ZG-Tb9" firstAttribute="width" secondItem="1o3-Td-0Qg" secondAttribute="width" multiplier="0.994956" id="kVz-w3-i5H"/>
+                            <constraint firstItem="pEg-ZG-Tb9" firstAttribute="trailing" secondItem="1o3-Td-0Qg" secondAttribute="trailing" id="qCl-2R-Re9"/>
                             <constraint firstItem="U05-Zt-ufP" firstAttribute="top" secondItem="pEg-ZG-Tb9" secondAttribute="bottom" constant="20" id="rbU-sx-93T"/>
+                            <constraint firstItem="SgM-Zy-lav" firstAttribute="centerY" secondItem="Ixf-TU-5Kd" secondAttribute="centerY" id="uyh-RK-1W4"/>
                             <constraint firstItem="pEg-ZG-Tb9" firstAttribute="top" secondItem="1o3-Td-0Qg" secondAttribute="bottom" constant="20" id="w1d-gE-3D4"/>
                             <constraint firstItem="1o3-Td-0Qg" firstAttribute="top" secondItem="qAL-SM-nWU" secondAttribute="top" constant="20" id="wLN-ty-Bj9"/>
+                            <constraint firstItem="SgM-Zy-lav" firstAttribute="leading" secondItem="Ixf-TU-5Kd" secondAttribute="trailing" constant="5" id="zrk-Nj-bvP"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="SgM-Zy-lav" id="KiN-5d-RIe"/>
                         <outlet property="getScheduleButton" destination="Ixf-TU-5Kd" id="wsw-80-bfA"/>
                         <outlet property="resultTextView" destination="U05-Zt-ufP" id="Gfz-mg-jcP"/>
                         <outlet property="symbolTextField" destination="pEg-ZG-Tb9" id="76c-dL-558"/>

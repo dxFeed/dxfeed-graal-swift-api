@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet var getScheduleButton: UIButton!
     @IBOutlet var symbolTextField: UITextField!
     @IBOutlet var resultTextView: UITextView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+
     let dateFormat = "yyyy-MM-dd-HH:mm:ss"
     let defaultIPfUrl = "https://demo:demo@tools.dxfeed.com/ipf?TYPE=STOCK"
     lazy var  dateFormater = {
@@ -23,39 +25,65 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.isHidden = true
         timeTextField.text = dateFormater.string(from: Date.now)
         // Do any additional setup after loading the view.
     }
 
     @IBAction func getScheduleTapped(_ sender: Any) {
-        do {
-            let profile = DXInstrumentProfileReader()
-            let profiles = try profile.readFromFile(address: defaultIPfUrl)
-            let symbol = symbolTextField.text
-            let profilesForSymbol = profiles?.filter({ ipf in
-                ipf.symbol == symbol
-            })
+        let symbol = symbolTextField.text ?? ""
+        let currentTime = getCurrentTime()
+        if symbol.isEmpty || currentTime == 0 {
+            let alert = UIAlertController(title: "Oups",
+                                          message: "Please, input symbol and time",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in }))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
 
-            let next5Days = try profilesForSymbol?.map({ profile in
-                try findNext5Days(profile)
-            })
-            let currentSession = try profilesForSymbol?.map({ profile in
-                try getSessions(profile)
-            })
-            var result = next5Days?.joined(separator: "") ?? ""
-            result += "\n"
-            result += currentSession?.joined(separator: "") ?? ""
-            resultTextView.text = result
-        } catch {
-            let textError = "Error: \(error)"
-            print(textError)
-            resultTextView.text = textError
+        DispatchQueue.global(qos: .background).async {
+            do {
+                let profile = DXInstrumentProfileReader()
+                let profiles = try profile.readFromFile(address: self.defaultIPfUrl)
+                let profilesForSymbol = profiles?.filter({ ipf in
+                    ipf.symbol == symbol
+                })
+                if profilesForSymbol?.count == 0 {
+                    self.show(result: "Could not find profile for \(symbol)")
+                    return
+                }
+                let next5Days = try profilesForSymbol?.map({ profile in
+                    try self.findNext5Days(profile, time: currentTime)
+                })
+                let currentSession = try profilesForSymbol?.map({ profile in
+                    try self.getSessions(profile, time: currentTime)
+                })
+                var result = next5Days?.joined(separator: "") ?? ""
+                result += "\n"
+                result += currentSession?.joined(separator: "") ?? ""
+                self.show(result: result)
+            } catch {
+                let textError = "Error: \(error)"
+                print(textError)
+                self.show(result: textError)
+            }
         }
     }
 
-    private func findNext5Days(_ profile: InstrumentProfile) throws -> String {
+    private func show(result: String) {
+        DispatchQueue.main.async {
+            self.activityIndicator.isHidden = true
+            self.activityIndicator.stopAnimating()
+            self.resultTextView.text = result
+        }
+    }
+
+    private func findNext5Days(_ profile: InstrumentProfile, time: Long) throws -> String {
         let schedule = try DXSchedule(instrumentProfile: profile)
-        var day: ScheduleDay? = try schedule.getDayByTime(time: getCurrentTime())
+        var day: ScheduleDay? = try schedule.getDayByTime(time: time)
         var dates = [String]()
         dates.append("5 next holidays for \(profile.symbol): ")
         for _ in 0..<5 {
@@ -65,9 +93,9 @@ class ViewController: UIViewController {
         return dates.joined(separator: "\n")
     }
 
-    private func getSessions(_ profile: InstrumentProfile) throws -> String {
+    private func getSessions(_ profile: InstrumentProfile, time: Long) throws -> String {
         let schedule = try DXSchedule(instrumentProfile: profile)
-        let session = try schedule.getSessionByTime(time: getCurrentTime())
+        let session = try schedule.getSessionByTime(time: time)
         let nextTradingSession = session.isTrading ? session : try session.getNext(filter: .trading)
         let nearestSession = try schedule.getNearestSessionByTime(time: getCurrentTime(), filter: .trading)
 
@@ -75,7 +103,11 @@ class ViewController: UIViewController {
             guard let session = session else {
                 return ""
             }
-            return "\(profile.symbol): \(session.type) \(TimeUtil.toLocalDateStringWithoutMillis(millis: session.startTime))-\(TimeUtil.toLocalDateStringWithoutMillis(millis: session.endTime))"
+            return """
+        \(profile.symbol): \(session.type) \
+        \(TimeUtil.toLocalDateStringWithoutMillis(millis: session.startTime))\
+        -\(TimeUtil.toLocalDateStringWithoutMillis(millis: session.endTime))
+        """
         }
         return """
 Current session for \(profile.symbol):
