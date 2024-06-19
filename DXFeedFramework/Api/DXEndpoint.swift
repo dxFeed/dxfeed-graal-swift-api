@@ -276,7 +276,7 @@ public class DXEndpoint {
     /// ``connect(_:)`` method or was disconnected with ``disconnect()``  method.
     /// The method initiates a short-path way for reconnecting, so whether listeners will have a chance to see
     /// an intermediate state ``DXEndpointState/notConnected`` depends on the implementation.
-    /// - Throws: GraalException. Rethrows exception from Java.recore
+    /// - Throws: GraalException. Rethrows exception from Java.
     public func reconnect() throws {
         try self.endpointNative.reconnect()
     }
@@ -286,7 +286,7 @@ public class DXEndpoint {
     /// The endpoint ``getState()`` immediately becomes ``DXEndpointState/notConnected`` otherwise.
     /// This method does not release all resources that are associated with this endpoint.
     /// Use ``close()`` or ``closeAndAwaitTermination()`` methods to release all resources.
-    /// - Throws: GraalException. Rethrows exception from Java.recore
+    /// - Throws: GraalException. Rethrows exception from Java.
     public func disconnect() throws {
         try self.endpointNative.disconnect()
     }
@@ -296,7 +296,7 @@ public class DXEndpoint {
     /// The endpoint``getState()`` immediately becomes``DXEndpointState/notConnected`` otherwise.
     /// This method does not release all resources that are associated with this endpoint.
     /// Use ``close()`` or ``closeAndAwaitTermination()`` methods to release all resources.
-    /// - Throws: GraalException. Rethrows exception from Java.recore
+    /// - Throws: GraalException. Rethrows exception from Java.
     public func disconnectAndClear() throws {
         try self.endpointNative.disconnectAndClear()
     }
@@ -305,7 +305,7 @@ public class DXEndpoint {
     /// All network connection are terminated as with ``disconnect()``
     /// method and no further connections can be established.
     /// The endpoint ``getState()`` immediately becomes ``DXEndpointState/closed``.
-    /// - Throws: GraalException. Rethrows exception from Java.recore
+    /// - Throws: GraalException. Rethrows exception from Java.
     public func close() throws {
         try self.endpointNative.close()
     }
@@ -349,7 +349,7 @@ public class DXEndpoint {
     /// This is important when writing data to file via "tape:..." connector to make sure that
     /// all published data was written before closing this endpoint.
     /// **This method is blocking.**
-    /// - Throws: GraalException. Rethrows exception from Java.recore
+    /// - Throws: GraalException. Rethrows exception from Java.
     public func awaitProcessed() throws {
         try endpointNative.awaitProcessed()
     }
@@ -360,14 +360,14 @@ public class DXEndpoint {
     /// processed by the corresponding subscription listeners. Use ``closeAndAwaitTermination()`` after
     /// this method returns to make sure that all processing has completed.
     /// **This method is blocking.**
-    /// - Throws: GraalException. Rethrows exception from Java.recore
+    /// - Throws: GraalException. Rethrows exception from Java.
     public func awaitNotConnected() throws {
         try endpointNative.awaitNotConnected()
     }
 
     /// Gets the ``DXEndpointState`` of this endpoint.
     /// - Returns: ``DXEndpointState``
-    /// - Throws: GraalException. Rethrows exception from Java.recore
+    /// - Throws: GraalException. Rethrows exception from Java.
     public func getState() throws -> DXEndpointState {
         return try endpointNative.getState()
     }

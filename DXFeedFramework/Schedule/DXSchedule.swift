@@ -23,7 +23,7 @@ public class DXSchedule {
     ///
     /// - Parameters:
     ///    - scheduleDefinition: schedule definition of requested schedule
-    /// - Throws: GraalException. Rethrows exception from Java.recore
+    /// - Throws: GraalException. Rethrows exception from Java.
     public convenience init(scheduleDefinition: String) throws {
         let native = try NativeSchedule(scheduleDefinition: scheduleDefinition)
         self.init(native: native)
@@ -33,7 +33,7 @@ public class DXSchedule {
     ///
     /// - Parameters:
     ///    - instrumentProfile: instrument profile those schedule is requested
-    /// - Throws: GraalException. Rethrows exception from Java.recore
+    /// - Throws: GraalException. Rethrows exception from Java.
     public convenience init(instrumentProfile: InstrumentProfile) throws {
         let native = try NativeSchedule(instrumentProfile: instrumentProfile)
         self.init(native: native)
@@ -44,7 +44,7 @@ public class DXSchedule {
     /// - Parameters:
     ///    - instrumentProfile: instrument profile those schedule is requested
     ///    - venue: trading venue those schedule is requested
-    /// - Throws: GraalException. Rethrows exception from Java.recore
+    /// - Throws: GraalException. Rethrows exception from Java.
     public convenience init(instrumentProfile: InstrumentProfile, venue: String) throws {
         let native = try NativeSchedule(instrumentProfile: instrumentProfile, venue: venue)
         self.init(native: native)
@@ -53,28 +53,28 @@ public class DXSchedule {
     /// - Parameters:
     ///    - profile: instrument profile those schedule is requested
     /// - Returns: trading venue those schedule is requested
-    /// - Throws: GraalException. Rethrows exception from Java.recore
+    /// - Throws: GraalException. Rethrows exception from Java.
     public static func getTradingVenues(profile: InstrumentProfile ) throws -> [String] {
         return try NativeSchedule.getTradingVenues(profile: profile)
     }
 
     /// Returns day that contains specified time.
     ///
-    /// - Throws: GraalException. Rethrows exception from Java.recore
+    /// - Throws: GraalException. Rethrows exception from Java.
     public func getName() throws -> String {
         return try native.getName()
     }
 
     /// Returns time zone name in which this schedule is defined.
     ///
-    /// - Throws: GraalException. Rethrows exception from Java.recore
+    /// - Throws: GraalException. Rethrows exception from Java.
     public func getTimeZone() throws -> String {
         return try native.getTimeZone()
     }
 
     /// Returns time zone id in which this schedule is defined.
     ///
-    /// - Throws: GraalException. Rethrows exception from Java.recore
+    /// - Throws: GraalException. Rethrows exception from Java.
     public func getTimeZoneId() throws -> String {
         return try native.getTimeZoneId()
     }
@@ -85,7 +85,7 @@ public class DXSchedule {
     /// falls outside of valid date range from 0001-01-02 to 9999-12-30.
     /// - Parameters:
     ///    - time: the time to search for
-    /// - Throws: GraalException. Rethrows exception from Java.recore
+    /// - Throws: GraalException. Rethrows exception from Java.
     public func getDayByTime(time: Long) throws -> ScheduleDay {
         let day = try native.getDayByTime(time: time)
         return day
@@ -97,7 +97,7 @@ public class DXSchedule {
     /// falls outside of valid date range from 0001-01-02 to 9999-12-30.
     /// - Parameters:
     ///    - day: identifier to search for
-    /// - Throws: GraalException. Rethrows exception from Java.recore
+    /// - Throws: GraalException. Rethrows exception from Java.
     public func getDayById(day: Int32) throws -> ScheduleDay {
         let day = try native.getDayById(dayId: day)
         return day
@@ -114,7 +114,7 @@ public class DXSchedule {
     /// fall outside of valid date range from 0001-01-02 to 9999-12-30.
     /// - Parameters:
     ///    - yearMonthDay: year, month and day numbers to search for
-    /// - Throws: ``GraalException``. Rethrows exception from Java.recore
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func getDayByYearMonthDay(yearMonthDay: Int32) throws -> ScheduleDay {
         let day = try native.getDayByYearMonthDay(yearMonthDay: yearMonthDay)
         return day
