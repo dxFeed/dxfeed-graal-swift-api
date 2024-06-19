@@ -50,19 +50,20 @@ final class DXObservableSubscriptionTest: XCTestCase {
     }
 
     func testCreateSubscription() throws {
+        let events = EventCode.profile
         let port = Int.random(in: 7800..<7900)
         let address = ":\(port)"
 
         let endpoint = try DXEndpoint.create(.publisher).connect(address)
         let publisher = endpoint.getPublisher()
         let listener = PublishListener(publisher: publisher!)
-        let subscription = try publisher?.getSubscription(EventCode.profile)
+        let subscription = try publisher?.getSubscription(events)
         try subscription?.addChangeListener(listener)
 
         let receivedEventsExpectation = expectation(description: "Received events")
 
         let feedEndpoint = try DXEndpoint.create().connect("localhost:\(port)")
-        let feedSubscription = try feedEndpoint.getFeed()?.createSubscription(.profile)
+        let feedSubscription = try feedEndpoint.getFeed()?.createSubscription(events)
         let eventListener = AnonymousClass { anonymCl in
             anonymCl.callback = { events in
                 events.forEach { mEvent in
@@ -78,6 +79,28 @@ final class DXObservableSubscriptionTest: XCTestCase {
         try feedSubscription?.add(listener: eventListener)
         try feedSubscription?.addSymbols("AAPL:TEST")
         wait(for: [receivedEventsExpectation], timeout: 2)
+
+        XCTAssert(subscription?.isClosed() == false)
+        XCTAssert(feedSubscription?.isClosed() == false)
+
+        XCTAssert(subscription?.eventTypes == Set([events]))
+        XCTAssert(feedSubscription?.eventTypes == Set([events]))
+
+        XCTAssert(subscription?.isContains(events) == true)
+        XCTAssert(feedSubscription?.isContains(events) == true)
+
+        feedSubscription?.remove(listener: eventListener)
+        try subscription?.removeChangeListener(listener)
+
+        try endpoint.closeAndAwaitTermination()
+        XCTAssert(subscription?.isClosed() == true)
+    }
+
+    func testInitializationWithNilNativeSubscription() {
+        XCTAssertThrowsError(try DXObservableSubscription(native: nil, events: [.quote])) { error in
+            // Assert
+            XCTAssertTrue(error is ArgumentException)
+        }
     }
 
 }

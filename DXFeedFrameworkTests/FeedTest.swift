@@ -8,6 +8,13 @@ import XCTest
 @testable import DXFeedFramework
 
 final class FeedTest: XCTestCase {
+    func testInitializationWithNilNativeSubscription() {
+        XCTAssertThrowsError(try DXFeedSubcription(native: nil, events: [.quote])) { error in
+            // Assert
+            XCTAssertTrue(error is ArgumentException)
+        }
+    }
+
     func testFeedCreation() throws {
         let endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint shouldn't be nil")
@@ -50,14 +57,21 @@ final class FeedTest: XCTestCase {
         let testString = TimeSeriesSubscriptionSymbol(symbol: symbol1, fromTime: 10).stringValue
         print(testString)
     }
+    
+    func testCreateSubscriptionWithSymbol() throws {
+        try createMultipleSubscriptionWithSymbol(symbols: ["ETH/USD:GDAX"])
+    }
 
-    func testFeedCreateMultipleSubscriptionWithSymbol() throws {
+    func testCreateSubscriptionWithSymbols() throws {
+        try createMultipleSubscriptionWithSymbol(symbols: ["ETH/USD:GDAX", "XBT/USD:GDAX"])
+    }
+
+    func createMultipleSubscriptionWithSymbol(symbols: [String]) throws {
         let endpoint: DXEndpoint? = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         try endpoint?.connect("demo.dxfeed.com:7300")
         XCTAssertNotNil(endpoint, "Endpoint shouldn't be nil")
         let feed = endpoint?.getFeed()
         XCTAssertNotNil(feed, "Feed shouldn't be nil")
-        let symbols = ["ETH/USD:GDAX"]
         var differentSymbols = Set<String>()
         let code = EventCode.quote
         let subscription = try feed?.createSubscription(code)
@@ -76,8 +90,14 @@ final class FeedTest: XCTestCase {
         }
         try subscription?.add(listener: listener)
         XCTAssertNotNil(subscription, "Subscription shouldn't be nil")
-        try subscription?.addSymbols(symbols)
+        if symbols.count == 1 {
+            try subscription?.addSymbols(symbols.first!)
+        } else {
+            try subscription?.addSymbols(symbols)
+        }
         wait(for: [receivedEventExp], timeout: 5)
+
+        try subscription?.removeSymbols(symbols)
     }
 
     func testTimeAndSale() throws {
