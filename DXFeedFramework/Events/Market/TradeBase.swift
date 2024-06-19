@@ -82,37 +82,6 @@ flags: \(flags)
     }
 }
 
-public enum Direction: Int32, CaseIterable {
-    // swiftlint:disable identifier_name
-
-    case undefined = 0
-    case down
-    case zeroDown
-    case zero
-    case zeroUp
-    case up
-    // swiftlint:enable identifier_name
-
-    static let values: [Direction] = {
-        let allvalues = Direction.allCases
-        let length = allvalues.count.roundedUp(toMultipleOf: 2)
-        print(length)
-        var result = [Direction]()
-        for index in 0..<length {
-            if index >= allvalues.count {
-                result.append(.undefined)
-            } else {
-                result.append(allvalues[index])
-            }
-        }
-        return result
-    }()
-
-    static func valueOf(_ value: Int) -> Direction {
-        return Direction.values[value]
-    }
-}
-
 extension TradeBase {
     private static let directionMask = Int32(7)
     private static let directionShift = Int32(1)

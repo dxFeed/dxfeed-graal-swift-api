@@ -30,10 +30,10 @@ class TimeAndSaleMapper: Mapper {
         pointee.size = timeAndSale.size
         pointee.bid_price = timeAndSale.bidPrice
         pointee.ask_price = timeAndSale.askPrice
-        pointee.exchange_sale_conditions = timeAndSale.exchangeSaleConditions.toCStringRef()
+        pointee.exchange_sale_conditions = timeAndSale.exchangeSaleConditions?.toCStringRef()
         pointee.flags = timeAndSale.flags
-        pointee.buyer = timeAndSale.buyer.toCStringRef()
-        pointee.seller = timeAndSale.seller.toCStringRef()
+        pointee.buyer = timeAndSale.buyer?.toCStringRef()
+        pointee.seller = timeAndSale.seller?.toCStringRef()
         let eventType = pointer.withMemoryRebound(to: dxfg_event_type_t.self, capacity: 1) { pointer in
             pointer.pointee.clazz = DXFG_EVENT_TIME_AND_SALE
             return pointer

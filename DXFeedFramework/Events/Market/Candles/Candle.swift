@@ -35,6 +35,8 @@ public class Candle: MarketEvent, CustomStringConvertible {
     public var impVolatility: Double = .nan
     public var openInterest: Double = .nan
 
+    public var eventSource = IndexedEventSource.defaultSource
+
     convenience init(_ symbol: CandleSymbol) {
         self.init()
         self.candleSymbol = symbol
@@ -77,6 +79,16 @@ extension Candle {
             )
         }
         index = (index & ~Int64(MarketEventConst.maxSequence)) | Int64(sequence)
+    }
+
+    public var time: Int64 {
+        get {
+            Int64(((self.index >> 32) * 1000) + ((self.index >> 22) & 0x3ff))
+        }
+        set {
+            index = (Long(TimeUtil.getSecondsFromTime(newValue)) << 32) |
+            Long(TimeUtil.getMillisFromTime(newValue) << 22) | Long(getSequence())
+        }
     }
 
     func toString() -> String {
