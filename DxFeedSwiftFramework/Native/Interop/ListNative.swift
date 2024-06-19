@@ -47,7 +47,7 @@ class ListNative<T> {
         let classes = UnsafeMutablePointer<UnsafeMutablePointer<T>?>
             .allocate(capacity: pointers.count)
         var iterator = classes
-        for code in pointers {        
+        for code in pointers {
             iterator.initialize(to: code)
             iterator = iterator.successor()
         }

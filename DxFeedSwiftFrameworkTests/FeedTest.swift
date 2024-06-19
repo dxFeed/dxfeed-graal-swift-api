@@ -79,8 +79,7 @@ final class FeedTest: XCTestCase {
         let endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         try endpoint.connect("demo.dxfeed.com:7300")
         let subscription = try endpoint.getFeed()?.createSubscription(.quote)
-        let testListner = TestEventListener(name: "TestListener")
-        subscription?.add(EmptyClass { ec in
+        subscription?.add(AnonymousClass { ec in
             ec.someFunc = { print("It worked") }
             return ec
         })
