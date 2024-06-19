@@ -64,8 +64,8 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Connect demo.dxfeed.com:7300 TimeAndSale &quot;ipf[https://demo:demo@tools.dxfeed.com/ipf?TYPE=STOCK&amp;compression=zip],APPL&quot; -p monitoring.stat=1s"
-            isEnabled = "NO">
+            argument = "Connect demo.dxfeed.com:7300 TRADE ETH/USD:GDAX"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "qds connect demo.dxfeed.com:7300 Quote AAPL,IBM"
@@ -89,7 +89,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "Dump tapeK2.tape[speed=max] all all -t ios_tapeK2.tape -q"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "DuMp tapeK2.tape[speed=max] -t ios_tapeK2.tape -q"

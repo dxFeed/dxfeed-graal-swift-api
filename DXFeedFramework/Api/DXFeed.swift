@@ -83,3 +83,31 @@ public extension DXFeed {
         return try native.getLastEvents(types: types)
     }
 }
+
+public extension DXFeed {
+    func getLastEventPromise(type: IEventType.Type, symbol: Symbol) throws -> Promise? {
+        let nativePromise = try native.getLastEventPromise(type: type, symbol: symbol)
+        return Promise(native: nativePromise)
+    }
+
+    func getLastEventPromises(type: IEventType.Type, symbols: [Symbol]) throws -> [Promise]? {
+        let nativePromises = try native.getLastEventPromises(type: type, symbols: symbols)
+        return nativePromises?.map({ promise in
+            Promise(native: promise)
+        })
+    }
+
+    func getIndexedEventsPromise(type: IEventType.Type, symbol: Symbol, source: IndexedEventSource) throws -> Promise? {
+        let nativePromise = try native.getIndexedEventsPromise(type: type, symbol: symbol, source: source)
+        return Promise(native: nativePromise)
+    }
+
+    func getTimeSeriesPromise(type: IEventType.Type, symbol: Symbol, fromTime: Long, toTime: Long) throws -> Promise? {
+        let nativePromise = try native.getTimeSeriesPromise(type: type,
+                                                            symbol: symbol,
+                                                            fromTime: fromTime,
+                                                            toTime: toTime)
+        return Promise(native: nativePromise)
+
+    }
+}
