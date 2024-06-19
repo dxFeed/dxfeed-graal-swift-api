@@ -9,16 +9,7 @@ import Foundation
 import XCTest
 @testable import DXFeedFramework
 
-class TestListener: DXEndpointObserver, Hashable {
-    static func == (lhs: TestListener, rhs: TestListener) -> Bool {
-        return lhs.expectations == rhs.expectations
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(expectations)
-    }
-
-    var state = DXEndpointState.notConnected
+class TestListener: DXEndpointObserver {
     var expectations: [DXEndpointState: XCTestExpectation]
     init(expectations: [DXEndpointState: XCTestExpectation]) {
         self.expectations = expectations
@@ -29,5 +20,15 @@ class TestListener: DXEndpointObserver, Hashable {
         if let expectation = expectations[new] {
             expectation.fulfill()
         }
+    }
+}
+
+extension TestListener: Hashable {
+    static func == (lhs: TestListener, rhs: TestListener) -> Bool {
+        return lhs.expectations == rhs.expectations
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(expectations)
     }
 }

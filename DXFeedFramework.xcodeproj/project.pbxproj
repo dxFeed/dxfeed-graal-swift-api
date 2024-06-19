@@ -57,11 +57,11 @@
 		641BCBC12A21077800FE23C2 /* EventCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBC02A21077800FE23C2 /* EventCode.swift */; };
 		641BDD582AC71CCE00236B78 /* LatencyTestCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BDD572AC71CCE00236B78 /* LatencyTestCommand.swift */; };
 		641BDD592AC7215200236B78 /* LatencyDiagnostic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6417DD1E2A39C9A7008912D6 /* LatencyDiagnostic.swift */; };
+		641BDD5B2AC72BD400236B78 /* ConcurrentWeakHashTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BDD5A2AC72BD400236B78 /* ConcurrentWeakHashTable.swift */; };
 		641BDD5D2ACD67A000236B78 /* LatencyListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BDD5C2ACD67A000236B78 /* LatencyListener.swift */; };
 		641BDD5E2ACD67A400236B78 /* LatencyListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BDD5C2ACD67A000236B78 /* LatencyListener.swift */; };
 		641BDD612ACD697B00236B78 /* AbstractEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BDD602ACD697B00236B78 /* AbstractEventListener.swift */; };
 		641BDD622ACD697B00236B78 /* AbstractEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BDD602ACD697B00236B78 /* AbstractEventListener.swift */; };
-		641BDD5B2AC72BD400236B78 /* ConcurentWeakSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BDD5A2AC72BD400236B78 /* ConcurentWeakSet.swift */; };
 		642528D02A3C534D00A04E41 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
 		642528D12A3C534D00A04E41 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
 		64262CCE2A4DA64700BA6BA3 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; platformFilters = (xros, ); productRef = 64262CCD2A4DA64700BA6BA3 /* RealityKitContent */; };
@@ -516,9 +516,9 @@
 		641BCBBB2A20ED8100FE23C2 /* DXEndpointObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXEndpointObserver.swift; sourceTree = "<group>"; };
 		641BCBC02A21077800FE23C2 /* EventCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCode.swift; sourceTree = "<group>"; };
 		641BDD572AC71CCE00236B78 /* LatencyTestCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatencyTestCommand.swift; sourceTree = "<group>"; };
+		641BDD5A2AC72BD400236B78 /* ConcurrentWeakHashTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentWeakHashTable.swift; sourceTree = "<group>"; };
 		641BDD5C2ACD67A000236B78 /* LatencyListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatencyListener.swift; sourceTree = "<group>"; };
 		641BDD602ACD697B00236B78 /* AbstractEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractEventListener.swift; sourceTree = "<group>"; };
-		641BDD5A2AC72BD400236B78 /* ConcurentWeakSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurentWeakSet.swift; sourceTree = "<group>"; };
 		64262CC92A4DA64600BA6BA3 /* DXVisionQuoteTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXVisionQuoteTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64262CCC2A4DA64700BA6BA3 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		64262CCF2A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionQuoteTableAppApp.swift; sourceTree = "<group>"; };
@@ -1009,7 +1009,7 @@
 				64656F642A1CAFC5006A0B19 /* String+Pointee.swift */,
 				64656F6A2A1CFAC2006A0B19 /* BridgeUtil.swift */,
 				64656F6E2A1CFC12006A0B19 /* WeakBox.swift */,
-				641BDD5A2AC72BD400236B78 /* ConcurentWeakSet.swift */,
+				641BDD5A2AC72BD400236B78 /* ConcurrentWeakHashTable.swift */,
 				64104FC42A26059B00D1FC41 /* ConcurrentSet.swift */,
 				64104FC62A2613BC00D1FC41 /* ConcurrentArray.swift */,
 				6469F8C12A3B169A00846831 /* MathUtil.swift */,
@@ -2087,7 +2087,7 @@
 				8088D77329C3A2F400F240CB /* GraalException.swift in Sources */,
 				64C771FF2A9504ED009868C2 /* SnapshotProcessor.swift in Sources */,
 				64C771F82A94B88C009868C2 /* TimeAndSaleType.swift in Sources */,
-				641BDD5B2AC72BD400236B78 /* ConcurentWeakSet.swift in Sources */,
+				641BDD5B2AC72BD400236B78 /* ConcurrentWeakHashTable.swift in Sources */,
 				6447A5DF2A8E56FC00739CCF /* IIndexedEvent.swift in Sources */,
 				64104FC52A26059B00D1FC41 /* ConcurrentSet.swift in Sources */,
 				64BA925F2A306B9600BE26A0 /* Profile.swift in Sources */,

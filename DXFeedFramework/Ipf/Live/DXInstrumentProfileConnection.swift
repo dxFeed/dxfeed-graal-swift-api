@@ -25,10 +25,7 @@ public class DXInstrumentProfileConnection {
     private let native: NativeInstrumentProfileConnection
     private let collector: DXInstrumentProfileCollector
 
-    private var observersSet = ConcurrentWeakSet<AnyObject>()
-    private var observers: [DXInstrumentProfileConnectionObserver] {
-        return observersSet.reader { $0.allObjects.compactMap { value in value as? DXInstrumentProfileConnectionObserver } }
-    }
+    private var observersSet = ConcurrentWeakHashTable<AnyObject>()
 
     /// Creates instrument profile connection with a specified address and collector.
     ///
@@ -136,6 +133,11 @@ public class DXInstrumentProfileConnection {
 
 extension DXInstrumentProfileConnection: NativeIPFConnectionListener {
     func connectionDidChangeState(old: DXInstrumentProfileConnectionState, new: DXInstrumentProfileConnectionState) {
-        observers.forEach { $0.connectionDidChangeState(old: old, new: new) }
+        observersSet.reader { items in
+            let enumerator = items.objectEnumerator()
+            while let observer = enumerator.nextObject() as? DXInstrumentProfileConnection {
+                observer.connectionDidChangeState(old: old, new: new)
+            }
+        }
     }
 }

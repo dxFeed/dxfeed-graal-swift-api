@@ -15,7 +15,8 @@
     ],
     "environmentVariableEntries" : [
 
-    ]
+    ],
+    "testRepetitionMode" : "retryOnFailure"
   },
   "testTargets" : [
     {
