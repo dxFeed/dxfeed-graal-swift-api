@@ -45,7 +45,6 @@ class SymbolMapper {
             let casted = pointer.withMemoryRebound(to: dxfg_symbol_t.self, capacity: 1) { $0 }
             return casted
         }
-        return nil
     }
 
     static func clearNative(symbol: UnsafeMutablePointer<dxfg_symbol_t>) {
