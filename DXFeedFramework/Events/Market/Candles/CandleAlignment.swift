@@ -43,21 +43,23 @@ enum CandleAlignment: DXCandleAlignment, CaseIterable {
         return myDict
     }()
 
-    static func normalizeAttributeForSymbol(_ symbol: String) throws -> String {
+    static func normalizeAttributeForSymbol(_ symbol: String?) -> String? {
         let attribute = MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
         guard let attribute = attribute else {
             return symbol
         }
-        let other = try parse(attribute)
-        if other == defaultAlignment {
-            _ = MarketEventSymbols.removeAttributeStringByKey(symbol, attributeKey)
-        }
-        if attribute != other.toString() {
-            if let changedSymbol =  try MarketEventSymbols.changeAttributeStringByKey(symbol,
-                                                                                      attributeKey,
-                                                                                      other.toString()) {
-                return changedSymbol
+        do {
+            let other = try parse(attribute)
+            if other == defaultAlignment {
+                _ = MarketEventSymbols.removeAttributeStringByKey(symbol, attributeKey)
             }
+            if attribute != other.toString() {
+                return try MarketEventSymbols.changeAttributeStringByKey(symbol,
+                                                                         attributeKey,
+                                                                         other.toString())
+            }
+        } catch let error {
+            print(error)
         }
         return symbol
     }

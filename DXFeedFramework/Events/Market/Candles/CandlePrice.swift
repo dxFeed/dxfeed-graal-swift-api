@@ -54,17 +54,21 @@ enum CandlePrice: DXCandlePrice, CaseIterable {
         return myDict
     }()
 
-    static func normalizeAttributeForSymbol(_ symbol: String) throws -> String {
+    static func normalizeAttributeForSymbol(_ symbol: String?) -> String? {
         let attribute = MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
         guard let value = attribute else {
             return symbol
         }
-        let other = try parse(value)
-        if other == defaultPrice {
-            _ = MarketEventSymbols.removeAttributeStringByKey(symbol, attributeKey)
-        }
-        if attribute != other.toString() {
-            return try MarketEventSymbols.changeAttributeStringByKey(symbol, attributeKey, other.toString()) ?? symbol
+        do {
+            let other = try parse(value)
+            if other == defaultPrice {
+                _ = MarketEventSymbols.removeAttributeStringByKey(symbol, attributeKey)
+            }
+            if attribute != other.toString() {
+                return try MarketEventSymbols.changeAttributeStringByKey(symbol, attributeKey, other.toString())
+            }
+        } catch let error {
+            print(error)
         }
         return symbol
     }
@@ -76,7 +80,6 @@ enum CandlePrice: DXCandlePrice, CaseIterable {
         }
         return try parse(value)
     }
-
 
     static func parse(_ symbol: String) throws -> CandlePrice {
         let length = symbol.length

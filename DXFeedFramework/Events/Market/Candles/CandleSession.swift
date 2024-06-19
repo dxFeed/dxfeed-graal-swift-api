@@ -27,7 +27,6 @@ extension DXCandleSession: ExpressibleByStringLiteral {
     }
 }
 
-
 enum CandleSession: DXCandleSession, CaseIterable {
     case any = "Any"
     case regular = "Regular"
@@ -36,21 +35,24 @@ enum CandleSession: DXCandleSession, CaseIterable {
 
     static let defaultSession = CandleSession.any
 
-    static func normalizeAttributeForSymbol(_ symbol: String) -> String {
+    static func normalizeAttributeForSymbol(_ symbol: String?) -> String? {
         let attribute = MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
         guard let attribute = attribute else {
             return symbol
         }
-        let other = Bool(attribute)
-        if other == true && attribute != regular.toString() {
-            if let changedSymbol = try? MarketEventSymbols.changeAttributeStringByKey(symbol,
-                                                                                      attributeKey,
-                                                                                      regular.toString()) {
-                return changedSymbol
+        do {
+            let other = Bool(attribute)
+            if other == true && attribute != regular.toString() {
+                return try MarketEventSymbols.changeAttributeStringByKey(symbol,
+                                                                         attributeKey,
+                                                                         regular.toString())
+
             }
-        }
-        if other == false || other == nil {
-            _ = MarketEventSymbols.removeAttributeStringByKey(symbol, attributeKey)
+            if other == false || other == nil {
+                _ = MarketEventSymbols.removeAttributeStringByKey(symbol, attributeKey)
+            }
+        } catch let error {
+            print(error)
         }
         return symbol
     }

@@ -26,21 +26,23 @@ class CandlePeriod {
         return Double(Long(value)) == value ? "\(Long(value))\(type.toString())" : "\(value)\(type.toString())"
     }()
 
-    static func normalizeAttributeForSymbol(_ symbol: String) throws -> String {
+    static func normalizeAttributeForSymbol(_ symbol: String?) -> String? {
         let attribute = MarketEventSymbols.getAttributeStringByKey(symbol, attributeKey)
         guard let value = attribute else {
             return symbol
         }
-        let other = try parse(value)
-        if other == defaultPeriod {
-           _ = MarketEventSymbols.removeAttributeStringByKey(symbol, attributeKey)
-        }
-        if attribute != other.toString() {
-            if let changedSymbol = try MarketEventSymbols.changeAttributeStringByKey(symbol,
-                                                                                     attribute,
-                                                                                     other.toString()) {
-                return changedSymbol
+        do {
+            let other = try parse(value)
+            if other == defaultPeriod {
+                _ = MarketEventSymbols.removeAttributeStringByKey(symbol, attributeKey)
             }
+            if attribute != other.toString() {
+                return try MarketEventSymbols.changeAttributeStringByKey(symbol,
+                                                                         attribute,
+                                                                         other.toString())
+            }
+        } catch let error {
+            print(error)
         }
         return symbol
     }

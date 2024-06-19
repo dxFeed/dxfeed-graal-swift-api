@@ -47,13 +47,13 @@ class CandleSymbol {
         self.priceLevel = try? CandlePriceLevel.getAttribute(self.symbol)
     }
 
-    private static func normalize(_ symbol: String) -> String {
+    private static func normalize(_ symbol: String?) -> String? {
         var symbol = symbol
-        symbol = (try? CandlePrice.normalizeAttributeForSymbol(symbol)) ?? symbol
+        symbol = CandlePrice.normalizeAttributeForSymbol(symbol)
         symbol = CandleSession.normalizeAttributeForSymbol(symbol)
-        symbol = (try? CandlePeriod.normalizeAttributeForSymbol(symbol)) ?? symbol
-        symbol = (try? CandleAlignment.normalizeAttributeForSymbol(symbol)) ?? symbol
-        symbol = (try? CandlePriceLevel.normalizeAttributeForSymbol(symbol)) ?? symbol
+        symbol = CandlePeriod.normalizeAttributeForSymbol(symbol)
+        symbol = CandleAlignment.normalizeAttributeForSymbol(symbol)
+        symbol = CandlePriceLevel.normalizeAttributeForSymbol(symbol)
         return symbol
     }
 
