@@ -85,6 +85,9 @@ class NativeInstrumentProfileReader {
                                                         address.toCStringRef())) else {
             return address
         }
+        defer {
+            _ = try? ErrorCheck.nativeCall(thread, dxfg_String_release(thread, result))
+        }
         return String(pointee: result)
     }
 

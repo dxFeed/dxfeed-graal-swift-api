@@ -24,14 +24,15 @@ class NativeProperty {
 
     static func getProperty(_ key: String) -> String? {
         let thread = currentThread()
-        let property = dxfg_system_get_property(thread,
-                                                key.cString(using: .utf8))
-        if let property = property {
-            let result = String(utf8String: property)
-            dxfg_system_release_property(thread, property)
-            return result
-        } else {
-            return nil
+        if let property = try? ErrorCheck.nativeCall(thread,
+                                                     dxfg_system_get_property(
+                                                        thread,
+                                                        key.cString(using: .utf8))) {
+            defer {
+                _ = try? ErrorCheck.nativeCall(thread, dxfg_system_release_property(thread, property))
+            }
+            return String(pointee: property)
         }
+        return nil
     }
 }

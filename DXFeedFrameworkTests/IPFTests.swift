@@ -265,4 +265,10 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
         let result = try collector.createOnFixedThreadPool(numberOfThreads: 15, nameOfthread: "test_ios_thread")
         XCTAssert(result, "createOnFixedThreadPool failed")
     }
+
+    func testResolveSourceURL() throws {
+        let inputStr = "abcde"
+        let resultstr = DXInstrumentProfileReader.resolveSourceURL(address: inputStr)
+        XCTAssert(inputStr == resultstr)
+    }
 }
