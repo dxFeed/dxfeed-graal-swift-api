@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class SymbolsViewController: UIViewController {
-    @IBOutlet var titleLabel: UILabel!
     @IBOutlet var symbolsTableView: UITableView!
 
     var dataProvider = SymbolsDataProvider()
@@ -20,7 +19,6 @@ class SymbolsViewController: UIViewController {
         symbolsTableView.setEditing(true, animated: false)
         symbolsTableView.backgroundColor = .tableBackground
         symbolsTableView.separatorStyle = .none
-        titleLabel.textColor = .text
         view.backgroundColor = .tableBackground
     }
 
@@ -36,7 +34,7 @@ class SymbolsViewController: UIViewController {
     }
 
     @IBAction func cancelTouchUpInside(_ sender: UIButton) {
-        self.dismiss(animated: true)        
+        self.dismiss(animated: true)
     }
 }
 

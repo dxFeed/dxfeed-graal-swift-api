@@ -17,7 +17,7 @@ class QuoteModel {
 
     init() {
         formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 2
+        formatter.maximumFractionDigits = 4
     }
 
     var ask: String {

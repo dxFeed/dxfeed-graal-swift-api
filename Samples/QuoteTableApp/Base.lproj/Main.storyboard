@@ -13,9 +13,10 @@
         <!--Navigation Controller-->
         <scene sceneID="QKB-6U-fsV">
             <objects>
-                <navigationController navigationBarHidden="YES" id="Fbd-3S-cKV" sceneMemberID="viewController">
-                    <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="l6b-6W-u4X">
+                <navigationController id="Fbd-3S-cKV" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="l6b-6W-u4X">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -26,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="-766" y="662"/>
         </scene>
-        <!--Quote Table View Controller-->
+        <!--Quote Table-->
         <scene sceneID="r7T-41-CNF">
             <objects>
                 <viewController storyboardIdentifier="QuoteTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KHT-AB-3Dx" customClass="QuoteTableViewController" customModule="DXARQuoteTableApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -35,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EH9-zJ-QLZ">
-                                <rect key="frame" x="10" y="113.66666666666669" width="373" height="704.33333333333326"/>
+                                <rect key="frame" x="10" y="103" width="373" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuoteCellId" rowHeight="100" id="Soc-px-Ac2" customClass="QuoteCell" customModule="DXARQuoteTableApp" customModuleProvider="target">
@@ -127,86 +128,64 @@
                                     <outlet property="delegate" destination="KHT-AB-3Dx" id="jcs-Ay-ORe"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="er8-zz-YEu">
-                                <rect key="frame" x="336" y="58.666666666666657" width="47" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="jDE-l3-0g0"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
-                                <connections>
-                                    <segue destination="79B-Xp-7rI" kind="show" id="lvN-i9-QoR"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quote Table" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kK3-Yq-zxb">
-                                <rect key="frame" x="124" y="59" width="145" height="34.333333333333343"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="460-KY-dCX">
-                                <rect key="frame" x="10.000000000000004" y="58.666666666666657" width="53.333333333333343" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Edit"/>
-                                <connections>
-                                    <segue destination="ZBb-dg-Ea1" kind="presentation" modalPresentationStyle="fullScreen" id="s3B-iu-75h"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="25G-gY-cKV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="EH9-zJ-QLZ" firstAttribute="leading" secondItem="25G-gY-cKV" secondAttribute="leading" constant="10" id="40x-hA-kHB"/>
                             <constraint firstItem="25G-gY-cKV" firstAttribute="bottom" secondItem="EH9-zJ-QLZ" secondAttribute="bottom" id="AGF-iT-Q1M"/>
-                            <constraint firstItem="er8-zz-YEu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="25G-gY-cKV" secondAttribute="leading" constant="20" id="CXu-jx-Vi2"/>
-                            <constraint firstItem="kK3-Yq-zxb" firstAttribute="top" secondItem="25G-gY-cKV" secondAttribute="top" id="EgN-8V-jho"/>
-                            <constraint firstItem="25G-gY-cKV" firstAttribute="trailing" secondItem="er8-zz-YEu" secondAttribute="trailing" constant="10" id="N5e-GT-uWw"/>
-                            <constraint firstItem="kK3-Yq-zxb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="460-KY-dCX" secondAttribute="trailing" constant="10" id="TMj-zb-XWo"/>
-                            <constraint firstItem="460-KY-dCX" firstAttribute="leading" secondItem="25G-gY-cKV" secondAttribute="leading" constant="10" id="TRQ-ia-pRa"/>
-                            <constraint firstItem="EH9-zJ-QLZ" firstAttribute="top" secondItem="er8-zz-YEu" secondAttribute="bottom" constant="20" id="apO-7t-5Jm"/>
-                            <constraint firstItem="460-KY-dCX" firstAttribute="centerY" secondItem="kK3-Yq-zxb" secondAttribute="centerY" id="dqB-2c-gRN"/>
+                            <constraint firstItem="EH9-zJ-QLZ" firstAttribute="top" secondItem="25G-gY-cKV" secondAttribute="top" id="R9n-IO-jVn"/>
                             <constraint firstItem="25G-gY-cKV" firstAttribute="trailing" secondItem="EH9-zJ-QLZ" secondAttribute="trailing" constant="10" id="hMT-0Z-bdv"/>
-                            <constraint firstItem="kK3-Yq-zxb" firstAttribute="centerY" secondItem="er8-zz-YEu" secondAttribute="centerY" id="iT5-lx-gUc"/>
-                            <constraint firstItem="kK3-Yq-zxb" firstAttribute="centerX" secondItem="bnX-km-PdS" secondAttribute="centerX" id="sZ9-ET-vN2"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="KgC-Ti-xjh"/>
+                    <navigationItem key="navigationItem" title="Quote Table" id="KgC-Ti-xjh">
+                        <barButtonItem key="backBarButtonItem" title=" " id="sGJ-0y-PpF"/>
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="XN9-UB-vi5">
+                            <connections>
+                                <segue destination="K92-C7-2Ps" kind="modal" id="c0S-rG-aok"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="pAT-KP-8Ew">
+                            <connections>
+                                <segue destination="79B-Xp-7rI" kind="show" id="XW6-Da-FWf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="addButton" destination="er8-zz-YEu" id="ATo-3f-ZJp"/>
                         <outlet property="quoteTableView" destination="EH9-zJ-QLZ" id="Ud1-e6-WxZ"/>
-                        <outlet property="titleLabel" destination="kK3-Yq-zxb" id="KYT-Iw-Z7F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FUD-rM-Z1P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="529" y="662"/>
         </scene>
-        <!--Symbols View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="D6q-YU-yU1">
+            <objects>
+                <navigationController id="K92-C7-2Ps" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="zwv-wN-jVz"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="c6T-d2-04B">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ZBb-dg-Ea1" kind="relationship" relationship="rootViewController" id="IKw-P7-3UP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cxy-gC-zlK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-750" y="25"/>
+        </scene>
+        <!--Edit Table-->
         <scene sceneID="2T3-tU-zM3">
             <objects>
                 <viewController storyboardIdentifier="SymbolsViewController" id="ZBb-dg-Ea1" customClass="SymbolsViewController" customModule="DXARQuoteTableApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sVZ-W1-xQP">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Table" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoO-1b-zGR">
-                                <rect key="frame" x="150.33333333333334" y="0.0" width="92.666666666666657" height="26.333333333333332"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgf-XF-OGD">
-                                <rect key="frame" x="304" y="-4.3333333333333321" width="79" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Cancel">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleHeadline"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="cancelTouchUpInside:" destination="ZBb-dg-Ea1" eventType="touchUpInside" id="rxB-Sq-jvN"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="eaD-lA-Hk4">
-                                <rect key="frame" x="10" y="50.666666666666686" width="373" height="801.33333333333326"/>
+                                <rect key="frame" x="10" y="56" width="373" height="786"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SymbolCellId" rowHeight="100" id="hie-pI-BNO" customClass="SymbolCell" customModule="DXARQuoteTableApp" customModuleProvider="target">
@@ -257,29 +236,29 @@
                         <viewLayoutGuide key="safeArea" id="Icb-nI-b31"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="IoO-1b-zGR" firstAttribute="top" secondItem="Icb-nI-b31" secondAttribute="top" id="B5N-ch-ukx"/>
-                            <constraint firstItem="eaD-lA-Hk4" firstAttribute="top" secondItem="Hgf-XF-OGD" secondAttribute="bottom" constant="20" id="FWi-Z0-nRK"/>
-                            <constraint firstItem="IoO-1b-zGR" firstAttribute="centerX" secondItem="sVZ-W1-xQP" secondAttribute="centerX" id="Flm-hi-A6g"/>
-                            <constraint firstItem="Icb-nI-b31" firstAttribute="trailing" secondItem="Hgf-XF-OGD" secondAttribute="trailing" constant="10" id="IGu-Fc-eg7"/>
                             <constraint firstAttribute="trailing" secondItem="eaD-lA-Hk4" secondAttribute="trailing" constant="10" id="Oja-P9-Dsu"/>
-                            <constraint firstItem="Hgf-XF-OGD" firstAttribute="centerY" secondItem="IoO-1b-zGR" secondAttribute="centerY" id="PHA-vi-EeG"/>
-                            <constraint firstItem="Hgf-XF-OGD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IoO-1b-zGR" secondAttribute="trailing" constant="10" id="eC2-4Y-N0m"/>
-                            <constraint firstItem="IoO-1b-zGR" firstAttribute="centerX" secondItem="sVZ-W1-xQP" secondAttribute="centerX" id="eSu-c3-shE"/>
                             <constraint firstItem="eaD-lA-Hk4" firstAttribute="leading" secondItem="Icb-nI-b31" secondAttribute="leading" constant="10" id="gsg-DW-cil"/>
                             <constraint firstItem="Icb-nI-b31" firstAttribute="bottom" secondItem="eaD-lA-Hk4" secondAttribute="bottom" id="pTl-Or-gqr"/>
+                            <constraint firstItem="eaD-lA-Hk4" firstAttribute="top" secondItem="Icb-nI-b31" secondAttribute="top" id="qpc-56-dBZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="l6I-dV-wh8"/>
+                    <navigationItem key="navigationItem" title="Edit Table" id="l6I-dV-wh8">
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="bwn-FX-Szh">
+                            <connections>
+                                <action selector="cancelTouchUpInside:" destination="ZBb-dg-Ea1" id="Yga-Gh-gcB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="symbolsTableView" destination="eaD-lA-Hk4" id="KrO-de-u3s"/>
-                        <outlet property="titleLabel" destination="IoO-1b-zGR" id="Pff-uk-T90"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTR-UB-Qwh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="509" y="8"/>
         </scene>
-        <!--Add Symbols View Controller-->
+        <!--Add symbols-->
         <scene sceneID="JBz-yI-Z5w">
             <objects>
                 <viewController storyboardIdentifier="AddSymbolsViewController" id="79B-Xp-7rI" customClass="AddSymbolsViewController" customModule="DXARQuoteTableApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -288,7 +267,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tEr-Ho-kQr">
-                                <rect key="frame" x="10" y="109.66666666666669" width="373" height="708.33333333333326"/>
+                                <rect key="frame" x="10" y="103" width="373" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SymbolCellId" rowHeight="100" id="khr-Ni-2cc" customClass="SymbolCell" customModule="DXARQuoteTableApp" customModuleProvider="target">
@@ -345,20 +324,6 @@
                                     <outlet property="delegate" destination="79B-Xp-7rI" id="PHj-fV-JOf"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAp-V5-Z62">
-                                <rect key="frame" x="10" y="55" width="39.666666666666664" height="34.333333333333343"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system"/>
-                                <connections>
-                                    <action selector="cancelTouchUpInside:" destination="79B-Xp-7rI" eventType="touchUpInside" id="RjE-8p-g81"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Symbols" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLk-vV-8iK">
-                                <rect key="frame" x="133.33333333333334" y="59.000000000000007" width="126.33333333333334" height="26.333333333333336"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="zJJ-7e-ZQd">
                                 <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
                             </activityIndicatorView>
@@ -366,24 +331,18 @@
                         <viewLayoutGuide key="safeArea" id="M5x-oT-av7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="oAp-V5-Z62" firstAttribute="leading" secondItem="M5x-oT-av7" secondAttribute="leading" constant="10" id="7J6-7c-d7F"/>
                             <constraint firstItem="zJJ-7e-ZQd" firstAttribute="centerX" secondItem="8PD-ZW-3hk" secondAttribute="centerX" id="IhR-M9-vJj"/>
-                            <constraint firstItem="NLk-vV-8iK" firstAttribute="centerX" secondItem="8PD-ZW-3hk" secondAttribute="centerX" id="SnC-qE-Yud"/>
-                            <constraint firstItem="NLk-vV-8iK" firstAttribute="top" secondItem="M5x-oT-av7" secondAttribute="top" id="bIs-Rd-GQ5"/>
-                            <constraint firstItem="NLk-vV-8iK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oAp-V5-Z62" secondAttribute="trailing" constant="10" id="dBZ-t9-uMT"/>
                             <constraint firstItem="M5x-oT-av7" firstAttribute="bottom" secondItem="tEr-Ho-kQr" secondAttribute="bottom" id="eaw-St-FPk"/>
                             <constraint firstItem="zJJ-7e-ZQd" firstAttribute="centerY" secondItem="8PD-ZW-3hk" secondAttribute="centerY" id="hTd-xg-1nj"/>
-                            <constraint firstItem="NLk-vV-8iK" firstAttribute="centerY" secondItem="oAp-V5-Z62" secondAttribute="centerY" id="jxJ-oH-D0X"/>
-                            <constraint firstItem="tEr-Ho-kQr" firstAttribute="top" secondItem="oAp-V5-Z62" secondAttribute="bottom" constant="20.329999999999998" id="nFT-yB-Pfs"/>
                             <constraint firstItem="M5x-oT-av7" firstAttribute="trailing" secondItem="tEr-Ho-kQr" secondAttribute="trailing" constant="10" id="pNb-fB-tQ5"/>
                             <constraint firstItem="tEr-Ho-kQr" firstAttribute="leading" secondItem="M5x-oT-av7" secondAttribute="leading" constant="10" id="pgJ-V3-gur"/>
+                            <constraint firstItem="tEr-Ho-kQr" firstAttribute="top" secondItem="M5x-oT-av7" secondAttribute="top" id="zNK-Ud-3Q6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="1Nw-FN-C88"/>
+                    <navigationItem key="navigationItem" title="Add symbols" id="1Nw-FN-C88"/>
                     <connections>
                         <outlet property="activityIndicator" destination="zJJ-7e-ZQd" id="yYn-MR-ChJ"/>
                         <outlet property="symbolsTableView" destination="tEr-Ho-kQr" id="KO4-DT-Cvv"/>
-                        <outlet property="titleLabel" destination="NLk-vV-8iK" id="vJH-RP-g7x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3JS-Fu-67P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -400,7 +359,6 @@
         </designable>
     </designables>
     <resources>
-        <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="GreenBackground">
             <color red="0.0" green="0.45882352941176469" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

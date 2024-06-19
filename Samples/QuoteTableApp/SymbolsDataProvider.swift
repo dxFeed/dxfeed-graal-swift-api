@@ -18,6 +18,11 @@ extension InstrumentInfo: Comparable {
     }
 }
 
+extension Notification.Name {
+    static let selectedSymbolsChanged = Notification.Name("selectedSymbolsChanged")
+
+}
+
 class SymbolsDataProvider {
     static let kSelectedSymbolsKey = "kSelectedSymbolsKey"
     static let kSymbolsKey = "kSymbolsKey"
@@ -59,10 +64,12 @@ class SymbolsDataProvider {
         })
         UserDefaults.standard.set(currentSymbols + newValues.sorted(), forKey: SymbolsDataProvider.kSelectedSymbolsKey)
         UserDefaults.standard.synchronize()
+        NotificationCenter.default.post(name: .selectedSymbolsChanged, object: nil)
     }
 
     func changeSymbols(_ symbols: [String]) {
         UserDefaults.standard.set(symbols, forKey: SymbolsDataProvider.kSelectedSymbolsKey)
         UserDefaults.standard.synchronize()
+        NotificationCenter.default.post(name: .selectedSymbolsChanged, object: nil)
     }
 }
