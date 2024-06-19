@@ -20,24 +20,6 @@
   "testTargets" : [
     {
       "parallelizable" : true,
-      "skippedTests" : [
-        "CandleTests",
-        "EndpointPublisherTest",
-        "EndpointTest",
-        "EventsTest",
-        "FeedTest",
-        "IPFTests",
-        "IsolateTest",
-        "ScheduleTest\/testConvertQDAndViceVersa()",
-        "ScheduleTest\/testFetchDays()",
-        "ScheduleTest\/testGetCorrectScheduleDay()",
-        "ScheduleTest\/testGetScheduleDay()",
-        "ScheduleTest\/testGetScheduleDayByTime()",
-        "ScheduleTest\/testWrongScheduleInit()",
-        "SystemPropertyTest",
-        "ThreadsTest",
-        "UtilsTest"
-      ],
       "target" : {
         "containerPath" : "container:DXFeedFramework.xcodeproj",
         "identifier" : "803BAC1429BFA50700FFAB1C",
