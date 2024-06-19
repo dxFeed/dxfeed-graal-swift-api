@@ -125,6 +125,7 @@ class NativeSubscription {
     }
 
     init(subscription: UnsafeMutablePointer<dxfg_subscription_t>?) {
+        
         self.subscription = subscription
     }
 
