@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class QuoteViewModel: Identifiable, Hashable {
+class QuoteViewModel: Identifiable, Hashable, ObservableObject {
     var id: String = ""
     @Published var title = ""
     @Published var askPrice = ""

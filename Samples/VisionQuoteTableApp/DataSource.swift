@@ -9,7 +9,7 @@ import Foundation
 import DxFeedSwiftFramework
 
 class DataSource: ObservableObject {
-    @Published var quotes: [QuoteViewModel]
+    @Published var quotes: [QuoteViewModel] = []
     var quotesDict: [String: QuoteViewModel]
     init(symbols: [String]) {
         quotes = [QuoteViewModel]()
@@ -22,22 +22,16 @@ class DataSource: ObservableObject {
     }
 
     func update(_ value: Quote) {
-        let model = quotesDict[value.eventSymbol]
-        model?.updatePrice(ask: value.askPrice, bid: value.bidPrice)
         DispatchQueue.main.async {
-            if let model = model, let row = self.quotes.firstIndex(where: {$0 == model}) {
-                self.quotes[row] = model
-            }
+            let model = self.quotesDict[value.eventSymbol]
+            model?.updatePrice(ask: value.askPrice, bid: value.bidPrice)
         }
     }
 
     func update(_ value: Profile) {
-        let model = quotesDict[value.eventSymbol]
-        model?.updateDescription(value.descriptionStr)
         DispatchQueue.main.async {
-            if let model = model, let row = self.quotes.firstIndex(where: {$0 == model}) {
-                self.quotes[row] = model
-            }
+            let model = self.quotesDict[value.eventSymbol]
+            model?.updateDescription(value.descriptionStr)
         }
     }
 }
