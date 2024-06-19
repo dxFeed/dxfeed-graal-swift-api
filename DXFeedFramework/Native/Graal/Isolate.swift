@@ -8,7 +8,26 @@
 import Foundation
 @_implementationOnly import graal_api
 
+/// Represents an isolate (a JVM instance).
+/// Contains a handle that is a pointer to the runtime data structure for the isolate.
+/// 
+/// This project intentionally uses only one isolate instance for the following reasons:
+/// 
+/// 
+/// Old open issue on GitHub associated with a memory leak.
+/// [Memory Leak on graal_isolatethread_t](https://github.com/oracle/graal/issues/3474)
+///
+/// 
+/// There are no business cases associated with the creation of multiple isolates.
+/// 
+/// 
+/// User error-prone logic when mixing multiple isolates.
+/// 
+/// 
+/// Each native method is associated with a specific ``Isolate``,
+/// and takes an ``IsolateThread`` as its first argument.
 class Isolate {
+    /// A singleton lazy-initialization instance of ``Isolate``.
     static let shared = Isolate()
     internal let isolate = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: 1)
     private let params = UnsafeMutablePointer<graal_create_isolate_params_t>.allocate(capacity: 1)
@@ -20,12 +39,15 @@ class Isolate {
         self.thread.deallocate()
     }
 
+    /// Internal cleanup function.
+    /// Just for testing purposes
     func cleanup() {
         if self.thread.pointee != nil {
             graal_detach_all_threads_and_tear_down_isolate(self.thread.pointee)
         }
     }
 
+    /// Isolate should be initialized in main thread to avoid problem with overcommited queues.
     init() {
         print("DXFeedFramework.Isolate:init \(Thread.isMainThread) \(Thread.current) \(Thread.current.threadName)")
         if Thread.isMainThread {

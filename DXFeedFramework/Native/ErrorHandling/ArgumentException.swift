@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Represents errors that occur when candle manipulations
 public enum ArgumentException: Error {
     case missingCandleType
     case missingCandlePrice

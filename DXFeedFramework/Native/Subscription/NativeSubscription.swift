@@ -8,6 +8,8 @@
 import Foundation
 @_implementationOnly import graal_api
 
+/// Native wrapper over the Java com.dxfeed.api.DxFeedSubscription class.
+/// The location of the imported functions is in the header files "dxfg_subscription.h".
 class NativeSubscription {
     let subscription: UnsafeMutablePointer<dxfg_subscription_t>?
     var nativeListener: UnsafeMutablePointer<dxfg_feed_event_listener_t>?

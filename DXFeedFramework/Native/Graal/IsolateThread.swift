@@ -8,6 +8,7 @@
 import Foundation
 @_implementationOnly import graal_api
 
+/// Just wrapper around iOS thread for attaching/detaching it from GraalVM
 class IsolateThread {
     let threadPointer = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: 1)
     weak var thread: Thread?

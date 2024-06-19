@@ -43,8 +43,8 @@ public class TimeAndSale: MarketEvent, ITimeSeriesEvent, CustomStringConvertible
     /// This field format is specific for every particular data feed.
     public var exchangeSaleConditions: String?
     /// Gets or sets implementation-specific flags.
-    /// Do not use this method directly.
-    public var flags: Int32 = 0
+    /// **Do not use this method directly**.
+    var flags: Int32 = 0
     /// Gets or sets buyer of this time and sale event.
     public var buyer: String?
     /// Gets or sets seller of this time and sale event.
@@ -118,6 +118,9 @@ extension TimeAndSale {
 
     }
 
+    /// Gets or sets timestamp of the original event.
+    /// 
+    /// Time is measured in milliseconds between the current time and midnight, January 1, 1970 UTC.
     public var time: Int64 {
         get {
             Int64(((self.index >> 32) * 1000) + ((self.index >> 22) & 0x3ff))
@@ -127,6 +130,10 @@ extension TimeAndSale {
             Long((TimeUtil.getMillisFromTime(newValue)) << 22) | Long(getSequence())
         }
     }
+
+    /// Gets or sets timestamp of the original event in nanoseconds.
+    ///
+    /// Time is measured in nanoseconds between the current time and midnight, January 1, 1970 UTC.
     public var timeNanos: Int64 {
         get {
             TimeNanosUtil.getNanosFromMillisAndNanoPart(time, timeNanoPart)
@@ -181,6 +188,7 @@ extension TimeAndSale {
     }
 
     /// Gets or sets a value indicating whether this event represents a valid intraday tick.
+    ///
     /// Note, that a correction for a previously distributed valid tick represents a new valid tick itself,
     /// but a cancellation of a previous valid tick does not.
     public var isValidTick: Bool {
@@ -203,20 +211,30 @@ extension TimeAndSale {
     }
 
     /// Gets a value indicating whether this is a new event (not cancellation or correction).
+    ///
     /// It is true for newly created time and sale event.
     public var isNew: Bool {
         timeAndSaleType == .new
     }
 
+    /// Gets a value indicating whether this is a correction of a previous event.
+    ///
+    /// It is false for newly created time and sale event.
+    /// true if this is a correction of a previous event.
     public var isCorrection: Bool {
         timeAndSaleType == .correction
     }
 
+    /// Gets a value indicating whether this is a cancellation of a previous event.
+    ///
+    /// It is false for newly created time and sale event.
+    /// true if this is a cancellation of a previous event.
     public var isCancel: Bool {
         timeAndSaleType == .cancel
     }
 
-    func toString() -> String {
+    /// Returns string representation of this time and sale event.
+    public func toString() -> String {
         return """
 TimeAndSale{"\(eventSymbol), \
 eventTime=\(TimeUtil.toLocalDateString(millis: eventTime)), \

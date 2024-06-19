@@ -42,8 +42,8 @@ public enum CandleAlignment: DXCandleAlignment, CaseIterable {
     case midnight = "Midnight"
     case session = "Session"
 
-    static let attributeKey = "a"
-
+    public static let attributeKey = "a"
+    /// Default alignment is ``midnight``
     public static let defaultAlignment =  midnight
 
     /// A dictionary containing the matching string representation

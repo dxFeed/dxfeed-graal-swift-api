@@ -8,6 +8,7 @@
 import Foundation
 @_implementationOnly import graal_api
 
+/// A collection of classes for mapping unmanaged native events dxfg_event_type_t
 class EventMapper: Mapper {
     typealias TypeAlias = dxfg_event_type_t
     var type: dxfg_event_type_t.Type

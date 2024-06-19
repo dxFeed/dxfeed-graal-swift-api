@@ -34,7 +34,7 @@ public class DXFeedSubcription {
     /// This method does nothing if this subscription is closed.
     ///
     /// [Javadoc](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeedSubscription.html#addEventListener-com.dxfeed.api.DXFeedEventListener)
-    /// - Throws: GraalException. Rethrows exception from Java.
+    /// - Throws: ``GraalException`` Rethrows exception from Java, ``NativeException.nilValue``
     public func add<O>(observer: O) throws
     where O: DXEventListener,
           O: Hashable {

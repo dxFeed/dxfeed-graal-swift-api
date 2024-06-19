@@ -8,6 +8,8 @@
 import Foundation
 @_implementationOnly import graal_api
 
+/// Native wrapper over the Java com.dxfeed.ipf.live.InstrumentProfileCollector class.
+/// The location of the imported functions is in the header files "dxfg_ipf.h".
 class NativeInstrumentProfileCollector {
     let collector: UnsafeMutablePointer<dxfg_ipf_collector_t>?
     private var nativeListener: UnsafeMutablePointer<dxfg_ipf_update_listener_t>?

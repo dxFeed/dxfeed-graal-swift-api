@@ -8,11 +8,11 @@
 import Foundation
 @_implementationOnly import graal_api
 
+/// Native wrapper over the Java java.lang.System class, contains work with property getter/setter methods.
+/// In Java world, these properties can be set by passing the "-Dprop=value" argument in command line
+/// or calls java.lang.System.setProperty(String key, String value).
+/// The location of the imported functions is in the header files "dxfg_system.h".
 class NativeProperty {
-    static func test() throws {
-        try ErrorCheck.test()
-    }
-
     static func setProperty(_ key: String, _ value: String) throws {
         let thread =  currentThread()
         try ErrorCheck.nativeCall(thread,

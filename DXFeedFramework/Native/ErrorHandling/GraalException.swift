@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum GraalException: Error {
+/// Represents errors that occur when calling graal function.
+public enum GraalException: Error {
     case undefined
     case fail(message: String, className: String, stack: String)
     case isolateFail(message: String)

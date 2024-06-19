@@ -8,11 +8,6 @@
 import Foundation
 
 public class SystemProperty {
-
-    static func test() throws {
-        try NativeProperty.test()
-    }
-
     public static func setProperty(_ key: String, _ value: String) throws {
         try NativeProperty.setProperty(key, value)
     }
