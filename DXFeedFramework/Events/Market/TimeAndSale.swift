@@ -6,21 +6,48 @@
 //
 
 import Foundation
-
+/// Time and Sale represents a trade or other market event with price, like market open/close price, etc.
+///
+/// Time and Sales are intended to provide information about trades in a continuous time slice
+/// (unlike ``Trade`` events which are supposed to provide snapshot about the current last trade).
+/// Time and Sale events have unique ``index``
+/// which can be used for later correction/cancellation processing.
+///
+/// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/market/TimeAndSale.html)
 public class TimeAndSale: MarketEvent, ITimeSeriesEvent, CustomStringConvertible {
     public let type: EventCode = .timeAndSale
     public var eventSymbol: String
     public var eventTime: Int64 = 0
 
+    /*
+     * Flags property has several significant bits that are packed into an integer in the following way:
+     *   31..16   15...8    7    6    5    4    3    2    1    0
+     * +--------+--------+----+----+----+----+----+----+----+----+
+     * |        |   TTE  |    |  Side   | SL | ETH| VT |  Type   |
+     * +--------+--------+----+----+----+----+----+----+----+----+
+     */
+
+    /// Gets or sets microseconds and nanoseconds time part of event.
     public var timeNanoPart: Int32 = 0
+    /// Gets or sets exchange code of this time and sale event.
     public var exchangeCode: Int16 = 0
+    /// Gets or sets price of this time and sale event.
     public var price: Double = .nan
+    /// Gets or sets size of this time and sale event as floating number with fractions.
     public var size: Double = .nan
+    /// Gets or sets the current bid price on the market when this time and sale event had occurred.
     public var bidPrice: Double = .nan
+    /// Gets or sets the current ask price on the market when this time and sale event had occurred.
     public var askPrice: Double = .nan
+    /// Gets or sets sale conditions provided for this event by data feed.
+    /// This field format is specific for every particular data feed.
     public var exchangeSaleConditions: String?
+    /// Gets or sets implementation-specific flags.
+    /// Do not use this method directly.
     public var flags: Int32 = 0
+    /// Gets or sets buyer of this time and sale event.
     public var buyer: String?
+    /// Gets or sets seller of this time and sale event.
     public var seller: String?
 
     // TTE (TradeThroughExempt) values are ASCII chars in [0, 255].
@@ -69,10 +96,18 @@ seller: \(seller ?? "null")
 }
 
 extension TimeAndSale {
+    /// Gets sequence number of this event to distinguish events that have the same ``time``.
+    /// This sequence number does not have to be unique and
+    /// does not need to be sequential. Sequence can range from 0 to ``MarketEventConst/maxSequence``.
     public func getSequence() -> Int {
         return Int(index) & Int(MarketEventConst.maxSequence)
     }
 
+    /// Sets sequence number of this event to distinguish events that have the same ``time``.
+    /// This sequence number does not have to be unique and
+    /// does not need to be sequential. Sequence can range from 0 to ``MarketEventConst/maxSequence``.
+    ///
+    /// - Throws: ``ArgumentException/exception(_:)``
     public func setSequence(_ sequence: Int) throws {
         if sequence < 0 || sequence > MarketEventConst.maxSequence {
             throw ArgumentException.exception(
@@ -101,11 +136,13 @@ extension TimeAndSale {
             timeNanoPart = Int32(TimeNanosUtil.getNanoPartFromNanos(newValue))
         }
     }
-
+    /// Gets  TradeThroughExempt flag of this time and sale event.
     public func getTradeThroughExempt() -> Character {
         Character(BitUtil.getBits(flags: Int(flags), mask: tteMask, shift: tteShift))
     }
-
+    /// Sets  TradeThroughExempt flag of this time and sale event.
+    ///
+    /// - Throws: ``ArgumentException/exception(_:)``
     public func setTradeThroughExempt(_ char: Character) throws {
         try StringUtil.checkChar(char: char, mask: tteMask, name: "tradeThroughExempt")
         if let value = char.unicodeScalars.first?.value {
@@ -113,6 +150,7 @@ extension TimeAndSale {
         }
     }
 
+    /// Gets or sets aggressor side of this time and sale event.
     public var aggressorSide: Side {
         get {
             Side.valueOf(Int(BitUtil.getBits(flags: Int(flags), mask: sideMask, shift: sideShift)))
@@ -122,6 +160,7 @@ extension TimeAndSale {
         }
     }
 
+    /// Gets or sets a value indicating whether this event represents a spread leg.
     public var isSpreadLeg: Bool {
         get {
             (flags & Int32(spreadLeg)) != 0
@@ -131,6 +170,7 @@ extension TimeAndSale {
         }
     }
 
+    /// Gets or sets a value indicating whether this event represents an extended trading hours sale.
     public var isExtendedTradingHours: Bool {
         get {
             (flags & Int32(eth)) != 0
@@ -140,6 +180,9 @@ extension TimeAndSale {
         }
     }
 
+    /// Gets or sets a value indicating whether this event represents a valid intraday tick.
+    /// Note, that a correction for a previously distributed valid tick represents a new valid tick itself,
+    /// but a cancellation of a previous valid tick does not.
     public var isValidTick: Bool {
         get {
             (flags & Int32(validTick)) != 0
@@ -149,6 +192,7 @@ extension TimeAndSale {
         }
     }
 
+    /// Gets or sets type of this time and sale event.
     public var timeAndSaleType: TimeAndSaleType {
         get {
             TimeAndSaleType.valueOf(BitUtil.getBits(flags: Int(flags), mask: typeMask, shift: typeShift))
@@ -158,6 +202,8 @@ extension TimeAndSale {
         }
     }
 
+    /// Gets a value indicating whether this is a new event (not cancellation or correction).
+    /// It is true for newly created time and sale event.
     public var isNew: Bool {
         timeAndSaleType == .new
     }

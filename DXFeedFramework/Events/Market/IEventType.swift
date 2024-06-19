@@ -15,7 +15,7 @@ import Foundation
 ///
 /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/EventType.html)
 public protocol IEventType {
-    /// Gets or sets event symbol that identifies this event type <see cref="DXFeedSubscription"/>.
+    /// Gets or sets event symbol that identifies this event type ``DXFeedSubcription``.
     ///
     /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/event/EventType.html#getEventSymbol--)
     var eventSymbol: String { get set }
