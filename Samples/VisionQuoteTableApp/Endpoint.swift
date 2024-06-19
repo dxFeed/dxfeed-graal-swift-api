@@ -28,7 +28,7 @@ class Endpoint: Hashable, ObservableObject {
             subscription = nil
             profileSubscription = nil
         }
-        try? SystemProperty.setProperty(DXEndpoint.Property.heartBeatTimeout.rawValue, "10s")
+        try? SystemProperty.setProperty(DXEndpoint.ExtraPropery.heartBeatTimeout.rawValue, "10s")
 
         let builder = try? DXEndpoint.builder().withRole(.feed)
         _ = try? builder?.withProperty(DXEndpoint.Property.aggregationPeriod.rawValue, "1")

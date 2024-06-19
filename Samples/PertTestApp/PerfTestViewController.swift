@@ -71,7 +71,7 @@ class PerfTestViewController: UIViewController {
 
         self.view.backgroundColor = .tableBackground
 
-        try? SystemProperty.setProperty(DXEndpoint.Property.heartBeatTimeout.rawValue, "10s")
+        try? SystemProperty.setProperty(DXEndpoint.ExtraPropery.heartBeatTimeout.rawValue, "10s")
         timer.eventHandler = {
             self.updateUI()
         }
