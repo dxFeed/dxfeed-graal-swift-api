@@ -11,12 +11,17 @@ import Foundation
 class NativeEndpoint {
     let endpoint: UnsafeMutablePointer<dxfg_endpoint_t>!
     var listener: UnsafeMutablePointer<dxfg_endpoint_state_change_listener_t>?
-    static let storage = AtomicStorage<WeakListener>()
+    static let listeners = ConcurrentArray<WeakListener>()
     static let finalizeCallback: dxfg_finalize_function = { _, context in
         if let context = context {
             let endpoint: AnyObject = bridge(ptr: context)
             if let listener =  endpoint as? WeakListener {
-                NativeEndpoint.storage.remove(listener)
+                print(NativeEndpoint.listeners)
+                NativeEndpoint.listeners.removeAll(where: {
+                    $0 === listener
+                })
+                print(NativeEndpoint.listeners)
+
             }
         }
     }
@@ -66,7 +71,7 @@ class NativeEndpoint {
     }
     func addListener(_ listener: EndpointListener) throws {
         let weakListener = WeakListener(value: listener)
-        NativeEndpoint.storage.append(weakListener)
+        NativeEndpoint.listeners.append(newElement: weakListener)
         let voidPtr = bridge(obj: weakListener)
         let thread = currentThread()
         let listener = try ErrorCheck.nativeCall(thread,

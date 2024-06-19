@@ -10,7 +10,7 @@ import XCTest
 
 final class FeedTest: XCTestCase {
     func testFeedCreation() throws {
-        var endpoint: DXFEndpoint? = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        let endpoint: DXFEndpoint? = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         XCTAssertNotNil(endpoint, "Endpoint shouldn't be nil")
         var feed = endpoint?.getFeed()
         XCTAssertNotNil(feed, "Feed shouldn't be nil")

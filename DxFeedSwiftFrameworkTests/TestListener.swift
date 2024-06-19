@@ -15,7 +15,8 @@ struct TestListener: DXFEndpointObserver, Hashable {
     init(expectations: [DXFEndpointState: XCTestExpectation]) {
         self.expectations = expectations
     }
-    func endpointDidChangeState(old: DxFeedSwiftFramework.DXFEndpointState, new: DxFeedSwiftFramework.DXFEndpointState) {
+    func endpointDidChangeState(old: DxFeedSwiftFramework.DXFEndpointState,
+                                new: DxFeedSwiftFramework.DXFEndpointState) {
         if let expectation = expectations[new] {
             expectation.fulfill()
         }
