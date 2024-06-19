@@ -97,16 +97,16 @@ class LatencyViewController: UIViewController {
   Rate of unique symbols   : --- (symbols/interval)
   Min                      : \(numberFormatter.string(from: metrics.min)!) (ms)
   Max                      : \(numberFormatter.string(from: metrics.max)!) (ms)
-  99th percentile          : --- (ms)
+  99th percentile          : \(numberFormatter.string(from: metrics.percentile)!) (ms)
   Mean                     : \(numberFormatter.string(from: metrics.mean)!) (ms)
-  StdDev                   : --- (ms)
+  StdDev                   : \(numberFormatter.string(from: metrics.stdDev)!) (ms)
   Error                    : --- (ms)
-  Sample size (N)          : --- (events)
-  Measurement interval     : --- (s)
-  Running time             : ---
+  Sample size (N)          : \(numberFormatter.string(from: metrics.sampleSize)!) (events)
+  Measurement interval     : \(numberFormatter.string(from: metrics.measureInterval)!) (s)
+  Running time             : \(metrics.currentTime.stringFromTimeInterval())
 """
-        resultTextView.text = result
         print(result)
+        resultTextView.text = result
     }
 }
 
@@ -123,10 +123,7 @@ extension LatencyViewController: DXEndpointObserver {
 
 extension LatencyViewController: DXEventListener {
     func receiveEvents(_ events: [DxFeedSwiftFramework.MarketEvent]) {
-        let count = events.count
         let currentTime = UInt64(Date().timeIntervalSince1970 * 1_000)
-
-        diagnostic.updateCounters(Int64(count))
 
         events.forEach { event in
             if event.type == .timeAndSale {
@@ -143,3 +140,19 @@ extension LatencyViewController: DXEventListener {
 
     }
 }
+
+extension TimeInterval{
+
+        func stringFromTimeInterval() -> String {
+
+            let time = NSInteger(self)
+
+            let ms = Int((self.truncatingRemainder(dividingBy: 1)) * 1000)
+            let seconds = time % 60
+            let minutes = (time / 60) % 60
+            let hours = (time / 3600)
+
+            return String(format: "%0.2d:%0.2d:%0.2d.%0.3d",hours,minutes,seconds,ms)
+
+        }
+    }
