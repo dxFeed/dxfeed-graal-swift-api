@@ -7,13 +7,10 @@
 
 import Foundation
 
-
 public protocol ObservableSubscriptionChangeListener: AnyObject {
-    func symbolsAdded<O>(symbols: Set<O>) where O: Symbol,
-                                                O: Hashable
+    func symbolsAdded(symbols: Set<AnyHashable>)
 
-    func symbolsRemoved<O>(symbols: Set<O>) where O: Symbol,
-                                                O: Hashable
+    func symbolsRemoved(symbols: Set<AnyHashable>)
 
     func subscriptionClosed()
 }
