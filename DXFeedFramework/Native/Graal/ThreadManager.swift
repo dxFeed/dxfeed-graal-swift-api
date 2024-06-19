@@ -47,7 +47,7 @@ class ThreadManager {
         }
         objc_sync_enter(self)
         let threadPointer = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: 1)
-        let value = graal_attach_thread(Isolate.shared.isolate.pointee, threadPointer)
+        _ = graal_attach_thread(Isolate.shared.isolate.pointee, threadPointer)
         _ = pthread_setspecific(ThreadManager.key.pointee, threadPointer)
         return threadPointer
     }

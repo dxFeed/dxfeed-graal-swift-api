@@ -9,6 +9,7 @@ import Foundation
 import DXFeedFramework
 
 class DumpCommand: ToolsCommand {
+    var isTools: Bool = true
     var cmd: String = "Dump"
 
     var shortDescription = "Dumps all events received from address."
@@ -41,10 +42,8 @@ class DumpCommand: ToolsCommand {
         }
     }()
 
-
     func execute() {
         let address = arguments[1]
-        let types = arguments[2]
         let symbols = arguments.parseSymbols(at: 3)
 
         isQuite = arguments.isQuite
@@ -58,9 +57,7 @@ class DumpCommand: ToolsCommand {
                 .withName("DumpTool")
                 .build()
 
-            let eventTypes = types.split(separator: ",").compactMap { str in
-                return EventCode(string: String(str))
-            }
+            let eventTypes = arguments.parseTypes(at: 2)
             let subscription = try inputEndpoint.getFeed()?.createSubscription(eventTypes)
             var outputEndpoint: DXEndpoint?
 
@@ -76,7 +73,6 @@ class DumpCommand: ToolsCommand {
             }
 
             try subscription?.add(observer: self)
-
             try subscription?.addSymbols(symbols)
 
             try inputEndpoint.connect(address)

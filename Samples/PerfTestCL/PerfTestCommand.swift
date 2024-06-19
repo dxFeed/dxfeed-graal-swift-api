@@ -9,6 +9,7 @@ import Foundation
 import DXFeedFramework
 
 class PerfTestCommand: ToolsCommand {
+    var isTools: Bool = true
     var cmd: String = "PerfTest"
     var shortDescription: String = "Connects to specified address and calculates performance counters."
     var fullDescription: String =
@@ -39,13 +40,12 @@ class PerfTestCommand: ToolsCommand {
     var subscription = Subscription()
     func execute() {
         let address = arguments[1]
-        let types = arguments[2]
 
         let listener = PerfTestEventListener()
 
         subscription.createSubscription(address: address,
                                         symbols: arguments.parseSymbols(at: 3),
-                                        types: types,
+                                        types: arguments.parseTypes(at: 2),
                                         listener: listener,
                                         properties: arguments.properties,
                                         time: nil)

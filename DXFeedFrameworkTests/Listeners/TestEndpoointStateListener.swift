@@ -14,7 +14,7 @@ class TestEndpoointStateListener: DXEndpointObserver, Hashable {
     }
 
     deinit {
-        print("deinit TestEndpoointStateListener \(Thread.current.threadName) \(Thread.current.name)")
+        print("deinit TestEndpoointStateListener \(Thread.current.threadName) \(Thread.current.name ?? "")")
     }
 
     static func == (lhs: TestEndpoointStateListener, rhs: TestEndpoointStateListener) -> Bool {

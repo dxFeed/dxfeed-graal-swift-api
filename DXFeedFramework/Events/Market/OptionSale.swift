@@ -60,7 +60,7 @@ public class OptionSale: MarketEvent, IIndexedEvent {
     /// Gets or sets sale conditions provided for this event by data feed.
     ///
     /// This field format is specific for every particular data feed.
-    public var exchangeSaleConditions: String = ""
+    public var exchangeSaleConditions: String?
     /// Gets or sets implementation-specific flags.
     ///
     /// **Do not use this method directly.**
@@ -249,7 +249,7 @@ price=\(price), \
 size=\(size), \
 bid=\(bidPrice), \
 ask=\(askPrice), \
-ESC='\(exchangeSaleConditions ?? "null")', \
+ESC=\(exchangeSaleConditions ?? "null"), \
 TTE=\(StringUtil.encodeChar(char: Int16(getTradeThroughExempt().unicodeScalars.first?.value ?? 0))), \
 side=\(aggressorSide), \
 spread=\(isSpreadLeg), \

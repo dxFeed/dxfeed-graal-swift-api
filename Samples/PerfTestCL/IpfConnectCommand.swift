@@ -9,6 +9,7 @@ import Foundation
 import DXFeedFramework
 
 class IpfConnectCommand: ToolsCommand {
+    var isTools: Bool = false
     lazy var name = {
         stringReference(self)
     }()

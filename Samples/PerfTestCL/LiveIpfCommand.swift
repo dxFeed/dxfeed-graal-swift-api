@@ -9,6 +9,7 @@ import Foundation
 import DXFeedFramework
 
 class LiveIpfCommand: ToolsCommand {
+    var isTools: Bool = false
     lazy var name = {
         stringReference(self)
     }()
@@ -51,7 +52,7 @@ class LiveIpfCommand: ToolsCommand {
     func execute() {
         do {
             collector = try DXInstrumentProfileCollector()
-            connection = try DXInstrumentProfileConnection(arguments[1], collector!)
+            connection = try DXInstrumentProfileConnection(arguments.count > 1 ? arguments[1] : LiveIpfCommand.defaultIpfUrl, collector!)
             // Update period can be used to re-read IPF files, not needed for services supporting IPF "live-update"
             try connection?.setUpdatePeriod(60000)
             connection?.add(observer: self)

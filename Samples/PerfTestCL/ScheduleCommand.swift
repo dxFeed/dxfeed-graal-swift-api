@@ -9,6 +9,7 @@ import Foundation
 import DXFeedFramework
 
 class ScheduleCommand: ToolsCommand {
+    var isTools: Bool = false
     var cmd = "ScheduleSample"
 
     var shortDescription = "A sample program that demonstrates different use cases of Schedule API."
@@ -94,7 +95,10 @@ class ScheduleCommand: ToolsCommand {
             }
         }
 
-        print("Checked \(profiles.count)  instrument profiles: \(successes) successes, \((profiles.count - successes)) failures")
+        print(
+"""
+Checked \(profiles.count) instrument profiles: \(successes) successes, \((profiles.count - successes)) failures
+""")
 
     }
 }

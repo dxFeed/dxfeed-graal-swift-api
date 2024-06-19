@@ -34,7 +34,7 @@ class OptionSaleMapper: Mapper {
         pointer.pointee.size = optionSale.size
         pointer.pointee.bid_price = optionSale.bidPrice
         pointer.pointee.ask_price = optionSale.askPrice
-        pointer.pointee.exchange_sale_conditions = optionSale.exchangeSaleConditions.toCStringRef()
+        pointer.pointee.exchange_sale_conditions = optionSale.exchangeSaleConditions?.toCStringRef()
         pointer.pointee.flags = optionSale.flags
         pointer.pointee.underlying_price = optionSale.underlyingPrice
         pointer.pointee.volatility = optionSale.volatility
