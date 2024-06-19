@@ -15,13 +15,11 @@ class AtomicStorage<T: AnyObject> {
     init() {
         self.storage = []
     }
-
     func append(_ value: T) {
         lockQueue.async(flags: .barrier) { [unowned self] in
             storage.append(value)
         }
     }
-
     func remove(_ value: T) {
         lockQueue.async(flags: .barrier) { [unowned self] in
             storage.removeAll { $0 === value }
