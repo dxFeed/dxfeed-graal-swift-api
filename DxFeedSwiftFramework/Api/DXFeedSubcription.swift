@@ -50,8 +50,10 @@ public class DXFeedSubcription {
 }
 
 extension DXFeedSubcription: DXEventListener {
-    public func receiveEvents(_ events: [AnyObject]) {
-
+    public func receiveEvents(_ events: [MarketEvent]) {
+        listeners.reader { items in
+            items.compactMap { $0 as? DXEventListener }.forEach { $0.receiveEvents(events) }
+        }
     }
 }
 

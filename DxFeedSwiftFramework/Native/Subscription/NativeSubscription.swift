@@ -11,20 +11,22 @@ import Foundation
 class NativeSubscription {
     let subscription: UnsafeMutablePointer<dxfg_subscription_t>?
     var nativeListener: UnsafeMutablePointer<dxfg_feed_event_listener_t>?
+    private let mapper = EventMapper()
     weak var listener: DXEventListener?
-    static let listenerCallback: dxfg_feed_event_listener_function = {_, events, context in
+    static let listenerCallback: dxfg_feed_event_listener_function = {_, nativeEvents, context in
         if let context = context {
+            var events = [MarketEvent]()
             let listener: AnyObject = bridge(ptr: context)
             if let listener =  listener as? NativeSubscription {
-                let count = Int(events?.pointee.size ?? 0)
+                let count = Int(nativeEvents?.pointee.size ?? 0)
                 for index in 0..<count {
-                    let element: UnsafeMutablePointer<dxfg_event_type_t>? = events?.pointee.elements[index]
-                    element?.withMemoryRebound(to: dxfg_quote_t.self, capacity: 1, { pointer in
-                        print(String(pointee: pointer.pointee.market_event.event_symbol, default: "ooops"))
-                    })
+                    if let element = nativeEvents?.pointee.elements[index] {
+                        if let event = try? listener.mapper.fromNative(native: element) {
+                            events.append(event)
+                        }
+                    }
                 }
-                print(events ?? "empty events")
-                listener.listener?.receiveEvents([])
+                listener.listener?.receiveEvents(events)
             }
         }
     }
@@ -52,6 +54,7 @@ class NativeSubscription {
     }
 
     func addListener(_ listener: DXEventListener?) throws {
+        self.listener = listener
         let voidPtr = bridge(obj: self)
         let thread = currentThread()
         let listener = try ErrorCheck.nativeCall(thread,

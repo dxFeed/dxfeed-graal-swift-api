@@ -18,26 +18,16 @@ class AnonymousClass: DXEventListener, Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(name)
     }
-    var someFunc: () -> Void = { }
+    var printFunc: ([MarketEvent]) -> () = { _ in }
 
-    func receiveEvents(_ events: [AnyObject]) {
-        someFunc()
+    func receiveEvents(_ events: [MarketEvent]) {
+        self.printFunc(events)
     }
 
     init(overrides: (AnonymousClass) -> AnonymousClass) {
         _ = overrides(self)
     }
 
-}
-
-class Test {
-    func test() {
-        let workingClass = AnonymousClass { res in
-            res.someFunc = { print("It worked") }
-            return res
-        }
-        workingClass.receiveEvents([])
-    }
 }
 
 class TestEventListener: DXEventListener, Hashable {
@@ -55,7 +45,7 @@ class TestEventListener: DXEventListener, Hashable {
         hasher.combine(name)
     }
 
-    func receiveEvents(_ events: [AnyObject]) {
-
+    func receiveEvents(_ events: [MarketEvent]) {
+//        print(events)
     }
 }
