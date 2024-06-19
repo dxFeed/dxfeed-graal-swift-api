@@ -48,7 +48,7 @@ class QuoteTableViewController: UIViewController {
         }
         endpoint = try? builder?.build()
         endpoint?.add(observer: self)
-        try? endpoint?.connect("demo.dxfeed.com:7300")
+        _ = try? endpoint?.connect("demo.dxfeed.com:7300")
 
         subscription = try? endpoint?.getFeed()?.createSubscription(.quote)
         profileSubscription = try? endpoint?.getFeed()?.createSubscription(.profile)

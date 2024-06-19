@@ -49,7 +49,7 @@ class QuoteViewController: UIViewController {
             endpoint = try? DXEndpoint.builder().withRole(.feed).build()
             endpoint?.add(observer: self)
         }
-        try? endpoint?.connect(address)
+        _ = try? endpoint?.connect(address)
     }
 
     @IBAction func subscribeTapped(_ sender: Any) {
