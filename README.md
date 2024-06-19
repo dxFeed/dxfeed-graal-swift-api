@@ -239,7 +239,9 @@ is a simple demonstration of how to get live updates for Instrument Profiles
 - [x] [DxFeedReconnectSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/DxFeedReconnectSample.playground/Contents.swift)
   is a simple demonstration of how to connect to an endpoint, subscribe to market data events, handle reconnections 
   and re-subscribing.
-  
+- [x] [SimpleAuthSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/SimpleAuthSample.playground/Contents.swift)
+  is a simple demonstration of how to connect to endpoint requires authentication token, subscribe to market data events, and handle periodic token updates.
+
 ## Current State
 
 ### Endpoint Roles
