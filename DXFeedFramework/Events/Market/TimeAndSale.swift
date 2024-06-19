@@ -59,10 +59,10 @@ price: \(price), \
 size: \(size), \
 bidPrice: \(bidPrice), \
 askPrice: \(askPrice), \
-exchangeSaleConditions: \(exchangeSaleConditions), \
+exchangeSaleConditions: \(exchangeSaleConditions ?? "null"), \
 flags: \(flags), \
-buyer: \(buyer), \
-seller: \(seller)
+buyer: \(buyer ?? "null"), \
+seller: \(seller ?? "null")
 """
     }
 }
@@ -188,8 +188,8 @@ side=\(aggressorSide), \
 spread=\(isSpreadLeg), \
 ETH=\(isExtendedTradingHours), \
 validTick=\(isValidTick), \
-type=\(timeAndSaleType)\(buyer == nil ? "" : ", buyer='\(buyer)'")\
-        \(seller == nil ? "" : ", seller='\(buyer)'")\
+type=\(timeAndSaleType)\(buyer == nil ? "" : ", buyer='\(buyer ?? "null")'")\
+        \(seller == nil ? "" : ", seller='\(seller ?? "null")'")\
 }
 """
     }
