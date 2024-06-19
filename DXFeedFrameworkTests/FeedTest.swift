@@ -231,5 +231,3 @@ final class FeedTest: XCTestCase {
         }
     }
 }
-
-
