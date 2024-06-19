@@ -21,6 +21,9 @@ class ProfileMapper: Mapper {
     func toNative(event: MarketEvent) -> UnsafeMutablePointer<dxfg_event_type_t>? {
         let pointer = UnsafeMutablePointer<dxfg_profile_t>.allocate(capacity: 1)
         var pointee = pointer.pointee
+        pointee.market_event.event_symbol = event.eventSymbol.toCStringRef()
+        pointee.market_event.event_time = event.eventTime
+
         let profile = event.profile
         pointee.description = profile.descriptionStr?.toCStringRef()
         pointee.status_reason = profile.statusReason?.toCStringRef()

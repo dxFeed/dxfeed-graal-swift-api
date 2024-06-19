@@ -34,4 +34,8 @@ extension MarketEvent {
     public var candle: Candle {
         return (self as? Candle)!
     }
+    /// Use only for event.type is ``EventCode/summary``
+    public var summary: Summary {
+        return (self as? Summary)!
+    }
 }

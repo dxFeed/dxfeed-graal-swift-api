@@ -41,8 +41,11 @@ public enum PriceType: DXPriceType, CaseIterable {
     case preliminary = 2
     case final = 3
 
-    private static let types: [PriceType] =         EnumUtil.createEnumBitMaskArrayByValue(defaultValue: .regular, allCases: PriceType.allCases)
-
+    private static let types: [PriceType] = {
+        EnumUtil.createEnumBitMaskArrayByValue(defaultValue: .regular,
+                                               allCases: PriceType.allCases)
+    }()
+    
     public static func valueOf(_ value: Int) -> PriceType {
         return PriceType.types[value]
     }
