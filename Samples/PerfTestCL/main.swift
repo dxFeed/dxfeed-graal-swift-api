@@ -7,7 +7,7 @@
 
 import Foundation
 
-let commands: [ToolsCommand] = [PerfTestCommand(), ConnectCommand(), HelpCommand()]
+let commands: [ToolsCommand] = [PerfTestCommand(), ConnectCommand(), LatencyTestCommand(), HelpCommand()]
 
 func getCommand(_ cmd: String) -> ToolsCommand? {
     return commands.first { command in

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ConcurrentSet<T>: CustomStringConvertible where T: Hashable {
+public class ConcurrentSet<T>: CustomStringConvertible where T: Hashable {
     private var set = Set<T>()
     private let accessQueue = DispatchQueue(label: "com.dxfeed.set_queue", attributes: .concurrent)
 

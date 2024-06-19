@@ -9,7 +9,7 @@ import UIKit
 import DXFeedFramework
 
 class LatencyViewController: UIViewController {
-    let diagnostic = Diagnostic()
+    let diagnostic = LatencyDiagnostic()
 
     let numberFormatter = NumberFormatter()
 
@@ -90,7 +90,7 @@ class LatencyViewController: UIViewController {
         }
     }
 
-    func updateText(_ metrics: Metrics) {
+    func updateText(_ metrics: LatencyMetrics) {
         let result = """
   Rate of events (avg)     : \(numberFormatter.string(from: metrics.rateOfEvent)!) (events/s)
   Rate of unique symbols   : \(numberFormatter.string(from: metrics.rateOfSymbols)!) (symbols/interval)
@@ -157,7 +157,6 @@ extension LatencyViewController: DXEventListener {
                 diagnostic.addDeltas(delta)
             default: break
             }
-
         }
     }
 }

@@ -8,6 +8,36 @@
 import Foundation
 import DXFeedFramework
 
+
+class LatencyEventListener: EventListener {
+    let diagnostic = LatencyDiagnostic()
+
+    override func handleEvents(_ events: [MarketEvent]) {
+        let currentTime = Int64(Date().timeIntervalSince1970 * 1_000)
+        var deltas = [Int64]()
+        events.forEach { tsEvent in
+            switch tsEvent.type {
+            case .quote:
+                let quote = tsEvent.quote
+                let delta = currentTime - quote.time
+                diagnostic.addSymbol(tsEvent.eventSymbol)
+                diagnostic.addDeltas(delta)
+            case .timeAndSale:
+                let timeAndSale = tsEvent.timeAndSale
+                let delta = currentTime - timeAndSale.time
+                diagnostic.addSymbol(tsEvent.eventSymbol)
+                diagnostic.addDeltas(delta)
+            case .trade:
+                let trade = tsEvent.trade
+                let delta = currentTime - trade.time
+                diagnostic.addSymbol(tsEvent.eventSymbol)
+                diagnostic.addDeltas(delta)
+            default: break
+            }
+        }
+    }
+}
+
 class ConnectEventListener: EventListener {
     override func handleEvents(_ events: [MarketEvent]) {
         events.forEach { event in
@@ -17,7 +47,7 @@ class ConnectEventListener: EventListener {
 }
 
 class PerfTestEventListener: EventListener {
-    let diagnostic = Diagnostic()
+    let diagnostic = PerfDiagnostic()
     override func handleEvents(_ events: [MarketEvent]) {
         let count = events.count
         diagnostic.updateCounters(Int64(count))

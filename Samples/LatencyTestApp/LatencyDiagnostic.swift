@@ -15,7 +15,7 @@ private class Counter {
     }
 }
 
-struct Metrics {
+struct LatencyMetrics {
     let rateOfEvent: NSNumber
     let min: NSNumber
     let max: NSNumber
@@ -29,7 +29,7 @@ struct Metrics {
     let currentTime: TimeInterval
 }
 
-class Diagnostic {
+class LatencyDiagnostic {
     private var absoluteStartTime: Date?
     private var startTime = Date.now
     private var deltas = ConcurrentArray<Int64>()
@@ -43,7 +43,7 @@ class Diagnostic {
         self.symbols.insert(symbol)
     }
 
-    func getMetrics() -> Metrics {
+    func getMetrics() -> LatencyMetrics {
         var currentDeltas = [Int64]()
         self.deltas.reader { values in
             currentDeltas = values
@@ -60,7 +60,7 @@ class Diagnostic {
             absoluteStartTime = self.startTime
         }
         let seconds = self.startTime.timeIntervalSince(lastStart)
-        return Diagnostic.createMetrics(currentDeltas,
+        return LatencyDiagnostic.createMetrics(currentDeltas,
                                         currentSymbols,
                                         seconds,
                                         startTime.timeIntervalSince(absoluteStartTime ?? startTime))
@@ -69,7 +69,7 @@ class Diagnostic {
     private static func createMetrics(_ currentDeltas: [Int64],
                                       _ currentSymbols: [String],
                                       _ seconds: TimeInterval,
-                                      _ currentTime: TimeInterval) -> Metrics {
+                                      _ currentTime: TimeInterval) -> LatencyMetrics {
         let min = currentDeltas.min() ?? 0
         let max = currentDeltas.max() ?? 0
         let mean = calculateMean(currentDeltas)
@@ -78,17 +78,17 @@ class Diagnostic {
         let percentile = !currentDeltas.isEmpty ? calculatePercentile(currentDeltas, excelPercentile: 0.99) : 0
         let stdDev = calculateStdDev(currentDeltas)
         let error = calculateError(currentDeltas, stdDev: stdDev)
-        return Metrics(rateOfEvent: NSNumber(value: speed),
-                       min: NSNumber(value: min),
-                       max: NSNumber(value: max),
-                       mean: NSNumber(value: mean),
-                       percentile: NSNumber(value: percentile),
-                       sampleSize: NSNumber(value: currentDeltas.count),
-                       measureInterval: NSNumber(value: seconds),
-                       stdDev: NSNumber(value: stdDev),
-                       error: NSNumber(value: error.isNaN ? 0 : error),
-                       rateOfSymbols: NSNumber(value: currentSymbols.count),
-                       currentTime: currentTime)
+        return LatencyMetrics(rateOfEvent: NSNumber(value: speed),
+                              min: NSNumber(value: min),
+                              max: NSNumber(value: max),
+                              mean: NSNumber(value: mean),
+                              percentile: NSNumber(value: percentile),
+                              sampleSize: NSNumber(value: currentDeltas.count),
+                              measureInterval: NSNumber(value: seconds),
+                              stdDev: NSNumber(value: stdDev),
+                              error: NSNumber(value: error.isNaN ? 0 : error),
+                              rateOfSymbols: NSNumber(value: currentSymbols.count),
+                              currentTime: currentTime)
     }
 
     private static func calculatePercentile(_ deltas: [Int64], excelPercentile: Double) -> Double {

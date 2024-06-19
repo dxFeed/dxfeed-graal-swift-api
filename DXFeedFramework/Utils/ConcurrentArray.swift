@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ConcurrentArray<T>: CustomStringConvertible {
+public class ConcurrentArray<T>: CustomStringConvertible {
     private var array: [T]
     private let accessQueue = DispatchQueue(label: "com.dxfeed.array_queue", attributes: .concurrent)
 

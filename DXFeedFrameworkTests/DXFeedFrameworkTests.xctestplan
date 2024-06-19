@@ -21,16 +21,6 @@
     {
       "parallelizable" : true,
       "skippedTests" : [
-        "CandleTests",
-        "EndpointPublisherTest",
-        "EndpointTest",
-        "EventsTest",
-        "FeedTest",
-        "IPFTests",
-        "IsolateTest",
-        "ScheduleTest",
-        "SystemPropertyTest",
-        "ThreadsTest",
         "UtilsTest"
       ],
       "target" : {
