@@ -30,14 +30,7 @@ public class OrderBase: MarketEvent, IIndexedEvent, CustomStringConvertible {
 
     public var eventFlags: Int32 = 0
 
-    public var index: Long = 0 {
-        didSet {
-            if index < 0 {
-                index = 0
-                print("Negative index for \(self)")
-            }
-        }
-    }
+    public private(set) var index: Long = 0
 
     public var eventSymbol: String
 
@@ -163,6 +156,15 @@ tradeSize: \(tradeSize)
 }
 
 extension OrderBase {
+    /// Gets or sets unique per-symbol index of this event.
+    /// - Throws: ``ArgumentException/exception(_:)``
+    public func setIndex(_ value: Long) throws {
+        if index < 0 {
+            throw ArgumentException.exception("Negative index: \(index)")
+        }
+        self.index = value
+    }
+    
     /// Gets a value indicating whether this order has some size
     public func hsaSize() -> Bool {
         return size != 0 && !size.isNaN
