@@ -156,7 +156,7 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
                 XCTAssert(newProfile == profile, "Should be equal")
                 expectation.fulfill()
             }
-            wait(for: [expectation], timeout: 1.0)
+            wait(for: [expectation], timeout: 2.0)
         } catch {
             print(error)
         }

@@ -70,8 +70,8 @@ class ErrorCheck {
         let exception = dxfg_get_and_clear_thread_exception_t(thread)
         if let pointee = exception?.pointee {
             let message = String(pointee: pointee.message, default: "Graall Exception")
-            let className = String(pointee: pointee.className, default: "")
-            let stackTrace = String(pointee: pointee.stackTrace, default: "")
+            let className = String(pointee: pointee.class_name, default: "")
+            let stackTrace = String(pointee: pointee.print_stack_trace, default: "")
             let gException =  GraalException.fail(message: message,
                                                   className: className,
                                                   stack: stackTrace)
