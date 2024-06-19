@@ -1219,7 +1219,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -d \"graal_builds\" ]; then\n    echo \"Grall builds are existing\"\n    if [ -d \"graal_builds/osx_universal\" ]; then\n        echo \"Graal is ready.\"\n    else \n        echo \"Create universal macOS lib\"\n        cp -r \"graal_builds/osx_x86\" \"graal_builds/temp\"\n        rm \"graal_builds/temp/libDxFeedGraalNativeSdk.dylib\"\n        lipo \"graal_builds/osx_x86/libDxFeedGraalNativeSdk.dylib\" \"graal_builds/osx_arm/libDxFeedGraalNativeSdk.dylib\" -output \"graal_builds/temp/libDxFeedGraalNativeSdk.dylib\" -create\n        mv \"graal_builds/temp\" \"graal_builds/osx_universal\"\n    fi\n    \nelse\n  echo \"Grall builds are not existing. Please download dependencies using gradle.\"\n  exit 1\nfi\n";
+			shellScript = "if [ -d \"graal_builds\" ]; then\n    echo \"Grall builds are existing\"\n    if [ -d \"graal_builds/osx_universal\" ]; then\n        echo \"Graal is ready.\"\n    else \n        echo \"Create universal macOS lib\"\n        cp -r \"graal_builds/osx_x86\" \"graal_builds/temp\"\n        rm \"graal_builds/temp/libDxFeedGraalNativeSdk.dylib\"\n        lipo \"graal_builds/osx_x86/libDxFeedGraalNativeSdk.dylib\" \"graal_builds/osx_arm/libDxFeedGraalNativeSdk.dylib\" -output \"graal_builds/temp/libDxFeedGraalNativeSdk.dylib\" -create\n        mv \"graal_builds/temp\" \"graal_builds/osx_universal\"\n    fi\n    \nelse\n  echo \"Grall builds are not existing. Please download dependencies using shell command 'gradle fetchDependencies.\"\n  exit 1\nfi\n";
 		};
 		803BAC3729BFAAEC00FFAB1C /* Build XCFramework */ = {
 			isa = PBXShellScriptBuildPhase;
