@@ -13,15 +13,16 @@ enum ArgumentParserException: Error {
 
 class ArgumentParser {
 
-    func parse(_ cmd: [String], numberOfPossibleArguments: Int) throws -> [String] {
-        print("Parse \(cmd) to \(numberOfPossibleArguments) arguments")
+    func parse(_ cmd: [String], requiredNumberOfArguments: Int) throws -> [String] {
+        print("Parse \(cmd) to \(requiredNumberOfArguments) arguments")
 
-        if cmd.count - 1 < numberOfPossibleArguments {
+        if cmd.count - 1 < requiredNumberOfArguments {
             throw ArgumentParserException.error(message:
 """
-Cmd \(cmd) contains not enough \(cmd.count - 1) arguments. Expected \(numberOfPossibleArguments)
+Cmd \(cmd) contains not enough \(cmd.count - 1) arguments. Expected \(requiredNumberOfArguments)
 """)
         }
-        return Array(cmd[1...numberOfPossibleArguments])
+
+        return Array(cmd[1...cmd.count - 1])
     }
 }

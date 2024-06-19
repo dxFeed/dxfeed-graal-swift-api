@@ -10,11 +10,13 @@ import DXFeedFramework
 
 extension EventCode {
     init(string: String) {
-        switch string {
-        case "Quote":
+        switch string.lowercased() {
+        case "quote":
             self = .quote
-        case "TimeAndSale":
+        case "timeandsale":
             self = .timeAndSale
+        case "candle":
+            self = .candle
         default:
             fatalError("Please, handle this case: \(string)")
         }

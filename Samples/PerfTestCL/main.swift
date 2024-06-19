@@ -45,7 +45,7 @@ Where:
 
 var arguments: [String]
 do {
-    arguments = try ArgumentParser().parse(ProcessInfo.processInfo.arguments, numberOfPossibleArguments: 1)
+    arguments = try ArgumentParser().parse(ProcessInfo.processInfo.arguments, requiredNumberOfArguments: 1)
 } catch {
     printGlobalHelp()
     print(error)
@@ -53,7 +53,7 @@ do {
     exit(1)
 }
 
-let command = "PerfTest"
+let command = "Connect"
 
 switch command {
 case "Help":

@@ -177,6 +177,9 @@
 		6479BC2B2A4F35A300A3D404 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6479BC2A2A4F35A300A3D404 /* QuoteView.swift */; };
 		648BD5692AC450D6004A3A95 /* ConnectCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD5682AC450D6004A3A95 /* ConnectCommand.swift */; };
 		648BD56B2AC4576F004A3A95 /* HelpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56A2AC4576F004A3A95 /* HelpCommand.swift */; };
+		648BD56D2AC56A04004A3A95 /* SubscriptionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */; };
+		648BD56F2AC582AB004A3A95 /* DateTimeParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD56E2AC582AB004A3A95 /* DateTimeParserTest.swift */; };
+		648BD5712AC583AC004A3A95 /* TimeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648BD5702AC583AC004A3A95 /* TimeFormat.swift */; };
 		648E98AA2AAF625800BFD219 /* IIndexedEvent+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */; };
 		64963B6A2A8E545C001E40F7 /* IEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64963B692A8E545C001E40F7 /* IEventType.swift */; };
 		6498E6B22AB1D41A0093A065 /* DXSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498E6B12AB1D41A0093A065 /* DXSchedule.swift */; };
@@ -586,6 +589,9 @@
 		6479BC2A2A4F35A300A3D404 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		648BD5682AC450D6004A3A95 /* ConnectCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCommand.swift; sourceTree = "<group>"; };
 		648BD56A2AC4576F004A3A95 /* HelpCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCommand.swift; sourceTree = "<group>"; };
+		648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionUtils.swift; sourceTree = "<group>"; };
+		648BD56E2AC582AB004A3A95 /* DateTimeParserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeParserTest.swift; sourceTree = "<group>"; };
+		648BD5702AC583AC004A3A95 /* TimeFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormat.swift; sourceTree = "<group>"; };
 		648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IIndexedEvent+Ext.swift"; sourceTree = "<group>"; };
 		64963B692A8E545C001E40F7 /* IEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEventType.swift; sourceTree = "<group>"; };
 		6498E6B12AB1D41A0093A065 /* DXSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXSchedule.swift; sourceTree = "<group>"; };
@@ -812,6 +818,7 @@
 				645BE8512AC31E7C0028243D /* PerfTestCommand.swift */,
 				648BD5682AC450D6004A3A95 /* ConnectCommand.swift */,
 				648BD56A2AC4576F004A3A95 /* HelpCommand.swift */,
+				648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */,
 			);
 			path = PerfTestCL;
 			sourceTree = "<group>";
@@ -984,6 +991,7 @@
 				64C771F12A94A224009868C2 /* Character+Ext.swift */,
 				64C772002A975102009868C2 /* Reference+Util.swift */,
 				6464074E2A9F62D4006FF769 /* Date+Ext.swift */,
+				648BD5702AC583AC004A3A95 /* TimeFormat.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1270,6 +1278,7 @@
 				6447A5EC2A8FCC2200739CCF /* UtilsTest.swift */,
 				64ECD67E2A9CF4CB00B36935 /* IPFTests.swift */,
 				6498E6B62AB1DACE0093A065 /* ScheduleTest.swift */,
+				648BD56E2AC582AB004A3A95 /* DateTimeParserTest.swift */,
 			);
 			path = DXFeedFrameworkTests;
 			sourceTree = "<group>";
@@ -1798,6 +1807,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				648BD56D2AC56A04004A3A95 /* SubscriptionUtils.swift in Sources */,
 				648BD56B2AC4576F004A3A95 /* HelpCommand.swift in Sources */,
 				647426AF2ABC93900012F793 /* EventCode+String.swift in Sources */,
 				645BE8542AC3229D0028243D /* ToolsCommand.swift in Sources */,
@@ -2039,6 +2049,7 @@
 				640C3FD62A6179E300555161 /* CandleAlignment.swift in Sources */,
 				640C3FCC2A616B6200555161 /* ArgumentException.swift in Sources */,
 				64B436442AB88EA40003919E /* NativeDay.swift in Sources */,
+				648BD5712AC583AC004A3A95 /* TimeFormat.swift in Sources */,
 				642BE4C42A2E1AFF0052340A /* Quote.swift in Sources */,
 				64656F602A1B9EC2006A0B19 /* EnumUtil.swift in Sources */,
 				642BE4CA2A2E1C640052340A /* MarketEvent.swift in Sources */,
@@ -2069,6 +2080,7 @@
 				64ACBCEC2A29FE2300032C53 /* XCTestCase+Utils.swift in Sources */,
 				64ECD67F2A9CF4CB00B36935 /* IPFTests.swift in Sources */,
 				64ACBCD52A2789EF00032C53 /* TestListener.swift in Sources */,
+				648BD56F2AC582AB004A3A95 /* DateTimeParserTest.swift in Sources */,
 				64ACBCEA2A28DDDA00032C53 /* TestEventListener.swift in Sources */,
 				6401A5152A582134009BA686 /* IsolateTest.swift in Sources */,
 				64ACBCCF2A27851C00032C53 /* FeedTest.swift in Sources */,
