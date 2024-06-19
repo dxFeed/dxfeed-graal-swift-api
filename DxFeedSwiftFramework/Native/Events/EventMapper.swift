@@ -10,7 +10,9 @@ import Foundation
 
 class EventMapper: Mapper {
     private let mappers: [EventCode: Mapper] = [.quote: QuoteMapper(),
-                                                .timeAndSale: TimeAndSaleMapper()]
+                                                .timeAndSale: TimeAndSaleMapper(),
+                                                .profile: ProfileMapper(),
+                                                .trade: TradeMapper()]
 
     func fromNative(native: UnsafeMutablePointer<dxfg_event_type_t>) throws -> MarketEvent? {
         let code = try EnumUtil.valueOf(value: EventCode.convert(native.pointee.clazz))

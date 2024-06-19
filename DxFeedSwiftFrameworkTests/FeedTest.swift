@@ -75,17 +75,81 @@ final class FeedTest: XCTestCase {
         wait(seconds: 2)
     }
 
-    func testApiLikeGithubSample() throws {
+    func testTimeAndSale() throws {
+        try waitingEvent(code: .timeAndSale)
+    }
+
+    func testQuote() throws {
+        try waitingEvent(code: .quote)
+    }
+
+    func testTrade() throws {
+        try waitingEvent(code: .trade)
+    }
+
+    func testProfile() throws {
+        try waitingEvent(code: .profile)
+    }
+
+    func waitingEvent(code: EventCode) throws {
+
         let endpoint = try DXEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
         try endpoint.connect("demo.dxfeed.com:7300")
-        let subscription = try endpoint.getFeed()?.createSubscription(.timeAndSale)
+        let subscription = try endpoint.getFeed()?.createSubscription(code)
+        let receivedEventExp = expectation(description: "Received events \(code)")
         subscription?.add(AnonymousClass { anonymCl in
             anonymCl.printFunc = { events in
-                print(events)
+                if events.count > 0 {
+                    var correctType = false
+                    let event = events.first
+                    switch code {
+                    case .timeAndSale:
+                        correctType = event is TimeAndSale
+                    case .quote:
+                        correctType = event is Quote
+                    case .profile:
+                        correctType = event is Profile
+                    case .summary:
+                        break
+                    case .greeks:
+                        break
+                    case .candle:
+                        break
+                    case .dailyCandle:
+                        break
+                    case .underlying:
+                        break
+                    case .theoPrice:
+                        break
+                    case .trade:
+                        correctType = event is Trade
+                    case .tradeETH:
+                        break
+                    case .configuration:
+                        break
+                    case .message:
+                        break
+                    case .orderBase:
+                        break
+                    case .order:
+                        break
+                    case .analyticOrder:
+                        break
+                    case .spreadOrder:
+                        break
+                    case .series:
+                        break
+                    case .optionSale:
+                        break
+                    }
+                    if correctType {
+                        receivedEventExp.fulfill()
+                    }
+                }
             }
             return anonymCl
         })
         try subscription?.addSymbols(["ETH/USD:GDAX"])
-        wait(seconds: 2)
+        wait(for: [receivedEventExp], timeout: 5)
     }
 }
