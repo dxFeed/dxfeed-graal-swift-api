@@ -33,7 +33,7 @@ class CandlePeriod {
         }
         let other = try parse(value)
         if other == defaultPeriod {
-            MarketEventSymbols.removeAttributeStringByKey(symbol, attributeKey)
+           _ = MarketEventSymbols.removeAttributeStringByKey(symbol, attributeKey)
         }
         if attribute != other.toString() {
             if let changedSymbol = try MarketEventSymbols.changeAttributeStringByKey(symbol,

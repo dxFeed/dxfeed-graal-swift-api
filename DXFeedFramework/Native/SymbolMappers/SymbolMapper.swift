@@ -52,12 +52,16 @@ class SymbolMapper {
         let type = symbol.pointee.type
         switch type {
         case STRING:
-#warning("TODO: implement correct deinit. re-cast to specific object")
             symbol.withMemoryRebound(to: dxfg_string_symbol_t.self, capacity: 1) {
                 $0.deinitialize(count: 1)
                 $0.deallocate()
             }
-        case CANDLE: break
+        case CANDLE:
+            symbol.withMemoryRebound(to: dxfg_candle_symbol_t.self, capacity: 1) {
+                $0.deinitialize(count: 1)
+                $0.deallocate()
+            }
+
         case WILDCARD: break
         case INDEXED_EVENT_SUBSCRIPTION: break
         case TIME_SERIES_SUBSCRIPTION:

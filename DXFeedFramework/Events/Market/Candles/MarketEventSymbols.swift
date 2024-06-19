@@ -91,7 +91,7 @@ class MarketEventSymbols {
     private static func getKeyInternal(_ symbol: String,
                                        _ start: Int) -> String? {
         let val = symbol.firstIndex(of: Separtors.value.rawValue, start: start)
-        return val < 0 ? nil : symbol[start..<val+1]
+        return val < 0 ? nil : symbol[start..<val]
     }
 
     private static func getNextKeyInternal(_ symbol: String,
