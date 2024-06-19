@@ -27,6 +27,9 @@
                                 <rect key="frame" x="15" y="79.666666666666671" width="233" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="19E-5J-XD2" id="bfo-hA-fze"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xR6-Dq-o9F">
                                 <rect key="frame" x="263" y="79" width="120" height="35"/>
@@ -106,7 +109,7 @@
                                 <rect key="frame" x="10" y="139" width="373" height="659"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MetricCellId" rowHeight="50" id="pgm-7b-Ulv" customClass="MetricCell" customModule="LatencyTest" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MetricCellId" rowHeight="50" id="pgm-7b-Ulv" customClass="MetricCell" customModule="DxFeedPertTestApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="373" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pgm-7b-Ulv" id="NKy-Fg-xef">
