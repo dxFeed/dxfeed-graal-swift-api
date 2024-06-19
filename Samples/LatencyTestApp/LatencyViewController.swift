@@ -77,7 +77,7 @@ class LatencyViewController: UIViewController {
             endpoint?.add(self)
             try? endpoint?.connect(address)
 
-            subscription = try? endpoint?.getFeed()?.createSubscription(.timeAndSale)
+            subscription = try? endpoint?.getFeed()?.createSubscription(.trade)
             subscription?.add(self)
             profileSubscription?.add(self)
 
@@ -122,19 +122,34 @@ extension LatencyViewController: DXEndpointObserver {
 }
 
 extension LatencyViewController: DXEventListener {
-    func receiveEvents(_ events: [DxFeedSwiftFramework.MarketEvent]) {
-        let currentTime = UInt64(Date().timeIntervalSince1970 * 1_000)
+    func receiveEvents(_ events: [MarketEvent]) {
+        let currentTime = Int64(Date().timeIntervalSince1970 * 1_000)
 
         events.forEach { event in
-            if event.type == .timeAndSale {
-                var deltas = [UInt64]()
-                if let tsEvent = event as? TimeAndSale {                    
+            if event.type == .quote {
+                var deltas = [Int64]()
+                if let tsEvent = event as? Quote {
                     let delta = currentTime - tsEvent.time
                     deltas.append(delta)
                     diagnostic.addSymbol(tsEvent.eventSymbol)
                     diagnostic.addDeltas(deltas)
                 }
-
+            } else if event.type == .timeAndSale {
+                var deltas = [Int64]()
+                if let tsEvent = event as? TimeAndSale {
+                    let delta = currentTime - tsEvent.time
+                    deltas.append(delta)
+                    diagnostic.addSymbol(tsEvent.eventSymbol)
+                    diagnostic.addDeltas(deltas)
+                }
+            } else if event.type == .trade {
+                var deltas = [Int64]()
+                if let tsEvent = event as? Trade {
+                    let delta = currentTime - tsEvent.time
+                    deltas.append(delta)
+                    diagnostic.addSymbol(tsEvent.eventSymbol)
+                    diagnostic.addDeltas(deltas)
+                }
             }
         }
 

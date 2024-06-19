@@ -32,10 +32,10 @@ struct Metrics {
 class Diagnostic {
     private var absoluteStartTime: Date?
     private var startTime = Date.now
-    private var deltas = ConcurrentArray<UInt64>()
+    private var deltas = ConcurrentArray<Int64>()
     private var symbols = ConcurrentSet<String>()
 
-    func addDeltas(_ deltas: [UInt64]) {
+    func addDeltas(_ deltas: [Int64]) {
         self.deltas.append(newElements: deltas)
     }
 
@@ -47,7 +47,7 @@ class Diagnostic {
         if absoluteStartTime == nil {
             absoluteStartTime = Date.now
         }
-        var currentDeltas = [UInt64]()
+        var currentDeltas = [Int64]()
         self.deltas.reader { values in
             currentDeltas = values
         }
@@ -66,7 +66,7 @@ class Diagnostic {
                                         startTime.timeIntervalSince(absoluteStartTime ?? startTime))
     }
 
-    private static func createMetrics(_ currentDeltas: [UInt64],
+    private static func createMetrics(_ currentDeltas: [Int64],
                                       _ currentSymbols: [String],
                                       _ seconds: TimeInterval,
                                       _ currentTime: TimeInterval) -> Metrics {
@@ -91,7 +91,7 @@ class Diagnostic {
                        currentTime: currentTime)
     }
 
-    private static func calculatePercentile(_ deltas: [UInt64], excelPercentile: Double) -> Double {
+    private static func calculatePercentile(_ deltas: [Int64], excelPercentile: Double) -> Double {
         let deltas = deltas.sorted()
         let deltasCount = deltas.count
         let nVar = (Double(deltasCount - 1) * excelPercentile) + 1
@@ -106,13 +106,13 @@ class Diagnostic {
         return Double(deltas[kIndex - 1]) + (dIndex * Double((deltas[kIndex] - deltas[kIndex - 1])))
     }
 
-    private static func calculateMean(_ deltas: [UInt64]) -> Double {
+    private static func calculateMean(_ deltas: [Int64]) -> Double {
         let sumArray = deltas.reduce(0, +)
         let mean = Double(sumArray) / Double(deltas.count > 0 ? deltas.count : 1)
         return mean
     }
 
-    private static func calculateStdDev(_ deltas: [UInt64]) -> Double {
+    private static func calculateStdDev(_ deltas: [Int64]) -> Double {
         var stdDev = 0.0
         var count = deltas.count
         if count <= 1 {
@@ -127,7 +127,7 @@ class Diagnostic {
         return stdDev
     }
 
-    private static func calculateError(_ deltas: [UInt64], stdDev: Double) -> Double {
+    private static func calculateError(_ deltas: [Int64], stdDev: Double) -> Double {
         let count = Double(deltas.count)
         return stdDev / sqrt(count)
     }

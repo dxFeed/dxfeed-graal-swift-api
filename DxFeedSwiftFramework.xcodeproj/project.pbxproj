@@ -62,6 +62,9 @@
 		64656F732A1D0A84006A0B19 /* EndpointListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F722A1D0A84006A0B19 /* EndpointListener.swift */; };
 		64656F752A1D0C91006A0B19 /* WeakListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F742A1D0C91006A0B19 /* WeakListener.swift */; };
 		64656F772A1DFED9006A0B19 /* EndpointState+Native.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64656F762A1DFED9006A0B19 /* EndpointState+Native.swift */; };
+		6469F8C02A3B165500846831 /* Quote+Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8BF2A3B165500846831 /* Quote+Access.swift */; };
+		6469F8C22A3B169A00846831 /* MathUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8C12A3B169A00846831 /* MathUtil.swift */; };
+		6469F8C62A3B1D4A00846831 /* TradeBase+Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8C52A3B1D4A00846831 /* TradeBase+Access.swift */; };
 		64ACBCCF2A27851C00032C53 /* FeedTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64104FC02A210DDD00D1FC41 /* FeedTest.swift */; };
 		64ACBCD52A2789EF00032C53 /* TestListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BCBB92A1FB42500FE23C2 /* TestListener.swift */; };
 		64ACBCD72A27981900032C53 /* ListNative+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ACBCD62A27981900032C53 /* ListNative+Ext.swift */; };
@@ -255,6 +258,9 @@
 		64656F722A1D0A84006A0B19 /* EndpointListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointListener.swift; sourceTree = "<group>"; };
 		64656F742A1D0C91006A0B19 /* WeakListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakListener.swift; sourceTree = "<group>"; };
 		64656F762A1DFED9006A0B19 /* EndpointState+Native.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EndpointState+Native.swift"; sourceTree = "<group>"; };
+		6469F8BF2A3B165500846831 /* Quote+Access.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quote+Access.swift"; sourceTree = "<group>"; };
+		6469F8C12A3B169A00846831 /* MathUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathUtil.swift; sourceTree = "<group>"; };
+		6469F8C52A3B1D4A00846831 /* TradeBase+Access.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TradeBase+Access.swift"; sourceTree = "<group>"; };
 		64ACBCD62A27981900032C53 /* ListNative+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListNative+Ext.swift"; sourceTree = "<group>"; };
 		64ACBCD82A279F7900032C53 /* DXEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXEventListener.swift; sourceTree = "<group>"; };
 		64ACBCDC2A28978600032C53 /* Symbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
@@ -392,7 +398,7 @@
 		641BCBBF2A21051A00FE23C2 /* Market */ = {
 			isa = PBXGroup;
 			children = (
-				645FBB3E2A39D931004B1A49 /* TimeAndSale+Access.swift */,
+				6469F8BE2A3B163E00846831 /* Extensions */,
 				642BE4C92A2E1C640052340A /* MarketEvent.swift */,
 				642BE4C32A2E1AFF0052340A /* Quote.swift */,
 				642BE4D12A2F5D230052340A /* TimeAndSale.swift */,
@@ -446,6 +452,7 @@
 				64656F6E2A1CFC12006A0B19 /* WeakBox.swift */,
 				64104FC42A26059B00D1FC41 /* ConcurrentSet.swift */,
 				64104FC62A2613BC00D1FC41 /* ConcurrentArray.swift */,
+				6469F8C12A3B169A00846831 /* MathUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -457,6 +464,16 @@
 				64104FC22A210F2400D1FC41 /* EventCode+Native.swift */,
 			);
 			path = Feed;
+			sourceTree = "<group>";
+		};
+		6469F8BE2A3B163E00846831 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				645FBB3E2A39D931004B1A49 /* TimeAndSale+Access.swift */,
+				6469F8BF2A3B165500846831 /* Quote+Access.swift */,
+				6469F8C52A3B1D4A00846831 /* TradeBase+Access.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		64ACBCDB2A28974900032C53 /* Osub */ = {
@@ -1006,6 +1023,7 @@
 				64ACBCE32A289A0700032C53 /* TimeSeriesSubscriptionSymbol.swift in Sources */,
 				64BA92652A306E0200BE26A0 /* Trade.swift in Sources */,
 				8088D77129C3A25D00F240CB /* SystemProperty.swift in Sources */,
+				6469F8C22A3B169A00846831 /* MathUtil.swift in Sources */,
 				80FC415929C8EE8B00E6B611 /* DXEndpoint.swift in Sources */,
 				642BE4D42A2F5D730052340A /* TimeAndSale+Ext.swift in Sources */,
 				64ACBCD92A279F7900032C53 /* DXEventListener.swift in Sources */,
@@ -1019,12 +1037,14 @@
 				80FC415C29CA2B8800E6B611 /* NativeBuilder.swift in Sources */,
 				642BE4D62A2F5E7C0052340A /* TimeAndSaleMapper.swift in Sources */,
 				64656F652A1CAFC5006A0B19 /* String+Pointee.swift in Sources */,
+				6469F8C62A3B1D4A00846831 /* TradeBase+Access.swift in Sources */,
 				64ACBCD72A27981900032C53 /* ListNative+Ext.swift in Sources */,
 				642BE4CE2A2E29270052340A /* EventMapper.swift in Sources */,
 				64656F692A1CF083006A0B19 /* NativeException.swift in Sources */,
 				64ACBCDD2A28978600032C53 /* Symbol.swift in Sources */,
 				8088D76529C0FBCE00F240CB /* ThreadManager.swift in Sources */,
 				64656F732A1D0A84006A0B19 /* EndpointListener.swift in Sources */,
+				6469F8C02A3B165500846831 /* Quote+Access.swift in Sources */,
 				64104FCC2A2629D800D1FC41 /* NativeSubscription.swift in Sources */,
 				64656F6D2A1CFB10006A0B19 /* DXEndpointState.swift in Sources */,
 				64104FC92A26298D00D1FC41 /* DXFeedSubcription.swift in Sources */,
