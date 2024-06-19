@@ -1,6 +1,6 @@
 //
 //  EventCode+String.swift
-//  PerfTestCL
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 21.09.23.
 //

@@ -1,6 +1,6 @@
 //
 //  ConnectEventListener.swift
-//  DXFeedFramework
+//  Tools
 //
 //  Created by Aleksey Kosylo on 21.09.23.
 //

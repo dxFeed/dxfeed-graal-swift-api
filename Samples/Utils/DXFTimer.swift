@@ -1,6 +1,6 @@
 //
 //  RepeatingTimer.swift
-//  DxFeedPertTestApp
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 16.06.23.
 //

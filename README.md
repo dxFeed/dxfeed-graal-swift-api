@@ -164,20 +164,20 @@ Quote{AAPL, eventTime=0, time=20221219-223312.000, timeNanoPart=0, sequence=0, b
 
 ## Tools
 
-[Tools](https://github.com/dxFeed/dxfeed-graal-swift-api/tree/swift/Samples/PerfTestCL/)
+[Tools](https://github.com/dxFeed/dxfeed-graal-swift-api/tree/swift/Samples/Tools/)
 is a collection of tools that allow you to subscribe to various market events for the specified symbols. The tools can
 be
 downloaded
 from [Release](https://github.com/dxFeed/dxfeed-graal-swift-api/releases) (tools.zip includes self-contained versions)
 
-* [Connect](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/PerfTestCL/ConnectTool.swift)
+* [Connect](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/ConnectTool.swift)
   connects to the specified address(es) and subscribes to the specified events with the specified symbol
-* [Dump](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/PerfTestCL/DumpTool.swift)
+* [Dump](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/DumpTool.swift)
   dumps all events received from address. This was designed to retrieve data from a file
-* [PerfTest](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/PerfTestCL/PerfTestTool.swift)
+* [PerfTest](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/PerfTestTool.swift)
   connects to the specified address(es) and calculates performance counters (events per second, memory usage, CPU usage,
   etc.)
-* [LatencyTest](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/PerfTestCL/LatencyTestTool.swift)
+* [LatencyTest](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/LatencyTestTool.swift)
   connects to the specified address(es) and calculates latency.
 
 To run tools on macOs, it may be necessary to unquarantine them:

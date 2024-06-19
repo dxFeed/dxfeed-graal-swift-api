@@ -1,6 +1,6 @@
 //
 //  Endpoint+Ext.swift
-//  TestApp
+//  DXFeedFramework
 //
 //  Created by Aleksey Kosylo on 12.06.23.
 //
