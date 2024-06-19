@@ -17,7 +17,7 @@ import Foundation
 public class DXSchedule {
     let native: NativeSchedule
 
-    private init(native: NativeSchedule) {
+    internal init(native: NativeSchedule) {
         self.native = native
     }
     /// Returns default schedule instance for specified schedule definition.
@@ -80,7 +80,8 @@ public class DXSchedule {
     ///    - time: the time to search for
     /// - Throws: GraalException. Rethrows exception from Java.recore
     public func getDayByTime(time: Long) throws -> ScheduleDay {
-        return try native.getDayByTime(time: time)
+        var day = try native.getDayByTime(time: time)
+        return day
     }
     /// Returns day for specified day identifier.
     ///
@@ -90,6 +91,7 @@ public class DXSchedule {
     ///    - day: identifier to search for
     /// - Throws: GraalException. Rethrows exception from Java.recore
     public func getDayById(day: Int32) throws -> ScheduleDay {
-        return try native.getDayById(dayId: day)
+        var day = try native.getDayById(dayId: day)
+        return day
     }
 }

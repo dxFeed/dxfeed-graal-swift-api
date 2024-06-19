@@ -28,6 +28,8 @@ import Foundation
 /// Such sessions can be of any appropriate type, trading or non-trading.
 /// Day may have zero duration as well - e.g. when all time within it is transferred to other days.
 public class ScheduleDay {
+    /// Returns schedule to which this day belongs.
+    internal var nativeSchedule: NativeSchedule?
     /// Number of this day since January 1, 1970 (that day has identifier of 0 and previous days have negative identifiers).
     public internal(set) var dayId: Int32 = 0
     /// Returns year, month and day numbers decimally packed in the following way:
@@ -61,4 +63,14 @@ public class ScheduleDay {
     /// Returns list of sessions that constitute this day.
     /// The list is ordered according to natural order of sessions - how they occur one after another.
     public internal(set) var sessions = [ScheduleSession]()
+}
+
+extension ScheduleDay {
+    public func getPrevious(filter: DayFilter) throws -> ScheduleDay? {
+        return try nativeSchedule?.getPrevtDay(before: self, filter: filter)
+    }
+
+    public func getNext(filter: DayFilter) throws -> ScheduleDay? {
+        return try nativeSchedule?.getNextDay(after: self, filter: filter)
+    }
 }
