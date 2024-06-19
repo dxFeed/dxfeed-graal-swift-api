@@ -35,7 +35,7 @@ public class ScheduleDay {
     /// Number of this day since January 1, 1970 (that day has identifier of 0 and previous days have negative identifiers).
     public internal(set) var dayId: Int32 = 0
     /// Returns year, month and day numbers decimally packed in the following way:
-    /// YearMonthDay = year 10000 + month 100 + day
+    /// YearMonthDay = year * 10000 + month * 100 + day
     /// For example, September 28, 1977 has value 19770928.
     public internal(set) var yearMonthDay: Int32 = 0
     /// Returns calendar year - i.e. it returns 1977 for the year 1977.
