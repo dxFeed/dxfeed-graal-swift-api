@@ -65,6 +65,7 @@
 		641BDD5E2ACD67A400236B78 /* LatencyListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BDD5C2ACD67A000236B78 /* LatencyListener.swift */; };
 		641BDD612ACD697B00236B78 /* AbstractEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BDD602ACD697B00236B78 /* AbstractEventListener.swift */; };
 		641BDD622ACD697B00236B78 /* AbstractEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641BDD602ACD697B00236B78 /* AbstractEventListener.swift */; };
+		641E45F92B1DE51700649363 /* EventsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641E45F82B1DE51700649363 /* EventsListener.swift */; };
 		642528D02A3C534D00A04E41 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
 		642528D12A3C534D00A04E41 /* TimeInterval+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469F8CD2A3B2F9900846831 /* TimeInterval+Ext.swift */; };
 		64262CCE2A4DA64700BA6BA3 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; platformFilters = (xros, ); productRef = 64262CCD2A4DA64700BA6BA3 /* RealityKitContent */; };
@@ -577,6 +578,7 @@
 		641BDD5A2AC72BD400236B78 /* ConcurrentWeakHashTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentWeakHashTable.swift; sourceTree = "<group>"; };
 		641BDD5C2ACD67A000236B78 /* LatencyListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatencyListener.swift; sourceTree = "<group>"; };
 		641BDD602ACD697B00236B78 /* AbstractEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractEventListener.swift; sourceTree = "<group>"; };
+		641E45F82B1DE51700649363 /* EventsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListener.swift; sourceTree = "<group>"; };
 		64262CC92A4DA64600BA6BA3 /* DXVisionQuoteTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXVisionQuoteTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64262CCC2A4DA64700BA6BA3 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		64262CCF2A4DA64700BA6BA3 /* VisionQuoteTableAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionQuoteTableAppApp.swift; sourceTree = "<group>"; };
@@ -966,6 +968,7 @@
 				645CD0032AE145E600F99FCF /* DumpTool.swift */,
 				648BD56A2AC4576F004A3A95 /* HelpTool.swift */,
 				648BD56C2AC56A04004A3A95 /* SubscriptionUtils.swift */,
+				641E45F82B1DE51700649363 /* EventsListener.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -2047,6 +2050,7 @@
 				6486B97F2AD4167800D8D5FA /* LiveIpfSample.swift in Sources */,
 				645BE8522AC31E7C0028243D /* PerfTestTool.swift in Sources */,
 				645CD0042AE145E600F99FCF /* DumpTool.swift in Sources */,
+				641E45F92B1DE51700649363 /* EventsListener.swift in Sources */,
 				641BDD5D2ACD67A000236B78 /* LatencyListener.swift in Sources */,
 				641BDD622ACD697B00236B78 /* AbstractEventListener.swift in Sources */,
 				641BDD582AC71CCE00236B78 /* LatencyTestTool.swift in Sources */,

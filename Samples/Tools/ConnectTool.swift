@@ -55,12 +55,20 @@ Where:
             exit(0)
         }
     }()
+    private var listeners = [EventListener]()
 
     func execute() {
         isQuite = arguments.isQuite
 
         arguments.properties.forEach { key, value in
             try? SystemProperty.setProperty(key, value)
+        }
+        if !isQuite {
+            listeners.append(EventListener(callback: { events in
+                events.forEach { event in
+                    print(event.toString())
+                }
+            }))
         }
 
         if let tapeFile = arguments.tape {
@@ -73,41 +81,24 @@ Where:
                 .build()
             _ = try? outputEndpoint?.connect("tape:\(tapeFile)")
             publisher = outputEndpoint?.getPublisher()
+            listeners.append(EventListener(callback: { [weak self] events in
+                do {
+                    _ = try self?.publisher?.publish(events: events)
+                } catch {
+                    print("Connect tool publish error: \(error)")
+                }
+            }))
         }
+
         subscription.createSubscription(address: arguments[1],
                                         symbols: arguments.parseSymbols(at: 3),
                                         types: arguments.parseTypes(at: 2),
-                                        listener: self,
+                                        listeners: listeners,
                                         properties: arguments.properties,
                                         time: arguments.time,
                                         source: arguments.source)
 
         // Print till input new line
         _ = readLine()
-    }
-}
-
-extension ConnectTool: Hashable {
-    static func == (lhs: ConnectTool, rhs: ConnectTool) -> Bool {
-        return lhs === rhs
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(stringReference(self))
-    }
-}
-
-extension ConnectTool: DXEventListener {
-    func receiveEvents(_ events: [DXFeedFramework.MarketEvent]) {
-        do {
-            if !isQuite {
-                events.forEach { event in
-                    print(event.toString())
-                }
-            }
-            _ = try publisher?.publish(events: events)
-        } catch {
-            print("Connect tool publish error: \(error)")
-        }
     }
 }
