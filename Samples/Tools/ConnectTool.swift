@@ -19,7 +19,7 @@ Connect
 =======
 
 Usage:
-  Connect <address> <types> <symbols> [-f <time>]
+  Connect <address> <types> <symbols> [-f <time>] [<options>]
 
 Where:
     address - The address to connect to retrieve data (remote host or local tape file).
@@ -37,6 +37,8 @@ Where:
                   2005-12-31 21:00:00.123+0400
                   2007-11-02Z
                   123456789 - value-in-milliseconds
+    --force-stream    Enforces a streaming contract for subscription. The StreamFeed role is used instead of Feed.
+
 
 """
 
@@ -93,6 +95,7 @@ Where:
         subscription.createSubscription(address: arguments[1],
                                         symbols: arguments.parseSymbols(at: 3),
                                         types: arguments.parseTypes(at: 2),
+                                        role: arguments.isForceStream ? .streamFeed : .feed,
                                         listeners: listeners,
                                         properties: arguments.properties,
                                         time: arguments.time,

@@ -29,6 +29,8 @@ class LatencyTestTool: ToolsCommand {
       symbols (pos. 2)  Comma-separated list of symbol names to get events for (e.g. "IBM, AAPL, MSFT").
                         Use "all" for wildcard subscription.
                         The "dxfeed.wildcard.enable" property must be set to true to enable wildcard subscription.
+      --force-stream    Enforces a streaming contract for subscription. The StreamFeed role is used instead of Feed.
+
     """
     var subscription = Subscription()
     private lazy var arguments: Arguments = {
@@ -50,6 +52,7 @@ class LatencyTestTool: ToolsCommand {
         subscription.createSubscription(address: address,
                                         symbols: arguments.parseSymbols(at: 3),
                                         types: types,
+                                        role: arguments.isForceStream ? .streamFeed : .feed,
                                         listeners: [listener],
                                         properties: arguments.properties,
                                         time: nil)
