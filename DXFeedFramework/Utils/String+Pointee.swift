@@ -16,6 +16,14 @@ extension String {
         }
     }
 
+    public init?(nullable pointee: UnsafePointer<CChar>!) {
+        if pointee != nil {
+            self =  String(utf8String: pointee) ?? ""
+        } else {
+            return nil
+        }
+    }
+
     func toCStringRef() -> UnsafeMutablePointer<CChar> {
         return UnsafeMutablePointer<CChar>(mutating: (self as NSString).utf8String!)
     }

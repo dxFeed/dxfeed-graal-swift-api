@@ -27,6 +27,6 @@ extension OptionSale {
         self.underlyingPrice = native.underlying_price
         self.volatility = native.volatility
         self.delta = native.delta
-        self.optionSymbol = String(pointee: native.option_symbol)
+        self.optionSymbol = String(nullable: native.option_symbol)
     }
 }
