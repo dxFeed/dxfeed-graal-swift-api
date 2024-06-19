@@ -8,7 +8,7 @@
 import Foundation
 
 class EnumUtil {
-    static func valueOf<T: RawRepresentable>(value: T?) throws -> T {
+    static func valueOf<T: Any>(value: T?) throws -> T {
         if let value = value {
             return value
         }

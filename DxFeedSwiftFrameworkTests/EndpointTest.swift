@@ -96,8 +96,18 @@ final class EndpointTest: XCTestCase {
         XCTAssertNotNil(endpoint, "Endpoint should be not nil")
         try endpoint.connect(endpointAddress)
         wait(seconds: 3)
-        _ = XCTWaiter.wait(for: [expectation(description: "\(5) seconds waiting")], timeout: TimeInterval(5))
         try endpoint.reconnect()
         wait(seconds: 3)
     }
+
+    func testDisconnectAndClear() throws {
+        let endpoint = try DXFEndpoint.builder().withRole(.feed).withProperty("test", "value").build()
+        XCTAssertNotNil(endpoint, "Endpoint should be not nil")
+        try endpoint.connect(endpointAddress)
+        wait(seconds: 3)
+        try endpoint.disconnectAndClear()
+        wait(seconds: 3)
+    }
+
+    
 }

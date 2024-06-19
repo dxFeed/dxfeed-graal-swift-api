@@ -9,7 +9,7 @@ import Foundation
 
 class AtomicStorage<T: AnyObject> {
 
-    private let lockQueue = DispatchQueue(label: "my.concurrent.lock.queue", attributes: .concurrent)
+    private let lockQueue = DispatchQueue(label: "atomic.storage.queue", attributes: .concurrent)
     private var storage: [T]
 
     init() {

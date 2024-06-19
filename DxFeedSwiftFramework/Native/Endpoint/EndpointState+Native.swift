@@ -9,7 +9,7 @@ import Foundation
 @_implementationOnly import graal_api
 
 extension EndpointState {
-    static func convert(_ state: dxfg_endpoint_state_t) throws -> EndpointState {
+    static func convert(_ state: dxfg_endpoint_state_t) -> EndpointState? {
         switch state {
         case DXFG_ENDPOINT_STATE_CLOSED:
             return .closed
@@ -20,7 +20,7 @@ extension EndpointState {
         case DXFG_ENDPOINT_STATE_NOT_CONNECTED:
             return .notConnected
         default:
-            throw EnumException.undefinedEnumValue
+            return nil
         }
     }
 }

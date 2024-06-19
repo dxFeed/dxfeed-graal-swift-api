@@ -83,6 +83,9 @@ class DXFEndpoint {
     public func appendListener(_ listener: EndpointListener) {
         listeners.append(listener)
     }
+    public func removeListener(_ listener: EndpointListener) {
+        listeners.removeAll { $0 === listener }
+    }
 
     public func set(password: String) throws -> Self {
         try endpointNative.set(password: password)
@@ -92,6 +95,18 @@ class DXFEndpoint {
     public func set(userName: String) throws -> Self {
         try endpointNative.set(userName: userName)
         return self
+    }
+
+    public func awaitProcessed() throws {
+        try endpointNative.awaitProcessed()
+    }
+
+    public func awaitNotConnected() throws {
+        try endpointNative.awaitNotConnected()
+    }
+
+    public func getState() throws -> EndpointState {
+        return try endpointNative.getState()
     }
 
 // only for testing
