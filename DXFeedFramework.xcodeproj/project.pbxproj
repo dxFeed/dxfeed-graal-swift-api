@@ -442,7 +442,7 @@
 		642BE4D12A2F5D230052340A /* TimeAndSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndSale.swift; sourceTree = "<group>"; };
 		642BE4D32A2F5D730052340A /* TimeAndSale+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeAndSale+Ext.swift"; sourceTree = "<group>"; };
 		642BE4D52A2F5E7C0052340A /* TimeAndSaleMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndSaleMapper.swift; sourceTree = "<group>"; };
-		642DC9252AAA21C000974F5C /* IpfTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IpfTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		642DC9252AAA21C000974F5C /* DXIpfTableApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DXIpfTableApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		642DC9272AAA21C000974F5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		642DC9292AAA21C000974F5C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		642DC92B2AAA21C000974F5C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1046,7 +1046,7 @@
 				64D8BB3B2A39BB730071BC88 /* DXLatencyTestApp.app */,
 				644BD75A2A44726F00A0BF99 /* DXARQuoteTableApp.app */,
 				64262CC92A4DA64600BA6BA3 /* DXVisionQuoteTableApp.app */,
-				642DC9252AAA21C000974F5C /* IpfTableApp.app */,
+				642DC9252AAA21C000974F5C /* DXIpfTableApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1204,9 +1204,9 @@
 			productReference = 64262CC92A4DA64600BA6BA3 /* DXVisionQuoteTableApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		642DC9242AAA21C000974F5C /* IpfTableApp */ = {
+		642DC9242AAA21C000974F5C /* DXIpfTableApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 642DC9382AAA21C300974F5C /* Build configuration list for PBXNativeTarget "IpfTableApp" */;
+			buildConfigurationList = 642DC9382AAA21C300974F5C /* Build configuration list for PBXNativeTarget "DXIpfTableApp" */;
 			buildPhases = (
 				642DC9212AAA21C000974F5C /* Sources */,
 				642DC9222AAA21C000974F5C /* Frameworks */,
@@ -1219,9 +1219,9 @@
 				642DC93A2AAA222700974F5C /* PBXTargetDependency */,
 				642DC93E2AAA22D900974F5C /* PBXTargetDependency */,
 			);
-			name = IpfTableApp;
+			name = DXIpfTableApp;
 			productName = IpfTableApp;
-			productReference = 642DC9252AAA21C000974F5C /* IpfTableApp.app */;
+			productReference = 642DC9252AAA21C000974F5C /* DXIpfTableApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		644BD7592A44726F00A0BF99 /* DXARQuoteTableApp */ = {
@@ -1403,7 +1403,7 @@
 				64D8BB3A2A39BB730071BC88 /* DXLatencyTestApp */,
 				644BD7592A44726F00A0BF99 /* DXARQuoteTableApp */,
 				64262CC82A4DA64600BA6BA3 /* DXVisionQuoteTableApp */,
-				642DC9242AAA21C000974F5C /* IpfTableApp */,
+				642DC9242AAA21C000974F5C /* DXIpfTableApp */,
 			);
 		};
 /* End PBXProject section */
@@ -2638,7 +2638,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		642DC9382AAA21C300974F5C /* Build configuration list for PBXNativeTarget "IpfTableApp" */ = {
+		642DC9382AAA21C300974F5C /* Build configuration list for PBXNativeTarget "DXIpfTableApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				642DC9362AAA21C300974F5C /* Debug */,
