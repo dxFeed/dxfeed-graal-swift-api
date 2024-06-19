@@ -39,7 +39,8 @@ Where:
                   123456789 - value-in-milliseconds
     --force-stream    Enforces a streaming contract for subscription. The StreamFeed role is used instead of Feed.
 
-
+Sample: connect "dxlink:wss://demo.dxfeed.com/dxlink-ws" Quote AAPL -p dxfeed.experimental.dxlink.enable=true
+Sample: connect demo.dxfeed.com:7300 Quote AAPL
 """
 
     var subscription = Subscription()

@@ -140,13 +140,12 @@ class Listener: DXEventListener {
 
 // For token-based authorization, use the following address format:
 // "demo.dxfeed.com:7300[login=entitle:token]"
-let endpoint = try DXEndpoint.builder()
-    .withProperty("dxfeed.address", "demo.dxfeed.com:7300")
-    .build()
+let endpoint = try DXEndpoint.builder().build()
 let subscription = try endpoint.getFeed()?.createSubscription(EventCode.quote)
 let eventListener = Listener()
 try subscription?.add(listener: eventListener)
 try subscription?.addSymbols("AAPL")
+try endpoint.connect("demo.dxfeed.com:7300")
 ```
 
 <details>
@@ -186,13 +185,12 @@ try SystemProperty.setProperty("dxfeed.experimental.dxlink.enable", "true")
 try SystemProperty.setProperty("scheme", "ext:resource:dxlink.xml")
 // For token-based authorization, use the following address format:
 // "dxlink:wss://demo.dxfeed.com/dxlink-ws[login=dxlink:token]"
-let endpoint = try DXEndpoint.builder()
-    .withProperty("dxfeed.address", "dxlink:wss://demo.dxfeed.com/dxlink-ws")
-    .build()
+let endpoint = try DXEndpoint.builder().build()
 let subscription = try endpoint.getFeed()?.createSubscription(EventCode.quote)
 let eventListener = Listener()
 try subscription?.add(listener: eventListener)
 try subscription?.addSymbols("AAPL")
+try endpoint.connect("dxlink:wss://demo.dxfeed.com/dxlink-ws")
 ```
 <details>
 <summary>Output</summary>

@@ -69,6 +69,21 @@ class Arguments {
         return nil
     }()
 
+    public lazy var qdsCommandLine: [String]? = {
+        var result = [String]()
+        for str in namelessParameters[1..<namelessParameters.count] {
+            let splited = str.split(separator: " ")
+            if splited.count == 1 {
+                result.append(str)
+            } else {
+                splited.forEach { substring in
+                    result.append(String(substring))
+                }
+            }
+        }
+        return result
+    }()
+
     init(_ cmd: [String], requiredNumberOfArguments: Int) throws {
         print("Parse \(cmd) to \(requiredNumberOfArguments) arguments")
 

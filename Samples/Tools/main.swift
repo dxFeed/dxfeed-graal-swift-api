@@ -11,10 +11,11 @@ let commands: [ToolsCommand] = [PerfTestTool(),
                                 ConnectTool(),
                                 LatencyTestTool(),
                                 DumpTool(),
+                                QdsTool(),
                                 HelpTool()]
 
 func getCommand(_ cmd: String) -> ToolsCommand? {
-    var cmd = cmd.lowercased()
+    let cmd = cmd.lowercased()
     return commands.first { command in
         command.cmd.lowercased() == cmd
     }
