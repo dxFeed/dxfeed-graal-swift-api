@@ -15,61 +15,48 @@ public struct DXCandleType: Equatable {
 
 extension DXCandleType: ExpressibleByStringLiteral {
     public init(stringLiteral: String) {
+        value = stringLiteral
         switch stringLiteral {
         case "t":
-            value = stringLiteral
             name = "Tick"
             periodIntervalMillis = 0
         case "s":
-            value = stringLiteral
             name = "Second"
             periodIntervalMillis = 1000
         case "m":
-            value = stringLiteral
             name = "Minute"
             periodIntervalMillis = 60 * 1000
         case "h":
-            value = stringLiteral
             name = "Hour"
             periodIntervalMillis = 60 * 60 * 1000
         case "d":
-            value = stringLiteral
             name = "Day"
             periodIntervalMillis = 24 * 60 * 60 * 1000
         case "w":
-            value = stringLiteral
             name = "Week"
             periodIntervalMillis = 7 * 24 * 60 * 60 * 1000
         case "mo":
-            value = stringLiteral
             name = "Month"
             periodIntervalMillis = 30 * 24 * 60 * 60 * 1000
         case "o":
-            value = stringLiteral
             name = "OptExp"
             periodIntervalMillis = 30 * 24 * 60 * 60 * 1000
         case "y":
-            value = stringLiteral
             name = "Year"
             periodIntervalMillis = 365 * 24 * 60 * 60 * 1000
         case "v":
-            value = stringLiteral
             name = "Volume"
             periodIntervalMillis = 0
         case "p":
-            value = stringLiteral
             name = "Price"
             periodIntervalMillis = 0
         case "pm":
-            value = stringLiteral
             name = "PriceMomentum"
             periodIntervalMillis = 0
         case "pr":
-            value = stringLiteral
             name = "PriceRenko"
             periodIntervalMillis = 0
         default:
-            value = stringLiteral
             name = "Tick"
             periodIntervalMillis = 0
         }

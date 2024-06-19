@@ -182,7 +182,14 @@ class MarketEventSymbols {
         let index = getLengthWithoutAttributesInternal(symbol)
         if index == symbol.length {
             if let value = value {
-                return "\(symbol)\(Separtors.open.rawValue)\(key)\(Separtors.value.rawValue)\(value)\(Separtors.close.rawValue)"
+                return """
+\(symbol)\
+\(Separtors.open.rawValue)\
+\(key)\
+\(Separtors.value.rawValue)\
+\(value)\
+\(Separtors.close.rawValue)
+"""
             } else {
                 return symbol
             }
@@ -200,7 +207,14 @@ class MarketEventSymbols {
                                              _ value: String) -> String {
         var symbol = symbol
         if length == symbol.length {
-            return "\(symbol)\(Separtors.open.rawValue)\(key)\(Separtors.value.rawValue)\(value)\(Separtors.close.rawValue)"
+            return """
+\(symbol)\
+\(Separtors.open.rawValue)\
+\(key)\
+\(Separtors.value.rawValue)\
+\(value)\
+\(Separtors.close.rawValue)
+"""
         }
         var index = length + 1
         var added = false
