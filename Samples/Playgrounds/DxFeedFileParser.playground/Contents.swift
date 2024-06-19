@@ -55,4 +55,4 @@ try endpoint.awaitNotConnected()
 
 // Close endpoint when we're done.
 // This method will gracefully close endpoint, waiting while data processing completes.
-try endpoint.closeAndAWaitTermination()
+try endpoint.closeAndAwaitTermination()

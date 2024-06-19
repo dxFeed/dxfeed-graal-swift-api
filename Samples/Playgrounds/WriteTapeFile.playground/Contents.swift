@@ -10,7 +10,8 @@ let endpoint = try DXEndpoint.builder()
     .withRole(.publisher)
     .build()
 
-guard let outputFilePath = NSURL.fileURL(withPathComponents: [NSTemporaryDirectory(), "WriteTapeFile.out.txt"])?.path else {
+let pathComponents = [NSTemporaryDirectory(), "WriteTapeFile.out.txt"]
+guard let outputFilePath = NSURL.fileURL(withPathComponents: pathComponents)?.path else {
     fatalError("Wrong path to output file")
 }
 
@@ -36,7 +37,7 @@ try publisher?.publish(events: [quote1, quote2])
 
 // Wait until all data is written, close, and wait until it closes.
 try endpoint.awaitProcessed()
-try endpoint.closeAndAWaitTermination()
+try endpoint.closeAndAwaitTermination()
 
 // Just print content of result file
 let resultTxtFile = try NSString(contentsOf: URL(filePath: outputFilePath), encoding: NSUTF8StringEncoding)
