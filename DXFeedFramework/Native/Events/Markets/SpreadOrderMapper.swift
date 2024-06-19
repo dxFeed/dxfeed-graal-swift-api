@@ -14,7 +14,7 @@ class SpreadOrderMapper: Mapper {
     func fromNative(native: UnsafeMutablePointer<dxfg_event_type_t>) -> MarketEvent? {
         let event = native.withMemoryRebound(to: type, capacity: 1) { native in
             return SpreadOrder(native: native.pointee)
-        }        
+        }
         return event
     }
 

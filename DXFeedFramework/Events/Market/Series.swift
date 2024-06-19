@@ -100,7 +100,7 @@ extension Series {
         if putVolume.isNaN {
             return callVolume
         }
-        return callVolume.isNaN ? putVolume : putVolume + putVolume;
+        return callVolume.isNaN ? putVolume : putVolume + putVolume
     }
 
     /// Returns string representation of this candle event.
