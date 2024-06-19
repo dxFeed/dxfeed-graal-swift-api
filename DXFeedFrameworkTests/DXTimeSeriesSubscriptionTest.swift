@@ -36,8 +36,8 @@ final class DXTimeSeriesSubscriptionTest: XCTestCase {
             return anonymCl
         }
         try subscription?.add(listener: listener)
-        try subscription?.set(fromTime: 10000)
-        try subscription?.addSymbols(["ETH/USD:GDAX", "IBM"])
+        try subscription?.set(fromTime: 1717045200)
+        try subscription?.addSymbols(["AAPL{=8h}"])
         wait(for: [receivedEventsExpectation], timeout: 3.0)
         try endpoint.closeAndAwaitTermination()
     }
