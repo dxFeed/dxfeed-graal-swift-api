@@ -198,7 +198,7 @@ To familiarize with the dxLink protocol, please click [here](https://demo.dxfeed
 
 ## Tools
 
-[Tools](https://github.com/dxFeed/dxfeed-graal-swift-api/tree/swift/Samples/Tools/)
+[Tools](./Samples/Tools/)
 is a collection of utilities that allow you to subscribe to various market events for the specified symbols. The tools can
 be
 downloaded
