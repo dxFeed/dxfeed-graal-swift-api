@@ -13,8 +13,8 @@ and [dxFeed Java API](https://docs.dxfeed.com/dxfeed/api/overview-summary.html) 
 ![Platform](https://img.shields.io/badge/platform-ios--arm64%20%7C%20ios--simulator--x64%20%7C%20ios--simulator--arm64%20%7C%20osx--x64%20%7C%20osx--arm64-lightgrey)
 ![Language](https://img.shields.io/badge/language-swift-blueviolet)
 [![Release](https://img.shields.io/github/v/release/dxFeed/dxfeed-graal-swift-api)](https://github.com/dxFeed/dxfeed-graal-swift-api/releases/latest)
-[![SPM](https://img.shields.io/badge/spm-blue)](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Package.swift)
-[![License](https://img.shields.io/badge/license-MPL--2.0-orange)](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/LICENSE)
+[![SPM](https://img.shields.io/badge/spm-blue)](./Package.swift)
+[![License](https://img.shields.io/badge/license-MPL--2.0-orange)](./LICENSE)
 
 
 ## Table of Contents
@@ -204,16 +204,16 @@ be
 downloaded
 from [Release](https://github.com/dxFeed/dxfeed-graal-swift-api/releases) (tools.zip includes self-contained versions)
 
-* [Connect](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/ConnectTool.swift)
+* [Connect](./Samples/Tools/ConnectTool.swift)
   connects to the specified address(es) and subscribes to the specified events with the specified symbol
-* [Dump](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/DumpTool.swift)
+* [Dump](./Samples/Tools/DumpTool.swift)
   dumps all events received from address. This was designed to retrieve data from a file
-* [PerfTest](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/PerfTestTool.swift)
+* [PerfTest](./Samples/Tools/PerfTestTool.swift)
   connects to the specified address(es) and calculates performance counters (events per second, memory usage, CPU usage,
   etc.)
-* [LatencyTest](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/LatencyTestTool.swift)
+* [LatencyTest](./Samples/Tools/LatencyTestTool.swift)
   connects to the specified address(es) and calculates latency
-* [Qds](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Tools/QdsTool.swift)
+* [Qds](./Samples/Tools/QdsTool.swift)
   collection of tools ported from the Java qds-tools
 
 To run tools on macOS, it may be necessary to unquarantine them:
@@ -225,21 +225,21 @@ sudo /usr/bin/xattr -r -d com.apple.quarantine <directory_with_tools>
 ## Samples
 
 - [x] [ConvertTapeFile](./Samples/Playgrounds/ConvertTapeFile.playground/Contents.swift) demonstrates how to convert one tape file to another tape file with optional intermediate processing or filtering
-- [x] [DxFeedFileParser](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/DxFeedFileParser.playground/Contents.swift) is a simple demonstration of how events are read form a tape file
-- [x] [DxFeedSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/DxFeedSample.playground/Contents.swift) is a simple demonstration of how to create multiple event listeners and subscribe to `Quote` and `Trade` events
-- [x] [PrintQuoteEvents](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/PrintQuoteEvents.playground/Contents.swift) is a simple demonstration of how to subscribe to the `Quote` event, using a `DxFeed` instance singleton and `dxfeed.properties` file
-- [x] [WriteTapeFile](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/WriteTapeFile.playground/Contents.swift) is a simple demonstration of how to write events to a tape file
-- [x] [DxFeedIpfConnect](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/DxFeedIpfConnect.playground/Contents.swift) is a simple demonstration of how to get Instrument Profiles
-- [x] [DXFeedLiveIpfSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/DXFeedLiveIpfSample.playground/Contents.swift)
+- [x] [DxFeedFileParser](./Samples/Playgrounds/DxFeedFileParser.playground/Contents.swift) is a simple demonstration of how events are read form a tape file
+- [x] [DxFeedSample](./Samples/Playgrounds/DxFeedSample.playground/Contents.swift) is a simple demonstration of how to create multiple event listeners and subscribe to `Quote` and `Trade` events
+- [x] [PrintQuoteEvents](./Samples/Playgrounds/PrintQuoteEvents.playground/Contents.swift) is a simple demonstration of how to subscribe to the `Quote` event, using a `DxFeed` instance singleton and `dxfeed.properties` file
+- [x] [WriteTapeFile](./Samples/Playgrounds/WriteTapeFile.playground/Contents.swift) is a simple demonstration of how to write events to a tape file
+- [x] [DxFeedIpfConnect](./Samples/Playgrounds/DxFeedIpfConnect.playground/Contents.swift) is a simple demonstration of how to get Instrument Profiles
+- [x] [DXFeedLiveIpfSample](./Samples/Playgrounds/DXFeedLiveIpfSample.playground/Contents.swift)
 is a simple demonstration of how to get live updates for Instrument Profiles
-- [x] [PublishProfiles](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/PublishProfiles.playground/Contents.swift) is a simple demonstration of how to publish market events
-- [x] [ScheduleSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/ScheduleSample.playground/Contents.swift)
+- [x] [PublishProfiles](./Samples/Playgrounds/PublishProfiles.playground/Contents.swift) is a simple demonstration of how to publish market events
+- [x] [ScheduleSample](./Samples/Playgrounds/ScheduleSample.playground/Contents.swift)
   is a simple demonstration of how to get various scheduling information for instruments
-- [x] [FetchDailyCandles](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/FetchDailyCandles.playground/Contents.swift) is a simple demonstration of how to fetch last N-days of candles for a specified symbol
-- [x] [DxFeedReconnectSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/DxFeedReconnectSample.playground/Contents.swift)
+- [x] [FetchDailyCandles](./Samples/Playgrounds/FetchDailyCandles.playground/Contents.swift) is a simple demonstration of how to fetch last N-days of candles for a specified symbol
+- [x] [DxFeedReconnectSample](./Samples/Playgrounds/DxFeedReconnectSample.playground/Contents.swift)
   is a simple demonstration of how to connect to an endpoint, subscribe to market data events, handle reconnections 
   and re-subscribing.
-- [x] [SimpleAuthSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/SimpleAuthSample.playground/Contents.swift)
+- [x] [SimpleAuthSample](./Samples/Playgrounds/SimpleAuthSample.playground/Contents.swift)
   is a simple demonstration of how to connect to endpoint requires authentication token, subscribe to market data events, and handle periodic token updates.
 
 ## Current State
@@ -255,7 +255,7 @@ is a simple demonstration of how to get live updates for Instrument Profiles
   files
 
 - [x] [PUBLISHER](https://dxfeed.github.io/dxfeed-graal-swift-api/documentation/dxfeedframework/dxendpoint/role-swift.enum/publisher)
-  connects to the remote publisher hub (also known as multiplexor) or creates a publisher on the local host ([WriteTapeFile](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/WriteTapeFile.playground/Contents.swift))
+  connects to the remote publisher hub (also known as multiplexor) or creates a publisher on the local host ([WriteTapeFile](./Samples/Playgrounds/WriteTapeFile.playground/Contents.swift))
 
 - [x] [STREAM_PUBLISHER](https://dxfeed.github.io/dxfeed-graal-swift-api/documentation/dxfeedframework/dxendpoint/role-swift.enum/streampublisher)
   is similar to `Publisher` and also connects to the remote publisher hub, but is designed for bulk data publishing
@@ -350,7 +350,7 @@ is a simple demonstration of how to get live updates for Instrument Profiles
 
 - [x] [GetLastEvent](https://dxfeed.github.io/dxfeed-graal-swift-api/documentation/dxfeedframework/dxfeed/getlastevent(type:symbol:))
   returns the last event for the specified event instance
-  ([DxFeedSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/DxFeedSample.playground/Contents.swift))
+  ([DxFeedSample](./Samples/Playgrounds/DxFeedSample.playground/Contents.swift))
 
 - [x] [GetLastEvents](https://dxfeed.github.io/dxfeed-graal-swift-api/documentation/dxfeedframework/dxfeed/getlastevents(types:))
   returns the last events for the specified event instances list
@@ -359,18 +359,18 @@ is a simple demonstration of how to get live updates for Instrument Profiles
 
 - [x] [InstrumentProfile](https://dxfeed.github.io/dxfeed-graal-swift-api/documentation/dxfeedframework/dxinstrumentprofileconnection)
   represents basic profile information about a market instrument
-  ([DXFeedIpfConnect](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/DxFeedIpfConnect.playground/Contents.swift))
+  ([DXFeedIpfConnect](./Samples/Playgrounds/DxFeedIpfConnect.playground/Contents.swift))
 
 - [x] [InstrumentProfileReader](https://dxfeed.github.io/dxfeed-graal-swift-api/documentation/dxfeedframework/dxinstrumentprofilereader) reads 
   instrument profiles from the stream using Instrument Profile Format (IPF)
 
 - [x] [InstrumentProfileCollector](https://dxfeed.github.io/dxfeed-graal-swift-api/documentation/dxfeedframework/dxinstrumentprofilecollector)
   collects instrument profile updates and provides the live instrument profiles list
-  ([DXFeedLiveIpfSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/DXFeedLiveIpfSample.playground/Contents.swift))
+  ([DXFeedLiveIpfSample](./Samples/Playgrounds/DXFeedLiveIpfSample.playground/Contents.swift))
  
 - [x] [InstrumentProfileConnection](https://dxfeed.github.io/dxfeed-graal-swift-api/documentation/dxfeedframework/dxinstrumentprofileconnection) 
   connects to an instrument profile URL and reads instrument profiles with support of streaming live updates
 
 - [x] [Schedule](https://dxfeed.github.io/dxfeed-graal-swift-api/documentation/dxfeedframework/dxschedule) 
   provides API to retrieve and explore various exchanges’ trading schedules and different financial instrument classes
-  ([ScheduleSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/ScheduleSample.playground/Contents.swift))
+  ([ScheduleSample](./Samples/Playgrounds/ScheduleSample.playground/Contents.swift))
