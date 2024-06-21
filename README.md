@@ -224,7 +224,7 @@ sudo /usr/bin/xattr -r -d com.apple.quarantine <directory_with_tools>
 
 ## Samples
 
-- [x] [ConvertTapeFile](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/ConvertTapeFile.playground/Contents.swift) demonstrates how to convert one tape file to another tape file with optional intermediate processing or filtering
+- [x] [ConvertTapeFile](/Samples/Playgrounds/ConvertTapeFile.playground/Contents.swift) demonstrates how to convert one tape file to another tape file with optional intermediate processing or filtering
 - [x] [DxFeedFileParser](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/DxFeedFileParser.playground/Contents.swift) is a simple demonstration of how events are read form a tape file
 - [x] [DxFeedSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/DxFeedSample.playground/Contents.swift) is a simple demonstration of how to create multiple event listeners and subscribe to `Quote` and `Trade` events
 - [x] [PrintQuoteEvents](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/PrintQuoteEvents.playground/Contents.swift) is a simple demonstration of how to subscribe to the `Quote` event, using a `DxFeed` instance singleton and `dxfeed.properties` file
