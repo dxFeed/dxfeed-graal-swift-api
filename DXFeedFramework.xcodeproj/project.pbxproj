@@ -76,6 +76,8 @@
 		641C64B22B346A2E0023CFAD /* DXObservableSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641C64B12B346A2E0023CFAD /* DXObservableSubscription.swift */; };
 		641C64B42B347C430023CFAD /* DXObservableSubscriptionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641C64B32B347C430023CFAD /* DXObservableSubscriptionTest.swift */; };
 		641E45F92B1DE51700649363 /* EventsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641E45F82B1DE51700649363 /* EventsListener.swift */; };
+		641E7A9B2C299CA5009C8CE9 /* OptionSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641E7A9A2C299CA5009C8CE9 /* OptionSeries.swift */; };
+		641E7A9D2C29A372009C8CE9 /* DXOptionChainTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641E7A9C2C29A372009C8CE9 /* DXOptionChainTest.swift */; };
 		6421FFD52BE8D3C100AC4657 /* MarketDepthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6421FFD42BE8D3C100AC4657 /* MarketDepthModel.swift */; };
 		6421FFD92BEA18EC00AC4657 /* OrderSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6421FFD82BEA18EC00AC4657 /* OrderSet.swift */; };
 		6421FFDB2BEA1FBD00AC4657 /* MarketDepthModel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6421FFDA2BEA1FBD00AC4657 /* MarketDepthModel+Ext.swift */; };
@@ -712,6 +714,8 @@
 		641C64B12B346A2E0023CFAD /* DXObservableSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXObservableSubscription.swift; sourceTree = "<group>"; };
 		641C64B32B347C430023CFAD /* DXObservableSubscriptionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXObservableSubscriptionTest.swift; sourceTree = "<group>"; };
 		641E45F82B1DE51700649363 /* EventsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListener.swift; sourceTree = "<group>"; };
+		641E7A9A2C299CA5009C8CE9 /* OptionSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSeries.swift; sourceTree = "<group>"; };
+		641E7A9C2C29A372009C8CE9 /* DXOptionChainTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXOptionChainTest.swift; sourceTree = "<group>"; };
 		6421FFD42BE8D3C100AC4657 /* MarketDepthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDepthModel.swift; sourceTree = "<group>"; };
 		6421FFD62BE8D78A00AC4657 /* MarketDepthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDepthViewController.swift; sourceTree = "<group>"; };
 		6421FFD82BEA18EC00AC4657 /* OrderSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSet.swift; sourceTree = "<group>"; };
@@ -1245,6 +1249,14 @@
 			path = Playgrounds;
 			sourceTree = "<group>";
 		};
+		641E7A992C299C7E009C8CE9 /* Option */ = {
+			isa = PBXGroup;
+			children = (
+				641E7A9A2C299CA5009C8CE9 /* OptionSeries.swift */,
+			);
+			path = Option;
+			sourceTree = "<group>";
+		};
 		64262CCB2A4DA64700BA6BA3 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -1758,6 +1770,7 @@
 			isa = PBXGroup;
 			children = (
 				64ECD6832A9DDF4F00B36935 /* Live */,
+				641E7A992C299C7E009C8CE9 /* Option */,
 				64ECD6812A9DDC2800B36935 /* DXInstrumentProfileReader.swift */,
 				64437A8E2A9DEE6F005929B2 /* InstrumentProfile.swift */,
 				6464074C2A9E352E006FF769 /* InstrumentProfileField.swift */,
@@ -1882,6 +1895,7 @@
 				644B95E62BC542F600E95CB7 /* DXAttachTest.swift */,
 				64048A5A2BD7E5BF00902590 /* DXOnDemandServiceTest.swift */,
 				642C9A2C2BFE2FFE0074864A /* DXMarketDepthTest.swift */,
+				641E7A9C2C29A372009C8CE9 /* DXOptionChainTest.swift */,
 			);
 			path = DXFeedFrameworkTests;
 			sourceTree = "<group>";
@@ -2846,6 +2860,7 @@
 				6447A5EB2A8FC70800739CCF /* StringUtil.swift in Sources */,
 				642BE4D62A2F5E7C0052340A /* TimeAndSaleMapper.swift in Sources */,
 				64656F652A1CAFC5006A0B19 /* String+Pointee.swift in Sources */,
+				641E7A9B2C299CA5009C8CE9 /* OptionSeries.swift in Sources */,
 				64ACBCD72A27981900032C53 /* ListNative+Ext.swift in Sources */,
 				642BE4CE2A2E29270052340A /* EventMapper.swift in Sources */,
 				6447A5DB2A8E559000739CCF /* ILastingEvent.swift in Sources */,
@@ -2989,6 +3004,7 @@
 				64D0DBE82A29FF4B00710605 /* EventsTest.swift in Sources */,
 				648C72492B19CA5A00E2FEF3 /* DXExceptionTest.swift in Sources */,
 				649813C42ADD5CB2003CE3B3 /* TestEndpoointStateListener.swift in Sources */,
+				641E7A9D2C29A372009C8CE9 /* DXOptionChainTest.swift in Sources */,
 				641C64B42B347C430023CFAD /* DXObservableSubscriptionTest.swift in Sources */,
 				642C9A2D2BFE2FFE0074864A /* DXMarketDepthTest.swift in Sources */,
 				64ACBCEC2A29FE2300032C53 /* XCTestCase+Utils.swift in Sources */,
