@@ -7,16 +7,21 @@
 
 import Foundation
 
+
+/// Series of call and put options with different strike sharing the same attributes of
+///  expiration, last trading day, spc, multiplies, etc.
+///
+///  <T> The type of option instrument instances.
 public class OptionSeries<T> {
 
     /// Day id of expiration.
-    public let expiration: Long
+    public internal(set) var expiration: Long
     /// Day id of last trading day.
-    public let lastTrade: Long
+    public internal(set) var lastTrade: Long
     /// Market value multiplier.
-    public let multiplier: Double
+    public internal(set) var multiplier: Double
     /// Shares per contract for options.
-    public let spc: Double
+    public internal(set) var spc: Double
     /// Additional underlyings for options, including additional cash.
     ///
     /// It shall use following format:
@@ -25,7 +30,7 @@ public class OptionSeries<T> {
     ///     <AU> ::= <UNDERLYING> <space> <SPC>
     /// the list shall be sorted by <UNDERLYING>.
     /// Example: "SE 50", "FIS 53; US$ 45.46".
-    public let additionalUnderlyings: String
+    public internal(set) var additionalUnderlyings: String
     /// Maturity month-year as provided for corresponding FIX tag (200).
     ///
     /// It can use several different formats depending on data source:
@@ -33,7 +38,7 @@ public class OptionSeries<T> {
     /// YYYYMM – if only year and month are specified
     /// YYYYMMDD – if full date is specified
     /// YYYYMMwN – if week number (within a month) is specified
-    public let mmy: String
+    public internal(set) var mmy: String
     /// Type of option.
     ///
     /// It shall use one of following values:
@@ -44,23 +49,23 @@ public class OptionSeries<T> {
     /// FLEX = FLexible EXchange Options
     /// VSO = Variable Start Options
     /// RNGE = Range
-    public let optionType: String
+    public internal(set) var optionType: String
     /// Expiration cycle style, such as "Weeklys", "Quarterlys".
-    public let expirationStyle: String
+    public internal(set) var expirationStyle: String
     /// Settlement price determination style, such as "Open", "Close".
-    public let settlementStyle: String
+    public internal(set) var settlementStyle: String
     /// Classification of Financial Instruments code of this option series.
     /// It shall use six-letter CFI code from ISO 10962 standard.
     /// It is allowed to use 'X' extensively and to omit trailing letters (assumed to be 'X').
     /// See [ISO 10962 on Wikipedia](http://en.wikipedia.org/wiki/ISO_10962)
     /// It starts with "OX" as both ``calls`` and ``putts`` are stored in a series.
-    public let cfi: String
+    public internal(set) var cfi: String
     /// Dict of all calls from strike to a corresponding option instrument.
     public private(set) var  calls = [Double: T]()
     /// Dict of all puts from strike to a corresponding option instrument.
     public private(set) var putts = [Double: T]()
     
-    private var strikes: [Double]? = nil
+    private var strikes: [Double]?
 
     init() {
         expiration = 0
@@ -75,7 +80,7 @@ public class OptionSeries<T> {
         cfi = ""
     }
 
-    private init(other: OptionSeries) {
+    init(other: OptionSeries) {
         self.expiration = other.expiration
         self.lastTrade = other.lastTrade
         self.multiplier = other.multiplier
@@ -129,20 +134,20 @@ public class OptionSeries<T> {
         for (index, element) in strikes.enumerated() {
             if element > strike {
                 foundIndex = -index - 1
-                continue
+                break
             }
             if element == strike {
                 foundIndex = index
-                continue
+                break
             }
         }
 
         if foundIndex < 0 {
             foundIndex = -foundIndex - 1
         }
-        let from = max(0, foundIndex - numberOfStrikes/2)
-        let to = min(strikes.count, from + numberOfStrikes)
-        return Array(strikes[from..<to])
+        let fromTime = max(0, foundIndex - numberOfStrikes/2)
+        let toTime = min(strikes.count, fromTime + numberOfStrikes)
+        return Array(strikes[fromTime..<toTime])
     }
 
     public func addOption(isCall: Bool, strike: Double, option: T) {
@@ -162,7 +167,9 @@ public class OptionSeries<T> {
         (mmy.length > 0 ? ", mmy=\(mmy)" : "") +
         (optionType.length > 0 ? ", optionType=\(optionType)" : "") +
         (expirationStyle.length > 0 ? ", expirationStyle=\(expirationStyle)" : "") +
-        (settlementStyle.length > 0 ? ", settlementStyle=\(settlementStyle)" : "")
+        (settlementStyle.length > 0 ? ", settlementStyle=\(settlementStyle)" : "") +
+        ", cfi=\(cfi)"
+
     }
 
 }
@@ -183,4 +190,67 @@ extension OptionSeries: Equatable {
     }
     
 
+}
+
+extension OptionSeries: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(expiration)
+        hasher.combine(lastTrade)
+        let tempMultiplier = multiplier != +0.0 ? Double.doubleToLongBits(value: multiplier) : Long(0)
+        hasher.combine( (tempMultiplier ^ (tempMultiplier >>> 32)))
+        let tempSpc = spc != +0.0 ? Double.doubleToLongBits(value: spc) : Long(0)
+        hasher.combine((tempSpc ^ (tempSpc >>> 32)))
+        hasher.combine(additionalUnderlyings)
+        hasher.combine(mmy)
+        hasher.combine(optionType)
+        hasher.combine(expirationStyle)
+        hasher.combine(settlementStyle)
+        hasher.combine(cfi)
+    }
+}
+
+extension OptionSeries {
+    func compare(_ rhs: OptionSeries) -> ComparisonResult {
+        if expiration < rhs.expiration {
+            return .orderedAscending
+        }
+        if expiration > rhs.expiration {
+            return .orderedDescending
+        }
+        if lastTrade < rhs.lastTrade {
+            return .orderedAscending
+        }
+        if lastTrade > rhs.lastTrade {
+            return .orderedDescending
+        }
+        var result = multiplier.compare(rhs.multiplier)
+        if result != .orderedSame {
+            return result
+        }
+        result = spc.compare(rhs.spc)
+        if result != .orderedSame {
+            return result
+        }
+        result = additionalUnderlyings.compare(rhs.additionalUnderlyings)
+        if result != .orderedSame {
+            return result
+        }
+        result = mmy.compare(rhs.mmy)
+        if result != .orderedSame {
+            return result
+        }
+        result = optionType.compare(rhs.optionType)
+        if result != .orderedSame {
+            return result
+        }
+        result = expirationStyle.compare(rhs.expirationStyle)
+        if result != .orderedSame {
+            return result
+        }
+        result = settlementStyle.compare(rhs.settlementStyle)
+        if result != .orderedSame {
+            return result
+        }
+        return cfi.compare(rhs.cfi)
+    }
 }
