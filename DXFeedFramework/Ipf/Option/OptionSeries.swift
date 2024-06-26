@@ -92,8 +92,8 @@ public class OptionSeries<T> {
         self.cfi = other.cfi
     }
 
-    /// Returns a shall copy of this option series.
-    /// - Returns: a shall copy of this option series.
+    /// Returns a shallow copy of this option series.
+    /// - Returns: a shallow copy of this option series.
     public func clone() -> OptionSeries {
         let clone = OptionSeries.init(other: self)
         self.calls.forEach { key, value in

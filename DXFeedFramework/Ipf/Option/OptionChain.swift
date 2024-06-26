@@ -20,9 +20,9 @@ public class OptionChain<T> {
         self.symbol = symbol
     }
 
-    /// Returns a shall copy of this option chain.
+    /// Returns a shallow copy of this option chain.
     /// 
-    /// - Returns: a shall copy of this option chain.
+    /// - Returns: a shallow copy of this option chain.
     public func clone() -> OptionChain<T> {
         let clone = OptionChain(symbol: symbol)
         seriesMap.forEach { _, value in
