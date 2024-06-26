@@ -18,6 +18,7 @@ class BitUtil<T> where T: BinaryInteger {
 
 infix operator >>> : BitwiseShiftPrecedence
 
+/// The unsigned right shift operator ">>>" shifts a zero into the leftmost position, while the leftmost position after ">>" depends on sign extension.
 func >>> (lhs: Int64, rhs: Int64) -> Int64 {
     return Int64(bitPattern: UInt64(bitPattern: lhs) >> UInt64(rhs))
 }

@@ -115,7 +115,7 @@ public class OtcMarketsOrder: Order {
 
     /// Gets or sets a value indicating whether this event represents a NMS conditional.
     /// This flag indicates the displayed ``OrderBase/size`` size
-    /// is a round lot at least two times g reater than the minimum round lot size in the security
+    /// is a round lot at least two times greater than the minimum round lot size in the security
     /// and a trade message relating to the event cannot be sent or filled for less than the displayed size.
     public var isNmsConditional: Bool {
         get {

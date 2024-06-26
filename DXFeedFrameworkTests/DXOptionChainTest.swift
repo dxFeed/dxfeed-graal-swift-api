@@ -19,6 +19,8 @@ final class DXOptionChainTest: XCTestCase {
     }
 
     func testExample() throws {
+        throw XCTSkip("Just for debuging option chain playground sample")
+
         let ipfFile = "https://demo:demo@tools.dxfeed.com/ipf"
         let symbol = "AAPL"
         let nStrikes = 10
@@ -80,7 +82,9 @@ final class DXOptionChainTest: XCTestCase {
         try seriesList.forEach { series in
             print("Option series \(series.toString())")
             let strikes = try series.getNStrikesAround(numberOfStrikes: nStrikes, strike: price)
-            print("C.BID".paddingSpaces(), "C.ASK".paddingSpaces(), "STRIKE".paddingSpaces(), "P.BID".paddingSpaces(), "P.ASK".paddingSpaces())
+            print("C.BID".paddingSpaces(), "C.ASK".paddingSpaces(), 
+                  "STRIKE".paddingSpaces(),
+                  "P.BID".paddingSpaces(), "P.ASK".paddingSpaces())
             try strikes.forEach { strike in
                 var resultString = ""
                 func fetchQuoteString(_ quote: Quote) -> String {
