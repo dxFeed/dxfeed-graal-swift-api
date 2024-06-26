@@ -17,7 +17,6 @@ class AddSymbolsViewController: UIViewController {
     var selectedSymbols = Set<String>()
     var dataProvider = SymbolsDataProvider()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         selectedSymbols = Set(dataProvider.selectedSymbols)

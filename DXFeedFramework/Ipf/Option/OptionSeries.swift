@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /// Series of call and put options with different strike sharing the same attributes of
 ///  expiration, last trading day, spc, multiplies, etc.
 ///
@@ -64,7 +63,7 @@ public class OptionSeries<T> {
     public private(set) var  calls = [Double: T]()
     /// Dict of all puts from strike to a corresponding option instrument.
     public private(set) var putts = [Double: T]()
-    
+
     private var strikes: [Double]?
 
     init() {
@@ -105,10 +104,10 @@ public class OptionSeries<T> {
         }
         return clone
     }
-    
+
     /// Returns a list of all strikes in ascending order.
     public func getStrikes() -> [Double] {
-        guard let strikes = strikes else  {
+        guard let strikes = strikes else {
             var tempSet = Set<Double>()
             tempSet.formUnion(calls.keys)
             tempSet.formUnion(putts.keys)
@@ -150,7 +149,7 @@ public class OptionSeries<T> {
         return Array(strikes[fromTime..<toTime])
     }
 
-    public func addOption(isCall: Bool, strike: Double, option: T) {
+    func addOption(isCall: Bool, strike: Double, option: T) {
         if isCall {
             calls[strike] = option
         } else {
@@ -158,6 +157,7 @@ public class OptionSeries<T> {
         }
     }
 
+    /// Returns a string representation of this series.
     public func toString() -> String {
         return "expiration=\(DayUtil.getYearMonthDayByDayId(expiration))" +
         (lastTrade != 0 ? ", lastTrade=\(DayUtil.getYearMonthDayByDayId(lastTrade))" : "") +
@@ -169,9 +169,7 @@ public class OptionSeries<T> {
         (expirationStyle.length > 0 ? ", expirationStyle=\(expirationStyle)" : "") +
         (settlementStyle.length > 0 ? ", settlementStyle=\(settlementStyle)" : "") +
         ", cfi=\(cfi)"
-
     }
-
 }
 
 extension OptionSeries: Equatable {
@@ -188,8 +186,6 @@ extension OptionSeries: Equatable {
          rhs.cfi == lhs.cfi &&
          rhs.settlementStyle == lhs.settlementStyle)
     }
-    
-
 }
 
 extension OptionSeries: Hashable {

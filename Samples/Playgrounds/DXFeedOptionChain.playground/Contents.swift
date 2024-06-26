@@ -6,6 +6,18 @@ let symbol = "AAPL"
 let nStrikes = 10
 var nMoths = 12
 
+fileprivate extension String {
+    func paddingSpaces(_ toLength: Int = 10) -> String {
+        return self.padding(toLength: toLength, withPad: " ", startingAt: 0)
+    }
+}
+
+fileprivate extension Double {
+    func paddingSpaces(_ toLength: Int = 10) -> String {
+        return "\(self)".padding(toLength: toLength, withPad: " ", startingAt: 0)
+    }
+}
+
 let endpoint = try DXEndpoint.create().connect("demo.dxfeed.com:7300")
 guard let feed = endpoint.getFeed() else {
     print("Feed is nil")
@@ -45,7 +57,6 @@ print("Requesting option quotes ...")
 var quotes = [InstrumentProfile: Promise]()
 try seriesList.forEach { series in
     let strikes = try series.getNStrikesAround(numberOfStrikes: nStrikes, strike: price)
-    print(strikes)
     try strikes.forEach { strike in
         if let call = series.calls[strike] {
             quotes[call] = try feed.getLastEventPromise(type: Quote.self, symbol: call.symbol)
@@ -63,11 +74,13 @@ print("Printing option series ...")
 try seriesList.forEach { series in
     print("Option series \(series.toString())")
     let strikes = try series.getNStrikesAround(numberOfStrikes: nStrikes, strike: price)
-    print("C.BID", "C.ASK", "STRIKE", "P.BID", "P.ASK")
+    print("C.BID".paddingSpaces(), "C.ASK".paddingSpaces(),
+          "STRIKE".paddingSpaces(),
+          "P.BID".paddingSpaces(), "P.ASK".paddingSpaces())
     try strikes.forEach { strike in
         var resultString = ""
         func fetchQuoteString(_ quote: Quote) -> String {
-            return "\(quote.bidPrice) \(quote.askPrice)"
+            return "\(quote.bidPrice.paddingSpaces()) \(quote.askPrice.paddingSpaces())"
         }
         if let call = series.calls[strike] {
             let quote = try quotes[call]?.getResult() ?? Quote(symbol)
@@ -75,7 +88,7 @@ try seriesList.forEach { series in
         } else {
             resultString += fetchQuoteString(Quote(symbol))
         }
-        resultString += " \(strike) "
+        resultString += " \(strike.paddingSpaces()) "
         if let put = series.putts[strike] {
             let quote = try quotes[put]?.getResult() ?? Quote(symbol)
             resultString += fetchQuoteString(quote.quote)
@@ -85,3 +98,4 @@ try seriesList.forEach { series in
         print(resultString)
     }
 }
+try endpoint.closeAndAwaitTermination()

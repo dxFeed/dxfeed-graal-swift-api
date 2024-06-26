@@ -33,7 +33,7 @@ public class OptionChainsBuilder<T> {
     public func setExpiration(_ value: Long) {
         series.expiration = value
     }
-    
+
     /// Changes day id of last trading day.
     public func setLastTrade(_ value: Long) {
         series.lastTrade = value
@@ -105,7 +105,6 @@ public class OptionChainsBuilder<T> {
     public func setCFI(_ value: String) {
         self.cfi = value.isEmpty ? "" : value
         series.cfi = self.cfi.length < 2 ? self.cfi : (self.cfi[0] + "X" + self.cfi.substring(fromIndex: 2))
-        print("CFI \(series.cfi)")
     }
 
     /// Changes strike price for options.
@@ -113,8 +112,21 @@ public class OptionChainsBuilder<T> {
         self.strike = value
     }
 
+    /// Adds an option instrument to this builder.
+    ///
+    /// Option is added to chains for the ntly set ``setProduct(_:)`` and/or
+    /// ``setUnderlying(_:)`` to the ``OptionSeries`` that corresponding
+    /// to all other currently set attributes. This method is safe in the sense that is ignores
+    /// illegal state of the builder. It only adds an option when all of the following conditions are met:
+    ///
+    ///  ``setCFI(_:)`` is set and starts with either "OC" for call or "OP" for put.
+    ///  ``setExpiration(_:)`` is set and is not zero;
+    ///  ``setStrike(_:)`` is set and is not  Double.isNan nor Double.isInfinite;
+    ///  ``setProduct(_:)`` or ``setUnderlying(_:)`` are set;
+    ///
+    /// All the attributes remain set as before after the call to this method, but
+    /// ``getChains()`` are updated correspondingly.
     public func addOption(_ option: T) {
-        print(cfi)
         let isCall = cfi.hasPrefix("OC")
         if !isCall && !cfi.hasPrefix("OP") {
             return
@@ -153,6 +165,10 @@ public class OptionChainsBuilder<T> {
 public extension OptionChainsBuilder where T == InstrumentProfile {
 
     /// Builds options chains for all options from the given collections of ``InstrumentProfile``.
+    ///
+    /// - Parameters:
+    ///   - profiles: collection of instrument profiles..
+    ///   - Returns: builder with all the options from instruments collection.
     static func build(_ profiles: [InstrumentProfile]) -> OptionChainsBuilder {
         let ocb = OptionChainsBuilder<InstrumentProfile>()
         for profile in profiles where profile.getIpfType() == .option {
@@ -167,7 +183,6 @@ public extension OptionChainsBuilder where T == InstrumentProfile {
             ocb.setOptionType(profile.optionType)
             ocb.setExpirationStyle(profile.expirationStyle)
             ocb.setSettlementStyle(profile.settlementStyle)
-            print(profile.cfi)
             ocb.setCFI(profile.cfi)
             ocb.setStrike(profile.strike)
             ocb.addOption(profile)

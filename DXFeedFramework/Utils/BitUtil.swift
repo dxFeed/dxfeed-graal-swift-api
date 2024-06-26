@@ -21,4 +21,3 @@ infix operator >>> : BitwiseShiftPrecedence
 func >>> (lhs: Int64, rhs: Int64) -> Int64 {
     return Int64(bitPattern: UInt64(bitPattern: lhs) >> UInt64(rhs))
 }
-

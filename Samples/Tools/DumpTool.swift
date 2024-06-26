@@ -98,12 +98,8 @@ class DumpTool: ToolsCommand {
                 try outputEndpoint?.connect("tape:\(tapeFile)")
                 publisher = outputEndpoint?.getPublisher()
                 listeners.append(EventListener(callback: { [weak self] events in
-                    do {
-                        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.3) {
-                                                   try? self?.publisher?.publish(events: events)
-                                               }
-                    } catch {
-                        print("Connect tool publish error: \(error)")
+                    DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.3) {
+                        try? self?.publisher?.publish(events: events)
                     }
                 }))
             }

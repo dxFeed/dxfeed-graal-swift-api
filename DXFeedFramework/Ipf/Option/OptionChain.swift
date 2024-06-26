@@ -36,17 +36,17 @@ public class OptionChain<T> {
     public func getSeries() -> [OptionSeries<T>] {
         return Set(seriesMap.keys).sorted { lhs, rhs in
             let compareResult = lhs.compare(rhs)
-            return compareResult == .orderedSame || compareResult == .orderedDescending
+            return compareResult == .orderedAscending
         }
     }
 
     func addOption(series: OptionSeries<T>, isCall: Bool, strike: Double, option: T) {
-        var os = seriesMap[series]
-        if os == nil {
+        var oSeries = seriesMap[series]
+        if oSeries == nil {
             let tempOs = OptionSeries(other: series)
             seriesMap[tempOs] = tempOs
-            os = tempOs
+            oSeries = tempOs
         }
-        os?.addOption(isCall: isCall, strike: strike, option: option)
+        oSeries?.addOption(isCall: isCall, strike: strike, option: option)
     }
 }
