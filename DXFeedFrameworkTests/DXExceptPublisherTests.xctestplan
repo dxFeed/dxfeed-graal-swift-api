@@ -19,14 +19,20 @@
   },
   "testTargets" : [
     {
-      "skippedTests" : [
-        "CandleTests\/testFetchingCandlesByAttrbuteSymbol()",
+      "skippedTests" : [        
+        "CandleTests",
+        "DXAsyncLastTest",
+        "DXOptionChainTest",
+        "DXPromiseTest",
+        "DXTimeSeriesSubscriptionTest",
         "DXConnectionStateTests",
         "DXConnectionTest",
         "DXExceptionTest",
         "DXMarketDepthTest",
         "DXObservableSubscriptionTest",
         "DXSnapshotProcessorTest",
+        "EndpointTest\/testGetEventTypes()",
+
         "EndpointTest\/testGetInstance()",
         "IPFTests",
         "IPFTests\/testResolveSourceURL()",

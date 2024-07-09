@@ -82,7 +82,7 @@ final class DXOptionChainTest: XCTestCase {
         try seriesList.forEach { series in
             print("Option series \(series.toString())")
             let strikes = try series.getNStrikesAround(numberOfStrikes: nStrikes, strike: price)
-            print("C.BID".paddingSpaces(), "C.ASK".paddingSpaces(), 
+            print("C.BID".paddingSpaces(), "C.ASK".paddingSpaces(),
                   "STRIKE".paddingSpaces(),
                   "P.BID".paddingSpaces(), "P.ASK".paddingSpaces())
             try strikes.forEach { strike in

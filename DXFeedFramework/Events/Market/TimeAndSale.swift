@@ -41,7 +41,7 @@ public class TimeAndSale: MarketEvent, ITimeSeriesEvent, CustomStringConvertible
     public var exchangeSaleConditions: String?
     /// Gets or sets implementation-specific flags.
     /// **Do not use this method directly**.
-    var flags: Int32 = 0
+    public var flags: Int32 = 0
     /// Gets or sets buyer of this time and sale event.
     public var buyer: String?
     /// Gets or sets seller of this time and sale event.
@@ -70,7 +70,7 @@ public class TimeAndSale: MarketEvent, ITimeSeriesEvent, CustomStringConvertible
     /// Override var from ``IIndexedEvent``
     public var index: Long = 0
 
-    init(_ symbol: String) {
+    public init(_ symbol: String) {
         super.init()
         self.eventSymbol = symbol
     }

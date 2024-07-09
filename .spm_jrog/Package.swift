@@ -3,9 +3,9 @@
 
 import PackageDescription
 
-let version = "1.1.3_build"
+let version = "0.0.77"
 let moduleName = "DXFeedFramework"
-let checksum = "0529710169a58beb75042eb53f715ce529d88d01d05c03d57dde61fcc87bf1f5"
+let checksum = "39f0525aa272ea7903d0e860bad4bcfa16ceee6ac474cfb28a2fea3290387e66"
 
 let package = Package(
     name: moduleName,
@@ -18,7 +18,7 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: moduleName,
-            url: "https://github.com/dxFeed/dxfeed-graal-swift-api/releases/download/\(version)/\(moduleName).zip",
+            url: "https://dxfeed.jfrog.io/artifactory/dxfeed-graal-open/binary/dxfeed-xcframework/dxfeed-xcframework-\(version).zip",
             checksum: checksum
         )
     ]

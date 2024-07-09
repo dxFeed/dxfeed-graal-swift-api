@@ -241,7 +241,8 @@ is a simple demonstration of how to get live updates for Instrument Profiles
   and re-subscribing.
 - [x] [SimpleAuthSample](https://github.com/dxFeed/dxfeed-graal-swift-api/blob/swift/Samples/Playgrounds/SimpleAuthSample.playground/Contents.swift)
   is a simple demonstration of how to connect to endpoint requires authentication token, subscribe to market data events, and handle periodic token updates.
-
+- [x] [CandleDataResponseReader](./Samples/CandleDataResponseReader)
+  is a simple demonstration of how to parse response from CandleData service.
 ## Current State
 
 ### Endpoint Roles

@@ -10,17 +10,21 @@ import XCTest
 final class UtilsTest: XCTestCase {
 
     func testAsciiCharToString() throws {
-        XCTAssert(StringUtil.encodeChar(char: 32) == " ", "Not correct ascii conversation")
-        XCTAssert(StringUtil.encodeChar(char: 126) == "~", "Not correct ascii conversation")
+        XCTAssertEqual(StringUtil.encodeChar(char: 32), " ")
+        XCTAssertEqual(StringUtil.encodeChar(char: 126), "~")
+
+        XCTAssertEqual(StringUtil.decodeChar(" "), 32)
+        XCTAssertEqual(StringUtil.decodeChar("~"), 126)
     }
 
     func testUnicodeCharToString() throws {
-        XCTAssert(StringUtil.encodeChar(char: 300) == "\\u012C", "Not correct ascii conversation")
+        XCTAssertEqual(StringUtil.encodeChar(char: 300), "\\u012C")
+        XCTAssertEqual(StringUtil.decodeChar("\\u012C"), 300)
     }
 
     func testCharacter() {
         let char = Character(UnicodeScalar(122)!)
-        XCTAssert(char == "z", "Wrong")
+        XCTAssertEqual(char, "z")
     }
 
 }

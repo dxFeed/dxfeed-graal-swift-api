@@ -6,14 +6,29 @@
 
 import Foundation
 
-class StringUtil {
+public class StringUtil {
     static func encodeChar(char: Int16) -> String {
         if char >= 32 && char <= 126 {
             return String(UnicodeScalar(UInt8(char)))
         }
-        let value = (String(format: "%02X", Int(char) + 65536).substring(fromIndex: 1))
+        var value = String(format: "%2X", Int(char))
+        (0..<4 - value.count).forEach { _ in
+            value = "0" + value
+        }
         let res = char == 0 ? "\\0" : "\\u" + value
         return res
+    }
+
+    public static func decodeChar(_ string: String) -> Int16 {
+        if string == "\\0" {
+            return 0
+        }
+        if string.hasPrefix("\\u") {
+            let str = string.dropFirst("\\u".count)
+            return Int16(str, radix: 16) ?? 0
+        } else {
+            return Int16(UnicodeScalar(string)?.value ?? 0)
+        }
     }
 
     static func checkChar(char: Character, mask: Int, name: String) throws {
