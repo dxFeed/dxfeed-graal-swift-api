@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   build_and_upload_docs:
-    if: (startsWith(github.event.ref, 'refs/tags/') && endsWith(github.event.ref, 'build'))
+    if: (startsWith(github.event.ref, 'refs/tags/'))
     name: Build & Upload Docs
     runs-on: macos-latest
 
