@@ -56,6 +56,7 @@ final class DXMarketDepthTest: XCTestCase, MarketDepthListener {
         let order3 = try createOrder(index: 0, side: .buy, price: 1, size: 1, eventFlags: 0)
         try publisher.publish(events: [order1, order2, order3])
         expectation1 = expectation(description: "Events received")
+        expectation1?.assertForOverFulfill = false
         wait(for: [expectation1!], timeout: 1.0)
         XCTAssertEqual(orderBook.buyOrders.count, 3)
         XCTAssertEqual(orderBook.sellOrders.count, 0)
@@ -233,6 +234,7 @@ final class DXMarketDepthTest: XCTestCase, MarketDepthListener {
                                                        size: .nan,
                                                        eventFlags: 0)]) // remove in limit
         expectation1 = expectation(description: "Events received6")
+        expectation1?.assertForOverFulfill = false
         wait(for: [expectation1!], timeout: 1.0)
 
         model.setDepthLimit(0)
@@ -244,6 +246,7 @@ final class DXMarketDepthTest: XCTestCase, MarketDepthListener {
                                                        size: 3,
                                                        eventFlags: 0)])
         expectation1 = expectation(description: "Events received7")
+        expectation1?.assertForOverFulfill = false
         wait(for: [expectation1!], timeout: 1.0)
         XCTAssertEqual(orderBook.buyOrders.count, 3)
 

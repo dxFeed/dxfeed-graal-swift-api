@@ -12,7 +12,6 @@ import Foundation
 class NativeProfileIterator {
     private let iterator: UnsafeMutablePointer<dxfg_iterable_ip_t>
     private let isDeallocatd: Bool
-    let mapper = InstrumentProfileMapper()
 
     deinit {
         if isDeallocatd {
@@ -36,8 +35,7 @@ class NativeProfileIterator {
         let thread = currentThread()
         let result = try ErrorCheck.nativeCall(thread, dxfg_Iterable_InstrumentProfile_next(thread, iterator)).value()
 
-        let profile = mapper.fromNative(native: result)
-        _ = try ErrorCheck.nativeCall(thread, dxfg_InstrumentProfile_release(thread, result))
+        let profile = InstrumentProfile(NativeInstrumentProfile(native: result))
         return profile
     }
 }

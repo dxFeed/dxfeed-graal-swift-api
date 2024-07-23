@@ -24,6 +24,9 @@ class NativeTimeUtil {
                                                dxfg_TimeFormat_format(thread,
                                                                       timeFormat.native,
                                                                       value))
+        defer {
+            _ = try? ErrorCheck.nativeCall(thread, dxfg_String_release(thread, result))
+        }
         return try String(nullable: result).value()
     }
 

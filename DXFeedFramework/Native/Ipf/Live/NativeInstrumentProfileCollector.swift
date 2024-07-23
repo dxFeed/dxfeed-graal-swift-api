@@ -16,8 +16,6 @@ public class NativeInstrumentProfileCollector {
     let collector: UnsafeMutablePointer<dxfg_ipf_collector_t>?
     private var nativeListeners = [UnsafeMutablePointer<dxfg_ipf_update_listener_t>]()
 
-    private static let mapper = InstrumentProfileMapper()
-
     private static let finalizeCallback: dxfg_finalize_function = { _, context in
         if let context = context {
             let endpoint: AnyObject = bridge(ptr: context)
@@ -86,16 +84,12 @@ public class NativeInstrumentProfileCollector {
     }
 
     func updateInstrumentProfile(profile: InstrumentProfile) throws {
-        let native = NativeInstrumentProfileCollector.mapper.toNative(instrumentProfile: profile)
-        defer {
-            NativeInstrumentProfileCollector.mapper.releaseNative(native: native)
-        }
         let thread = currentThread()
         _ = try ErrorCheck.nativeCall(thread,
                                       dxfg_InstrumentProfileCollector_updateInstrumentProfile(
                                         thread,
                                         collector,
-                                        native))
+                                        profile.native.native))
     }
 
     func view() throws -> NativeProfileIterator {

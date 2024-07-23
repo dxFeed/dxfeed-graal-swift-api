@@ -23,25 +23,19 @@ class NativeSchedule {
     }
 
     convenience init(instrumentProfile: InstrumentProfile) throws {
-        let mapper = InstrumentProfileMapper()
-        let native = mapper.toNative(instrumentProfile: instrumentProfile)
         let thread = currentThread()
         let schedule = try ErrorCheck.nativeCall(thread,
                                                  dxfg_Schedule_getInstance(thread,
-                                                                           native))
-        mapper.releaseNative(native: native)
+                                                                           instrumentProfile.native.native))
         self.init(schedule: schedule)
     }
 
     convenience init(instrumentProfile: InstrumentProfile, venue: String) throws {
-        let mapper = InstrumentProfileMapper()
-        let native = mapper.toNative(instrumentProfile: instrumentProfile)
         let thread = currentThread()
         let schedule = try ErrorCheck.nativeCall(
             thread, dxfg_Schedule_getInstance3(thread,
-                                               native,
+                                               instrumentProfile.native.native,
                                                venue.toCStringRef()))
-        mapper.releaseNative(native: native)
         self.init(schedule: schedule)
     }
 
@@ -56,10 +50,10 @@ class NativeSchedule {
 
     public static func getTradingVenues(profile: InstrumentProfile ) throws -> [String] {
         let thread = currentThread()
-        let mapper = InstrumentProfileMapper()
-        let native = mapper.toNative(instrumentProfile: profile)
         var resultVenues = [String]()
-        if let result = try? ErrorCheck.nativeCall(thread, dxfg_Schedule_getTradingVenues(thread, native)) {
+        if let result = try? ErrorCheck.nativeCall(thread,
+                                                   dxfg_Schedule_getTradingVenues(thread,
+                                                                                  profile.native.native)) {
             for index in 0..<result.pointee.size {
                 let venue = result.pointee.elements[Int(index)]
                 resultVenues.append(String(pointee: venue))

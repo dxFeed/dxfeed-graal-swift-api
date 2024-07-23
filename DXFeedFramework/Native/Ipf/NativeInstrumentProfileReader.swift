@@ -10,7 +10,6 @@ import Foundation
 /// Native wrapper over the Java com.dxfeed.ipf.InstrumentProfileReader class.
 /// The location of the imported functions is in the header files "dxfg_ipf.h".
 class NativeInstrumentProfileReader {
-    let mapper = InstrumentProfileMapper()
     let reader: UnsafeMutablePointer<dxfg_instrument_profile_reader_t>?
 
     deinit {
@@ -47,7 +46,7 @@ class NativeInstrumentProfileReader {
                                                 reader,
                                                 address.toCStringRef())).value()
         let instruments = convertFromNativeList(result)
-        _ = try ErrorCheck.nativeCall(thread, dxfg_CList_InstrumentProfile_release(thread, result))
+        _ = try ErrorCheck.nativeCall(thread, dxfg_CList_InstrumentProfile_wrapper_release(thread, result))
         return instruments
     }
 
@@ -61,7 +60,7 @@ class NativeInstrumentProfileReader {
                                                 user.toCStringRef(),
                                                 password.toCStringRef())).value()
         let instruments = convertFromNativeList(result)
-        _ = try ErrorCheck.nativeCall(thread, dxfg_CList_InstrumentProfile_release(thread, result))
+        _ = try ErrorCheck.nativeCall(thread, dxfg_CList_InstrumentProfile_wrapper_release(thread, result))
         return instruments
     }
 
@@ -84,7 +83,7 @@ class NativeInstrumentProfileReader {
         var instruments = [InstrumentProfile]()
         for index in 0..<Int(count) {
             if let element = result.pointee.elements[index] {
-                let instrumnetProfile = mapper.fromNative(native: element)
+                let instrumnetProfile = InstrumentProfile(NativeInstrumentProfile(native: element))
                 instruments.append(instrumnetProfile)
             }
         }
@@ -122,7 +121,7 @@ class NativeInstrumentProfileReader {
         let instruments = convertFromNativeList(result)
         _ = try ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread,
                                                                              &(inputStream.pointee.handler)))
-        _ = try ErrorCheck.nativeCall(thread, dxfg_CList_InstrumentProfile_release(thread, result))
+        _ = try ErrorCheck.nativeCall(thread, dxfg_CList_InstrumentProfile_wrapper_release(thread, result))
         return instruments
     }
 
@@ -145,7 +144,7 @@ class NativeInstrumentProfileReader {
         _ = try ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread,
                                                                              &(inputStream.pointee.handler)))
 
-        _ = try ErrorCheck.nativeCall(thread, dxfg_CList_InstrumentProfile_release(thread, result))
+        _ = try ErrorCheck.nativeCall(thread, dxfg_CList_InstrumentProfile_wrapper_release(thread, result))
         return instruments
     }
 
@@ -167,7 +166,7 @@ class NativeInstrumentProfileReader {
         _ = try ErrorCheck.nativeCall(thread, dxfg_JavaObjectHandler_release(thread,
                                                                              &(inputStream.pointee.handler)))
 
-        _ = try ErrorCheck.nativeCall(thread, dxfg_CList_InstrumentProfile_release(thread, result))
+        _ = try ErrorCheck.nativeCall(thread, dxfg_CList_InstrumentProfile_wrapper_release(thread, result))
         return instruments
     }
 }

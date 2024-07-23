@@ -146,12 +146,16 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
     func testCollector() throws {
         do {
             let collector = try DXInstrumentProfileCollector()
-            let newProfile = InstrumentProfile()
+            let newProfile = try InstrumentProfile()
+            newProfile.symbol = "AAPL"
+            newProfile.descriptionStr = "AAPL is Apple COmpany"
             try collector.updateInstrumentProfile(profile: newProfile)
             let iterator = try collector.view()
             let expectation = expectation(description: "Received profile")
             while (try? iterator.hasNext()) ?? false {
                 let profile = try iterator.next()
+                print(newProfile.descriptionStr)
+                /// add equals from java
                 XCTAssert(newProfile == profile, "Should be equal")
                 expectation.fulfill()
             }
@@ -163,7 +167,8 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
 
     func testCollectorWithExecutor() throws {
         let collector = try DXInstrumentProfileCollector()
-        let newProfile = InstrumentProfile()
+        let newProfile = try InstrumentProfile()
+        newProfile.descriptionStr = StringUtil.random(length: 20)
         try collector.updateInstrumentProfile(profile: newProfile)
         let iterator = try collector.view()
         let expectation = expectation(description: "Received profile")
@@ -181,9 +186,9 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
         expectation1.assertForOverFulfill = false
         let expectation3 = expectation(description: "Received profile")
         expectation3.assertForOverFulfill = false
-        let bothListnersProfile = InstrumentProfile()
+        let bothListnersProfile = try InstrumentProfile()
         bothListnersProfile.symbol = "TEST_123"
-        let firstListnerProfile = InstrumentProfile()
+        let firstListnerProfile = try InstrumentProfile()
         bothListnersProfile.symbol = "OnlyFirst_123"
         let listener = AnonymousProfileListener { anonymCl in
             anonymCl.callback = { profiles in
@@ -302,6 +307,50 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
         let inputStr = "abcde"
         let resultstr = DXInstrumentProfileReader.resolveSourceURL(address: inputStr)
         XCTAssert(inputStr == resultstr)
+    }
+
+    func testEmptyCustomFields() throws {
+        let instrumentProfile = try InstrumentProfile()
+        var fields = [String]()
+        let result = instrumentProfile.addNonEmptyCustomFieldNames(&fields)
+        XCTAssertEqual(false, result)
+        XCTAssertEqual(0, fields.count)
+    }
+
+    func testCustomFields() throws {
+        let instrumentProfile = try InstrumentProfile()
+        var fields = [String]()
+        let result = instrumentProfile.addNonEmptyCustomFieldNames(&fields)
+        XCTAssertEqual(false, result)
+        let actualFieldNames = Set<String>(["Field1", "Field2", "Field3"])
+        actualFieldNames.forEach { field in
+            instrumentProfile.setField(field, field+field)
+        }
+        actualFieldNames.forEach { field in
+            XCTAssertEqual(field+field, instrumentProfile.getField(field))
+        }
+        let result2 = instrumentProfile.addNonEmptyCustomFieldNames(&fields)
+        XCTAssertEqual(true, result2)
+        XCTAssertEqual(actualFieldNames, Set(fields))
+    }
+
+    func testHashFunction() throws {
+        let instrumentProfile = try InstrumentProfile()
+        instrumentProfile.symbol = "AAPL1"
+
+        let instrumentProfile2 = try InstrumentProfile()
+        instrumentProfile2.symbol = "AAPL1"
+
+        XCTAssertEqual(instrumentProfile.hashValue, instrumentProfile2.hashValue)
+    }
+
+    func testToString() throws {
+        let instrumentProfile = try InstrumentProfile()
+        instrumentProfile.type = StringUtil.random(length: 20)
+        instrumentProfile.symbol = StringUtil.random(length: 30)
+        instrumentProfile.descriptionStr = "TEST_SYMBOL123"
+        XCTAssert(instrumentProfile.toString().contains(instrumentProfile.type))
+        XCTAssert(instrumentProfile.toString().contains(instrumentProfile.symbol))
     }
 
     func testReadFromFile() throws {

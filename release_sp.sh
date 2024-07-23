@@ -12,7 +12,7 @@ FRAMEWORK_NAME=$2
 
 # 2. Calculate checksum and store it
 echo "calculate new checksum"
-NEW_CHECKSUM=$(swift package compute-checksum ../build/$FRAMEWORK_NAME.zip)
+NEW_CHECKSUM=$(swift package compute-checksum build/$FRAMEWORK_NAME.zip)
 echo "print out new shasum for convenience reasons"
 echo "New checksum is $NEW_CHECKSUM"
 
