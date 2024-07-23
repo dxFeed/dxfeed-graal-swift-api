@@ -112,4 +112,35 @@ final class EndpointTest: XCTestCase {
         }, roles)
     }
 
+    func testBatchLimit() throws {
+        let endpoint = try DXEndpoint.create()
+        let subscription = try endpoint.getFeed()?.createSubscription([Quote.self])
+        let size = Int32.random(in: 10..<200)
+        try subscription?.setEventsBatchLimit(size)
+        let value = subscription?.getEventsBatchLimit()
+        XCTAssertEqual(size, value)
+
+        let expectation1 = expectation(description: "Events received1")
+        do {
+            try subscription?.setEventsBatchLimit(-1)
+        } catch {
+            expectation1.fulfill()
+        }
+        wait(for: [expectation1], timeout: 0.1)
+
+    }
+
+    func testAggregationPeriod() throws {
+        let time = Long.random(in: 10000..<20000)
+
+        let endpoint = try DXEndpoint.create()
+        let subscription = try endpoint.getFeed()?.createSubscription([Quote.self])
+
+
+        try subscription?.setAggregationPeriod(time)
+        let newValue = try subscription?.getAggregationPeriod()
+
+        XCTAssertEqual(time, newValue)
+    }
+
 }

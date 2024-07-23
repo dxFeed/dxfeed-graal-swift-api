@@ -7,7 +7,7 @@
 import Foundation
 
 /// Value class for period of time with support for ISO8601 duration format.
-public class DXTimePeriod {
+class DXTimePeriod {
 
     /// Time-period of zero.
     public static let zero: DXTimePeriod? = {
@@ -27,9 +27,9 @@ public class DXTimePeriod {
         }
     }()
 
-    private var timePeriod: NativeTimePeriod
+    var timePeriod: NativeTimePeriod
 
-    private init(timePeriod: NativeTimePeriod) {
+    init(timePeriod: NativeTimePeriod) {
         self.timePeriod = timePeriod
     }
 

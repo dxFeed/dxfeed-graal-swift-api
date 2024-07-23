@@ -78,6 +78,28 @@ public class DXInstrumentProfileReader {
         return try native?.readFromFile(address: address, user: user, password: password)
     }
 
+    ///  Reads and returns instrument profiles from specified address with a specified token credentials.
+    ///
+    ///  This method recognizes data compression formats "zip" and "gzip" automatically.
+    ///  In case of zip the first file entry will be read and parsed as a plain data stream.
+    ///  In case of gzip compressed content will be read and processed.
+    ///  In other cases data considered uncompressed and will be parsed as is.
+    ///
+    ///  Specified token take precedence over authentication information that is supplied to this method
+    ///  as part of URL user info like  "http://user:password@host:port/path/file.ipf"
+    ///
+    ///
+    ///  This operation updates ``getLastModified()`` and ``wasComplete()``
+    ///
+    /// - Parameters:
+    ///     - address: URL of file to read from
+    ///     - token: the token    
+    /// - Returns: List of``InstrumentProfile``
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
+    public func readFromFile(address: String, token: DXAuthToken) throws -> [InstrumentProfile]? {
+        return try native?.readFromFile(address: address, token: token.native)
+    }
+
     /// Converts a specified string address specification into an URL that will be read by ``read(data:address:)`` using Data
     public static func resolveSourceURL(address: String) -> String {
         return NativeInstrumentProfileReader.resolveSourceURL(address: address)

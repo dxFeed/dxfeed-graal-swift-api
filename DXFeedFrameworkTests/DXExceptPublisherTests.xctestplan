@@ -19,23 +19,20 @@
   },
   "testTargets" : [
     {
-      "skippedTests" : [        
+      "skippedTests" : [
         "CandleTests",
         "DXAsyncLastTest",
-        "DXOptionChainTest",
-        "DXPromiseTest",
-        "DXTimeSeriesSubscriptionTest",
         "DXConnectionStateTests",
         "DXConnectionTest",
         "DXExceptionTest",
         "DXMarketDepthTest",
         "DXObservableSubscriptionTest",
+        "DXOptionChainTest",
+        "DXPromiseTest",
         "DXSnapshotProcessorTest",
+        "DXTimeSeriesSubscriptionTest",
         "EndpointTest\/testGetEventTypes()",
-
         "EndpointTest\/testGetInstance()",
-        "IPFTests",
-        "IPFTests\/testResolveSourceURL()",
         "IsolateTest",
         "IsolateTest\/test123()",
         "PublisherTest",

@@ -314,3 +314,43 @@ extension NativeSubscription {
                                                                  feed.feed))
     }
 }
+
+extension NativeSubscription {
+    func getEventsBatchLimit() -> Int32 {
+        let thread = currentThread()
+        if let value = try? ErrorCheck.nativeCall(thread,
+                                                  dxfg_DXFeedSubscription_getEventsBatchLimit(thread,
+                                                                                              subscription)) {
+            return value
+        }
+        return 0
+    }
+
+    func setEventsBatchLimit(_ value: Int32) throws {
+        let thread = currentThread()
+        try ErrorCheck.nativeCall(thread,
+                                  dxfg_DXFeedSubscription_setEventsBatchLimit(thread,
+                                                                              subscription,
+                                                                              value))
+    }
+
+    func getAggregationPeriod() throws -> Long? {
+        let thread = currentThread()
+        if let result = try ErrorCheck.nativeCall(thread,
+                                                  dxfg_DXFeedSubscription_getAggregationPeriod(thread,
+                                                                                               subscription)) {
+            return try NativeTimePeriod(native: result).getTime()
+        }
+        return nil
+    }
+
+    func setAggregationPeriod(_ value: Long) throws {
+        let thread = currentThread()
+        let value = try NativeTimePeriod(value: value)
+        try ErrorCheck.nativeCall(thread,
+                                  dxfg_DXFeedSubscription_setAggregationPeriod(thread,
+                                                                               subscription,
+                                                                               value.native))
+    }
+
+}

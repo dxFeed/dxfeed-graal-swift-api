@@ -65,6 +65,19 @@ class NativeInstrumentProfileReader {
         return instruments
     }
 
+    func readFromFile(address: String, token: NativeAuthToken) throws -> [InstrumentProfile] {
+        let thread = currentThread()
+        let result = try ErrorCheck.nativeCall(thread,
+                                               dxfg_InstrumentProfileReader_readFromFile3(
+                                                thread,
+                                                reader,
+                                                address.toCStringRef(),
+                                                token.native)).value()
+        let instruments = convertFromNativeList(result)
+        _ = try ErrorCheck.nativeCall(thread, dxfg_CList_InstrumentProfile_release(thread, result))
+        return instruments
+    }
+
     private func convertFromNativeList(_ result:
                                        UnsafeMutablePointer<dxfg_instrument_profile_list>) -> [InstrumentProfile] {
         let count = result.pointee.size

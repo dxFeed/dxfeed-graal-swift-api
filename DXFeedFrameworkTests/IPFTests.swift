@@ -303,5 +303,24 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
         let resultstr = DXInstrumentProfileReader.resolveSourceURL(address: inputStr)
         XCTAssert(inputStr == resultstr)
     }
+
+    func testReadFromFile() throws {
+        if let dataURL = Bundle(for: IPFTests.self).url(forResource: "ipf", withExtension: "txt") {
+            let result = try DXInstrumentProfileReader().readFromFile(address: dataURL.absoluteString)
+            XCTAssertEqual(31, result?.count)
+            let applInstrument = result?.first(where: { ipf in
+                ipf.symbol == "AAPL"
+            })
+            XCTAssertEqual("Apple Inc. - Common Stock", applInstrument?.descriptionStr)
+            XCTAssertEqual("US", applInstrument?.country)
+            XCTAssertEqual("XNAS", applInstrument?.opol)
+            XCTAssertEqual("ARCX;BATS;BATY;EDGA;EDGX;IEXG;LTSE;MEMX;MPRL;XADF;XASE;XBOS;XCHI;XCIS;XNAS;XNYS;XPSX", 
+                           applInstrument?.exchanges)
+            XCTAssertEqual("USD", applInstrument?.currency)
+            XCTAssertEqual("Common Share;", applInstrument?.getField("SUBTYPES"))
+        } else {
+            XCTAssert(false, "File doesn't exist")
+        }
+    }
 }
 // swiftlint:enable type_body_length

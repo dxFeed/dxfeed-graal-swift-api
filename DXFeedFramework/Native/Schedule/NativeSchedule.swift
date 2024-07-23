@@ -129,7 +129,7 @@ class NativeSchedule {
         scheduleDay.endTime = try ErrorCheck.nativeCall(thread, dxfg_Day_getEndTime(thread, day))
         let sessions = try ErrorCheck.nativeCall(thread, dxfg_Day_getSessions(thread, day)).value()
         defer {
-            _ = try? ErrorCheck.nativeCall(thread, dxfg_SessionList_release(thread, sessions))
+            _ = try? ErrorCheck.nativeCall(thread, dxfg_SessionList_wrapper_release(thread, sessions))
         }
 
         let count = sessions.pointee.size

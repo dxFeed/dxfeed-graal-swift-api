@@ -174,6 +174,18 @@ public class OrderSource: IndexedEventSource {
     /// Pink sheets are listings for stocks that trade over-the-counter (OTC).
     public static let pink = try? OrderSource("pink", pubOrder | pubOtcMarketsOrder)
 
+    /// NYSE Arca traded securities.
+    public static let ARCA = try? OrderSource("ARCA", pubOrder)
+
+    /// NYSE Arca traded securities.. Record for price level book.
+    public static let arca = try? OrderSource("arca", pubOrder)
+
+    /// Cboe European Derivatives.
+    public static let CEDX = try? OrderSource("CEDX", pubOrder)
+
+    /// Cboe European Derivatives. Record for price level book.
+    public static let cedx = try? OrderSource("cedx", pubOrder)
+
     private static var publishableViews = [[OrderSource]](repeating: [OrderSource](), count: flagsSize)
 
     /// Don't use it. Just for initialization all static variable.
@@ -219,7 +231,11 @@ public class OrderSource: IndexedEventSource {
                                         OrderSource.MEMX,
                                         OrderSource.memx,
                                         OrderSource.OCEA,
-                                        OrderSource.pink]
+                                        OrderSource.pink,
+                                        OrderSource.ARCA,
+                                        OrderSource.arca,
+                                        OrderSource.CEDX,
+                                        OrderSource.cedx]
 
     override init(_ identifier: Int, _ name: String) {
         self.pubFlags = 0
