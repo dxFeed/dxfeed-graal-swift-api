@@ -9,15 +9,15 @@ import DXFeedFramework
 
 class QuoteModel {
 
-    let formatter = NumberFormatter()
+    static let formatter = NumberFormatter()
 
     private var current: Quote?
     private var previous: Quote?
     private var descriptionStr: String = ""
 
     init() {
-        formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 4
+        QuoteModel.formatter.minimumFractionDigits = 0
+        QuoteModel.formatter.maximumFractionDigits = 4
     }
 
     var ask: String {
@@ -25,7 +25,7 @@ class QuoteModel {
             return "0"
         }
         let number = NSNumber(value: price)
-        return formatter.string(from: number) ?? ""
+        return QuoteModel.formatter.string(from: number) ?? ""
     }
 
     var bid: String {
@@ -33,7 +33,7 @@ class QuoteModel {
             return "0"
         }
         let number = NSNumber(value: price)
-        return formatter.string(from: number) ?? ""
+        return QuoteModel.formatter.string(from: number) ?? ""
     }
 
     var descriptionString: String {
