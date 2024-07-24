@@ -48,6 +48,17 @@ public class DXFeed {
         return try DXFeedSubscription(native: native.createSubscription(type), types: [type])
     }
 
+    /// Creates new subscription for a one event type that is attached to this feed.
+    ///
+    /// [For more details see](https://docs.dxfeed.com/dxfeed/api/com/dxfeed/api/DXFeed.html#createSubscription-java.lang.Class)
+    /// - Parameters:
+    ///     - types: event types.
+    /// - Returns: ``DXFeedSubscription``
+    /// - Throws: ``GraalException``. Rethrows exception from Java.
+    public func createSubscription(_ types: IEventType.Type...) throws -> DXFeedSubscription {
+        return try DXFeedSubscription(native: native.createSubscription(types), types: types)
+    }
+
     /// Creates new time series subscription for a single event type that is <i>attached</i> to this feed.
     /// For multiple event types in one subscription use
     /// ``createTimeSeriesSubscription(_:)-tuiu``

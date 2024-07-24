@@ -35,7 +35,8 @@
         "EndpointTest\/testGetInstance()",
         "IsolateTest",
         "IsolateTest\/test123()",
-        "PublisherTest",
+        "PublisherTest\/testCreatePublisher()",
+        "PublisherTest\/testDEtachThread()",
         "ScheduleTest",
         "ScheduleTest\/testSetDefaults()"
       ],

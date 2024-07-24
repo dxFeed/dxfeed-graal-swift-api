@@ -11,7 +11,6 @@ import SwiftUI
 class QuoteTableViewController: UIViewController {
     private var endpoint: DXEndpoint?
     private var subscription: DXFeedSubscription?
-    private var profileSubscription: DXFeedSubscription?
 
     var dataSource = [String: QuoteModel]()
     var symbols = [String]()
@@ -81,19 +80,16 @@ class QuoteTableViewController: UIViewController {
             _ = try? endpoint?.connect("demo.dxfeed.com:7300")
         } else {
             subscription = nil
-            profileSubscription = nil
         }
 
-        subscription = try? endpoint?.getFeed()?.createSubscription(Quote.self)
-        profileSubscription = try? endpoint?.getFeed()?.createSubscription(Profile.self)
+        subscription = try? endpoint?.getFeed()?.createSubscription(Quote.self, Profile.self)
+
         try? subscription?.add(listener: self)
-        try? profileSubscription?.add(listener: self)
+
         symbols.forEach {
             dataSource[$0] = QuoteModel()
         }
         try? subscription?.addSymbols(symbols)
-        try? profileSubscription?.addSymbols(symbols)
-
     }
 
     @IBAction func changeAggregationPeriod(_ sender: UISwitch) {
