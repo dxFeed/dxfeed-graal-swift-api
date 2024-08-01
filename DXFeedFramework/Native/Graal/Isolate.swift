@@ -71,6 +71,10 @@ class Isolate {
             graal_detach_all_threads_and_tear_down_isolate(self.thread.pointee)
         }
     }
+    // When called, this signal handler simulates a function call to `callThreadExit`
+    private func sigIllHandler(code: Int32, info: UnsafeMutablePointer<siginfo_t>?, uap: UnsafeMutableRawPointer?) -> Void {
+        print("Handle signal \(code)")
+    }
 
     /// Isolate should be initialized in main thread to avoid problem with overcommited queues.
     ///
@@ -86,6 +90,16 @@ class Isolate {
 #else
     print("FEED SDK: Release")
 #endif
+        var sigActionPrev = sigaction()
+        // Get the previous signal action
+        if sigaction(SIGPIPE, nil, &sigActionPrev) != 0 {
+            print("Sigaction error: \(errno)")
+        } else {
+            if sigActionPrev.__sigaction_u.__sa_handler == nil {
+                signal(SIGPIPE, SIG_IGN)
+            }
+        }
+
         osThread.qualityOfService = .userInteractive
         waiter.enter()
         osThread.start()
