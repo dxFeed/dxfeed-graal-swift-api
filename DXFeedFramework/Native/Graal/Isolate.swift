@@ -72,7 +72,7 @@ class Isolate {
         }
     }
     // When called, this signal handler simulates a function call to `callThreadExit`
-    private func sigIllHandler(code: Int32, info: UnsafeMutablePointer<siginfo_t>?, uap: UnsafeMutableRawPointer?) -> Void {
+    private func sigIllHandler(code: Int32, info: UnsafeMutablePointer<siginfo_t>?, uap: UnsafeMutableRawPointer?) {
         print("Handle signal \(code)")
     }
 

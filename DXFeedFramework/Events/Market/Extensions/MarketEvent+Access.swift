@@ -78,6 +78,11 @@ extension MarketEvent {
         return (self as? OtcMarketsOrder)!
     }
 
+    /// Use only for event.type is ``EventCode/textMessage``
+    public var textMessage: TextMessage {
+        return (self as? TextMessage)!
+    }
+
     /// Use only for event.type which supported  ``ILastingEvent``
     public var lastingEvent: ILastingEvent? {
         switch self.type {

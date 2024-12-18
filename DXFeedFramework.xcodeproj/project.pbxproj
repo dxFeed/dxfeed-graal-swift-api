@@ -262,6 +262,10 @@
 		647A51532BE5141600B8B8C9 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A514B2BE5102800B8B8C9 /* Color+Ext.swift */; };
 		647F55B52C2AD53700937BE6 /* OptionChainsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647F55B42C2AD53700937BE6 /* OptionChainsBuilder.swift */; };
 		64820AAF2BB2E26100BDFD0B /* DXOtcMarketOrderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64820AAE2BB2E26100BDFD0B /* DXOtcMarketOrderTest.swift */; };
+		6482D2652C4802EA00E4665D /* TextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482D2642C4802EA00E4665D /* TextMessage.swift */; };
+		6482D2672C48064100E4665D /* TextMessageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482D2662C48064100E4665D /* TextMessageMapper.swift */; };
+		6482D2692C48066900E4665D /* Message+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482D2682C48066900E4665D /* Message+Ext.swift */; };
+		6482D26B2C480A2200E4665D /* DXMessageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482D26A2C480A2200E4665D /* DXMessageTest.swift */; };
 		6482F3D12BA492A60079AC3D /* SymbolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482F3D02BA492A60079AC3D /* SymbolsViewController.swift */; };
 		6482F3D22BA492A60079AC3D /* SymbolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482F3D02BA492A60079AC3D /* SymbolsViewController.swift */; };
 		6482F3D72BA49AB70079AC3D /* AddSymbolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482F3D62BA49AB70079AC3D /* AddSymbolsViewController.swift */; };
@@ -298,11 +302,11 @@
 		649282E72AD54919008F0F04 /* ScheduleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282E62AD54919008F0F04 /* ScheduleUtils.swift */; };
 		649282E82AD54919008F0F04 /* ScheduleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282E62AD54919008F0F04 /* ScheduleUtils.swift */; };
 		649282ED2AD593F3008F0F04 /* OrderSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649282EC2AD593F3008F0F04 /* OrderSourceTest.swift */; };
-		64933DA32C4553CC004E296C /* NativeInstrumentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64933DA22C4553CC004E296C /* NativeInstrumentProfile.swift */; };
 		64933D9B2C4161F8004E296C /* DXAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64933D9A2C4161F8004E296C /* DXAuthToken.swift */; };
 		64933D9D2C416229004E296C /* NativeAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64933D9C2C416229004E296C /* NativeAuthToken.swift */; };
 		64933D9F2C416AE3004E296C /* DXAuthTokenTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64933D9E2C416AE3004E296C /* DXAuthTokenTest.swift */; };
 		64933DA12C4517FA004E296C /* ipf.txt in Resources */ = {isa = PBXBuildFile; fileRef = 64933DA02C4517FA004E296C /* ipf.txt */; };
+		64933DA32C4553CC004E296C /* NativeInstrumentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64933DA22C4553CC004E296C /* NativeInstrumentProfile.swift */; };
 		64963B6A2A8E545C001E40F7 /* IEventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64963B692A8E545C001E40F7 /* IEventType.swift */; };
 		649706842AD82B070068FF88 /* Series.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649706832AD82B070068FF88 /* Series.swift */; };
 		649706862AD832860068FF88 /* Series+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649706852AD832860068FF88 /* Series+Ext.swift */; };
@@ -908,6 +912,10 @@
 		647F55B42C2AD53700937BE6 /* OptionChainsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionChainsBuilder.swift; sourceTree = "<group>"; };
 		647F55B62C2AE32600937BE6 /* DXFeedOptionChain.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = DXFeedOptionChain.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		64820AAE2BB2E26100BDFD0B /* DXOtcMarketOrderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXOtcMarketOrderTest.swift; sourceTree = "<group>"; };
+		6482D2642C4802EA00E4665D /* TextMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessage.swift; sourceTree = "<group>"; };
+		6482D2662C48064100E4665D /* TextMessageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessageMapper.swift; sourceTree = "<group>"; };
+		6482D2682C48066900E4665D /* Message+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+Ext.swift"; sourceTree = "<group>"; };
+		6482D26A2C480A2200E4665D /* DXMessageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXMessageTest.swift; sourceTree = "<group>"; };
 		6482F3D02BA492A60079AC3D /* SymbolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsViewController.swift; sourceTree = "<group>"; };
 		6482F3D62BA49AB70079AC3D /* AddSymbolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSymbolsViewController.swift; sourceTree = "<group>"; };
 		6482F3D92BA83AA20079AC3D /* SymbolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolCell.swift; sourceTree = "<group>"; };
@@ -938,11 +946,11 @@
 		648E98A92AAF625800BFD219 /* IIndexedEvent+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IIndexedEvent+Ext.swift"; sourceTree = "<group>"; };
 		649282E62AD54919008F0F04 /* ScheduleUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleUtils.swift; sourceTree = "<group>"; };
 		649282EC2AD593F3008F0F04 /* OrderSourceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSourceTest.swift; sourceTree = "<group>"; };
-		64933DA22C4553CC004E296C /* NativeInstrumentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInstrumentProfile.swift; sourceTree = "<group>"; };
 		64933D9A2C4161F8004E296C /* DXAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXAuthToken.swift; sourceTree = "<group>"; };
 		64933D9C2C416229004E296C /* NativeAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAuthToken.swift; sourceTree = "<group>"; };
 		64933D9E2C416AE3004E296C /* DXAuthTokenTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DXAuthTokenTest.swift; sourceTree = "<group>"; };
 		64933DA02C4517FA004E296C /* ipf.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ipf.txt; sourceTree = "<group>"; };
+		64933DA22C4553CC004E296C /* NativeInstrumentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeInstrumentProfile.swift; sourceTree = "<group>"; };
 		64963B692A8E545C001E40F7 /* IEventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEventType.swift; sourceTree = "<group>"; };
 		649706832AD82B070068FF88 /* Series.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
 		649706852AD832860068FF88 /* Series+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Series+Ext.swift"; sourceTree = "<group>"; };
@@ -1295,6 +1303,7 @@
 				64ABC0FE2AD91E6500904D78 /* OptionSale.swift */,
 				64C004712BA074500009F7C9 /* OtcMarketsOrder.swift */,
 				64C004752BA09FDC0009F7C9 /* OtcMarketsPriceType.swift */,
+				6482D2642C4802EA00E4665D /* TextMessage.swift */,
 			);
 			path = Market;
 			sourceTree = "<group>";
@@ -1386,6 +1395,8 @@
 				64EAA1A32B7B4DA1005087BC /* IndexedEventSource+Ext.swift */,
 				64C004772BA1C25C0009F7C9 /* OtcMarketsOrderMapper.swift */,
 				64C004732BA09C110009F7C9 /* OtcMarketsOrder+Ext.swift */,
+				6482D2662C48064100E4665D /* TextMessageMapper.swift */,
+				6482D2682C48066900E4665D /* Message+Ext.swift */,
 			);
 			path = Markets;
 			sourceTree = "<group>";
@@ -1991,6 +2002,7 @@
 				641E7A9C2C29A372009C8CE9 /* DXOptionChainTest.swift */,
 				64933D9E2C416AE3004E296C /* DXAuthTokenTest.swift */,
 				64933DA02C4517FA004E296C /* ipf.txt */,
+				6482D26A2C480A2200E4665D /* DXMessageTest.swift */,
 			);
 			path = DXFeedFrameworkTests;
 			sourceTree = "<group>";
@@ -3008,6 +3020,7 @@
 				64B4363E2AB883350003919E /* SessionFilter.swift in Sources */,
 				6486B9612AD02D3900D8D5FA /* SummaryMapper.swift in Sources */,
 				64AF04412AE6A9E90091F6F1 /* TradeETHMapper.swift in Sources */,
+				6482D2652C4802EA00E4665D /* TextMessage.swift in Sources */,
 				64B436402AB8857F0003919E /* SessionFilter+Ext.swift in Sources */,
 				646407592AA0CA8D006FF769 /* NativeProfileIterator.swift in Sources */,
 				6469F8C82A3B25C900846831 /* MarketEvent+Access.swift in Sources */,
@@ -3030,6 +3043,7 @@
 				64ABC1012AD9284900904D78 /* OptionSale+Ext.swift in Sources */,
 				6486B9632AD0333B00D8D5FA /* Greeks.swift in Sources */,
 				64E342522AAB29CF00457994 /* InstrumentProfileType.swift in Sources */,
+				6482D2672C48064100E4665D /* TextMessageMapper.swift in Sources */,
 				648E98AA2AAF625800BFD219 /* IIndexedEvent+Ext.swift in Sources */,
 				64A42F452B0B933B001C3ACC /* NativeTimeUtil.swift in Sources */,
 				6423E4672B44613D006B208D /* NativeTimeSeriesSubscription.swift in Sources */,
@@ -3094,6 +3108,7 @@
 				64C771FF2A9504ED009868C2 /* SnapshotProcessor.swift in Sources */,
 				64C771F82A94B88C009868C2 /* TimeAndSaleType.swift in Sources */,
 				641BDD5B2AC72BD400236B78 /* ConcurrentWeakHashTable.swift in Sources */,
+				6482D2692C48066900E4665D /* Message+Ext.swift in Sources */,
 				64BDDB242AD6F10200694210 /* Scope.swift in Sources */,
 				643A32A22BD2AEFB00F6F790 /* NativeOnDemandService.swift in Sources */,
 				6447A5DF2A8E56FC00739CCF /* IIndexedEvent.swift in Sources */,
@@ -3149,6 +3164,7 @@
 				641E7A9D2C29A372009C8CE9 /* DXOptionChainTest.swift in Sources */,
 				641C64B42B347C430023CFAD /* DXObservableSubscriptionTest.swift in Sources */,
 				642C9A2D2BFE2FFE0074864A /* DXMarketDepthTest.swift in Sources */,
+				6482D26B2C480A2200E4665D /* DXMessageTest.swift in Sources */,
 				64ACBCEC2A29FE2300032C53 /* XCTestCase+Utils.swift in Sources */,
 				6433B1322BCFC01F004EFED7 /* DXLastEventsSubscribedTest.swift in Sources */,
 				6423E4692B457000006B208D /* DXTimeSeriesSubscriptionTest.swift in Sources */,

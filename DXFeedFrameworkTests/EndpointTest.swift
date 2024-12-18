@@ -136,7 +136,6 @@ final class EndpointTest: XCTestCase {
         let endpoint = try DXEndpoint.create()
         let subscription = try endpoint.getFeed()?.createSubscription([Quote.self])
 
-
         try subscription?.setAggregationPeriod(time)
         let newValue = try subscription?.getAggregationPeriod()
 

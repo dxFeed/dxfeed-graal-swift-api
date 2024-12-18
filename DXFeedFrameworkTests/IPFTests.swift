@@ -363,7 +363,7 @@ STOCK,EREGL:TR,EREĞLİ DEMİR VE ÇELİK FABRİKALARI1 T.A.Ş.,TR,XIST,XIST,TRY
             XCTAssertEqual("Apple Inc. - Common Stock", applInstrument?.descriptionStr)
             XCTAssertEqual("US", applInstrument?.country)
             XCTAssertEqual("XNAS", applInstrument?.opol)
-            XCTAssertEqual("ARCX;BATS;BATY;EDGA;EDGX;IEXG;LTSE;MEMX;MPRL;XADF;XASE;XBOS;XCHI;XCIS;XNAS;XNYS;XPSX", 
+            XCTAssertEqual("ARCX;BATS;BATY;EDGA;EDGX;IEXG;LTSE;MEMX;MPRL;XADF;XASE;XBOS;XCHI;XCIS;XNAS;XNYS;XPSX",
                            applInstrument?.exchanges)
             XCTAssertEqual("USD", applInstrument?.currency)
             XCTAssertEqual("Common Share;", applInstrument?.getField("SUBTYPES"))

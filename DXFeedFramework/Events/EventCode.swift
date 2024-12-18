@@ -50,4 +50,6 @@ public enum EventCode: CaseIterable {
     case series
     /// See ``OptionSale``
     case optionSale
+    /// See ``TextMessage``
+    case textMessage
 }

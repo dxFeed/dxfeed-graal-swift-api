@@ -8,7 +8,7 @@ import Foundation
 import DXFeedFramework
 
 private class Counter {
-    private (set) var value: Int64 = 0
+    private(set) var value: Int64 = 0
     func add (_ amount: Int64) {
         OSAtomicAdd64(amount, &value)
     }

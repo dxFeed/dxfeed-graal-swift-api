@@ -50,6 +50,8 @@ extension EventCode {
             return .series
         case DXFG_EVENT_OPTION_SALE:
             return .optionSale
+        case DXFG_EVENT_TEXT_MESSAGE:
+            return .textMessage
         default:
             return nil
         }
@@ -96,6 +98,8 @@ extension EventCode {
             return DXFG_EVENT_SERIES
         case .optionSale:
             return DXFG_EVENT_OPTION_SALE
+        case .textMessage:
+            return DXFG_EVENT_TEXT_MESSAGE
         }
     }
 }

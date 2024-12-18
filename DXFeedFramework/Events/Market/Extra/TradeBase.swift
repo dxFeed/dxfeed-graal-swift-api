@@ -145,7 +145,7 @@ extension TradeBase {
         set {
             timeSequence = Long(TimeUtil.getSecondsFromTime(newValue) << 32) |
             (Long(TimeUtil.getMillisFromTime(newValue)) << 22) |
-            newValue
+            Long(getSequence())
         }
     }
 
