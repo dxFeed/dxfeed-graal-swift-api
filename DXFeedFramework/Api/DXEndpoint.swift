@@ -511,7 +511,19 @@ public class Builder {
     /// - Returns: Returns this ``DXEndpoint``
     /// - Throws: ``GraalException``. Rethrows exception from Java.
     public func build() throws -> DXEndpoint {
-        return try DXEndpoint(native: try nativeBuilder!.build(), role: role, name: getOrCreateEndpointName())
+        let name = getOrCreateEndpointName()
+        try nativeBuilder?.withProperty(DXEndpoint.Property.name.rawValue, name)
+
+        // Create properties snapshot.
+        // This ensures that the properties will not be changed from another thread.
+        var properties = [String: String]()
+        try props.forEach { (key: String, value: String) in
+            try nativeBuilder?.withProperty(key, value)
+            properties[key] = value
+        }
+
+        try loadDefaultPropertiesFileIfNeeded(builder: nativeBuilder!, role: role, props: properties)
+        return try DXEndpoint(native: try nativeBuilder!.build(), role: role, name: name)
     }
     /// Gets or creates an endpoint name.
     /// If there is no ``DXEndpoint/Property/name`` in the user-defined properties,
@@ -521,8 +533,46 @@ public class Builder {
         if let name = props[DXEndpoint.Property.name.rawValue] {
             return name
         }
-        let value = OSAtomicIncrement64(&instancesNumerator)
-        return "qdnet_\(value == 0 ? "" : "-\(value)")"
+        // Decrement the number, because OSAtomicIncrement64 returns incremented value.
+        let value = OSAtomicIncrement64(&instancesNumerator) - 1
+        return "qdswift\(value == 0 ? "" : "-\(value)")"
+    }
+    /// Tries to load a default properties file for the specified builder,
+    /// with the specified role.
+    private func loadDefaultPropertiesFileIfNeeded(builder: NativeBuilder, role: Role, props: [String: String]) throws {
+        // The default properties file is valid only for the
+        // Feed, OnDemandFeed and Publisher roles.
+        var propFileKey: String = ""
+        switch role {
+        case .feed:
+            propFileKey = DXEndpoint.Property.properties.rawValue
+        case .onDemandFeed:
+            propFileKey = DXEndpoint.Property.properties.rawValue
+        case .publisher:
+            propFileKey = DXEndpoint.Property.publisherProperties.rawValue
+        default:
+            return
+        }
+
+        // If propFileKey has been set in the system properties,
+        // don't try to load the default properties file.
+        if SystemProperty.getProperty(propFileKey)?.isEmpty == false {
+            return
+        }
+
+        // If there is no propFileKey in the user-defined properties,
+        // tries loading the default properties file from the current runtime directory if the file exists.
+        var currentDirectory = FileManager.default.currentDirectoryPath
+        // There is app path in the CommandLine arguments at position 0
+        if CommandLine.arguments.count > 0 {
+            let executablePath = CommandLine.arguments[0]
+            let executableURL = URL(fileURLWithPath: executablePath)
+            currentDirectory = executableURL.deletingLastPathComponent().path
+        }
+        let filePath = "\(currentDirectory)/\(propFileKey)"
+        if props[propFileKey] != nil && FileManager.default.fileExists(atPath: filePath) {
+            try builder.withProperty(propFileKey, filePath)
+        }
     }
 }
 
