@@ -145,8 +145,10 @@ class CandleChartModel: ObservableObject {
             return [String]()
         }
 
-        let maxInterval = Int(visiblePages.isNaN ? 1 : visiblePages) * 4
-        let stringValues = stride(from: 0, to: valuesCount, by: valuesCount / maxInterval).map { position in
+        let maxInterval = max(1, Int(visiblePages.isNaN ? 1 : visiblePages) * 4)
+        let step = max(1, valuesCount / maxInterval)
+
+        let stringValues = stride(from: 0, to: valuesCount, by: step).map { position in
             values[position].stringtimeStamp
         }
         return stringValues
