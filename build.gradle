@@ -28,8 +28,8 @@ task fetchDependencies(type: Copy) {
     }
 
     // Lazy `from {}` defers resolving runtimeClasspath to task execution time,
-    // so tasks that don't depend on fetchDependencies (e.g. publishToNexus)
-    // don't trigger dependency resolution during Gradle's configuration phase.
+    // so tasks that don't depend on fetchDependencies don't trigger dependency
+    // resolution during Gradle's configuration phase.
     from { sourceSets.main.runtimeClasspath }
     into 'downloads'
 
@@ -62,63 +62,6 @@ task fetchDependencies(type: Copy) {
         }
 
         new File('downloads').deleteDir()
-    }
-}
-
-task publishToNexus {
-    group = 'publishing'
-    description = 'Uploads DXFeedFramework.zip to the qd Nexus/Maven repository'
-
-    def repoUrl = 'https://maven.in.devexperts.com/content/repositories/qd'
-    def artifactGroupId = 'com.dxfeed'
-    def artifactId = 'DXFeedFramework'
-    def artifactVersion = project.findProperty('publishVersion') ?: native_version
-    def zipFile = file('build/DXFeedFramework.zip')
-
-    doLast {
-        if (!zipFile.exists()) {
-            throw new GradleException("Artifact not found: ${zipFile}. Build/archive it before running this task.")
-        }
-
-        def username = project.findProperty('nexusUsername') ?: System.getenv('NEXUS_USERNAME')
-        def password = project.findProperty('nexusPassword') ?: System.getenv('NEXUS_PASSWORD')
-        if (!username || !password) {
-            throw new GradleException(
-                "Nexus credentials are required: pass -PnexusUsername=... -PnexusPassword=... " +
-                "or set NEXUS_USERNAME / NEXUS_PASSWORD env vars."
-            )
-        }
-
-        def groupPath = artifactGroupId.replace('.', '/')
-        def targetUrl = "${repoUrl}/${groupPath}/${artifactId}/${artifactVersion}/${artifactId}-${artifactVersion}.zip"
-        logger.lifecycle("Uploading ${zipFile} to ${targetUrl}")
-
-        def connection = new URL(targetUrl).openConnection()
-        connection.setRequestMethod('PUT')
-        connection.setDoOutput(true)
-        connection.setRequestProperty('Content-Type', 'application/zip')
-        // Intentionally NOT using setFixedLengthStreamingMode/setChunkedStreamingMode here:
-        // in streaming mode the JDK throws HttpRetryException on a 401/407 response instead of
-        // returning the response code, because it cannot re-send an already-streamed body.
-        // Buffering lets us see the real HTTP status and Nexus's error body when auth fails.
-        connection.setRequestProperty('Content-Length', zipFile.length().toString())
-        connection.connectTimeout = 30_000
-        connection.readTimeout = 120_000
-
-        def auth = "${username}:${password}".bytes.encodeBase64().toString()
-        connection.setRequestProperty('Authorization', "Basic ${auth}")
-
-        connection.outputStream.withStream { out ->
-            zipFile.withInputStream { input -> out << input }
-        }
-
-        def responseCode = connection.responseCode
-        if (responseCode in 200..299) {
-            logger.lifecycle("Uploaded successfully: ${targetUrl}")
-        } else {
-            def errorBody = connection.errorStream?.text ?: connection.inputStream?.text ?: ''
-            throw new GradleException("Upload failed: HTTP ${responseCode} ${connection.responseMessage}\n${errorBody}")
-        }
     }
 }
 
