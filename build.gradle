@@ -1,8 +1,17 @@
 apply plugin: 'java'
 
 repositories {
-    maven {
-        url 'https://dxfeed.jfrog.io/artifactory/maven-open'
+    // The SDK ships as GitHub release assets, which are not a Maven layout, so the
+    // release download endpoint is exposed as an ivy repository with an explicit
+    // pattern:  <url>/v3.2.0/graal-native-sdk-3.2.0-aarch64-osx.zip
+    ivy {
+        url = 'https://github.com/dxFeed/dxfeed-graal-native-sdk/releases/download'
+        patternLayout {
+            artifact 'v[revision]/[module]-[revision]-[classifier].[ext]'
+        }
+        // no ivy.xml or POM is published next to the assets
+        metadataSources { artifact() }
+        content { includeModule('com.dxfeed', 'graal-native-sdk') }
     }
 }
 
